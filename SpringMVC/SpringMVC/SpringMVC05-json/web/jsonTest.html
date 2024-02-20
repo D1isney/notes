@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+        // 编写一个JavaScript对象
+        let user = {
+            name: "蛋蛋",
+            age: 23,
+            sex: '男'
+        }
+        //  将js对象转换为JSON对象
+        let json = JSON.stringify(user);
+
+        //  将JSON对象转换为js对象
+        let js = JSON.parse(json);
+
+        console.log(json);
+        console.log(js);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

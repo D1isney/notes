@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.dao.BlogMapper">
+    <insert id="addBook" parameterType="com.pojo.Blog">
+        insert into mybatis.blog1 (id,title,author,create_time,views)
+        values(#{id},#{title},#{author},#{createTime},#{views});
+    </insert>
+
+    <sql id="if-title-author">
+        <if test="title != null">
+            and title = #{title}
+        </if>
+        <if test="author != null">
+            and author = #{author}
+        </if>
+    </sql>
+
+    <select id="queryBlogIF" resultType="com.pojo.Blog" parameterType="map">
+        select * from blog1
+        <where>
+            <!--     导入-->
+            <include refid="if-title-author"></include>
+        </where>
+    </select>
+
+
+    <select id="queryBlogChoose" resultType="com.pojo.Blog" parameterType="map">
+        select * from mybatis.blog1
+        <!--        自动删除and并且为SQL加上and或or-->
+        <where>
+            <choose>
+                <when test="title != null">
+                    title = #{title}
+                </when>
+                <when test="author != null">
+                    and author = #{author}
+                </when>
+                <otherwise>
+                    and views = #{views}
+                </otherwise>
+            </choose>
+
+        </where>
+    </select>
+
+    <update id="updateBlog" parameterType="map">
+        update mybatis.blog1
+        <!--        多余的逗号（，）会自动删除-->
+        <set>
+            <if test="title != null">
+                title = #{title}
+            </if>
+            <if test="author != null">
+                author = #{author}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+
+    <!--    select * from mybatis.blog1 where 1 = 1 and (id = 1 or id = 2 or id = 3)-->
+    <select id="queryBolgForeach" parameterType="map" resultType="com.pojo.Blog">
+        select * from mybatis.blog1
+        <where>
+            <!--    传递一个万能的map，map中可以存在一个集合-->
+            <foreach collection="ids" item="id" open="and (" separator="or" close=")">
+                id = #{id}
+            </foreach>
+        </where>
+    </select>
+
+
+</mapper>

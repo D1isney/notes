@@ -1,0 +1,73 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.pojo.Student">
+        <!--        第一种：普通值注入 value-->
+        <property name="name" value="DisneyD33"/>
+        <!--        第二种：Bean注入，ref-->
+        <property name="address" ref="address"/>
+
+        <!--        数组注入-->
+        <property name="books">
+            <array>
+                <value>JavaWeb</value>
+                <value>Web</value>
+                <value>Java</value>
+            </array>
+        </property>
+
+        <!--        List注入-->
+        <property name="hobby">
+            <list>
+                <value>Code</value>
+                <value>TV</value>
+                <value>Phone</value>
+            </list>
+        </property>
+
+        <!--        Map-->
+        <property name="card">
+            <map>
+                <entry key="ID" value="121700"/>
+                <entry key="pass" value="disney"/>
+            </map>
+        </property>
+
+        <!--        Set-->
+        <property name="game">
+            <set>
+                <value>王者荣耀</value>
+                <value>和平精英</value>
+            </set>
+        </property>
+
+        <!--        null值注入-->
+        <!--        <property name="wife" value=""/>-->
+        <property name="wife">
+            <null/>
+        </property>
+
+        <!--
+        Properties
+            key = value
+            key = value
+            key = value
+        -->
+        <property name="info">
+            <props>
+                <prop key="userName">userName</prop>
+                <prop key="passWord">passWord</prop>
+            </props>
+        </property>
+
+    </bean>
+
+    <bean id="address" class="com.pojo.Address">
+        <property name="address" value="广州"/>
+    </bean>
+
+    <import resource="userBean.xml"/>
+
+</beans>
