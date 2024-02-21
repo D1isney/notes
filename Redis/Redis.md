@@ -121,9 +121,7 @@ Redis通常用于一些特定场景，需要与MySql一起配合使用
 
 
 
-## 3.1、Redis常见数据类型操作命令
-
-**Strings：**
+## 3.1、常见数据类型操作命令
 
 - keys *：查看当前库所有的key
 - exists key：判断某个key是否存在
@@ -140,23 +138,123 @@ Redis通常用于一些特定场景，需要与MySql一起配合使用
 
 
 
-**Lists：**
+## 3.2、String
+
+- SET key value：设置指定的key值
+- GET key：获取指定key的值
+- GETRANGE key start end：返回key中字符串值的子字符
+- GETSET key value：将给定key的值设为value，并返回key的旧值（old value）
+- GETBIT key offset：对key所存储的字符串值，获取指定偏移量上的位（bit）
+- MGET key1 [ key2 ]：获取所有（一个或多个）给定key的值
+- SETBIT key offset value：对key所存储的字符串值，设置或清除指定偏移量上的位（bit）
+- SETEX key seconds value：将值value关联到key，并将key的过期时间设为seconds（以秒为单位）
+- SETNX sey value：只要key不存在时设置key的值
+- SETRANGE key offset value：用value参数覆写给定key所存储的字符串量，从偏移量开始
+- STRLEN key：返回key所存储的字符串的长度
+- MSET key value [ key value ... ]：同时设置一个或者多个键值对
+- PSETEX key milliseconds value：这个命令和SETEX命令相似，但它以毫秒为单位设置key的生存时间，而不是像SETEX命令那样，以秒为单位
+- INCR key：将key中存储的数字值增1
+- INCRBY key increment：将key所存储的值加上给定的增量值（increment）
+- INCRBYFLOAT key increment：将key所存储的值加上给定的浮点增量值（increment）
+- DECR key：将key存储的数字值减1
+- DECRBY key decrement：key所存储的值减去给定的减量值
+- APPEND key value：如果key已经存在并且是一个字符串，APPEND命令将value追加到key原来的值的末尾
 
 
 
-**Sets：**
+## 3.3、List
+
+- BLPOP key1 [ key2 ] timeout：移出并获得列表的第一个元素，如果列表没有元素会阻塞列表知道等待超时或发现可弹出元素为止
+- BRPOP key1 [ key2 ] timeout：移出并获得列表的最后一个元素，如果列表没有元素会阻塞列表知道等待超时或发现可弹出元素为止
+- BRPOPLPUSH source destination timeout：从列表中弹出一个值，将弹出的元素插入到另一个列表中并返回它；如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止
+- LINDEX key index：通过索引获取列表中的元素
+- LINSERT key BEFORE|AFTER pivot value：在列表的元素前或者后插入元素
+- LLEN key：获取列表长度
+- LPOP key：移出并获取列表的第一个元素
+- LPUSH key value1 [ value2 ]：将一个或者多个值插入到列表头部
+- LPUSHX key value1 [ value2 ]：将一个或者多个值插入到已存在的列表头部
+- LRANGE key start stop：获取列表指定范围内的元素
+- LREM key count value：移除列表元素
+- LSET key index value：通过索引设置列表元素的值
+- LTRIM key start stop：对一个列表进行修剪（trim），就是说列表只保留指定区间内的元素，不在指定区间内的元素都将被删除
+- RPOP key：移除并获取列表最后一个元素
+- RPOPLPUSH source destination：移除列表的最后一个元素，并将该元素添加到另一个列表并返回
+- RPUSH key value1 [ value2 ]：在列表中添加一个或者多个值
+- RPUSHX key value：为已存在的列表添加值
 
 
 
-**Hashes：**
+## 3.4、Set
+
+- SADD key member1 [ member2 ]：向集合添加一个或者多个成员
+- SCARD key：获取集合的成员数
+- SDIFF key1 [ key2 ]：返回给定所有集合的差集
+- SDIFFSTORE destination key1 [ key2 ]：返回给定所有集合的差集并存储在destination中
+- SINTERSTORE destination key1 [ key2 ]：返回给定所有集合的交集并存储在destination中
+- SISMEMBER key member：判断menber元素是否是集合key的成员
+- SMEBERS key：返回集合中的所有成员
+- SMOVE source destination menber：将member元素从source集合移动到destination集合
+- SPOP key：移除并返回集合中的一个随机元素
+- SRANDMEMBER key [ count ]：返回集合中一个或者多个随机数
+- SREM key member1 [ member2 ]：移除集合中一个或者多个成员
+- SUNION key1 [ key2 ]：返回所有给定集合的并集
+- SUNIONSTORE destination key1 [ key2 ]：所有给定集合的并集存储在destination集合中
+- SSCAN key cursor [ MATCH pattem ] [ COUNT count ]：迭代集合中的元素
 
 
 
-**Sorted sets：**
+## 3.5、Hash
+
+> Map<String,Map<Object,Object>>
+
+- HDEL key field2 [ field2 ]：删除一个或者多个哈希表字段
+- HEXISTS key field：查看哈希表中key，指定的字段是否存在
+- HGET key field：获取存储在哈希表中指定字段的值
+- HGETALL key：获取在哈希表中指定key的所有字段和值
+- HINCRBY key field increment：为哈希表key中指定字段的整数值添加上增量increment
+- HINCRBYFLOAT key field increment：为哈希表key中指定字段的浮点数值添加上增量increment
+- HKEYS：获取所有哈希表中的字段
+- HLEN key：获取哈希表中字段的数量
+- HMGET key field1 [ field2 ]：获取所有给定字段的值
+- HMSET key field1 value1 [ field2 value2 ]：同时将多个field-value（域-值）对设置到哈希表key中
+- HSET key field value：将哈希表key中的字段field的值设为value
+- HSETNX key field value：只有在字段field不存在时，设置哈希表字段的值
+- HVALS key：获取哈希表中所有的值
+- HSCAN key cursor [ MATCH pattem ] [ COUNT count ]：迭代哈希表中的键值对
 
 
 
-**Streams：**
+
+
+## 3.6、Sorted set（ZSet）
+
+> 在set基础上，每个val值前添加一个score分数值
+>
+> 之前set是 k1 v1 v2 v3
+>
+> 现在zset是k1 score1 v1 score2 v2
+
+- ZADD key score menber1 [ score2 menber2 ]：向有序集合添加一个或者多个成员，或者更新已存在的成员分数
+- ZCARD key：获取有序集合的元素个数
+- ZCOUNT key min max：可计算在有序集合中指定区间分数的成员
+- ZINCRBY key increment menber：有序集合中对指定成员的分数加上增量increment
+- ZINTERSTORE destination numkeys key [ key... ]：计算给定的一个或者多个有序集的交集并将结果集存储在新的有序集合key中
+- ZLEXCOUNT key min max：在有序集合中计算指定字典区间内成员数量
+- ZRANGE key start stop [ WITHSCORES ]：通过索引区间返回有序集合成指定区间内的成员
+- ZRANGEBYLEX key min max [ LIMIT offset count ]：通过字典区间返回有序集合的成员
+- ZRANGEBYSCORE key min max [ WITHSCORES ] [ LIMIT ]：通过分数返回有序集合指定区间内的成员
+- ZRANK key menber：返回有序集合中指定成员的索引
+- ZREM key menber [ member ]：移除有序集合中的一个或多个成员
+
+
+
+
+
+
+
+
+
+## 3.7、Streams
 
 - 队列相关指令
   - XADD：添加消息到队列末尾
@@ -175,7 +273,7 @@ Redis通常用于一些特定场景，需要与MySql一起配合使用
 
 
 
-**Geospatial：**
+## 3.8、Geospatial
 
 - GEOADD：多个经度（longitude）、维度（latitude）、位置名称（member）添加到指定的key中
 - GEOPOS：从键里面返回所有给定位置元素的位置（经度和维度）
@@ -188,19 +286,32 @@ Redis通常用于一些特定场景，需要与MySql一起配合使用
 
 
 
-**HyperLogLog：**
+## 3.9、HyperLogLog
+
+- PFADD key element [ element ]：添加指定元素到 HyperLogLog中
+- PFCOUNT key [ key... ]：返回给定HyperLogLog的基数估算值
+- PFMERGE destkey sourcekey [ sourcekey.... ]：将多个HyperLogLog合并为一个HyperLogLog
 
 
 
+## 3.10、Bitmap
+
+> 由0和1状态表现的二进制位的bit数组
+>
+> 说明：用String类型作为底层数据结构实现的一种统计二值状态的数据类型
+>
+> 位图本质是数组，它是基于String数据类型的按位的操作。该数组由多个二进制位组成，每个二进制位都赌赢一个偏移量（我们称之为一个索引）。
+>
+> Bitmap支持的最大位数是2^32位，它可以极大的节约存储空间，使用512M内存就可以存储多大42.9亿的字节信息（2^32 = 4294967296）
+
+- setbit key offset val：给指定key的值的第offset赋值val            时间复杂度：O（1）
+- getbti key offset：获取指定key的第offset位                             时间复杂度：O（1）
+- bitcount key start end：返回指定key中[ start,end ]中为1的数量                                                   时间复杂度：O（n）
+- bitop operation destkey key：对不同的二进制存储数据进行运算（AND、OR、NOT、XOR）  时间复杂度：O（1）
 
 
-**Bitmaps：**
 
-
-
-
-
-**Bitfileds：**
+## 3.11、Bitfiled
 
 - BITFIELD key[GET type offset]：该命令允许用户在 Redis 字符串类型中对位进行读取、设置或修改。 "GET type offset" 是该命令中的一个选项，用于指定读取操作的位域类型和偏移量
 - BITFIELD key[SET type offset value]：允许您在 Redis 字符串类型中设置位的值。"SET type offset value" 是该命令的选项之一，用于指定要设置的位域类型、偏移量和相应的值
@@ -1235,6 +1346,8 @@ Redis集群是一个提供在多个Redis节点间共享数据的程序集。
        //	注意自己的真实IP地址
        redis-cli -a zzq123456 --cluster create --cluster-replicas 1 192.168.111.175:6381 192.168.111.175:6382 192.168.111.175:6383 192.168.111.175:6384 192.168.111.175:6384 192.168.111.175:6386
        
+       redis-cli -a zzq121700 --cluster create --cluster-replicas 1 192.168.129.132:6379 192.168.129.132:6380 192.168.129.133:6381 192.168.129.133:6382 192.168.129.134:6383 192.168.129.134:6384
+       
        --cluster-replicas 1表示为每个master创建一个slave节点
        ```
 
@@ -1243,7 +1356,7 @@ Redis集群是一个提供在多个Redis节点间共享数据的程序集。
 4. 链接近入6381作为切入点，**查看并校验集群状态**
 
    - ```conf
-     CLUSTER NODES1
+     CLUSTER NODES
      ```
 
    
@@ -1396,3 +1509,597 @@ Redis集群是一个提供在多个Redis节点间共享数据的程序集。
       1. 该键在哪个槽位上
 
 # 11、SpringBoot集成Redis
+
+## 11.1、总体概述
+
+Jedis - Lettuce - RedisTemplate三者的联系
+
+
+
+
+
+## 11.2、本地Java连接Redis常见问题
+
+1. bind配置注释掉
+2. 保护模式设置为no
+3. Linux系统的防火墙设置
+4. Redis服务器的IP地址和密码是否正确
+5. 访问Redis的服务端口号和auth密码
+
+
+
+## 11.3、集成Jedis
+
+### 11.3.1、 Jedis是什么？
+
+Jedis Client是Redis官网推荐的一个面向Java客户端，库文件实现了对各类API进行封装调用 
+
+在Java中，Jedis是一个流行的开源Java库，用于与Redis数据库进行通信。Redis是一个高性能的键值存储系统，广泛用于缓存、会话管理、消息队列等用途。Jedis库提供了与Redis服务器进行交互的API，使Java开发人员能够轻松地在他们的应用程序中使用Redis功能。通过Jedis，你可以执行各种Redis操作，如设置和获取键值对、执行列表、集合和有序集合操作等。
+
+
+
+### 11.3.2、使用Jedis步骤
+
+1. 建Module
+
+2. 改POM
+
+   ```xml
+   <?xml version="1.0" encoding="UTF-8"?>
+   <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+       <modelVersion>4.0.0</modelVersion>
+   
+       <groupId>com</groupId>
+       <artifactId>Redis01_Jedis</artifactId>
+       <version>0.0.1-SNAPSHOT</version>
+   
+       <parent>
+           <groupId>org.springframework.boot</groupId>
+           <artifactId>spring-boot-starter-parent</artifactId>
+           <version>2.6.10</version>
+       </parent>
+       <properties>
+           <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+           <maven.compiler.target>11</maven.compiler.target>
+           <maven.compiler.source>11</maven.compiler.source>
+           <junit.version>4.12</junit.version>
+           <log4j.version>1.2.17</log4j.version>
+           <lombok.version>1.16.18</lombok.version>
+       </properties>
+   
+       <dependencies>
+           <!--Spring Boot通用依赖模块-->
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-web</artifactId>
+           </dependency>
+           <!--Jedis-->
+           <dependency>
+               <groupId>redis.clients</groupId>
+               <artifactId>jedis</artifactId>
+               <version>4.3.1</version>
+           </dependency>
+           <!--通用基础配置-->
+           <dependency>
+               <groupId>junit</groupId>
+               <artifactId>junit</artifactId>
+               <version>${junit.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-test</artifactId>
+               <scope>test</scope>
+           </dependency>
+           <dependency>
+               <groupId>log4j</groupId>
+               <artifactId>log4j</artifactId>
+               <version>${log4j.version}</version>
+           </dependency>
+           <dependency>
+               <groupId>org.projectlombok</groupId>
+               <artifactId>lombok</artifactId>
+               <version>${lombok.version}</version>
+           </dependency>
+       </dependencies>
+   </project>
+   
+   ```
+
+3. 写YML
+
+   ```YML
+   server:
+     port: 8080
+   
+   spring:
+     application:
+       name: redis01_jedis
+   ```
+
+4. 主启动
+
+   ```java
+   package com.redis01_jedis.demo;
+   
+   import redis.clients.jedis.Jedis;
+   
+   public class JedisDemo {
+   
+       public static void main(String[] args) {
+           //  1、connection获得，通过指定ip和端口号
+           Jedis jedis = new Jedis("192.168.129.132", 6379);
+   
+           //  2、指定访问服务器的密码
+           jedis.auth("zzq121700");
+   
+           //  3、获得了jedis客户端，可以像jdbc一样，访问redis
+           System.out.println(jedis.ping());
+       }
+   }
+   ```
+
+5. 业务类
+
+   1. 入门案例
+
+   2. 5+1
+
+      1. 一个key
+
+         ```java
+         //  keys
+         Set<String> keys = jedis.keys("*");
+         System.out.println(keys);
+         ```
+
+      2. 常用五大数据类型
+
+         ```java
+                 //String
+                 jedis.set("k3", "v3");
+                 System.out.println(jedis.get("k3"));
+                 System.out.println(jedis.ttl("k3"));
+                 jedis.expire("k3",20L);
+         
+                 //list
+                 jedis.lpush("list", "k1", "k2", "k3");
+                 List<String> list = jedis.lrange("list", 0, -1);
+                 for (String element : list) {
+                     System.out.println(element);
+                 }
+         
+                 //hash
+                 Map<String,String> map1 = new HashMap<>();
+                 Map<String,String> map2 = new HashMap<>();
+                 Map<String,String> map3 = new HashMap<>();
+                 map1.put("蛋蛋","Disney");
+                 jedis.hset("map",map1);
+                 System.out.println(jedis.hgetAll("map"));
+         
+         
+                 //set
+                 jedis.sadd("set","k1","k2");
+                 System.out.println(jedis.smembers("set"));
+         
+                 //zSet
+                 jedis.zadd("zSet1",80,"k1");
+                 jedis.zadd("zSet1",60,"k2");
+                 jedis.zadd("zSet1",90,"k3");
+                 System.out.println(jedis.zcount("zSet1", 70, 90));
+                 System.out.println(jedis.zcard("zSet1"));
+         ```
+
+
+
+
+
+## 11.4、集成Lettuce
+
+### 11.4.1、Lettuce是什么？
+
+Lettuce是一个Redis的Java驱动包，Lettuce翻译为生菜
+
+Lettuce是一个流行的开源Java Redis客户端库，用于与Redis服务器进行通信。它提供了异步、同步和反应式的API，允许Java开发人员以多种方式与Redis进行交互。
+
+Lettuce具有高性能和可扩展性，支持Redis的所有主要功能，包括字符串、列表、哈希、集合、有序集合等数据类型的操作。它还提供了连接池、集群支持、SSL连接、命令延迟和哨兵模式等特性，使得在Java应用程序中使用Redis变得更加方便和灵活。
+
+
+
+
+
+### 11.4.2、Lettuce VS Jedis
+
+Lettuce和Jedis都是用于在Java应用程序中与Redis服务器进行通信的流行客户端库，但它们在实现方式和特性上有一些不同：
+
+1. **实现方式**：
+   - Jedis：Jedis是一个基于阻塞I/O的Redis客户端库，它使用传统的同步方式进行通信。这意味着当执行Redis操作时，当前线程会被阻塞，直到操作完成或者超时。
+   - Lettuce：Lettuce是一个基于Netty的非阻塞I/O的Redis客户端库，它使用异步方式进行通信。这意味着它可以在单个连接上同时处理多个请求，并且不会阻塞当前线程，从而提高了并发性能和吞吐量。
+2. **线程安全性**：
+   - Jedis：Jedis实例不是线程安全的，如果在多个线程中共享同一个Jedis实例，需要使用同步机制来保证线程安全性。
+   - Lettuce：Lettuce实例是线程安全的，可以在多个线程中共享同一个Lettuce实例而无需担心线程安全性问题。
+3. **连接池**：
+   - Jedis：Jedis提供了自带的连接池来管理连接，但默认情况下连接池是单例的，即所有的Jedis实例共享同一个连接池。
+   - Lettuce：Lettuce也提供了连接池的支持，但与Jedis不同的是，Lettuce的连接池是可配置的，可以根据需要创建多个连接池，每个连接池可以设置不同的参数。
+4. **功能特性**：
+   - Jedis和Lettuce都支持Redis的所有主要功能，包括字符串、列表、哈希、集合、有序集合等数据类型的操作。但Lettuce提供了更多的高级特性，如SSL连接、哨兵模式、集群模式、命令延迟等。
+
+
+
+### 11.4.3、案例
+
+1. 改POM
+
+   ```xml
+           <!--Lettuce-->
+           <dependency>
+               <groupId>io.lettuce</groupId>
+               <artifactId>lettuce-core</artifactId>
+               <version>6.2.1.RELEASE</version>
+           </dependency>
+   ```
+
+2. 业务类
+
+   ```java
+   package com.redis01_jedis.demo;
+   
+   import io.lettuce.core.RedisClient;
+   import io.lettuce.core.RedisURI;
+   import io.lettuce.core.api.StatefulRedisConnection;
+   import io.lettuce.core.api.sync.RedisCommands;
+   
+   import java.util.List;
+   
+   public class LettuceDemo {
+   
+       public static void main(String[] args) {
+   
+           //1、使用构建起链式编程来builder RedisURI
+           RedisURI redis = RedisURI.builder()
+                   .redis("192.168.129.132")
+                   .withPort(6379)
+                   .withAuthentication("default", "zzq121700")
+                   .build();
+   
+   
+           //2、创建连接客服端
+           RedisClient client = RedisClient.create(redis);
+           StatefulRedisConnection connect = client.connect();
+   
+   
+           //3、创建操作的command，通过connect
+           RedisCommands commands = connect.sync();
+           //  keys
+           List keys = commands.keys("*");
+           System.out.println(keys);
+   
+           //  string
+           commands.set("k1","v1");
+           System.out.println("==========》"+commands.get("k1"));
+   
+   
+           //4、各种关闭释放资源
+           try {
+               connect.close();
+               client.shutdown();
+           } catch (Exception e) {
+               System.out.println(e);
+           }
+   
+       }
+   }
+   ```
+
+
+
+
+
+
+
+
+
+## 11.5、集成RedisTemplate -- 推荐使用
+
+### 11.5.1、连接单机
+
+**导入依赖：**
+
+```xml
+<!--RedisTemplate-->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-pool2</artifactId>
+</dependency>
+<!--swagger2-->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>2.9.2</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>2.9.2</version>
+</dependency>
+```
+
+**application.yml**
+
+```yml
+server:
+  port: 8080
+
+spring:
+  application:
+    name: redis01_jedis
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    database: 0
+    host: 192.168.129.132
+    port: 6379
+    password: zzq121700
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+
+  swagger2:
+    enable: true
+
+#  logging
+logging:
+  level:
+    root: info
+    com.redis01_jedis: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [thread] %-5level %logger- %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [thread] %-5level %logger- %msg%n"
+
+
+  file:
+    name: K:/GitHub/notes/Redis/Redis_CODE/myLogs2024/redis7.log
+
+##swagger
+#spring:
+#  swagger2:
+#    enabled:true
+```
+
+**Swagger2Config**
+
+```java
+package com.redis01_jedis.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+@Configuration
+@EnableSwagger2
+public class SwaggerConfig {
+    @Value("${spring.swagger2.enable}")
+    private Boolean enable;
+
+    public Docket createRestApi(){
+        return new Docket(DocumentationType.SWAGGER_2)
+                .apiInfo(apiInfo())
+                .enable(enable)
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.redis01_jedis"))
+                .paths(PathSelectors.any())
+                .build();
+    }
+
+    public ApiInfo apiInfo(){
+        return new ApiInfoBuilder()
+                .title("SpringBoot利用Swagger2构建api接口文档" + "\t"+
+                                DateTimeFormatter.ofPattern("yyyy-MM-dd").format(LocalDateTime.now())
+                        )
+                .description("SpringBoot+Redis整合")
+                .version("1.0")
+                .termsOfServiceUrl("disney")
+                .build();
+    }
+
+
+}
+```
+
+**Service**
+
+```java
+package com.redis01_jedis.service;
+
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
+
+@Service
+@Slf4j
+public class OrderServer {
+
+    public static final String ORDER_KEY = "ord";
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
+    public void addOrder() {
+        int keyId = ThreadLocalRandom.current().nextInt(1000) + 1;
+        String serialNo = UUID.randomUUID().toString();
+
+        String key = ORDER_KEY + keyId;
+        String value = "京东订单" + serialNo;
+
+        redisTemplate.opsForValue().set(key, value);
+
+        System.out.println("---key:{" + key + "}");
+        System.out.println("---value:{" + value + "}");
+
+    }
+
+    public String getOrderById(Integer keyId) {
+        return (String) redisTemplate.opsForValue().get(ORDER_KEY + keyId);
+    }
+
+}
+```
+
+**Controller**
+
+```java
+package com.redis01_jedis.controller;
+
+import com.redis01_jedis.service.OrderServer;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+
+@RestController
+@Slf4j
+@Api(tags = "订单接口")
+public class OrderController {
+
+    @Resource
+    private OrderServer orderServer;
+
+    @ApiOperation("新增订单")
+    @RequestMapping(value = "/order/add",method = RequestMethod.POST)
+    public void addOrder(){
+        orderServer.addOrder();
+    }
+
+    @ApiOperation("按照keyId查询订单")
+    @RequestMapping(value = "/order/{keyId}",method = RequestMethod.GET)
+    public void getOrderById(@PathVariable Integer keyId){
+        orderServer.getOrderById(keyId);
+    }
+
+}
+```
+
+
+
+**测试**
+
+http://localhost:8080/swagger-ui.html
+
+传回去的值被序列化了
+
+key：\xac\xed\x00\x05t\x00\x06ord441
+
+value：xac\xed\x00\x05t\x000\xe4\xba\xac\xe4\xb8\x9c\xe8\xae\xa2\xe5\x8d\x95ffb35f37-140d-4d7a-af13-1df8573ca5eb"
+
+**解决方案**
+
+第一种：用StringRedisTemplate替换掉RedisTemplate
+
+默认使用：
+
+```java
+public void afterPropertiesSet() {
+    super.afterPropertiesSet();
+    boolean defaultUsed = false;
+    if (this.defaultSerializer == null) {
+        this.defaultSerializer = new JdkSerializationRedisSerializer(this.classLoader != null ? this.classLoader : this.getClass().getClassLoader());
+    }
+```
+
+redis上会不支持中文的显示，所以我们进入redis的时候需要：
+
+redis-cli -a zzq123456 -p 6399 --raw
+
+```java
+// @Resource private RedisTemplate redisTemplate;
+    @Resource
+    private StringRedisTemplate stringRedisTemplate;
+```
+
+第二种：定义自己的序列化方式
+
+```java
+package com.redis01_jedis.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+@Configuration
+public class RedisConfig {
+
+    @Bean
+    public RedisTemplate<String,Object> redisTemplate(LettuceConnectionFactory lettuceConnectionFactory){
+        RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(lettuceConnectionFactory);
+        //设置key序列化方式String
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+
+        //设置value的序列化方式json，使用GenericJackson2JsonRedisSerializer替换默认的
+        redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
+
+        redisTemplate.afterPropertiesSet();
+
+        return redisTemplate;
+    }
+```
+
+
+
+
+
+**RedisConfig**
+
+> 键（key）和值（value）都是通过Spring提供的Serializer序列化到数据库的。
+>
+> RedisTemplate默认使用的是JdkSerializationRedisSerializer，
+>
+> StringRedisTemplate默认使用的是StringRedisSerializer。
+>
+> Key被序列化成这样，线上通过Key去查询对应的Value非常不方便。
+
+
+
+
+
+
+
+
+
+### 11.5.3、连接集群
+
+
+
