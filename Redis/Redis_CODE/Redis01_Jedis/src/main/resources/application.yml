@@ -1,0 +1,42 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: redis01_jedis
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  redis:
+    database: 0
+    host: 192.168.129.132
+    port: 6399
+    password: zzq121700
+    lettuce:
+      pool:
+        max-active: 8
+        max-wait: -1ms
+        max-idle: 8
+        min-idle: 0
+
+  swagger2:
+    enable: true
+
+#  logging
+logging:
+  level:
+    root: info
+    com.redis01_jedis: info
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [thread] %-5level %logger- %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss.SSS} [thread] %-5level %logger- %msg%n"
+
+
+  file:
+    name: K:/GitHub/notes/Redis/Redis_CODE/myLogs2024/redis7.log
+
+
+##swagger
+#spring:
+#  swagger2:
+#    enabled:true

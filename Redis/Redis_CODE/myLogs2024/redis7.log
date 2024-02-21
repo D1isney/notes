@@ -1,0 +1,19 @@
+2024-02-22 00:29:22.523 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Starting Redis01JedisApplication using Java 11.0.18 on Disney with PID 2872 (K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis\target\classes started by qe249 in K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis)
+2024-02-22 00:29:22.543 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- No active profile set, falling back to 1 default profile: "default"
+2024-02-22 00:29:23.159 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode
+2024-02-22 00:29:23.160 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-02-22 00:29:23.172 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2024-02-22 00:29:23.462 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2024-02-22 00:29:23.469 [thread] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2024-02-22 00:29:23.469 [thread] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.65]
+2024-02-22 00:29:23.545 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
+2024-02-22 00:29:23.545 [thread] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 965 ms
+2024-02-22 00:29:23.922 [thread] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping- Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-02-22 00:29:24.121 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-22 00:29:24.122 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Context refreshed
+2024-02-22 00:29:24.132 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Found 1 custom documentation plugin(s)
+2024-02-22 00:29:24.153 [thread] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner- Scanning for api listing references
+2024-02-22 00:29:24.256 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Started Redis01JedisApplication in 2.069 seconds (JVM running for 2.702)
+2024-02-22 00:31:11.589 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-22 00:31:11.590 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
+2024-02-22 00:31:11.591 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 1 ms
