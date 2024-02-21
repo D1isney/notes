@@ -2101,5 +2101,92 @@ public class RedisConfig {
 
 ### 11.5.3、连接集群
 
+**启动6台实例**
+
+**改写Yml：**
+
+```yaml
+redis:
+  password: zzq121700
+  cluster:
+    max-redirects: 3
+    nodes: 192.168.129.132:6379,192.168.129.132:6380,192.168.129.133:6381,192.168.129.133:6382,192.168.129.134:6383,192.168.129.134:6384
+  lettuce:
+    pool:
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1ms
+      max-active: 8
+```
+
+启动程序
+
+```markdown
+---key:{ord97}
+---value:{京东订单6e9a8bac-d22b-4986-9d54-78f799117021}
+```
+
+```apl
+127.0.0.1:6380> get ord987
+-> Redirected to slot [385] located at 192.168.129.132:6379
+"京东订单be07af50-de8d-4db5-83c0-7cdb630d7677"
+```
+
+
+
+> 人为模拟，master-6381机器意外宕机，手动ShutDown
+>
+> 先对redis集群命令方式，手动验证各种读写命令，看看6384是否上位
+>
+> Redis Cluster集群能自动感知并自动完成主备切换，对应的slave6384会被选举为新的master
+
+6381宕机了，6384上位了。
+
+程序写不进去了
+
+**微服务客户端再次读写访问试试**
+
+1. 故障现象
+
+   1. **SpringBoot客户端没有动态感知到Redis集群的最新集群消息**
+   2. 经典故障   =》 找不到6381一直找，导致1分钟以上的超时
+
+2. 导致原因
+
+   - SpringBoot 2.X版本，Redis默认的连接池采用Lettuce
+   - 当Redis集群节点发生变化后，Lettuce默认是不会刷新节点拓扑
+
+3. 解决方案
+
+   1. 排除Lettuce采用Jedis（不推荐）
+   2. 重接连接工厂实力（极度不推荐）
+   3. **刷新节点集群拓扑动态感应**  =》 [官网](https://redis.io/docs/reference/cluster-spec/)
+      1. 调用RedisClusterClient.reloadPartition
+      2. 后台基于时间间隔的周期刷新
+      3. 后台基于持续的**断开**和**移动、重定向**的自适应更新
+
+4. 改写YML
+
+   ```YML
+     redis:
+       password: zzq121700
+       cluster:
+         max-redirects: 3
+         nodes: 192.168.129.132:6379,192.168.129.132:6380,192.168.129.133:6381,192.168.129.133:6382,192.168.129.134:6383,192.168.129.134:6384
+       lettuce:
+         pool:
+           min-idle: 0
+           max-idle: 8
+           max-wait: -1ms
+           max-active: 8
+   
+         cluster:
+           refresh:
+             # 支持集群拓扑动态感应刷新，自适应拓扑刷新是否使用所有可用的更新，默认false关闭
+             adaptive: true
+             # 定时刷新
+             period: 2000
+   ```
+
 
 
