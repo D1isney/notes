@@ -7,17 +7,36 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+#  redis:
+#    database: 0
+#    host: 192.168.129.132
+#    port: 6399
+#    password: zzq121700
+#    lettuce:
+#      pool:
+#        max-active: 8
+#        max-wait: -1ms
+#        max-idle: 8
+#        min-idle: 0
   redis:
-    database: 0
-    host: 192.168.129.132
-    port: 6399
     password: zzq121700
+    cluster:
+      max-redirects: 3
+      nodes: 192.168.129.132:6379,192.168.129.132:6380,192.168.129.133:6381,192.168.129.133:6382,192.168.129.134:6383,192.168.129.134:6384
     lettuce:
       pool:
-        max-active: 8
-        max-wait: -1ms
-        max-idle: 8
         min-idle: 0
+        max-idle: 8
+        max-wait: -1ms
+        max-active: 8
+
+      cluster:
+        refresh:
+          # 支持集群拓扑动态感应刷新，自适应拓扑刷新是否使用所有可用的更新，默认false关闭
+          adaptive: true
+          # 定时刷新
+          period: 2000
+
 
   swagger2:
     enable: true
