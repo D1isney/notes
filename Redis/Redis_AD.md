@@ -412,31 +412,243 @@ redis.conf配置文件LAZY FREEING相关说明
 4. 先更新数据库，再删除缓存（ ！）
 
    1. 异常问题
+
+      | 时间 |        线程A         |                  线程B                  |                   出现的问题                   |
+      | :--: | :------------------: | :-------------------------------------: | :--------------------------------------------: |
+      |  t1  |   更新数据库中的值   |                                         |                                                |
+      |  t2  |                      | 缓存中理科命中，此时B读取的是缓存的旧值 | A还没来得及删除缓存的值，导致B缓存命中读到旧值 |
+      |  t3  | 更新缓存的数据，over |                                         |                                                |
+
+      **先更新数据库，再删除缓存：**假如缓存杀出失败或者来不及，导致请求再次访问Redis时缓存命中，**读到的却是缓存旧值**。
+
    2. 业务指导思想
+
+      1. 微软云：[英文](https://learn.microsoft.com/en-us/azure/architecture/patterns/cache-aside)、[中文](https://learn.microsoft.com/zh-cn/azure/architecture/patterns/cache-aside)
+      2. 阿里巴巴的canal
+
    3. 解决方案
+
+      ![image-20240226225623872](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240226225623872.png)
+
+      | 流程如下所示：                             |
+      | ------------------------------------------ |
+      | 1.更新数据库数据                           |
+      | 2.数据库会将操作信息写入**binlog日志**当中 |
+      | 3.订阅程序提取出所有需要的数据以及key      |
+      | 4.另外起一段非业务代码，获取该信息         |
+      | 5.常识删除缓存操作，发现删除失败           |
+      | 6.将这些信息发送至消息队列                 |
+      | 7.重新从消息队列中获得该数据，重试操作     |
+
+      1. 可以把要删除的缓存值或者要更新的数据库值暂存到消息队列中（例如使用Kafka或者RabbitMQ等）。
+      2. 当程序没有能够成功地删除缓存值或者是更新数据库值时，可以从消息队列中重新取这些值，然后再次进行删除或更新。
+      3. 如果能够陈工地删除或更新，我们就要把这些值从消息队列中去除，以免重复操作，此时，我们也可以保证数据库和缓存的数据一致了，否则还需要再次进行重试。
+      4. 如果重试超过一定次数后还是没有成功，我们就需要想业务层发送报错信息了，通知运维人员。
+
    4. 类似经典的分布式事务问题，只有一个权威答案
 
-
+      - 最终一致性：
+        - 流量充值、先发下短信实际充值可能滞后五分钟
+        - 电商发货，短信下发但是物流明天见
 
 
 
 小总结：
 
+- 如何选择方案？利弊如何
 
+  - 优先**使用先更新数据库，再删缓存的方案（先更库 -> 后删除）**。
 
+    理由：
 
+    1. 先删除缓存值再更新数据库，有可能导致请求因缓存缺失而访问数据库，给数据库带来压力导致打满mysql
+    2. 如果业务应用中读取数据库和写缓存的时间不好估算，那么，延迟双删中的等待时间不好设置
 
+  - 如果使用先更新数据库， 再删除缓存的方案：
 
+    如果业务层要求必须读取一致性的数据，那么我们就需要再更新数据库时，先在Redis缓存客户端暂停并发读写请求，等数据库更新完了、缓存值删除后，再读取数据，从而保证数据一致性，这是理论可以达到的效果，但实际，不推荐，因为真实生产环境中，分布式下很难做到实时一致性，**一般都是最终一致性**。
 
+- |             策略             | 高并发多线程条件下 |                     问题                     |                             现象                             |                     解决方案                      |
+  | :--------------------------: | :----------------: | :------------------------------------------: | :----------------------------------------------------------: | :-----------------------------------------------: |
+  | 先删除redis缓存，在更新mysql |         无         |         缓存删除成功但数据库更新失败         |                  Java程序从数据库中读到旧值                  |               再次更新数据库，重试                |
+  |                              |         有         | 缓存删除成功但数据库更新中......有并发读请求 | 并发请求从数据库读到旧值并写回Redis，导致后续都是从redis读取到的旧值 |                     延迟双删                      |
+  | 先更新mysql，再删除redis缓存 |         无         |        数据库更新成功，但缓存删除失败        |                  Java程序从Redis中读到旧值                   |                再次删除缓存，重试                 |
+  |                              |         有         | 数据库更新成功但缓存删除中......有并发读请求 |                    并发请求从缓存读到旧值                    | 等待Redis删除完成，这段时间有数据不一致，短暂存在 |
 
-
-
-
-
+  
 
 
 
 # 4、Redis与MySQL数据双写一致性工程落地案例
+
+## 4.1、面试题
+
+`mysql有记录改动了（有增删改查操作），立刻同步反应到redis？？该如何做？`
+
+> 有一种技术，能够监听到mysql的变动且能够通知redis =》 canal（阿里巴巴）
+
+
+
+## 4.2、canal
+
+**是什么？**
+
+官网：[canal](https://github.com/alibaba/canal/wiki)
+
+![image-20240227221028515](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227221028515.png)
+
+canal，中文翻译为 水道、管道、沟渠、运河，主要用途是用于Mysql数据库增量日志数据的订阅、消费和解析，是阿里巴巴开发并开源，采用Java语言开发；
+
+历史背景是早期阿里巴巴因为杭州和美国双机房部署，存在跨机房数据同步的业务需求，实现主要是基于业务trigger（触发器）获取增量变更。从2010年开始，阿里巴巴逐步尝试采用解析数据库日志获取增量变更进行同步，由此衍生出了canal项目；
+
+
+
+**能干嘛？**
+
+- 数据库镜像
+- 数据库实时备份
+- 索引构建和实时维护（拆分异构索引、倒排索引等）
+- 业务cache刷新
+- 带业务逻辑的增量数据处理
+
+
+
+下载地址：https://github.com/alibaba/canal/releases
+
+
+
+## 4.3、工作原理
+
+### 4.3.1、传统的MySQL主从复制工作原理
+
+![image-20240227222158526](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227222158526.png)
+
+
+
+MySQL的主从复制将讲过如下步骤：
+
+1. 当master主服务器上的数据发生改变时，则将其改变写入二进制事件日志文件中（binlog）；
+2. slave从服务器会在一定时间间隔内对master主服务器上的二进制日志进行探测，探测其是否发生过改变，如果探测到master主服务器的二进制日志发生了改变，则开始一个I/O Thread请求master二进制事件日志；
+3. 同时master主服务器为每个I/O Thread启动一个dump Thread，用于向其发送二进制事件日志；
+4. slave从服务器将接收到的二进制事件日志保存在自己至自己本地的中继日志文件中；
+5. slave从服务器将启动SQL Thread从中继日志中读取二进制日志，在本地重放，使得其数据和主服务器保持一致；
+
+
+
+### 4.3.2、canal工作原理
+
+1. canal模拟MySQL的交互协议，伪装自己为MySQL slave，向MySQL master发送dump协议
+2. MySQL master收到dump请求，开始推送binary log给slave（即canal）
+3. canal解析binary log对象（原始为byte流）
+
+
+
+
+
+## 4.4、mysql-canal-redis双写一致性coding
+
+### 4.4.1、来源出处
+
+![image-20240227223951592](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227223951592.png)
+
+JAVA：[JavaDemo](https://github.com/alibaba/canal/wiki/ClientExample)
+
+
+
+### 4.4.2、MYSQL
+
+- 查看mysql版本
+
+  - ![image-20240227224550542](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227224550542.png)
+
+- 当前的主机二进制日志 SHOW MASTER STATUS;
+
+  - ![image-20240227224626089](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227224626089.png)
+
+- 查看SHOW VARIABLES LIKE 'log_bin';
+
+  - ![image-20240227224533003](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227224533003.png)
+
+- 开启MySQL的binlog写入功能
+
+  - 要是binlog日志的value是off，则打开安装目录下的my.ini
+
+  - 在mysqld下添加
+
+    - ```bash
+      log-bin=mysql-bin #	开启binlog
+      binlog-format=ROW # 选择ROW模式
+      server_id=1 # 配置MySQL replaction需要定义，不要和canal的slaveID重复
+      ```
+
+      ROW模式：除了记录sql语句之外，还会记录每个字段的变化情况，能够清楚的记录每行数据的变化历史，但会占用较多的空间；
+
+      STATEMENT模式：只记录sql语句，但是没有记录上下文信息，在进行数据恢复的时候可能会导致丢失情况；
+
+      MIX模式：比较灵活的记录，理论上说当遇到了表结构变更的时候，就会记录为statement模式。当遇到数据更新或者删除情况下就会变成ROW模式；
+
+- 重启mysql
+
+- 再次查看SHOW VARIABLES LIKE 'log_bin';
+
+- 授权canal连接MySQL账号
+
+  - mysql默认的用户在mysql库的user表里
+
+    ![image-20240227230009964](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227230009964.png)
+
+  - 默认没有canal账户，此处新建+授权
+
+    - ```mysql
+      DROP USER IF EXISTS 'canal'@'%';
+      CREATE USER 'canal'@'%' IDENTIFIED BY 'canal';
+      GRANT ALL PRIVILEGES ON *.* TO 'canal'@'%' WITH GRANT OPTION;
+      FLUSH PRIVILEGES;
+      
+      SELECT * FROM mysql.user;
+      ```
+
+    - ![image-20240227230706555](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240227230706555.png)
+
+
+
+### 4.4.4、canal服务端
+
+下载：https://github.com/alibaba/canal/releases/tag/canal-1.1.7
+
+把canal下载到linux服务器上：
+
+```bash
+wget https://github.com/alibaba/canal/releases/download/canal-1.1.7/canal.deployer-1.1.7.tar.gz
+```
+
+
+
+
+
+
+
+
+
+
+
+### 4.4.5、canal客户端（Java编写业务程序）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 5、案例落地实战BitMap/HyperLogLog/GEO
 
