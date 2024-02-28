@@ -1,142 +1,19 @@
-2024-02-22 00:29:22.523 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Starting Redis01JedisApplication using Java 11.0.18 on Disney with PID 2872 (K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis\target\classes started by qe249 in K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis)
-2024-02-22 00:29:22.543 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- No active profile set, falling back to 1 default profile: "default"
-2024-02-22 00:29:23.159 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode
-2024-02-22 00:29:23.160 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-02-22 00:29:23.172 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
-2024-02-22 00:29:23.462 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
-2024-02-22 00:29:23.469 [thread] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
-2024-02-22 00:29:23.469 [thread] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.65]
-2024-02-22 00:29:23.545 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
-2024-02-22 00:29:23.545 [thread] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 965 ms
-2024-02-22 00:29:23.922 [thread] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping- Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2024-02-22 00:29:24.121 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path ''
-2024-02-22 00:29:24.122 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Context refreshed
-2024-02-22 00:29:24.132 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Found 1 custom documentation plugin(s)
-2024-02-22 00:29:24.153 [thread] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner- Scanning for api listing references
-2024-02-22 00:29:24.256 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Started Redis01JedisApplication in 2.069 seconds (JVM running for 2.702)
-2024-02-22 00:31:11.589 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-02-22 00:31:11.590 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
-2024-02-22 00:31:11.591 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 1 ms
-2024-02-22 00:38:21.553 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was /192.168.129.132:6399
-2024-02-22 00:38:23.594 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:38:27.856 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:38:29.888 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:38:34.249 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:38:36.278 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:38:41.451 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:38:43.485 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:38:48.657 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:38:50.690 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:38:54.849 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:38:56.895 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:39:05.150 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:39:07.208 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:39:23.651 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:39:25.684 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:39:55.754 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:39:57.786 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:40:27.854 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:40:29.886 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:40:59.955 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:41:01.987 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:41:32.056 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:41:34.089 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:42:04.149 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:42:06.190 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:42:36.249 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:42:38.276 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:43:08.349 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:43:10.377 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:43:40.449 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:43:42.479 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:44:12.563 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:44:14.596 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:44:44.650 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:44:46.960 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:45:17.053 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:45:19.536 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:45:49.549 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:45:51.579 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:46:21.648 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:46:23.679 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:46:53.749 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:46:55.782 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:47:25.850 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:47:27.884 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:47:57.950 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:47:59.983 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:48:30.052 [thread] INFO  io.lettuce.core.protocol.ConnectionWatchdog- Reconnecting, last destination was 192.168.129.132:6399
-2024-02-22 00:48:32.086 [thread] WARN  io.lettuce.core.protocol.ConnectionWatchdog- Cannot reconnect to [192.168.129.132:6399]: Connection refused: no further information: /192.168.129.132:6399
-2024-02-22 00:49:03.479 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Starting Redis01JedisApplication using Java 11.0.18 on Disney with PID 7736 (K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis\target\classes started by qe249 in K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis)
-2024-02-22 00:49:03.482 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- No active profile set, falling back to 1 default profile: "default"
-2024-02-22 00:49:04.649 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode
-2024-02-22 00:49:04.652 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
-2024-02-22 00:49:04.681 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
-2024-02-22 00:49:05.344 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
-2024-02-22 00:49:05.358 [thread] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
-2024-02-22 00:49:05.358 [thread] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.65]
-2024-02-22 00:49:05.525 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
-2024-02-22 00:49:05.526 [thread] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 1984 ms
-2024-02-22 00:49:06.428 [thread] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping- Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
-2024-02-22 00:49:06.932 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path ''
-2024-02-22 00:49:06.933 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Context refreshed
-2024-02-22 00:49:06.954 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Found 1 custom documentation plugin(s)
-2024-02-22 00:49:06.999 [thread] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner- Scanning for api listing references
-2024-02-22 00:49:07.229 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Started Redis01JedisApplication in 4.403 seconds (JVM running for 5.626)
-2024-02-22 00:49:24.053 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring DispatcherServlet 'dispatcherServlet'
-2024-02-22 00:49:24.054 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
-2024-02-22 00:49:24.056 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 1 ms
-2024-02-22 01:04:59.592 [thread] ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]- Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.RedisSystemException: Error in execution; nested exception is io.lettuce.core.RedisCommandExecutionException: CLUSTERDOWN The cluster is down] with root cause
-io.lettuce.core.RedisCommandExecutionException: CLUSTERDOWN The cluster is down
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:147)
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116)
-	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
-	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
-	at io.lettuce.core.protocol.CommandWrapper.complete(CommandWrapper.java:63)
-	at io.lettuce.core.cluster.ClusterCommand.complete(ClusterCommand.java:65)
-	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:747)
-	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:682)
-	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:599)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
-	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-2024-02-22 01:05:05.061 [thread] ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet]- Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.data.redis.RedisSystemException: Error in execution; nested exception is io.lettuce.core.RedisCommandExecutionException: CLUSTERDOWN The cluster is down] with root cause
-io.lettuce.core.RedisCommandExecutionException: CLUSTERDOWN The cluster is down
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:147)
-	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116)
-	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
-	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
-	at io.lettuce.core.protocol.CommandWrapper.complete(CommandWrapper.java:63)
-	at io.lettuce.core.cluster.ClusterCommand.complete(ClusterCommand.java:65)
-	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:747)
-	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:682)
-	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:599)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
-	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:357)
-	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:379)
-	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:365)
-	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
-	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:722)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:658)
-	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:584)
-	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)
-	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
-	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
-	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
-	at java.base/java.lang.Thread.run(Thread.java:834)
+2024-02-28 19:16:32.269 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Starting Redis01JedisApplication using Java 11.0.18 on Disney with PID 16640 (K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis\target\classes started by qe249 in K:\GitHub\notes\Redis\Redis_CODE\Redis01_Jedis)
+2024-02-28 19:16:32.276 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- No active profile set, falling back to 1 default profile: "default"
+2024-02-28 19:16:32.983 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Multiple Spring Data modules found, entering strict repository configuration mode
+2024-02-28 19:16:32.984 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-02-28 19:16:32.997 [thread] INFO  org.springframework.data.repository.config.RepositoryConfigurationDelegate- Finished Spring Data repository scanning in 3 ms. Found 0 Redis repository interfaces.
+2024-02-28 19:16:33.280 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat initialized with port(s): 8080 (http)
+2024-02-28 19:16:33.286 [thread] INFO  org.apache.catalina.core.StandardService- Starting service [Tomcat]
+2024-02-28 19:16:33.286 [thread] INFO  org.apache.catalina.core.StandardEngine- Starting Servlet engine: [Apache Tomcat/9.0.65]
+2024-02-28 19:16:33.362 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring embedded WebApplicationContext
+2024-02-28 19:16:33.363 [thread] INFO  org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext- Root WebApplicationContext: initialization completed in 1050 ms
+2024-02-28 19:16:33.743 [thread] INFO  springfox.documentation.spring.web.PropertySourcedRequestMappingHandlerMapping- Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2024-02-28 19:16:33.938 [thread] INFO  org.springframework.boot.web.embedded.tomcat.TomcatWebServer- Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-28 19:16:33.939 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Context refreshed
+2024-02-28 19:16:33.949 [thread] INFO  springfox.documentation.spring.web.plugins.DocumentationPluginsBootstrapper- Found 1 custom documentation plugin(s)
+2024-02-28 19:16:33.973 [thread] INFO  springfox.documentation.spring.web.scanners.ApiListingReferenceScanner- Scanning for api listing references
+2024-02-28 19:16:34.083 [thread] INFO  com.redis01_jedis.Redis01JedisApplication- Started Redis01JedisApplication in 2.129 seconds (JVM running for 2.746)
+2024-02-28 19:16:34.653 [thread] INFO  org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]- Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-02-28 19:16:34.654 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Initializing Servlet 'dispatcherServlet'
+2024-02-28 19:16:34.655 [thread] INFO  org.springframework.web.servlet.DispatcherServlet- Completed initialization in 1 ms
