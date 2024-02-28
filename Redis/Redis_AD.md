@@ -618,15 +618,47 @@ JAVA：[JavaDemo](https://github.com/alibaba/canal/wiki/ClientExample)
 
 把canal下载到linux服务器上：
 
-```bash
+```shell
 wget https://github.com/alibaba/canal/releases/download/canal-1.1.7/canal.deployer-1.1.7.tar.gz
 ```
 
+解压：
 
+```shell
+tar -zxvf canal.deployer-1.1.7.tar.gz
+```
 
+配置：
 
+修改/mycanal/conf/example路径下instance.properties文件
 
+换成自己的mysql主机master的ip地址
 
+```mysql
+select SUBSTRING_INDEX(host,':',1) as ip , count(*) from information_schema.processlist group by ip;
+```
+
+换成自己在mysql新建的canal账户
+
+![image-20240228000249381](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228000249381.png)
+
+![image-20240228000918612](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228000918612.png)
+
+启动canal：
+
+bin目录下 
+
+```shell
+./startup.sh 
+```
+
+logs目录下的canal下的canal.log：
+
+```shell
+cat canal.log
+```
+
+![image-20240228001601501](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228001601501.png)
 
 
 
@@ -634,23 +666,685 @@ wget https://github.com/alibaba/canal/releases/download/canal-1.1.7/canal.deploy
 
 ### 4.4.5、canal客户端（Java编写业务程序）
 
+**SQL脚本：**
+
+```sql
+CREATE TABLE `user_images` (
+  `id` int NOT NULL COMMENT '头像主键',
+  `username` varchar(255) COLLATE utf8mb4_bin DEFAULT NULL COMMENT '用户名',
+  `data` blob,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+```
+
+**建Module：**
+
+
+
+**改POM：**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com</groupId>
+    <artifactId>Redis02_demo</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Redis02_demo</name>
+    <description>Redis02_demo</description>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.10</version>
+    </parent>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <lombok.version>1.16.18</lombok.version>
+        <mysql.version>5.1.47</mysql.version>
+        <druid.version>1.1.16</druid.version>
+        <mapper.version>4.1.5</mapper.version>
+        <mybatis.spring.boot.version>1.3.0</mybatis.spring.boot.version>
+    </properties>
+
+    <dependencies>
+        <!-- canal -->
+        <dependency>
+            <groupId>com.alibaba.otter</groupId>
+            <artifactId>canal.client</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <!--SpringBoot 通用依赖模块-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <!-- springboot 与 AOP -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+        </dependency>
+        <!-- Mysql 数据库驱动 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <!-- springboot集成druid连接池-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid.version}</version>
+        </dependency>
+        <!-- mybatis和SpringBoot整合 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.spring.boot.version}</version>
+        </dependency>
+        <!-- persistence -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <!-- 通过Mapper -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+        </dependency>
+        <!-- jedis -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        <!--        &lt;!&ndash; lettuce &ndash;&gt;-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.lettuce</groupId>-->
+        <!--            <artifactId>lettuce-core</artifactId>-->
+        <!--            <version>6.2.1.RELEASE</version>-->
+        <!--        </dependency>-->
+
+        <!-- SpringBoot 与Redis整合依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+        <!-- swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <!-- 通用基础配置 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.26</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+**写Properties：**
+
+```properties
+server.port=8080
+
+
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/blog?characterEncoding=UTF8&autoReconnect=true&serverTimezone=Asia/Shanghai&allowMultiQueries=true&allowPublicKeyRetrieval=true&useSSL=false
+spring.datasource.username=root
+spring.datasource.password=123456
+```
+
+**主启动：**
 
 
 
 
 
+**业务类：**
 
+```java
+package com.redis02_demo.utils;
 
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
+public class RedisUtils {
+    public static final String REDIS_IP_ADDR = "192.168.129.135";
+    public static final String REDIS_PWD="zzq121700";
+    public static JedisPool jedisPool;
+    static {
+        JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
+        jedisPoolConfig.setMaxTotal(20);
+        jedisPoolConfig.setMaxIdle(10);
+        jedisPool = new JedisPool(jedisPoolConfig,REDIS_IP_ADDR,6399,10000,REDIS_PWD);
+    }
+    public static Jedis getJedis() throws Exception {
+        if(null!= jedisPool){
+            return jedisPool.getResource();
+        }
+        throw new Exception("JedisPool is not ok");
+    }
+}
+```
 
+```java
+package com.redis02_demo.biz;
 
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.otter.canal.client.CanalConnector;
+import com.alibaba.otter.canal.client.CanalConnectors;
+import com.alibaba.otter.canal.protocol.CanalEntry.*;
+import com.alibaba.otter.canal.protocol.Message;
+import com.redis02_demo.utils.RedisUtils;
+import redis.clients.jedis.Jedis;
 
+import java.net.InetSocketAddress;
+import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.TimeUnit;
+
+public class RedisCanalClientExample {
+    public static final Integer _60SECONDS = 60;
+
+    public static final String REDIS_IP_ADDR = "192.168.129.135";
+
+    private static void redisInsert(List<Column> columns){
+        JSONObject jsonObject = new JSONObject();
+        for (Column column : columns) {
+            System.out.println(column.getName() + ": " + column.getValue() + " insert = " + column.getUpdated());
+            jsonObject.put(column.getName(), column.getValue());
+        }
+
+        if (columns.size() > 0) {
+            try (Jedis jedis = RedisUtils.getJedis()) {
+                jedis.set(columns.get(0).getValue(), jsonObject.toJSONString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private static void redisDelete(List<Column> columns){
+        JSONObject jsonObject = new JSONObject();
+        for (Column column : columns) {
+            System.out.println(column.getName() + ": " + column.getValue() + " delete = " + column.getUpdated());
+            jsonObject.put(column.getName(), column.getValue());
+        }
+
+        if (columns.size() > 0) {
+            try (Jedis jedis = RedisUtils.getJedis()) {
+                jedis.del(columns.get(0).getValue());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    private static void redisUpdate(List<Column> columns){
+        JSONObject jsonObject = new JSONObject();
+        for (Column column : columns) {
+            System.out.println(column.getName() + ": " + column.getValue() + " update = " + column.getUpdated());
+            jsonObject.put(column.getName(), column.getValue());
+        }
+
+        if (columns.size() > 0) {
+            try (Jedis jedis = RedisUtils.getJedis()) {
+                jedis.set(columns.get(0).getValue(), jsonObject.toJSONString());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void printEntry(List<Entry> entries){
+        for (Entry entry : entries) {
+            if (entry.getEntryType() == EntryType.TRANSACTIONBEGIN || entry.getEntryType() == EntryType.TRANSACTIONEND) {
+                continue;
+            }
+
+            RowChange rowChage = null;
+            try {
+                rowChage = RowChange.parseFrom(entry.getStoreValue());
+            } catch (Exception e) {
+                throw new RuntimeException("ERROR ## parser of eromanga-event has an error , data:" + entry.toString()，e);
+            }
+            EventType eventType = rowChage.getEventType();
+            System.out.println(String.format("================&gt; binlog[%s:%s] , name[%s,%s] , eventType : %s",
+                    entry.getHeader().getLogfileName(), entry.getHeader().getLogfileOffset(),
+                    entry.getHeader().getSchemaName(), entry.getHeader().getTableName(),
+                    eventType));
+
+            for (RowData rowData : rowChage.getRowDatasList()) {
+                if (eventType == EventType.DELETE) {
+                    redisDelete(rowData.getBeforeColumnsList());
+                } else if (eventType == EventType.INSERT) {
+                    redisInsert(rowData.getAfterColumnsList());
+                } else {
+                    System.out.println("-------&gt; before");
+                    redisUpdate(rowData.getBeforeColumnsList());
+                    System.out.println("-------&gt; after");
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        System.out.println("-----------初始化main方法--------------");
+
+        //  创建canal服务端
+        CanalConnector connector =
+                CanalConnectors.newSingleConnector(
+                        new InetSocketAddress(REDIS_IP_ADDR,11111)
+                ,"example","","");
+
+        int batchSize = 1000;
+        //  空闲空转计数器
+        int emptyCount = 0;
+        System.out.println("--------------canal init ok 开始监听mysql变化-------------");
+        try {
+            connector.connect();
+            //  所有库的所有表
+            connector.subscribe(".*\\..*");
+            //  哪个库的那个表
+            connector.subscribe("blog.images");
+            connector.rollback();
+
+            int totalEmptyCount = 10 * _60SECONDS;
+            while(emptyCount < totalEmptyCount){
+                System.out.println("我是canal，每一秒正在监听："+ UUID.randomUUID().toString());
+                Message message = connector.getWithoutAck(batchSize);//获取指定数量的数据
+                long batchId = message.getId();
+                int size = message.getEntries().size();
+                if(batchId == -1 || size ==0){
+                    emptyCount++;
+                    try {
+                        TimeUnit.SECONDS.sleep(1);
+                    }catch (InterruptedException e){
+                        e.printStackTrace();
+                    }
+                }else{
+                    //计数器重新置零
+                    emptyCount = 0;
+                    printEntry(message.getEntries());
+                }
+                connector.ack(batchId);//确认提交
+                //  connector.rollback(batchId);// 处理失败，回滚数据
+            }
+            System.out.println("已经监听了"+totalEmptyCount+"秒，无任何消息，请重启重试");
+        }finally {
+            connector.disconnect();
+        }
+    }
+}
+```
+
+![image-20240228141720047](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228141720047.png)
+
+**效果：**
+
+Redis缓存中只有两条数据
+
+![image-20240228012718367](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228012718367.png)
+
+数据库没有数据
+
+![image-20240228012741232](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228012741232.png)
+
+启动RedisCanalClientExample
+
+开始监听
+
+![image-20240228012828744](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228012828744.png)
+
+当修改数据库的时候
+
+![image-20240228012854329](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228012854329.png)
+
+监听到有人修改了数据库
+
+![image-20240228012907930](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228012907930.png)
+
+查看Redis，Redis也被回写了
+
+![image-20240228012950284](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228012950284.png)
+
+更改数据库
+
+也监听到数据库被修改
+
+![image-20240228013022055](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228013022055.png)
+
+删除也一样，Redis也会被删除
+
+![image-20240228013104954](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240228013104954.png)
 
 
 
 
 
 # 5、案例落地实战BitMap/HyperLogLog/GEO
+
+## 5.1、面试题
+
+`抖音电商直播，主播介绍的商品有评论，1个商品对应了1系列的评论，排序+展现+提前10条记录`
+
+`用户在手机APP上的签到打卡信息：1天对应1系列用户的签到记录，新浪微博、钉钉打卡签到，来没来如何统计？`
+
+`应用网站上的网页访问信息：1个页面对应1系列的访问点击，淘宝首页，每天多少人浏览首页？`
+
+`你们公司系统上线后，说一下UV（独立访客，Unique Visitor），PV，DAU分别是多少？`
+
+
+
+## 5.2、统计的类型有哪些？
+
+**亿级系统中常见的四种统计：**
+
+1. 聚合统计
+
+   1. 统计多个集合元素的聚合结果，**交差并集集合统计**
+   2. 命令
+   3. 交并差集和聚合函数的应用
+
+2. 排序统计
+
+   1. 抖音短视频最新评论留言的场景，设计一个展现列表
+   2. 案例，回答思路
+      - 以抖音vcr最新的浏览评价为案例，所有评论需要两个功能，按照时间排序（正序，反序）+分页显示
+      - 能够排序+分页显示的redis数据结构是什么合适？
+      - answer
+        - zset
+        - 在面对需要展示最新列表、排行榜等场景时，如果数据更新拼盘或者需要分页显示，建议使用ZSet
+
+3. 二值统计
+
+   1. 集合元素的取值就只有0和1两种。
+
+      在钉钉上班签到打卡的场景中，我们只用记录有签到（1）或者没签到（0）
+
+   2. bitmap
+
+4. 基数统计
+
+   1. 统计一个集合中**不重复的元素个数**
+   2. hyperloglog
+
+
+
+
+
+## 5.3、HyperLogLog
+
+> 1. 什么是UV？
+>
+>    Unique Visitor、独立访客，一般理解为客户端IP
+>
+>    **需要去重考虑**
+>
+> 2. 什么是PV？
+>
+>    Page View，页面浏览量
+>
+>    不用去重
+>
+> 3. 什么是DAU？
+>
+>    Daily Active User
+>
+>    日活跃用户量：**登录或者使用了某个产品的用户数（去重复登录的用户）**
+>
+>    常用于反映网站、互联网用用或者网络游戏的运营情况
+>
+> 4. 什么是MAU？
+>
+>    Monthly Active User
+>
+>    月活跃用户量
+
+
+
+**看需求**
+
+很多计数类场景，比如 每日注册IP数、每日访问IP数、页面实时访问数PV、访问用户数UV等。
+
+因为很多主要的目标高效、巨量地进行技术，所以对存储的数据的内容并不太关心。
+
+也就是说它只能用于统计巨量数量，不太涉及具体的统计对象的内容和精准性。
+
+
+
+统计单日一个页面的访问量（PV），单次访问就算一次。
+
+统计单日一个页面的用户量（UV），即按照用户为维度计算，单个用户一天内多次访问也只算一次。
+
+多个key的合并统计，某个门户网站的所有模块的PV聚合统计就是整个网站的总PV。
+
+
+
+**需求**
+
+- UV的统计需要去重，一个用户一天内的多次访问只能算作一次
+- 淘宝、天猫首页的UV，平均每天是1~1.5个亿左右
+- 每天存1.5个亿的IP，访问者来了后先去查是否存在，不存在加入
+
+
+
+**方案讨论**
+
+- 用MySQL（X）
+- 用redis的hash结构存储（内存太高）
+- hyperloglog
+
+
+
+**HyperLogLogServer**
+
+```java
+package com.redis02_demo.service;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
+
+@Service
+@Slf4j
+public class HyperLogLogService {
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
+
+    /**
+     * 模拟后台有用户点击淘宝首页，每个用户来自不同的IP地址
+     */
+    @PostConstruct
+    public void initIP() {
+
+        new Thread(() -> {
+            String IP = null;
+            for (int i = 0; i < 200; i++) {
+                Random random = new Random();
+                IP =
+                        random.nextInt(256) + "."
+                                + random.nextInt(256) + "."
+                                + random.nextInt(256) + "."
+                                + random.nextInt(256);
+
+                Long hll = redisTemplate.opsForHyperLogLog().add("hll", IP);
+                log.info("ip={},该IP地址访问首页的次数{}", IP, hll);
+                //  暂停三秒钟
+                try {
+                    TimeUnit.SECONDS.sleep(3);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "t1").start();
+    }
+
+
+    public Long uv() {
+        return redisTemplate.opsForHyperLogLog().size("hll");
+    }
+
+}
+```
+
+
+
+**HyperLogLogController**
+
+```java
+package com.redis02_demo.controller;
+
+import com.redis02_demo.service.HyperLogLogService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
+
+@Api(tags = "淘宝亿级UV的Redis统计方案")
+@RestController
+@Slf4j
+public class HyperLogLogController {
+
+    @Resource
+    HyperLogLogService hyperLogLogService;
+
+
+    @ApiOperation("获得IP去重后的uv统计访问量")
+    @RequestMapping(value = "/uv",method = RequestMethod.GET)
+    public long uv(){
+        return hyperLogLogService.uv();
+    }
+
+}
+```
+
+
+
+## 5.4、GEO
+
+
+
+
+
+
+
+
+
+
+
+## 5.5、BitMap
+
+
+
+
+
+
 
 # 6、布隆过滤器BloomFilter
 
