@@ -1655,7 +1655,310 @@ ORDER BY
 
 
 
+## 6.6、手写布隆过滤器
 
+> SpringBoot+Redis+mybatis案例基础与一键编码环境整合
+>
+> MyBatis通用Mapper4
+>
+> mybatis-generator ： http://mybatis.org/generator/
+>
+> MyBatis通用Mapper4官网 ： https://github.com/abel533/Mapper
+
+**t_customer用户表SQL**
+
+```mysql
+CREATE TABLE `t_customer` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `cname` varchar(50) NOT NULL,
+  `age` int(10) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `sex` tinyint(4) NOT NULL,
+  `birth` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_cname` (`cname`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+```
+
+**建立SpringBoot项目**
+
+**改POM**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.10</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com</groupId>
+    <artifactId>Redis03_bloom</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Redis03_bloom</name>
+    <description>Redis03_bloom</description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>1.8</java.version>
+        <hutool.version>5.5.8</hutool.version>
+        <druid.version>1.1.18</druid.version>
+        <mapper.version>4.1.5</mapper.version>
+        <pagehelper.version>5.1.4</pagehelper.version>
+        <mysql.version>5.1.39</mysql.version>
+        <swagger2.version>2.9.2</swagger2.version>
+        <swagger-ui.version>2.9.2</swagger-ui.version>
+        <mybatis.spring.version>2.1.3</mybatis.spring.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- mybatis 通用mapper tk单独使用，自己到这版本号 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.4.6</version>
+        </dependency>
+        <!-- mybatis-spring -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis.spring.version}</version>
+        </dependency>
+        <!-- mybatis Generator -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.4.0</version>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- 通用mapper -->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+            <version>${mapper.version}</version>
+        </dependency>
+        <!-- persistence -->
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>persistence-api</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.6</version>
+                <configuration>
+                    <configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>
+                    <overwrite>true</overwrite>
+                    <verbose>true</verbose>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>${mysql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>tk.mybatis</groupId>
+                        <artifactId>mapper</artifactId>
+                        <version>${mapper.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+**config.properties**
+
+```properties
+package.name = com.redis03_bloom
+
+jdbc.driverClass = com.mysql.jdbc.Driver
+jdbc.url = jdbc:mysql://localhost:3306/mybatis
+jdbc.user = root
+jdbc.password = 123456
+```
+
+**generatorConfig.xml**
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <properties resource="config.properties"/>
+
+    <context id= "Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat" >
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value= "tk.mybatis.mapper.common.Mapper" />
+            <property name="caseSensitive" value="true" />
+        </plugin>
+
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="${package.name}.entities" targetProject="src/main/java" />
+        <sqlMapGenerator targetPackage="${package.name}.mapper" targetProject="src/main/java" />
+        <javaClientGenerator targetPackage="${package.name}.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+
+        <table tableName="t_customer" domainObjectName="Customer">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>
+```
+
+**主启动**
+
+```java
+package com.redis03_bloom;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import tk.mybatis.spring.annotation.MapperScan;
+
+@SpringBootApplication
+@MapperScan("com.redis03_bloom.mapper")
+public class Redis7StudyApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(Redis7StudyApplication.class, args);
+    }
+}
+```
+
+**业务类**
+
+- CustomerService
+
+  ```java
+  package com.redis03_bloom.service;
+  
+  import com.redis03_bloom.entities.Customer;
+  import com.redis03_bloom.mapper.CustomerMapper;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.data.redis.core.RedisTemplate;
+  import org.springframework.stereotype.Service;
+  
+  import javax.annotation.Resource;
+  import java.util.concurrent.TimeUnit;
+  
+  @Service
+  @Slf4j
+  public class CustomerService {
+  
+      public static final String CACHE_KEY_CUSTOMER = "customer:";
+  
+      @Resource
+      private CustomerMapper customerMapper;
+      @Autowired
+      private RedisTemplate redisTemplate;
+  
+      public void addCustomer(Customer customer) {
+          int i = customerMapper.insertSelective(customer);
+          if (i > 0) {
+              // mysql插入成功，需要重新查询一次将数据捞出来，写进Redis
+              Customer result = customerMapper.selectByPrimaryKey(customer.getId());
+              // redis 缓存key
+              String key = CACHE_KEY_CUSTOMER + result.getId();
+              redisTemplate.opsForValue().set(key, result);
+          }
+      }
+  
+      public Customer findCustomerById(Integer customerId) {
+          Customer customer = null;
+          // 缓存redis的key名称
+          String key = CACHE_KEY_CUSTOMER + customerId;
+          // 查看redis是否存在
+          customer = (Customer) redisTemplate.opsForValue().get(key);
+  
+          // redis 不存在，取MySQL中查找
+          if (null == customer) {
+              // 双端加锁策略
+              synchronized (CustomerService.class) {
+                  customer = (Customer) redisTemplate.opsForValue().get(key);
+                  if (null == customer) {
+                      customer = customerMapper.selectByPrimaryKey(customerId);
+                      if (null == customer) {
+                          // 数据库没有放入redis设置缓存过期时间
+                          redisTemplate.opsForValue().set(key, customer, 60, TimeUnit.SECONDS);
+                      } else {
+                          redisTemplate.opsForValue().set(key, customer);
+                      }
+                  }
+              }
+  
+          }
+          return customer;
+      }
+  }
+  ```
+
+  
 
 
 
