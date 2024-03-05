@@ -1,4 +1,4 @@
-    package com.redis03_bloom;
+package com.redis03_bloom;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
