@@ -100,7 +100,7 @@
 
 Redis7将所有数据放在内存中，内存的响应时间长大约为100纳秒，对于小数据包，Redis服务器可以处理8W到10W的QPS，这也是Redis处理的极限了，**对于80%的公司来说，单线程的Redis已经足够使用了**。
 
-在Redis6.0及7后，**多线程机制默认是关闭的，如果需要使用多线程功能，需要在Redis.conf中完成两个设置。
+在Redis6.0及7后，**多线程机制默认是关闭的**，如果需要使用多线程功能，需要在Redis.conf中完成两个设置。
 
 ![image-20240225224329078](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240225224329078.png)
 
@@ -1947,6 +1947,7 @@ public class Redis7StudyApplication {
                           // 数据库没有放入redis设置缓存过期时间
                           redisTemplate.opsForValue().set(key, customer, 60, TimeUnit.SECONDS);
                       } else {
+                          //	把mysql查询出来的数据回写redis，保持一致性
                           redisTemplate.opsForValue().set(key, customer);
                       }
                   }
@@ -1956,19 +1957,344 @@ public class Redis7StudyApplication {
           return customer;
       }
   }
+```
+  
+- CustomerController
+
+  ```java
+  package com.redis03_bloom.controller;
+  
+  import com.redis03_bloom.entities.Customer;
+  import  com.redis03_bloom.service.CustomerService;
+  import io.swagger.annotations.Api;
+  import io.swagger.annotations.ApiOperation;
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.web.bind.annotation.PathVariable;
+  import org.springframework.web.bind.annotation.PostMapping;
+  import org.springframework.web.bind.annotation.RestController;
+  
+  import java.time.LocalDateTime;
+  import java.time.ZoneId;
+  import java.util.Date;
+  import java.util.Random;
+  
+  @Api(tags = "客户Customer接口+布隆过滤器讲解")
+  @RestController
+  @Slf4j
+  public class CustomerController {
+  
+      @Autowired
+      private CustomerService customerService;
+  
+      @ApiOperation("数据库初始化两条Customer记录")
+      @PostMapping(value = "/customer/add")
+      public void addCustomer() {
+          for (int i = 0; i < 2; i++) {
+              Customer customer = new Customer();
+              customer.setCname("customer" + i);
+              customer.setAge(new Random().nextInt(30) + 1);
+              customer.setPhone("12332112312");
+              customer.setSex((byte)new Random().nextInt(2));
+              customer.setBirth(Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()));
+  
+              customerService.addCustomer(customer);
+          }
+      }
+  
+      @ApiOperation("单个customer查询操作")
+      @PostMapping(value = "/customer/{id}")
+      public Customer findCustomerById(@PathVariable int id) {
+          return customerService.findCustomerById(id);
+      }
+  
+  }
+  
   ```
+
+
+
+新增布隆过滤器
+
+- BloomFilterInit（白名单）：@PostConstruct初始化白名单数据
+
+  ```java
+  package com.redis03_bloom.filter;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.data.redis.core.RedisTemplate;
+  import org.springframework.stereotype.Component;
+  
+  import javax.annotation.PostConstruct;
+  
+  /**
+   * 布隆过滤器白名单初始化工具类，又开始就设置一部分数据为白名单所有
+   * 白名单业务默认规定：布隆过滤器有，Redis是极大可能有
+   * 白名单：whitelistCustomer
+   */
+  @Component
+  @Slf4j
+  public class BloomFilterInit {
+  
+      @Autowired
+      private RedisTemplate redisTemplate;
+  
+      @PostConstruct
+      public void init() {
+          // 1 白名单客户加载到布隆过滤器
+          String key = "customer:12";
+          // 2 计算hashvalue，由于存在计算出来负数的可能，需要取绝对值
+          int hashValue = Math.abs(key.hashCode());
+          // 3 通过hashValue和2^32取余，获得对应的下标坑位
+          long index = (long) (hashValue % Math.pow(2, 32));
+          log.info(key + "对应的坑位index：{}", index);
+          // 4 设置Redis 里面的bitmap对应白名单类型的坑位，并设置为1
+          redisTemplate.opsForValue().setBit("whitelistCustomer", index, true);
+      }
+  }
+  ```
+
+- CheckUtils
+
+  ```java
+  package com.redis03_bloom.utils;
+  
+  import lombok.extern.slf4j.Slf4j;
+  import org.springframework.beans.factory.annotation.Autowired;
+  import org.springframework.data.redis.core.RedisTemplate;
+  import org.springframework.stereotype.Component;
+  
+  @Component
+  @Slf4j
+  public class CheckUtils {
+  
+      @Autowired
+      private RedisTemplate redisTemplate;
+      
+      public boolean checkWithBloomFilter(String checkItem, String key) {
+          int hashValue = Math.abs(key.hashCode());
+          long index = (long) (hashValue % Math.pow(2, 32));
+          Boolean exitOk = redisTemplate.opsForValue().getBit(checkItem, index);
+          log.info("---> key：{}对应坑位下标index：{}是否存在：{}", key, index, exitOk);
+          return exitOk;
+      }
+  }
+  ```
+
+- CustomerService
+
+  ```java
+  /**
+       * BloomFilter -> redis -> mysql
+       * @param customerId
+       * @return
+       */
+  public Customer findCustomerByIdWithBloomFilter(Integer customerId) {
+      Customer customer = null;
+      // 缓存redis的key名称
+      String key = CACHE_KEY_CUSTOMER + customerId;
+  
+      // 布隆过滤器check
+      if (!checkUtils.checkWithBloomFilter("whitelistCustomer", key)) {
+          log.info("白名单无此顾客，不可以访问，{}", key);
+          return null;
+      }
+  
+      // 查看redis是否存在
+      customer = (Customer) redisTemplate.opsForValue().get(key);
+      // redis 不存在，取MySQL中查找
+      if (null == customer) {
+          // 双端加锁策略
+          synchronized (CustomerService.class) {
+              customer = (Customer) redisTemplate.opsForValue().get(key);
+              if (null == customer) {
+                  customer = customerMapper.selectByPrimaryKey(customerId);
+                  if (null == customer) {
+                      // 数据库没有放入redis设置缓存过期时间
+                      redisTemplate.opsForValue().set(key, customer, 60, TimeUnit.SECONDS);
+                  } else {
+                      redisTemplate.opsForValue().set(key, customer);
+                  }
+              }
+          }
+  
+      }
+      return customer;
+  }
+  ```
+
+- CustomerController
+
+  ```java
+  @ApiOperation("BloomFilter, 单个customer查询操作")
+  @PostMapping(value = "/customerBloomFilter/{id}")
+  public Customer findCustomerByIdWithBloomFilter(@PathVariable int id) {
+      return customerService.findCustomerByIdWithBloomFilter(id);
+  }
+  ```
+
+
+
+## 6.7、布隆过滤器的优缺点
+
+- 优点：高效地插入和查询，内存占用bit空间少
+- 缺点：
+  1. 不能删除元素。因为删掉元素会导致误判率增加，因为hash冲突同一个位置可能存的东西是多个共有的，删除一个元素的同时可能也把其他的删除了。
+  2. 存在误判，不能进准过滤
+     1. 有，是可能有
+     2. 无，是肯定无
+
+
+
+
+
+## 6.8、了解布谷鸟过滤器
+
+为了解决布隆过滤器不能删除元素的问题，布谷鸟过滤器横空出世。
+
+
+
+# 7、缓存预热 + 缓存雪崩 + 缓存击穿
+
+## 7.1、面试题
+
+`缓存预热、雪崩、穿透、击穿分别是什么？你遇到过哪几个情况？`
+
+`缓存预热你是怎么做的？`
+
+`如何避免或者减少缓存雪崩？`
+
+`穿透和击穿有什么区别？它两是一个意思还是截然不同？`
+
+`穿透和击穿你有什么解决方案？如何避免？`
+
+`假如出现了缓存不一致,你有哪些修补方案？`
+
+
+
+
+
+## 7.2、缓存预热
+
+提前把数据存在redis
+
+mysql有100条新纪录
+
+1. 比较懒，什么都不做，对mysql做了数据新增， 利用redis的回写机制，让它逐步实现100条新增记录的同步。最好提前晚上部署发布版本的时候，由自己人提前做一次，让redis同步了，不要把这个问题留给客户。
+2. 通过中间件或者程序自行完成。
+
+
+
+@PostConstruct初始化白名单数据
+
+
+
+## 7.3、缓存雪崩
+
+- 发生：
+  1. redis主机挂了，Redis全盘崩溃，偏硬件运维
+  2. redis中有大量key同时过期大面积失效，偏软件开发
+- **预防+解决**：
+  1. redis中key设置为永不过期 OR 过期时间错开
+  2. redis缓存集群实现高可用
+     1. 主从 + 哨兵
+     2. Redis Cluster（集群）
+     3. 开启Redis持久化机制AOF/RDB，尽快恢复缓存集群
+  3. 多缓存结合预防雪崩
+     - ehcache本地缓存 + redis缓存
+  4. 服务降级
+     - Hystrix或者阿里sentinel限流&降级
+  5. 充钱
+     - 阿里云 - 云数据库Redis版
+
+
+
+## 7.4、缓存穿透
+
+**是什么**
+
+1. 请求去查询一条记录，先查Redis无，后查mysql无，**都查询不到该条记录**，但是请求每次都会到打到数据库上面去，导致后台数据库压力暴增，这种现象我们称为缓存穿透，Redis就成了摆设。
+2. 简单说就是，既不在Redis缓存库，也不再Mysql，数据库存在被多次暴击风险。
+
+**解决**
+
+缓存穿透  ->  恶意攻击 
+
+​	空对象缓存、BloomFilter过滤器
+
+- 方案一：空对象缓存或缺省值 ---- 回写增强
+
+  Mysql也查不到的话也让Redis存入刚刚查不到的key并保护MySQL。第一次查询uid：abcdxxx，Redis和MySQL都没有，返回null给调用者，但是增强回写后第二次来查uid：abcdxxx，此时Redis就有值。可以直接从Redis中读取default缺省值返回给业务应用程序，避免了把大量请求发送给MySQL处理，打爆MySQL。
+
+  **但是，此方法架不住黑客的恶意攻击，有缺陷，只能解决key相同的情况**
+
+  黑客或者恶意攻击
+
+  1. 黑客会对你的系统进行攻击，拿一个不存在的id去查询数据，会产生大量的请求到数据库去查询。可能会导致你的数据库由于压力过大而宕机。
+  2. key相同打系统 -- 第一次打到mysql，空对象缓存后第二次就返回defaultNull缺省值，避免mysql被攻击，不用再到数据库中了
+  3. **key不同打系统** -- 由于存在空对象和缓存回写，redis中的无光紧要的key也会越写越多（ **记得设置redis过期时间**）
+
+- 方案二：Google布隆过滤器Guava解决缓存穿透
+
+  1. Guava中布隆过滤器的实现算是比较权威的，所以实际项目中我们可以直接使用Guava布隆过滤器
+
+  2. [Guava‘s BloomFilter源码出处](https://github.com/D1isney/guava/blob/master/guava/src/com/google/common/hash/BloomFilter.java)
+
+  3. 白名单过滤器
+
+     1. 白名单架构说明：白名单里面有的才让通过，没有直接返回，但是存在误判，由于误判率很小，1%的打到MySQL，可以接受。注意：所有key都需要往redis和bloomFilter里面放入
+
+     2. 误判问题，但是概率小可以接受，不能从布隆过滤器删除
+
+     3. 全部合法的key都需要放入Guava版本布隆过滤器+Redis里面，不然数据就是返回null
+
+     4. **Coding实战**
+
+        1. POM
+
+           ```xml
+           <dependency>
+             <groupId>com.google.guava</groupId>
+             <artifactId>guava</artifactId>
+             <version>33.0.0-jre</version>
+             <!-- or, for Android: -->
+             <version>33.0.0-android</version>
+           </dependency>
+           ```
+
+        2. BloomFilter
+
+           ```java
+           @Test 
+           public void testGuava() { 
+               // 1 创建Guava 版本布隆过滤器 
+               BloomFilter bloomFilter = BloomFilter.create(Funnels.integerFunnel(), 100); 
+               // 2 判断指定的元素是否存在 
+               System.out.println(bloomFilter.mightContain(1));// false
+               System.out.println(bloomFilter.mightContain(2));// false 
+               System.out.println(); 
+               // 3 将元素新增进入布隆过滤器 
+               bloomFilter.put(1);
+               bloomFilter.put(2);
+               System.out.println(bloomFilter.mightContain(1));// true
+               System.out.println(bloomFilter.mightContain(2));// true 
+           }
+           ```
+
+  4. 黑名单使用
 
   
 
 
 
+## 7.5、缓存击穿
+
+## 7.6、总结
 
 
 
 
-
-
-# 7、缓存预热 + 缓存雪崩 + 缓存击穿
 
 # 8、手写Redis分布式锁
 
