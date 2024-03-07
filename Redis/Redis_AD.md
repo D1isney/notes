@@ -1957,6 +1957,7 @@ public class Redis7StudyApplication {
           return customer;
       }
   }
+  ```
 ```
   
 - CustomerController
@@ -2010,7 +2011,7 @@ public class Redis7StudyApplication {
   
   }
   
-  ```
+```
 
 
 
@@ -2339,7 +2340,7 @@ mysql有100条新纪录
                    for (int i = 0; i < SIZE; i++) {
                        bloomFilter.put(i);
                    }
-                   // 2 故意去10w不在合法范围内的数据，来进行误判率演示
+                   // 2 故意取10w不在合法范围内的数据，来进行误判率演示
                    ArrayList<Integer> list = new ArrayList<>(10 * _1w);
                    // 3 验证
                    for (int i = SIZE; i < SIZE + (10 * _1w); i++) {
@@ -2354,15 +2355,198 @@ mysql有100条新纪录
            // 运行之后，结果为： 误判的总数量：3033
            ```
 
-           
+           ![image-20240307143425638](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240307143425638.png)
 
   4. 黑名单使用
 
   
 
-
-
 ## 7.5、缓存击穿
+
+**是什么**
+
+1. 大量的请求同时查询一个key时，此时这个key正好失效了，就会导致导量的请求都打到数据库上面去
+2. **简单来说就是热点key突然失效了，暴打了MySQL**
+3. 穿透和击穿，截然不同
+   1. **穿透**：从头到尾，至始至终都是没有的，**本来无一物，两库都没有**
+   2. *击穿**：一切正常，一开始Redis有，mysql有，**突然出现高频访问的热点key失效**。这里有两种情况：1、自然过期时间的，突然时间到了，没了，全都打到mysql。2、delete老的key，换上新的key，del动作的时候，key突然失效了。
+
+
+
+**危害**
+
+- 会造成某一时刻数据库请求量过大，压力剧增。
+- 一般技术部门需要知道**热点key是哪些个**？做到心里有数防止击穿
+
+
+
+**解决**
+
+缓存击穿  ->  热点key失效 -> 互斥更新、随机退避、差异失效时间
+
+1. 热点key失效：
+   1. 时间到了自然清除但还被访问到
+   2. delete掉的key，刚巧又被访问
+2. 方案一： 差异失效时间，对于访问频繁的热点key，干脆就不设置过期时间
+3. **方案二：互斥更新，采用双检加锁策略**
+
+
+
+**案例**
+
+- 天猫聚划算功能实现+防止缓存击穿
+
+- 模拟高并发的天马聚划算案例code
+
+- 分析过程
+
+  - 百分百高并发，绝对不可以用mysql实现
+  - 先把mysql里面参加果冻的数据抽取进redis，一般采用定时器扫描来决定上线活动还是下线取消
+  - 支持分页功能，一页20条记录
+
+- **业务**
+
+  - entity对象
+
+    ```java
+    package com.redis03_bloom.entities;
+    
+    import io.swagger.annotations.ApiModel;
+    import lombok.AllArgsConstructor;
+    import lombok.Data;
+    import lombok.NoArgsConstructor;
+    
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @ApiModel(value="聚划算活动Product信息")
+    public class Product {
+    
+        // 产品id
+        private Long id;
+        // 产品名称
+        private String name;
+        // 产品价格
+        private Integer price;
+        // 产品详情
+        private String detail;
+    
+    }
+    ```
+
+  - JHSTaskService：采用其那个时期将参数与聚划算活动的特价商品新增进redis中
+
+    ```java
+    package com.redis03_bloom.service;
+    
+    import com.redis03_bloom.entities.Product;
+    import lombok.extern.slf4j.Slf4j;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.data.redis.core.RedisTemplate;
+    import org.springframework.stereotype.Service;
+    
+    import javax.annotation.PostConstruct;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Random;
+    
+    @Service
+    @Slf4j
+    public class JHSTaskService {
+    
+        public static final String JHS_KEY = "jhs";
+        public static final String JHS_KEY_A = "jhs:a";
+        public static final String JHS_KEY_B = "jhs:b";
+    
+        @Autowired
+        private RedisTemplate redisTemplate;
+    
+        /**
+         * 假设此处是从数据库读取，然后加载到redis
+         * @return
+         */
+        private List<Product> getProductsFromMysql() {
+            ArrayList<Product> list = new ArrayList<>();
+            for (int i = 0; i < 20; i++) {
+                Random random = new Random();
+                int id = random.nextInt(10000);
+                Product product = new Product((long) id, "product" + i, i, "detail");
+                list.add(product);
+            }
+            return list;
+        }
+    
+        @PostConstruct
+        public void initJHS() {
+            log.info("模拟定时任务从数据库中不断获取参加聚划算的商品");
+            // 1 用多线程模拟定时任务，将商品从数据库刷新到redis
+            new Thread(() -> {
+                while(true) {
+                    // 2 模拟从数据库查询数据
+                    List<Product> list = this.getProductsFromMysql();
+                    // 3 删除原来的数据
+                    redisTemplate.delete(JHS_KEY);
+                    // 4 加入最新的数据给Redis参加活动
+                    redisTemplate.opsForList().leftPushAll(JHS_KEY, list);
+                    // 5 暂停1分钟，模拟聚划算参加商品下架上新等操作
+                    try {
+                        Thread.sleep(60000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, "t1").start();
+        }
+    }
+    ```
+
+  - JHSTaskController
+
+    ```java
+    package com.redis03_bloom.controller;
+    
+    import com.redis03_bloom.entities.Product;
+    import io.swagger.annotations.Api;
+    import io.swagger.annotations.ApiOperation;
+    import lombok.extern.slf4j.Slf4j;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.data.redis.core.RedisTemplate;
+    import org.springframework.util.CollectionUtils;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.RestController;
+    
+    import java.util.List;
+    
+    @Api(tags = "模拟聚划算商品上下架")
+    @RestController
+    @Slf4j
+    public class JHSTaskController {
+    
+        public static final String JHS_KEY = "jhs";
+        public static final String JHS_KEY_A = "jhs:a";
+        public static final String JHS_KEY_B = "jhs:b";
+    
+        @Autowired
+        private RedisTemplate redisTemplate;
+    
+        @ApiOperation("聚划算案例，每次1页，每页5条数据")
+        @GetMapping("/product/find")
+        public List<Product> find(int page, int size) {
+            long start = (page - 1) * size;
+            long end = start + size - 1;
+            List list = redisTemplate.opsForList().range(JHS_KEY, start, end);
+            if (CollectionUtils.isEmpty(list)) {
+                // todo Redis找不到，去数据库中查询
+            }
+            log.info("参加活动的商家: {}", list);
+            return list;
+        }
+    }
+    ```
+
+    
+
+
 
 ## 7.6、总结
 
