@@ -2543,18 +2543,145 @@ mysql有100条新纪录
         }
     }
     ```
+  
+- **Bug和隐患**
 
-    
+  1. 热点Key突然失效导致可怕的缓存击穿
+
+     - delete命令执行的一瞬间有空隙，其他请求线程继续找Redis为null
+     - 大量打到MySQL，被打穿了
+
+  2. again
+
+     | 缓存问题     | 产生原因               | 解决方案                               |
+     | ------------ | ---------------------- | -------------------------------------- |
+     | 缓存更新方式 | 数据变更、缓存时效性   | 同步更新、失效更新、异步更新、定时更新 |
+     | 缓存不一致   | 同步更新失败、异步更新 | 增加重试、补偿任务、最终一致           |
+     | 缓存穿透     | 恶意攻击               | 空对象缓存、BloomFilter                |
+     | 缓存击穿     | 热点key失效            | 互斥更新、随机退避、差异失效时间       |
+     | 缓存雪崩     | 缓存挂掉               | 快速失败熔断、主从模式、集群模式       |
+
+  3. 最终目的：两条命令原子性还是其次，主要是**防止热Key突然师兄暴击MySQL打爆系统
+
+- 进一步升级加固案例
+
+  - 互斥更新，采用双检加锁策略
+
+  - 差异失效时间
+
+    - 如何解决缓存击穿
+      - 1、新建：开辟两块缓存，主A从B，**先更新B再更新A**，严格按照这个顺序
+      - 2、查询：先查询主缓存A，如果A没有（消失或者失效了）再查询从缓存B
+
+  - JHStaskService
+
+    ```java
+    // 双缓存
+    @PostConstruct
+    public void initJHSAB() {
+        log.info("模拟定时任务从数据库中不断获取参加聚划算的商品");
+        // 1 用多线程模拟定时任务，将商品从数据库刷新到redis
+        new Thread(() -> {
+            while(true) {
+                // 2 模拟从数据库查询数据
+                List<Product> list = this.getProductsFromMysql();
+                // 3 先更新B缓存且让B缓存过期时间超过A缓存，如果突然失效还有B兜底，防止击穿
+                redisTemplate.delete(JHS_KEY_B);
+                redisTemplate.opsForList().leftPushAll(JHS_KEY_B, list);
+                // 设置过期时间为1天+10秒
+                redisTemplate.expire(JHS_KEY_B, 86410L, TimeUnit.SECONDS);
+                // 4 在更新缓存A
+                redisTemplate.delete(JHS_KEY_A);
+                redisTemplate.opsForList().leftPushAll(JHS_KEY_A, list);
+                redisTemplate.expire(JHS_KEY_A, 86400L, TimeUnit.SECONDS);
+                // 5 暂停1分钟，模拟聚划算参加商品下架上新等操作
+                try {
+                    Thread.sleep(60000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "t1").start();
+    }
+    ```
+
+  - JHSProductController
+
+    ```java
+    @ApiOperation("聚划算案例，AB双缓存，防止热key突然失效")
+    @GetMapping("/product/findab")
+    public List<Product> findAB(int page, int size) {
+        List<Product> list = null;
+        long start = (page - 1) * size;
+        long end = start + size - 1;
+        list = redisTemplate.opsForList().range(JHS_KEY_A, start, end);
+        if (CollectionUtils.isEmpty(list)) {
+            //  Redis找不到，去数据库中查询
+            log.info("A缓存已经失效或活动已经结束");
+            list = redisTemplate.opsForList().range(JHS_KEY_B, start, end);
+            if (CollectionUtils.isEmpty(list)) {
+                // todo Redis找不到，去数据库中查询
+            }
+        }
+        log.info("参加活动的商家: {}", list);
+        return list;
+    }
+    ```
+
+
+
 
 
 
 ## 7.6、总结
 
-
+| 缓存问题     | 产生原因               | 解决方案                               |
+| ------------ | ---------------------- | -------------------------------------- |
+| 缓存更新方式 | 数据变成、缓存时效性   | 同步更新、失效更新、异步更新、定时更新 |
+| 缓存不一致   | 同步更新失败、异步更新 | 增加重试、补偿任务、最终一致           |
+| 缓存穿透     | 恶意攻击               | 空对象缓存、BloomFilter                |
+| 缓存击穿     | 热点key失效            | 互斥更新、随机退避、差异失效时间       |
+| 缓存雪崩     | 缓存挂掉               | 快速失败熔断、主从模式、集群模式       |
 
 
 
 # 8、手写Redis分布式锁
+
+## 8.1、面试题
+
+`Redis除了拿来做缓存，还见过基于Redis的什么用法？`
+
+`Redis做分布式锁的时候有什么注意的问题？`
+
+`公司自己实现的分布式锁是否用的setnx命令实现？这个是最合适的吗？你如何考虑分布式锁的可冲入问题？`
+
+`如果是Redis是单点部署的，会带来什么问题？`
+
+`Redis集群模式下，比如主从模式，CAP方面有没有什么问题呢？`
+
+`简单的介绍一下Redlock？简单聊聊Redission`
+
+`Redis分布式锁如何续期？看门狗知道吗？`
+
+
+
+## 8.2、锁的种类
+
+## 8.3、一种靠谱分布式锁需要具备的条件和刚需
+
+## 8.4、分布式锁
+
+## 8.5、重点
+
+## 8.6、Base案例（Boot+Redis）
+
+## 8.7、手写分布式锁思路分析
+
+
+
+
+
+
 
 # 9、Redlock算法和底层源码分析
 
