@@ -2651,6 +2651,20 @@ mysql有100条新纪录
 
 `Redis除了拿来做缓存，还见过基于Redis的什么用法？`
 
+1. 数据共享、分布式Session
+2. 分布式锁
+3. 全局ID
+4. 计算器、点赞
+5. 位统计
+6. 购物车
+7. 轻量级消息队列
+8. 抽奖
+9. 点赞、签到、打卡
+10. 差集交集并集、用户关注、可能认识的人、推荐模型
+11. 热点新闻、热搜排行榜
+
+
+
 `Redis做分布式锁的时候有什么注意的问题？`
 
 `公司自己实现的分布式锁是否用的setnx命令实现？这个是最合适的吗？你如何考虑分布式锁的可冲入问题？`
@@ -2659,25 +2673,217 @@ mysql有100条新纪录
 
 `Redis集群模式下，比如主从模式，CAP方面有没有什么问题呢？`
 
+- CAP：redis集群是AP，redis单机C，一致性
+
+
+
 `简单的介绍一下Redlock？简单聊聊Redission`
 
 `Redis分布式锁如何续期？看门狗知道吗？`
 
 
 
+
+
 ## 8.2、锁的种类
+
+- **单机版同一个JVM虚拟机内**，synchronized或者Lock接口
+- **分布式多个不同JVM虚拟机**，单机的线程锁机制不再起作用，资源类在不同的服务器之间共享了
+
+
 
 ## 8.3、一种靠谱分布式锁需要具备的条件和刚需
 
+1. 独占性：Only One，任何时刻只能有且仅有一个线程持有
+2. 高可用
+   1. 若redis集群环境中，不能因为某一个节点挂了而出现获取锁和释放锁失败的情况
+   2. 高并发请求下，依旧性能OK
+3. 防死锁：杜绝死锁，必须有超时控制机制或者撤销操作，有个兜底终止跳出方案
+4. 不乱抢： 防止张冠李戴，不能私下unlock别人的锁，只能自己加锁自己释放
+5. 重入性：同一个节点的同一个线程如果获得锁之后，它也可以再次获取这个锁。
+
+
+
 ## 8.4、分布式锁
+
+1. setnx key value
+2. set key value[ Ex seonds ] [ PX milliseconds ] [ NX|XX ]
+   1. EX：key在多少秒之后过期
+   2. PX：key在多少毫秒之后过期
+   3. NX：当key**不存在**的时候，才创建key，效果等同于setnx
+   4. XX：当key**存在**的时候，覆盖key
+
+
 
 ## 8.5、重点
 
+> JUC中AQS锁的规范落地参考+可重入锁考虑+Lua脚本+Redis命令一步步实现分布式锁
+
+
+
 ## 8.6、Base案例（Boot+Redis）
+
+使用场景：多个服务间保证同一时刻同一时间段内同一用户只能有一个请求（防止关键业务出现并发攻击）
+
+- pom
+
+  ```xml
+  <properties>
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <java.version>1.8</java.version>
+      <maven.compiler.source>1.8</maven.compiler.source>
+      <maven.compiler.target>1.8</maven.compiler.target>
+      <lombok.version>1.16.18</lombok.version>
+  </properties>
+  
+  <dependencies>
+      <!--SpringBoot 通用依赖模块-->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+      </dependency>
+      <!-- SpringBoot 与Redis整合依赖 -->
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-data-redis</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-pool2</artifactId>
+      </dependency>
+      <!-- swagger2 -->
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger2</artifactId>
+          <version>2.9.2</version>
+      </dependency>
+      <dependency>
+          <groupId>io.springfox</groupId>
+          <artifactId>springfox-swagger-ui</artifactId>
+          <version>2.9.2</version>
+      </dependency>
+  
+      <dependency>
+          <groupId>cn.hutool</groupId>
+          <artifactId>hutool-all</artifactId>
+          <version>5.2.3</version>
+      </dependency>
+  
+      <!-- 通用基础配置 -->
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>${lombok.version}</version>
+          <optional>true</optional>
+      </dependency>
+  
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-test</artifactId>
+          <scope>test</scope>
+      </dependency>
+  </dependencies>
+  ```
+
+- YML
+
+  ```yml
+  server.port=8081
+  spring.application.name=redis_distributed_lock2
+  # =====================swaqqer2=====================
+  # http://localhost:7777/swagger-ui.html
+  swagger2.enabled=true
+  spring.mvc.pathmatch.matching-strategy=ant_path_matcher
+  # =====================redis单机=====================
+  spring.redis.database=0
+  #修改为自己真实IP
+  spring.redis.host=127.0.0.1
+  spring.redis.port=6379
+  spring.redis.password=zzq121700
+  spring.redis.lettuce.pool.max-active=8
+  spring.redis.1ettuce.pool.max-wait=-1ms
+  spring.redis.1ettuce.pool.max-idle=8
+  spring.redis.lettuce.pool.min-idle=0
+  ```
+
+- 业务类
+
+  **InventoryService**
+
+  ```java
+  @Service
+  @Slf4j
+  public class InventoryService {
+      
+      @Autowired
+      private StringRedisTemplate stringRedisTemplate;
+      @Value("${server.port}")
+      private String port;
+  
+      private Lock lock = new ReentrantLock();
+  
+      public String sale() {
+          String resMessgae = "";
+          lock.lock();
+          try {
+              // 1 查询库存信息
+              String result = stringRedisTemplate.opsForValue().get("inventory01");
+              // 2 判断库存书否足够
+              Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+              // 3 扣减库存，每次减少一个库存
+              if (inventoryNum > 0) {
+                  stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                  resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum;
+                  log.info(resMessgae + "\t" + "，服务端口号：" + port);
+              } else {
+                  resMessgae = "商品已售罄。";
+                  log.info(resMessgae + "\t" + "，服务端口号：" + port);
+              }
+          } finally {
+              lock.unlock();
+          }
+          return resMessgae;
+      }
+  }
+  ```
+
+  **InventoryController**
+
+  ```java
+  @RestController
+  @Api(tags = "redis分布式锁测试")
+  public class InventoryController {
+      @Autowired
+      private InventoryService inventoryService;
+  
+      @GetMapping("/inventory/sale")
+      @ApiOperation("扣减库存，一次卖一个")
+      public void sale() {
+          inventoryService.sale();
+      }
+  }
+  ```
+
+  
+
+
 
 ## 8.7、手写分布式锁思路分析
 
-
+1. 初始化版本简单添加
+   1. 业务类
+      1. InventoryService
+      2. 将8081的业务逻辑拷贝到8082
+   2. nginx分布式微服务架构
+      1. 问题
+         1. 分布式部署后，单机锁还是出现超卖现象，需要分布式锁
+         2. Nginx配置负载均衡
+         3. 启动两个微服务访问
+         4. bug-why
+         5. 分布式锁出现
+      2. 解决
+   3. redis分布式锁
+   4. 宕机与过期+防止死锁
 
 
 
