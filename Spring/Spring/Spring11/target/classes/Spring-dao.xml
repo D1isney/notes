@@ -12,7 +12,7 @@
 
     <!--
         DataSource
-        使用Spring的数据源替换Mybatis的配�? c3p0 dbcp druid
+        使用Spring的数据源替换Mybatis的配置 c3p0 dbcp druid
         这里使用Spring提供的JDBC
     -->
 
@@ -35,26 +35,26 @@
 
     <!--    SqlSessionTemplate：就是使用的sqlSession-->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <!--只能使用构�?�器注入sqlSessionFactory，因为没有set方法-->
+        <!--只能使用构造器注入sqlSessionFactory，因为没有set方法-->
         <constructor-arg index="0" ref="sqlSessionFactory"/>
     </bean>
 
     <!--
-        配置声明式事�?
-        要开�? Spring 的事务处理功能，�? Spring 的配置文件中创建�?�? DataSourceTransactionManager 对象�?
+        配置声明式事务
+        要开启 Spring 的事务处理功能，在 Spring 的配置文件中创建一个 DataSourceTransactionManager 对象：
     -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="datasource"/>
     </bean>
 
-    <!--    结合AOP实现事务的植�?-->
+    <!--    结合AOP实现事务的植入-->
     <!--    配置事务的类
         tx:advice   配置事务通知
     -->
     <tx:advice id="txADVICE" transaction-manager="transactionManager">
-        <!--        给那些方法配置事�?-->
-        <!--        配置事务的传播特�?
-            propagation ：默认（REQUIRED�?
+        <!--        给那些方法配置事务-->
+        <!--        配置事务的传播特性
+            propagation ：默认（REQUIRED）
         -->
         <tx:attributes>
             <tx:method name="add" propagation="REQUIRED"/>
