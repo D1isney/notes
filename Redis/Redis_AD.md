@@ -2874,15 +2874,106 @@ mysql有100条新纪录
    1. 业务类
       1. InventoryService
       2. 将8081的业务逻辑拷贝到8082
+      
    2. nginx分布式微服务架构
       1. 问题
          1. 分布式部署后，单机锁还是出现超卖现象，需要分布式锁
          2. Nginx配置负载均衡
          3. 启动两个微服务访问
          4. bug-why
+            - 问题：**超卖现象**，nginx和Jmeter压测后，不满足高并发分布式锁的性能要求
+            - 原因：单机的JVM加锁无法解决两个服务的同时访问
          5. 分布式锁出现
       2. 解决
+      
    3. redis分布式锁
+
+      1. **InventoryService**
+
+         ```java
+         public String sale() {
+             String resMessgae = "";
+             String key = "DisneyRedisLocak";
+             String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
+         
+             Boolean flag = stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue);
+             // 抢不到的线程继续重试
+             if (!flag) {
+                 // 线程休眠20毫秒，进行递归重试
+                 try {
+                     TimeUnit.MILLISECONDS.sleep(20);
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
+                 sale();
+             } else {
+                 try {
+                     // 1 抢锁成功，查询库存信息
+                     String result = stringRedisTemplate.opsForValue().get("inventory01");
+                     // 2 判断库存书否足够
+                     Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+                     // 3 扣减库存，每次减少一个库存
+                     if (inventoryNum > 0) {
+                         stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                         resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum + "\t" + "，服务端口号：" + port;
+                         log.info(resMessgae);
+                     } else {
+                         resMessgae = "商品已售罄。" + "\t" + "，服务端口号：" + port;
+                         log.info(resMessgae);
+                     }
+                 } finally {
+                     stringRedisTemplate.delete(key);
+                 }
+             }
+             return resMessgae;
+         }
+         ```
+
+         通过递归的方式来完成重试，不断获取锁
+
+         但是依旧有问题：手工设置5000个线程来抢占锁，压测OK，但是容易导致StackOverflowError，不推荐，需要进一步完善
+
+      2. **InventoryService**
+
+         多线程判断想想JUC里面的虚假唤醒，用while替代if，自旋锁代替递归重试
+
+         ```java
+         public String sale() {
+             String resMessgae = "";
+             String key = "DisneyRedisLocak";
+             String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
+         
+             // 不用递归了，高并发容易出错，我们用自旋代替递归方法重试调用；也不用if，用while代替
+             while (!stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue)) {
+                 // 线程休眠20毫秒，进行递归重试
+                 try {TimeUnit.MILLISECONDS.sleep(20);} catch (InterruptedException e) {e.printStackTrace();}
+             }
+         
+             try {
+                 // 1 抢锁成功，查询库存信息
+                 String result = stringRedisTemplate.opsForValue().get("inventory01");
+                 // 2 判断库存书否足够
+                 Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+                 // 3 扣减库存，每次减少一个库存
+                 if (inventoryNum > 0) {
+                     stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                     resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum + "\t" + "，服务端口号：" + port;
+                     log.info(resMessgae);
+                 } else {
+                     resMessgae = "商品已售罄。" + "\t" + "，服务端口号：" + port;
+                     log.info(resMessgae);
+                 }
+             } finally {
+                 stringRedisTemplate.delete(key);
+             }
+             return resMessgae;
+         }
+         ```
+
+         
+
+         
+
    4. 宕机与过期+防止死锁
 
 
