@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5df38cc3-f41b-4c78-a778-3b82d6cfc40a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Redis_AD.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Redis_AD.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/Spring-dao.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/Spring-dao.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/mapper/UserMapperImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/mapper/UserMapperImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/pojo/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/pojo/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/utils/MybatisUtils.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/classes/com/utils/MybatisUtils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../Spring/Spring/Spring11/target/test-classes/MyTest.class" afterDir="false" />
-    </list>
+    <list default="true" id="5df38cc3-f41b-4c78-a778-3b82d6cfc40a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -48,20 +38,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;K:/GitHub/notes/Redis/Redis_CODE&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "Y:/JavaEE/04",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -74,6 +64,7 @@
       <workItem from="1710660829220" duration="1757000" />
       <workItem from="1710664172365" duration="1795000" />
       <workItem from="1710752676282" duration="1275000" />
+      <workItem from="1711023224060" duration="93000" />
     </task>
     <servers />
   </component>
