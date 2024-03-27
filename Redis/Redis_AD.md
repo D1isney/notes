@@ -2970,13 +2970,91 @@ mysql有100条新纪录
          }
          ```
 
-         
-
-         
-
    4. 宕机与过期+防止死锁
 
+      - 问题：部署了微服务的Java程序挂了，代码层面根本没有走到finally这块，没办法保证解锁（无过期时间该key一直存在），这个key没有被删除，需要加入一个过期时间限定key
 
+      - 解决：
+
+        1. ！高并发多线程下的一致性和原子性，设置了key+过期时间分开了，必须合并成一行具备原子性
+
+           ```java
+           while (!stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue)) {
+                       // 线程休眠20毫秒，进行递归重试
+                       try {TimeUnit.MILLISECONDS.sleep(20);} catch (InterruptedException e){e.printStackTrace();}
+           }
+           
+           // 设置过期时间
+           stringRedisTemplate.expire(key, 30L, TimeUnit.SECONDS);
+           ```
+
+        2. 加锁和过期时间设置必须同一行，保证原子性
+
+           ```java
+           	while (!stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue, 30L, TimeUnit.SECONDS)) {
+               // 线程休眠20毫秒，进行递归重试
+               try {TimeUnit.MILLISECONDS.sleep(20);} catch (InterruptedException e){e.printStackTrace();}
+               }
+           ```
+
+   5. 防止误删key的问题
+
+      1. 问题：实际业务中，如果处理时间超过了设置的key的过期时间，那删除key的时候，岂不是张冠李戴，删除了别人的锁
+
+         ![image-20240327160640670](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240327160640670.png)
+
+      2. 解决：
+
+         1. 只能自己删除自己的，不许动别人的
+
+         2. ```java
+            public String sale() {
+                String resMessgae = "";
+                String key = "DisneyRedisLocak";
+                String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
+            
+                // 不用递归了，高并发容易出错，我们用自旋代替递归方法重试调用；也不用if，用while代替
+                while (!stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue, 30L, TimeUnit.SECONDS)) {
+                    // 线程休眠20毫秒，进行递归重试
+                    try {TimeUnit.MILLISECONDS.sleep(20);} catch (InterruptedException e) {e.printStackTrace();}
+                }
+            
+                try {
+                    // 1 抢锁成功，查询库存信息
+                    String result = stringRedisTemplate.opsForValue().get("inventory01");
+                    // 2 判断库存书否足够
+                    Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+                    // 3 扣减库存，每次减少一个库存
+                    if (inventoryNum > 0) {
+                        stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                        resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum + "\t" + "，服务端口号：" + port;
+                        log.info(resMessgae);
+                    } else {
+                        resMessgae = "商品已售罄。" + "\t" + "，服务端口号：" + port;
+                        log.info(resMessgae);
+                    }
+                } finally {
+                    // 改进点，判断加锁与解锁是不同客户端，自己只能删除自己的锁，不误删别人的锁
+                    if (stringRedisTemplate.opsForValue().get(key).equalsIgnoreCase(uuidValue)) {
+                        stringRedisTemplate.delete(key);
+                    }
+                }
+                return resMessgae;
+            }
+            ```
+
+   6. finally代码块的判断+del删除不是原子性的
+
+      1. ![image-20240327165159892](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240327165159892.png)
+      2. 解决：启用lua脚本编写redis分布式锁判断+删除判断代码
+      3. 官网解释：https://redis.io/docs/manual/patterns/distributed-locks/
+      4. Lua脚本
+         1. Lua是一种轻量小巧的脚本语言，用标准C语言编写并以源代码形式开放，其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。
+         2. Lua是一个小巧的脚本语言。它是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo三人所组成的研究小组于1993年开发的。
+         3. 设计目的：其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。
+         4. Lua特性：
+            1. 轻量级：它用标准C语言编写并以源代码形式开放，编译后仅仅一百余k，可以很方便的嵌入到别的程序里。
+            2. 可扩展：Lua提供了非常易于使用的扩展接口和机制；由宿主语言（通常是C或C++）提供这些功能，Lua可以使用它们，就像本来就内置的功能一样。
 
 
 
