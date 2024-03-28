@@ -2871,6 +2871,7 @@ mysql有100条新纪录
 ## 8.7、手写分布式锁思路分析
 
 1. 初始化版本简单添加
+
    1. 业务类
       1. InventoryService
       2. 将8081的业务逻辑拷贝到8082
@@ -3050,11 +3051,84 @@ mysql有100条新纪录
       3. 官网解释：https://redis.io/docs/manual/patterns/distributed-locks/
       4. Lua脚本
          1. Lua是一种轻量小巧的脚本语言，用标准C语言编写并以源代码形式开放，其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。
+
          2. Lua是一个小巧的脚本语言。它是巴西里约热内卢天主教大学（Pontifical Catholic University of Rio de Janeiro）里的一个由Roberto Ierusalimschy、Waldemar Celes 和 Luiz Henrique de Figueiredo三人所组成的研究小组于1993年开发的。
+
          3. 设计目的：其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。
-         4. Lua特性：
+
+         4. eval luascript numkeys [key [key ..]] [arg [arg ..]]
+
+         5. Lua特性：
             1. 轻量级：它用标准C语言编写并以源代码形式开放，编译后仅仅一百余k，可以很方便的嵌入到别的程序里。
             2. 可扩展：Lua提供了非常易于使用的扩展接口和机制；由宿主语言（通常是C或C++）提供这些功能，Lua可以使用它们，就像本来就内置的功能一样。
+
+         6. 写法 eval "return ' hello lua' " 0
+
+         7. 调用Redis操作 EVAL "redis.call('set','k1','v1') redis.call('expire','k1','30') return redis.call('get','k1')" 0
+
+         8. EVAL "return redis.call('mset',KEYS[1],ARGV[1],KEYS[2],ARGV[2])" 2 k1 k2 lua1 lua2
+
+         9. ```shell
+            if redis.call("get",KEYS[1]) == ARGV[1] then
+                return redis.call("del",KEYS[1])
+            else
+                return 0
+            end
+            ```
+
+         10. 解决：
+
+             ```java
+             public String sale() {
+                 String resMessgae = "";
+                 String key = "DisneyRedisLocak";
+                 String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
+                 // 不用递归了，高并发容易出错，我们用自旋代替递归方法重试调用；也不用if，用while代替
+                 while (!stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue, 30L, TimeUnit.SECONDS)) {
+                     // 线程休眠20毫秒，进行递归重试
+                     try {TimeUnit.MILLISECONDS.sleep(20);} catch (InterruptedException e) {e.printStackTrace();}
+                 }
+             
+                 try {
+                     // 1 抢锁成功，查询库存信息
+                     String result = stringRedisTemplate.opsForValue().get("inventory01");
+                     // 2 判断库存书否足够
+                     Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+                     // 3 扣减库存，每次减少一个库存
+                     if (inventoryNum > 0) {
+                         stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                         resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum + "\t" + "，服务端口号：" + port;
+                         log.info(resMessgae);
+                     } else {
+                         resMessgae = "商品已售罄。" + "\t" + "，服务端口号：" + port;
+                         log.info(resMessgae);
+                     }
+                 } finally {
+                     // 改进点，修改为Lua脚本的Redis分布式锁调用，必须保证原子性，参考官网脚本案例
+                     String luaScript =
+                         "if redis.call('get',KEYS[1]) == ARGV[1] then " +
+                         	"return redis.call('del',KEYS[1]) " +
+                         "else " +
+                         	"return 0 " +
+                         "end";
+                     stringRedisTemplate.execute(new DefaultRedisScript(luaScript, Boolean.class), Arrays.asList(key), uuidValue);
+                 }
+                 return resMessgae;
+             }
+             ```
+
+   7. **可重入锁 + 设计模式**
+
+      1. 问题：
+         - 如何兼顾锁的可重入性问题？
+      2. 可重入锁（又名递归锁）
+         - 说明：是指在同一线程在外层方法获取锁的时候，再进入改线程的内层方法会自动获取锁（前提，锁对象得是同一个对象）。不会因为之前已经获取过还没释放而阻塞。
+         - 如果是一个有synchronized修饰的递归调用方法，程序第二次进入被自己阻塞了，出现了作茧自缚。所以**Java中ReentrantLock和synchronized都是可重入锁**，可重入锁的一个优点是可一定程度避免死锁。
+         - 解释：一个线程中多个流程可以获取同一把锁，持有这把同步锁可以再次进入。自己可以获取自己的内部锁。
+      3. lock/unlock配合可重入锁进行AQS源码分析讲解
+      4. 可以重入锁计算问题，redis中哪个数据类型可以代替
+
+   8. **自动续期**
 
 
 
