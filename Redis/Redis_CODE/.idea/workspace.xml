@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5df38cc3-f41b-4c78-a778-3b82d6cfc40a" name="Changes" comment="" />
+    <list default="true" id="5df38cc3-f41b-4c78-a778-3b82d6cfc40a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Redis01_Jedis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Redis01_Jedis.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Redis_AD.md" beforeDir="false" afterPath="$PROJECT_DIR$/../Redis_AD.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,11 +49,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "Y:/JavaEE/04",
+    "last_opened_file_path": "K:/GitHub/notes/Redis/Redis_CODE/Redis03_bloom",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.15039062",
+    "project.structure.side.proportion": "0.2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -65,6 +73,8 @@
       <workItem from="1710664172365" duration="1795000" />
       <workItem from="1710752676282" duration="1275000" />
       <workItem from="1711023224060" duration="93000" />
+      <workItem from="1711625999530" duration="1448000" />
+      <workItem from="1711634805028" duration="88000" />
     </task>
     <servers />
   </component>
