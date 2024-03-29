@@ -3120,13 +3120,196 @@ mysql有100条新纪录
    7. **可重入锁 + 设计模式**
 
       1. 问题：
+
          - 如何兼顾锁的可重入性问题？
+
       2. 可重入锁（又名递归锁）
+
          - 说明：是指在同一线程在外层方法获取锁的时候，再进入改线程的内层方法会自动获取锁（前提，锁对象得是同一个对象）。不会因为之前已经获取过还没释放而阻塞。
+
          - 如果是一个有synchronized修饰的递归调用方法，程序第二次进入被自己阻塞了，出现了作茧自缚。所以**Java中ReentrantLock和synchronized都是可重入锁**，可重入锁的一个优点是可一定程度避免死锁。
+
          - 解释：一个线程中多个流程可以获取同一把锁，持有这把同步锁可以再次进入。自己可以获取自己的内部锁。
-      3. lock/unlock配合可重入锁进行AQS源码分析讲解
+
+         - 可重入锁的种类：
+
+           - 隐式锁：即synchronized关键字使用的锁，默认是可重入锁
+
+             > 指的是可重复可递归调用的锁，在外层使用锁之后，在内层仍然可以使用，并且不发生死锁，这样的锁就叫做可重入锁。
+             >
+             > 简单的来说就是：**在一个synchronized修饰的方法或代码块内部调用本类的其他synchronized修饰的方法或代码块时，是永远可以得到锁的**。
+             >
+             > ```java
+             > 	final Object obj = new Object();
+             >     public void entry01(){
+             >         new Thread(()->{
+             >             synchronized (obj){
+             >                 System.out.println(Thread.currentThread().getName()+"\t"+"外层调用");
+             >                 synchronized (obj) {
+             >                     System.out.println(Thread.currentThread().getName() + "\t" + "中层调用");
+             >                     synchronized (obj) {
+             >                         System.out.println(Thread.currentThread().getName() + "\t" + "内层调用");
+             >                     }
+             >                 }
+             >             }
+             >         },"t1").start();
+             >     }
+             > 
+             >     public void entry02(){
+             >         m1();
+             >     }
+             > 
+             >     private synchronized void m1() {
+             >         System.out.println(Thread.currentThread().getName()+"\t"+"外层调用");
+             >         m2();
+             >     }
+             > 
+             >     private synchronized void m2() {
+             >         System.out.println(Thread.currentThread().getName() + "\t" + "中层调用");
+             >         m3();
+             >     }
+             > 
+             >     private synchronized void m3() {
+             >         System.out.println(Thread.currentThread().getName() + "\t" + "内层调用");
+             >     }
+             > ```
+
+           - Synchronized的重入的实现机理
+
+             > **每个锁对象拥有一个锁计数器和一个指向持有该锁的线程的指针。**
+             >
+             > 当执行monitrenter时，如果目标锁对象得计数器为零，那么说明它没有被其他线程所持有，Java虚拟机会将该锁对象的持有线程设置为当前线程，并且将其计数器加1。
+             >
+             > 在目标锁对象的计数器不为零的情况下，如果锁对象的持有线程是当前线程，那么Java虚拟机可以将其计数器加1，否则需要等待，直至持有线程释放该锁。
+             >
+             > 当执行monitorexit时，Java虚拟机则需要将锁对象的计数器减1。计数器为零代表锁已被释放。
+
+           - 显示锁（即Lock）也有ReentrantLock这样的可重入锁
+
+             > 在一个Synchronized修饰的方法或代码块的内部调用本类的其他Synchronized修饰的方法或代码块时，是永远可以得到锁的。
+             >
+             > ```java
+             > Lock lock = new ReentrantLock();
+             >     public void entry03() {
+             >         new Thread(() -> {
+             >             lock.lock();
+             >             try {
+             >                 System.out.println(Thread.currentThread().getName() + "\t" + "外层调用");
+             >                 lock.lock();
+             >                 try {
+             >                     System.out.println(Thread.currentThread().getName() + "\t" + "中层调用");
+             >                     lock.lock();
+             >                     try {
+             >                         System.out.println(Thread.currentThread().getName() + "\t" + "内层调用");
+             >                     } finally {
+             > //                        t4就拿不到这个锁
+             >                         lock.unlock();
+             >                     }
+             >                 } finally {
+             >                     lock.unlock();
+             >                 }
+             >             } finally {
+             >                 lock.unlock();
+             >             }
+             >         }, "t3").start();
+             > 
+             >         //  暂停两秒
+             >         try {
+             >             TimeUnit.MILLISECONDS.sleep(2);
+             >         } catch (InterruptedException e) {
+             >             e.printStackTrace();
+             >         }
+             >         new Thread(() -> {
+             >             lock.lock();
+             >             try {
+             >                 System.out.println(Thread.currentThread().getName() + "\t" + "外层调用+t4");
+             >             } finally {
+             >                 lock.unlock();
+             >             }
+             >         }, "t4").start();
+             >     }
+             > ```
+
+      3. lock/unlock配合可重入锁进行AQS源码分析
+
+         > lock几次就要unlock几次
+
       4. 可以重入锁计算问题，redis中哪个数据类型可以代替
+
+         1. k k v	=>	hset
+         2. Map<String,Map<Object,Object>>
+         3. setnx，只能解决有无的问题
+         4. hset，不但解决有无，还解决可重入问题
+
+      5. 加锁Lua脚本lock
+
+         - 先判断redis分布式锁这个key是否存在
+
+           > EXISTS key：
+           >
+           > 返回零说明不存在，hset新建当前线程属于自己的锁，field key格式为UUID:ThreadID，valua为加锁次数；
+           >
+           > 返回1说明已经有锁，需要进一步判断是不是当前线程自己的 -> 
+           >
+           > HEXISTS key uuid:ThreadID：返回0说明不是自己的锁；返回1说明是自己的锁，自增1次表示重入
+           >
+           > HINCRBY key UUID:ThreadID 1
+
+         - 按照上述设计修改Lua脚本
+
+           > **V1版本**
+           >
+           > ```shell
+           > // 加锁的Lua脚本，对标我们的lock方法
+           > if redis.call('exists', 'key') == 0 then
+           > 	redis.call('hset', 'key', 'uuid:threadid', 1)
+           > 	redis.call('expire', 'key', 50)
+           > 	return 1
+           > elseif redis.call('hexists', 'key', 'uuid:threadid') == 1 then
+           > 	redis.call('hincrby', 'key', 'uuid:threadid', 1)
+           > 	redis.call('expire', 'key', 50)
+           > 	return 1
+           > else
+           > 	return 0
+           > end
+           > ```
+           >
+           > **V2版本**
+           >
+           > 当key不存在的时候，HINCRBY可以自动创建这个key并且自增
+           >
+           > ```shell
+           > // V2 合并相同的代码，用hincrby替代hset，精简代码
+           > if redis.call('exists', 'key') == 0 or redis.call('hexists', 'key', 'uuid:threadid') == 1 then
+           > 	redis.call('hincrby', 'key', 'uuid:threadid', 1)
+           > 	redis.call('expire', 'key', 50)
+           > 	return 1
+           > else
+           > 	return 0
+           > end
+           > ```
+           >
+           > **V3版本**
+           >
+           > ```shell
+           > // V3 脚本OK，换上参数来替代写死的key，value
+           > if redis.call('exists', KEYS[1]) == 0 or redis.call('hexists', KEYS[1], ARGV[1]) == 1 then
+           > 	redis.call('hincrby', KEYS[1], ARGV[1], 1)
+           > 	redis.call('expire', KEYS[1], ARGV[2])
+           > 	return 1
+           > else
+           > 	return 0
+           > end
+           > ```
+           >
+           > **测试**
+           >
+           > ```shell
+           > -- 已完成验证
+           > if redis.call('exists', KEYS[1]) == 0 or redis.call('hexists', KEYS[1], ARGV[1]) == 1 then redis.call('hincrby', KEYS[1], ARGV[1], 1) redis.call('expire', KEYS[1], ARGV[2]) return 1 else return 0 end
+           > 
+           > eval "if redis.call('exists', KEYS[1]) == 0 or redis.call('hexists', KEYS[1], ARGV[1]) == 1 then redis.call('hincrby', KEYS[1], ARGV[1], 1) redis.call('expire', KEYS[1], ARGV[2]) return 1 else return 0 end" 1 DisneyRedisLock 001122:1 50
+           > ```
 
    8. **自动续期**
 
