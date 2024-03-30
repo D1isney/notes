@@ -3310,8 +3310,518 @@ mysql有100条新纪录
            > 
            > eval "if redis.call('exists', KEYS[1]) == 0 or redis.call('hexists', KEYS[1], ARGV[1]) == 1 then redis.call('hincrby', KEYS[1], ARGV[1], 1) redis.call('expire', KEYS[1], ARGV[2]) return 1 else return 0 end" 1 DisneyRedisLock 001122:1 50
            > ```
+         
+      6. 解锁Lua脚本unlock
 
-   8. **自动续期**
+         - 设计思路：有锁且还是自己的锁 -> HEXISTS key uuid:ThreadID
+
+           > 返回零，说明根本没有锁，程序返回nil
+           >
+           > 不是零，说明有锁且是自己的锁，直接调用HINCRBY -1，表示每次减1，解锁一次知道它变成零表示可以删除该锁key，del 锁
+
+         - 设计修改为Lua脚本
+
+           > **V1版本**
+           >
+           > ```shell
+           >   // 解锁的Lua脚本，对标我们的lock方法
+           >   if redis.call('hexists', 'key', uuid:threadid) == 0 then
+           >   	return nil
+           >   elseif redis.call('hincrby', key, uuid:threadid, -1) == 0 then
+           >       return redis.call('del', key)
+           >   else 
+           >       return 0
+           >   end
+           > ```
+           >
+           > **V2版本**
+           >
+           > ```shell
+           > if redis.call('hexists', KEYS[1], ARGV[1]) == 0 then
+           > 	return nil
+           > elseif redis.call('hincrby', KEYS[1], ARGV[1], -1) == 0 then
+           >     return redis.call('del', KEYS[1])
+           > else 
+           >     return 0
+           > end
+           > ```
+           >
+           > **测试**
+           >
+           > ```shell
+           > if redis.call('hexists', KEYS[1], ARGV[1]) == 0 then return nil elseif redis.call('hincrby', KEYS[1], ARGV[1], -1) == 0 then return redis.call('del', KEYS[1]) else return 0 end
+           > 
+           > eval "if redis.call('hexists', KEYS[1], ARGV[1]) == 0 then return nil elseif redis.call('hincrby', KEYS[1], ARGV[1], -1) == 0 then return redis.call('del', KEYS[1]) else return 0 end " 1 DisneyRedisLock 001122:1
+           > ```
+
+   8. Lua脚本整合进微服务Java程序
+
+      1. 复原程序为初始无锁的状态
+
+         ```java
+         public String sale() {
+             String resMessgae = "";
+             try {
+                 // 1 抢锁成功，查询库存信息
+                 String result = stringRedisTemplate.opsForValue().get("inventory01");
+                 // 2 判断库存书否足够
+                 Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+                 // 3 扣减库存，每次减少一个库存
+                 if (inventoryNum > 0) {
+                     stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                     resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum + "\t" + "，服务端口号：" + port;
+                     log.info(resMessgae);
+                 } else {
+                     resMessgae = "商品已售罄。" + "\t" + "，服务端口号：" + port;
+                     log.info(resMessgae);
+                 }
+             } finally {
+         
+             }
+             return resMessgae;
+         }
+         ```
+
+      2. 新建RedisDistributedLock类并实现JUC里面的Lock接口
+
+         ```java
+         package com.redis04_lock.utils;
+         
+         import java.util.concurrent.TimeUnit;
+         import java.util.concurrent.locks.Condition;
+         import java.util.concurrent.locks.Lock;
+         
+         //  自己的Redis分布式锁
+         public class RedisDistributedLock implements Lock {
+         
+             @Override
+             public void lock() {
+         
+             }
+         
+         
+             @Override
+             public boolean tryLock() {
+                 return false;
+             }
+         
+             @Override
+             public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+                 return false;
+             }
+         
+             @Override
+             public void unlock() {
+         
+             }
+         
+             //  ---暂时用不到这两个，暂时不用重写
+         
+             @Override
+             public void lockInterruptibly() throws InterruptedException {
+         
+             }
+         
+             @Override
+             public Condition newCondition() {
+                 return null;
+             }
+         }
+         ```
+
+      3. 满足JUC里面AQS对Lock锁的接口规范定义来进行实现落地代码
+
+      4. 结合设计模式开发属于自己的Redis分布式锁工具类
+
+         - Lua脚本加锁
+
+           ```shell
+           if redis.call('exists', KEYS[1]) == 0 or redis.call('hexists', KEYS[1], ARGV[1]) == 1 then
+           	redis.call('hincrby', KEYS[1], ARGV[1], 1)
+           	redis.call('expire', KEYS[1], ARGV[2])
+           	return 1
+           else
+           	return 0
+           end
+           ```
+
+           ```java
+               @Override
+               public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+                   if (time == -1L) {
+                       String str =
+                               "if redis.call('exists', KEYS[1]) == 0 or redis.call('hexists', KEYS[1], ARGV[1]) == 1 then "
+                                       + "redis.call('hincrby', KEYS[1], ARGV[1], 1) "
+                                       + "redis.call('expire', KEYS[1], ARGV[2]) "
+                                       + "return 1 "
+                                       + "else "
+                                       + "return 0 "
+                                       + "end";
+           
+                       Boolean execute = stringRedisTemplate.execute(
+                               new DefaultRedisScript<>(str, Boolean.class),
+                               Arrays.asList(lockName),
+                               uuidValue,
+                               String.valueOf(expireTime));
+                       while (!execute) {
+                           //暂停60毫秒
+                           try {
+                               TimeUnit.MILLISECONDS.sleep(60);
+                           }catch (InterruptedException e){
+                               e.printStackTrace();
+                           }
+                       }
+                       return true;
+                   }
+                   return false;
+               }
+           ```
+
+         - Lua脚本解锁
+
+           ```shell
+           if redis.call('hexists', KEYS[1], ARGV[1]) == 0 then
+           	return nil
+           elseif redis.call('hincrby', KEYS[1], ARGV[1], -1) == 0 then
+               return redis.call('del', KEYS[1])
+           else 
+               return 0
+           end
+           ```
+
+           ```java
+               @Override
+               public void unlock() {
+                   String script = "if redis.call('hexists', KEYS[1], ARGV[1]) == 0 then   "
+                           + "return nil   "
+                           + "elseif redis.call('hincrby', KEYS[1], ARGV[1], -1) == 0 then     "
+                           + "return redis.call('del', KEYS[1]) " +
+                           "else"
+                           + "    return 0 " +
+                           "end";
+                   Long execute = stringRedisTemplate.execute(
+                           new DefaultRedisScript<>(script, Long.class),
+                           Arrays.asList(lockName),
+                           uuidValue,
+                           String.valueOf(expireTime));
+           
+                   if (execute == null){
+                       throw new RuntimeException("this lock doesn't exists !!");	
+                   }
+               }
+           ```
+
+         - 工厂设计模式引入
+
+           - 通过实现JUC里面的Lock接口，实现Redis分布式锁RedisDistributedLock
+
+           - InventoryService直接使用上面的代码设计，有什么问题
+
+           - 考虑扩展，本次是redis实现分布式锁，以后zookeeper、mysql实现？
+
+             ```java
+             package com.redis04_lock.utils;
+             
+             
+             import org.springframework.beans.factory.annotation.Autowired;
+             import org.springframework.data.redis.core.StringRedisTemplate;
+             import org.springframework.stereotype.Component;
+             
+             import java.util.concurrent.locks.Lock;
+             
+             @Component
+             public class DistributedLockFactory {
+             
+                 @Autowired
+                 private StringRedisTemplate stringRedisTemplate;
+                 private String lockName;
+             
+                 public Lock getDistributedLock(String lockType){
+                     if (lockType == null) return null;
+                     if (lockType.equalsIgnoreCase("REDIS")){
+                         this.lockName = "DisneyRedisLock";
+                         return new RedisDistributedLock(stringRedisTemplate,lockName);
+                     } else if (lockType.equalsIgnoreCase("ZOOKEEPER")) {
+                         this.lockName = "DisneyZookeeperLock";
+                         // TODO zookeeper版本的分布式锁
+                     } else if (lockType.equalsIgnoreCase("MYSQL")) {
+                         this.lockName = "DisneyMYSQLrLock";
+                         // TODO MYSQL版本的分布式锁
+                     }
+                     return null;
+                 }
+             }
+             ```
+
+           - 引入工厂模式改造
+
+             ```java
+             package com.redis04_lock.service;
+             
+             import com.redis04_lock.utils.DistributedLockFactory;
+             import com.redis04_lock.utils.RedisDistributedLock;
+             import lombok.extern.slf4j.Slf4j;
+             import org.springframework.beans.factory.annotation.Autowired;
+             import org.springframework.beans.factory.annotation.Value;
+             import org.springframework.data.redis.core.StringRedisTemplate;
+             import org.springframework.stereotype.Service;
+             
+             import java.util.concurrent.locks.Lock;
+             import java.util.concurrent.locks.ReentrantLock;
+             import java.util.logging.Logger;
+             
+             @Service
+             @Slf4j
+             public class InventoryService02 {
+             
+                 @Autowired
+                 private StringRedisTemplate stringRedisTemplate;
+                 @Value("${server.port}")
+                 private String port;
+             
+                 @Autowired
+                 private DistributedLockFactory distributedLockFactory;
+                 public String sale() {
+                     String resMessgae = "";
+             
+                     Lock lock = distributedLockFactory.getDistributedLock("REDIS");
+                     lock.lock();
+                     try {
+                         // 1 查询库存信息
+                         String result = stringRedisTemplate.opsForValue().get("inventory01");
+                         // 2 判断库存书否足够
+                         Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+                         // 3 扣减库存，每次减少一个库存
+                         if (inventoryNum > 0) {
+                             stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                             resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum;
+                             System.out.println(resMessgae + "\t" + "，服务端口号：" + port);
+                         } else {
+                             resMessgae = "商品已售罄。";
+                             System.out.println(resMessgae + "\t" + "，服务端口号：" + port);
+                         }
+                     } finally {
+                         lock.unlock();
+                     }
+                     return resMessgae;
+                 }
+             }
+             ```
+
+           - 单机+并发测试通过
+
+           - **可重入锁的问题**
+
+             ```java
+             package com.redis04_lock.service;
+             
+             import com.redis04_lock.utils.DistributedLockFactory;
+             import com.redis04_lock.utils.RedisDistributedLock;
+             import lombok.extern.slf4j.Slf4j;
+             import org.springframework.beans.factory.annotation.Autowired;
+             import org.springframework.beans.factory.annotation.Value;
+             import org.springframework.data.redis.core.StringRedisTemplate;
+             import org.springframework.stereotype.Service;
+             
+             import java.util.concurrent.locks.Lock;
+             import java.util.concurrent.locks.ReentrantLock;
+             import java.util.logging.Logger;
+             
+             @Service
+             @Slf4j
+             public class InventoryService02 {
+             
+                 @Autowired
+                 private StringRedisTemplate stringRedisTemplate;
+                 @Value("${server.port}")
+                 private String port;
+             
+                 @Autowired
+                 private DistributedLockFactory distributedLockFactory;
+                 public String sale() {
+                     String resMessgae = "";
+             
+                     Lock lock = distributedLockFactory.getDistributedLock("REDIS");
+                     lock.lock();
+                     try {
+                         // 1 查询库存信息
+                         String result = stringRedisTemplate.opsForValue().get("inventory01");
+                         // 2 判断库存书否足够
+                         Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+                         // 3 扣减库存，每次减少一个库存
+                         if (inventoryNum > 0) {
+                             stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                             resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum;
+                             System.out.println(resMessgae + "\t" + "，服务端口号：" + port);
+                             testReEntry();
+                         } else {
+                             resMessgae = "商品已售罄。";
+                             System.out.println(resMessgae + "\t" + "，服务端口号：" + port);
+                         }
+                     } finally {
+                         lock.unlock();
+                     }
+                     return resMessgae;
+                 }
+             
+                 private void testReEntry() {
+             
+                     Lock lock = distributedLockFactory.getDistributedLock("redis");
+                     lock.lock();
+                     try {
+                         System.out.println("========测试可重入锁=========");
+                     }finally {
+                         lock.unlock();
+                     }
+                 }
+             }
+             ```
+
+             ![image-20240330192151963](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240330192151963.png)
+
+             ![image-20240330192221169](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240330192221169.png)
+
+             可重入Bug，UUID不一致，ThreadID一致
+
+           - **解决方案**
+
+             DistributedLockFactory -> 新增一个无参构造函数
+
+             ```java
+             public DistributedLockFactory() {
+                 this.uuid = IdUtil.simpleUUID();
+             }
+             ```
+
+             RedisDistributedLock -> 修改构造方法
+
+             ```java
+             public RedisDistributedLock(StringRedisTemplate stringRedisTemplate, String lockName, String uuid) {
+                 this.stringRedisTemplate = stringRedisTemplate;
+                 this.lockName = lockName;
+                 this.uuidValule = uuid + ":" + Thread.currentThread().getId();
+                 this.expireTime = 50L;
+             }
+             ```
+
+             使用@Autowired创建的工厂类是一个单例的，在Spring进行注入的时候已经初始化好了，所以所有线程产生的UUID都是一样的。
+
+             ![image-20240330193448521](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240330193448521.png)
+
+   9. **自动续期**
+
+      1. 确保RedisLock过期时间大于业务执行时间的问题
+
+         > 时间到了，业务执行完需要自动续期
+
+      2. CAP
+
+         1. C的全拼是Consistency，代表一致性
+         2. A的全拼是Availability，代表可用性
+         3. P的全拼是Partition tolerance，代表分区容错性
+
+         > - Redis集群是AP
+         >
+         >   Redis异步复制造成锁的丢失，例如：主节点没来得及把刚刚set进来的这条数据的从节点，master就挂了，从机上位但是从机上无数据
+         >
+         > - Zookeeper集群是CP
+         >
+         >   ![image-20240330194856060](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240330194856060.png)
+         >
+         >   故障：
+         >
+         >   ![image-20240330194938866](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240330194938866.png)
+         >
+         > - Eureka集群是AP
+         >
+         >   ![image-20240330195135483](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240330195135483.png)
+         >
+         > - Nacos集群是AP
+         >
+         >   ![image-20240330195204581](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240330195204581.png)
+
+      3. 加时，Lua脚本
+
+         ```shell
+         // 自动续期的LUA脚本
+         if redis.call('hexists', KEYS[1], ARGV[1]) == 1 then
+             return redis.call('expire', KEYS[1], ARGV[2])
+         else
+             return 0
+         end
+         ```
+
+         测试验证
+
+         ```shell
+         
+         if redis.call('hexists', KEYS[1], ARGV[1]) == 1 then return redis.call('expire', KEYS[1], ARGV[2]) else return 0 end
+         ---
+         hset DisneyRedisLock test 001
+         expire DisneyRedisLock 30
+         eval "if redis.call('hexists', KEYS[1], ARGV[1]) == 1 then return redis.call('expire', KEYS[1], ARGV[2]) else return 0 end" 1 DisneyRedisLock test 1
+         ```
+
+         
+
+      4. 自动续期功能
+
+         ```java
+         @Override
+         public boolean tryLock(long time, TimeUnit unit) throws InterruptedException {
+             if (-1 == time) {
+                 String script =
+                     "if redis.call('exists', KEYS[1]) == 0 or redis.call('hexists', KEYS[1], ARGV[1]) == 1 then " +
+                     "redis.call('hincrby', KEYS[1], ARGV[1], 1) " +
+                     "redis.call('expire', KEYS[1], ARGV[2]) " +
+                     "return 1 " +
+                     "else " +
+                     "return 0 " +
+                     "end";
+                 System.out.println("lock() lockName:" + lockName + "\t" + "uuidValue:" + uuidValule);
+         
+                 // 加锁失败需要自旋一直获取锁
+                 while (!stringRedisTemplate.execute(
+                     new DefaultRedisScript<>(script, Boolean.class),
+                     Arrays.asList(lockName),
+                     uuidValule,
+                     String.valueOf(expireTime))) {
+                     // 休眠60毫秒再来重试
+                     try {TimeUnit.MILLISECONDS.sleep(60);} catch (InterruptedException e) {e.printStackTrace();}
+                 }
+                 // 新建一个后台扫描程序，来检查Key目前的ttl，是否到我们规定的剩余时间来实现锁续期
+                 resetExpire();
+                 return true;
+             }
+             return false;
+         }
+         
+         // 自动续期
+         private void resetExpire() {
+             String script =
+                 "if redis.call('hexists', KEYS[1], ARGV[1]) == 1 then " +
+                 "return redis.call('expire', KEYS[1], ARGV[2]) " +
+                 "else " +
+                 "return 0 " +
+                 "end";
+             new Timer().schedule(new TimerTask() {
+                 @Override
+                 public void run() {
+                     if (stringRedisTemplate.execute(
+                         new DefaultRedisScript<>(script, Boolean.class),
+                         Arrays.asList(lockName),
+                         uuidValule,
+                         String.valueOf(expireTime))) {
+                         // 续期成功，继续监听
+                         System.out.println("resetExpire() lockName:" + lockName + "\t" + "uuidValue:" + uuidValule);
+                         resetExpire();
+                     }
+                 }
+             }, (this.expireTime * 1000 / 3));
+         }
+         ```
+
+         
 
 
 
