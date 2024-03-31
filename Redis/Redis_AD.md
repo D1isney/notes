@@ -3778,13 +3778,13 @@ mysql有100条新纪录
                      "else " +
                      "return 0 " +
                      "end";
-                 System.out.println("lock() lockName:" + lockName + "\t" + "uuidValue:" + uuidValule);
+                 System.out.println("lock() lockName:" + lockName + "\t" + "uuidValue:" + uuidValue);
          
                  // 加锁失败需要自旋一直获取锁
                  while (!stringRedisTemplate.execute(
                      new DefaultRedisScript<>(script, Boolean.class),
                      Arrays.asList(lockName),
-                     uuidValule,
+                     uuidValue,
                      String.valueOf(expireTime))) {
                      // 休眠60毫秒再来重试
                      try {TimeUnit.MILLISECONDS.sleep(60);} catch (InterruptedException e) {e.printStackTrace();}
@@ -3810,10 +3810,10 @@ mysql有100条新纪录
                      if (stringRedisTemplate.execute(
                          new DefaultRedisScript<>(script, Boolean.class),
                          Arrays.asList(lockName),
-                         uuidValule,
+                         uuidValue,
                          String.valueOf(expireTime))) {
                          // 续期成功，继续监听
-                         System.out.println("resetExpire() lockName:" + lockName + "\t" + "uuidValue:" + uuidValule);
+                         System.out.println("resetExpire() lockName:" + lockName + "\t" + "uuidValue:" + uuidValue);
                          resetExpire();
                      }
                  }
@@ -3821,11 +3821,134 @@ mysql有100条新纪录
          }
          ```
 
-         
+
+## 8.8、总结
+
+> synchronized单机版OK； -> v1.0
+>
+> Nginx分布式微服务，轮询多台服务器，单机锁不行；-> v2.0
+>
+> 取消单机锁，上redis分布式锁setnx，中小企业使用没问题；-> v3.1
+>
+>  只是加锁了，没有释放锁，出异常的话，可能无法释放锁，必须要在代码层面finally释放锁 -> v3.2
+>
+>  如果服务宕机，部署了微服务代码层面根本就没有走到finally这块，没办法保证解锁，这个Key没有被删除，需要对锁设置过期时间 -> v3.2
+>
+>  为redis的分布式锁key增加过期时间，还必须要保证setnx+过期时间在同一行，保证原子性 -> v4.1
+>
+>  程序由于执行超过锁的过期时间，所以在finally中必须规定只能自己删除自己的锁，不能把别人的锁删除了，防止张冠李戴 -> v5.0
+>
+> 将Lock、unlock变成LUA脚本保证原子性； -> v6.0
+>
+> 保证锁的可重入性，hset替代setnx+Lock变成LUA脚本，保障可重入性； -> v7.0
+>
+> 锁的自动续期 -> v8.0
 
 
 
 # 9、Redlock算法和底层源码分析
+
+## 9.1、面试题
+
+> 自研一把分布式锁，面试回答的主要考点
+
+1. 按照JUC里面java.util.concurrent.locks.Lock接口规范编写
+
+2. lock()加锁关键逻辑
+
+   - 加锁：加锁实际上就是在redis中，给key设置一个值，为了避免死锁，并给一个过期时间
+
+   - 可重入：加锁的LUA脚本，通过redis里面的hash数据类型，加锁和可重入性都要保证
+
+   - 自旋：加锁不成，需要while进行重试并自旋，AQS
+
+   - 续期：在过期时间内，一定时间内业务还未完成，自动给锁续期
+
+     ![image-20240331164140052](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331164140052.png)
+
+3. unlock()解锁关键逻辑
+
+   - 将redis的key删除，但是也不能乱删，不能说客户端1的请求将客户端2的锁给删掉，只能自己删除自己的锁
+
+   - 考虑可重入性的递减，加锁几次就需要删除几次
+
+   - 最后到零了，直接del删掉掉
+
+     ![image-20240331164257448](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331164257448.png)
+
+
+
+## 9.2、RedLock红锁算法
+
+官网说明：https://redis.io/docs/manual/patterns/distributed-locks/
+
+![image-20240331165056227](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331165056227.png)
+
+> **使用Redis的分布式锁**  使用Redis的分布式锁模式 
+>
+> 分布式锁在许多环境中是非常有用的原语，在这些环境中，不同的进程必须以互斥的方式使用共享资源进行操作。 有许多库和博客文章描述了如何使用Redis实现DLM（分布式锁管理器），但是每个库都使用不同的方法，许多库使用简单的方法，与稍微复杂一些的设计相比，保证率较低。 本页描述了一个更规范的算法来实现Redis的分布式锁。我们提出了一个称为Redlock的算法，它实现了一个DLM，我们认为它比普通的单实例方法更安全。我们希望社区能够对其进行分析，提供反馈，并将其作为实施或更复杂或替代设计的起点。
+
+**为什么学习这个？怎么产生的？**
+
+手写的分布式锁有什么缺点？
+
+![image-20240331165455000](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331165455000.png)
+
+![image-20240331165655335](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331165655335.png)
+
+> 有时候在特殊情况，例如在故障期间，多个客户端可以同时持有锁是完全没问题的。如果是这种情况，您可以使用基于复制的解决方案。否则，我们建议实施文档中描述的解决方案。
+>
+> **线程1首先获取锁成功，将键值对写入Redis的master节点，在Redis将该键值对同步到slave节点之前，master发生了故障；**
+>
+> Redis触发故障转移，其中一个slave升级为新的master，此时新上位的master并不包含线程1写入的键值对，因此线程2尝试获取锁也可以成功拿到锁，此时相当于两个线程获取了锁，可能会导致各种预期之外的情况发生，例如最常见的脏数据。
+>
+> 我们加的是排它独占锁，同一时间只能有一个建Redis锁成功并持有锁，严禁出现2个以上的请求线程拿到锁。
+
+**RedLock算法设计理念**
+
+- Redis之父提出了RedLock算法解决上面这个一锁被多建的问题
+
+  Redis也提供了RedLock算法，用来实现基于多个实例的分布式锁。锁变量由多个实例维护，即使有实例发生了故障，锁变量仍然是存在的，客户端还是可以完成锁操作。RedLock算法是实现高可靠分布式锁的一种有效解决方案，可以在实际开发中使用。
+
+  ![image-20240331170454556](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331170454556.png)
+
+  ![image-20240331170527307](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331170527307.png)
+
+  - ​	**设计理念**
+
+    > 该方案也是基于(set加锁、Lua脚本解锁）进行改良的，所以redis之父antirez只描述了差异的地方，大致方案如下：假设我们有N个Redis主节点，例如N= 5这些节点是完全独立的，我们不使用复制或任何其他隐式协调系统，为了取到锁客户端执行以下操作：
+    >
+    > 1. 获取当前时间，以毫秒为单位
+    > 2. 一次尝试从5个实例，使用相同的key和随机值（例如UUID）获取锁，当Redis请求获取锁时，客户端应该设置一个超时时间，这个超时时间应该小于锁的失效时间。例如你的锁自动失效时间为10秒，则超时时间应该在5-50毫秒之间。这样可以防止客户端再试与一个宕机的Redis节点对话时长时间处于阻塞状态。如果一个实例不可用，客户端应该尽快去尝试另一个Redis实例请求获取锁；
+    > 3. 客户端通过当前时间减去步骤1记录的时间来计算获取锁使用的时间。当且仅当从大多数(N/2+1，这里是3个节点)的Redis节点都取到锁，并且获取锁使用的时间小于锁失效时间时，锁才算获取成功;
+    > 4. 如果取到了锁，其真正有效时间等于初始有效时间减去获取锁所使用的时间（步骤3计算的结果）。
+    > 5. 如果由于某些原因未能获得锁（无法在至少N/2＋1个Redis实例获取锁、或获取锁的时间超过了有效时间)，客户端应该在所有的Redis 实例上进行解锁（即便某些Redis实例根本就没有加锁成功，防止某些节点获取到锁但是客户端没有得到响应而导致接下来的一段时间不能被重新获取锁）。
+
+    该方案为了解决数据不一致的问题，直接舍弃了异步复制只使用master节点，同时由于舍弃了slave，为了保证可用性，引入了N个节点。
+
+    客户端只有在满足下面的两个条件时，才能认为是加锁都成功。
+
+    条件1：客户端从超过半数（大于等于N/2+1）的Redis实例上成功获取到了锁。
+
+    条件2：客户端获取锁的总耗时没有超过锁的有效时间。
+
+  - **解决方案**
+
+    ![image-20240331172930540](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240331172930540.png)
+
+    为什么是奇数：N = 2X + 1 （N是最终部署机器数，X是容错机器数）
+
+
+
+## 9.3、Redisson实现
+
+Redisson是Java的Redis客户端之一，提供了一些API方便操作Redis
+
+Redisson：[官网](https://redisson.org)、[Github](https://github.com/redisson/redisson/wiki)、[解决分布式锁](https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers)
+
+
+
+
 
 # 10、Redis的缓存过期淘汰策略
 
