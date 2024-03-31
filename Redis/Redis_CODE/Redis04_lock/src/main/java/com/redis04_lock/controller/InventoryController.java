@@ -2,6 +2,7 @@ package com.redis04_lock.controller;
 
 import com.redis04_lock.service.InventoryService01;
 import com.redis04_lock.service.InventoryService02;
+import com.redis04_lock.service.InventoryService03;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class InventoryController {
 
     @Autowired
-    private InventoryService02 inventoryService02;
+    private InventoryService03 inventoryService;
 
     @GetMapping("/inventory/sale")
     @ApiOperation("扣减库存，一次卖一个")
     public void sale() {
-        inventoryService02.sale();
+        inventoryService.sale();
     }
 }
