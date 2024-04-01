@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="257715b1-528d-4919-acc2-95c3cb38c12f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/redis04_lock/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redis04_lock/controller/InventoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/redis04_lock/service/InventoryService01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redis04_lock/service/InventoryService01.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/redis04_lock/utils/RedisDistributedLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redis04_lock/utils/RedisDistributedLock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -128,10 +130,26 @@
       <updated>1711778855049</updated>
       <workItem from="1711778855905" duration="17176000" />
       <workItem from="1711858053258" duration="2006000" />
+      <workItem from="1711959068033" duration="10709000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>jar://D:/Maven/repository/org/redisson/redisson/3.13.4/redisson-3.13.4-sources.jar!/org/redisson/RedissonLock.java</url>
+          <line>354</line>
+          <properties class="org.redisson.RedissonLock" method="tryLockInnerAsync">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

@@ -15,6 +15,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 
+import static java.lang.String.valueOf;
+
 //  自己的Redis分布式锁
 //@Component 引入DistributedLockFactory工厂模式，从工厂获得即可
 public class RedisDistributedLock implements Lock {
@@ -108,7 +110,7 @@ public class RedisDistributedLock implements Lock {
                     new DefaultRedisScript<>(script, Boolean.class),
                     Arrays.asList(lockName),
                     uuidValue,
-                    String.valueOf(expireTime))) {
+                    valueOf(expireTime))) {
                 // 休眠60毫秒再来重试
                 try {
                     TimeUnit.MILLISECONDS.sleep(60);
@@ -139,7 +141,7 @@ public class RedisDistributedLock implements Lock {
                         new DefaultRedisScript<>(script, Boolean.class),
                         Arrays.asList(lockName),
                         uuidValue,
-                        String.valueOf(expireTime))) {
+                        valueOf(expireTime))) {
                     // 续期成功，继续监听
                     System.out.println("resetExpire() lockName:" + lockName + "\t" + "uuidValue:" + uuidValue);
                     resetExpire();
@@ -164,7 +166,7 @@ public class RedisDistributedLock implements Lock {
                 new DefaultRedisScript<>(script, Long.class),
                 Arrays.asList(lockName),
                 uuidValue,
-                String.valueOf(expireTime));
+                valueOf(expireTime));
 
         if (execute == null) {
             throw new RuntimeException("this lock doesn't exists !!");
