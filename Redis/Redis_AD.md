@@ -2894,7 +2894,7 @@ mysql有100条新纪录
          ```java
          public String sale() {
              String resMessgae = "";
-             String key = "DisneyRedisLocak";
+             String key = "DisneyRedisLock";
              String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
          
              Boolean flag = stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue);
@@ -2941,7 +2941,7 @@ mysql有100条新纪录
          ```java
          public String sale() {
              String resMessgae = "";
-             String key = "DisneyRedisLocak";
+             String key = "DisneyRedisLock";
              String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
          
              // 不用递归了，高并发容易出错，我们用自旋代替递归方法重试调用；也不用if，用while代替
@@ -3011,7 +3011,7 @@ mysql有100条新纪录
          2. ```java
             public String sale() {
                 String resMessgae = "";
-                String key = "DisneyRedisLocak";
+                String key = "DisneyRedisLock";
                 String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
             
                 // 不用递归了，高并发容易出错，我们用自旋代替递归方法重试调用；也不用if，用while代替
@@ -3081,7 +3081,7 @@ mysql有100条新纪录
              ```java
              public String sale() {
                  String resMessgae = "";
-                 String key = "DisneyRedisLocak";
+                 String key = "DisneyRedisLock";
                  String uuidValue = IdUtil.simpleUUID() + ":" + Thread.currentThread().getId();
                  // 不用递归了，高并发容易出错，我们用自旋代替递归方法重试调用；也不用if，用while代替
                  while (!stringRedisTemplate.opsForValue().setIfAbsent(key, uuidValue, 30L, TimeUnit.SECONDS)) {
@@ -3938,6 +3938,20 @@ mysql有100条新纪录
 
     为什么是奇数：N = 2X + 1 （N是最终部署机器数，X是容错机器数）
 
+    1. 先知道什么是容错？
+
+       失败了多少机器实例后我还是可以容忍的，所谓的容忍的就是数据一致性还是可以OK的，CP数据一致性还是可以满足的。
+
+       加入在集群环境中，redis失败1台，可以接受。2X+1=2*1+1=3，部署3台，宕机了1个剩下2个可以正常工作，那就部署3台。
+
+       加入在集群环境中，redis失败2台，可以接受。2X+1=2*2+1=5，部署5台，宕机了2个剩下3个可以正常工作，那就部署5台。
+
+    2. 为什么是奇数？
+
+       最少得机器，最多的产出效果。
+
+       加入在集群环境中，redis失败1台，可接受。2N+2=2*1+2=4，部署4台。
+
 
 
 ## 9.3、Redisson实现
@@ -3945,6 +3959,177 @@ mysql有100条新纪录
 Redisson是Java的Redis客户端之一，提供了一些API方便操作Redis
 
 Redisson：[官网](https://redisson.org)、[Github](https://github.com/redisson/redisson/wiki)、[解决分布式锁](https://github.com/redisson/redisson/wiki/8.-distributed-locks-and-synchronizers)
+
+导入依赖：
+
+```xml
+<!--        redisson-->
+<dependency>
+    <groupId>org.redisson</groupId>
+    <artifactId>redisson</artifactId>
+    <version>3.13.4</version>
+</dependency>
+```
+
+Config：
+
+```java
+    @Bean
+    public Redisson redisson(){
+        Config config = new Config();
+        config
+                .useSingleServer()
+                .setAddress("redis://192.168.129.135:6399")
+                .setDatabase(0)
+                .setPassword("zzq121700");
+        return (Redisson) Redisson.create(config);
+    }
+```
+
+Service：
+
+```java
+package com.redis04_lock.service;
+
+import com.redis04_lock.utils.DistributedLockFactory;
+import org.redisson.Redisson;
+import org.redisson.api.RLock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class InventoryService04 {
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
+    @Value("${server.port}")
+    private String port;
+
+    @Autowired
+    private DistributedLockFactory distributedLockFactory;
+
+    //  引入 Redisson对应的官网推荐RedLock算法
+    @Autowired
+    private Redisson redisson;
+    public String sale(){
+        String resMessgae = "";
+        RLock redissonLock = redisson.getLock("DisneyRedisLock");
+        redissonLock.lock();
+        try {
+            // 1 抢锁成功，查询库存信息
+            String result = stringRedisTemplate.opsForValue().get("inventory01");
+            // 2 判断库存书否足够
+            Integer inventoryNum = result == null ? 0 : Integer.parseInt(result);
+            // 3 扣减库存，每次减少一个库存
+            if (inventoryNum > 0) {
+                stringRedisTemplate.opsForValue().set("inventory01", String.valueOf(--inventoryNum));
+                resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum + "\t" + "，服务端口号：" + port;
+                System.out.println(resMessgae);
+            } else {
+                resMessgae = "商品已售罄。" + "\t" + "，服务端口号：" + port;
+                System.out.println(resMessgae);
+            }
+        } finally {
+            redissonLock.unlock();
+        }
+        return resMessgae;
+    }
+}
+```
+
+红锁有一个Bug，跟之前一样，如果拿到的锁不是自己的锁，删掉了，就会有大问题。
+
+改进点：
+
+```java
+// 改进点，只能删除属于自己的key，不能删除别人的
+if (redissonLock.isLocked() && redissonLock.isHeldByCurrentThread()) {
+    redissonLock.unlock();
+}
+```
+
+
+
+## 9.4、Redisson源码解析
+
+加锁、可重入、续命、解锁
+
+### **9.4.1、分析步骤：**
+
+- Redis分布式锁过期了，但是业务逻辑还没有处理完怎么办
+
+  需要对应的key续期
+
+- 锁的续期
+
+  **额外起一个线程，定期检查线程是否还持有锁，如果有则延长过期时间；**
+
+  Redisson里面就实现了这个方案，使用“看门狗”定期检查（每1/3的锁时间检查1次），如果线程还持有锁，则刷新过期时间。
+
+- 在获取锁成功后，给锁加一个watchDog，watchDog会起一个定时任务，在锁没有被释放且快要过期的时候会续期
+
+  ![image-20240401220017377](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401220017377.png)
+
+  ![image-20240401220035041](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401220035041.png)
+
+  
+
+### **9.4.2、源码分析1**
+
+通过Redisson新建出来的锁key，默认是30秒
+
+![image-20240401220501877](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401220501877.png)
+
+![image-20240401220818377](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401220818377.png)
+
+![image-20240401220824621](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401220824621.png)
+
+### 9.4.2、源码分析2
+
+Lock -> tryAcquire -> tryAcquireAsync -> scheduleExpirationRenewal 缓存续期
+
+![image-20240401221921112](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401221921112.png)
+
+加锁的逻辑会进入到 org.redisson.RedissonLock的tryAcquireAsync中，在获取锁成功后，会scheduleExpirationRenewal 
+
+
+
+### 9.4.3、源码分析3
+
+lock -> tryAcquire -> tryAcquireAsync，锁的可重入性
+
+通过exists判断，如果锁不存在，则设置值过期时间，加锁成功
+
+通过hexists判断，如果锁已存在，并且锁的是当前线程，则证明是重入锁，加锁成功
+
+如果锁已存在，但锁的不是当前线程，则证明有其他线程持有锁。返回当前锁的过期时间（代表了锁key的剩余生存时间），加锁失败
+
+![image-20240401224353130](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401224353130.png)
+
+
+
+### 9.4.4、源码分析4
+
+watch dog自动延期机制：
+
+源码中初始化了一个定时器，delay的时间是internalLockLeaseTime / 3
+
+在Redisson中，internalLockLeaseTime 是获取配置的看门狗的时间，默认是30秒。也就是每隔10秒续期一次，每次重新设置过期时间为30秒
+
+![image-20240401224846722](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401224846722.png)
+
+如果直接调用lock()，客户端A加锁成功，就会启动一个看门狗，它是一个后台线程，默认是每隔10秒检查一下，如果客户端A还持有锁，就会不断延长锁的时间。当然，入股哦不想使用看门狗，可以使用其他的lock带参数方法，有锁过期时间，但是看门狗不会续期
+
+LUA脚本：自动续期
+
+![image-20240401225114387](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401225114387.png)
+
+### 9.4.5、源码分析5
+
+解锁
+
+![image-20240401225716710](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240401225716710.png)
 
 
 
