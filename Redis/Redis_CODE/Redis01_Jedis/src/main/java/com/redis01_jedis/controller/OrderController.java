@@ -18,7 +18,6 @@ public class OrderController {
 
     @Resource
     private OrderServer orderServer;
-
     @ApiOperation("新增订单")
     @RequestMapping(value = "/order/add",method = RequestMethod.POST)
     public void addOrder(){
