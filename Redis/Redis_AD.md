@@ -4553,6 +4553,146 @@ redis 是 key-value 存储系统，其中key类型一般为字符串，value 类
 
 ## 11.4、数据类型和结构总纲
 
+1. 源码分析总体数据结构大纲
+
+   - SDS动态字符串
+   - 双向链表
+   - 压缩列表ziplist
+   - 哈希表hashtable
+   - 跳表skiplist
+   - 整数集合intset
+   - 快速列表quicklist
+   - 紧凑列表listpack
+
+2. redis6.0.5
+
+   ![image-20240403155944366](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403155944366.png)
+
+   string = SDS
+
+   Set = intset + hashtabLe
+
+   ZSet = skiplist + ziplist
+
+   List = quicklist + ziplist
+
+   Hash = hashtable + ziplist
+
+3. 2021.11.29之后，Redis7
+
+   ![image-20240403160037706](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403160037706.png)
+
+   string = SDS
+
+   Set = intset + hashtabLe
+
+   ZSet = skiplist + listpack紧凑列表
+
+   List = quicklist
+
+   Hash = hashtable + listpack
+
+
+
+## 11.5、源码分析
+
+**从shell hello world说起**
+
+set hello world为例，因为Redis是KV键值对的数据库，每个键值对都会有一个dictEntry（源码位置：dict.h），里面指向了key和value的指针，next指向下一个dictEntry。
+
+key是字符串，但是Redis没有直接使用C的字符数组，而是存储在redis自定义的SDS中。
+
+value既不是直接作为字符串存储，也不是直接存储在SDS中，而是存储在ReidsObject中。
+
+实际上五种常用的数据类型的任何一种，都是用过RedisObject来存储的。
+
+![image-20240403161414069](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403161414069.png)
+
+看类型：type键
+
+看编码：object encoding hello
+
+![image-20240403161457717](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403161457717.png)
+
+**RedisObject结构的作用**
+
+为了便于操作，Redis采用redisObjec结构来统一五种不同的数据类型，这样所有的数据类型就都可以以相同的形式在函数间传递而不用使用特定的类型结构。同时，为了识别不同的数据类型，redisObjec中定义了type和encoding字段对不同的数据类型加以区别。简单地说，redisObjec就是string、hash、list、set、zset的父类，可以在函数间传递时隐藏具体的类型信息，所以作者抽象了redisObjec结构来到达同样的目的。
+
+![image-20240403161540155](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403161540155.png)
+
+- redisObject名字段的含义
+
+  ![image-20240403161637050](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403161637050.png)
+
+  4位的type表示具体的数据类型 2 4位的encoding表示该类型的物理编码方式见下表，同一种数据类型可能有不同的编码方式。(比如String就提供了3种:int embstr raw)
+
+  ![image-20240403161722200](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403161722200.png)
+
+  ​	lru字段表示当内存超限时采用LRU算法清除内存中的对象。
+
+  ​	refcount表示对象的引用计数。 5 ptr指针指向真正的底层数据结构的指针。
+
+- 案例
+
+  set age 17
+
+  ![image-20240403161827739](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403161827739.png)
+
+  ![image-20240403161836121](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403161836121.png)
+
+  | type     | 类型                          |
+  | -------- | ----------------------------- |
+  | encoding | 编码，本案例是数值类型        |
+  | lru      | 最近被访问的时间              |
+  | refcount | 等于1，表示当前对象引用的次数 |
+  | ptr      | value值是多少，当前就是17     |
+
+  
+
+  
+
+  
+
+## 11.6、Debug命令使用
+
+**各个类型的数据结构的编码映射和定义**
+
+![image-20240403162330234](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403162330234.png)
+
+**Debug Object key**
+
+命令：debut object key
+
+![image-20240403162404359](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403162404359.png)
+
+开启前：
+
+![image-20240403162437862](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403162437862.png)
+
+开启后：
+
+![image-20240403162455062](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403162455062.png)
+
+![image-20240403162517864](K:\GitHub\notes\Redis\Redis_AD.assets\image-20240403162517864.png)
+
+Value at：内存地址 refcount：引用次数 encoding：物理编码类型 serializedlength：序列化后的长度（注意这里的长度是序列化后的长度，保存为rdb文件时使用了该算法，不是真正存储在内存的大小)，会对字串做一些可能的压缩以便底层优化 lru：记录最近使用时间戳 lru_seconds_idle：空闲时间（每get一次，最近使用时间戳和空闲时间都会刷新）
+
+
+
+## 11.7、String数据结构介绍
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 12、Redis为什么快？高性能设计之epoll和IO多路复用深度解析
 
 # 13、终章总结
