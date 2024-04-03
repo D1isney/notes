@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="257715b1-528d-4919-acc2-95c3cb38c12f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../Redis_AD.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Redis_AD.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Redis01_Jedis/src/main/java/com/redis01_jedis/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Redis01_Jedis/src/main/java/com/redis01_jedis/controller/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/redis04_lock/controller/InventoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redis04_lock/controller/InventoryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/redis04_lock/service/InventoryService01.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redis04_lock/service/InventoryService01.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/redis04_lock/service/InventoryService03.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redis04_lock/service/InventoryService03.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/redis04_lock/utils/RedisDistributedLock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redis04_lock/utils/RedisDistributedLock.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,25 +56,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;K:/GitHub/notes/Redis/Redis_CODE/Redis04_lock/src/main/java/com/redis04_lock/demo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "K:/GitHub/notes/Redis/Redis_CODE/Redis01_Jedis",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -131,6 +131,8 @@
       <workItem from="1711778855905" duration="17176000" />
       <workItem from="1711858053258" duration="2006000" />
       <workItem from="1711959068033" duration="10709000" />
+      <workItem from="1712046036441" duration="6110000" />
+      <workItem from="1712071704899" duration="120000" />
     </task>
     <servers />
   </component>

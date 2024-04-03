@@ -161,6 +161,8 @@ public class RedisDistributedLock implements Lock {
                 + "    return 0 " +
                 "end";
 
+
+
         System.out.println("unlock -> lockName：" + lockName + "\t" + "uuidValue：" + uuidValue);
         Long execute = stringRedisTemplate.execute(
                 new DefaultRedisScript<>(script, Long.class),

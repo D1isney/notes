@@ -36,11 +36,11 @@ public class InventoryService03 {
                 resMessgae = "成功卖出一个商品，库存剩余：" + inventoryNum;
                 System.out.println(resMessgae + "\t" + "，服务端口号：" + port);
                 //  暂停120秒钟线程，演示自动续期功能
-                try {
-                    TimeUnit.SECONDS.sleep(120);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    TimeUnit.SECONDS.sleep(120);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
             } else {
                 resMessgae = "商品已售罄。";
                 System.out.println(resMessgae + "\t" + "，服务端口号：" + port);
