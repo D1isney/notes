@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="257715b1-528d-4919-acc2-95c3cb38c12f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../Redis_AD.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../Redis_AD.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../SpringBoot/SpringBoot2.assets/image-20240224173504073.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../SpringBoot/SpringBoot2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Redis05_epoll/src/main/java/com/redis05_epoll/Bio/read/RedisClient01.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Redis05_epoll/src/main/java/com/redis05_epoll/Bio/read/RedisClient01.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +137,7 @@
       <workItem from="1712071704899" duration="120000" />
       <workItem from="1712390326056" duration="3241000" />
       <workItem from="1712411888996" duration="873000" />
+      <workItem from="1712487775513" duration="77000" />
     </task>
     <servers />
   </component>
