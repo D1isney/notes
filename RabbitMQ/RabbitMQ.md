@@ -119,3 +119,231 @@ RabbitMQ是一个消息中间：它接受并转发消息。你可以把它当做
 **Channel**：如果每一次访问RabbitMQ都建立一个Connection，在消息量大的时候建立TCPConnection的开销将是巨大的，效率也较低。Channel是在Connection内部建立的逻辑连接，如果应用程序支持多线程，通常每个Thread创建单独的Channel进行通讯，AMQP method包含了Channel id帮助客户端和message broker识别Channel，所以Channel之间是完全隔离的。Channel作为轻量级的**Connection极大减少了操作系统建立TCPConnection的开销**
 
 **ExChange**：message到达Broker的都第一站，根据分发规则，匹配查询表中的routing key，分发消息到queue中去，常用的类型有：direct（point - to - point），topic（publish - subscribe） and fanout（multicast）
+
+
+
+### 1.2.5、安装
+
+RabbitMQ版本和Erlang版本兼容性关系：[官网](https://www.rabbitmq.com/which-erlang.html)
+
+安装包中说明，下载对应的安装包	
+
+el6：CentOS 6.x的下载
+
+el7：CentOS 7.x的下载
+
+el8：CentOS 8.x的下载
+
+![image-20240410205100208](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240410205100208.png)
+
+
+
+检查时候有GCC环境
+
+```shell
+gcc --version
+```
+
+
+
+创建文件夹、进入文件夹
+
+```shell
+cd /
+mkdir myerlang
+cd myerlang
+```
+
+
+
+下载Erlang
+
+```shell
+wget http://erlang.org/download/otp_src_21.3.tar.gz
+```
+
+
+
+解压Erlang
+
+```shell
+ tar -zxvf otp_src_21.3.tar.gz
+```
+
+
+
+配置安装目录
+
+```shell
+./configure --prefix=/myerlang
+```
+
+
+
+安装
+
+```shell
+make install
+```
+
+
+
+添加环境变量
+
+```shell
+echo 'export PATH=$PATH:/myerlang' >> /etc/profile
+```
+
+
+
+刷新环境变量
+
+```shell
+source /etc/profile
+```
+
+
+
+查看安装情况
+
+```shell
+erl -version
+```
+
+
+
+下载RabbitMQ
+
+```shell
+wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.7.15/rabbitmq-server-generic-unix-3.7.15.tar.xz
+```
+
+
+
+没有解压tar.xz格式需要先安装
+
+```shell
+yum install -y xz
+```
+
+
+
+第一次解压
+
+```shell
+xz -d rabbitmq-server-generic-unix-3.7.15.tar.xz 
+```
+
+
+
+第二次解压
+
+```shell
+tar -xvf rabbitmq-server-generic-unix-3.7.15.tar 
+```
+
+
+
+配置环境变量
+
+```shell
+echo 'export PATH=$PATH:/mymq/rabbitmq_server-3.7.15/sbin' >> /etc/profile
+```
+
+
+
+刷新环境变量
+
+```shell
+source /etc/profile
+```
+
+
+
+开启web插件
+
+```shell
+rabbitmq-plugins enable rabbitmq_management
+```
+
+
+
+启动命令（关闭防火墙或者开放5672 15672端口）
+
+```shell
+#启动：
+rabbitmq-server -detached
+ 
+#停止：
+rabbitmqctl stop
+ 
+#状态：
+rabbitmqctl status
+
+#开机自动启动
+chkconfig rabbitmq-server on
+```
+
+
+
+访问127.0.0.1:15672（5672端口为rabbitmq暴露端口，15672为web端端口）
+
+```shell
+#查看所有用户
+rabbitmqctl list_users
+ 
+#添加一个用户
+rabbitmqctl add_user admin 123456
+ 
+#配置权限
+rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*"
+ 
+#查看用户权限
+rabbitmqctl list_user_permissions admin
+ 
+#设置用户角色
+rabbitmqctl set_user_tags admin administrator
+ 
+#删除用户（安全起见，删除默认用户）
+rabbitmqctl delete_user guest
+```
+
+
+
+# 2、Hello World
+
+
+
+## 2.1、依赖
+
+```xml
+    <dependencies>        
+		<!--    RabbitMQ依赖客户端-->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.8.0</version>
+        </dependency>
+        <!--        操作文档流的一个依赖-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.6</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+
+
