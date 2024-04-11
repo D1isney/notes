@@ -347,3 +347,596 @@ rabbitmqctl delete_user guest
 
 
 
+## 2.2、生产者代码
+
+```java
+package com.demo01;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.Connection;
+import com.rabbitmq.client.ConnectionFactory;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/***
+ * 生产者：发消息
+ */
+public class Producer {
+
+    // 队列名称
+    public static final String QUEUE_NAME = "hello";
+
+    // 发消息
+    public static void main(String[] args) throws IOException, TimeoutException {
+        // 创建一个连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        // 工厂IP，连接队列
+        factory.setHost("192.168.129.135");
+        // 用户名
+        factory.setUsername("admin");
+        // 密码
+        factory.setPassword("123456");
+
+        // 创建连接
+        Connection connection = factory.newConnection();
+
+        // 获取信道
+        Channel channel = connection.createChannel();
+
+        /**
+         * 生成一个队列
+         * channel.queueDeclare(队列名，是否需要持久化，是否排它，是否自动删除，队列参数);
+         * 1.队列名称
+         * 2.队列里面的消息是否持久化（磁盘） 默认情况消息存储在内存中
+         * 3.该队列是否只供一个消费者进行消费，是否进行消息共享，true可以多个消费者消费 false：只能一个消费者消费
+         * 4.是否自动删除 最后一个消费者断开连接以后，该队列依据是否自动删除，true自动删除 false不自动删除
+         * 5.其他参数
+         */
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+
+        // 发消息
+        String message = "Hello World";
+
+        /**
+         * 信道发布消息
+         * channel.basicPublish();
+         * 1.发送到哪个交换机
+         * 2.路由的Key值是哪个 本次的队列的名称
+         * 3，其他参数信息
+         * 4.发送消息的消息体
+         */
+        channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+        System.out.println("=============》消息发送完毕");
+    }
+}
+```
+
+![image-20240411132318335](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411132318335.png)
+
+
+
+## 2.3、消费者代码
+
+```java
+package com.demo01;
+
+
+import com.rabbitmq.client.*;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 消费者 接收信息的
+ */
+public class Consumer {
+    // 队列名称
+    public static final String QUEUE_NAME = "hello";
+
+    //  接收消息
+    public static void main(String[] args) throws IOException, TimeoutException {
+        //  创建连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        // 工厂IP，连接队列
+        factory.setHost("192.168.129.135");
+        // 用户名
+        factory.setUsername("admin");
+        // 密码
+        factory.setPassword("123456");
+
+        //  创建新的连接
+        Connection connection = factory.newConnection();
+        //  创建信道
+        Channel channel = connection.createChannel();
+
+        // 声明接收消息
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+//            String message = new String();
+            System.out.println(message);
+            System.out.println(new String(message.getBody()));
+        };
+        // 取消消息时的回调
+        CancelCallback cancelCallback = consumerTag -> {
+            System.out.println("消息消费中断！");
+        };
+
+        /**
+         * 消费者接收消息
+         * 1.消费哪个队列
+         * 2.消费成功之后是否要自动应答 true 代表的自动应答 false 代表手动应答
+         * 3.消费未成功的回调
+         * 4.消费者取消消费的回调
+         */
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, cancelCallback);
+    }
+}
+```
+
+![image-20240411132351857](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411132351857.png)
+
+
+
+# 3、Work Queues
+
+> 工作队列（又称任务队列）主要思想是避免立即执行资源密集型任务，而不得不等待它完成。相反我们安排任务在之后执行。我们把任务封装为消息并将其发送到队列。在后台运行的工作进程将淡出任务并最终执行作业。当有多个工作线程时，这些工作线程将一起处理这些任务。
+
+
+
+## 3.1、轮询发布消息
+
+在这个案例中我们会启动两个工作线程，一个消息发送线程，我们来看看他们两个是如何工作的。
+
+![image-20240411133750661](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411133750661.png)
+
+### 3.1.1、抽取工作类
+
+```java
+/**
+ * 创建连接池工具类
+ */
+public class RabbitMQUtils {
+    public static Channel getChannel() throws IOException, TimeoutException {
+        // 创还能连接工厂
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("192.168.129.135");
+        factory.setUsername("admin");
+        factory.setPassword("123456");
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
+        return channel;
+    }
+}
+```
+
+### 3.1.2、工作线程代码
+
+```java
+package com.demo02;
+
+
+import com.demo02.utils.RabbitMQUtils;
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 工作线程1
+ * 相当于消费者
+ */
+public class Worker01 {
+    // 队列的名称
+    public static final String QUEUE_NAME = "hello";
+
+    //  接收信息
+    public static void main(String[] args) throws IOException, TimeoutException {
+        // 拿到信道
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 声明接收消息
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("接收到的消息：" + new String(message.getBody()));
+        };
+        // 取消消息时的回调
+        CancelCallback cancelCallback = consumerTag -> {
+            System.out.println(consumerTag + "消息者取消消费接口回调逻辑！");
+        };
+        //  接收消息
+        /**
+         * 消费者接收消息
+         * 1.消费哪个队列
+         * 2.消费成功之后是否要自动应答 true 代表的自动应答 false 代表手动应答
+         * 3.消费未成功回调
+         * 4.消费者取消消费的回调
+         */
+        System.out.println("Consumer1等待接收消息 《========= ");
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, cancelCallback);
+    }
+}
+```
+
+```java
+package com.demo02;
+
+
+import com.demo02.utils.RabbitMQUtils;
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 工作线程
+ * 相当于消费者2
+ */
+public class Worker02 {
+    // 队列的名称
+    public static final String QUEUE_NAME = "hello";
+
+    //  接收信息
+    public static void main(String[] args) throws IOException, TimeoutException {
+        // 拿到信道
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 声明接收消息
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("接收到的消息：" + new String(message.getBody()));
+        };
+        // 取消消息时的回调
+        CancelCallback cancelCallback = consumerTag -> {
+            System.out.println(consumerTag + "消息者取消消费接口回调逻辑！");
+        };
+        //  接收消息
+        /**
+         * 消费者接收消息
+         * 1.消费哪个队列
+         * 2.消费成功之后是否要自动应答 true 代表的自动应答 false 代表手动应答
+         * 3.消费未成功回调
+         * 4.消费者取消消费的回调
+         */
+        System.out.println("Consumer2等待接收消息 《========= ");
+        channel.basicConsume(QUEUE_NAME, true, deliverCallback, cancelCallback);
+    }
+}
+```
+
+
+
+3.1.3、工作队列代码
+
+```java
+package com.demo02;
+
+import com.demo02.utils.RabbitMQUtils;
+import com.rabbitmq.client.Channel;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 生产者
+ * 可以发送大量的消息
+ */
+public class Task01 {
+    // 队列名称
+    public static final String QUEUE_NAME = "hello";
+
+    //  发送大量消息
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        // 队列的声明
+        /**
+         * 生成一个队列
+         * channel.queueDeclare(队列名，是否需要持久化，是否排它，是否自动删除，队列参数);
+         * 1.队列名称
+         * 2.队列里面的消息是否持久化（磁盘） 默认情况消息存储在内存中
+         * 3.该队列是否只供一个消费者进行消费，是否进行消息共享，true可以多个消费者消费 false：只能一个消费者消费
+         * 4.是否自动删除 最后一个消费者断开连接以后，该队列依据是否自动删除，true自动删除 false不自动删除
+         * 5.其他参数
+         */
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        // 从控制台当中接收信息
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String message = scanner.next();
+            /**
+             * 信道发布消息
+             * channel.basicPublish();
+             * 1.发送到哪个交换机
+             * 2.路由的Key值是哪个 本次的队列的名称
+             * 3，其他参数信息
+             * 4.发送消息的消息体
+             */
+            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
+            System.out.println("发送消息完成：" + message);
+        }
+    }
+}
+```
+
+
+
+
+
+## 3.2、消息应答
+
+### 3.2.1、概念
+
+消费者完成一个任务可能需要一段时间，如果其中一个消费者处理一个长的任务并仅只有完成了部分突然它挂掉了，会发生什么情况。RabbitMQ一旦向消费者传递了一条消息，便立刻将该消息标记为删除。在这种情况下，突然有个消费者挂掉了，我们将丢失正在处理的消息。以及后续发送给该消费者的消息，因为它无法接收到。
+
+为了保证消息在发送过程中不丢失，RabbitMQ引入了消息应答禁止，消息应答就是：**消费者在接收到消息并且处理该消息之后，告诉RabbitMQ它已经处理了，RabbitMQ可以把该消息删除了。**
+
+
+
+### 3.2.2、自动应答
+
+消息发送后立即被认为已经传功成功，这种模式需要再**高吞吐量和数据传输安全性方面做权衡**，因为这种模式如果消息在接收到之前，消费者那边出现了连接或者channel（信道）关闭，那么消息就丢失了，当然另一方面这种模式消费者那边可以传递过载的信息，**没有对传递的消息数量进行限制**，当然这样有可能使得消费者这边由于接收太多还来不及处理的消息，导致这些消息的积压，最终使得内存消耗尽，最终这些消费者线程被操作系统杀死，**所以这种模式仅适用在消费者可以高效并以某种速率能够处理这些消息的情况下使用**。
+
+
+
+### 3.2.3、消息应答的方法
+
+1. Channel.basicACK(用于确认肯定)
+   - RabbitMQ已经知道该消息并且成功的处理消息，可以将其他丢弃了 
+2. Channel.basicNack(用于否认确定)
+3. Channel.basicReject（用于否定确认）
+   - 与Channel.basicNack相比少一个参数
+   - 不处理该消息了直接拒绝，可以将其丢弃了
+
+
+
+### 3.2.4、Multiple的解释
+
+手动应答的好处是可以批量应答并且减少网络拥堵
+
+```java
+channel.basicACK(deliveryTag,true);
+// true 就是 multiple
+```
+
+multiple的true和false代表不同意思
+
+- true代表批量应答channel上未应答的信息
+
+  比如说channel上有传达tag的消息 5,6,7,8 当前tag是8那么此时5-8的这些还未应答的消息都会被确认收到消息应答
+
+- false同上面相比
+
+  只会应答tag=8的消息，5,6,7这三个消息依然不会被确认收到消息应答
+
+
+
+### 3.2.5、消息自动重新入队
+
+如果消费者由于某些原因市区连接（其通道已关闭，连接已关闭或TCP连接丢失），导致消息未发送ACK确认，RabbitMQ将了解到消息未完全处理，并将对其重新排队。如果此时其他消费者可以处理，它将很快将其他重新分发给另一个消费者。这样，即使某个消费者偶尔死亡，也可以确保不会丢失任何消息。
+
+
+
+### 3.2.6、消息手动应答代码
+
+默认消息采用的是自动应答，所以我们要想实现消息消费过程中不丢失，需要把自动应答改成手动应答，消费这在上面代码的基础上增加下面画红色部分代码。
+
+![image-20240411204900658](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411204900658.png)
+
+
+
+消费生产者
+
+```java
+package com.demo03;
+
+import com.rabbitmq.client.Channel;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 消息在手动应答时是不丢失的，放回队列中重新消费
+ */
+public class Task02 {
+    private static final String TASK_QUEUE_NAME = "ack_queue";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        //  声明一个队列
+        channel.queueDeclare(TASK_QUEUE_NAME, false, false, false, null);
+        //  从控制台中输入信息
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            String message = scanner.next();
+            channel.basicPublish("", TASK_QUEUE_NAME, null, message.getBytes("UTF-8"));
+            System.out.println("生产者发出消息：" + message);
+        }
+    }
+}
+```
+
+消息消费者
+
+```java
+package com.demo03;
+
+import com.utils.RabbitMQUtils;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.SleepUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 消息手动应答
+ */
+public class Worker03 {
+    // 队列名称
+    public static final String TASK_QUEUE_NAME = "ack_queue";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        channel.queueDeclare(TASK_QUEUE_NAME, false, false, false, null);
+        System.out.println("C1等待接收消息，处理时间较短=====");
+        DeliverCallback callback = (consumerTag, delivery) -> {
+            String message = new String(delivery.getBody(), "UTF-8");
+            SleepUtils.sleep(1);
+            System.out.println("接收到消息：" + message);
+            // 1.消息标记tag
+            // 2.false代表只应答接收到的那个消息，true为应答所有消息包括传递过来的消息
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+        };
+        //  手动应答
+        boolean autoAck = false;
+        channel.basicConsume(TASK_QUEUE_NAME, autoAck, callback, consumerTag -> {
+            System.out.println(consumerTag + "：消费者取消消费接口逻辑");
+        });
+    }
+}
+```
+
+```java
+package com.demo03;
+
+import com.utils.RabbitMQUtils;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.SleepUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 消息手动应答
+ */
+public class Worker04 {
+    // 队列名称
+    public static final String TASK_QUEUE_NAME = "ack_queue";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        channel.queueDeclare(TASK_QUEUE_NAME, false, false, false, null);
+        System.out.println("C2等待接收消息，处理时间较长======================");
+        DeliverCallback callback = (consumerTag, delivery) -> {
+            String message = new String(delivery.getBody(), "UTF-8");
+            SleepUtils.sleep(30);
+            System.out.println("接收到消息：" + message);
+            // 1.消息标记tag
+            // 2.false代表只应答接收到的那个消息，true为应答所有消息包括传递过来的消息
+            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
+        };
+        //  手动应答
+        boolean autoAck = false;
+        channel.basicConsume(TASK_QUEUE_NAME, autoAck, callback, consumerTag -> {
+            System.out.println(consumerTag + "：消费者取消消费接口逻辑");
+        });
+    }
+}
+```
+
+线程沉睡工具类
+
+```java
+package com.utils;
+
+/**
+ * 线程沉睡工具类
+ */
+public class SleepUtils {
+    public static void sleep(int second) {
+        try {
+            Thread.sleep(1000 * second);
+        } catch (InterruptedException _ignored) {
+            Thread.currentThread().interrupt();
+        }
+    }
+}
+```
+
+
+
+### 3.2.7、手动应答效果
+
+启动三个程序
+
+![image-20240411215930195](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411215930195.png)
+
+发出9个消息
+
+![image-20240411215951736](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411215951736.png)
+
+消费者一
+
+![image-20240411220135228](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411220135228.png)
+
+消费者二
+
+![image-20240411220148172](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411220148172.png)
+
+等待三十秒，消费者二消费第一个消息
+
+![image-20240411220159927](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411220159927.png)
+
+结束消费者二，消费者一会替消费者二未消费的给消费了
+
+![image-20240411220227012](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411220227012.png)
+
+
+
+## 3.3、RabbitMQ持久化
+
+### 3.3.1、概念
+
+刚刚已经看到了如何处理任务不丢失的情况，但是如何保障当RabbitMQ服务停掉以后消费信息生产者发送过来的消息不丢失。默认情况下RabbitMQ退出或者由于某种原因崩溃时，它忽视队列和消息，除非告知它不要这样做。确保消息不会丢失需要做两件事：**需要将队列和消息都标记为持久化**。
+
+
+
+### 3.3.2、队列如何实现持久化
+
+之前创建的队列都是非持久化的，RabbitMQ如果重启的话，该队列就会被删掉，如果要队列实现持久化，需要在声明队列的时候把Durable参数设置为持久化。
+
+```java
+//	让消息队列持久化
+boolean durable = true;
+channel.queueDeclare(ACK_QUEUE_NAME,durable,false,false,null);
+```
+
+但是需要注意的就是如果之前声明的队列不是持久化的，需要把原先队列先删除，或者重新创建一个持久化的队列，不然会出现错误。
+
+![image-20240411222835947](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411222835947.png)
+
+
+
+**以下为控制台中非持久化与持久化队列的UI显示区**
+
+![image-20240411222446531](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411222446531.png)
+
+![image-20240411222933817](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411222933817.png)
+
+这个时候即使重启了RabbitMQ，队里也依然存在
+
+
+
+### 3.3.3、消息实现持久化
+
+要想让消息实现持久化需要在消息生产者修改代码。MessageProperties.PERSISTENT_TEXT_PLAIN添加这个属性
+
+```java
+channel.basicPublish("", DURABLE_QUEUE_NAME, null, message.getBytes("UTF-8"));
+// 消息持久化
+// 要求保存到磁盘上
+channel.basicPublish("",DURABLE_QUEUE_NAME,MessageProperties.PERSISTENT_TEXT_PLAIN,message.getBytes("UTF-8"));
+```
+
+将消息标记为持久化并不能完全保证不会丢失消息。尽管它告诉RabbitMQ将消息保存到磁盘，但是这里依然存在当消息刚准备存储在磁盘的时候，但是还没有存储完，消息还在缓存的一个间隔点。此时并没有真正写入磁盘。持久性保证并不强，但是对于我们的简单队列而言，这已经绰绰有余了。如果需要更强有力的持久化策略，参考发布确认。
+
+
+
+### 3.3.4、不公平分发
+
+最开始，RabbitMQ分发消息采用轮询的方式来分发消息，但是在某种情景下这种策略并不是很好，比方说有两个消费者在处理任务，其中有个消费者1处理任务的速度非常快，而另外一个消费者2速度缺很慢，这个时候还是采用轮询的方式分发的话，就会使得处理速度快的消费者有很大一部分时间处于空闲状态，而处理慢的那个消费者一直在干活，这种分配方式在这种情况下其实就不太好，然是RabbitMQ并不知道这种情况，就会依然很公平的进行分发。
