@@ -940,3 +940,687 @@ channel.basicPublish("",DURABLE_QUEUE_NAME,MessageProperties.PERSISTENT_TEXT_PLA
 ### 3.3.4、不公平分发
 
 最开始，RabbitMQ分发消息采用轮询的方式来分发消息，但是在某种情景下这种策略并不是很好，比方说有两个消费者在处理任务，其中有个消费者1处理任务的速度非常快，而另外一个消费者2速度缺很慢，这个时候还是采用轮询的方式分发的话，就会使得处理速度快的消费者有很大一部分时间处于空闲状态，而处理慢的那个消费者一直在干活，这种分配方式在这种情况下其实就不太好，然是RabbitMQ并不知道这种情况，就会依然很公平的进行分发。
+
+为了避免这种情况，可以设置参数channel.basicQos(1);
+
+```java
+ int prefetchCount = 1;
+ channel.basicQos(prefetchCount);
+```
+
+​	
+
+### 3.3.5、预取值
+
+本身消息的发送就是异步发送的，所以在任何时候，channel上肯定不止只有一个消息，另外来自消费者的手动确认本质上也是异步的。因此这里就存在一个未确认的消息缓冲区，因此开发人员就能**限制此缓冲区的大小，以避免缓冲区里面啊无限制的未确认消息问题**。
+
+这个时候就可以通过使用basic.qos方法设置“预取计数”值来完成的。**该值定义通道后上允许的未确认消息的最大数量**。一旦数量达到配置的数量，RabbitMQ将停止在通道上传递更多消息，除非至少有一个未处理的消息被确认，例如，假设在通道上有未确认的消息5,6,7,8，并且通道的预取计数设置为4，此时RabbitMQ将不会在该通道上再传递任何消息，除非最少有一个未应答的消息被ACK。比方说tag=6这个消息刚刚被确认ACK，RabbitMQ将会感知这个情况到并再发送一条消息。消息应答和Qos预取值对用户吞吐量有重大影响。
+
+通常，增加预取将提高向消费者传递消息的速度。**虽然自动应答传递消息速率是最佳的，但是，在这种情况下，已传递但尚未处理的消息数量也会增加，从而增加了消费者的RAM消耗**（随机存取存储器） 应该小心使用具有无限预处理的自动确认模式或手动确认模式，消费者消费了大量的消息如果没有确认的话，会导致消费者连接节点的内存消耗变大，所以找到合适的预取值是一个反复试验的过程，不同的负载该取值也不同，100到300范围内的值通常可以提供最佳的吞吐量，并且不会给消费者带来太大的风向，预取值为1是最保守的。当然这将使得吞吐量变得很低，特别是消费者连接延迟很严重的情况下，特别是在消费者连接等在时间较长的环境中，对于大多数应用来说，稍微高一点的值将是最佳的。
+
+![image-20240412104147026](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412104147026.png)
+
+```java
+// 消费者
+// 设置不公平分发
+int prefetchCount = 2;
+channel.basicQos(prefetchCount);
+```
+
+
+
+# 4、发布确认
+
+## 4.1、发布确认原理
+
+生产者将信道设置成confirm模式，一旦信道进入confirm模式，**所有在该信道上面发布的消息都会将会被指派一个唯一的ID**（从1开始），一旦消息被投递到所有匹配的队列之后，broker就会发送一个确认给生产者（包括消息的唯一ID），这就使得生产者知道消息已经确定到达目的的队列了，如果消息和队列是可持久化的，那么确认信息会在将信息写入磁盘之后发出，broker回传给生产者的确认消息中delivery-tag域包含了确认消息的序列号，此外broker也可以设置basic.ack的multiple域，表示到这个序列号之前的所有消息都已经得到了处理。
+
+confirm模式最大的好吃在于它是异步的，一旦发布一条消息，生产者因公程序就可以在等信号返回确认的同时继续发送一条消息，当消息最终得到确认之后，生产者应用便可以通过回调方法来处理该确认消息，如果RabbitMQ因为自身内部错误导致信息丢失，就会发送一条nack消息，生产者应用程序同样可以在回调方法中处理该nack消息。
+
+![image-20240412110956062](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412110956062.png)
+
+![image-20240412111005600](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412111005600.png)
+
+
+
+
+
+## 4.2、发布确认策略
+
+### 4.2.1、开启发布确认的方法
+
+发布确认默认是没有开启的，如果要开启需要调用方法confirmSelect，每当你要想使用发布确认，都需要在channel上调用该方法。
+
+```java
+Channel channel = connection.createChannel();
+// 开启发布确认
+channel.confirmSelect();
+```
+
+
+
+```java
+//  批量发消息的个数
+public static final int MESSAGE_COUNT = 1000;
+```
+
+
+
+### 4.2.2、单个确认发布
+
+这是一种简单的确认方式，它是一种**同步确认发布**的方式，也就是发布一个消息之后只要它被确认发布，后续的消息才能继续发布，waitForConfirmsOrDie(long)这个方法只有在消息被确认的时候才返回，如果在指定时间范围内这个消息没有被确认那么它将抛出异常。
+
+这种确认方式有一个最大的缺点就是：**发布速度特别慢**，因为如果没有确认发布的消息就会阻塞所有后续消息的发布，这种方式最多提供每秒不超过书白条发布消息的吞吐量。当然对于某些应用程序来说这可能已经足够了。
+
+```java
+//  单个确认
+public static void publishMessageIndividually() throws IOException, TimeoutException, InterruptedException {
+    Channel channel = RabbitMQUtils.getChannel();
+
+    // 队列的声明
+    String queueName = UUID.randomUUID().toString();
+    // 需要让Queue进行持久化
+    boolean durable = true;
+    channel.queueDeclare(queueName, durable, false, false, null);
+
+    // 开启发布确认
+    channel.confirmSelect();
+    // 开始时间
+    long begin = System.currentTimeMillis();
+
+    // 批量发消息
+    for (int i = 0; i < MESSAGE_COUNT; i++) {
+        String message = i + "";
+        channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+        // 当个消息就马上进行发布确认
+        boolean flag = channel.waitForConfirms();
+        if (flag) {
+            System.out.println("单个消息=========>消息发布成功！");
+        }
+    }
+    //  结束时间
+    long end = System.currentTimeMillis();
+
+    System.out.println("发布" + MESSAGE_COUNT + "个单独确认消息，耗时" + (end - begin) + "ms");
+}
+```
+
+
+
+
+
+### 4.2.3、批量确认发布
+
+上面那种方式非常慢，与单个等待确认消息相比，县发布一批消息然后一起确认可以极大地提高吞吐量，当然这种方式的缺点就是：当发生故障导致发布出现问题时，不知道是哪个消息出现问题了，我们必须将整个批量处理保存在内存中，以记录重要的消息而后重新发布消息。当然这种方案仍然是同步的，也一样阻塞消息发布。
+
+```java
+//  批量发布
+public static void publishMessageBatch() throws InterruptedException, IOException, TimeoutException {
+    Channel channel = RabbitMQUtils.getChannel();
+
+    // 队列的声明
+    String queueName = UUID.randomUUID().toString();
+    // 需要让Queue进行持久化
+    boolean durable = true;
+    channel.queueDeclare(queueName, durable, false, false, null);
+
+    // 开启发布确认
+    channel.confirmSelect();
+    // 开始时间
+    long begin = System.currentTimeMillis();
+
+    //  批量确认消息大小
+    int batchSize = 100;
+
+    // 批量发消息 批量发布确认
+    for (int i = 0; i < MESSAGE_COUNT; i++) {
+        String message = i + "";
+        channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+        // 判断达到100条消息的时候，批量确认一次
+        if (i % batchSize == 0) {
+            //  发布确认
+            channel.waitForConfirms();
+        }
+    }
+    //  结束时间
+    long end = System.currentTimeMillis();
+
+    System.out.println("发布" + MESSAGE_COUNT + "个批量确认消息，耗时" + (end - begin) + "ms");
+}
+```
+
+
+
+### 4.2.4、异步确认发布
+
+异步确认虽然编程逻辑比上两个复杂，但是性价比最高，无论是可靠性还是效率性都没得说，它是利用回调函数来达到消息可靠性传递的，这个中间件也是通过函数回调来保证是否投递成功。
+
+![image-20240412124622981](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412124622981.png)
+
+```java
+// 异步确认发布
+public static void publishMessageAsync() throws Exception {
+    Channel channel = RabbitMQUtils.getChannel();
+
+    // 队列的声明
+    String queueName = UUID.randomUUID().toString();
+    // 需要让Queue进行持久化
+    boolean durable = true;
+    channel.queueDeclare(queueName, durable, false, false, null);
+    // 开启发布确认
+    channel.confirmSelect();
+    // 开始时间
+    long begin = System.currentTimeMillis();
+
+
+    //  1、消息的标记
+    //  2、是否批量确认
+    //  消息成功回调函数
+    ConfirmCallback ackCallback = (deliverTag, multiple) -> {
+        System.out.println("确认的消息：" + deliverTag);
+    };
+    //  消息失败回调函数
+    ConfirmCallback nackCallback = (deliverTag, multiple) -> {
+        System.out.println("未确认的消息：" + deliverTag);
+    };
+    //  准备消息的监听器，监听那些消息成功了，哪些消息失败了
+    //  单参：只监听成功的
+    //  两参：监听成功与失败的
+    channel.addConfirmListener(ackCallback, nackCallback);   // 异步通知
+
+    //  批量发布消息
+    for (int i = 0; i < MESSAGE_COUNT; i++) {
+        String message = "消息：" + i;
+        channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+    }
+    //  结束时间
+    long end = System.currentTimeMillis();
+
+    System.out.println("发布" + MESSAGE_COUNT + "个异步批量确认消息，耗时" + (end - begin) + "ms");
+}
+```
+
+
+
+### 4.2.5、如何处理异步未确认消息
+
+最好的解决的解决方案就是把未确认的消息放到一个基于内存的能被发布线程访问的队列，比如说ConcurrentLinkedQueue这个队列在confirm callbacks与发布线程之间进行消息的传递。
+
+```java
+/*
+    线程安全 有序的一个哈希表，适用于高并发的情况下
+    1、轻松的将序号与消息进行关联
+    2、轻松批量删除条目 只要给到序号
+    3、支持高并发（多线程）
+ */
+ConcurrentSkipListMap<Long,String> outstandingConfirms = new ConcurrentSkipListMap<>();
+```
+
+```java
+ConfirmCallback ackCallback = (deliverTag, multiple) -> {
+    // 如果是批量的
+    if(multiple){
+        // 删除已经确认的消息 剩下的就是未确认的消息
+        ConcurrentNavigableMap<Long, String> confirmed = outstandingConfirms.headMap(deliverTag);
+        confirmed.clear();
+    }else{
+        //  如果不是批量
+        outstandingConfirms.remove(deliverTag);
+    }
+    System.out.println("确认的消息：" + deliverTag);
+};
+```
+
+```java
+//  消息失败回调函数
+ConfirmCallback nackCallback = (deliverTag, multiple) -> {
+    // 打印未确认的消息
+    String message = outstandingConfirms.get(deliverTag);
+    System.out.println("未确认的消息是：" + message + "=== 未确认的消息tag是：" + deliverTag);
+};
+```
+
+
+
+### 4.2.6、以上3种发布消息确认速度对比
+
+- 单独发布消息
+
+  同步等待确认，简单，但是吞吐量非常有限
+
+- 批量发布消息
+
+  批量同步等待确认，简单，合理的吞吐量，一旦出现问题但很难推断出那条消息除了问题
+
+- 异步批量发布消息
+
+  最佳性能和资源使用，在出现错误的情况下可以很好的控制，但是实现起来稍微难些
+
+
+
+```java
+package com.demo04;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.ConfirmCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentNavigableMap;
+import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * 发布确认模式
+ * 1、单个确认模式
+ * 2、批量确认
+ * 3、异步批量确认
+ * <p>
+ * 使用的时间来比较哪种确认方式是最好的
+ */
+
+public class Task04 {
+
+    //  批量发消息的个数
+    public static final int MESSAGE_COUNT = 1000;
+
+    public static void main(String[] args) throws Exception {
+
+        /*
+          1、单个确认
+          2、批量确认
+          3、异步批量确认
+         */
+//        发布1000个单独确认消息，耗时846ms
+//        Task04.publishMessageIndividually();
+//        发布1000个批量确认消息，耗时86ms
+//        Task04.publishMessageBatch();
+
+//        发布1000个异步批量确认消息，耗时50ms
+        Task04.publishMessageAsync();
+
+
+    }
+
+    //  单个确认
+    public static void publishMessageIndividually() throws IOException, TimeoutException, InterruptedException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 队列的声明
+        String queueName = UUID.randomUUID().toString();
+        // 需要让Queue进行持久化
+        boolean durable = true;
+        channel.queueDeclare(queueName, durable, false, false, null);
+
+        // 开启发布确认
+        channel.confirmSelect();
+        // 开始时间
+        long begin = System.currentTimeMillis();
+
+        // 批量发消息
+        for (int i = 0; i < MESSAGE_COUNT; i++) {
+            String message = i + "";
+            channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+            // 当个消息就马上进行发布确认
+            boolean flag = channel.waitForConfirms();
+            if (flag) {
+                System.out.println("单个消息=========>消息发布成功！");
+            }
+        }
+        //  结束时间
+        long end = System.currentTimeMillis();
+
+        System.out.println("发布" + MESSAGE_COUNT + "个单独确认消息，耗时" + (end - begin) + "ms");
+    }
+
+
+    //  批量发布
+    public static void publishMessageBatch() throws InterruptedException, IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 队列的声明
+        String queueName = UUID.randomUUID().toString();
+        // 需要让Queue进行持久化
+        boolean durable = true;
+        channel.queueDeclare(queueName, durable, false, false, null);
+
+        // 开启发布确认
+        channel.confirmSelect();
+        // 开始时间
+        long begin = System.currentTimeMillis();
+
+        //  批量确认消息大小
+        int batchSize = 100;
+
+        // 批量发消息 批量发布确认
+        for (int i = 0; i < MESSAGE_COUNT; i++) {
+            String message = i + "";
+            channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+            // 判断达到100条消息的时候，批量确认一次
+            if (i % batchSize == 0) {
+                //  发布确认
+                channel.waitForConfirms();
+            }
+        }
+        //  结束时间
+        long end = System.currentTimeMillis();
+
+        System.out.println("发布" + MESSAGE_COUNT + "个批量确认消息，耗时" + (end - begin) + "ms");
+    }
+
+
+    // 异步确认发布
+    public static void publishMessageAsync() throws Exception {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 队列的声明
+        String queueName = UUID.randomUUID().toString();
+        // 需要让Queue进行持久化
+        boolean durable = true;
+        channel.queueDeclare(queueName, durable, false, false, null);
+        // 开启发布确认
+        channel.confirmSelect();
+
+        /*
+            线程安全 有序的一个哈希表，适用于高并发的情况下
+            1、轻松的将序号与消息进行关联
+            2、轻松批量删除条目 只要给到序号
+            3、支持高并发（多线程）
+         */
+        ConcurrentSkipListMap<Long, String> outstandingConfirms = new ConcurrentSkipListMap<>();
+
+        // 开始时间
+        long begin = System.currentTimeMillis();
+
+        //  1、消息的标记
+        //  2、是否批量确认
+        //  消息成功回调函数
+        ConfirmCallback ackCallback = (deliverTag, multiple) -> {
+            // 如果是批量的
+            if (multiple) {
+                // 删除已经确认的消息 剩下的就是未确认的消息
+                ConcurrentNavigableMap<Long, String> confirmed = outstandingConfirms.headMap(deliverTag);
+                confirmed.clear();
+            } else {
+                //  如果不是批量
+                outstandingConfirms.remove(deliverTag);
+            }
+            System.out.println("确认的消息：" + deliverTag);
+        };
+
+        //  消息失败回调函数
+        ConfirmCallback nackCallback = (deliverTag, multiple) -> {
+            // 打印未确认的消息
+            String message = outstandingConfirms.get(deliverTag);
+            System.out.println("未确认的消息是：" + message + "=== 未确认的消息tag是：" + deliverTag);
+        };
+        
+        //  准备消息的监听器，监听那些消息成功了，哪些消息失败了
+        //  单参：只监听成功的
+        //  两参：监听成功与失败的
+        channel.addConfirmListener(ackCallback, nackCallback);   // 异步通知
+
+        //  批量发布消息
+        for (int i = 0; i < MESSAGE_COUNT; i++) {
+            String message = "消息：" + i;
+            channel.basicPublish("", queueName, null, message.getBytes("UTF-8"));
+            /*
+              1、此处记录下所有要发送的消息，消息的总和
+              2、删除已经确认的消息，剩下的就是未确认的消息 ackCallback
+              3、打印一下未确认的消息 nackCallback
+             */
+            outstandingConfirms.put(channel.getNextPublishSeqNo(), message);
+        }
+
+        //  结束时间
+        long end = System.currentTimeMillis();
+
+        System.out.println("发布" + MESSAGE_COUNT + "个异步批量确认消息，耗时" + (end - begin) + "ms");
+    }
+}
+```
+
+
+
+# 5、交换机
+
+我们创建了一个工作队列。假设的是工作队列背后，每一个任务都恰好交付给一个消费者（工作进程）。在这一部分，将做一些完全不同的事情，将消息传达给多个消费者。这种模式称为“**发布/订阅**“。
+
+为了说明这种模式，我们将构建一个简单的日志系统。它将由两个程序组成：第一个程序将发出日志消息，第二个程序是消费者。其中我们会启动两个消费者，其中一个消费者接收到消息后把日志存储在磁盘，另一个消费者接收到消息后把消息打印到屏幕上，事实上第一个程序发出的日志消息将广播给所有消费者。
+
+![image-20240412212521161](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412212521161.png)
+
+
+
+## 5.1、Exchanges
+
+### 5.1.1、Exchanges概念
+
+RabbitMQ消息传递模型的核心思想是：**生产者生产的消息从不会直接发送到队列**。实际上，通常生产者甚至都不知道这些消息传递到哪些队列中。
+
+相反，**生产者只能将消息发送到交换机（exchange）**，交换机工作的内容非常简单，一方面它接受来自生产者的消息，另一方面将他们推入队列中。交换机必须确切知道如何处理收到的消息。是应该把这些消息放到特定队列还是说把它们放到许多队列中，还是说应该丢弃他们，这就由交换机的类型来决定。
+
+
+
+### 5.1.2、Exchanges的类型
+
+总共有以下类型：
+
+1. 直接（direct）
+2. 主题（topic）
+3. 标题（headers）
+4. 扇出（fanout）
+
+
+
+### 5.1.3、无名exchange
+
+之前对交换机一无所知，但仍然能够将消息发送到队列。是因为使用的是默认交换机，通过空字符串（“”）进行标识。
+
+```java
+channel.basicPublish("","hello",null,message.getBytes());
+```
+
+第一个参数是交换机的名称。空字符串表示默认或无名交换机：消息能路由发送到队列中其实是由routingKey（bindingkey）绑定key指定的，如果它存在的话。
+
+
+
+## 5.2、临时队列
+
+之前使用具有特定名称的队列（hello和ack_queue）。队列的名称至关重要，我们需要指定我们的消费者去消费哪个队列的消息。
+
+每当我们连接到Rabbit时，我们都需要一个全新的空队列，为此我们可以创还能一个具有随机名称的队列，或者能让服务器为我们选择一个随机队列名称那就更好了。其次**一旦我们断开了消费者的连接，队列将被自动删除**。
+
+创建临时队列的方式如下：
+
+```java
+String queueName = channel.queueDeclare().getQueueu();
+```
+
+
+
+
+
+## 5.3、绑定
+
+什么 bingding呢，binding其实是exchange和queue之间的桥梁，它告诉我们exchange和哪个队列进行了绑定关系。
+
+
+
+## 5.4、Fanout
+
+### 5.4.1、Fanout介绍
+
+Fanout这种类型非常简单，正如从名称中猜到的那种，它是将接受到的所有消息**广播**到它知道的所有队列中。系统中默认有些exchange类型。
+
+![image-20240412223928224](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412223928224.png)
+
+
+
+### 5.4.2、Fanout实战
+
+![image-20240412224543449](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412224543449.png)
+
+
+
+ReceiveLogs01（消费者）
+
+```java
+package com.demo05;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/*
+    消息的接收 1
+ */
+public class ReceiveLogs01 {
+
+    //  交换机的名称
+    public static final String EXCHANGE_NAME = "logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        //  声明一个叫交换机
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+
+
+        //  声明一个队列 临时的 队列名称是随机的 消费者断开与队列的连接的时候，队列就自动删除
+        String queue = channel.queueDeclare().getQueue();
+
+        /*
+            绑定交换机与队列
+         */
+        channel.queueBind(queue, EXCHANGE_NAME, "");
+        System.out.println("等到接受消息，把接收到的消息打印到屏幕上......");
+
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("ReceiveLogs01控制台打印接收到的消息：" + new String(message.getBody(), "UTF-8"));
+        };
+        channel.basicConsume(queue, true, deliverCallback, consumerTag -> {
+        });
+    }
+}
+```
+
+ReceiveLogs02（消费者）
+
+```java
+package com.demo05;
+
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/*
+    消息的接收 1
+ */
+public class ReceiveLogs02 {
+
+    //  交换机的名称
+    public static final String EXCHANGE_NAME = "logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        //  声明一个叫交换机
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+
+
+        //  声明一个队列 临时的 队列名称是随机的 消费者断开与队列的连接的时候，队列就自动删除
+        String queue = channel.queueDeclare().getQueue();
+
+        /*
+            绑定交换机与队列
+         */
+        channel.queueBind(queue, EXCHANGE_NAME, "");
+        System.out.println("等到接受消息，把接收到的消息打印到屏幕上......");
+
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("ReceiveLogs02控制台打印接收到的消息：" + new String(message.getBody(), "UTF-8"));
+        };
+        channel.basicConsume(queue, true, deliverCallback, consumerTag -> {
+        });
+    }
+}
+```
+
+
+
+发消息（交换机）
+
+```java
+package com.demo05;
+
+import com.rabbitmq.client.Channel;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
+
+//  发消息 交换机
+public class EmitLog {
+
+    public static final String EXCHANGE_NAME = "logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {
+            String message = scanner.next();
+            channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
+            System.out.println("生产者发出消息：" + message);
+        }
+    }
+}
+```
+
+![image-20240412230856113](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412230856113.png)
+
+![image-20240412230730680](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412230730680.png)
+
+这样发送的消息就会一人一份
+
+![image-20240412230949641](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412230949641.png)
+
+
+
+## 5.5、Direct exchange
+
+### 5.5.1、回顾
+
+上面，我们构建了一个简单的日志记录系统。我们能够向许多接收者广播日志消息。在这里我们将向其中添加一些特别的功能。比方说我们只让某个消费者订阅发布的部分消息。例如我们只把严重错误信息定向存储到日志文件（以节省磁盘空间），同时仍然能够在控制台上打印所有日志消息。
+
+什么是binding，绑定是交换机和队列之间的桥梁关系。也可以这么理解：**队列支队它绑定的交换机的消息感兴趣**。绑定用参数：routingKey来表示也可以城改参数为Binding Key，创建绑定：channel.queueBind(queueName,EXCHANGE_NAME,"routingKey");**绑定之后的意义由其交换机类型决定**。
+
+
+
+### 5.5.2、Direct exchange介绍
+
+日志系统将所有消息广播给所有消费者，对此我们想做出一些改变，例如我们希望将日志消息写入磁盘的程序仅接受严重错误（error），而不存储哪些警告（warning）或信息（info）日志消息避免浪费磁盘空间。fanout这种交换类型并不能给我们带来很大的灵活性-它只能无意识的广播，在这里我们将使用direct这种类型来进行替换，这种类型的工作方式是，消息只去到它绑定的routingKey队列中去。
+
+![image-20240412232715532](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240412232715532.png)
+
+在上面这张图中，我们可以看到X绑定了两个队列，绑定类型是direct。队列Q1绑定键为orange，队列Q2绑定键有两个：一个绑定键为black，另一个键为green。
+
+在这种绑定情况下，生产者发布消息到exchange上，绑定键为orange的消息会被发布到队列Q1。绑定键为black和green的消息会被发布到队列Q2，其他类型的消息将被丢弃。
+
+
+
+### 5.5.3、多重绑定
+
+
+
+当然如果echange的绑定类型是direct，**但是它绑定的多个队列的key如果都相同**，在这种情况下，虽然绑定类型是direct**但是它表现的就和fanout有点类似了**，就跟广播差不多，如上图所示。
