@@ -156,50 +156,18 @@ cd myerlang
 
 
 
-下载Erlang
+添加 Erlang RPM 仓库：RabbitMQ 依赖于 Erlang/OTP，因此首先需要添加 Erlang RPM 仓库。
 
 ```shell
-wget http://erlang.org/download/otp_src_21.3.tar.gz
+sudo yum install epel-release
 ```
 
 
 
-解压Erlang
+安装 Erlang/OTP：
 
 ```shell
- tar -zxvf otp_src_21.3.tar.gz
-```
-
-
-
-配置安装目录
-
-```shell
-./configure --prefix=/myerlang
-```
-
-
-
-安装
-
-```shell
-make install
-```
-
-
-
-添加环境变量
-
-```shell
-echo 'export PATH=$PATH:/myerlang' >> /etc/profile
-```
-
-
-
-刷新环境变量
-
-```shell
-source /etc/profile
+sudo yum install erlang
 ```
 
 
@@ -212,50 +180,42 @@ erl -version
 
 
 
-下载RabbitMQ
+添加 RabbitMQ RPM 仓库：下载并安装 RabbitMQ 的 RPM 仓库配置文件。
 
 ```shell
-wget https://github.com/rabbitmq/rabbitmq-server/releases/download/v3.7.15/rabbitmq-server-generic-unix-3.7.15.tar.xz
+sudo curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
 ```
 
 
 
-没有解压tar.xz格式需要先安装
+安装 RabbitMQ：
 
 ```shell
-yum install -y xz
+sudo yum install rabbitmq-server
 ```
 
 
 
-第一次解压
+启动 RabbitMQ 服务：
 
 ```shell
-xz -d rabbitmq-server-generic-unix-3.7.15.tar.xz 
+sudo systemctl start rabbitmq-server
 ```
 
 
 
-第二次解压
+设置 RabbitMQ 开机自启：
 
 ```shell
-tar -xvf rabbitmq-server-generic-unix-3.7.15.tar 
+sudo systemctl enable rabbitmq-server
 ```
 
 
 
-配置环境变量
+检查 RabbitMQ 服务状态：
 
 ```shell
-echo 'export PATH=$PATH:/mymq/rabbitmq_server-3.7.15/sbin' >> /etc/profile
-```
-
-
-
-刷新环境变量
-
-```shell
-source /etc/profile
+sudo systemctl status rabbitmq-server
 ```
 
 
@@ -272,16 +232,22 @@ rabbitmq-plugins enable rabbitmq_management
 
 ```shell
 #启动：
-rabbitmq-server -detached
+sudo systemctl start rabbitmq-server
  
 #停止：
-rabbitmqctl stop
+sudo systemctl stop rabbitmq-server
  
-#状态：
-rabbitmqctl status
+#重启：
+sudo systemctl restart rabbitmq-server
+
+#查看服务状态
+sudo systemctl status rabbitmq-server
 
 #开机自动启动
-chkconfig rabbitmq-server on
+sudo systemctl enable rabbitmq-server
+
+#禁止开机自启
+sudo systemctl disable rabbitmq-server
 ```
 
 
@@ -1621,6 +1587,719 @@ public class EmitLog {
 
 ### 5.5.3、多重绑定
 
-
+![image-20240413151943552](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413151943552.png)
 
 当然如果echange的绑定类型是direct，**但是它绑定的多个队列的key如果都相同**，在这种情况下，虽然绑定类型是direct**但是它表现的就和fanout有点类似了**，就跟广播差不多，如上图所示。
+
+
+
+
+
+### 5.5.4、实战
+
+![image-20240413185902473](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413185902473.png)
+
+![image-20240413171400659](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413171400659.png)
+
+ReceiveLogsDirect01
+
+```java
+package com.demo06;
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+public class ReceiveLogsDirect01 {
+
+    public static final String EXCHANGE_NAME = "direct_logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        //  声明一个叫交换机
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+
+        //  声明一个队列
+        channel.queueDeclare("console",false,false,false,null);
+
+        channel.queueBind("console",EXCHANGE_NAME,"info");
+        channel.queueBind("console",EXCHANGE_NAME,"warning");
+
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("ReceiveLogsDirect01控制台打印接收到的消息：" + new String(message.getBody(), "UTF-8"));
+        };
+        channel.basicConsume("console", true, deliverCallback, consumerTag -> {
+        });
+    }
+}
+```
+
+ReceiveLogsDirect02
+
+```java
+package com.demo06;
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+public class ReceiveLogsDirect02 {
+    public static final String EXCHANGE_NAME = "direct_logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        //  声明一个叫交换机
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.DIRECT);
+
+        //  声明一个队列
+        channel.queueDeclare("disk", false, false, false, null);
+
+        channel.queueBind("disk", EXCHANGE_NAME, "error");
+
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("ReceiveLogsDirect02控制台打印接收到的消息：" + new String(message.getBody(), "UTF-8"));
+        };
+        channel.basicConsume("disk", true, deliverCallback, consumerTag -> {
+        });
+    }
+}
+```
+
+DirectLogs
+
+```java
+package com.demo06;
+
+import com.rabbitmq.client.Channel;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
+
+public class DirectLogs {
+
+    public static final String EXCHANGE_NAME = "direct_logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {
+            String message = scanner.next();
+            channel.basicPublish(EXCHANGE_NAME, "info", null, message.getBytes("UTF-8"));
+            System.out.println("生产者发出消息：" + message);
+        }
+    }
+}
+```
+
+
+
+## 5.6、Topics
+
+### 5.6.1、之前的类型的问题
+
+我们没有使用只能随意广播的fanout交换，而是使用了direct交换机，从而能实现有选择性的接收日志。
+
+尽管使用direct交换机改进了我们的系统，但是它仍然存在局限性 - 比方说想要接收的日志类型有info.base和info.abvantage，某个队列只想info.base的信息，那这个时候direct就办不到了。这个时候只能使用topic类型。
+
+
+
+### 5.6.2、Topic的要求
+
+发送到类型为topic交换机的消息的routingKey不能随意乱写，必须满足一定的要求，它**必须是一个单词列表，以点号（.）分割开**。这些单词可以是任意单词，比如说：“stock.usd.nyse"，"nyse.vmw"，"quick.orange.rabbit"。这种类型的，当然这个单词列表最多也不能超过255个字节。
+
+在这个规则列表中，其中有两个替换符是大家需要注意的。
+
+***（星号）可以代替一个单词**
+
+**#（井号）可以代替零个或多个单词**
+
+
+
+### 5.6.3、Topic匹配案例
+
+绑定关系如下
+
+1. Q1 ---> 绑定的是
+
+   中间带orange的3个单词的字符串(* . orange . *)
+
+2. Q2 ---> 绑定的是
+
+   最后一个单词是rabbit的3个单词（* . * . rabbig）
+
+   第一个单词是lazy的多个单词（lazy.#）
+
+![image-20240413190109636](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413190109636.png)
+
+上图是一个队列绑定关系图，它们之间的数据接受情况
+
+| routingKey               | 队列接收情况                               |
+| ------------------------ | ------------------------------------------ |
+| quick.orange.rabbit      | 被队列Q1Q2接收                             |
+| lazy.orange.elephant     | 被队列Q1Q2接收                             |
+| quick.orange.fox         | 被队列Q1接收到                             |
+| lazy.brown.fox           | 被队列Q2接收到                             |
+| lazy.pink.rabbit         | 虽然满足两个绑定但只被队列Q2接收一次       |
+| quick.brown.fox          | 不匹配任何板顶不会被任何队列接收到会被丢弃 |
+| quick.orange.male.rabbit | 是4个单词不匹配任何绑定会被丢弃            |
+| lazy.orange.male.rabbit  | 是4个单词但匹配Q2                          |
+
+当列绑定关系是下列这种情况时需要引起注意
+
+1. **当一个队列绑定键是#，那么这个队列将接收所有数据，就有点像fanout了**
+2. **如果队列绑定键当中没有#和*出现，那么该队列绑定类型就是direct了**
+
+
+
+### 5.6.4、实战
+
+![image-20240413195655694](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413195655694.png)
+
+ReceiveLogsTopic01
+
+```java
+package com.demo07;
+
+import com.rabbitmq.client.*;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/*
+    声明主题交换机 以相关队列
+    消费者C1
+ */
+public class ReceiveLogsTopic01 {
+    //  交换机名称
+    public static final String EXCHANGE_NAME = "topic_logs";
+
+    //  接收消息
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        //  声明交换机
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+
+        //  声明队列
+        String queueName = "Q1";
+
+        // 交换机队列声明
+        channel.queueDeclare(queueName, false, false, false, null);
+        channel.queueBind(queueName, EXCHANGE_NAME, "*.orange.*");
+        System.out.println("等待接收消息.......");
+
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println(new String(message.getBody(), "UTF-8"));
+            System.out.println("接收队列：" + queueName + " 绑定键：" +message.getEnvelope().getRoutingKey());
+        };
+        CancelCallback callback = (consumerTag) -> {
+
+        };
+
+        //  接收消息
+        channel.basicConsume(queueName, true, deliverCallback, callback);
+    }
+}
+```
+
+ReceiveLogsTopic02
+
+```java
+package com.demo07;
+
+import com.rabbitmq.client.*;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/*
+    声明主题交换机 以相关队列
+    消费者C2
+ */
+public class ReceiveLogsTopic02 {
+    //  交换机名称
+    public static final String EXCHANGE_NAME = "topic_logs";
+
+    //  接收消息
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        //  声明交换机
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+
+        //  声明队列
+        String queueName = "Q2";
+
+        // 交换机队列声明
+        channel.queueDeclare(queueName, false, false, false, null);
+        channel.queueBind(queueName, EXCHANGE_NAME, "*.*.rabbit");
+        channel.queueBind(queueName, EXCHANGE_NAME, "lazy.#");
+        System.out.println("等待接收消息.......");
+
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println(new String(message.getBody(), "UTF-8"));
+            System.out.println("接收队列：" + queueName + " 绑定键：" + message.getEnvelope().getRoutingKey());
+        };
+        CancelCallback callback = (consumerTag) -> {
+
+        };
+
+        //  接收消息
+        channel.basicConsume(queueName, true, deliverCallback, callback);
+    }
+}
+```
+
+EmitLogTopic
+
+```java
+package com.demo07;
+
+import com.rabbitmq.client.Channel;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.concurrent.TimeoutException;
+
+/*
+    生产者
+ */
+public class EmitLogTopic {
+    //  交换机名称
+    public static final String EXCHANGE_NAME = "topic_logs";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        Map<String, String> bindingKeyMap = getStringStringMap();
+
+        for (Map.Entry<String, String> entry : bindingKeyMap.entrySet()) {
+            String routingKey = entry.getKey();
+            String message = entry.getValue();
+            channel.basicPublish(EXCHANGE_NAME, routingKey, null, message.getBytes("UTF-8"));
+            System.out.println("生产者发出消息：" + routingKey + "=====>" + message);
+        }
+    }
+
+    private static Map<String, String> getStringStringMap() {
+        Map<String, String> bindingKeyMap = new HashMap<>();
+        bindingKeyMap.put("quick.orange.rabbit", "被队列Q1Q2接收");
+        bindingKeyMap.put("lazy.orange.elephant", "被队列Q1Q2接收");
+        bindingKeyMap.put("quick.orange.fox", "被队列Q1接收到");
+        bindingKeyMap.put("lazy.brown.fox", "被队列Q2接收到");
+        bindingKeyMap.put("lazy.pink.rabbit", "虽然满足两个绑定但只被队列Q2接收一次");
+        bindingKeyMap.put("quick.brown.fox", "不匹配任何板顶不会被任何队列接收到会被丢弃");
+        bindingKeyMap.put("quick.orange.male.rabbit", "是4个单词不匹配任何绑定会被丢弃");
+        bindingKeyMap.put("lazy.orange.male.rabbit", "是4个单词但匹配Q2");
+        return bindingKeyMap;
+    }
+}
+```
+
+![image-20240413200157095](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413200157095.png)
+
+
+
+# 6、死信队列
+
+## 6.1、死信概念
+
+先从概念解释上搞清楚这个定义，死信，顾名思义就是无法被消费的信息，字面意思可以这样理解，一般来说，producer将消息投递到broker或直接到queue里了，consumer从queue取出消息进行消费，但某些时候由于特定的原因**导致queue中的某些消息无法被消费**，这样的消息如果没有后续的处理，就变成了死信，有死信自然就有了死信队列。
+
+应用场景：为了保证订单业务的数据不丢失，需要使用到RabbitMQ的死信队列机制，当消息消费发生异常时，将消息投入死信队列中。还有比如说：用户在商城下单成功并点击去支付后在指定时间未支付时自动失效。
+
+
+
+## 6.2、死信的来源
+
+1. 消息TTL过期
+2. 队列达到最大长度（队列满了，无法再添加数据到MQ中）
+3. 消息被拒绝（basic.reject或者basic.nack）并且requeue = false
+
+
+
+## 6.3、死信实战
+
+### 6.3.1、代码架构图
+
+![image-20240413204535623](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413204535623.png)
+
+
+
+### 6.3.2、消息TTL过期
+
+Consumer01
+
+```java
+package com.demo08;
+
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeoutException;
+
+/*
+   死信队列实战
+   消费者1
+ */
+public class Consumer01 {
+    //  普通交换机名称
+    public static final String NORMAL_EXCHANGE = "normal_exchange";
+    //  普通队列名称
+    public static final String NORMAL_QUEUE = "normal_queue";
+
+
+    //  死信交换机名称
+    public static final String DEAD_EXCHANGE = "dead_exchange";
+    //  死信交换机名称
+    public static final String DEAD_QUEUE = "dead_queue";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 声明交换机 类型为direct
+        channel.exchangeDeclare(NORMAL_EXCHANGE, BuiltinExchangeType.DIRECT);
+        channel.exchangeDeclare(DEAD_EXCHANGE, BuiltinExchangeType.DIRECT);
+
+        //  声明队列
+        //   Map<String, Object> arguments
+        Map<String, Object> arguments = new HashMap<>();
+        //  正常队列，设置过期之后的死信交换机是谁
+        //  x-dead-letter-exchange 固定写法
+        arguments.put("x-dead-letter-exchange", DEAD_EXCHANGE);
+        //  设置死信routingKey
+        arguments.put("x-dead-letter-routing-key", "lisi");
+        //  TTL  单位毫秒 一般生产者设置
+        //  arguments.put("x-message-ttl", 1000);
+
+
+        channel.queueDeclare(NORMAL_QUEUE, false, false, false, arguments);
+        channel.queueDeclare(DEAD_QUEUE, false, false, false, null);
+
+
+        //  binding
+        channel.queueBind(NORMAL_QUEUE, NORMAL_EXCHANGE, "zhangsan");
+        channel.queueBind(DEAD_QUEUE, DEAD_EXCHANGE, "lisi");
+
+        System.out.println("等待接收消息=========》");
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("Consumer01接收的消息：" + new String(message.getBody(), "UTF-8"));
+        };
+        CancelCallback callback = consumerTag -> {
+
+        };
+        channel.basicConsume(NORMAL_QUEUE, true, deliverCallback, callback);
+    }
+}
+```
+
+Producer01
+
+```java
+package com.demo08;
+
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/*
+    死信队列生产者
+ */
+public class Producer01 {
+    //  普通交换机名称
+    public static final String NORMAL_EXCHANGE = "normal_exchange";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        //  延迟消息（死信消息） 设置TTL的时间
+        AMQP.BasicProperties properties
+                = new AMQP.BasicProperties()
+                .builder()
+                .expiration("10000")
+                .build();
+
+        for (int i = 1; i < 11; i++) {
+            String message = "info：" + i;
+            channel.basicPublish(NORMAL_EXCHANGE, "zhangsan", properties, message.getBytes("UTF-8"));
+        }
+
+    }
+}
+```
+
+![image-20240413214527925](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413214527925.png)
+
+Consumer02
+
+```java
+package com.demo08;
+
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/*
+    消费者2
+ */
+public class Consumer02 {
+    public static final String DEAD_QUEUE = "dead_queue";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        System.out.println("等待接收消息=========》");
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("Consumer02接收的消息：" + new String(message.getBody(), "UTF-8"));
+        };
+        CancelCallback callback = consumerTag -> {
+
+        };
+        channel.basicConsume(DEAD_QUEUE, true, deliverCallback, callback);
+    }
+}
+```
+
+![image-20240413215245222](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413215245222.png)
+
+
+
+### 6.3.3、队列达到最大长度
+
+```java
+//  设置正常队列长度的限制，只能装6个小希，超过的就会变成死信
+arguments.put("x-max-length", 6);
+```
+
+Consumer03
+
+```java
+package com.demo08;
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeoutException;
+
+/*
+   死信队列实战
+   消费者3
+ */
+public class Consumer03 {
+    //  普通交换机名称
+    public static final String NORMAL_EXCHANGE = "normal_exchange";
+    //  普通队列名称
+    public static final String NORMAL_QUEUE = "normal_queue";
+
+
+    //  死信交换机名称
+    public static final String DEAD_EXCHANGE = "dead_exchange";
+    //  死信交换机名称
+    public static final String DEAD_QUEUE = "dead_queue";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 声明交换机 类型为direct
+        channel.exchangeDeclare(NORMAL_EXCHANGE, BuiltinExchangeType.DIRECT);
+        channel.exchangeDeclare(DEAD_EXCHANGE, BuiltinExchangeType.DIRECT);
+
+        //  声明队列
+        //   Map<String, Object> arguments
+        Map<String, Object> arguments = new HashMap<>();
+        //  正常队列，设置过期之后的死信交换机是谁
+        //  x-dead-letter-exchange 固定写法
+        arguments.put("x-dead-letter-exchange", DEAD_EXCHANGE);
+        //  设置死信routingKey
+        arguments.put("x-dead-letter-routing-key", "lisi");
+        //  TTL  单位毫秒 一般生产者设置
+        //  arguments.put("x-message-ttl", 1000);
+
+        //  设置正常队列长度的限制，只能装6个小希，超过的就会变成死信
+        arguments.put("x-max-length", 6);
+
+
+        channel.queueDeclare(NORMAL_QUEUE, false, false, false, arguments);
+        channel.queueDeclare(DEAD_QUEUE, false, false, false, null);
+
+
+        //  binding
+        channel.queueBind(NORMAL_QUEUE, NORMAL_EXCHANGE, "zhangsan");
+        channel.queueBind(DEAD_QUEUE, DEAD_EXCHANGE, "lisi");
+
+        System.out.println("等待接收消息=========》");
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            System.out.println("Consumer03接收的消息：" + new String(message.getBody(), "UTF-8"));
+        };
+        CancelCallback callback = consumerTag -> {
+
+        };
+
+        channel.basicConsume(NORMAL_QUEUE, true, deliverCallback, callback);
+    }
+}
+```
+
+![image-20240413221553708](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413221553708.png)
+
+生产者
+
+```java
+package com.demo08;
+
+import com.rabbitmq.client.AMQP;
+import com.rabbitmq.client.Channel;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.util.concurrent.TimeoutException;
+
+/*
+    死信队列生产者
+ */
+public class Producer02 {
+    //  普通交换机名称
+    public static final String NORMAL_EXCHANGE = "normal_exchange";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        for (int i = 1; i < 11; i++) {
+            String message = "info：" + i;
+            channel.basicPublish(NORMAL_EXCHANGE, "zhangsan", null, message.getBytes("UTF-8"));
+        }
+    }
+}
+```
+
+![image-20240413222030777](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413222030777.png)
+
+![image-20240413231933545](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413231933545.png)
+
+从消费可得知，发送了1到10的消息，被塞进死信队列的是头四条，尾四条是留在了默认队列的。
+
+
+
+### 6.3.4、消息被拒
+
+![image-20240413232418982](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240413232418982.png)
+
+生产者04
+
+```java
+package com.demo08;
+
+
+import com.rabbitmq.client.BuiltinExchangeType;
+import com.rabbitmq.client.CancelCallback;
+import com.rabbitmq.client.Channel;
+import com.rabbitmq.client.DeliverCallback;
+import com.utils.RabbitMQUtils;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeoutException;
+
+/*
+   死信队列实战
+   消费者4
+ */
+public class Consumer04 {
+    //  普通交换机名称
+    public static final String NORMAL_EXCHANGE = "normal_exchange";
+    //  普通队列名称
+    public static final String NORMAL_QUEUE = "normal_queue";
+
+    //  死信交换机名称
+    public static final String DEAD_EXCHANGE = "dead_exchange";
+    //  死信交换机名称
+    public static final String DEAD_QUEUE = "dead_queue";
+
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Channel channel = RabbitMQUtils.getChannel();
+
+        // 声明交换机 类型为direct
+        channel.exchangeDeclare(NORMAL_EXCHANGE, BuiltinExchangeType.DIRECT);
+        channel.exchangeDeclare(DEAD_EXCHANGE, BuiltinExchangeType.DIRECT);
+
+        //  声明队列
+        //   Map<String, Object> arguments
+        Map<String, Object> arguments = new HashMap<>();
+        //  正常队列，设置过期之后的死信交换机是谁
+        //  x-dead-letter-exchange 固定写法
+        arguments.put("x-dead-letter-exchange", DEAD_EXCHANGE);
+        //  设置死信routingKey
+        arguments.put("x-dead-letter-routing-key", "lisi");
+        //  TTL  单位毫秒 一般生产者设置
+        //  arguments.put("x-message-ttl", 1000);
+
+        //  设置正常队列长度的限制，只能装6个小希，超过的就会变成死信
+        //  arguments.put("x-max-length", 6);
+
+        channel.queueDeclare(NORMAL_QUEUE, false, false, false, arguments);
+        channel.queueDeclare(DEAD_QUEUE, false, false, false, null);
+
+        //  binding
+        channel.queueBind(NORMAL_QUEUE, NORMAL_EXCHANGE, "zhangsan");
+        channel.queueBind(DEAD_QUEUE, DEAD_EXCHANGE, "lisi");
+
+        System.out.println("等待接收消息=========》");
+        DeliverCallback deliverCallback = (consumerTag, message) -> {
+            String msg = new String(message.getBody(), StandardCharsets.UTF_8);
+            if (msg.equals("info：5")) {
+                System.out.println("Consumer04接收的消息是：" + msg + "：此消息是被C1拒绝的");
+                //  (标签，不放回队列)
+                channel.basicReject(message.getEnvelope().getDeliveryTag(), false);
+            } else {
+                System.out.println("Consumer04接收的消息是：" + msg);
+                channel.basicAck(message.getEnvelope().getDeliveryTag(), false);
+            }
+        };
+        //  开启手动应答
+        CancelCallback callback = consumerTag -> {
+        };
+        channel.basicConsume(NORMAL_QUEUE, true, deliverCallback, callback);
+    }
+}
+```
+
+
+
