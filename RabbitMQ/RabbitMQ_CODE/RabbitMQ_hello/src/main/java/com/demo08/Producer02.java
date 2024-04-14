@@ -18,7 +18,7 @@ public class Producer02 {
         Channel channel = RabbitMQUtils.getChannel();
 
         for (int i = 1; i < 11; i++) {
-            String message = "info" + i;
+            String message = "info：" + i;
             channel.basicPublish(NORMAL_EXCHANGE, "zhangsan", null, message.getBytes(StandardCharsets.UTF_8));
         }
 

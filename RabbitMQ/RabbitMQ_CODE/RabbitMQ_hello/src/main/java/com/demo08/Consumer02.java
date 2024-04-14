@@ -6,6 +6,7 @@ import com.rabbitmq.client.DeliverCallback;
 import com.utils.RabbitMQUtils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeoutException;
 
 /*
@@ -19,7 +20,7 @@ public class Consumer02 {
 
         System.out.println("等待接收消息=========》");
         DeliverCallback deliverCallback = (consumerTag, message) -> {
-            System.out.println("Consumer02接收的消息：" + new String(message.getBody(), "UTF-8"));
+            System.out.println("Consumer02接收的消息：" + new String(message.getBody(), StandardCharsets.UTF_8));
         };
         CancelCallback callback = consumerTag -> {
 

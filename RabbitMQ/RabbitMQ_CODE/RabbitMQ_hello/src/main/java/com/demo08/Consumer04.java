@@ -62,7 +62,7 @@ public class Consumer04 {
         System.out.println("等待接收消息=========》");
         DeliverCallback deliverCallback = (consumerTag, message) -> {
             String msg = new String(message.getBody(), StandardCharsets.UTF_8);
-            if (msg.equals("info5")) {
+            if (msg.equals("info：5")) {
                 System.out.println("Consumer04接收的消息是：" + msg + "：此消息是被C1拒绝的");
                 //  (标签，不放回队列)
                 channel.basicReject(message.getEnvelope().getDeliveryTag(), false);
