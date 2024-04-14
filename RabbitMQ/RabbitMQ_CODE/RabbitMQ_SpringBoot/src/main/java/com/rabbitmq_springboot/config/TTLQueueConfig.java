@@ -92,4 +92,27 @@ public class TTLQueueConfig {
             , @Qualifier("yExchange") DirectExchange yExchange) {
         return BindingBuilder.bind(queueD).to(yExchange).with("YD");
     }
+
+
+    public static final String QUEUE_C = "QC";
+
+    //  声明QC
+    @Bean("queueC")
+    public Queue queueC() {
+        Map<String, Object> arguments = new HashMap<>();
+        //  设置死信交换机
+        arguments.put("x-dead-letter-exchange", Y_DEAD_LETTER_EXCHANGE);
+
+        //  设置死信RoutingKey
+        arguments.put("x-dead-letter-routing-key", "YD");
+
+        return QueueBuilder.durable(QUEUE_C).withArguments(arguments).build();
+    }
+
+    @Bean
+    public Binding queueCBindingX(@Qualifier("queueC") Queue queueC
+            , @Qualifier("xExchange") DirectExchange xExchange) {
+        return BindingBuilder.bind(queueC).to(xExchange).with("XC");
+    }
+
 }
