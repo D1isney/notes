@@ -3133,3 +3133,548 @@ public class ConfirmConsumer {
 
 
 ### 8.1.7、回调接口
+
+```java
+package com.rabbitmq_springboot.config;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+
+@Component
+@Slf4j
+public class MyCallBack implements RabbitTemplate.ConfirmCallback {
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @PostConstruct
+    public void init() {
+        //  注入
+        rabbitTemplate.setConfirmCallback(this);
+    }
+
+    //  交换机确认回调方法
+    /*
+        1、发消息 交换机接收到了回调
+        参数1、correlationData 保存回调信息的ID及相关信息
+        参数2：ack 交换机收到消息 true
+        参数3：失败的原因   cause   null
+        2、发消息 交换机接收失败了 回调
+        参数1、correlationData 保存回调信息的ID及相关信息
+        参数2：ack 交换机收到消息 false
+        参数3：失败的原因   cause   问题点
+     */
+    @Override
+    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+        String id = correlationData != null ? correlationData.getId() : "";
+        if (ack) {
+            log.info("交换机已经收到了消息，ID：{}的消息", id);
+        } else {
+            log.info("交换机还未收到消息，ID:{}的消息。由于原因：{}", id, cause);
+        }
+    }
+}
+```
+
+
+
+### 8.1.8、交换机确认
+
+```java
+package com.rabbitmq_springboot.controller;
+
+import com.rabbitmq_springboot.config.ConfirmConfig;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@Slf4j
+@RequestMapping("/confirm")
+public class ProducerController {
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    //  发消息
+    @GetMapping("/sendMessage/{message}")
+    public void sendMessage(@PathVariable String message) {
+        //  CorrelationData
+        CorrelationData correlationData = new CorrelationData("1");
+
+        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+                ConfirmConfig.CONFIRM_ROUTING_KEY,
+                message, correlationData);
+        log.info("发送消息内容{}", message);
+    }
+}
+```
+
+```java
+package com.rabbitmq_springboot.controller;
+
+import com.rabbitmq_springboot.config.ConfirmConfig;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@Slf4j
+@RequestMapping("/confirm")
+public class ProducerController {
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+
+    //  发消息
+    @GetMapping("/sendMessage/{message}")
+    public void sendMessage(@PathVariable String message) {
+        //  CorrelationData
+        CorrelationData correlationData = new CorrelationData("1");
+
+        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+                ConfirmConfig.CONFIRM_ROUTING_KEY,
+                message + "1", correlationData);
+        log.info("发送消息内容{}", message + "key1");
+
+        CorrelationData correlationData2 = new CorrelationData("2");
+
+        rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+                ConfirmConfig.CONFIRM_ROUTING_KEY + "2",
+                message + "2", correlationData);
+        log.info("发送消息内容{}", message + "key12");
+    }
+}
+```
+
+
+
+### 8.1.9、结果分析
+
+**当交换机不存在时**
+
+![image-20240415172554096](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240415172554096.png)
+
+```markdown
+交换机还未收到消息，ID:1的消息。由于原因：channel error; protocol method: #method<channel.close>(reply-code=404, reply-text=NOT_FOUND - no exchange 'confirm_exchange2' in vhost '/', class-id=60, method-id=40)
+```
+
+****
+
+**当信道不存在时**
+
+![image-20240415173254843](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240415173254843.png)
+
+```markdown
+当信道不存时，发送消息给交换机，生产者是不知道信道不存在的，消息就会丢失
+```
+
+
+
+## 8.2、回退消息
+
+### 8.2.1、Mandatory参数
+
+**在仅开启了生产者确认机制的情况下，交换机接收到的消息后，会直接给消息生产者发送确认消息，如果发现该消息不可路由，那么消息会被直接丢弃，此时生产者是不知道消息被丢弃这个时间的**。那么如何让无法被路由的消息帮我们想办法处理一下？通过设置mandatory参数可以在当前消息传递过程中，没有传达到目的地就返回给生产者。
+
+```yml
+spring:
+  rabbitmq:
+    publisher-returns: true
+```
+
+
+
+### 8.2.2、消息生产者代码
+
+```java
+//  发消息
+@GetMapping("/sendMessage/{message}")
+public void sendMessage(@PathVariable String message) {
+    //  CorrelationData
+    CorrelationData correlationData = new CorrelationData("1");
+
+
+    rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+                                  ConfirmConfig.CONFIRM_ROUTING_KEY,
+                                  message + "1", correlationData);
+    log.info("发送消息内容{}", message + "key1");
+
+    CorrelationData correlationData2 = new CorrelationData("2");
+
+    rabbitTemplate.convertAndSend(ConfirmConfig.CONFIRM_EXCHANGE_NAME,
+                                  ConfirmConfig.CONFIRM_ROUTING_KEY + "2",
+                                  message + "2", correlationData);
+    log.info("发送消息内容{}", message + "key12");
+}
+```
+
+
+
+### 8.2.3、回调接口
+
+```java
+package com.rabbitmq_springboot.config;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
+
+@Component
+@Slf4j
+public class MyCallBack implements RabbitTemplate.ConfirmCallback, RabbitTemplate.ReturnCallback {
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
+
+    @PostConstruct
+    public void init() {
+        //  注入
+        rabbitTemplate.setConfirmCallback(this);
+        rabbitTemplate.setReturnCallback(this);
+    }
+
+    //  交换机确认回调方法
+    /*
+        1、发消息 交换机接收到了回调
+        参数1、correlationData 保存回调信息的ID及相关信息
+        参数2：ack 交换机收到消息 true
+        参数3：失败的原因   cause   null
+        2、发消息 交换机接收失败了 回调
+        参数1、correlationData 保存回调信息的ID及相关信息
+        参数2：ack 交换机收到消息 false
+        参数3：失败的原因   cause   问题点
+     */
+    @Override
+    public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+        String id = correlationData != null ? correlationData.getId() : "";
+        if (ack) {
+            log.info("交换机已经收到了消息，ID：{}的消息", id);
+        } else {
+            log.info("交换机还未收到消息，ID:{}的消息。由于原因：{}", id, cause);
+        }
+    }
+
+    //  消息回退
+    //  只有消息发送不到目的地就会回退
+    @Override
+    public void returnedMessage(Message message, int replyCode, String replyText, String exchange, String routingKey) {
+        log.info("消息{},被交换机{}，回退了，回退原因：{}，路由Key：{}"
+                , new String(message.getBody(), StandardCharsets.UTF_8)
+                , exchange, replyText, replyCode);
+    }
+}
+```
+
+
+
+### 8.2.4、结果分析
+
+![image-20240415174750972](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240415174750972.png)
+
+
+
+## 8.3、备份交换机
+
+为一个普通交换机添加一个”备胎“，当交换机接收到一条无法路由的消息时，就把消息转发到备份交换机，有备份交换机来转发和处理，该交换机类型一般为广播型（fanout、扇出），这样就可以把所有消息发送到吁气绑定队列中去了，
+
+
+
+### 8.3.1、代码架构图
+
+![image-20240415202708399](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240415202708399.png)
+
+
+
+### 8.3.2、修改配置类
+
+```java
+package com.rabbitmq_springboot.config;
+
+import org.springframework.amqp.core.*;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/*
+    发布确认 配置类
+ */
+
+@Configuration
+public class ConfirmConfig {
+    //  交换机
+    public static final String CONFIRM_EXCHANGE_NAME = "confirm_exchange";
+    //  队列
+    public static final String CONFIRM_QUEUE_NAME = "confirm_queue";
+    //  routingKey
+    public static final String CONFIRM_ROUTING_KEY = "key1";
+
+    //  备份交换机
+    public static final String BACKUP_EXCHANGE_NAME = "backup_exchange";
+    //  备份队列
+    public static final String BACKUP_QUEUE_NAME = "backup_queue";
+    //  报警队列
+    public static final String WARNING_QUEUE_NAME = "warning_queue";
+
+    //  声明交换机
+    @Bean("confirmExchange")
+    public DirectExchange confirmExchange() {
+
+        return ExchangeBuilder
+                .directExchange(CONFIRM_EXCHANGE_NAME)
+                .durable(true)
+                .withArgument("alternate-exchange",BACKUP_EXCHANGE_NAME)
+                .build();
+    }
+
+    //  声明队列
+    @Bean("confirmQueue")
+    public Queue confirmQueue() {
+        return QueueBuilder.durable(CONFIRM_QUEUE_NAME).build();
+    }
+
+    //  绑定
+    @Bean
+    public Binding queueBindingExchange(
+            @Qualifier("confirmQueue") Queue queue,
+            @Qualifier("confirmExchange") DirectExchange confirmExchange) {
+        return BindingBuilder.bind(queue).to(confirmExchange).with(CONFIRM_ROUTING_KEY);
+    }
+
+
+    @Bean("backupExchange")
+    public FanoutExchange backupExchange() {
+        return new FanoutExchange(BACKUP_EXCHANGE_NAME);
+    }
+
+    //  备份队列
+    @Bean("backupQueue")
+    public Queue backupQueue() {
+        return QueueBuilder.durable(BACKUP_EXCHANGE_NAME).build();
+    }
+
+    //  报警队列
+    @Bean("warningQueue")
+    public Queue warningQueue() {
+        return QueueBuilder.durable(WARNING_QUEUE_NAME).build();
+    }
+
+    //  绑定
+    @Bean
+    public Binding backupBindingExchange(
+            @Qualifier("backupQueue") Queue queue,
+            @Qualifier("backupExchange") FanoutExchange backupExchange) {
+        return BindingBuilder.bind(queue).to(backupExchange);
+    }
+    @Bean
+    public Binding warningBindingExchange(
+            @Qualifier("warningQueue") Queue queue,
+            @Qualifier("backupExchange") FanoutExchange backupExchange) {
+        return BindingBuilder.bind(queue).to(backupExchange);
+    }
+}
+```
+
+
+
+### 8.3.3、结果分析
+
+报警消费者
+
+```java
+package com.rabbitmq_springboot.consumer;
+
+
+import com.rabbitmq_springboot.config.ConfirmConfig;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.stereotype.Component;
+
+import java.nio.charset.StandardCharsets;
+
+//  报警消费者
+@Component
+@Slf4j
+public class WarningConsumer {
+
+    @RabbitListener(queues = ConfirmConfig.WARNING_QUEUE_NAME)
+    public void receiveWaringMsg(Message message) {
+        String msg = new String(message.getBody(), StandardCharsets.UTF_8);
+        log.error("报警，路由不过去信息：{}", msg);
+    }
+}
+```
+
+![image-20240415204559032](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240415204559032.png)
+
+mandatory（生产者回退消息）参数与备份交换机可以一起使用的时候，如果两者同时开启，消息优先去哪？**备份交换机的优先级更高。**
+
+# 9、RabbitMQ其他知识点
+
+## 9.1、幂等性
+
+### 9.1.1、概念
+
+用户对于同一操作发起的一次请求或多次请求的结果是一致的，不会因为多点击而产生了副作用。举个最简答的例子，那就是支付，用户购物商品后支付，支付扣款成功，但是返回结果的时候网络异常，此时钱已经扣了，用户再次点击按钮，此时会进行第二次扣款，返回结果成功，用户查询余额发现多扣钱了，流水记录变成了两条。在以前的但应用系统中，我们只需要把数据操作系统放入失误即可，发生错误立即回滚，但是再响应客户端的时候也有可能出现网络中断或者异常等等。
+
+
+
+### 9.1.2、消息重复消费
+
+消费者在消费MQ的消息时，MQ已把消息发送给消费者，消费者在给MQ返回ACK时网络中断，MQ未收到确认消息，该条消息会重新发送给其他的消费者，或者在网络重连后再次发送给该消费者，但实际上该消费者已经成功消费了该条消息，造成消费者消费了重复的消息。
+
+
+
+### 9.1.3、解决思路
+
+MQ消费者的幂等性的解决一般使用全局ID或者写个唯一标识比如时间戳或者UUID或者订单消费者消费MQ中的消息也可以利用MQ的该ID来判断，或者可按自己的规划生成一个全局唯一ID，每次消息消费时用该ID先判断该消息是否已消费过。
+
+
+
+### 9.1.4、消费端的幂等性保障
+
+在海量订单生成的业务高峰期，生产端有可能就会重复发生了消息，这时候消费端就要实现幂等性，这就意味着我们的消息永远不会被消费多次，即使我们收到了一样的消息。业界主流的幂等性有两种操作：
+
+1. 唯一ID + 指纹码机制，利用数据库主键去重
+2. 利用Redis的原子性去实现
+
+
+
+### 9.1.5、唯一ID + 指纹码机制
+
+指纹码：我们的一些规则或时间戳加别的服务给到的唯一信息码，它并不一定是我们系统生成的，基本都是由我们的业务规则拼接而来的，但是一定要保证唯一性，然后就利用查询语句机型判断这个id是否存在数据库中，优势就是实现简单（拼接），然后查询是否重复；劣势就是在高并发的时候，如果是单个数据库就会有写入性能瓶颈，当然也可以采用分库分表来提升性能。
+
+
+
+### 9.1.6、Redis原子性
+
+利用Redis执行setnx命令，天然具有幂等性。从而实现不重复消费。
+
+
+
+## 9.2、优先级队列
+
+### 9.2.1、使用场景
+
+在我们系统中有一个订单催付的场景，我们的客户在天猫下的订单，淘宝会及时将订单推送给我们，如果在用户设定的时间内未付款那么就会给用户推送一条短信提醒，很简单的一个功能对吧。
+
+但是，天猫商家对我们来说，肯定是要分大客户和小客户的对吧，比如像苹果、小米这样大商家一年起码能给我们创造很大的利润，所以理应当然，他们的订单必须得到优先处理，而曾经我们的后端系统是使用 redis 来存放的定时轮询，大家都知道 redis 只能用 List 做一个简简单单的消息队列，并不能实现一个优先级的场景，所以订单量大了后采用 RabbitMQ 进行改造和优化，如果发现是大客户的订单给一个相对比较高的优先级， 否则就是默认优先级。
+
+
+
+### 9.2.2、如何添加
+
+1. 控制台页面添加
+
+   ![image-20240415230630902](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240415230630902.png)
+
+2. 代码中添加队列的优先级
+
+   ```java
+   package com.demo09;
+   
+   import com.rabbitmq.client.AMQP;
+   import com.rabbitmq.client.Channel;
+   import com.utils.RabbitMQUtils;
+   
+   import java.io.IOException;
+   import java.util.HashMap;
+   import java.util.Map;
+   import java.util.concurrent.TimeoutException;
+   
+   //  优先级队列
+   public class Producer_Queue {
+   
+       public static final String QUEUE_NAME = "hello_queue";
+   
+       public static void main(String[] args) throws IOException, TimeoutException {
+           Channel channel = RabbitMQUtils.getChannel();
+   
+           Map<String, Object> arguments = new HashMap<>();
+           //  官方允许的是0 - 255 之间，不要设置过大，浪费CPU与内存
+           arguments.put("x-max-priority", 10);
+           channel.queueDeclare(QUEUE_NAME, true, false, false, arguments);
+   
+           for (int i = 1; i < 11; i++) {
+               String info = "info" + i;
+               if (i == 5) {
+                   AMQP.BasicProperties properties
+                           = new AMQP.BasicProperties().builder().priority(5).build();
+                   channel.basicPublish("", QUEUE_NAME, properties, info.getBytes());
+               } else {
+                   channel.basicPublish("", QUEUE_NAME, null, info.getBytes());
+               }
+           }
+       }
+   }
+   ```
+
+3. 代码中消费者添加优先级
+
+   ```java
+   package com.demo09;
+   
+   import com.rabbitmq.client.CancelCallback;
+   import com.rabbitmq.client.Channel;
+   import com.rabbitmq.client.DefaultConsumer;
+   import com.rabbitmq.client.DeliverCallback;
+   import com.utils.RabbitMQUtils;
+   
+   import java.io.IOException;
+   import java.nio.charset.StandardCharsets;
+   import java.util.concurrent.TimeoutException;
+   
+   public class Consumer_Queue {
+   
+       public static final String QUEUE_NAME = "hello_queue";
+   
+       public static void main(String[] args) throws IOException, TimeoutException {
+           Channel channel = RabbitMQUtils.getChannel();
+   
+           DeliverCallback deliverCallback = (consumerTag, message) -> {
+               System.out.println("接收的消息：" + new String(message.getBody(), StandardCharsets.UTF_8));
+           };
+           CancelCallback callback = consumerTag -> {
+   
+           };
+   
+           channel.basicConsume(QUEUE_NAME, true, deliverCallback, callback);
+       }
+   }
+   ```
+
+   ![image-20240415232525032](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240415232525032.png)
+
+   info5就优先被消费了
+
+4. 注意事项
+
+   要让队列实现优先级需要做的事情如果有如下事情：
+
+   1. 队列需要设置为优先队列
+   2. 消息需要设置信息的优先级
+   3. 消费者需要等待消息已经发送到队列中才去消费，因为这样才有机会对信息进行排序
+
+
+
+## 9.3、惰性队列
+
+### 9.3.1、使用场景
