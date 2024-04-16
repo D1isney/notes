@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>数据绑定</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <label>
+        单向绑定数据：
+        <input type="text" :value="test">
+    </label>
+    <br>
+    <label>
+        双向绑定数据：
+        <input type="text" v-model:value="test">
+        <input type="text" v-model="test">
+    </label>
+    <!--    如下代码是错误的，因为v-model只能应用在表单类元素（属于类元素）上-->
+    <h2 v-model:value="test"></h2>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root', // 用于指定当前Vue实例为哪个容器服务
+        data: {
+            test: 'Hello',
+        }
+    })
+</script>
+</html>

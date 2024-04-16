@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模版语法</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>插值语法</h1>
+    <h1>你好，{{name}}</h1>
+    <hr>
+    <h2>指令语法</h2>
+    <a :href="url">:href {{school.name}}</a>
+    <a v-bind:href="url">v-bind:href</a>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root', // 用于指定当前Vue实例为哪个容器服务
+        data: {
+            name: 'Disney',
+            url: 'https://github.com/vuejs/awesome-vue/issues',
+            school: {
+                name: 'B站',
+            },
+        }
+    })
+</script>
+</html>

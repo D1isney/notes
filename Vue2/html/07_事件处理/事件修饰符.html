@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件修饰符</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <!--    阻止事件默认（常用）-->
+    <a href="https://www.baidu.com" @click.prevent="showInfo">阻止事件默认</a>
+    <!--    阻止事件冒泡（常用）-->
+    <div @click="showInfo">
+        <button @click.stop="showInfo">阻止冒泡事件</button>
+    </div>
+    <!--    事件只触发一次-->
+    <button @click.once="showInfo">点我只触发一次</button>
+
+    <hr>
+    <div @click.captrue="showMsg(1)">
+        div1
+        <div @click="showMsg(2)">
+            div2
+        </div>
+    </div>
+
+    <div @click.self="showInfo">
+        <button @click="showInfo">Myself冒泡事件</button>
+    </div>s
+
+
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {},
+        methods: {
+            showInfo(event) {
+                alert("123")
+            },
+            showMsg(event){
+                console.log(event)
+            }
+        }
+    })
+</script>
+</html>
