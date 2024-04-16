@@ -2965,7 +2965,7 @@ public class DelayQueueConsumer {
 
 ![image-20240414214358082](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240414214358082.png)
 
-第二个消息先被消费掉了，符合吁气
+第二个消息先被消费掉了，符合预期
 
 
 
