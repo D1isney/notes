@@ -1,4 +1,4 @@
-RabbitMQ
+# RabbitMQ
 
 # 1、消息队列
 
@@ -887,7 +887,7 @@ channel.queueDeclare(ACK_QUEUE_NAME,durable,false,false,null);
 
 ![image-20240411222933817](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240411222933817.png)
 
-这个时候即使重启了RabbitMQ，队里也依然存在
+这个时候即使重启了RabbitMQ，队列也依然存在
 
 
 
