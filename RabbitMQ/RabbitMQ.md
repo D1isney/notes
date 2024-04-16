@@ -3678,3 +3678,233 @@ MQ消费者的幂等性的解决一般使用全局ID或者写个唯一标识比�
 ## 9.3、惰性队列
 
 ### 9.3.1、使用场景
+
+RabbitMQ从3.6.0版本开始引入了惰性队列的概念。惰性队列会尽可能的将信息存入磁盘中，而在消费者到相应的消息时才会被加载到内存中，它的一个重要的设计目标是能够支持更长的队列，即支持更多的消息存储。当消费者由于各种各样的原因（比如消费者下线、宕机亦或是由于维护而关闭等）而致使长时间内不能消费造成堆积时，惰性队列就很有必要了。
+
+默认情况下，当生产者将消息发送到RabbitMQ的时候，队列中的消息会尽可能的存储在内存之中，这样可以更加快速的将消息发送给消费者。即使是持久化的消息，在被写入磁盘的同时也会在内存中驻留一份备份。当RabbitMQ需要释放内存的时候，会将内存中的消息换页至磁盘中，这个操作会耗费较长的时间，也会阻塞队列的操作，进而无法接收新的消息。虽然RabbitMQ的开发者们一直在升级相关的算法，但是效果始终不太理想，尤其是在消息量特别大的时候。
+
+
+
+### 9.3.2、两种模式
+
+队列具备两种模式：default 和 lazy。默认的为default模式，在3.6.0之前的版本无需做任何变更。lazy模式即为惰性队列的模式，可以通过调用channel.queueDeclare方法的时候在参数中设置，也可以铜鼓Policy的方式设置，如果一个队列同时使用这两种方式设置的话，那么Policy的方式具备更高的优先级。如果要通过声明的方式改变已有队列的模式的话，那么只能先删除队列，然后再重新声明一个新的。
+
+在队列声明的时候可以通过“x-queue-mode”参数来设置队列的模式，取值为“default”或“lazy”。下面示例中演示了一个惰性队列的声明细节：
+
+```java
+Map<String,Object> args = new HashMap<String,Object>();
+args.put("x-queue-mode","lazy");
+channel.queueDeclare("queue_name",false,false,false,args)；
+```
+
+
+
+### 9.3.3、内存开销对比
+
+![image-20240416131731226](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416131731226.png)
+
+在发送1百万条消息，每条消息大概占1KB的情况下，普通队列占用内存是1.2GB，而惰性队列仅仅占用1.5MB。
+
+
+
+# 10、RabbitMQ集群
+
+## 10.1、Clustering
+
+### 10.1.1、使用集群的原因
+
+如果RabbitMQ服务器遇到内润崩溃、机器掉电或者主板故障等情况，该怎么办？单台RabbitMQ服务器可以满足每秒1000条消息的吞吐量，那么如果应用需要RabbitMQ服务满足每秒10万条消息的吞吐量呢？
+
+
+
+### 10.1.2、搭建步骤
+
+1. 修改3台机器的主机名
+
+   ```shell
+   vim /etc/hostname
+   ```
+
+2. 配置各个几点到额host文件，让各个结点都能识别对方
+
+   ```shell
+   vim /etc/hosts
+   
+   192.168.135.1 node1
+   192.168.135.2 node2
+   192.168.135.3 node3
+   ```
+
+3. 以确保各个节点的cookie文件使用的是同一个值
+
+   1. 在node1上执行远程操作命令
+
+      ```shell
+      scp /var/lib/rabbitmq/.erlang.cookie root@node2:/var/lib/rabbitmq/.erlang.cookie
+      scp /var/lib/rabbitmq/.erlang.cookie root@node3:/var/lib/rabbitmq/.erlang.cookie
+      ```
+
+4. 启动RabbitMQ服务，顺带启动Erlang虚拟机和RabbitMQ应用服务（在三台节点上分别执行以下命令）
+
+   ```shell
+   rabbitmq-server -datached
+   ```
+
+5. 在节点2执行
+
+   ```shell
+   # rabbitmqctl stop会将Erlang虚拟机关闭  rabbitmqctl stop_app 只关闭rabbitmq服务
+   rabbitmqctl stop_app
+   rabbitmqctl reset
+   rabbitmqctl join_cluster rabbit@node1
+   # 只启动rabbitmq服务
+   rabbitmqctl start_app
+   ```
+
+6. 在节点3执行
+
+   ```shell
+   rabbitmqctl stop_app
+   rabbitmqctl reset
+   rabbitmqctl join_cluster rabbit@node2
+   rabbitmqctl start_app
+   ```
+
+7. 集群状态
+
+   ```shell
+   rabbitmqctl cluster_status
+   ```
+
+8. 需要重新设置用户
+
+   ```markdown
+   # 创建账号
+   rabbitmqctl add_user admin 123
+   # 设置用户角色
+   rabbitmqctl set_user_tags admin administrator
+   # 设置用户权限
+   rabbitmqctl set_permissions -p "/" admin ".*" ".*" ".*" 
+   ```
+
+   之后在三个集群节点的任意一个可视化界面登录均可
+
+9. 接触集群点，node2和node3分别执行
+
+   ```shell
+   rabbitmqctl stop_app
+   rabbitmqctl reset
+   rabbitmqctl start_app
+   rabbitmqctl cluster_status
+   # 此项命令均在node1上执行
+   rabbitmqctl forget_cluster_node rabbit@node2
+   ```
+
+
+
+## 10.2、镜像队列
+
+### 10.2.1、使用镜像的原因
+
+如果RabbitMQ集群中只有一个Broker节点，那么该节点的失效将导致整体服务的临时性不可用，并且也可能会导致消息的丢失。可以将所有消息都设置为持久化,并且对应队列的durable属性也设置为true,但是这样仍然无法避免由于缓存导致的问题:因为消息在发送之后和被写入磁盘井执行刷盘动作之间存在一个短暂却会产生问题的时间窗。通过publisherconfirm机制能够确保客户端知道哪些消息己经存入磁盘，尽管如此，一般不希望遇到因单点故障导致的服务不可用。
+引入镜像队列（Mirror Queue）的机制，可以将队列镜像到集群中的其他Broker节点之上，如果集群中的一个节点失效了，队列能自动地切换到镜像中的另一个节点上以保证服务的可用性。
+
+
+
+### 10.2.2、搭建步骤
+
+1. 启动三台集群节点
+
+2. 随便找个几点添加policy
+
+   ![image-20240416135934857](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416135934857.png)
+
+3. 在node1上创建一个队列发送信息，队列存在镜像队列
+
+
+
+## 10.3、Haproxy+Keepalive实现高可用负载均衡
+
+### 10.3.1、整体架构图
+
+![image-20240416142312836](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416142312836.png)
+
+
+
+### 10.3.2、Haproxy实现负载均衡
+
+HAProxy.提供高可用性、负载均衡及基于TCPHTTP应用的代理，支持虚拟主机，它是免费、快速并且可靠的一种解决方案，包括Twitter,Reddit,StackOverflow,GitHub.在内的多家知名互联网公司在使用。HAProxy实现了一种事件驱动、单一进程模型，此模型支持非常大的井发连接数。
+
+
+
+## 10.4、Federation Exchange
+
+### 10.4.1、使用原因
+
+(broker北京)，(broker深圳)彼此之间相距甚远，网络延迟是一个不得不面对的问题。有一个在北京的业务(Client北京)需要连接(broker北京),向其中的交换器exchangeA.发送消息，此时的网络延迟很小,(Client北京)可以迅速将消息发送至exchangeA.中，就算在开启了publisherconfirm.机制或者事务机制的情况下，也可以迅速收到确认信息。此时又有个在深圳的业务(Client深圳)需要向exchangeA发送消息，那么(Client深圳)(broker北京)之间有很大的网络延迟，(Client深圳)将发送消息至exchangeA会经历一定的延迟，尤其是在开启了publisherconfirm.机制或者事务机制的情况下，(Client深圳)会等待很长的延迟时间来接收(broker北京)的确认信息，进而必然造成这条发送线程的性能降低，甚至造成一定程度上的阻塞。
+将业务(Client深圳)部署到北京的机房可以解决这个问题，但是如果(Client深圳)调用的另些服务都部署在深圳，那么又会引发新的时延问题，总不见得将所有业务全部部署在一个机房，那么容灾又何以实现?这里使用Federation插件就可以很好地解决这个问题。
+
+
+
+### 10.4.2、搭建步骤
+
+1. 需要保证每台节点单独运行
+
+2. 在每台机器上开启federation相关插件
+
+   ```shell
+   # 每台节点均需执行以下命令
+   rabbitmq-plugins enable rabbitmq_federation
+   rabbitmq-plugns enable rabbitmq_federation_management
+   ```
+
+3. 原理图
+
+   ![image-20240416144854614](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416144854614.png)
+
+4. 在下游节点（node2）配置上游节点（node1）
+
+   ![image-20240416145037682](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416145037682.png)
+
+5. 添加policy
+
+   ![image-20240416145125444](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416145125444.png)
+
+   
+
+## 10.5、Federation Queue
+
+### 10.5.1、使用原因
+
+联邦队列可以在多个Broker节点(或者集群)之间为单个队列提供均衡负载的功能。一个联邦队列可以连接一个或者多个上游队列(upstream queue)，并从这些上游队列中获取消息以满足本地消费者消费消息的需求。
+
+
+
+### 10.5.2、原理图
+
+![image-20240416145723841](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416145723841.png)
+
+
+
+## 10.6、Shovel
+
+### 10.6.1、使用原因
+
+Federation具备的数据转发功能类似，Shovel够可靠、持续地从一个Broker中的队列(作为源端，即source)拉取数据并转发至另一个Broker中的交换器(作为目的端，即destination)。作为源端的队列和作为目的端的交换器可以同时位于同一个Broker，也可以位于不同的Broker上。Shovel可以翻译为"铲子",是一种比较形象的比喻，这个"铲子"可以将消息从一方"铲子"另一方。Shovel行为就像优秀的客户端应用程序能够负责连接源和目的地、负责消息的读写及负责连接失败问题的处理。
+
+
+
+### 10.6.2、原理图
+
+![image-20240416150155077](K:\GitHub\notes\RabbitMQ\RabbitMQ.assets\image-20240416150155077.png)
+
+
+
+
+
+
+
+
+
+
+
