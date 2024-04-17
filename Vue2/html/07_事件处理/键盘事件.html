@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>键盘事件</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <label>
+        <input type="text" placeholder="按下回车提示输入" @keyup="showInfo">
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+        <input type="text" placeholder="按下回车提示输入" @keyup.Enter="showInfo">
+        <input type="text" placeholder="按下大小写输入" @keyup.caps_lock="showInfo">
+        <input type="text" placeholder="按下Tag写输入" @keydown.tag="showInfo">
+    </label>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    Vue.config.keyCodes.huiche = 13;
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {},
+        methods:{
+            showInfo(e){
+                console.log(e.key)
+                console.log(e.keyCode)
+                console.log(e.target.value)
+            }
+        }
+    })
+</script>
+</html>

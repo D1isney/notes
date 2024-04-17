@@ -7,6 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>事件修饰符</title>
     <script type="text/javascript" src="../../js/vue2.min.js"></script>
+    <style>
+        .list {
+            width: 200px;
+            height: 200px;
+            background: orange;
+            overflow: auto;
+        }
+
+        li {
+            height: 100px;
+        }
+    </style>
 </head>
 <body>
 <div id="root">
@@ -30,7 +42,17 @@
 
     <div @click.self="showInfo">
         <button @click="showInfo">Myself冒泡事件</button>
-    </div>s
+    </div>
+
+    <!--    先做默认的行为-->
+    <ul @wheel.passive="demo" class="list">
+        <!--    <ul @scroll="demo" class="list">-->
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
 
 
 </div>
@@ -45,8 +67,14 @@
             showInfo(event) {
                 alert("123")
             },
-            showMsg(event){
+            showMsg(event) {
                 console.log(event)
+            },
+            demo() {
+                // for (let i = 0; i < 100000; i++) {
+                //     console.log("#")
+                // }
+                // console.log("结束了")
             }
         }
     })
