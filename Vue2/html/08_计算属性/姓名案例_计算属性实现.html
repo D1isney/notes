@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>姓名案例_计算属性实现</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    姓： <label>
+    <input type="text" v-model="firstName">
+</label>
+    <br>
+    名： <label>
+    <input type="text" v-model="lastName">
+</label>
+    <br>
+    姓名：<span>{{fullName}}</span>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {
+            firstName: '张',
+            lastName: '三'
+        },
+        computed:{
+            fullName:{
+                // get有什么作用，当有人读取fullName的时候，get就会被调用，且返回值就位fullName的值
+                get(){
+                    return this.firstName + "-" + this.lastName;
+                },
+                set(value){
+                    console.log(value)
+                }
+            }
+        }
+    })
+</script>
+</html>
