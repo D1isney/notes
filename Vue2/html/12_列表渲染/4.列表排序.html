@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表排序</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <label>
+        <input type="text" v-model="keyWord" placeholder="请输入关键词">
+        <button @click="sortType = 2">年龄升序</button>
+        <button @click="sortType = 1">年龄降序</button>
+        <button @click="sortType = 0">顺序</button>
+    </label>
+    <ul>
+        <li v-for="(item,index) of filPersons" :key="item.id">
+            {{item.name}} - {{item.age}} - {{item.sex}}
+        </li>
+    </ul>
+
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {
+            sortType: 0,  // 0代表原顺序  1代表降序  2代表降序
+            keyWord: '',
+            persons: [
+                {id: '001', name: '马冬梅', age: 18, sex: '女'},
+                {id: '002', name: '周冬雨', age: 19, sex: '女'},
+                {id: '003', name: '周杰伦', age: 20, sex: '男'},
+                {id: '004', name: '温兆伦', age: 21, sex: '男'}
+            ],
+            filPersons: [],
+        },
+        computed: {
+            filPersons: function () {
+                let arr = this.persons.filter((p) => {
+                    return p.name.indexOf(this.keyWord) !== -1;
+                })
+                if (this.sortType) {
+                    arr.sort((a, b) => {
+                        return this.sortType === 1 ? b.age - a.age : a.age - b.age;
+                    })
+                }
+                return arr;
+            }
+        }
+    })
+</script>
+</html>
