@@ -5,10 +5,15 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title></title>
+    <title>Key的原理</title>
     <script type="text/javascript" src="../../js/vue2.min.js"></script>
 </head>
 <body>
+<!--
+    当没有指定key的时候，会使用diff算法去比较虚拟dom
+    当在列表前添加东西时候，与列表同意个闭包的数据 可能会不变
+    key要是唯一标识
+-->
 <div id="root">
     <h1>Hello Vue</h1>
     <h2>人员列表</h2>
