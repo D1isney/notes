@@ -7,6 +7,30 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>检测数据改变的原理</title>
     <script type="text/javascript" src="../../js/vue2.min.js"></script>
+    <script>
+        let data = {
+            name: 'Vue',
+            address: "广州"
+        }
+        const obs = new Observer(data);
+
+        let vm = {}
+        vm._data = obs;
+
+        function Observer(obj) {
+            let keys = Object.keys(obj);
+            keys.forEach((k) => {
+                Object.defineProperty(this, k, {
+                    get() {
+                        return obj[k]
+                    },
+                    set(val) {
+                        obj[k] = val
+                    }
+                })
+            })
+        }
+    </script>
 </head>
 <body>
 <div id="root">
