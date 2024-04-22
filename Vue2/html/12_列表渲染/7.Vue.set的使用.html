@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue.set的使用</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <h2>{{name}}</h2>
+    <h2>{{address}}</h2>
+    <h3>{{students.name}}</h3>
+    <h3 v-if="students.sex">性别：{{students.sex}}</h3>
+    <h3>{{students.age.rAge}}</h3>
+    <h3>{{students.age.sAge}}</h3>
+    <button @click="addStudentSex">添加一个Students添加一个性别</button>
+    <ul>
+        <li v-for="(item,index) in students.friends" :key="index">
+            {{item.name}} - {{item.age}}
+        </li>
+    </ul>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {
+            name: 'Vue',
+            address: '广东广州',
+            students: {
+                name: 'jack',
+                age: {
+                    rAge: 40,
+                    sAge: 29
+                },
+                friends: [
+                    {name: "jerry", age: 25},
+                    {name: 'tom', age: 30}
+                ]
+            },
+        },
+        methods:{
+            addStudentSex(){
+                // Vue.set(this.students,'sex','男')
+                this.$set(this.students,'sex','男')
+            }
+        }
+    })
+</script>
+</html>
