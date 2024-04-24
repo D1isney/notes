@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>收集表单数据</title>
+    <script type="text/javascript" src="../../js/vue2.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <form @submit.prevent="demo">
+        <label for="demo1">账号：</label><input type="text" id="demo1" v-model.trim="userInfo.account">
+        <br>
+        <label for="demo2">密码：</label><input type="password" id="demo2" v-model="userInfo.password">
+        <br>
+        <label for="demo3">年龄：</label><input type="number" id="demo3" v-model.number="userInfo.age">
+        <br>
+        <label>性别：</label>男<label>
+        <input type="radio" name="sex" value="male" v-model="userInfo.sex">
+        </label>女<label>
+            <input type="radio" name="sex" value="female" v-model="userInfo.sex">
+        </label>
+        <br>
+        爱好：<label>
+        学习<input type="checkbox" v-model="userInfo.hobby" value="study">
+        </label>
+        <label>
+            打游戏<input type="checkbox" v-model="userInfo.hobby" value="game">
+        </label>
+        <label>
+            吃饭<input type="checkbox" v-model="userInfo.hobby" value="eat">
+        </label>
+        <br>
+        <label>
+            所属校区：
+            <select v-model="userInfo.city">
+                <option value="">请选择校区</option>
+                <option value="guangzhou">广州</option>
+                <option value="qingyuan">清远</option>
+                <option value="shenzhen">深圳</option>
+            </select>
+        </label>
+        <br>
+        其他消息：
+        <label>
+            <textarea v-model.lazy="userInfo.other"></textarea>
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" v-model="userInfo.agree">
+            阅读并且接受：
+        </label>
+        <a href="https://www.baidu.com">《用户协议》</a>
+        <br>
+        <button>提交</button>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {
+            userInfo:{
+                account: '',
+                password: '',
+                age:'',
+                sex:'male',
+                hobby:[],
+                city:'guangzhou',
+                other:'',
+                agree:''
+            },
+        },
+        methods:{
+            demo(){
+                console.log(this.userInfo)
+                console.log(JSON.stringify(this.userInfo))
+            }
+        }
+    })
+</script>
+</html>
