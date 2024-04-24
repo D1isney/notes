@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>过滤器</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+    <script type="text/javascript" src="../../js/dayjs.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <h2>显示格式化的时间</h2>
+    <!--    计算属性实现-->
+    <h2>现在是：{{fmtTime}}</h2>
+    <!--    method实现-->
+    <h3>现在是：{{getFmtTime()}}</h3>
+    <!--    过滤器实现-->
+    <h4>现在是：{{time | timeFormat1}}</h4>
+    <h4>现在是：{{time | timeFormat2('YYYY_MM_DD')}}</h4>
+    <h4>现在是：{{time | timeFormat2('YYYY_MM_DD') | mySlice}}</h4>
+</div>
+<div id="root2">
+    <h2>{{msg | mySlice}}</h2>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    Vue.filter('mySlice',function (val) {
+        return val.slice(0, 4)
+    })
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {
+            time: Date.now(),
+        },
+        methods: {
+            getFmtTime() {
+                return dayjs(this.time).format("YYYY-MM-DD HH:mm:ss")
+            }
+        },
+        computed: {
+            fmtTime() {
+                return dayjs(this.time).format("YYYY-MM-DD HH:mm:ss")
+            }
+        },
+        // 过滤器
+        filters: {
+            timeFormat1(val) {
+                return dayjs(val).format("YYYY年MM月DD日 HH:mm:ss")
+            },
+            timeFormat2(val, str = "YYYY年MM月DD日") {
+                return dayjs(val).format(str)
+            },
+            mySlice(val) {
+                return val.slice(0, 4)
+            }
+        }
+    })
+    new Vue({
+        el: '#root2',
+        data: {
+            msg:'Hello'
+        },
+        // 过滤器
+        filters: {
+            mySlice(val) {
+                return val.slice(0, 4)
+            }
+        }
+    })
+</script>
+</html>
