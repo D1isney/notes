@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>引出生命周期</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1 :style="{opacity: opacity}">Hello Vue</h1>
+    <h1 :style="{opacity}">Hello Vue</h1>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {
+            opacity: 1
+        },
+        methods: {
+            // change() {
+            //     setInterval(() => {
+            //         this.opacity -= 0.01;
+            //         if (this.opacity <= 0) this.opacity = 1;
+            //     },16)
+            // }
+        },
+
+        //  挂载
+        //  vue完成模版的解析并把初始的真实的DOM元素放入（挂载）页面后调用mounted
+        mounted(){
+            setInterval(() => {
+                this.opacity -= 0.01;
+                if (this.opacity <= 0) this.opacity = 1;
+            }, 16)
+        }
+    })
+</script>
+</html>
