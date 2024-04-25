@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>分析生命周期</title>
+    <script type="text/javascript" src="../../js/vue2.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <h2>当前的n值是：{{n}}</h2>
+    <h1 :style="{opacity}">Hello Vue</h1>
+    <button @click="stop">点我停止变换</button>
+    <button @click="opacity=1">透明度设置为1</button>
+    <button @click="add">点我n+1</button>
+    <button @click="bye">点我销毁VM</button>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        // template:`
+        //         <div>
+        //             <h1>Hello Vue</h1>
+        //             <h2>当前的n值是：{{n}}</h2>
+        //             <button @click="add">点我n+1</button>
+        //         </div>
+        // `,
+        el: '#root',
+        data: {
+            n: 0,
+            opacity: 1
+        },
+        methods: {
+            add() {
+                this.n++
+            },
+            bye() {
+                console.log("bye，数据不再更新")
+                this.$destroy()
+            },
+            stop() {
+                clearInterval(this.timer)
+            }
+        },
+        //  数据代理还没有
+        beforeCreate() {
+            console.log("beforeCreate")
+            console.log(this)
+            // debugger;
+        },
+        //  数据监测、数据代理
+        created() {
+            console.log("created")
+            console.log(this)
+            // debugger;
+        },
+        // 此时页面呈现的是未经Vue编译的DOM结构
+        //  所有对DOM的操作，最终都不奏效
+        beforeMount() {
+            console.log("beforeMount")
+            console.log(this);
+            //  不要在这里操作DOM。
+            //  无效的操作DOM，都会被Vue的虚拟DOM加载到真实DOM的时候覆盖
+            // document.querySelector("h2").innerText = 'Vue';
+            // debugger;
+        },
+        //  页面呈现的是经过Vue编译的DOM
+        //  对DOM的操作均有效（尽可能避免）一般在此进行：开启定时器、发送网络请求、订阅消息、绑定定义事件等初始化操作
+        //  重要的钩子
+        mounted() {
+            console.log("mounted")
+            console.log(this)
+            //  有效的操作DOM，但是不建议，因为DOM刚交给Vue去操作后，又手动的修改了DOM
+            // document.querySelector("h2").innerText = 'Vue';
+            // debugger;
+            this.timer = setInterval(() => {
+                this.opacity -= 0.01;
+                if (this.opacity <= 0) this.opacity = 1;
+            }, 16)
+        },
+
+        //  当data发生变化时 when data changes
+        //  此时数据是新的，但是页面是旧的，即：页面未和数据保持同步
+        beforeUpdate() {
+            console.log("beforeUpdate")
+            console.log(this.n)
+            // debugger;
+        },
+        //  此时，数据是新的，页面也是新的，即：页面和数据保持同步
+        updated() {
+            console.log("updated")
+            console.log(this.n)
+            // debugger;
+        },
+
+        //  销毁流程
+        //  重要的钩子
+        //  此时vm中所有的：data、methods、指令等等，都处于可用状态，马上要执行销毁过程，一般在此阶段：关闭定时器、取消订阅消息、解绑自定义事件等收尾操作
+        /**
+         * 在大多数场景中你不应该调用这个方法。最好使用 v-if 和 v-for 指令以数据驱动的方式控制子组件的生命周期。
+         */
+        beforeDestroy() {
+            console.log('beforeDestroy');
+            //  不会在触发
+            this.add();
+        },
+
+        //  react没有这个钩子
+        destroyed() {
+            console.log('destroyed');
+        }
+
+    })
+</script>
+</html>
