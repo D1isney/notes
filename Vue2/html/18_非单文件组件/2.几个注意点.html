@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>几个注意点</title>
+    <script type="text/javascript" src="../../js/vue2.js"></script>
+
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <hr>
+    <my-school></my-school>
+    <!--    必须保证在脚手架环境下-->
+    <!--    <my-school/>-->
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成生产模式
+
+    //  创建组件
+    const school = Vue.extend({
+        //  指定名字，在开发者工具
+        name: 'school',
+        //  不要写el配置项。最终所有的组件都会被vm管理
+        template: `
+            <div>
+                <h2> 学校名字：{{schoolName}}</h2>
+                <h2> 学校地址：{{schoolAddress}}</h2>
+                <button @click="showName">点我提示学校名</button>
+            </div>
+        `,
+        data() {
+            return {
+                schoolName: 'Vue',
+                schoolAddress: '广州'
+            }
+        },
+        methods: {
+            showName() {
+                console.log(this.schoolName)
+            }
+        }
+    })
+
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {},
+        //  注册组件
+        components: {
+            // 名：组件
+            'my-school': school,
+            //  脚手架环境下
+            // MySchool: school,
+        },
+    })
+</script>
+</html>
