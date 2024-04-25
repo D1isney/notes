@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-fbind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义指令</title>
+    <script type="text/javascript" src="../../js/vue2.min.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <h2>当前的n值是：
+        <span v-text="n"></span>
+    </h2>
+    <h2>
+        放大十倍后的n值是：
+        <span v-big="n+1"></span>
+    </h2>
+    <button @click="n++">点我n+1</button>
+    <hr>
+    <label>
+        <input type="text" v-fbind:value="n">
+    </label>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成上产模式
+    //  创建Vue实例
+    const x = new Vue({
+        el: '#root',
+        data: {
+            n: 1
+        },
+        directives: {
+            big(element, binding) {
+                element.innerText = binding.value * 10
+                console.dir(element)
+                console.dir(binding)
+                console.log(element instanceof HTMLElement)
+            },
+            fbind: {
+                bind(element, binding) {
+                    element.innerText =  binding.value
+                },
+                //  指令所在元素被插入页面时
+                inserter(element, binding) {
+                    element.focus();
+                },
+                //  指令所在的模版被重新解析时
+                update(element, binding) {
+                    element.innerText =  binding.value
+                }
+            }
+        }
+    })
+</script>
+</html>
