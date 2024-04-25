@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>嵌套组件</title>
+    <script type="text/javascript" src="../../js/vue2.js"></script>
+</head>
+<body>
+<div id="root">
+    <h1>Hello Vue</h1>
+    <hello></hello>
+    <school></school>
+    <hr>
+    <app></app>
+</div>
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip = true;//  阻止Vue启动时生成生产模式
+
+    const hello = Vue.extend({
+        template:`
+            <div>
+                <h2>你好Vue</h2>
+            </div>
+        `
+    })
+
+
+    const student = Vue.extend({
+        template: `
+            <div>
+                <h2> 学生名字：{{studentName}}</h2>
+                <h2> 学生年龄：{{studentAge}}</h2>
+            </div>
+        `,
+        data() {
+            return {
+                studentName: '张三',
+                studentAge: 20
+            }
+        }
+    })
+
+    //  创建组件
+    const school = Vue.extend({
+        //  指定名字，在开发者工具
+        name: 'school',
+        //  不要写el配置项。最终所有的组件都会被vm管理
+        template: `
+            <div>
+                <h2> 学校名字：{{schoolName}}</h2>
+                <h2> 学校地址：{{schoolAddress}}</h2>
+                <button @click="showName">点我提示学校名</button>
+                <student></student>
+            </div>
+        `,
+        data() {
+            return {
+                schoolName: 'Vue',
+                schoolAddress: '广州'
+            }
+        },
+        methods: {
+            showName() {
+                console.log(this.schoolName)
+            }
+        },
+        // 注册组件、局部的
+        components:{
+            student
+        }
+    })
+    //  定义app组件、管理所有组件
+    const app = Vue.extend({
+        template:`
+            <div>
+                <hello></hello>
+                <school></school>
+            </div>
+        `,
+        components:{
+            school,
+            hello
+        }
+    })
+
+
+    //  创建Vue实例
+    const x = new Vue({
+        //  容器都可以不写
+        // template:`
+        //     <app></app>
+        // `,
+        el: '#root',
+        data: {},
+        components: {
+            // 名：组件
+            school: school,
+            hello,
+            app
+        },
+    })
+</script>
+</html>
