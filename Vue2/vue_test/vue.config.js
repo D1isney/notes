@@ -2,7 +2,7 @@ module.exports = {
   pages: {
     index: {
       // page 的入口
-      entry: 'src/main.js',
+      entry: '02_src_ref属性/main.js',
       // 模板来源
       template: 'public/index.html',
       // 在 dist/index.html 的输出
@@ -18,7 +18,7 @@ module.exports = {
     // 模板会被推导为 `public/subpage.html`
     // 并且如果找不到的话，就回退到 `public/index.html`。
     // 输出文件名会被推导为 `subpage.html`。
-    subpage: 'src/main.js'
+    subpage: '02_src_ref属性/main.js'
   },
   lintOnSave:false /*关闭语法检查*/
 }
