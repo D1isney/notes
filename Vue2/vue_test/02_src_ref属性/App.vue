@@ -26,6 +26,12 @@ export default {
       console.log("==============")
       console.log(this.$refs.sch)
       console.log(document.getElementById("sch"));
+    //     //  id拿
+    //   console.log("真实DOM对象："+document.getElementById('title'));
+    //   //  ref拿
+    //   console.log("真实DOM对象："+this.$refs.title);
+    //   console.log("vc实例对象："+this.$refs)
+    //   console.log("vc实例对象的真实DOM对象："+document.getElementById("sch"));
     }
   },
   components:{Student,School}
