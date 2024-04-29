@@ -7,7 +7,7 @@
       <!--这里修改了从List修改过来的props,这里的不允许改是浅层次，就是如果props是一个对象则这个修改这个对象的某一个属性vue是放行的-->
       <!-- <input type="checkbox" v-model="todo.done"/>-->
       <span v-show="!todo.isEdit">{{ todo.title }}</span>
-      <input v-show="todo.isEdit" type="text" :value="todo.title" @blur="handleBlur(todo,$event)">
+      <input v-show="todo.isEdit" ref="inputTitle" type="text" :value="todo.title" @blur="handleBlur(todo,$event)">
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
     <button class="btn btn-edit" v-show="!todo.isEdit" style="margin-right: 5px" @click="handleEdit(todo)">编辑</button>
@@ -46,14 +46,25 @@ export default {
       } else {
         this.$set(todo, 'isEdit', true)
       }
-      console.log(todo)
+      // console.log(todo)
+
+      // 获取焦点 //没有获取到
+      //  执行完了handleEdit方法之后，当走这句话的时候，input还没渲染到页面上
+      //  加个延时就可以
+      // this.$refs.inputTitle.focus()
+
+      // 下一轮
+      this.$nextTick(()=>  {
+        //   Dom节点更新之后，才会生效
+        this.$refs.inputTitle.focus()
+      })
     },
     // 失去焦点回调
     handleBlur(todo, e) {
       todo.isEdit = false
 
-      if(!e.target.value.trim()){
-        return  alert("输入不能为空")
+      if (!e.target.value.trim()) {
+        return alert("输入不能为空")
       }
       this.$bus.$emit('updateTodo', todo.id, e.target.value)
     }
