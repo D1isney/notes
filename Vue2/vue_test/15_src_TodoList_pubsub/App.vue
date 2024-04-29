@@ -54,6 +54,12 @@ export default {
     },
     clearAllDoneTodo() {
       this.todos = this.todos.filter(todo => !todo.done)
+    },
+    //  更新一个todo
+    updateTodo(id,title){
+      this.todos.forEach((todo)=>{
+        if (todo.id === id) todo.title = title
+      })
     }
   },
   watch: {
@@ -71,16 +77,19 @@ export default {
     // 全局事件总线
     // this.$bus.$on('deleteTodo',this.deleteTodo)
     this.pid =pubsub.subscribe('deleteTodo',this.deleteTodo)
+
+    this.$bus.$on('updateTodo',this.updateTodo)
   },
   // 解绑
   beforeDestroy() {
     this.$bus.$off('checkTodo')
+    this.$bus.$off('updateTodo')
     // this.$bus.$off('deleteTodo')
     pubsub.unsubscribe(this.pid);
   }
 }
 </script>
-<style scoped>
+<style>
 /*base*/
 body {
   background: #fff;
@@ -103,6 +112,11 @@ body {
   color: #fff;
   background-color: #da4f49;
   border: 1px solid #bd362f;
+}
+.btn-edit {
+  color: #fff;
+  background-color: #7edaee;
+  border: 1px solid #297a85;
 }
 
 .btn-danger:hover {

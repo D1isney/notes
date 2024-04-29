@@ -6,13 +6,16 @@
       <!--v-model数据的双向绑定，checkbox使用v-model来双向绑定其是否被勾选,也可以实现效果但不推荐(因为其实修改了props中的数据)-->
       <!--这里修改了从List修改过来的props,这里的不允许改是浅层次，就是如果props是一个对象则这个修改这个对象的某一个属性vue是放行的-->
       <!-- <input type="checkbox" v-model="todo.done"/>-->
-      <span>{{ todo.title }}</span>
+      <span v-show="!todo.isEdit">{{ todo.title }}</span>
+      <input v-show="todo.isEdit" type="text" :value="todo.title" @blur="handleBlur(todo,$event)">
     </label>
     <button class="btn btn-danger" @click="handleDelete(todo.id)">删除</button>
+    <button class="btn btn-edit" v-show="!todo.isEdit" style="margin-right: 5px" @click="handleEdit(todo)">编辑</button>
   </li>
 </template>
 <script>
 import pubsub from "pubsub-js";
+
 export default {
   name: 'Item',
   //声明接收todo
@@ -24,17 +27,35 @@ export default {
     handleCheck(id) {
       // this.checkTodo(id);
       // 触发事件、发数据
-      this.$bus.$emit('checkTodo',id)
+      this.$bus.$emit('checkTodo', id)
     },
     handleDelete(id) {
       if (confirm(`确定删除编号为${id}的todo吗`)) {
         // console.log(id);
         // this.deleteTodo(id);
-      //   触发事件、发数据
-      // this.$bus.$emit('deleteTodo',id)
+        //   触发事件、发数据
+        // this.$bus.$emit('deleteTodo',id)
 
-        pubsub.publish('deleteTodo',id)
+        pubsub.publish('deleteTodo', id)
       }
+    },
+    handleEdit(todo) {
+      //  判断有没有这个属性
+      if (todo.hasOwnProperty('isEdit')) {
+        todo.isEdit = true
+      } else {
+        this.$set(todo, 'isEdit', true)
+      }
+      console.log(todo)
+    },
+    // 失去焦点回调
+    handleBlur(todo, e) {
+      todo.isEdit = false
+
+      if(!e.target.value.trim()){
+        return  alert("输入不能为空")
+      }
+      this.$bus.$emit('updateTodo', todo.id, e.target.value)
     }
 
   },
