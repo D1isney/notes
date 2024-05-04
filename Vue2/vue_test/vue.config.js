@@ -1,24 +1,56 @@
 module.exports = {
   pages: {
     index: {
-      // page 的入口
       entry: '19_src_配置代理服务器/main.js',
-      // 模板来源
       template: 'public/index.html',
-      // 在 dist/index.html 的输出
       filename: 'index.html',
-      // 当使用 title 选项时，
-      // template 中的 title 标签需要是 <title><%= htmlWebpackPlugin.options.title %></title>
       title: 'Index Page',
-      // 在这个页面中包含的块，默认情况下会包含
-      // 提取出来的通用 chunk 和 vendor chunk。
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     },
-    // 当使用只有入口的字符串格式时，
-    // 模板会被推导为 `public/subpage.html`
-    // 并且如果找不到的话，就回退到 `public/index.html`。
-    // 输出文件名会被推导为 `subpage.html`。
     subpage: '19_src_配置代理服务器/main.js'
   },
+
+  // 开启代理服务器
+  // 解决跨域的问题
+
+  // 方式1
+  // 后端8090、不能配置多个代理
+  // devServer: {
+  //   proxy: 'http://localhost:8090'
+  // },
+
+  // 方式2
+  // 可以多个代理服务器
+  devServer: {
+    proxy: {
+      // 请求前缀
+      '/api': {
+        target: 'http://localhost:8090',
+        // 配置/api开头的 意思就是去掉这个api
+        pathRewrite:{'^/api':''},
+        // 用于支持webSocket、默认true
+        ws: true,
+        //  骗过服务器，冒充自己是8090、默认true
+        // 用于控制请求头的host值
+        changeOrigin: true
+      },
+      // 简写
+      // '/foo': {
+      //   target: '<other_url>'
+      // }
+      // 请求前缀
+      '/demo': {
+        target: 'http://localhost:8090',
+        // 配置/api开头的 意思就是去掉这个api
+        pathRewrite:{'^/demo':''},
+        // 用于支持webSocket、默认true
+        ws: true,
+        //  骗过服务器，冒充自己是8090、默认true
+        // 用于控制请求头的host值
+        changeOrigin: true
+      },
+    }
+  },
+
   lintOnSave:false /*关闭语法检查*/
 }
