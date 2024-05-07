@@ -1,13 +1,13 @@
 module.exports = {
   pages: {
     index: {
-      entry: '19_src_配置代理服务器/main.js',
+      entry: '23_src_求和案例_纯vue版/main.js',
       template: 'public/index.html',
       filename: 'index.html',
       title: 'Index Page',
       chunks: ['chunk-vendors', 'chunk-common', 'index']
     },
-    subpage: '19_src_配置代理服务器/main.js'
+    subpage: '23_src_求和案例_纯vue版/main.js'
   },
 
   // 开启代理服务器
