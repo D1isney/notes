@@ -2,24 +2,26 @@
   <ul>
     <li>
 <!--      ID：{{ $route.query.id }}-->
-      ID：{{ $route.params.id }}
+<!--      ID：{{ a }}-->
+      ID：{{ id }}
       <br>
 <!--      Title：{{ $route.query.title }}-->
-      Title：{{ $route.params.title }}
+      Title：{{ title }}
     </li>
   </ul>
 </template>
 <script>
 export default {
-  name:'Detail',
-  data(){
-    return{}
+  name: 'Detail',
+  data() {
+    return {}
   },
-  methods:{},
-  components:{},
+  methods: {},
+  components: {},
   mounted() {
-    console.log(this.$route)
-  }
+    // console.log(this.$route)
+  },
+  props: ['id', 'title']
 }
 </script>
 <style>

@@ -27,8 +27,23 @@ export default new VueRouter({
                     component: Message,
                     children: [
                         {
-                            path: 'detail/:id/:title',
-                            component: Detail
+                            name: 'detail',
+                            // path: 'detail/:id/:title',
+                            path: 'detail',
+                            component: Detail,
+                            // props的第一种写法、传给Detail组件
+                            // props: {
+                            //     a: 1,
+                            //     b: 'hello'
+                            // }
+
+                            //     props的第二种写法，值为布尔值，若布尔值微针，就会把该组件收到的所有的params参数，以props的形式传给Detail组件
+                            // props: true
+
+                            //     props的第三种写法，
+                            props($route){
+                                return {id:$route.query.id,title:$route.query.title}
+                            }
                         }
                     ]
                 }

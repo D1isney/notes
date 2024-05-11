@@ -6,17 +6,17 @@
         <!--        <router-link :to="`/home/message/detail?id=${item.id}&title=${item.title}`">{{ item.title }}</router-link>-->
 
         <!--        跳转路由并携带query参数，to的对象写法-->
-        <!--        <router-link :to="{-->
-        <!--          path:'/home/message/detail',-->
-        <!--          query:{-->
-        <!--            id: item.id,-->
-        <!--            title: item.title-->
-        <!--          }-->
-        <!--        }">-->
-        <!--          {{ item.title }}-->
-        <!--        </router-link>-->
+        <router-link :to="{
+                  name:'detail',
+                  query:{
+                    id: item.id,
+                    title: item.title
+                  }
+                }">
+          {{ item.title }}
+        </router-link>
 
-        <router-link :to="`/home/message/detail/${item.id}/${item.title}`">{{ item.title }}</router-link>
+        <!--        <router-link :to="`/home/message/detail/${item.id}/${item.title}`">{{ item.title }}</router-link>-->
       </li>
     </ul>
     <hr>
