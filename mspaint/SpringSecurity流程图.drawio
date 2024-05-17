@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-05-17T03:34:24.916Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="2BC5feJMtifgrVNTwMMQ" version="24.4.3" type="github">
+<mxfile host="app.diagrams.net" modified="2024-05-17T03:42:49.056Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="c4lTJc6p-32z0BE_iM94" version="24.4.3" type="github">
   <diagram name="第 1 页" id="PI5dT3Lc4GaeCLgzhAQK">
     <mxGraphModel dx="1134" dy="649" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -154,6 +154,9 @@
         </mxCell>
         <mxCell id="G3oFuIfRzzLtqqbROD1N-15" value="Redis" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
           <mxGeometry x="400" y="830" width="210" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="G3oFuIfRzzLtqqbROD1N-18" value="思路分析：&lt;div&gt;1、登录&lt;/div&gt;&lt;div&gt;1.1、自定义登录接口&lt;/div&gt;&lt;div&gt;调用ProviderManager的方法进行认证，如果通过生成JWT，把用户信息存入Redis中&lt;/div&gt;&lt;div&gt;2.2、自定义UserDetailsService&lt;/div&gt;&lt;div&gt;在这个实现类中去查询数据库&lt;/div&gt;&lt;div&gt;2、校验&lt;/div&gt;&lt;div&gt;2.1、定义JWT认证过滤器&lt;/div&gt;&lt;div&gt;获取token&lt;/div&gt;&lt;div&gt;解析token获取其中的userid&lt;/div&gt;&lt;div&gt;从redis中获取用户信息&lt;/div&gt;&lt;div&gt;存入SecurityContextHolder&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="1450" width="780" height="460" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
