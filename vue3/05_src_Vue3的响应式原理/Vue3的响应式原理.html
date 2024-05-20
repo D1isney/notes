@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    let person = {
+        name: '张三',
+        age: 18
+    }
+
+    //  模拟Vue2中实现响应式
+    //  #region
+    // let p = {}
+    // Object.defineProperty(p,'name',{
+    //     //  可以删除了
+    //     configurable:true,
+    //     get(){
+    //         //  有人独处name时调用
+    //         return person.name;
+    //     },
+    //     set(val){
+    //         //  有人修改name时调用
+    //         person.name = val
+    //     }
+    // })
+    // Object.defineProperty(p,'age',{
+    //     get(){
+    //         //  有人独处age时调用
+    //         return person.age;
+    //     },
+    //     set(val){
+    //         //  有人修改age时调用
+    //         person.age = val
+    //     }
+    // })
+    //  $endregion
+
+    //  模拟Vue3中实现响应式
+    const p = new Proxy(person, {
+        //  改
+        get(target, propName) {
+            // return target[propName]
+            return Reflect.get(target,propName)
+        },
+        //  增改
+        set(target, propName, val) {
+            // target[propName] = val
+            Reflect.set(target,propName,val)
+        },
+        //  删
+        deleteProperty(target, propName) {
+            // return delete target[propName]
+            return Reflect.deleteProperty(target, propName)
+        }
+    })
+
+    //  通过反射对象实现
+    let obj = {a: 1, b: 2}
+    const x1 =  Reflect.defineProperty(obj,'c',{
+        get(){
+            return 3
+        }
+    })
+    const x2 =  Reflect.defineProperty(obj,'c',{
+        get(){
+            return 4
+        }
+    })
+
+
+
+</script>
+</body>
+</html>
