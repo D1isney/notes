@@ -41,7 +41,7 @@ export default {
       //  这样写响应式就没有了
       name: person.name,
       // 这样写就是响应式的
-      age: toRef(person, "age"),
+      age: toRef(person,"age"),
       //  这是新的，改的不是上面的person
       // age:ref(person.age)
       name1,
