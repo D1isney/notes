@@ -26,19 +26,24 @@
 
 ## 技能
 
-### Web基础
+### 前端
 
-- HTML、CSS、JavaScript
-- Vue2、Element UI
+- HTML、CSS、JavaScript、ES6
+- Vue2、Vue3、Element UI
 - Jquery、Axios、Ajax
+- 熟悉使用ApiFox、ApiPost、PostMan
 
 ### 后端
 
 - 熟悉Java基础，如Java框架、多线程和反射等
-- 掌握Spring、SpringBoot、Mybatis、SpringMVC等主流框架
-- 掌握MySQL关系型数据库
-- 掌握Redis非关系型数据库
-- 掌握Spring Security、Shiro前后端分离认证和权限管理
+- 熟悉Spring、Spring Boot、Spring MVC等主流框架
+- 熟悉Mybatis、Mabatis Plus、Mapper4
+- 熟悉MySQL关系型数据库
+- 熟悉Redis非关系型数据库
+- 熟悉Spring Security、Shiro
+- 掌握JWT
+- 掌握Spring Cloud
+- 掌握RabbitMQ
 - 掌握Linux常用指令
 - 熟悉使用IDEA、Git、Maven等Java开发工具
 
