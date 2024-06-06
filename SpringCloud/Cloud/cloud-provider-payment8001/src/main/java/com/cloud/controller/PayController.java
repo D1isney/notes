@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,10 +54,8 @@ public class PayController {
         return ResultData.success(payService.getById(id));
     }
 
-    @GetMapping("/pau/getAll")
-    public List<Pay> getAllPay(){
-        return payService.getAll();
-    }
+    @Value("${server.port}")
+    private String port;
 
     //  手写异常捕捉
     @GetMapping(value = "/pay/error")
@@ -70,6 +69,16 @@ public class PayController {
             return ResultData.fail(ReturnCodeEnum.RC500.getCode(), e.getMessage());
         }
         return ResultData.success(integer);
+    }
+
+    @GetMapping("/pau/getAll")
+    public List<Pay> getAllPay() {
+        return payService.getAll();
+    }
+
+    @GetMapping(value = "/pay/get/info")
+    public String getInfoByConsul(@Value("${disney.info}") String info) {
+        return "Info：" + info + "\t" + port;
     }
 
 }

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cloud-payment-service8001
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+      config:
+        profile-separator: '-' #分隔符，默认是， 现在改成-
+        format: YAML
