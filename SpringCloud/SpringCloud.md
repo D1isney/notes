@@ -1397,12 +1397,897 @@ void、数值、String、对象entity、Map
       }
       ```
 
+   3. 修改PayController
+
+      ```java
+      package com.cloud.controller;
       
+      import cn.hutool.core.bean.BeanUtil;
+      import com.cloud.entities.Pay;
+      import com.cloud.entities.PayDTO;
+      import com.cloud.resp.ResultData;
+      import com.cloud.service.PayService;
+      import io.swagger.v3.oas.annotations.Operation;
+      import io.swagger.v3.oas.annotations.tags.Tag;
+      import jakarta.annotation.Resource;
+      import lombok.extern.slf4j.Slf4j;
+      import org.springframework.web.bind.annotation.*;
+      
+      import java.util.List;
+      
+      @RestController
+      @Slf4j
+      @Tag(name="支付微服务模块",description = "支付CRUD")
+      public class PayController {
+      
+          @Resource
+          private PayService payService;
+      
+          @PostMapping("/pay/add")
+          @Operation(summary = "新增",description = "新增支付流水方法，json串做参数")
+          public ResultData<String> addPay(@RequestBody Pay pay) {
+              System.out.println(pay.toString());
+              int i = payService.add(pay);
+              return ResultData.success("成功插入记录，返回值：" + i);
+          }
+      
+          @DeleteMapping(value = "/pay/delete/{id}")
+          @Operation(summary = "删除",description = "删除支付方法")
+          public ResultData<Integer> deletePay(@PathVariable("id") Integer id) {
+              return ResultData.success(payService.delete(id));
+          }
+      
+      
+          @PutMapping(value = "/pay/update")
+          @Operation(summary = "修改",description = "修改支付流水方法")
+          public ResultData<String> updatePay(@RequestBody PayDTO patDTO) {
+              Pay pay = new Pay();
+      
+              BeanUtil.copyProperties(patDTO, pay);
+              int i = payService.update(pay);
+              return ResultData.success("成功修改记录，返回值：" + i);
+          }
+      
+          @GetMapping("/pay/get/{id}")
+          @Operation(summary = "按照ID查流水",description = "查询支付流水方法")
+          public ResultData<Pay> getById(@PathVariable("id") Integer id) {
+              return ResultData.success(payService.getById(id));
+          }
+      
+          @GetMapping("/pau/getAll")
+          public List<Pay> getAllPay(){
+              return payService.getAll();
+          }
+      }
+      ```
 
+   4. 结论
 
+      通过ResultData.success()对返回结果进行包装后返回给前端 --- > 优化驱动力
+
+   5. 查询的一个Bug
+
+      ```java
+      @GetMapping("/pay/get/{id}")
+      @Operation(summary = "按照ID查流水",description = "查询支付流水方法")
+      public ResultData<Pay> getById(@PathVariable("id") Integer id) {
+          if (id == -4) throw new RuntimeException("传进来不能是负数");
+          return ResultData.success(payService.getById(id));
+      	//	前端会爆500错误
+      }
+      ```
 
 
 
 ### 3.3.3、全局异常接入返回的标准格式
 
 有统一返回值 + 全局统一异常
+
+1. 为什么需要全局异常处理器
+
+   不用手写try-catch
+
+2. 新建全局异常类GlobalExceptionHandler
+
+   ```
+   package com.cloud.exp;
+   
+   import com.cloud.resp.ResultData;
+   import com.cloud.resp.ReturnCodeEnum;
+   import lombok.extern.slf4j.Slf4j;
+   import org.springframework.http.HttpStatus;
+   import org.springframework.web.bind.annotation.ExceptionHandler;
+   import org.springframework.web.bind.annotation.ResponseStatus;
+   import org.springframework.web.bind.annotation.RestControllerAdvice;
+   
+   @Slf4j
+   /*
+    * 自定义客户端返回格式
+    * 捕获客户端返回异常
+    */
+   @RestControllerAdvice
+   public class GlobalExceptionHandler {
+       //  500服务器内部错误
+       @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+       @ExceptionHandler(RuntimeException.class)
+       public ResultData<String> exception(Exception e) {
+           System.out.println("### come in GlobalExceptionHandler");
+           log.error("全局异常信息：{}", e.getMessage(), e);
+           return ResultData.fail(ReturnCodeEnum.RC500.getCode(), e.getMessage());
+       }
+   }
+   ```
+
+3. 修改Controller
+
+   ```java
+   //  手写异常捕捉
+   @GetMapping(value = "/pay/error")
+   public ResultData<Integer> getPayError(){
+       Integer integer = 200;
+       try {
+           System.out.println("come in payError test");
+           int age = 10/0;
+       }catch (Exception e){
+           e.printStackTrace();
+           return ResultData.fail(ReturnCodeEnum.RC500.getCode(), e.getMessage());
+       }
+       return ResultData.success(integer);
+   }
+   ```
+
+
+
+# 4、引入微服务理念
+
+> Q：订单微服务80如何才能调用到支付微服务8001？
+
+## 4.1、cloud-consumer-order80
+
+微服务调用者订单模块
+
+### 4.1.1、建立cloude-consumer-order80
+
+### 4.1.2、改POM
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloude-consumer-order80</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!--web+actuator-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--hutool-all-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <!--fastjson2-->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+        <!--swagger3-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+### 4.1.3、写YML
+
+```yml
+server:
+  port: 80
+```
+
+### 4.1.4、主启动
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Main80 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main80.class, args);
+    }
+}
+```
+
+### 4.1.5、业务类
+
+1. entities
+
+   ```java
+   package com.cloud.entities;
+   
+   import lombok.AllArgsConstructor;
+   import lombok.Data;
+   import lombok.NoArgsConstructor;
+   
+   import java.io.Serializable;
+   import java.math.BigDecimal;
+   
+   @AllArgsConstructor
+   @NoArgsConstructor
+   @Data
+   public class PayDTO implements Serializable {
+       private Integer id;
+       //  支付流水号
+       private String payNo;
+       //  订单流水号
+       private String orderNo;
+       //  交易金额
+       private BigDecimal amount;
+   }
+   ```
+
+2. RestTemplate
+
+   > Q：是什么
+   >
+   > RestTemplate提供了多种便捷访问远程Http服务的方法，是一种简单便捷的访问restful服务模版类，是Spring提供的用于访问Rest服务的客户端模版工具集
+   >
+   > 官网：https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/client/RestTemplate.html
+
+   常用API使用说明：
+
+   - 使用说明：
+     - 使用RestTemplate访问restful接口非常的简单粗暴无脑。
+     - （URL，requesMap，ResponseBean.class）这三个参数分别代表REST请求地址、请求参数、HTTP响应转换被转换成的对象类型。
+   - getForObject方法和getForEntity方法
+     - getForObject：返回对象为响应体中数据转化成的对象，基本上可以理解为JSON
+     - getForEntity：返回对象为ResponseEntity对象，包含了响应中的一些重要信息，比如响应头、响应状态码、响应体等
+   - postForObject方法和postForEntity方法
+   - GET请求方法
+   - POST请求方法
+
+   
+
+3. config配置类
+
+   ```java
+   package com.cloud.config;
+   
+   import org.springframework.context.annotation.Bean;
+   import org.springframework.context.annotation.Configuration;
+   import org.springframework.web.client.RestTemplate;
+   
+   @Configuration
+   public class RestTemplateConfig {
+       @Bean
+       public RestTemplate restTemplate(){
+           return new RestTemplate();
+       }
+   }
+   ```
+
+4. controller
+
+   ```java
+   package com.cloud.controller;
+   
+   import com.cloud.entities.PayDTO;
+   import com.cloud.resp.ResultData;
+   import jakarta.annotation.Resource;
+   import org.springframework.web.bind.annotation.*;
+   import org.springframework.web.client.RestTemplate;
+   
+   @RestController
+   public class OrderController {
+       public static final String PaymentSrv_URL = "http://localhost:8001";
+   
+       @Resource
+       private RestTemplate restTemplate;
+   
+       //增加
+       @GetMapping(value = "/consumer/pay/add")
+       public ResultData<?> addOrder(PayDTO payDTO) {
+           return restTemplate.postForObject(PaymentSrv_URL + "/pay/add", payDTO, ResultData.class);
+       }
+   
+       //删除
+       @DeleteMapping(value = "/consumer/pay/delete/{id}")
+       public void deleteOrder(@PathVariable("id") Integer id) {
+           restTemplate.delete(PaymentSrv_URL + "/pay/delete/" + id, ResultData.class, id);
+       }
+   
+       //修改
+       @PutMapping(value ="/consumer/pay/update")
+       public void updateOrder(@RequestBody PayDTO payDTO){
+           restTemplate.put(PaymentSrv_URL+"/pay/update", ResultData.class,payDTO);
+       }
+   
+       //查询
+       @GetMapping(value = "/consumer/pay/get/{id}")
+       public ResultData<?> getPayInfo(@PathVariable("id") Integer id) {
+           return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/" + id, ResultData.class, id);
+       }
+   }
+   
+   ```
+
+
+
+## 4.2、工程重构重复代码提取
+
+多个微服务有重复的entities、api等
+
+cloud-api-commons
+
+### 4.2.1、新建Module cloud-api-commons
+
+作用：对外暴露通用的组件/api/接口/工具类等
+
+
+
+### 4.2.2、改Pom
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloud-api-commons</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+    </dependencies>
+</project>
+```
+
+
+
+### 4.2.3、entities
+
+```java
+package com.cloud.entities;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class PayDTO implements Serializable {
+    private Integer id;
+    //  支付流水号
+    private String payNo;
+    //  订单流水号
+    private String orderNo;
+    //  交易金额
+    private BigDecimal amount;
+}
+```
+
+
+
+### 4.2.4、全局异常类
+
+```java
+package com.cloud.exp;
+
+import com.cloud.resp.ResultData;
+import com.cloud.resp.ReturnCodeEnum;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@Slf4j
+/*
+ * 自定义客户端返回格式
+ * 捕获客户端返回异常
+ */
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+    //  500服务器内部错误
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(RuntimeException.class)
+    public ResultData<String> exception(Exception e) {
+        System.out.println("### come in GlobalExceptionHandler");
+        log.error("全局异常信息：{}", e.getMessage(), e);
+        return ResultData.fail(ReturnCodeEnum.RC500.getCode(), e.getMessage());
+    }
+}
+```
+
+
+
+### 4.2.5、maven命令clean install
+
+在cloud-api-commons服务上，把cloud-api-commons打成jar包
+
+
+
+### 4.2.6、订单80和支付8001分别改造
+
+删除各自抽出来的公共的东西
+
+pom文件引入本地的jar包
+
+```xml
+<dependency>
+    <groupId>com.cloud</groupId>
+    <artifactId>cloud-api-commons</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+
+
+# 5、硬编码写死问题
+
+```java
+public static final String PaymentSrv_URL = "http://localhost:8001";
+```
+
+微服务所在的IP地址和端口号**硬编码**到订单微服务中，会存在非常多的问题
+
+1. 如果订单微服务和支付微服务的IP地址或者端口号发生了变化，则支付微服务将变得不可用，需要同步修改订单微服务中调用支付微服务的IP地址和端口号。
+2. 如果系统重提供了多个订单微服务和支付微服务，则不发实现微服务的负载均衡功能。
+3. 如果系统需要支持更高的并发，需要部署更多的订单微服务和支付微服务，硬编码订单微服务则后续维护会变得异常复杂。
+
+所以，在微服务开发的过程中，需要引入服务治理功能，实现微服务之间的动态注册与发现。
+
+# 6、Consul服务注册与发现
+
+## 6.1、为什么要引入服务注册中心？
+
+管理所有微服务、解决微服务之间管理错综复杂、难以维护的问题
+
+
+
+## 6.2、为什么不再使用传统老牌的Eureka
+
+1. Eureka停更进维修
+2. Eureka对出血者不友好 --- 首次看到自我保护机制 
+3. 注册中心独立且微服务功能解耦 --- 目前主流服务中心，希望单独隔离出来而不是作为一个独立微服务嵌入到系统中
+4. 阿里巴巴Nacos的崛起
+
+
+
+## 6.3、Consul简介
+
+### 6.3.1、是什么？
+
+官网：https://www.consul.io/
+
+HashiCorp Consul is a service networking solution that enables teams to manage secure network connectivity between services and across on-prem and multi-cloud environments and runtimes. Consul offers service discovery, service mesh, traffic management, and automated updates to network infrastructure devices. You can use these features individually or together in a single Consul deployment.
+
+HashiCorp Consul是一套开源的分布式服务发现和配置管理系统，由HashiCorp公司用Go语言开发。
+
+提供了微服务系统重的服务治理、配置中心、控制总线等功能。这些功能中的每一个都可以根据需要单独使用，也可以一起使用以构建全方位的服务网格，总之Consul提供了一种完成的服务网格解决方案。它具有很多优点，包括：基于raft协议，比较简介；支持健康检查，同时支持HTTP和DNS协议支持跨数据中心的WAN集群；提供图形界面；跨平台；支持Linux、Mac、Windows；
+
+Spring Cloud Consul：https://spring.io/projects/spring-cloud-consul
+
+
+
+### 6.3.2、能干嘛？
+
+1. 服务发现：提供HTTP和DNS两种方法
+2. 健康检测：支持多种方式，HTTP、TCP、Docket、Shell脚本定制
+3. KV存储：Key、Value的存储方式
+4. 多数据中心：Consul支持多数据中心
+5. 可视化Web界面
+
+
+
+### 6.3.3、什么下载？
+
+官网：https://developer.hashicorp.com/consul/install
+
+
+
+### 6.3.4、怎么使用？
+
+Spring Cloud Consul：https://docs.spring.io/spring-cloud-consul/reference/quickstart.html
+
+Consul：https://developer.hashicorp.com/consul#get-started
+
+
+
+## 6.4、安装并运行consul
+
+运行 consul.exe文件
+
+安装目录下 consul -version
+
+使用开发模式启动
+
+> consul agent -dev
+>
+> 通过一下地址可以访问Consul的首页：http://localhost:8500
+
+
+
+
+
+## 6.5、服务注册与发现
+
+### 6.5.1、服务提供者8001
+
+支付服务provider8001注册进consul
+
+配置来源：https://docs.spring.io/spring-cloud-consul/reference/quickstart.html
+
+pom
+
+```xml
+<!--Spring Cloud Consul discovery-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+    <exclusions>
+        <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+
+yml
+
+```yml
+spring:
+    cloud:
+      consul:
+        host: localhost
+        port: 8500
+        discovery:
+          service-name: ${spring.application.name}
+          heartbeat:
+            enabled: true
+        prefer-ip-address: true
+```
+
+主启动类
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import tk.mybatis.spring.annotation.MapperScan;
+
+@SpringBootApplication
+//  扫描所有mapper
+@MapperScan("com.cloud.mapper")
+//import tk.mybatis.spring.annotation.MapperScan;
+@EnableDiscoveryClient
+public class Main8001
+{
+    public static void main( String[] args )
+    {
+        SpringApplication.run(Main8001.class,args);
+    }
+}
+```
+
+
+
+### 6.5.2、服务消费者80
+
+引入consul
+
+pom
+
+```xml
+<!--Spring Cloud Consul discovery-->
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+    <exclusions>
+        <exclusion>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+```
+
+yml
+
+```yml
+spring:
+    cloud:
+      consul:
+        host: localhost
+        port: 8500
+        discovery:
+          service-name: ${spring.application.name}
+          heartbeat:
+            enabled: true
+        prefer-ip-address: true
+```
+
+主启动类
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main80 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main80.class, args);
+    }
+}
+```
+
+解决硬编码的问题
+
+```java
+//    public static final String PaymentSrv_URL = "http://localhost:8001";
+//    注册中心叫什么，这里就叫什么
+    public static final String PaymentSrv_URL = "http://cloud-payment-service8001";
+```
+
+会出现一个问题 - 找不到cloud-payment-service8001
+
+要设置负载均衡
+
+```java
+@Configuration
+public class RestTemplateConfig {
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+```
+
+
+
+### 6.5.3、三个注册中心异同点
+
+CAP：
+
+1. C：Consistency（强一致性）
+2. A：Availability（可用性）
+3. P：Partition tolerance（分区容错性）
+
+最多只能同时较好的满足两个
+
+CAP理论的核心是：一个分布式系统不可能同时很好的满足一致性，可用性和分区容错性这三个需求，因此，根据CAP原理将NoSQL数据库分成了满足CA原则、满足CP原则和满足AP原则三大类：
+
+CA - 单点集群，满足一致性，可用性的系统，通常在扩展性上不太强大
+
+CP - 满足一致性，分区容忍性的系统，通常性能不是特别高
+
+AP - 满足可用性，分区容忍性的系统，通常可能对一致性要求低一些
+
+| 组件名    | 语言 | CAP  | 服务健康检查 | 对外暴露接口 | SpringCloud集成 |
+| --------- | ---- | ---- | ------------ | ------------ | --------------- |
+| Eureka    | Java | AP   | 可配支持     | HTTP         | 已集成          |
+| Consul    | Go   | CP   | 支持         | HTTP/DNS     | 已集成          |
+| Zookeeper | Java | CP   | 支持         | 客户端       | 已集成          |
+
+
+
+### 6.5.4、AP架构
+
+当网络分区出现后，为了保证可用性，系统B可以返回旧值，保证系统的可用性。
+
+当数据出现不一致时，虽然A，B上的注册信息不完全相同，但每个Eureka节点依然能够正常对外提供服务，这会出现查询服务信息时如果请求A查不到，但是请求B就能查到。如此保证了可用性但牺牲了一致性结论：违背了一致性C的要求，只满足可用性和分区容错，即AP
+
+
+
+### 6.5.5、CP架构
+
+当网络分区出现后，为了保证一致性，就必须拒绝请求，否则无法保证一致性，Consul遵循CAP原理中的CP原则，保证了强一致性和分区容错性，且使用的是Raft算法，比zookeeper使用的Paxos算法更加简单。虽然保证了强一致性，但是可用性就相应下降了，例如服务注册的时间会稍长一些，因为Consul的Raft协议要求必须过半数的结点都写入成功才认为注册成功；在leader挂掉了之后，重新选举出leader之前会导致Consul服务不可用。结论：违背了可用性A的要求，只满足一致性和分区容错，即CP
+
+
+
+## 6.6、服务配置与刷新
+
+### 6.6.1、分布式系统面临的 -> 配置问题
+
+微服务意味着要将单体应用中的业务拆分成一个个自服务，每个服务的粒度相对较小，因此系统中会出现大量的服务。由于每个服务都需要必要的配置信息才能运行，所以一套集中式的、动态的配置管理设施是必不可少的。比如某些配置文件中的内容大部分都是相同的，只有个别的配置项不同。就拿数据库配置来说吧，如果每个微服务使用的技术栈都是相同的，则每个微服务中关于数据库的配置几乎都是相同的，有时候主机迁移了，也希望是一次修改，处处生效。
+
+
+
+### 6.6.2、官网说明
+
+官网：https://docs.spring.io/spring-cloud-consul/reference/config.html
+
+
+
+### 6.6.3、服务配置案例
+
+1. 需求：
+
+   通用全局配置信息，直接注册进Consul服务器，从Consul获取
+
+   既然从Consul获取自然要遵守Consul的配置规则要求
+
+2. 修改cloud-provider-payment8001
+
+   pom
+
+   ```xml
+   <dependency>
+       <groupId>org.springframework.cloud</groupId>
+   	<artifactId>spring-cloud-starter-consul-config</artifactId>
+   </dependency>
+   <dependency>
+   	<groupId>org.springframework.cloud</groupId>
+   	<artifactId>spring-cloud-starter-bootstrap</artifactId>
+   </dependency>
+   ```
+
+3. bootstrap.yml 是什么？
+
+   application.yml是用户级的资源配置项
+
+   bootstrap.yml是系统级，优先级更高
+
+   Spring Cloud会创建一个“Bootstrap Context”，作为Spring应用“Application Context”的父上下文。初始化的时候，“Bootstrap”负责从外部源加载配置属性并解析配置。这两个上下文共享一个从外部获取的“Environment”。
+
+   “Bootstrap”属性有优先级，默认情况下，它们不会被本地配置覆盖。“Bootstrap Context”和“Application Context”有着不用的约定，所以新增了一个“Bootstrap.yml”，保证“Bootstrap Context”和“Application Context”配置的分离。
+
+   **application.yml文件为bootstrap.yml，这是很关键的或者两者共存**
+
+   因为bootstrap.yml是比application.yml先加载的。bootstrap.yml优先级高于application.yml
+
+4. bootstrap.yml
+
+   ```yml
+   spring:
+     application:
+       name: cloud-payment-service8001
+     cloud:
+       consul:
+         host: localhost
+         port: 8500
+         discovery:
+           service-name: ${spring.application.name}
+         config:
+           profile-separator: '-' #分隔符，默认是， 现在改成-
+           format: YAML
+   ```
+
+5. application.yml
+
+   ```yml
+   server:
+     port: 8001
+   
+   spring:
+     datasource:
+       type: com.alibaba.druid.pool.DruidDataSource
+       driver-class-name: com.mysql.cj.jdbc.Driver
+       url: jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+       username: root
+       password: 123456
+     jackson:
+       date-format: yyyy-MM-dd HH:mm:ss
+       time-zone: GMT+8
+     profiles:
+       active: dev
+   
+   mybatis:
+     mapper-locations: classpath:mapper/*.xml
+     type-aliases-package: com.cloud.entities
+     configuration:
+       map-underscore-to-camel-case: true
+   ```
+
+6. consul服务器key / value 配置填写
+
+   ![image-20240606230359870](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240606230359870.png)
+
+   设置data
+
+   ![image-20240606231906403](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240606231906403.png)
+
+   ```json
+   disney: 
+    info: welecom to disney default config,version=1
+   ```
+
+7. controller
+
+   ```java
+   @Value("${server.port}")
+   private String port;
+   
+   @GetMapping(value = "/pay/get/info")
+   public String getInfoByConsul(@Value("${disney.info}") String info) {
+       return "Info：" + info + "\t" + port;
+   }
+   ```
+
+8. 拿到的数据
+
+   > Info：welecom to disney dev config,version=1	8001
+
+
+
+### 6.6.4、动态刷新案例
+
+
+
+### 6.6.5、思考
