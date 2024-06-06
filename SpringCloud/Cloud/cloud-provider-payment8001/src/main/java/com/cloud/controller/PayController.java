@@ -41,7 +41,6 @@ public class PayController {
     @Operation(summary = "修改", description = "修改支付流水方法")
     public ResultData<String> updatePay(@RequestBody PayDTO patDTO) {
         Pay pay = new Pay();
-
         BeanUtil.copyProperties(patDTO, pay);
         int i = payService.update(pay);
         return ResultData.success("成功修改记录，返回值：" + i);
