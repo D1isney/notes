@@ -2288,6 +2288,274 @@ AP - 满足可用性，分区容忍性的系统，通常可能对一致性要求
 
 ### 6.6.4、动态刷新案例
 
+在Consul的dev配置分支修改了内容，马上访问，结果无效
+
+实现：
+
+```java
+@RefreshScope   //  动态刷新
+```
+
+bootstrap.yml修改下，一般不改这个
+
+```yml
+spring:
+  application:
+    name: cloud-payment-service8001
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+      config:
+        profile-separator: '-' #分隔符，默认是， 现在改成-
+        format: YAML
+        watch:
+          wait-time: 1
+```
+
+
+
 
 
 ### 6.6.5、思考
+
+引出问题：
+
+Consul配置持久化问题？
+
+
+
+# 7、LoadBalancer负载均衡服务调用
+
+## 7.1、Ribbon目前也进入维护模式
+
+### 7.1.1、是什么？
+
+Spring Cloud Ribbon 是基于Netflix Ribbon实现的一套客户端负载均衡的工具。
+
+简单的说，Ribbo是Netflix发布的开源项目，主要功能是提供客户端的软件负载均衡算法和服务调用。Ribbon客户端组件提供一些列完善的配置项，如连接超时、重试等。简单来说，就是在配置文件汇总列出Load Balancer（简称LB）后面所有的机器，Ribbon会自动的帮助你基于某规则（如简单轮询，随机连接等）去连接这些机器。我们很容易使用Ribbon实现自定义的负载均衡算法。
+
+
+
+## 7.2、Spring - Cloud - LoadBalancer概述
+
+官网：https://docs.spring.io/spring-cloud-commons/reference/spring-cloud-commons/loadbalancer.html
+
+### 7.2.1、是什么
+
+LB负载均衡（Load Balancer），简单来说就是将用户的请求平摊的分配到多个服务上，从而达到系统的HA（高可用），常见的负载均衡有软件Nginx，LVS，硬件F5等
+
+
+
+### 7.2.2、Spring - Cloud - LoadBalancer组件是什么
+
+Spring Cloud LoadBalancer是由Spring Cloud官方提供的一个开源的、简单易用的客户端负载均衡，它包含在Spring Cloud-commons中用它来替换了以前的Ribbon组件。相比较于Ribbon，Spring Cloud LoadBalancer不仅能够支持RestTemplate。还支持，WebClient（WebClient是Spring Web Flux中提供的功能，可以实现响应式异步请求）
+
+
+
+### 7.2.3、面试题
+
+> Q：客户端负载 VS 服务器负载区别
+>
+> LoadBalancer本地负载均衡客户端 VS Nginx服务端负载均衡区别
+
+Nginx是服务器负载均衡，客户端所有请求都会交给Nginx，然后由Nginx实现转发请求，即负载均衡是由服务端实现的。
+
+LoadBalancer本地负载均衡，在调试微服务接口时候，会注册中心上获取注册信息服务列表之后缓存到JVM本地，从而在本地实现RPC远程服务调用技术。
+
+
+
+## 7.3、Spring - Cloud - LoadBalancer负载均衡解析
+
+官网：https://docs.spring.io/spring-cloud-commons/reference/spring-cloud-commons/loadbalancer.html
+
+> 架构说明：80通过轮询负载访问8001/8002/8003
+
+LoadBalancer在工作时分成两步：
+
+1. 先选择ConsulServer从服务端查询并拉取服务列表，知道了它有多个服务，这些服务实现是完全一样的，默认轮询调用谁都可以正常执行。类似生活中的求医挂号，某个科室今日出诊的全部医生，让客户端自己选一个。
+2. 按照指定的负载均衡策略从server去到的服务注册列表中由客户端自己选一个地址，所以LoadBalancer是一个客户端的负载均衡器。
+
+
+
+### 7.3.1、服务调用负载均衡实战 - 上
+
+构建8002、8003服务
+
+
+
+80服务中，RestTemplate
+
+```java
+package com.cloud.config;
+
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+public class RestTemplateConfig {
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+```
+
+
+
+启动8001、8002、8003
+
+![image-20240610205941890](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240610205941890.png)
+
+访问：http://localhost:8001/pay/get/info
+
+问题：{"code":"500","message":"Could not resolve placeholder 'disney.info' in value \"${disney.info}\"","timestamp":1718024617607,"data":null}
+
+Consul配置没有被持久化
+
+
+
+### 7.3.2、Consul配置持久化
+
+1. E:\Cloud\consul目录下新建
+
+   1. 空文件夹myconsul
+   2. 新建文件consul_start.bat后缀为.bat
+
+2. consul_start.bat内容信息
+
+   ```shell
+   @echo.服务启动....
+   @echo off
+   @sc create Consul binpath= "E:\Cloud\consul\consul.exe agent -server -ui -bind=127.0.0.1 -client=0.0.0.0 -bootstrap-expect 1 -data-dir E:\Cloud\consul\myconsul "
+   @net start Consul
+   @sc config Consul start= AUTO
+   @echo.Consul start is OK......success
+   @pause
+   ```
+
+3. 右键管理员权限打开
+
+4. 启动结果
+
+   ![image-20240610212115383](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240610212115383.png)
+
+5. win后台
+
+   ![image-20240610212306148](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240610212306148.png)
+
+6. 后续consul的配置数据会保存近mydata文件夹，重启就有了
+
+
+
+### 7.3.3、服务调用负载均衡实战 - 下
+
+将80模块修改pom并注册进consul，新增LoadBalancer组件
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+</dependency>
+```
+
+```java
+@GetMapping(value = "/consumer/pay/get/info")
+private String getInfoByConsul() {
+    return restTemplate.getForObject(PaymentSrv_URL + "/pay/get/info", String.class);
+}
+```
+
+访问：http://localhost/consumer/pay/get/info
+
+> Info：welcome to disney prod config,version=1 8001
+>
+> Info：welcome to disney prod config,version=1 8002
+>
+> Info：welcome to disney prod config,version=1 8003
+
+
+
+### 7.3.4、负载均衡案例小总结
+
+1. 编码使用DiscoveryClient动态获取所有上线的服务列表
+
+   官网：https://docs.spring.io/spring-cloud-consul/reference/discovery.html
+
+2. 代码解释，修改了80服务的Controller
+
+   ```java
+       @Resource
+       private DiscoveryClient discoveryClient;
+   
+       @GetMapping("/consumer/discovery")
+       public String discovery() {
+           List<String> services = discoveryClient.getServices();
+           for (String element : services) {
+               System.out.println(element);
+           }
+           System.out.println("================");
+           List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
+           for (ServiceInstance element : instances) {
+               System.out.println(element.getServiceId() + "\t" + element.getHost() + "\t" + element.getPort() + "\t" + element.getUri());
+           }
+           return instances.get(0).getServiceId() + ":" + instances.get(0).getPort();
+       }
+   ```
+
+   访问：http://localhost/consumer/discovery
+
+   ![image-20240610221457222](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240610221457222.png)
+
+   
+
+3. 结合前面实操，负载选择原理小总结
+
+   负载均衡算法：rest接口第几次请求数 % 服务器集群总数量 = 实际调用服务器位置下标，每次服务启动后rest接口技术从1开始。
+
+   ```java
+   List<ServiceInstance> instances = discoveryClient.getInstances("cloud-payment-service");
+   ```
+
+   如：
+
+   ```
+   List[0] instances = 127.0.0.1:8001
+   List[1] instances = 127.0.0.1:8002
+   List[2] instances = 127.0.0.1:8003
+   ```
+
+   8001 + 8002 + 8003组合成为集群，它们共计3台机器，集群总数为3，按照轮询算法原理：
+
+   当请求数为1时：1 % 3 = 1 对应下标位置为1，则获得服务器地址为127.0.0.1:8002
+
+   当请求数为2时：2 % 3 = 2 对应下标位置为2，则获得服务器地址为127.0.0.1:8003
+
+   当请求数为3时：3 % 3 = 0 对应下标位置为0，则获得服务器地址为127.0.0.1:8001
+
+
+
+## 7.4、负载均衡算法原理
+
+### 7.4.1、默认算法是什么？有几种？
+
+官网：[Switching between the load-balancing algorithms](https://docs.spring.io/spring-cloud-commons/reference/spring-cloud-commons/loadbalancer.html)
+
+默认两种：
+
+1. 轮询
+2. 随机
+
+
+
+### 7.4.2、算法切换
+
+### 7.4.3、测试
+
+
+
