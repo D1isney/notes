@@ -12,7 +12,7 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   profiles:
-    active: prod
+    active: prod  # 这里写的就是要使用consul的kv中config的配置环境
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
