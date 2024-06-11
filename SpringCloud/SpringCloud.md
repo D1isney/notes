@@ -2555,7 +2555,617 @@ private String getInfoByConsul() {
 
 ### 7.4.2、算法切换
 
-### 7.4.3、测试
+```java
+package com.cloud.config;
+
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
+import org.springframework.cloud.loadbalancer.core.RandomLoadBalancer;
+import org.springframework.cloud.loadbalancer.core.ReactorLoadBalancer;
+import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
+import org.springframework.cloud.loadbalancer.support.LoadBalancerClientFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+@LoadBalancerClient(
+        //  下面的value值大小一定要和consul里面的名字一样
+        value = "cloud-payment-service",configuration = RestTemplateConfig.class)
+public class RestTemplateConfig {
+
+    @Bean
+    @LoadBalanced   //  使用@LoadBalanced注解赋予RestTemplate负载均衡的能力
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+    
+    @Bean
+    ReactorLoadBalancer<ServiceInstance> randomLoadBalancer(Environment environment,
+                                                            LoadBalancerClientFactory loadBalancerClientFactory) {
+        String name = environment.getProperty(LoadBalancerClientFactory.PROPERTY_NAME);
+        return new RandomLoadBalancer(loadBalancerClientFactory.getLazyProvider(name, ServiceInstanceListSupplier.class),name);
+    }
+}
+```
+
+# 8、OpenFeign服务接口调用
+
+## 8.1、是什么？
+
+官网：https://spring.io/projects/spring-cloud-openfeign
+
+Github：https://github.com/spring-cloud/spring-cloud-openfeign
+
+Feign是一个声明性web服务客户端。它使编写web服务客户端变得更容易。使用Feign创建一个接口并对其进行注释。它具有可插入的注释支持，包括Feign注释和JAX-RS注释。Feign还支持可插拔编码器和解码器。Spring Cloud添加了对Spring MVC注释的支持，以及对使用Spring Web中默认使用的HttpMessageConverter的支持。Spring Cloud集成了Eureka、Spring Cloud CircuitBreaker以及Spring Cloud LoadBalancer，以便在使用Feign时提供负载平衡的http客户端。
+
+OpenFeign是一个声明式的Web服务客户端，只需创建一个Rest接口并在该接口上添加注解@FeignClient即可
+
+OpenFeign基本上就是当前微服务之间调用的事实标准
+
+
+
+## 8.2、能干嘛？
+
+1. 可插拔的注解支持，包括Feign注解和JAX-RS注解
+2. 支持可插拔的HTTP编码器和解码器
+3. 支持Sentinel和它的Fallback
+4. 支持Spring Cloud LoadBalancer的负载均衡
+5. 支持HTTP请求和响应的压缩
+
+前面在使用Spring Cloud LoadBalancer + RestTemplate时，利用RestTemplate对http请求的封装处理形成了一套模版化的调用方法。但是在实际开发中：
+
+由于对服务依赖的调用可能不止一处，往往一个接口会被多处调用，所以通常都会针对每个服务自行封装，一些客户端类来包装这些依赖服务的调用。所以，OpenFeign在此基础上做了进一步封装，由它来帮助我们定义和实现依赖服务接口的定义。
+
+在OpenFeign的实现下，我们只需要创建一个接口并使用注解的方式来配置它（在一个微服务接口上面标注一个@FeignClient注解即可），即可完成对服务提供方的接口绑定，同一对外暴露可以被调用的接口方法，大大简化和降低了调用客户端的开发量，也即由服务提供者给出调用接口清淡，消费者直接通过OpenFeign调用即可。
+
+OpenFeign 同时还集成了Spring Cloud LoadBalancer，可以在使用OpenFeign时提供Http客户端的负载均衡，也可以集成阿里巴巴Sentinel来提供熔断、降级等功能。而与Sprin Cloud LoadBalancer不同的是，通过OpenFeign只需要定义服务绑定接口且以声明式的方法，优雅而简单的实现了服务调用。
+
+
+
+## 8.3、OpenFeign通用步骤
+
+新建Module：cloud-consumer-feign-order80
+
+pom：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloud-consumer-feign-order80</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!--web+actuator-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <!--Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <!--hutool-all-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <!--fastjson2-->
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+        <!--swagger3-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--Spring Cloud Consul discovery-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+yml：
+
+```yml
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-consumer-openfeign-order
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true #优先使用服务ip进行注册
+        service-name: ${spring.application.name}
+```
+
+启动类：
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+@SpringBootApplication
+@EnableDiscoveryClient //   该注解用于向使用consul为注册中心时注册服务
+@EnableFeignClients //  启用feign客户端，定义服务+绑定接口，以声明式的方法优雅而简单的实现服务调用
+public class MainOpenFeign80 {
+    public static void main(String[] args) {
+        SpringApplication.run(MainOpenFeign80.class,args);
+    }
+}
+```
+
+业务类：
+
+修改cloud-api-commons通用模块
+
+1. 引入openfeign依赖
+
+   ```xml
+   <dependency>
+       <groupId>org.springframework.cloud</groupId>
+       <artifactId>spring-cloud-starter-openfeign</artifactId>
+   </dependency>
+   ```
+
+2. 新建服务接口PayFeignApi，配置@FeignClient注解
+
+   ```java
+   package com.cloud.apis;
+   
+   import com.cloud.entities.PayDTO;
+   import com.cloud.resp.ResultData;
+   import org.springframework.cloud.openfeign.FeignClient;
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.PathVariable;
+   import org.springframework.web.bind.annotation.PostMapping;
+   import org.springframework.web.bind.annotation.RequestBody;
+   
+   @FeignClient(value = "cloud-payment-service")
+   public interface PayFeignApi {
+       @PostMapping(value = "/pay/add")
+       public ResultData<?> addPay(@RequestBody PayDTO payDTO);
+   
+       @GetMapping(value = "/pay/get/{id}")
+       public ResultData<?> getPayInfo(@PathVariable("id") Integer id);
+   
+       @GetMapping(value = "/pay/get/info")
+       public String myLB();
+   }
+   ```
+
+3. 参考微服务8001的Controller层，新建OrderController
+
+   ```java
+   package com.cloud.controller;
+   
+   import com.cloud.apis.PayFeignApi;
+   import com.cloud.entities.PayDTO;
+   import com.cloud.resp.ResultData;
+   import jakarta.annotation.Resource;
+   import org.springframework.web.bind.annotation.*;
+   
+   @RestController
+   public class OrderController {
+       @Resource
+       private PayFeignApi payFeignApi;
+   
+       @PostMapping(value = "/feign/pau/add")
+       public ResultData<?> addOrder(@RequestBody PayDTO payDTO) {
+           System.out.println("第一步：模拟本地addOrder新增订单成功，第二部：在开启addPay支付微服务远程调用");
+           return payFeignApi.addPay(payDTO);
+       }
+   
+       @GetMapping(value = "/feign/pay/get/{id}")
+       public ResultData<?> getPay(@PathVariable("id") Integer id) {
+           System.out.println("----支付服务远程调用，按照ID查询订单支付流水信息");
+           return payFeignApi.getPayInfo(id);
+       }
+   
+       @GetMapping(value = "/feign/pay/myLB")
+       public String myLB(){
+           return payFeignApi.myLB();
+       }
+   }
+   ```
+
+   小总结：
+
+   apis中的PayFeignApi要对应着相应consul的@FeignClient(value = "cloud-payment-service")服务
+
+   消费者中的
+
+   ```java
+   @PostMapping(value = "/pay/add")
+   public ResultData<?> addPay(@RequestBody PayDTO payDTO);
+   ```
+
+   要对应服务提供者的路径
+
+   ```java
+   @PostMapping("/pay/add")
+   @Operation(summary = "新增", description = "新增支付流水方法，json串做参数")
+   public ResultData<String> addPay(@RequestBody Pay pay) {
+       System.out.println(pay.toString());
+       int i = payService.add(pay);
+       return ResultData.success("成功插入记录，返回值：" + i);
+   }
+   ```
+
+
+
+## 8.4、OpenFeign高级特性
+
+### 8.4.1、OpenFeign超时控制
+
+ 服务提供方cloud-provider-payment8001故意写暂停62秒程序
+
+```java
+@GetMapping("/pay/get/{id}")
+@Operation(summary = "按照ID查流水", description = "查询支付流水方法")
+public ResultData<Pay> getById(@PathVariable("id") Integer id) {
+    if (id == -4) throw new RuntimeException("传进来不能是负数");
+
+    //   服务提供业务处理，为了测试feign的超时时间控制
+    try {
+        TimeUnit.SECONDS.sleep(61);
+    }catch (InterruptedException e){
+        e.printStackTrace();
+    }
+
+    return ResultData.success(payService.getById(id));
+}
+```
+
+服务调用方cloud-consumer-feign-order80 写好捕捉超时异常
+
+```java
+@GetMapping(value = "/feign/pay/get/{id}")
+public ResultData<?> getPay(@PathVariable("id") Integer id) {
+    System.out.println("----支付服务远程调用，按照ID查询订单支付流水信息");
+    ResultData<?> data = null;
+    try {
+        System.out.println("----调用开始："+ DateUtil.now());
+        data = payFeignApi.getPayInfo(id);
+    }catch (Exception e){
+        e.printStackTrace();
+        return ResultData.fail(ReturnCodeEnum.RC500.getCode(), e.getMessage());
+    }
+    return data;
+}
+```
+
+访问：http://localhost/feign/pay/get/1
+
+![image-20240611174604049](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240611174604049.png)
+
+![image-20240611174805249](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240611174805249.png)
+
+所以说OpenFeign默认等待时间就是60秒，但是服务端处理超过规定时间会导致Feign客户端返回报错。
+
+为了避免这样的情况，有时候我们需要设置Feign客户端的超时控制，默认60秒太长或者业务时间太短都不好
+
+
+
+yml配置：
+
+```yml
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-consumer-openfeign-order
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true #优先使用服务ip进行注册
+        service-name: ${spring.application.name}
+    openfeign:
+      client:
+        config:
+#          指定某个服务
+#          cloud-payment-service:
+          default:
+            # OpenFeign连接超时时间
+            connect-timeout: 3000
+            # 请求处理超时时间
+            read-timeout: 3000
+```
+
+
+
+### 8.4.2、OpenFeign重试机制
+
+默认重试是关闭的，给了默认值
+
+开启重试机制：（Retryer）
+
+```java
+package com.cloud.config;
+
+import feign.Retryer;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class FeignConfig {
+
+    @Bean
+    public Retryer myRetryer() {
+        //  Feign默认配置是没有重试策略的
+        //  return Retryer.NEVER_RETRY;
+        //  最大请求数为4（1+3），初始间隔为100ms，重试时间最大间隔时间为1s
+        return new Retryer.Default(100, 1, 4);
+    }
+}
+```
+
+
+
+### 8.4.3、OpenFeign默认HttpClient修改
+
+> 是什么？
+>
+> OpenFeign中Http Client ，如果不做特殊配置，OpenFeign默认使用JDK自带的HttpURLConnection发送HTTP请求，由于默认HttpURLConnection没有连接池、性能和效率比较低，如果采用默认，性能不是最好的，所以加到最大。
+>
+> ![image-20240611193234659](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240611193234659.png)
+
+使用Apache Http Client替代OpenFeign默认的HttpURLConnection
+
+pom
+
+```xml
+<dependency>
+    <groupId>org.apache.httpcomponents.client5</groupId>
+    <artifactId>httpclient5</artifactId>
+    <version>5.3</version>
+</dependency>
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-hc5</artifactId>
+    <version>13.1</version>
+</dependency>
+```
+
+关闭重试
+
+yml配置
+
+```yml
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-consumer-openfeign-order
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true #优先使用服务ip进行注册
+        service-name: ${spring.application.name}
+    openfeign:
+      httpclient:
+        hc5:
+          # Apache HttpClient5 配置开启
+          enabled: true
+      client:
+        config:
+#          指定某个服务
+#          cloud-payment-service:
+          default:
+#             OpenFeign连接超时时间
+            connect-timeout: 3000
+            # 请求处理超时时间
+            read-timeout: 3000
+```
+
+替换之后
+
+![image-20240611201556061](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240611201556061.png)
+
+
+
+### 8.4.4、OpenFeign请求、响应压缩
+
+> 是什么？
+>
+> **对请求和响应进行GZIP压缩**
+>
+> Spring Cloud OpenFeign支持对请求和响应进行GZIP压缩，以减少通信过程中的性能损耗。
+>
+> 通过下面的两个参数设置，就能开启请求与响应的压缩功能：
+>
+> ```properties
+> spring.cloud.openfeign.compression.request.enabled=true
+> spring.cloud.openfeign.compression.response.enabled=true
+> ```
+>
+> **细粒度化设置**
+>
+> 对请求压缩做一些更细致的设置，比如下面的配置内容指定压缩的请求数据类型并设置了请求压缩的大小下限，只对超过这个大小的请求才会进行压缩：
+>
+> ```properties
+> spring.cloud.openfeign.compression.request.enabled=true
+> # 触发压缩的类型
+> spring.cloud.openfeign.compression.request.mime-types=text/xml,application/xml,application/json
+> # 最小触发压缩的大小
+> spring.cloud.openfeign.compression.request.min-request-size=2048
+> ```
+
+开启压缩功能（yml）
+
+```yml
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-consumer-openfeign-order
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true #优先使用服务ip进行注册
+        service-name: ${spring.application.name}
+    openfeign:
+      httpclient:
+        hc5:
+          # Apache HttpClient5 配置开启
+          enabled: true
+      compression:
+        request:
+          enabled: true
+          min-request-size: 2048 # 最小触发压缩的大小
+          mime-types: text/xml,application/xml,applications/json # 触发压缩数据类型
+        response:
+          enabled: true
+      client:
+        config:
+#          指定某个服务
+#          cloud-payment-service:
+          default:
+#             OpenFeign连接超时时间
+            connect-timeout: 3000
+            # 请求处理超时时间
+            read-timeout: 3000
+```
+
+
+
+### 8.4.5、OpenFeign日志打印功能
+
+> 是什么？
+>
+> Feign提供了日志打印功能，我们可以通过配置来调整日志级别，congress了解Feign中Http请求的细节，说白了就是对Feign接口的调用情况进行监控和输出。
+
+> 日志级别
+>
+> NONE：默认的，不显示任何日志；
+>
+> BASIC：仅记录请求方法、URL、响应状态码及执行时间；
+>
+> HEADERS：除了BASIC中定义的信息之外，还有请求和响应的头信息；
+>
+> FULL：除了HEADERS中定义的信息之外，还有请求和响应的正文及元数据；
+
+> 配置日志Bean
+>
+> ```java
+> package com.cloud.config;
+> 
+> import feign.Logger;
+> import feign.Retryer;
+> import org.springframework.context.annotation.Bean;
+> import org.springframework.context.annotation.Configuration;
+> 
+> @Configuration
+> public class FeignConfig {
+> 
+>     @Bean
+>     public Retryer myRetryer() {
+>         //  Feign默认配置是没有重试策略的
+>         //  return Retryer.NEVER_RETRY;
+> 
+>         //  最大请求数为4（1+3），初始间隔为100ms，重试时间最大间隔时间为1s
+>         return new Retryer.Default(100, 1, 4);
+>     }
+> 
+>     @Bean
+>     Logger.Level feignLoggerLevel() {
+>         return Logger.Level.FULL;
+>     }
+> }
+> ```
+
+> YML文件里需要开启日志的Feign客户端
+>
+> ```YML
+> # 以什么级别要监控那个api
+> logging:
+>   level:
+>     com:
+>       cloud:
+>         apis:
+>           PayFeignApi: debug
+> ```
+
+访问：http://localhost/feign/pay/get/1
+
+压缩
+
+![image-20240611232258663](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240611232258663.png)
+
+不压缩
+
+![image-20240611232444393](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240611232444393.png)
+
+
+
+
+
+
+
+
 
 
 
