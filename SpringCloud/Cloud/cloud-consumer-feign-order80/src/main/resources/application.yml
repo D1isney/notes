@@ -1,0 +1,39 @@
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-consumer-openfeign-order
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true #优先使用服务ip进行注册
+        service-name: ${spring.application.name}
+    openfeign:
+      httpclient:
+        hc5:
+          # Apache HttpClient5 配置开启
+          enabled: true
+      compression:
+        request:
+          enabled: true
+          min-request-size: 2048 # 最小触发压缩的大小
+          mime-types: text/xml,application/xml,applications/json # 触发压缩数据类型
+        response:
+          enabled: true
+      client:
+        config:
+          #          指定某个服务
+          #          cloud-payment-service:
+          default:
+            #             OpenFeign连接超时时间
+            connect-timeout: 3000
+            # 请求处理超时时间
+            read-timeout: 3000
+logging:
+  level:
+    com:
+      cloud:
+        apis:
+          PayFeignApi: debug
