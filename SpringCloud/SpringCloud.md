@@ -2601,9 +2601,9 @@ Github：https://github.com/spring-cloud/spring-cloud-openfeign
 
 Feign是一个声明性web服务客户端。它使编写web服务客户端变得更容易。使用Feign创建一个接口并对其进行注释。它具有可插入的注释支持，包括Feign注释和JAX-RS注释。Feign还支持可插拔编码器和解码器。Spring Cloud添加了对Spring MVC注释的支持，以及对使用Spring Web中默认使用的HttpMessageConverter的支持。Spring Cloud集成了Eureka、Spring Cloud CircuitBreaker以及Spring Cloud LoadBalancer，以便在使用Feign时提供负载平衡的http客户端。
 
-OpenFeign是一个声明式的Web服务客户端，只需创建一个Rest接口并在该接口上添加注解@FeignClient即可
+OpenFeign是一个声明式的Web服务客户端，只需创建一个Rest接口并在该接口上添加注解@FeignClient即可。
 
-OpenFeign基本上就是当前微服务之间调用的事实标准
+OpenFeign基本上就是当前微服务之间调用的事实标准。
 
 
 
@@ -3160,6 +3160,185 @@ spring:
 ![image-20240611232444393](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240611232444393.png)
 
 
+
+
+
+# 9、CircuitBreaker断路器
+
+## 9.1、Hystrix目前也进入维护模式
+
+### 9.1.1、是什么？
+
+> Hystrix是一个用于处理分布式系统的延迟和容错的开源库，在分布式系统里，许多依赖不可避免的会调用失败，比如超时、异常等，Hystrix能够保证在一个依赖出问题的情况下，不会导致整个服务失败，避免级联故障，以提高分布式系统的单行。
+
+
+
+## 9.2、概述
+
+> 分布式系统面临的问题
+>
+> 复杂分布式体系结构中的应用程序有数十个依赖关系，每个依赖关系在某些时候将不可避免的失败。
+
+> 服务雪崩
+>
+> 多个微服务之间调用的时候，假设微服务A调用微服务B和微服务C，微服务B和微服务C又调用其他的微服务，这就是所谓的“**扇出**”。如果扇出的链路上某个微服务的调用响应时间过长或者不可用，对微服务A的调用就会占用越来越多的系统资源，进而引起系统崩溃，所谓的“雪崩效应”。
+>
+> 对于高流量的应用来说，单一的后端依赖可能会导致所有服务器上的所有资源都在几秒钟内饱和。比失败更糟糕的是，这些应用程序还可能导致服务之间的延迟增加，备份队列，线程和其他系统资源紧张，导致整个系统发生更多的级联故障。这些都表示需要对故障和延迟进行隔离和管理，以便单个依赖关系的失败，不能取消整个应用程序或系统。
+>
+> 所以，通常当发现一个模块下的某个实例失败后，这时候这个模块依然还会接收流量，然后这个有问题的模块还调用了其他的模块，这样就会发生级联故障，或者叫雪崩。
+
+
+
+如何解决上述问题，避免整个系统大面积故障
+
+1. 服务熔断
+2. 服务降级
+3. 服务限流
+4. 服务限时
+5. 服务预热
+6. 接近实时的监控
+7. 兜底的处理动作
+
+
+
+## 9.3、Circuit Breaker是什么？
+
+官网：https://spring.io/projects/spring-cloud-circuitbreaker
+
+> 实现原理：
+>
+> Circuit Breaker的目的是保护分布式系统免受故障和异常，提高系统的可用性和健壮性。
+>
+> 当一个组件或服务出现故障时，Circuit Breaker会迅速切换到OPEN状态（保险丝跳闸断电），阻止请求发送到该组件或服务从而避免更多的请求发送到该组件或服务。这可以减少对该组件或服务的负载，防止该组件或服务进一步崩溃，并使整个系统能够继续正常运行。同时，Circuit Breaker还可以提高系统的可用性和健壮性，因为它可以在分布式系统的各个组件之间自动切换，从而避免单点故障的问题。
+
+Circuit Breaker只是一套规范和接口，落地实现者是Resilience4J
+
+
+
+## 9.4、Resilience4J
+
+### 9.4.1、是什么
+
+Github：https://github.com/resilience4j/resilience4j
+
+Resilience是一个专为函数式编程设计的轻量级容错库。Resilience4J提供那个高阶函数（装饰器），以通过断路器、速率限制器、重试或隔板增强任何功能接口、lambda表达式或方法引用。可以在任何函数式接口、lambda表达式或方法引用上堆叠多个装饰器。优点是可以选择需要的装饰器，而没有其他选择。
+
+Resilience4J 2 需要Java 17
+
+
+
+### 9.4.2、能干嘛
+
+Resilience4J提供了几个核心模块：
+
+- resilience4j - CircuitBreaker：断路
+- resilience4j - ratelimiter：速率限制
+- resilience4j - bulkhead：舱壁
+- resilience4j - retry：自动重试（同步和异步）
+- resilience4j - timelimiter：超时处理
+- resilience4j - cache：结果缓存
+
+还有用于指标、Feign、Kotlin、Spring、Ratpack、Vertx、RxJava2等的附加模块。
+
+
+
+
+
+### 9.4.3、怎么使用
+
+官网：https://resilience4j.readme.io/docs/circuitbreaker
+
+中文手册：https://github.com/lmhmhl/Resilience4j-Guides-Chinese/blob/main/index.md
+
+
+
+
+
+## 9.5、案例实战
+
+### 9.5.1、熔断（CircuitBreaker）（服务熔断 + 服务降级）
+
+- 断路器有三个普通状态：关闭（CLOSED）、开启（OPEN）、半开（HALF_OPEN），还有两个特殊状态：禁用（DISABLED）、强制开启（FORCED_OPEN）。
+- 当熔断器关闭时，所有的请求都会通过熔断器。
+  - 如果失败率超过设定的阈值，熔断器就会从关闭状态转换到打开状态，这时所有的请求都会被拒绝。
+  - 当经过一段时间后，熔断器会从打开状态转换到半开状态，这时仅有一定数量的请求会被放入，并重新计算失败率。
+  - 如果失败率超过阈值，则变为打开状态，如果失败率低于阈值，则变为关闭状态。
+- 断路器使用华东庄口来存储和统计调用的结果。可以选择基于调用数量的滑动窗口或者基于时间的滑动窗口。
+  - 基于访问数量的滑动窗口统计了最近N次调用的返回结果。基于时间的滑动窗口统计了最近N秒的调用返回结果。
+- 除此以外，熔断器还会有两种特殊状态：DISABLED（始终允许访问）和FORCED_OPEN（始终拒绝访问）。
+  - 这两个状态不会生成熔断器事件（除状态转换外），并不会记录事件的成功或失败。
+  - 退出这两个状态的唯一方法是出发状态转换或者重置熔断器。
+
+
+
+8001服务新建PayCircuitController
+
+```java
+package com.cloud.controller;
+
+import cn.hutool.core.util.IdUtil;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.TimeUnit;
+
+@RestController
+public class PayCircuitController {
+
+    @GetMapping(value = "/pay/circuit/{id}")
+    public String myCircuit(@PathVariable("id") Integer id){
+        if (id == -4) throw new RuntimeException("----circuit id 不能负数");
+        if (id == 9999){
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            }catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
+        return "Hello Circuit! inputID：" + id + "\t" + IdUtil.simpleUUID();
+    }
+}
+```
+
+
+
+api-commons - PayFeignApi
+
+```java
+@GetMapping(value = "/pay/circuit/{id}")
+public String myCircuit(@PathVariable("id") Integer id);
+```
+
+
+
+修改cloud-consumer-feign-order80
+
+pom
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+</dependency>
+<!--由于断路保护等需要AOP实现，所以必须导入AOP包-->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+```
+
+
+
+### 9.5.2、隔离（BulkHead）
+
+
+
+
+
+
+
+### 9.5.3、限流（RateLimiter）
 
 
 
