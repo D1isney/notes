@@ -24,10 +24,10 @@ spring:
           enabled: true
       client:
         config:
-#          指定某个服务
-#          cloud-payment-service:
+          #          指定某个服务
+          #          cloud-payment-service:
           default:
-#             OpenFeign连接超时时间
+            #             OpenFeign连接超时时间
             connect-timeout: 3000
             # 请求处理超时时间
             read-timeout: 3000
