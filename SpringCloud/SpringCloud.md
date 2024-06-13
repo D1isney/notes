@@ -3328,13 +3328,331 @@ pom
 </dependency>
 ```
 
+yml
+
+基于COUNT_BASED（计数的滑动窗口）
+
+```yml
+server:
+  port: 80
+spring:
+  application:
+    name: cloud-consumer-openfeign-order
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true #优先使用服务ip进行注册
+        service-name: ${spring.application.name}
+    openfeign:
+      httpclient:
+        hc5:
+          # Apache HttpClient5 配置开启
+          enabled: true
+      compression:
+        request:
+          enabled: true
+          min-request-size: 2048 # 最小触发压缩的大小
+          mime-types: text/xml,application/xml,applications/json # 触发压缩数据类型
+        response:
+          enabled: true
+
+      circuitbreaker:
+        enabled: true
+        group:
+          enabled: true
+
+      client:
+        config:
+          #          指定某个服务
+          #          cloud-payment-service: 
+          default:
+            #             OpenFeign连接超时时间
+            connect-timeout: 20000
+            # 请求处理超时时间
+            read-timeout: 20000
+#logging:
+#  level:
+#    com:
+#      cloud:
+#        apis:
+#          PayFeignApi: debug
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        failure-rate-threshold: 50 # 设置50%的调用失败时打开断路器，超过请求百分比Circuit Breaker变为OPEN状态
+        sliding-window-type: COUNT_BASED # 滑动窗口的类型
+        sliding-window-size: 6 # 滑动窗口的大小配置COUNT_BASED表示6个请求，配置TIME_BASED表示6s
+        minimum-number-of-calls: 6 # 断路器计算失败率或慢调用率之前所需的最小样本（每个滑动窗口周期）
+        automatic-transition-from-open-to-half-open-enabled: true # 是否启用自动从开始状态过渡到半开状态，默认值为true。如果启用，Circuit Breaker将自动从开启状态过渡到掰开状态，并允许一些请求通过以测试服务是否恢复正常
+        wait-duration-in-open-state: 5s # 从OPEN到HALF_OPEN状态需要等待的时间
+        permitted-number-of-calls-in-half-open-state: 2 # 半开状态允许的最大请求数，默认值为10。在半开状态下，CircuitBreaker将允许最多permittedNumberOfCallsInHalfOpenState个请求通过，如果其中有任何一个请求失败，Circuit Breaker将重新进入开启状态。
+        record-exceptions:
+          - java.lang.Exception
+    instances:
+      cloud-payment-service:
+        base-config: default
+```
+
+OrderCircuitController
+
+```java
+package com.cloud.controller;
+
+import com.cloud.apis.PayFeignApi;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class OrderCircuitController {
+
+    @Resource
+    private PayFeignApi payFeignApi;
+
+    @CircuitBreaker(name = "cloud-payment-service",fallbackMethod = "myCircuitFallback")
+    @GetMapping(value = "/feign/pay/circuit/{id}")
+    public String myCircuitBreaker(@PathVariable("id") Integer id){
+        return payFeignApi.myCircuit(id);
+    }
+
+    public String myCircuitFallback(Throwable t){
+        return "myCircuitFallback，系统繁忙，请稍后重试";
+    }
+}
+```
+
+访问：http://localhost:80/feign/pay/circuit/1
+
+Hello Circuit! inputID：1	589caa871b00418bb84cb5eef5b2d3d3
+
+访问：http://localhost:80/feign/pay/circuit/-4
+
+myCircuitFallback，系统繁忙，请稍后重试
+
+访问：http://localhost:80/feign/pay/circuit/9999
+
+myCircuitFallback，系统繁忙，请稍后重试
+
+服务降级
+
+多点几次http://localhost:80/feign/pay/circuit/-4
+
+接下来访问：http://localhost:80/feign/pay/circuit/1
+
+myCircuitFallback，系统繁忙，请稍后重试
+
+------
+
+yml
+
+基于TIME_BASED（时间的滑动窗口）
+
+```yml
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 10s # 默认限制远程1s，超过1s就超时异常，配置了降级，就走降级逻辑
+  circuitbreaker:
+    configs:
+      default:
+        failure-rate-threshold: 50
+        slow-call-duration-threshold: 2s # 慢调用时间阈值，高于这个阈值的视为慢调用并增加慢调用比例
+        slow-call-rate-threshold: 30 # 慢调用百分比峰值，超过百分之30就会开启断路器，慢调用时间为2s
+        sliding-window-type: TIME_BASED # 滑动窗口的类型
+        sliding-window-size: 2
+        minimum-number-of-calls: 2
+        permitted-number-of-calls-in-half-open-state: 2
+        wait-duration-in-open-state: 5s
+        record-exceptions:
+          - java.lang.Exception
+    instances:
+      cloud-payment-service:
+        base-config: default
+```
+
+------
+
+小总结：
+
+> 断路器开启或者关闭的条件
+
+- 当满足一定的峰值和失败率达到一定条件后，断路器将会进入OPEN状态（保险丝跳闸），服务熔断
+- 当OPEN的时候，所有请求都不会调用主业务逻辑方法，而是直接走fallbackmethod兜底方法，服务降级
+- 一段时间之后，这个时候断路器会从OPEN进入到HALF_OPEN半开状态，会放几个请求过去探探链路是否通？如果成功，断路器会CLOSE（类似保险丝闭合，恢复可用）；如果失败，继续开启；一直重复上述
+
 
 
 ### 9.5.2、隔离（BulkHead）
 
+官网：https://resilience4j.readme.io/docs/bulkhead
+
+中文文档：https://github.com/lmhmhl/Resilience4j-Guides-Chinese/blob/main/core-modules/bulkhead.md
+
+> 是什么？
+>
+> bulkhead（船的）舱壁 / （飞机的）隔板
+>
+> 限并发
+>
+> 隔板来自造船行业，船舱内部一般会分成很多小隔舱，一旦一个隔舱漏水因为隔板的存在而不至于影响其它隔舱和整体船。
+
+> 能干什么？
+>
+> 依赖隔离&负载保护：用来限制对于下游服务的最大并发数量的限制
+
+> Resilience4j提供了如下两种隔离的实现方式，可以限制并发执行的数量
+>
+> 1. SemaphoreBulkhead（信号量舱壁）
+> 2. FiexedThreadPoolBulkhead（固定线程池舱壁）
 
 
 
+#### 9.5.1.1、SemaphoreBulkhead
+
+> 概述
+>
+> 信号量舱壁（SemaphoreBulkhead）原理
+>
+> 当信号量有空闲时，进入系统的请求会直接获取信号量并开始业务处理。
+>
+> 当信号来那个全被占用时，接下来的请求将会进入阻塞状态，SemaphoreBulkhead提供了一个阻塞计时器，如果阻塞状态的请求在阻塞计时内无法获取到信号量则系统会拒绝这些请求。
+>
+> 若请求在阻塞计时内获取到了信号量，那将直接获取信号量并执行相应的业务处理。
+
+修改8001服务中PayCircuitController
+
+```java
+@GetMapping(value = "/pay/bulkhead/{id}")
+public String myBulkhead(@PathVariable("id") Integer id) {
+    if (id == -4) throw new RuntimeException("----bulkhead id 不能负数");
+    if (id == 9999) {
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    return "Hello Bulkhead! inputID：" + id + "\t" + IdUtil.simpleUUID();
+}
+```
+
+api中PayFeignApi接口新增舱壁api方法
+
+```java
+@GetMapping(value = "/pay/bulkhead/{id}")
+public String myBulkhead(@PathVariable("id") Integer id);
+```
+
+修改cloud-consumer-feign-order80 => pom、yml、orderCircuitController
+
+```xml
+<dependency>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-bulkhead</artifactId>
+</dependency>
+```
+
+```yml
+resilience4j:
+  bulkhead:
+    configs:
+      default:
+        max-concurrent-calls: 2 # 隔离允许并发线程执行的最大数量
+        max-wait-duration: 1s # 当达到并发调用数量时，新的线程的阻塞时间，只愿意等待1秒，过时不候进舱壁兜底fallback
+    instances:
+      cloud-payment-service:
+        base-config: default
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 20s
+```
+
+两个窗口访问：http://localhost/feign/pay/bulkhead/9999
+
+一个窗口访问：http://localhost/feign/pay/bulkhead/1
+
+没有延时的窗口会繁忙
+
+
+
+#### 9.5.1.2、FiexedThreadPoolBulkhead
+
+> 概述
+>
+> 固定线程池舱壁（FixedThreadPoolBulkhead）
+>
+> FixedThreadPoolBulkhead的功能与SemaphoreBulkhead一样也是用于限制并发执行的次数的，但是二者的实现原理存在差别而且表现效果也存在细微的差别。FixedThreadPoolBulkhead使用一个固定线程池和一个等待队列来实现舱壁。
+>
+> 当线程次中存在空闲时，则此时进入系统的请求将直接进入线程池开启新线程或使用空闲线程来处理请求。
+>
+> 当线程池中无空闲时，接下来的请求将进入等待队列，若等待队列仍然无剩余空间时接下来的请求将直接被拒绝，在队列中的请求等待线程池出现空闲时，将进入线程池进行业务处理。
+>
+> **另外：ThreadPoolBulkhead只对CompletableFuture方法有效，所以我们必创返回CompletableFuture类型的方法。**
+
+修改cloud-consumer-feign-order80 => pom、yml、orderCircuitController
+
+```xml
+<dependency>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-bulkhead</artifactId>
+</dependency>
+```
+
+```yml
+# 固定线程池舱壁（FixedThreadPoolBulkhead）
+resilience4j:
+  thread-pool-bulkhead:
+    configs:
+      default:
+        core-thread-pool-size: 1
+        max-thread-pool-size: 1 # 最高容纳数量 max-thread-pool-size + queue-capacity = 2
+        queue-capacity: 1
+    instances:
+      cloud-payment-service:
+        base-config: default
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 10s
+```
+
+```java
+    //  threadPool
+    @GetMapping(value = "/feign/pay/bulkhead/{id}")
+    @Bulkhead(name = "cloud-payment-service", fallbackMethod = "myBulkheadPoolFallback", type = Bulkhead.Type.THREADPOOL)
+    public CompletableFuture<String> myBulkheadPool(@PathVariable("id") Integer id) {
+        System.out.println(Thread.currentThread().getName() + "\t" + "---开始进入");
+        //
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "\t" + "---准备离开");
+
+        return CompletableFuture.supplyAsync(() -> payFeignApi.myBulkhead(id) + "\t" + "myBulkheadPool");
+    }
+    public CompletableFuture<String> myBulkheadPoolFallback(Integer id, Throwable t) {
+        return CompletableFuture.supplyAsync(() -> "myBulkheadPoolFallback,系统繁忙，请稍后重试");
+    }
+```
+
+分别访问：
+
+http://localhost/feign/pay/bulkhead/1
+
+http://localhost/feign/pay/bulkhead/2
+
+http://localhost/feign/pay/bulkhead/3
+
+第三个就会线程繁忙
 
 
 
