@@ -3658,11 +3658,52 @@ http://localhost/feign/pay/bulkhead/3
 
 ### 9.5.3、限流（RateLimiter）
 
+官网：https://resilience4j.readme.io/docs/ratelimiter
+
+Github：https://github.com/lmhmhl/Resilience4j-Guides-Chinese/blob/main/core-modules/ratelimiter.md
+
+> 是什么？
+>
+> 限流，就是限制最大访问流量。系统能提供的最大并发是有限的，同时来的请求又太多，就需要限流。
+
+> 面试题：说说常见限流算法
+>
+> 1. 漏斗算法（Leaky Bucket）
+>
+>    ![image-20240613230900228](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240613230900228.png)
+>
+>    ![image-20240613231003172](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240613231003172.png)
+>
+> 2. 令牌桶算法（Token Bucket） - > Spring Cloud默认使用该算法
+>
+> 3. 滚动时间窗（Tumbling Time Window）
+>
+>    ![image-20240613231429726](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240613231429726.png)
+>
+>    缺点：间隔临界的一段时间内的请求就会超过系统限制，可能导致系统被压垮
+>
+> 4. 滑动时间窗（Sliding Time Window）
 
 
 
+ cloud-provider-payment8001支付微服务 ->  修改PayCircuitController新增myRatelimit方法
 
+```java
+//  限流
+@GetMapping(value = "/pay/rateLimit/{id}")
+public String myRateLimit(@PathVariable("id") Integer id) {
+    return "Hello myRateLimit! inputID：" + id + "\t" + IdUtil.simpleUUID();
+}
+```
 
+api模块中 -> PayFeignApi接口新增限流api方法
+
+```java
+@GetMapping(value = "/pay/rateLimit/{id}")
+public String myRateLimit(@PathVariable("id") Integer id);
+```
+
+修改cloud-consumer-feign-order80 -> pom、yml、order的controller
 
 
 
