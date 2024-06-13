@@ -10,9 +10,22 @@ import java.util.concurrent.TimeUnit;
 @RestController
 public class PayCircuitController {
 
-    @GetMapping(value = "/pay/circuit/{id}")
-    public String myCircuit(@PathVariable("id") Integer id) {
-        if (id == -4) throw new RuntimeException("----circuit id 不能负数");
+//    @GetMapping(value = "/pay/circuit/{id}")
+//    public String myCircuit(@PathVariable("id") Integer id) {
+//        if (id == -4) throw new RuntimeException("----circuit id 不能负数");
+//        if (id == 9999) {
+//            try {
+//                TimeUnit.SECONDS.sleep(5);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//        return "Hello Circuit! inputID：" + id + "\t" + IdUtil.simpleUUID();
+//    }
+
+    @GetMapping(value = "/pay/bulkhead/{id}")
+    public String myBulkhead(@PathVariable("id") Integer id) {
+        if (id == -4) throw new RuntimeException("----bulkhead id 不能负数");
         if (id == 9999) {
             try {
                 TimeUnit.SECONDS.sleep(5);
@@ -20,6 +33,6 @@ public class PayCircuitController {
                 e.printStackTrace();
             }
         }
-        return "Hello Circuit! inputID：" + id + "\t" + IdUtil.simpleUUID();
+        return "Hello Bulkhead! inputID：" + id + "\t" + IdUtil.simpleUUID();
     }
 }

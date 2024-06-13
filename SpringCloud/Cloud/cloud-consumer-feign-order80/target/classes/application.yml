@@ -22,18 +22,94 @@ spring:
           mime-types: text/xml,application/xml,applications/json # 触发压缩数据类型
         response:
           enabled: true
+
+      circuitbreaker:
+        enabled: true
+#        group:
+#          enabled: true
+
       client:
         config:
           #          指定某个服务
           #          cloud-payment-service:
           default:
             #             OpenFeign连接超时时间
-            connect-timeout: 3000
+            connect-timeout: 20000
             # 请求处理超时时间
-            read-timeout: 3000
-logging:
-  level:
-    com:
-      cloud:
-        apis:
-          PayFeignApi: debug
+            read-timeout: 20000
+#logging:
+#  level:
+#    com:
+#      cloud:
+#        apis:
+#          PayFeignApi: debug
+#resilience4j:
+#  circuitbreaker:
+#    configs:
+#      default:
+#        failure-rate-threshold: 50 # 设置50%的调用失败时打开断路器，超过请求百分比Circuit Breaker变为OPEN状态
+#        sliding-window-type: COUNT_BASED # 滑动窗口的类型
+#        sliding-window-size: 6 # 滑动窗口的大小配置COUNT_BASED表示6个请求，配置TIME_BASED表示6s
+#        minimum-number-of-calls: 6 # 断路器计算失败率或慢调用率之前所需的最小样本（每个滑动窗口周期）
+#        automatic-transition-from-open-to-half-open-enabled: true # 是否启用自动从开始状态过渡到半开状态，默认值为true。如果启用，Circuit Breaker将自动从开启状态过渡到掰开状态，并允许一些请求通过以测试服务是否恢复正常
+#        wait-duration-in-open-state: 5s # 从OPEN到HALF_OPEN状态需要等待的时间
+#        permitted-number-of-calls-in-half-open-state: 2 # 半开状态允许的最大请求数，默认值为10。在半开状态下，CircuitBreaker将允许最多permittedNumberOfCallsInHalfOpenState个请求通过，如果其中有任何一个请求失败，Circuit Breaker将重新进入开启状态。
+#        record-exceptions:
+#          - java.lang.Exception
+#    instances:
+#      cloud-payment-service:
+#        base-config: default
+#resilience4j:
+#  timelimiter:
+#    configs:
+#      default:
+#        timeout-duration: 10s # 默认限制远程1s，超过1s就超时异常，配置了降级，就走降级逻辑
+#  circuitbreaker:
+#    configs:
+#      default:
+#        failure-rate-threshold: 50
+#        slow-call-duration-threshold: 2s # 慢调用时间阈值，高于这个阈值的视为慢调用并增加慢调用比例
+#        slow-call-rate-threshold: 30 # 慢调用百分比峰值，超过百分之30就会开启断路器，慢调用时间为2s
+#        sliding-window-type: TIME_BASED # 滑动窗口的类型
+#        sliding-window-size: 2
+#        minimum-number-of-calls: 2
+#        permitted-number-of-calls-in-half-open-state: 2
+#        wait-duration-in-open-state: 5s
+#        record-exceptions:
+#          - java.lang.Exception
+#    instances:
+#      cloud-payment-service:
+#        base-config: default
+
+# 服务隔离yml配置
+# 信号量舱壁（SemaphoreBulkhead）
+#resilience4j:
+#  bulkhead:
+#    configs:
+#      default:
+#        max-concurrent-calls: 2 # 隔离允许并发线程执行的最大数量
+#        max-wait-duration: 1s # 当达到并发调用数量时，新的线程的阻塞时间，只愿意等待1秒，过时不候进舱壁兜底fallback
+#    instances:
+#      cloud-payment-service:
+#        base-config: default
+#  timelimiter:
+#    configs:
+#      default:
+#        timeout-duration: 20s
+
+# 固定线程池舱壁（FixedThreadPoolBulkhead）
+resilience4j:
+  thread-pool-bulkhead:
+    configs:
+      default:
+        core-thread-pool-size: 1
+        max-thread-pool-size: 1 # 最高容纳数量 max-thread-pool-size + queue-capacity = 2
+        queue-capacity: 1
+    instances:
+      cloud-payment-service:
+        base-config: default
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 10s
+
