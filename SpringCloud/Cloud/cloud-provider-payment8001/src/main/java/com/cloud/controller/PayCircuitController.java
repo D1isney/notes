@@ -35,4 +35,11 @@ public class PayCircuitController {
         }
         return "Hello Bulkhead! inputID：" + id + "\t" + IdUtil.simpleUUID();
     }
+
+    //  限流
+    @GetMapping(value = "/pay/rateLimit/{id}")
+    public String myRateLimit(@PathVariable("id") Integer id) {
+        return "Hello myRateLimit! inputID：" + id + "\t" + IdUtil.simpleUUID();
+    }
+
 }
