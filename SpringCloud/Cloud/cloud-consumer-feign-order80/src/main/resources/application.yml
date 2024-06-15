@@ -98,18 +98,35 @@ spring:
 #        timeout-duration: 20s
 
 # 固定线程池舱壁（FixedThreadPoolBulkhead）
+#resilience4j:
+#  thread-pool-bulkhead:
+#    configs:
+#      default:
+#        core-thread-pool-size: 1
+#        max-thread-pool-size: 1 # 最高容纳数量 max-thread-pool-size + queue-capacity = 2
+#        queue-capacity: 1
+#    instances:
+#      cloud-payment-service:
+#        base-config: default
+#  timelimiter:
+#    configs:
+#      default:
+#        timeout-duration: 10s
+
+
+# 限流器
 resilience4j:
-  thread-pool-bulkhead:
-    configs:
-      default:
-        core-thread-pool-size: 1
-        max-thread-pool-size: 1 # 最高容纳数量 max-thread-pool-size + queue-capacity = 2
-        queue-capacity: 1
-    instances:
-      cloud-payment-service:
-        base-config: default
   timelimiter:
     configs:
       default:
         timeout-duration: 10s
+  ratelimiter:
+    configs:
+      default:
+        limit-for-period: 2 # 在一次刷新周期内，允许执行的最大请求
+        limit-refresh-period: 1s # 限流器每隔LimitRefreshPeriod舒心一次，将允许处理的最大请求数量重置为LimitForPeriod
+        timeout-duration: 1 # 线程等待权限的默认等待时间
+    instances:
+      cloud-payment-service:
+        base-config: default
 

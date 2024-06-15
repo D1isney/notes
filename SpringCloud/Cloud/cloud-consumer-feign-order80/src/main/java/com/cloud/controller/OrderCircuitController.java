@@ -3,6 +3,7 @@ package com.cloud.controller;
 import com.cloud.apis.PayFeignApi;
 import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,6 +62,17 @@ public class OrderCircuitController {
     public String myBulkheadFallback(Integer id, Throwable t) {
         //  这里是容错处理逻辑，返回备用结果
         return "myBulkheadFallback，隔板超出最大数量限制，系统繁忙，请稍后重试";
+    }
+
+
+    @GetMapping(value = "/feign/pay/rateLimit/{id}")
+    @RateLimiter(name = "cloud-payment-service", fallbackMethod = "myRateLimitFallback")
+    public String myBulkheadRateLimit(@PathVariable("id") Integer id) {
+        return payFeignApi.myRateLimit(id);
+    }
+
+    public String myRateLimitFallback(Integer id, Throwable t) {
+        return "你被限流了，禁止访问";
     }
 
 
