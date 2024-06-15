@@ -3705,5 +3705,27 @@ public String myRateLimit(@PathVariable("id") Integer id);
 
 修改cloud-consumer-feign-order80 -> pom、yml、order的controller
 
+```xml
+<dependency>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-ratelimiter</artifactId>
+</dependency>
+```
 
-
+```yml
+# 限流器
+resilience4j:
+  timelimiter:
+    configs:
+      default:
+        timeout-duration: 10s
+  ratelimiter:
+    configs:
+      default:
+        limit-for-period: 2 # 在一次刷新周期内，允许执行的最大请求
+        limit-refresh-period: 1s # 限流器每隔LimitRefreshPeriod舒心一次，将允许处理的最大请求数量重置为LimitForPeriod
+        timeout-duration: 1 # 线程等待权限的默认等待时间
+    instances:
+      cloud-payment-service:
+        base-config: default
+```
