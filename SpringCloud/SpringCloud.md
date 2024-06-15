@@ -3729,3 +3729,788 @@ resilience4j:
       cloud-payment-service:
         base-config: default
 ```
+
+```java
+@GetMapping(value = "/feign/pay/ratelimit/{id}")
+@RateLimiter(name="cloud-payment-service",fallbackMethod = "myRateLimitFallback")
+public String myBulkheadRateLimit(@PathVariable("id") Integer id) {
+    return payFeignApi.myRateLimit(id);
+}
+
+public String myRateLimitFallback(){
+    return "你被限流了，禁止访问";
+}
+```
+
+
+
+# 10、Sleuth（Mirometer）+ZipKin分布式链路追踪
+
+## 10.1、Sleuth目前也进入维护模式
+
+> Spring Cloud Sleuth’s last minor version is 3.1. You can check the [3.1.x](https://github.com/spring-cloud/spring-cloud-sleuth/tree/3.1.x) branch for the latest commits. The core of this project got moved to [Micrometer Tracing](https://micrometer.io/docs/tracing) project and the instrumentations will be moved to [Micrometer](https://micrometer.io/) and all respective projects (no longer all instrumentations will be done in a single repository). 
+
+
+
+## 10.2、分布式链路追踪概述
+
+> Q：为什么会出现这个技术？需要解决哪些问题？
+>
+> 在微服务框架中，一个由客户发起的请求在后端系统中会经过多个不同的服务节点调用来协同产生最后的请求结果，每一个前端请求都会形成一条复杂的分布式服务调用链路，链路中的任何一环出现高延时或错误都会引起整个请求最后的失败。
+>
+> 在大规模分布式微服务集群下，如何实时观测系统的整体调用链路情况。
+>
+> 在大规模分布式微服务集群下，如何快速发现并定位到问题。
+>
+> 在大规模分布式微服务集群下，如何尽可能精确的判断故障对系统的影响范围与影响程度。
+>
+> 在大规模分布式微服务集群下，如何尽可能精确的梳理出服务之间的依赖关系，并判断出服务之间的依赖关系是否合理。
+>
+> 在大规模分布式微服务集群下，如何尽可能精确的分析整个系统调用链路的性能与瓶颈点。
+>
+> 在大规模分布式微服务集群下。如何尽可能精确的分析系统的存储瓶颈与容量规划。
+>
+> 综上所述：
+>
+> 分布式链路追中技术要解决的问题，分布式链路追踪（Distributed Tracing），就是将一次分布式请求还原成调用链路，进行日志记录，性能监控并将一次分布式请求的调用情况集中展示。比如各个服务节点上的耗、请求具体到达哪台机器上、每个服务节点的请求状态等等。
+
+
+
+## 10.3、Spring Cloud Sleuth: Micrometer
+
+官网：https://micrometer.io/docs/tracing
+
+Github：https://github.com/spring-cloud/spring-cloud-sleuth
+
+**Spring Cloud Sleuth 无法与 Spring Boot 3.x 及更高版本兼容。Sleuth 支持的 Spring Boot 的最后一个主要版本是 2.x。**
+
+Spring Cloud Sleuth（Micrometer）提供了一套完整的分布式链路追踪（Distributed Tracing）解决方案且兼容支持了ZipKin展现
+
+小总结：将一次分布式请求还原成调用链路，进行日志记录和性能监控，并将一次分布式请求的调用情况集中web展示
+
+
+
+行业内比较成熟的其他分布式链路追踪技术解决方案
+
+| 技术       | 说明                                                         |
+| ---------- | ------------------------------------------------------------ |
+| Cat        | 由大众点评开源，基于Java开发的实时监控平台，包括实时引用监控，业务监控。集成方案是通过代码埋点的方式来时间监控，比如：拦截器、过滤器等。对代码的侵入性很大，集成成本加高，风险较大。 |
+| Zipkin     | 由Twitter公司开源，开放源代码分布式的跟踪系统，用于收集服务的定时数据，以解决微服务架构中的延迟问题，包括：数据的手机、存储，查询和展现。结合Spring-Cloud-Sleuth使用较为简单，集成方便，但是功能较简单。 |
+| Pinpoint   | Pinpoint是一款开源的基于字节码注入的调用链分析，以及应用监控分析工具。特点是支持多种插件，UI功能强大，介入端无代码侵入。 |
+| SkyWalking | SkyWalking是国人开源的基于字节码注入的调用链分析，以及引用监控分析工具。特点是支持多种插件，UI功能较强，接入端无代码侵入。 |
+
+
+
+## 10.4、分布式链路追踪原理
+
+一条链路追踪会在每个服务调用的时候加上TraceID和SpanID
+
+链路通过TraceId唯一标识，Span标识发起的请求信息，各Span通过Parent ID关联起来（Span：表示调用链路来源，通俗的理解Span就是一次请求信息）
+
+
+
+## 10.5、Zipkin
+
+官网：https://zipkin.io/
+
+
+
+### 10.5.1、是什么？
+
+ZipKin是一种分布式链路跟踪系统图形化的工具，ZipKin是Twitter开源的分布式跟踪系统，能够手机微服务运行过程中的实时调用链路信息，并能够将这些调用链路信息展示到Web图形化界面后三个供开发人员分析，开发人员能够给从ZipKin中分析出调用链路中的性能瓶颈，识别出存在问题的应用程序，进而定位问题和解决问题。
+
+
+
+### 10.5.2、Zipkin为什么出现？
+
+单有Sleuth（Micrometer）行不行？
+
+当配置了Sleuth链路追踪的时候，追踪的信息第一个是Trace ID，第二个是Span ID。只有日志没有图，观看不方便，不美观。
+
+
+
+### 10.5.3、下载
+
+官网：https://zipkin.io/pages/quickstart.html
+
+下载：https://search.maven.org/remote_content?g=io.zipkin&a=zipkin-server&v=LATEST&c=exec
+
+下载：https://repo1.maven.org/maven2/io/zipkin/zipkin-server/
+
+> java -jar xxx.jar
+>
+
+> Regardless of how you start Zipkin, browse to http://your_host:9411 to find traces!
+>
+> 访问：localhost:9411/zipkin/
+
+
+
+## 10.6、Micrometer+ZipKin搭建链路监控案例
+
+Micrometer：数据采样
+
+Zipkin：图形展示
+
+------
+
+父工程POM：
+
+```xml
+<micrometer-tarcing-version>1.2.0</micrometer-tarcing-version>
+<micrometer-observation-version>1.12.0</micrometer-observation-version>
+<feign-micrometer.version>12.5</feign-micrometer.version>
+<zipkin-reporter-brave.version>2.17.0</zipkin-reporter-brave.version>
+```
+
+```xml
+<!--micrometer-tracing-bom导入链路追踪版本中心 1-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bom</artifactId>
+    <version>${micrometer-tarcing-version}</version>
+    <type>pom</type>
+    <scope>import</scope>
+</dependency>
+
+<!--micrometer-tracing指标追踪 2-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing</artifactId>
+    <version>${micrometer-tarcing-version}</version>
+</dependency>
+
+<!--micrometer-tracing-bridge-brave适配zipkin的桥接包 3-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-brave</artifactId>
+    <version>${micrometer-tarcing-version}</version>
+</dependency>
+
+<!--micrometer-observation 4-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-observation</artifactId>
+    <version>${micrometer-observation-version}</version>
+</dependency>
+
+<!-- feign-micrometer 5-->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-micrometer</artifactId>
+    <version>${feign-micrometer.version}</version>
+</dependency>
+
+<!-- zipkin-reporter-brave 6-->
+<dependency>
+    <groupId>io.zipkin.reporter2</groupId>
+    <artifactId>zipkin-reporter-brave</artifactId>
+    <version>${zipkin-reporter-brave.version}</version>
+</dependency>
+```
+
+引入的Jar分别是什么意思？
+
+由于Micrometer Tracing是一个门面工具自身并没有实现完整的链路追踪系统，具有的链路追踪另外需要引入的是第三方链路追踪系统的依赖：
+
+| 序号 | 包名                            | 说明                                                         |
+| :--- | :------------------------------ | :----------------------------------------------------------- |
+| 1    | micrometer-tracing-bom          | 导入链路追踪版本中心，体系化说明                             |
+| 2    | micrometer-tracing              | 指标追踪                                                     |
+| 3    | micrometer-tracing-bridge-brave | 一个Micrometer模块，用于分布式跟踪工具Brave集成，以收集应用程序的分布式跟踪数据。Brave是一个开源的分布式跟踪工具，它可以帮助用户在分布式系统中跟踪请求的流转，它使用一种称为”跟踪上下文“的机制，将请求的跟踪信息存储在请求的头部，然后将请求传递给下一个服务。在整个请求链中，Brave会将每个服务处理请求的时间和其他信息存储到跟踪数据中，以便用户可以了解整个请求路径和性能 |
+| 4    | micrometer-observation          | 一个基于度量库Micrometer的观测模块，用于手机应用程序的度量数据 |
+| 5    | feign-micrometer                | 一个Feign HTTP客户端的Micrometer模块，用于手机客户端请求的度量数据 |
+| 6    | zipkin-reporter-brave           | 一个用于将Brave跟踪数据报告到Zipkin跟踪系统的库              |
+
+补充包：spring-boot-starter-actuator Spring Boot框架的一个模块用于监视和管理应用程序
+
+------
+
+8001服务提供者 -> pom、yml、PayMicrometerController
+
+```xml
+<!-- Zipkin-->
+<!--micrometer-tracing指标追踪 2-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing</artifactId>
+</dependency>
+
+<!--micrometer-tracing-bridge-brave适配zipkin的桥接包 3-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-brave</artifactId>
+</dependency>
+
+<!--micrometer-observation 4-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-observation</artifactId>
+</dependency>
+
+<!-- feign-micrometer 5-->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-micrometer</artifactId>
+</dependency>
+
+<!-- zipkin-reporter-brave 6-->
+<dependency>
+    <groupId>io.zipkin.reporter2</groupId>
+    <artifactId>zipkin-reporter-brave</artifactId>
+</dependency>
+```
+
+```yml
+# Zipkin
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0 # 采样率默认为0.1（0.1就是10次只能有一次被记录下来），值越大收集越及时
+```
+
+```java
+@RestController
+public class PayMicrometerController {
+
+    @GetMapping(value = "/pay/micrometer/{id}")
+    public String myMicrometer(@PathVariable("id") Integer id) {
+        return "Hello, myMicrometer inputId：" + id + "\t  服务返回：" + IdUtil.simpleUUID();
+    }
+}
+```
+
+------
+
+PayFeignApi
+
+```java
+@GetMapping(value = "/pay/micrometer/{id}")
+public String myMicrometer(@PathVariable("id") Integer id);
+```
+
+------
+
+80服务调用者 -> pom、yml、OrderMicrometerController
+
+```xml
+<!-- Zipkin-->
+<!--micrometer-tracing指标追踪 2-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing</artifactId>
+</dependency>
+
+<!--micrometer-tracing-bridge-brave适配zipkin的桥接包 3-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-tracing-bridge-brave</artifactId>
+</dependency>
+
+<!--micrometer-observation 4-->
+<dependency>
+    <groupId>io.micrometer</groupId>
+    <artifactId>micrometer-observation</artifactId>
+</dependency>
+
+<!-- feign-micrometer 5-->
+<dependency>
+    <groupId>io.github.openfeign</groupId>
+    <artifactId>feign-micrometer</artifactId>
+</dependency>
+
+<!-- zipkin-reporter-brave 6-->
+<dependency>
+    <groupId>io.zipkin.reporter2</groupId>
+    <artifactId>zipkin-reporter-brave</artifactId>
+</dependency>
+```
+
+```yml
+# Zipkin
+management:
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1.0 # 采样率默认为0.1（0.1就是10次只能有一次被记录下来），值越大收集越及时
+```
+
+```java
+@RestController
+public class OrderMicrometerController {
+
+    @Resource
+    private PayFeignApi payFeignApi;
+
+    @GetMapping(value = "/feign/micrometer/{id}")
+    public String myMicrometer(@PathVariable("id") Integer id){
+        return payFeignApi.myMicrometer(id);
+    }
+}
+```
+
+------
+
+测试：
+
+启动Zipkin
+
+访问：http://localhost/feign/micrometer/1
+
+![image-20240615152726631](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240615152726631.png)
+
+
+
+# 11、Gateway网关
+
+## 11.1、概述
+
+### 11.1.1、是什么？
+
+官网：https://docs.spring.io/spring-cloud-gateway/reference/
+
+Gateway是在Spring生态系统之上构建的API网关服务，基于Spring6，Spring Boot 3和Project Reactor等技术。它旨在为微服务架构提供一种简单有效的统一的API路由管理方式，并在为它们提供跨领域的关注点，例如：安全性、监控、度量和恢复能力。
+
+系统定位：
+
+Cloud全家桶中有个很重要的组件就是网关，在1.x版本中都是采用的Zuul网关；
+
+但是在2.x版本中，Zuul的升级一直跳票，Spring Cloud最后自己研发了一个网关Spring Cloud Gateway替代Zuul
+
+
+
+### 11.1.2、微服务架构中网关在哪里？
+
+![image-20240615162128092](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240615162128092.png)
+
+
+
+### 11.1.3、能干嘛？
+
+1. 反向代理
+2. 鉴权
+3. 流量控制
+4. 熔断
+5. 日志监控
+
+
+
+### 11.1.4、总结
+
+Spring Cloud Gateway组件的核心是一系列的过滤器，通过这些过滤器可以将客户端发送的请求转发（路由）到对应的微服务。
+
+Spring Cloud Gateway是加在整个微服务最前沿的防火墙和代理器，隐藏微服务节点IP端口信息，从而加强安全保护。
+
+Spring Cloud Gateway本身也是一个微服务，需要注册进服务注册中心。
+
+
+
+## 11.2、Gateway三大核心
+
+官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/glossary.html
+
+- **Route（路由）**: The basic building block of the gateway. It is defined by an ID, a destination URI, a collection of predicates, and a collection of filters. A route is matched if the aggregate predicate is true.
+- **Predicate（断言）**: This is a [Java 8 Function Predicate](https://docs.oracle.com/javase/8/docs/api/java/util/function/Predicate.html). The input type is a [Spring Framework `ServerWebExchange`](https://docs.spring.io/spring/docs/5.0.x/javadoc-api/org/springframework/web/server/ServerWebExchange.html). This lets you match on anything from the HTTP request, such as headers or parameters.
+- **Filter（过滤器）**: These are instances of [`GatewayFilter`](https://github.com/spring-cloud/spring-cloud-gateway/blob/main/spring-cloud-gateway-server/src/main/java/org/springframework/cloud/gateway/filter/GatewayFilter.java) that have been constructed with a specific factory. Here, you can modify requests and responses before or after sending the downstream request.
+
+Route：路由是构建网关的基本模块，它由ID，目标URI，一系列的断言和过滤器组成，如果断言为true，则匹配该路由
+
+Predicate：参考的是Java8的java.util.function.Predicate开发人员可以匹配HTTP请求中的所有内容（例如请求头或者请求参数），如果请求与断言相匹配则进行路由
+
+Filter：指的是Spring框架中GatewayFilter的实例，使用过滤器，可以在请求被路由前或之后对请求进行修改
+
+
+
+总结：
+
+web前端请求，通过一些匹配条件，定位到真正的服务节点。并在这个转发过程的前后，进行一些精细化控制。
+
+predicate就是匹配条件。
+
+filter就可以理解为一个无所不能的拦截器。有了这两个元素，再加上目标url，就可以实现一个具体的路由了
+
+
+
+## 11.3、Gateway工作流程
+
+官网；https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/how-it-works.html
+
+![image-20240615165057630](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240615165057630.png)
+
+客户端向Spring Cloud Gateway发出请求。然后Gateway Handler Mapping中找到与请求相匹配的路由，将其发送到Gateway Wab Handler。Handler再通过执行的过滤器链来将请求发送到实际的服务执行业务逻辑，然后返回。
+
+过滤器之间用虚线分开是因为过滤器可能会在发送代理请求之前（Pre）或之后（Post）执行业务逻辑。
+
+在“pre”类型的过滤器可以做参数校验、权限校验、流量控制、日志输出、协议转换等。
+
+在“post”类型的过滤器中可以做相应内容、响应头的修改、日志输出、流量监控等有着非常重要的作用。
+
+核心逻辑：路由转发 +  断言判断 + 执行过滤器链
+
+
+
+## 11.4、入门配置
+
+建module：cloud-gateway9527
+
+pom
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloud-gateway9527</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Gateway-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <!-- 服务注册中心consul discovery，网关也要注册进服务注册中心同意管控-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>
+        <!-- 指标监控健康检查的actuator，网关是响应式变成删除掉spring-boot-starter-web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+yml
+
+```yml
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway # 以微服务注册进consul或nacos服务列表内
+  cloud:
+    consul: # 配置consul地址
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+```
+
+主启动类
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient // 服务注册和发现
+public class Main9527 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main9527.class, args);
+    }
+}
+```
+
+
+
+## 11.5、9527网关如何做路由映射
+
+诉求：不暴露8001服务
+
+8001：PayGatewayController
+
+```java
+package com.cloud.controller;
+
+import cn.hutool.core.util.IdUtil;
+import com.cloud.entities.Pay;
+import com.cloud.resp.ResultData;
+import com.cloud.service.PayService;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class PayGatewayController {
+
+    @Resource
+    private PayService payService;
+
+    @GetMapping(value = "/pay/gateway/get/{id}")
+    public ResultData<Pay> getById(@PathVariable("id") Integer id) {
+        Pay pay = payService.getById(id);
+        return ResultData.success(pay);
+    }
+
+    @GetMapping(value = "/pay/gateway/info")
+    public ResultData<String> getGatewayInfo() {
+        return ResultData.success("gateway info" + IdUtil.simpleUUID());
+    }
+}
+```
+
+
+
+Gateway：
+
+```yml
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway # 以微服务注册进consul或nacos服务列表内
+  cloud:
+    consul: # 配置consul地址
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+    gateway:
+      routes:
+        - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+          uri: http://localhost:8001 # 匹配后提供服务的路由地址
+          predicates:
+            - Path=/pay/gateway/get/** # 断言，路径相匹配的进行路由
+
+        - id: pay_routh1
+          uri: http://localhost:8001
+          predicates:
+            - Path=/pay/gateway/info/**
+```
+
+访问：
+
+http://localhost:9527/pay/gateway/get/1
+
+http://localhost:9527/pay/gateway/info
+
+
+
+1. 修改cloud-api-commons -> PayFeignApi接口
+
+   ```java
+   @GetMapping(value = "/pay/gateway/get/{id}")
+   public ResultData<?> getById(@PathVariable("id") Integer id);
+   
+   @GetMapping(value = "/pay/gateway/info")
+   public ResultData<String> getGatewayInfo();
+   ```
+
+2. cloud-consumer-feign-order80 -> 新建OrderGatewayController
+
+   ```java
+   package com.cloud.controller;
+   
+   import com.cloud.apis.PayFeignApi;
+   import com.cloud.resp.ResultData;
+   import jakarta.annotation.Resource;
+   import org.springframework.web.bind.annotation.GetMapping;
+   import org.springframework.web.bind.annotation.PathVariable;
+   import org.springframework.web.bind.annotation.RestController;
+   
+   @RestController
+   public class OrderGatewayController {
+       @Resource
+       private PayFeignApi payFeignApi;
+   
+       @GetMapping("/feign/pay/gateway/get/{id}")
+       public ResultData<?> getById(@PathVariable("id") Integer id){
+           return payFeignApi.getById(id);
+       }
+   
+       @GetMapping(value = "/feign/pay/gateway/info")
+       public ResultData<String> getGatewayInfo(){
+           return payFeignApi.getGatewayInfo();
+       }
+   }
+   ```
+
+3. 网关开启
+
+   访问：http://localhost/feign/pay/gateway/get/1
+
+4. 网关关闭
+
+   访问：http://localhost/feign/pay/gateway/get/1
+
+   发现两次都可以访问，是因为PayFeignApi绑定的是cloud-payment-service
+
+5. 结论
+
+   所以修改PayFeignApi
+
+   ```java
+   @FeignClient(value = "cloud-gateway")
+   public interface PayFeignApi {}
+   ```
+
+   这样关闭网关，就不能访问了
+
+
+
+## 11.6、Gateway高级特性
+
+###  11.6.1、Route以微服务名-动态获取服务URL
+
+> 网关配置：写死服务端口（X）
+>
+> 官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/configuring-route-predicate-factories-and-filter-factories.html
+
+yml
+
+```yml
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway # 以微服务注册进consul或nacos服务列表内
+  cloud:
+    consul: # 配置consul地址
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+    gateway:
+      routes:
+        - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+          uri: lb://cloud-payment-service # 微服务的名字
+#          uri: http://localhost:8001 # 匹配后提供服务的路由地址
+          predicates:
+            - Path=/pay/gateway/get/** # 断言，路径相匹配的进行路由
+
+        - id: pay_routh1
+          uri: lb://cloud-payment-service # 微服务的名字
+#          uri: http://localhost:8001
+          predicates:
+            - Path=/pay/gateway/info/**
+```
+
+
+
+### 11.6.2、Predicate断言（谓词）
+
+> 官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/request-predicates-factories.html
+>
+> Spring Cloud Gateway matches routes as part of the Spring WebFlux `HandlerMapping` infrastructure. Spring Cloud Gateway includes many built-in route predicate factories. All of these predicates match on different attributes of the HTTP request. You can combine multiple route predicate factories with logical `and` statements.
+>
+> There are two ways to configure predicates and filters: shortcuts and fully expanded arguments. Most examples below use the shortcut way.
+>
+> The name and argument names are listed as `code` in the first sentence or two of each section. The arguments are typically listed in the order that are needed for the shortcut configuration.
+>
+> https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/configuring-route-predicate-factories-and-filter-factories.html
+
+两种方法配置Shortcuts Configuration和Fully Expanded Arguments
+
+
+
+**The After Route Predicate Factory**
+
+如何获得ZonedDateTime
+
+```java
+ZonedDateTime dateTime = ZonedDateTime.now();
+System.out.println(dateTime);
+```
+
+```yml
+    gateway:
+      routes:
+        - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+          uri: lb://cloud-payment-service # 微服务的名字
+#          uri: http://localhost:8001 # 匹配后提供服务的路由地址
+          predicates:
+#            - Path=/pay/gateway/get/** # 断言，路径相匹配的进行路由
+             # 多久之后才能访问
+            -  After=2024-06-15T23:17:08.307826900+08:00[Asia/Shanghai]
+```
+
+**The Before Route Predicate Factory**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        # 多久之前才能访问
+        - Before=2024-06-15T23:17:08.307826900+08:00[Asia/Shanghai]
+```
+
+**The Between Route Predicate Factory**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        # 多久之间才能访问
+        - Between=2024-06-15T23:17:08.307826900+08:00[Asia/Shanghai],2024-06-15T23:20:08.307826900+08:00[Asia/Shanghai]
+```
+
+**The Cookie Route Predicate Factory**
+
+Cookie Route Predicate需要两个参数，一个是Cookie name，一个是正则表达式。
+
+路由规则会通过获取对应的Cookie name值和正则表达式去匹配，如果匹配上，如果没有匹配上则不执行
+
+
+
+
+
+
+
+
+
+### 11.6.3、Filter过滤
+
+
+
+
+
+
+
+## 11.7、Gateway整个Alibaba Sentinel实现容错
+
