@@ -4496,6 +4496,47 @@ Cookie Route Predicate需要两个参数，一个是Cookie name，一个是正�
 
 路由规则会通过获取对应的Cookie name值和正则表达式去匹配，如果匹配上，如果没有匹配上则不执行
 
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        # 多久之后才能访问
+        - After=2024-06-15T23:17:08.307826900+08:00[Asia/Shanghai]
+        - Cookie=username, ch.p
+```
+
+cmd：
+
+```shell
+curl http://localhost:9527/pay/gateway/get/1 --cookie "username=ch.p"
+```
+
+**The Header Route Predicate Factory**
+
+请求头要有X-Request-Id属性并且值为整数的正则表达式
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        # 请求头要有X-Request-Id属性并且值为整数的正则表达式
+        - Header=X-Request-Id, \d+
+```
+
+cmd：
+
+```shell
+curl http://localhost:9527/pay/gateway/get/1 --H "X-Request-Id:123456"
+```
+
 
 
 
