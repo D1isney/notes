@@ -4534,20 +4534,609 @@ spring:
 cmd：
 
 ```shell
-curl http://localhost:9527/pay/gateway/get/1 --H "X-Request-Id:123456"
+curl http://localhost:9527/pay/gateway/get/1 -H "X-Request-Id:123456"
+```
+
+**The Host Request Predicate**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        # 请求头要有Host属性并且值为xxx
+        - Host=**.somehost.org,**.anotherhost.org
+```
+
+cmd：
+
+```shell
+curl http://localhost:9527/pay/gateway/get/1 -H "Host:www.disney.com"
+```
+
+**The Path Request Predicate**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        # 符合哪个路径
+         - Path=/red/{segment},/blue/{segment}
+```
+
+**The Query Request Predicate**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        # 支持传入两个参数，一个是属性名，一个是属性值，属性值可以是正则表达式
+         - Query=green
+```
+
+**The Weight Request Predicate**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        - Weight=group1, 2
+```
+
+**The Method Request Predicate**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        - Method=GET,POST # 允许的访问方法
+```
+
+**RemoteAddr**
+
+```yml
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+        uri: lb://cloud-payment-service # 微服务的名字
+        predicates:
+        - RemoteAddr=192.168.124.1/24 # 外部访问IP限制，最大跨度不超过32，目前是1~24它们是CIDR表示法
 ```
 
 
 
+小总结：
+
+Predicate就是为了实现一组匹配规则，让请求过来找到对应的Route进行处理。
+
+自定义断言：
+
+```java
+package com.cloud.MyGateway;
+
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ServerWebExchange;
+
+import java.util.function.Predicate;
+
+
+//  自定义故意配置userType，按照钻、金gold、银和yml配置的会员等级，以适配是否可以访问
+@Component
+public class MyRouterPredicateFactory extends AbstractRoutePredicateFactory<MyRouterPredicateFactory.Config> {
+
+    public MyRouterPredicateFactory() {
+        super(MyRouterPredicateFactory.Config.class);
+    }
+
+    @Override
+    public Predicate<ServerWebExchange> apply(MyRouterPredicateFactory.Config config) {
+        return new Predicate<ServerWebExchange>() {
+            @Override
+            public boolean test(ServerWebExchange serverWebExchange) {
+                //	http://localhost:9527/pay/gateway/get/1?userType=gold
+                String userType = serverWebExchange.getRequest().getQueryParams().getFirst("userType");
+                if (userType == null) {
+                    return false;
+                }
+
+//                if (userType.equalsIgnoreCase(config.getUserType())){
+//                    return true;
+//                }
+//                return false;
+                //  如果说参数存在，就和config的数据进行比较
+                return userType.equalsIgnoreCase(config.getUserType());
+            }
+        };
+    }
+
+    // 这个Config就是路由断言规则
+    @Getter
+    @Setter
+    @Validated
+    public static class Config {
+        @NotEmpty
+        private String userType;
+    }
+}
+```
+
+```yml
+spring:
+  application:
+    name: cloud-gateway # 以微服务注册进consul或nacos服务列表内
+  cloud:
+    consul: # 配置consul地址
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+    gateway:
+      routes:
+        - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+          uri: lb://cloud-payment-service # 微服务的名字
+          #          uri: http://localhost:8001 # 匹配后提供服务的路由地址
+          predicates:
+            - Path=/pay/gateway/info/**
+          #            - Path=/pay/gateway/get/** # 断言，路径相匹配的进行路由
+          # 多久之后能访问
+        #            -  After=2024-06-15T23:17:08.307826900+08:00[Asia/Shanghai]
 
 
 
+        - id: pay_routh1
+          uri: lb://cloud-payment-service # 微服务的名字
+          #          uri: http://localhost:8001
+          predicates:
+#            - Path=/pay/gateway/info/**
+              # 定义的My自定义断言，这样写会报错
+#            - MyRouterPredicateFactory=gold
+            - name: MyRouterPredicateFactory
+              args:
+                userType: gold
+```
+
+![image-20240617161131943](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240617161131943.png)
+
+访问：http://localhost:9527/pay/gateway/get/1?userType=gold
+
+开启简写
+
+```java
+package com.cloud.MyGateway;
+
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.cloud.gateway.handler.predicate.AbstractRoutePredicateFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.server.ServerWebExchange;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.function.Predicate;
+
+
+//  自定义故意配置userType，按照钻、金gold、银和yml配置的会员等级，以适配是否可以访问
+@Component
+public class MyRouterPredicateFactory extends AbstractRoutePredicateFactory<MyRouterPredicateFactory.Config> {
+
+    public MyRouterPredicateFactory() {
+        super(MyRouterPredicateFactory.Config.class);
+    }
+
+    //  可以简写方式
+    @Override
+    public List<String> shortcutFieldOrder() {
+        return Collections.singletonList("userType");
+    }
+
+    @Override
+    public Predicate<ServerWebExchange> apply(MyRouterPredicateFactory.Config config) {
+        return new Predicate<ServerWebExchange>() {
+            @Override
+            public boolean test(ServerWebExchange serverWebExchange) {
+                String userType = serverWebExchange.getRequest().getQueryParams().getFirst("userType");
+                if (userType == null) {
+                    return false;
+                }
+
+//                if (userType.equalsIgnoreCase(config.getUserType())){
+//                    return true;
+//                }
+//                return false;
+                //  如果说参数存在，就和config的数据进行比较
+                return userType.equalsIgnoreCase(config.getUserType());
+            }
+        };
+    }
+
+    // 这个Config就是路由断言规则
+    @Getter
+    @Setter
+    @Validated
+    public static class Config {
+        @NotEmpty
+        private String userType;
+    }
+}
+```
+
+```yml
+server:
+  port: 9527
+
+spring:
+  application:
+    name: cloud-gateway # 以微服务注册进consul或nacos服务列表内
+  cloud:
+    consul: # 配置consul地址
+      host: localhost
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+    gateway:
+      routes:
+        - id: pay_routh1 # 路由的ID（类似mysql主键），没有固定规则但要求唯一
+          uri: lb://cloud-payment-service # 微服务的名字
+          #          uri: http://localhost:8001 # 匹配后提供服务的路由地址
+          predicates:
+            - Path=/pay/gateway/info/**
+          #            - Path=/pay/gateway/get/** # 断言，路径相匹配的进行路由
+          # 多久之后能访问
+        #            -  After=2024-06-15T23:17:08.307826900+08:00[Asia/Shanghai]
+
+
+
+        - id: pay_routh1
+          uri: lb://cloud-payment-service # 微服务的名字
+          #          uri: http://localhost:8001
+          predicates:
+#            - Path=/pay/gateway/info/**
+              # 定义的My自定义断言，这样写会报错、、开启了简写就可以使用这个方法
+            - MyRouterPredicateFactory=gold
+#            - name: MyRouterPredicateFactory
+#              args:
+#                userType: gold
+```
 
 
 
 ### 11.6.3、Filter过滤
 
+官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway-server-mvc/gateway-handler-filter-functions.html
 
+> 类似Spring MVC里面的拦截器Interceptor，Servlet的过滤器
+>
+> “pre”和“post”分别会在请求被执行前调用和被执行后调用，用来修改请求和响应信息
+
+> 能干嘛？
+>
+> 请求鉴权、异常处理、记录接口调用时长统计
+
+> 类型
+>
+> 1. 全局默认过滤器Global Filters
+>
+>    官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/global-filters.html
+>
+>    gateway出厂默认已有的，直接用即可，主要作用于所有的路由
+>
+>    不需要在配置文件中配置，作用在所有的路由上，实现GlobalFilter接口即可
+>
+> 2. 单一内置过滤器GatewayFilter
+>
+>    官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/gatewayfilter-factories.html
+>
+>    写法类似于断言
+>
+>    ```yml
+>    spring:
+>      cloud:
+>        gateway:
+>          routes:
+>          - id: add_request_header_route
+>            uri: https://example.org
+>            filters:
+>            - AddRequestHeader=X-Request-red, blue
+>    ```
+>
+> 3. 自定义过滤器
+>
+>    官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/global-filters.html
+>
+>    MyGlobalFilter
+>
+>    ```java
+>    package com.cloud.MyGateway;
+>    
+>    import lombok.extern.slf4j.Slf4j;
+>    import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+>    import org.springframework.cloud.gateway.filter.GlobalFilter;
+>    import org.springframework.core.Ordered;
+>    import org.springframework.stereotype.Component;
+>    import org.springframework.web.server.ServerWebExchange;
+>    import reactor.core.publisher.Mono;
+>    
+>    @Component
+>    @Slf4j
+>    public class MyGlobalFilter implements GlobalFilter, Ordered {
+>    
+>        public static final String BEGIN_VISIT_TIME = "begin_visit_time"; //开始调用方法的时间
+>    
+>        @Override
+>        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+>    
+>            //1、先记录访问接口的访问时间
+>            exchange.getAttributes().put(BEGIN_VISIT_TIME, System.currentTimeMillis());
+>            //2、返回统计的各个结果给后台
+>            return chain.filter(exchange).then(Mono.fromRunnable(() -> {
+>                Long beginVisitTime = exchange.getAttribute(BEGIN_VISIT_TIME);
+>                if (beginVisitTime != null) {
+>                    log.info("访问接口主机：{}", exchange.getRequest().getURI().getHost());
+>                    log.info("访问接口端口：{}", exchange.getRequest().getURI().getPort());
+>                    log.info("访问接口URL：{}", exchange.getRequest().getURI().getPath());
+>                    log.info("访问接口URL后面参数：{}", exchange.getRequest().getURI().getRawQuery());
+>                    log.info("访问接口时长：{}毫秒", System.currentTimeMillis() - beginVisitTime);
+>                    log.info("=========分割线========");
+>                    System.out.println();
+>                }
+>            }));
+>        }
+>    
+>        /***
+>         * 数字越小，优先级越高
+>         * @return int
+>         */
+>        @Override
+>        public int getOrder() {
+>            return 0;
+>        }
+>    }
+>    ```
+>
+>    访问：http://localhost:9527/pay/gateway/info?userType=gold
+>
+>    访问：http://localhost:9527/pay/gateway/get/1
+>
+>    访问：http://localhost:9527/pay/gateway/filter
+>
+>    ```shell
+>    2024-06-17T22:30:44.496+08:00  INFO 10708 --- [cloud-gateway] [ctor-http-nio-1] com.cloud.MyGateway.MyGlobalFilter       : 访问接口主机：localhost
+>    2024-06-17T22:30:44.496+08:00  INFO 10708 --- [cloud-gateway] [ctor-http-nio-1] com.cloud.MyGateway.MyGlobalFilter       : 访问接口端口：9527
+>    2024-06-17T22:30:44.496+08:00  INFO 10708 --- [cloud-gateway] [ctor-http-nio-1] com.cloud.MyGateway.MyGlobalFilter       : 访问接口URL：/pay/gateway/filter
+>    2024-06-17T22:30:44.496+08:00  INFO 10708 --- [cloud-gateway] [ctor-http-nio-1] com.cloud.MyGateway.MyGlobalFilter       : 访问接口URL后面参数：null
+>    2024-06-17T22:30:44.496+08:00  INFO 10708 --- [cloud-gateway] [ctor-http-nio-1] com.cloud.MyGateway.MyGlobalFilter       : 访问接口时长：11毫秒
+>    2024-06-17T22:30:44.496+08:00  INFO 10708 --- [cloud-gateway] [ctor-http-nio-1] com.cloud.MyGateway.MyGlobalFilter       : =========分割线========
+>    ```
+
+------
+
+> Gateway内置的过滤器
+>
+> 是什么？
+>
+> 官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/gatewayfilter-factories.html
+>
+> 常见的内置过滤器：
+>
+> 1. 请求头（RequestHeader）相关组
+>
+>    添加请求头
+>
+>    8001：PayGatewayController
+>
+>    ```java
+>    @GetMapping(value = "/pay/gateway/filter")
+>    public ResultData<String> getGatewayFilter(HttpServletRequest request) {
+>        String result = "";
+>        Enumeration<String> headers = request.getHeaderNames();
+>        while (headers.hasMoreElements()) {
+>            String headName = headers.nextElement();
+>            String headValue = request.getHeader(headName);
+>            System.out.println("请求头名字：" + headName + "\t\t\t" + "请求值：" + headValue);
+>            if (headName.equalsIgnoreCase("X-Request-disney1") ||
+>                headName.equalsIgnoreCase("X-Request-disney2")) {
+>                result = result + headName + "\t" + headValue + " ";
+>            }
+>        }
+>        return ResultData.success("getGatewayFilter 过滤器 test：" + result + "\t" + DateUtil.now());
+>    }
+>    ```
+>
+>    9527：yml
+>
+>    ```java
+>            - id: pay_routh3
+>              uri: lb://cloud-payment-service # 微服务的名字
+>              predicates:
+>                - Path=/pay/gateway/filter/**
+>              filters:
+>                - AddRequestHeader=X-Request-disney1,disney1
+>                - AddRequestHeader=X-Request-disney2,disney2
+>    ```
+>
+>    访问：http://localhost:9527/pay/gateway/filter
+>
+>    ------
+>
+>    删除某个请求头
+>
+>    9527：yml
+>
+>    ```yml
+>              filters:
+>                - AddRequestHeader=X-Request-disney1,disneyValue1
+>                - AddRequestHeader=X-Request-disney2,disneyValue2
+>                - RemoveRequestHeader=sec-fetch-site # 删除请求头sec-fetch-site
+>    ```
+>
+>    ------
+>
+>    修改某个请求头
+>
+>    9527：yml
+>
+>    ```yml
+>              filters:
+>                - AddRequestHeader=X-Request-disney1,disneyValue1
+>                - AddRequestHeader=X-Request-disney2,disneyValue2
+>                - RemoveRequestHeader=sec-fetch-site # 删除请求头sec-fetch-site
+>                - SetRequestHeader=sec-fetch-mode, Blue-updateByDisney # 将请求头sec-fetch-mode对象的值修改为Blue-updateByDisney
+>    ```
+>
+> 2. 请求参数（RequestParameter）相关组
+>
+>    9527：yml
+>
+>    新增请求参数、删除请求参数
+>
+>    ```yml
+>    filters:
+>      - AddRequestHeader=X-Request-disney1,disneyValue1
+>      - AddRequestHeader=X-Request-disney2,disneyValue2
+>      - RemoveRequestHeader=sec-fetch-site # 删除请求头sec-fetch-site
+>      - SetRequestHeader=sec-fetch-mode, Blue-updateByDisney # 将请求头sec-fetch-mode对象的值修改为Blue-updateByDisney
+>      - AddRequestParameter=customerId,9527001 # 新增请求参数Parameter：k,v
+>      - RemoveRequestParameter=customerName # 删除URL请求参数customerName，，及时传过来了也是NULL
+>    ```
+>
+>    8001：PayGatewayController
+>
+>    ```java
+>    @GetMapping(value = "/pay/gateway/filter")
+>    public ResultData<String> getGatewayFilter(HttpServletRequest request) {
+>        String result = "";
+>        Enumeration<String> headers = request.getHeaderNames();
+>        while (headers.hasMoreElements()) {
+>            String headName = headers.nextElement();
+>            String headValue = request.getHeader(headName);
+>            System.out.println("请求头名字：" + headName + "\t\t\t" + "请求值：" + headValue);
+>            if (headName.equalsIgnoreCase("X-Request-disney1") ||
+>                    headName.equalsIgnoreCase("X-Request-disney2")) {
+>                result = result + headName + "\t" + headValue + " ";
+>            }
+>        }
+>    
+>        System.out.println("============================");
+>    
+>        String customerId = request.getParameter("customerId");
+>        System.out.println("request customerId:" + customerId);
+>        String customerName = request.getParameter("customerName");
+>        System.out.println("request customerName:" + customerName);
+>    
+>        System.out.println("============================");
+>        return ResultData.success("getGatewayFilter 过滤器 test：" + result + "\t" + DateUtil.now());
+>    }
+>    ```
+>
+>    访问：http://localhost:9527/pay/gateway/filter
+>
+>    访问：http://localhost:9527/pay/gateway/filter?customerId=123&customerName=321
+>
+> 3. 回应头（ResponseHeader）相关组
+>
+>    添加回应头、设置回应头、删除回应头
+>
+>    ```yml
+>              filters:
+>                - AddRequestHeader=X-Request-disney1,disneyValue1
+>                - AddRequestHeader=X-Request-disney2,disneyValue2
+>                - RemoveRequestHeader=sec-fetch-site # 删除请求头sec-fetch-site
+>                - SetRequestHeader=sec-fetch-mode, Blue-updateByDisney # 将请求头sec-fetch-mode对象的值修改为Blue-updateByDisney
+>                - AddRequestParameter=customerId,9527001 # 新增请求参数Parameter：k,v
+>                - RemoveRequestParameter=customerName # 删除URL请求参数customerName，，及时传过来了也是NULL
+>                - AddResponseHeader=X-Response-Disney, BlueResponse # 新增请求参数X-Response-Disney并设值为BlueResponse
+>                - SetResponseHeader=Date,2099-11-11 # 设置回应头值为2099-11-11
+>                - RemoveResponseHeader=Content-Type # 将默认自带Content-Type回应属性删除
+>    ```
+>
+> 4. 前缀和路径相关组
+>
+>    自动添加路径前缀
+>
+>    之前正确的地址：http://localhost:9527/pay/gateway/filter
+>
+>    ```yml
+>            - id: pay_routh3
+>              uri: lb://cloud-payment-service # 微服务的名字
+>              predicates:
+>    #            - Path=/pay/gateway/filter/**
+>                - Path=/gateway/filter/** # 断言，为了配合PrefixPath测试过了，暂时注释掉/pay
+>              filters:
+>                 - PrefixPath=/pay # http://localhost:9527/pay/gateway/filter # 被拆分为 PrefixPath + Path
+>    ```
+>
+>    访问：http://localhost:9527/pay/gateway/filter 404
+>
+>    访问：http://localhost:9527/gateway/filter 200
+>
+>    带占位符
+>
+>    ```yml
+>              predicates:
+>    #            - Path=/pay/gateway/filter/**
+>    #            - Path=/gateway/filter/** # 断言，为了配合PrefixPath测试过了，暂时注释掉/pay
+>                - Path=/XYZ/abc/{segment}
+>              filters:
+>    #            - PrefixPath=/pay # http://localhost:9527/pay/gateway/filter # 被拆分为 PrefixPath + Path
+>                - SetPath=/pau/gateway/{segment} #{segment}表示占位符
+>    ```
+>
+>    浏览器访问地址：http://localhost:9527/XYZ/abc/filter
+>
+>    实际微服务地址：http://localhost:9527/pay/gateway/filter
+>
+>    重定向
+>
+>    ```yml
+>              predicates:
+>                - Path=/pay/gateway/filter/**
+>    #            - Path=/gateway/filter/** # 断言，为了配合PrefixPath测试过了，暂时注释掉/pay
+>    #            - Path=/XYZ/abc/{segment}
+>              filters:
+>    #            - PrefixPath=/pay # http://localhost:9527/pay/gateway/filter # 被拆分为 PrefixPath + Path
+>    #            - SetPath=/pay/gateway/{segment} #{segment}表示占位符
+>                - RedirectTo=302,https://www.baidu.com/ # 访问http://localhost:9527/pay/gateway/filter 跳转到https://www.baidu.com/
+>    ```
+>
+> 5. 其他
+>
+>    官网：https://docs.spring.io/spring-cloud-gateway/reference/spring-cloud-gateway/gatewayfilter-factories/default-filters.html
+
+------
+
+> Gateway自定义过滤器
+>
+> 
 
 
 
