@@ -46,6 +46,7 @@ spring:
             #            - SetPath=/pay/gateway/{segment} #{segment}表示占位符
             #            - RedirectTo=302,https://www.baidu.com/ # 访问http://localhost:9527/pay/gateway/filter 跳转到https://www.baidu.com/
 
+            - My=disney
             - AddRequestHeader=X-Request-disney1,disneyValue1
             - AddRequestHeader=X-Request-disney2,disneyValue2
 #            - RemoveRequestHeader=sec-fetch-site # 删除请求头sec-fetch-site
