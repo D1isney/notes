@@ -5242,8 +5242,619 @@ Github：https://github.com/alibaba/spring-cloud-alibaba
 
 
 
-## 12.3、官网手册
+## 12.3、官方手册
 
 官网：https://sca.aliyun.com/docs/2023/user-guide/sentinel/quick-start/?spm=5176.29160081.0.0.74801a153xByvU
 
 # 13、Nacos服务注册和配置中心
+
+## 13.1、是什么
+
+官网：https://nacos.io/
+
+一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
+
+Nacos就是注册中心 + 配置中心的组合
+
+Nacos = Eureka + Config + Bus
+
+Nacos = Spring Cloud Consul
+
+
+
+## 13.2、能干嘛
+
+替代Eureka / Consul做服务注册中心
+
+替代（Config + Bus）/ Consul 做服务配置中心和满足动态刷新广播通知
+
+
+
+## 13.3、安装
+
+官网：https://nacos.io/download/nacos-server/
+
+启动
+
+```shell
+startup.cmd -m standalone
+```
+
+
+
+## 13.4、各种注册中心比较
+
+| 服务注册与返现框架 | CAP模型 | 控制台管理 | 社区活跃度        |
+| ------------------ | ------- | ---------- | ----------------- |
+| Eureka             | AP      | 支持       | 低（2.x版本闭源） |
+| Zookeeper          | CP      | 不支持     | 中                |
+| Consul             | CP      | 支持       | 高                |
+| Nacos              | AP      | 支持       | 高                |
+
+
+
+## 13.5、基于Nacos的服务提供者
+
+新建Module：cloudalibaba-provider-payment9001
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloudalibaba-provider-payment9001</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+```yml
+server:
+  port: 9001
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 配置Nacos地址
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main9001 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main9001.class,args);
+    }
+}
+```
+
+```java
+package com.cloud.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@Slf4j
+public class PayAlibabaController {
+    @Value("${server.port}")
+    private String serverPort;
+
+    @GetMapping("/pay/nacos/{id}")
+    public String getPayInfo(@PathVariable("id") Integer id) {
+        return "nacos registry,ServerPort：" + serverPort + "\t" + "Id：" + id;
+    }
+
+}
+```
+
+启动服务
+
+![image-20240618164539799](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618164539799.png)
+
+访问：http://localhost:9001/pay/nacos/1
+
+
+
+## 13.6、基于Nacos的服务消费者
+
+新建Module：cloudalibaba-consumer-nacos-order83
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloudalibaba-consumer-nacos-order83</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+```yml
+server:
+  port: 83
+spring:
+  application:
+    name: nacos-consumer-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 配置Nacos地址
+service-url:
+  nacos-user-service: http://nacos-payment-provider
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main83 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main83.class,args);
+    }
+}
+```
+
+```java
+package com.cloud.config;
+
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+
+@Configuration
+public class RestTemplateConfig {
+
+    @Bean
+    @LoadBalanced
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+```
+
+```java
+package com.cloud.controller;
+
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+public class OrderNaCosController {
+
+    @Resource
+    private RestTemplate restTemplate;
+
+    @Value("${service-url.nacos-user-service}")
+    private String serverURL;
+
+    @GetMapping("/consumer/pay/nacos/{id}")
+    public String consumer(@PathVariable("id") Integer id) {
+        return restTemplate.getForObject(serverURL + "/pay/nacos/" + id, String.class) + "\t"+"  我是OrderNacosController83调用者";
+    }
+}
+```
+
+访问：http://localhost:83/consumer/pay/nacos/1
+
+
+
+## 13.7、负载均衡
+
+新增一个服务9002,
+
+访问：http://localhost:83/consumer/pay/nacos/1
+
+9001/9002交替出现
+
+
+
+## 13.8、Nacos Config服务配置中心
+
+### 13.8.1、概述
+
+通过Nacos和spring-cloud-starter-alibaba-nacos-config实现中心化全局配置的动态变更
+
+### 13.8.2、官方文档
+
+官网：https://nacos.io/docs/v2/what-is-nacos/
+
+### 13.8.3、Nacos作为配置中心配置
+
+新建Module：cloudalibaba-config-nacos-client3377
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloudalibaba-config-nacos-client3377</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+bootstrap.yml
+
+```yml
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # Nacos 服务注册中心地址
+      config:
+        server-addr: localhost:8848 # Nacos作为配置中心地址
+        file-extension: yaml # 指定yaml格式的配置
+```
+
+application.yml
+
+```yml
+server:
+  port: 3377
+spring:
+  profiles:
+    active: dev # 表示开发环境、prod生产环境、test测试环境
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main3377 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main3377.class,args);
+    }
+}
+```
+
+```java
+package com.cloud.controller;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RefreshScope // 在控制类加入@RefreshScope注解使当前类下的配置支持Nacos的动态刷新功能。
+public class NacosConfigClientController {
+    @Value("${config.info}")
+    private String configInfo;
+
+    @GetMapping("/config/info")
+    public String getConfigInfo() {
+        return configInfo;
+    }
+}
+```
+
+> nacos端配置文件DataId的命名规则是：
+>
+> ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+>
+> 得出：nacos-config-client-dev.yaml
+
+![image-20240618221516620](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618221516620.png)
+
+访问：http://localhost:3377/config/info
+
+Welcome to disney, nacos-config-client-dev.yaml, version=1
+
+更改配置
+
+![image-20240618222308642](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618222308642.png)
+
+访问：http://localhost:3377/config/info
+
+Welcome to disney, nacos-config-client-dev.yaml, version=2
+
+历史版本
+
+![image-20240618222536479](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618222536479.png)
+
+
+
+### 13.8.4、Nacos数据模型之Namespace-Group-DataId
+
+> 问题一
+>
+> 实际开发中，通常一个系统会准备
+>
+> dev开发环境、test测试环境、prod生产环境
+>
+> 如何保证指定环境启动时服务能正确读取到Nacos上对应环境的配置环境呢？
+>
+> ```yml
+> server:
+>   port: 3377
+> spring:
+>   profiles:
+>     active: dev # 表示开发环境、prod生产环境、test测试环境
+> ```
+
+> 问题二
+>
+> 一个大型分布式微服务系统会有很多微服务子项目，每个微服务项目又都会有相应的开发环境、测试环境、预发环境、正式环境等
+>
+> 那么怎么对这些微服务配置进行分组和命名空间管理呢？
+
+官网：https://nacos.io/docs/v2/architecture/
+
+![image-20240618224446851](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618224446851.png)
+
+是什么：类似Java里面的package名和类名，最外层的Namespace是可以用于区分部署环境的，Group和DataID逻辑上区分两个目标对象
+
+默认值：默认情况：Namespace=public，Group=DEFAULT_GROUP；Nacos默认的命名空间是public，Namespace主要用来实现隔离。比方说我们现在有三个环境：开发、测试、生产环境，我们就可以创建三个Namespace，不同的Namespace之间是隔离的。Group默认是DEFAULT_GROUP，Group可以把不同的微服务划分到同一个分组里面去
+
+Service就是微服务：一个Service可以包含一个或者多个Cluster（集群），Nacos默认Cluster是DEFAULT，Cluster是对指定微服务的一个虚拟划分
+
+
+
+新建一个分组
+
+![image-20240618230607119](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618230607119.png)
+
+bootstrap.yml
+
+```yml
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # Nacos 服务注册中心地址
+      config:
+        server-addr: localhost:8848 # Nacos作为配置中心地址
+        file-extension: yaml # 指定yaml格式的配置
+        # 使用定义的分组
+        group: PROD_GROUP
+```
+
+```yml
+server:
+  port: 3377
+spring:
+  profiles:
+#    active: dev # 表示开发环境、prod生产环境、test测试环境
+#    active: test
+    active: prod
+```
+
+访问：http://localhost:3377/config/info
+
+Welcome to disney, nacos-config-client-prod.yaml+ PROD_GROUP, version=2
+
+
+
+新建命令空间
+
+![image-20240618231041585](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618231041585.png)
+
+当命令空间ID不填会自动生成一个ID
+
+![image-20240618231145365](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618231145365.png)
+
+![image-20240618231259108](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618231259108.png)
+
+![image-20240618231604237](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240618231604237.png)
+
+bootstrap.yml
+
+```yml
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # Nacos 服务注册中心地址
+      config:
+        server-addr: localhost:8848 # Nacos作为配置中心地址
+        file-extension: yaml # 指定yaml格式的配置
+        # 使用定义的分组
+        group: PROD_GROUP
+        # 使用自定义的命名空间
+        namespace: Prod_Namespace
+
+#        nacos端配置文件DataId的命名规则是：
+#        ${spring.application.name}-${spring.profile.active}.${spring.cloud.nacos.config.file-extension}
+```
+
+访问：http://localhost:3377/config/info
+
+Welcome to disney, (Prod_Namespace + PROD_GROUP + nacos-config-client-prod.yaml), version=2
+
