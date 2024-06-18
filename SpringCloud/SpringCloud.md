@@ -5136,11 +5136,114 @@ spring:
 
 > Gateway自定义过滤器
 >
+> ```java
+> package com.cloud.MyGateway;
 > 
+> import lombok.Getter;
+> import lombok.Setter;
+> import org.springframework.cloud.gateway.filter.GatewayFilter;
+> import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+> import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+> import org.springframework.http.HttpStatus;
+> import org.springframework.http.server.reactive.ServerHttpRequest;
+> import org.springframework.stereotype.Component;
+> import org.springframework.web.server.ServerWebExchange;
+> import reactor.core.publisher.Mono;
+> 
+> import java.util.Arrays;
+> import java.util.List;
+> 
+> @Component
+> public class MyGatewayFilterFactory extends AbstractGatewayFilterFactory<MyGatewayFilterFactory.Config> {
+> 
+>     public MyGatewayFilterFactory() {
+>         super(Config.class);
+>     }
+> 
+>     @Override
+>     public GatewayFilter apply(Config config) {
+>         return new GatewayFilter() {
+>             @Override
+>             public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+>                 ServerHttpRequest request = exchange.getRequest();
+>                 System.out.println("进入了自定义网关过滤器MyGatewayFilterFactory，status" + config.getStatus());
+>                 if (request.getQueryParams().containsKey("disney")) {
+>                     return chain.filter(exchange);
+>                 } else {
+>                     exchange.getResponse().setStatusCode(HttpStatus.BAD_REQUEST);
+>                     return exchange.getResponse().setComplete();
+>                 }
+>             }
+>         };
+>     }
+> 
+>     @Override
+>     public List<String> shortcutFieldOrder() {
+>         return Arrays.asList("status");
+>     }
+> 
+>     @Setter
+>     @Getter
+>     public static class Config {
+>         private String status;
+>     }
+> }
+> ```
+>
+> yml
+>
+> ```yml
+>           filters:
+>             #            - PrefixPath=/pay # http://localhost:9527/pay/gateway/filter # 被拆分为 PrefixPath + Path
+>             #            - SetPath=/pay/gateway/{segment} #{segment}表示占位符
+>             #            - RedirectTo=302,https://www.baidu.com/ # 访问http://localhost:9527/pay/gateway/filter 跳转到https://www.baidu.com/
+> 
+>             - My=disney
+> ```
+>
+> 访问：http://localhost:9527/pay/gateway/filter
+>
+> 访问：http://localhost:9527/pay/gateway/filter?disney=java
 
 
 
+# 12、SpringCloud Alibaba入门简介
+
+## 12.1、是什么
+
+官网：https://spring-cloud-alibaba-group.github.io/github-pages/2021/en-us/index.html
+
+Github：https://github.com/alibaba/spring-cloud-alibaba
+
+中文文档：https://github.com/alibaba/spring-cloud-alibaba/blob/2023.x/README-zh.md
+
+组件：
+
+- Sentinel：把流量作为切入点，从流量控制、熔断降级、系统负载保护等多个未付保护服务的稳定性。
+- Nacos：一个更便于构建云原生应用的动态服务发现、配置管理和服务管理平台。
+- RocketMQ：一款开源的分布式消息系统，基于高可用分布式集群技术，提供低延时的、高可靠的信息发布与订阅服务。
+- Seata：Alibaba开源产品，一个易于使用的高性能微服务分布式事务解决方案。
+- Alibaba Cloud OSS：阿里云对象存储服务（Object Storage Service，简称OSS），是阿里云同的海量、安全、低成本、高可靠的云存储服务。可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+- Alibaba Cloud SchedulerX：阿里中间件团队开发的一款分布式任务调度产品，提供秒级、精准、高可靠、高可用的定时（基于Cron表达式）任务调度服务。
+- Alibaba Cloud SMS：覆盖全球的短信服务，友好、搞笑、只能和互联化通讯能力，帮助企业迅速搭建客户触发通道。
 
 
-## 11.7、Gateway整个Alibaba Sentinel实现容错
 
+## 12.2、能干嘛？
+
+- **服务限流降级**：默认支持 WebServlet、WebFlux、OpenFeign、RestTemplate、Spring Cloud Gateway、Dubbo 和 RocketMQ 限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级 Metrics 监控。
+- **服务注册与发现**：适配 Spring Cloud 服务注册与发现标准，默认集成对应 Spring Cloud 版本所支持的负载均衡组件的适配。
+- **分布式配置管理**：支持分布式系统中的外部化配置，配置更改时自动刷新。
+- **消息驱动能力**：基于 Spring Cloud Stream 为微服务应用构建消息驱动能力。
+- **分布式事务**：使用 @GlobalTransactional 注解， 高效并且对业务零侵入地解决分布式事务问题。
+- **阿里云对象存储**：阿里云提供的海量、安全、低成本、高可靠的云存储服务。支持在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+- **分布式任务调度**：提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有 Worker（schedulerx-client）上执行。
+- **阿里云短信服务**：覆盖全球的短信服务，友好、高效、智能的互联化通讯能力，帮助企业迅速搭建客户触达通道。
+
+
+
+## 12.3、官网手册
+
+官网：https://sca.aliyun.com/docs/2023/user-guide/sentinel/quick-start/?spm=5176.29160081.0.0.74801a153xByvU
+
+# 13、Nacos服务注册和配置中心
