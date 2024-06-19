@@ -5858,3 +5858,204 @@ spring:
 
 Welcome to disney, (Prod_Namespace + PROD_GROUP + nacos-config-client-prod.yaml), version=2
 
+# 14、SpringCloud Alibaba Sentinel实现熔断与限流
+
+## 14.1、是什么？
+
+官网：https://sentinelguard.io/zh-cn/
+
+Github：https://github.com/alibaba/Sentinel/wiki
+
+轻量级的流量控制、熔断降级Java库
+
+随着微服务的流行，服务和服务之间的稳定性变得越来越重要。Sentinel是面向分布式、多语言异构化服务架构的治理组件，只要以流量为切入点，从流量路由、流量控制、流量整形、熔断降级、系统自适应过载保护、热点流量防护等多个维度来帮助开发者保障微服务的稳定性。
+
+Sentinel分为两个部分：
+
+- 核心库（Java客户端）不依赖任何框架/库，能够运行所有Java运行时环境，同时对Dubbo / Spring Cloud等框架也有较好的支持。
+- 控制台（Dashboard）基于Spring Boot开发，打包后可以直接运行，不需要额外的Tomcat等应用容器。
+
+
+
+
+
+> 面试题
+>
+> 1. 服务雪崩
+> 2. 服务降级
+> 3. 服务熔断
+> 4. 服务限流
+> 5. 服务隔离
+> 6. 服务超时
+> 7. 讲讲什么是缓存穿透？击穿？雪崩？如何解决？
+
+
+
+## 14.2、安装Sentinel
+
+Github：https://github.com/alibaba/Sentinel/releases
+
+![image-20240619165208263](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240619165208263.png)
+
+账号：sentinel
+
+密码：sentinel
+
+![image-20240619165302088](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240619165302088.png)
+
+
+
+## 14.3、微服务8401整合Sentinel
+
+新建Module：cloudalibaba-sentinel-service8401
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloudalibaba-sentinel-service8401</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+```yml
+server:
+  port: 8401
+spring:
+  application:
+    name: cloud-alibaba-sentinel-service8401
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080 # 配置Sentinel Dashboard控制服务地址
+        port: 8719 # 默认8719端口，假如被占用会自动从8719开始一次+1扫描，直至找到未被占用的端口
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main8401 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main8401.class,args);
+    }
+}
+```
+
+```java
+package com.cloud.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@Slf4j
+@RestController
+public class FlowLimitController {
+
+    @GetMapping("/testA")
+    public String testA() {
+        return "-----testA";
+    }
+
+    @GetMapping("/testB")
+    public String testB() {
+        return "-----testB";
+    }
+}
+```
+
+
+
+访问：http://localhost:8401/testA
+
+访问：http://localhost:8401/testB
+
+
+
+## 14.4、流控规则
+
+
+
+## 14.5、熔断规则
+
+
+
+## 14.6、@SentinelResource注解
+
+
+
+## 14.7、热点规则
+
+
+
+## 14.8、授权规则
+
