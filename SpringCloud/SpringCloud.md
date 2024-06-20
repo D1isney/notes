@@ -6039,17 +6039,240 @@ public class FlowLimitController {
 
 访问：http://localhost:8401/testB
 
+![image-20240619172316647](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240619172316647.png)
+
 
 
 ## 14.4、流控规则
+
+### 14.4.1、基本介绍
+
+概述
+
+Sentinel能够对流量进行控制，主要是监控应用的QPS流量或者并发线程等指标，如果达到指定的阈值时，就会被流量进行控制，以避免服务被瞬时的高并发流量击垮，保证服务的高可靠性。
+
+
+
+### 14.4.2、流控模式
+
+![image-20240620115717896](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620115717896.png)
+
+> 直接
+>
+> 默认的流控模式，当接口达到限流条件时，直接开启限流功能。
+>
+> ![image-20240620115931837](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620115931837.png)
+>
+> ![image-20240620120003101](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620120003101.png)
+
+
+
+> 关联
+>
+> 当关联的资源达到阈值时，就限流自己
+>
+> 当与A关联的资源B达到阈值后，就限流A自己
+>
+> ![image-20240620120538752](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620120538752.png) 
+
+
+
+> 链路
+>
+>  来自不同链路的请求对同一个目标访问时，实施针对性的不同限流措施，比如C请求访问过来就是限流，D请求过来访问就是OK
+>
+> ```java
+> package com.cloud.service;
+> 
+> import com.alibaba.csp.sentinel.annotation.SentinelResource;
+> import org.springframework.stereotype.Service;
+> 
+> @Service
+> public class FlowLimitService {
+> 
+>     @SentinelResource(value = "common")
+>     public void common() {
+>         System.out.println("------FlowLimitService------");
+>     }
+> }
+> ```
+>
+> ```java
+> package com.cloud.controller;
+> 
+> import com.cloud.service.FlowLimitService;
+> import jakarta.annotation.Resource;
+> import lombok.extern.slf4j.Slf4j;
+> import org.springframework.web.bind.annotation.GetMapping;
+> import org.springframework.web.bind.annotation.RestController;
+> 
+> @Slf4j
+> @RestController
+> public class FlowLimitController {
+> 
+>     @GetMapping("/testA")
+>     public String testA() {
+>         return "-----testA";
+>     }
+> 
+>     @GetMapping("/testB")
+>     public String testB() {
+>         return "-----testB";
+>     }
+> 
+>     @Resource
+>     private FlowLimitService flowLimitService;
+>     @GetMapping("/testC")
+>     public String testC() {
+>         flowLimitService.common();
+>         return "-----testC";
+>     }
+> 
+>     @GetMapping("/testD")
+>     public String testD() {
+>         flowLimitService.common();
+>         return "-----testD";
+>     }
+> }
+> ```
+>
+> ```yml
+> sentinel:
+>   transport:
+>     dashboard: localhost:8080 # 配置Sentinel Dashboard控制服务地址
+>     port: 8719 # 默认8719端口，假如被占用会自动从8719开始一次+1扫描，直至找到未被占用的端口
+>   web-context-unify: false # controller层的方法对service层调用不认为是同一个跟链路
+> ```
+>
+> ![image-20240620132756386](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620132756386.png)
+>
+> ![image-20240620132833319](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620132833319.png)
+>
+> 访问：http://localhost:8401/testC
+>
+> 一秒内访问超过一次链路C会被拒绝访问，而D链路则正常
+
+
+
+### 14.4.3、流控效果
+
+1. 直接 - 快速失败（默认流控处理） - 直接失败，抛出异常 - Blocked by Sentinel（Flow limiting）
+2. 预热WarmUp
+3. 排队等待
 
 
 
 ## 14.5、熔断规则
 
+除了流量控制以外，降低调用链路中的不稳定资源也是 Sentinel 的使命之一。由于调用关系的复杂性，如果调用链路中的某个资源出现了不稳定，最终会导致请求发生堆积。这个问题和 [Hystrix](https://github.com/Netflix/Hystrix/wiki#what-problem-does-hystrix-solve) 里面描述的问题是一样的。
+
+Sentinel熔断降级会在调用链路中某个资源出现不稳定状态时（例如调用超时或异常比例升高），对这个资源的调用进行限制，让请求快速失败，避免影响到其他资源而导致级联错误。当资源被降级后，在接下来的降级时间窗口之内，对该资源的调用都自动熔断（默认行为是抛出DegardeException）。
+
+
+
+### 14.5.1、慢调用比例
+
+> 慢调用比例（SLOW_REQUEST_RATIO）：选择以慢调用比例作为阈值，需要设置允许的慢调用RT（即最大响应时间），请求的响应时间大于该值则统计为慢调用。当单位统计时长（statIntervalMs）内请求数据大于设置的最小请求数目，并且慢调用的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入勘测恢复状态（HALF-OPEN状态），若接下来的一个请求响应时间小于设置的慢调用RT则结束熔断，若大于设置的慢调用RT则会再次被熔断。
+
+```java
+@GetMapping("/testF")
+public String testF() {
+    try {
+        TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+        e.printStackTrace();
+    }
+    System.out.println("测试：新增熔断规则，慢调用比例");
+    return "-----testF";
+}
+```
+
+新增熔断规则
+
+![image-20240620161400998](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620161400998.png) 
+
+![image-20240620161448777](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620161448777.png)
+
+
+
+### 14.5.2、异常比例
+
+> 异常比例（ERROR_RATIO）：当单位统计时长（statIntervalMs）内请求数目大于设置的最小请求数目，并且异常的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断会进入探测恢复状态（HALF-OPEN状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是[0.0,1.0]，表示0% ~ 100%
+
+```java
+@GetMapping("/testG")
+public String testG() {
+    System.out.println("测试：新增熔断规则，异常比例");
+    int age = 10/0;
+    return "-----testG";
+}
+```
+
+![image-20240620162617954](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620162617954.png)
+
+
+
+### 14.5.3、异常数
+
+> 异常数（ERROR_COUNT）：当单位时长内的异常数目超过阈值之后会自动进行熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。
+
+```java
+@GetMapping("/testH")
+public String testH() {
+    System.out.println("测试：新增熔断规则，异常数");
+    int age = 10 / 0;
+    return "-----testH";
+}
+```
+
+![image-20240620163836503](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620163836503.png)
+
 
 
 ## 14.6、@SentinelResource注解
+
+SentinelResource是一个流量防卫防护组件注解，用于指定防护资源，对配置的资源进行流量控制、熔断降级等功能。
+
+
+
+### 14.6.1、按照rest地址限流 + 默认限流返回
+
+通过访问rest地址来限流，会返回Sentinel自带默认的限流处理信息
+
+```java
+package com.cloud.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@Slf4j
+public class RateLimitController {
+
+    @GetMapping(value = "/rateLimit/byUrl")
+    public String byUrl() {
+        return "按rest地址限流测试";
+    }
+
+}
+```
+
+![image-20240620172006929](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620172006929.png)
+
+
+
+### 14.6.2、按照SentinelResource资源名称限流 + 自定义限流返回
+
+
+
+### 14.6.3、按照SentinelResource资源名称 + 自定义限流返回 + 服务降级处理
+
+
+
+
+
+
 
 
 
