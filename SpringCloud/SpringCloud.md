@@ -6264,21 +6264,240 @@ public class RateLimitController {
 
 ### 14.6.2、按照SentinelResource资源名称限流 + 自定义限流返回
 
+```java
+@GetMapping(value = "/rateLimit/byResource")
+@SentinelResource(value = "byResourceSentinelResource", blockHandler = "handlerBlockHandler")
+public String byResource() {
+    return "按照资源名称SentinelResource限流测试";
+}
+public String handlerBlockHandler(BlockException blockException) {
+    return "服务不可用触发了@SentinelResource";
+}
+```
+
+![image-20240620211818398](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620211818398.png)
+
+
+
 
 
 ### 14.6.3、按照SentinelResource资源名称 + 自定义限流返回 + 服务降级处理
 
+```java
+@GetMapping("/rateLimit/doAction/{p1}")
+@SentinelResource(value = "doActionSentinelResource", blockHandler = "doActionBlockHandler", fallback = "doActionFallback")
+public String doAction(@PathVariable("p1") Integer p1) {
+    if (p1 == 0) {
+        throw new RuntimeException("p1 is 0");
+    }
+    return "doAction";
+}
 
+public String doActionFallback(@PathVariable("p1") Integer p1, BlockException e) {
+    log.error("sentinel配置自定义限流了：" + e);
+    return "程序逻辑异常了" + "\t" + e.getMessage();
+}
 
+public String doActionFallback(@PathVariable("p1") Integer p1, Throwable e) {
+    log.error("逻辑程序异常了：" + e);
+    return "程序逻辑异常了" + "\t" + e.getMessage();
+}
+```
 
+![image-20240620213814538](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620213814538.png)
 
+blockHandler，主要针对sentinel配置后出现的违规情况处理
 
+fallback，程序异常了JVM抛出的异常服务降级
 
 
 
 ## 14.7、热点规则
 
+官网：https://github.com/alibaba/Sentinel/wiki/%E7%83%AD%E7%82%B9%E5%8F%82%E6%95%B0%E9%99%90%E6%B5%81
+
+热点即经常访问的数据，很多时候我们希望统计或者限制某个热点数据中访问频次最高的TopN数据，并对其访问进行限流或其他操作。
+
+```java
+    @GetMapping(value = "/test/HotKey")
+    @SentinelResource (value = "testHotKey",blockHandler = "dealHandler_testHotKey")
+    public String testHotKey(@RequestParam(value = "p1",required = false) String p1,
+                             @RequestParam(value = "p2",required = false) String p2
+                             ) {
+        return "------testHotKey------";
+    }
+    public String dealHandler_testHotKey(String p1, String p2,BlockException e) {
+        return "----dealHandler_testHotKey";
+    }
+```
+
+![image-20240620220019026](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620220019026.png)
+
+限流模式支持QPS模式，固定写死了（这才叫热点）
+
+@SentinelResource注解的方法参数索引，0代表第一个参数，1代表第二个参数，以此类推
+
+单机阈值以及统计窗口时长表示在此窗口时间超过阈值就限流。
+
+访问：http://localhost:8401/test/HotKey?p1=abc 会被限流
+
+访问：http://localhost:8401/test/HotKey?p1=abc&p2=33 会被限流
+
+访问：http://localhost:8401/test/HotKey?p2=33 不会被限流
+
+
+
+另外参数 （常用VIP内部抢票）
+
+![image-20240620221958575](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620221958575.png)
+
+访问：http://localhost:8401/test/HotKey?p1=5
+
+参数值为5时，就不会被限流
+
 
 
 ## 14.8、授权规则
 
+官网：https://github.com/alibaba/Sentinel/wiki/%E9%BB%91%E7%99%BD%E5%90%8D%E5%8D%95%E6%8E%A7%E5%88%B6
+
+在某些场景下，需要根据调用接口的来源判断是否允许这行本次请求。此时就可以使用Sentinel提供的授权规则来实现，Sentinel的授权规则能够根据请求的来源判断是否允许本次请求通过。
+
+在Sentinel的授权规则中，提供了白名单与黑名单两种授权类型。白名单放行、黑名单禁止。
+
+
+
+```java
+package com.cloud.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@Slf4j
+public class EmpowerController {
+
+    @GetMapping(value = "/empower")
+    public String requestSentinel4(){
+        log.info("测试Sentinel授权规则empower");
+        return "Sentinel授权规则";
+    }
+}
+```
+
+```java
+package com.cloud.handler;
+
+import com.alibaba.csp.sentinel.adapter.spring.webmvc.callback.RequestOriginParser;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MyRequestOriginParser implements RequestOriginParser {
+
+    @Override
+    public String parseOrigin(HttpServletRequest request) {
+        return request.getParameter("serverName");
+    }
+}
+```
+
+![image-20240620225237785](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620225237785.png)
+
+访问：http://localhost:8401/empower?serverName=test
+
+访问：http://localhost:8401/empower?serverName=test2
+
+```tex
+Blocked by Sentinel (flow limiting)
+```
+
+访问：http://localhost:8401/empower?serverName=test3
+
+```tex
+Sentinel授权规则
+```
+
+
+
+## 14.9、规则持久化
+
+一旦重启微服务应用，Sentinel规则将消失
+
+将限流配置规则持久化进Nacos保存，只要刷新8401某个rest地址，Sentinel控制台的流控规则就能看到，只要Nacos里面的配置不删除，针对8401上Sentinel上的流控规则持续有效。
+
+```xml
+<dependency>
+    <groupId>com.alibaba.csp</groupId>
+    <artifactId>sentinel-datasource-nacos</artifactId>
+</dependency>
+```
+
+```yml
+server:
+  port: 8401
+spring:
+  application:
+    name: cloud-alibaba-sentinel-service8401
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: localhost:8080 # 配置Sentinel Dashboard控制服务地址
+        port: 8719 # 默认8719端口，假如被占用会自动从8719开始一次+1扫描，直至找到未被占用的端口
+      web-context-unify: false # controller层的方法对service层调用不认为是同一个跟链路
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            data-id: ${spring.application.name}
+            group-id: DEFAULT_GROUP
+            data-type: json
+            # FlowRule 流量控制规则
+            # DegradeRule 熔断降级规则
+            # AuthorityRule 访问控制规则
+            # SystemRule 系统保护规则
+            # ParamFlowRule 热点规则
+            rule-type: flow # com.alibaba.cloud.sentinel.datasource.RuleType
+```
+
+![image-20240620232539199](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620232539199.png)
+
+```json
+[
+    {
+        "resource":"/rateLimit/byUrl",
+        "limitApp":"default",
+        "grade":1,
+        "count":1,
+        "strategy":0,
+        "controlBehavior":0,
+        "clusterMode":false
+	}
+]
+```
+
+```tex
+resource：资源名称
+limitApp：来源应用
+grade：阈值类型（0表示线程数。1表示QPS）
+count：单机阈值
+strategy：流控模式（0表示直接，1表示关联，2表示链路）
+controlBehavior：流控效果（0表示快速失败，1表示Warm Up，2表示排队等待）
+clusterMode：是否集群
+```
+
+重启之后，刷一次（懒加载形式），持久化完成
+
+![image-20240620232635099](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240620232635099.png)
+
+
+
+
+
+
+
+## 14.10、OpenFeign和Sentinel集成实现fallback服务降级
