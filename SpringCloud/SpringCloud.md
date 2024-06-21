@@ -6496,8 +6496,197 @@ clusterMode：是否集群
 
 
 
-
-
-
-
 ## 14.10、OpenFeign和Sentinel集成实现fallback服务降级
+
+9001
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+</dependency>
+```
+
+```yml
+server:
+  port: 9001
+spring:
+  application:
+    name: nacos-payment-provider
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 配置Nacos地址
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main9001 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main9001.class, args);
+    }
+}
+```
+
+```java
+//  OpenFeign + Sentinel 进行服务降级和流量监控的整合处理case
+@GetMapping("/pay/nacos/get/{orderNo}")
+@SentinelResource(value = "getPayByOrderNo", blockHandler = "handlerBlockHandler")
+public ResultData<?> getPayByOrderNo(@PathVariable("orderNo") String orderNo) {
+
+    PayDTO payDTO = new PayDTO();
+
+    payDTO.setId(1024);
+    payDTO.setOrderNo(orderNo);
+    payDTO.setAmount(BigDecimal.valueOf(9.9));
+    payDTO.setPayNo("pat:" + IdUtil.fastUUID());
+
+    return ResultData.success("查询返回值：" + payDTO);
+}
+
+public ResultData<?> handlerBlockHandler(@PathVariable("orderNo") String orderNo, BlockException e) {
+    return ResultData.fail(ReturnCodeEnum.RC500.getCode(), "getPayByOrderNo服务不可用，" +
+            "触发Sentinel流控配置规则" + "\t" + "!"
+    );
+}
+```
+
+访问：http://localhost:9001/pay/nacos/get/ord1024
+
+返回：
+
+```json
+{
+    "code":"200",
+    "message":"success",
+    "timestamp":1718982550940,
+    "data":"查询返回值：PayDTO(id=1024, payNo=pat:0b7e6dc8-9b88-44a8-aca2-dabc35f1841c, orderNo=ord1024, amount=9.9)"
+}
+```
+
+
+
+cloud-api-commons
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+</dependency>
+```
+
+```java
+package com.cloud.apis;
+
+import com.cloud.resp.ResultData;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient(value = "nacos-payment-provider",fallback = PayFeignSentinelApiFallBack.class)
+public interface PauFeignSentinelApi {
+
+    @GetMapping("/pay/nacos/get/{orderNo}")
+    public ResultData<?> getPayByOrderNo(@PathVariable("orderNo") String orderNo);
+}
+```
+
+```java
+package com.cloud.apis;
+
+import com.cloud.resp.ResultData;
+import com.cloud.resp.ReturnCodeEnum;
+import org.springframework.stereotype.Component;
+
+@Component
+public class PayFeignSentinelApiFallBack implements PauFeignSentinelApi{
+
+    @Override
+    public ResultData<?> getPayByOrderNo(String orderNo) {
+        return ResultData.fail(ReturnCodeEnum.RC500.getCode(), "对方服务宕机或不可用，Fallback服务降级");
+    }
+}
+```
+
+
+
+cloudalibaba-consumer-nacos-order83
+
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.alibaba.cloud</groupId>
+    <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.cloud</groupId>
+    <artifactId>cloud-api-commons</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+```
+
+```yml
+server:
+  port: 83
+spring:
+  application:
+    name: nacos-consumer-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 配置Nacos地址
+service-url:
+  nacos-user-service: http://nacos-payment-provider
+
+# 激活Sentinel对Feign的支持
+feign:
+  sentinel:
+    enabled: true
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+public class Main83 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main83.class, args);
+    }
+}
+```
+
+
+
+
+
+## 14.11、Gateway和Sentinel集成实现服务限流
+
