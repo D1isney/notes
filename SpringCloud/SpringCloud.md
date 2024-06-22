@@ -6603,7 +6603,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(value = "nacos-payment-provider",fallback = PayFeignSentinelApiFallBack.class)
-public interface PauFeignSentinelApi {
+public interface PayFeignSentinelApi {
 
     @GetMapping("/pay/nacos/get/{orderNo}")
     public ResultData<?> getPayByOrderNo(@PathVariable("orderNo") String orderNo);
@@ -6618,7 +6618,7 @@ import com.cloud.resp.ReturnCodeEnum;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PayFeignSentinelApiFallBack implements PauFeignSentinelApi{
+public class PayFeignSentinelApiFallBack implements PayFeignSentinelApi{
 
     @Override
     public ResultData<?> getPayByOrderNo(String orderNo) {
@@ -6684,9 +6684,355 @@ public class Main83 {
 }
 ```
 
+```java
+package com.cloud.controller;
 
+import com.cloud.apis.PayFeignSentinelApi;
+import com.cloud.resp.ResultData;
+import jakarta.annotation.Resource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@RestController
+public class OrderNaCosController {
+
+    @Resource
+    private RestTemplate restTemplate;
+
+
+    @Value("${service-url.nacos-user-service}")
+    private String serverURL;
+
+    @GetMapping("/consumer/pay/nacos/{id}")
+    public String consumer(@PathVariable("id") Integer id) {
+        return restTemplate.getForObject(serverURL + "/pay/nacos/" + id, String.class) + "\t" + "  我是OrderNacosController83调用者";
+    }
+
+    // ==========
+    @Resource
+    private PayFeignSentinelApi payFeignSentinelApi;
+    @GetMapping(value = "/consumer/pay/nacos/get/{orderNo}")
+    public ResultData<?> getPayByOrderNo(@PathVariable("orderNo") String orderNo){
+        return payFeignSentinelApi.getPayByOrderNo(orderNo);
+    }
+}
+```
+
+```shell
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'orderNaCosController': Injection of resource dependencies failed
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:323) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1420) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:600) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:523) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:973) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:946) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:616) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:753) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:455) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:323) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1342) ~[spring-boot-3.2.0.jar:3.2.0]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1331) ~[spring-boot-3.2.0.jar:3.2.0]
+	at com.cloud.Main83.main(Main83.java:13) ~[classes/:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'com.cloud.apis.PayFeignSentinelApi': FactoryBean threw exception on object creation
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:188) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.getObjectFromFactoryBean(FactoryBeanRegistrySupport.java:124) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getObjectForBeanInstance(AbstractBeanFactory.java:1810) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.getObjectForBeanInstance(AbstractAutowireCapableBeanFactory.java:1277) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:335) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:254) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1441) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1348) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.autowireResource(CommonAnnotationBeanPostProcessor.java:530) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.getResource(CommonAnnotationBeanPostProcessor.java:508) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor$ResourceElement.getResourceToInject(CommonAnnotationBeanPostProcessor.java:659) ~[spring-context-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata$InjectedElement.inject(InjectionMetadata.java:270) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:145) ~[spring-beans-6.1.1.jar:6.1.1]
+	at org.springframework.context.annotation.CommonAnnotationBeanPostProcessor.postProcessProperties(CommonAnnotationBeanPostProcessor.java:320) ~[spring-context-6.1.1.jar:6.1.1]
+	... 17 common frames omitted
+Caused by: java.lang.IllegalStateException: Method PayFeignSentinelApi#getPayByOrderNo(String) not annotated with HTTP method type (ex. GET, POST)
+Warnings:
+- Class PayFeignSentinelApi has annotations [FeignClient] that are not used by contract Default
+- Method getPayByOrderNo has an annotation GetMapping that is not used by contract Default
+	at feign.Util.checkState(Util.java:140) ~[feign-core-13.1.jar:na]
+	at feign.Contract$BaseContract.parseAndValidateMetadata(Contract.java:115) ~[feign-core-13.1.jar:na]
+	at feign.Contract$BaseContract.parseAndValidateMetadata(Contract.java:65) ~[feign-core-13.1.jar:na]
+	at feign.DeclarativeContract.parseAndValidateMetadata(DeclarativeContract.java:38) ~[feign-core-13.1.jar:na]
+	at feign.ReflectiveFeign$ParseHandlersByName.apply(ReflectiveFeign.java:137) ~[feign-core-13.1.jar:na]
+	at feign.ReflectiveFeign.newInstance(ReflectiveFeign.java:56) ~[feign-core-13.1.jar:na]
+	at feign.ReflectiveFeign.newInstance(ReflectiveFeign.java:48) ~[feign-core-13.1.jar:na]
+	at feign.Feign$Builder.target(Feign.java:201) ~[feign-core-13.1.jar:na]
+	at org.springframework.cloud.openfeign.DefaultTargeter.target(DefaultTargeter.java:30) ~[spring-cloud-openfeign-core-4.1.0.jar:4.1.0]
+	at org.springframework.cloud.openfeign.FeignClientFactoryBean.loadBalance(FeignClientFactoryBean.java:399) ~[spring-cloud-openfeign-core-4.1.0.jar:4.1.0]
+	at org.springframework.cloud.openfeign.FeignClientFactoryBean.getTarget(FeignClientFactoryBean.java:447) ~[spring-cloud-openfeign-core-4.1.0.jar:4.1.0]
+	at org.springframework.cloud.openfeign.FeignClientFactoryBean.getObject(FeignClientFactoryBean.java:422) ~[spring-cloud-openfeign-core-4.1.0.jar:4.1.0]
+	at org.springframework.beans.factory.support.FactoryBeanRegistrySupport.doGetObjectFromFactoryBean(FactoryBeanRegistrySupport.java:182) ~[spring-beans-6.1.1.jar:6.1.1]
+	... 31 common frames omitted
+```
+
+版本不兼容：Spring Cloud + Spring Boot 与 Sentinel版本不兼容
+
+降低这两个版本
+
+```xml
+<spring.cloud.version>2022.0.2</spring.cloud.version>
+<spring.boot.version>3.0.9</spring.boot.version>
+```
+
+![image-20240622115042491](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240622115042491.png)
+
+访问：http://localhost:83/consumer/pay/nacos/get/1024
+
+```json
+{"code":"200","message":"success","timestamp":1719028877717,"data":"查询返回值：PayDTO(id=1024, payNo=pat:b362de70-24bb-44dd-8c6e-386470f01af0, orderNo=1024, amount=9.9)"}
+```
+
+关闭9001
+
+访问：http://localhost:83/consumer/pay/nacos/get/1024
+
+```json
+{"code":"500","message":"对方服务宕机或不可用，Fallback服务降级","timestamp":1719028932521,"data":null}
+```
 
 
 
 ## 14.11、Gateway和Sentinel集成实现服务限流
+
+新建Module：cloudalibaba-sentinel-gateway9528
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>cloudalibaba-sentinel-gateway9528</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-transport-simple-http</artifactId>
+            <version>1.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+            <version>1.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+```yml
+server:
+  port: 9528
+spring:
+  application:
+    name: cloud-alibaba-sentinel-gateway
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 # 配置Nacos地址
+    gateway:
+      routes:
+        - id: pay_routh1
+          uri: http://localhost:9001
+          predicates:
+            - Path=/pay/**
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+public class Main9528 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main9528.class,args);
+    }
+}
+```
+
+Github：https://github.com/alibaba/Sentinel/wiki/%E7%BD%91%E5%85%B3%E9%99%90%E6%B5%81
+
+```java
+package com.cloud.config;
+
+import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayFlowRule;
+import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
+import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
+import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.BlockRequestHandler;
+import com.alibaba.csp.sentinel.adapter.gateway.sc.callback.GatewayCallbackManager;
+import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
+import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.cglib.core.Block;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.codec.ServerCodecConfigurer;
+import org.springframework.web.reactive.function.BodyInserters;
+import org.springframework.web.reactive.function.server.ServerResponse;
+import org.springframework.web.reactive.result.view.ViewResolver;
+import org.springframework.web.server.ServerWebExchange;
+import reactor.core.publisher.Mono;
+
+import javax.annotation.PostConstruct;
+import java.util.*;
+
+@Configuration
+public class GatewayConfiguration {
+    private final List<ViewResolver> viewResolvers;
+    private final ServerCodecConfigurer serverCodecConfigurer;
+
+    public GatewayConfiguration(ObjectProvider<List<ViewResolver>> viewResolversProvider,
+                                ServerCodecConfigurer serverCodecConfigurer) {
+        this.viewResolvers = viewResolversProvider.getIfAvailable(Collections::emptyList);
+        this.serverCodecConfigurer = serverCodecConfigurer;
+    }
+
+    @Bean
+    @Order(Ordered.HIGHEST_PRECEDENCE)
+    public SentinelGatewayBlockExceptionHandler sentinelGatewayBlockExceptionHandler() {
+        // Register the block exception handler for Spring Cloud Gateway.
+        return new SentinelGatewayBlockExceptionHandler(viewResolvers, serverCodecConfigurer);
+    }
+
+    @Bean
+    @Order(-1)
+    public GlobalFilter sentinelGatewayFilter() {
+        return new SentinelGatewayFilter();
+    }
+
+    @PostConstruct
+    public void doInit() {
+        initBlockHandler();
+    }
+
+    //  处理 + 自定义返回的例外信息内容，类似调用触发流控
+    private void initBlockHandler() {
+        Set<GatewayFlowRule> rules = new HashSet<>();
+        //  一秒钟QPS超过两个就限流
+        rules.add(new GatewayFlowRule("pay_routh1").setCount(2).setIntervalSec(1));
+
+        //  加载路由规矩
+        GatewayRuleManager.loadRules(rules);
+
+        BlockRequestHandler handler = new BlockRequestHandler() {
+            @Override
+            public Mono<ServerResponse> handleRequest(ServerWebExchange serverWebExchange, Throwable throwable) {
+                HashMap<String, String> map = new HashMap<>();
+                map.put("errorCode", HttpStatus.TOO_MANY_REQUESTS.getReasonPhrase());
+                map.put("errorMessage", "请求太过繁忙，系统忙不过来，触发限流");
+
+                return ServerResponse.status(HttpStatus.TOO_MANY_REQUESTS)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromValue(map));
+            }
+        };
+
+        //  回调
+        GatewayCallbackManager.setBlockHandler(handler);
+    }
+}
+```
+
+访问：http://localhost:9001/pay/nacos/123
+
+```shell
+nacos registry,ServerPort：9001 Id：123
+```
+
+访问：http://localhost:9528/pay/nacos/123   多刷新几次
+
+```shell
+nacos registry,ServerPort：9001 Id：123
+```
+
+```json
+{"errorMessage":"请求太过繁忙，系统忙不过来，触发限流","errorCode":"Too Many Requests"}
+```
+
+
+
+# 15、Spring Cloud Alibaba Seata处理分布式事务
+
+一次业务操作需要跨多个数据源或需要跨多个系统进行远程调用，就会产生分布式事务问题，但是关系型数据库提供的能力是基于单机事务的，一旦遇到分布式事务场景，就需要通过更多其他技术手段来解决。
+
+## 15.1、Seata简介
+
+> Simple Extensible Autonomous Transaction Architecture 简单可扩展自治事务框架
+
+官网：https://seata.apache.org/
+
+Github：https://github.com/apache/incubator-seata
+
+Seata是一款开源的分布式事务解决方案，致力于微服务架构下提供高性能和简单易用的分布式事务服务。
+
+
+
+## 15.2、Seata工作流程简介
+
+TC（Transaction Coordinator）：事务协调者。维护全局和分支事务的状态，驱动全局事务提交或回滚。
+
+TM（Transaction Manager）：事务管理器。定义全局事务的范围：开始全局事务、提交或回滚全局事务。
+
+RM（Resource Manager）：资源管理器。管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。
+
+
+
+
+
+## 15.3、Seata-Server2.0.0安装
+
+
 
