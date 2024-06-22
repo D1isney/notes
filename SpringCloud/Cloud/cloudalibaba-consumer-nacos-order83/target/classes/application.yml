@@ -9,3 +9,8 @@ spring:
         server-addr: localhost:8848 # 配置Nacos地址
 service-url:
   nacos-user-service: http://nacos-payment-provider
+
+# 激活Sentinel对Feign的支持
+feign:
+  sentinel:
+    enabled: true

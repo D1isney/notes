@@ -29,9 +29,7 @@ public class PayAlibabaController {
     @GetMapping("/pay/nacos/get/{orderNo}")
     @SentinelResource(value = "getPayByOrderNo", blockHandler = "handlerBlockHandler")
     public ResultData<?> getPayByOrderNo(@PathVariable("orderNo") String orderNo) {
-
         PayDTO payDTO = new PayDTO();
-
         payDTO.setId(1024);
         payDTO.setOrderNo(orderNo);
         payDTO.setAmount(BigDecimal.valueOf(9.9));
