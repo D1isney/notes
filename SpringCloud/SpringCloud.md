@@ -7022,17 +7022,322 @@ Seata是一款开源的分布式事务解决方案，致力于微服务架构下
 
 ## 15.2、Seata工作流程简介
 
+![image-20240623211041332](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240623211041332.png)
+
 TC（Transaction Coordinator）：事务协调者。维护全局和分支事务的状态，驱动全局事务提交或回滚。
 
 TM（Transaction Manager）：事务管理器。定义全局事务的范围：开始全局事务、提交或回滚全局事务。
 
-RM（Resource Manager）：资源管理器。管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。
+RM（Resource Manager）：资源管理器。管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。 
 
-
+1. TM向TC申请开启一个全局事务，全局事务创建成功并生成一个全局唯一的XID；
+2. XID在微服务调用链路的上下文中传播；
+3. RM向TC注册分支事务，将其纳入XID对应全局事务的管辖；
+4. TM向TC发起针对XID的全局提交或回滚决议；
+5. TC调用XID下管辖的全局分支事务完成提交或回滚；
 
 
 
 ## 15.3、Seata-Server2.0.0安装
+
+官网：https://seata.apache.org/zh-cn/unversioned/download/seata-server
+
+Githut：https://github.com/apache/incubator-seata/releases
+
+建库Github：https://github.com/apache/incubator-seata/blob/develop/script/server/db/mysql.sql
+
+建库Seata
+
+```sql
+CREATE DATABASE seata;
+
+USE seata;
+```
+
+```sql
+-- -------------------------------- The script used when storeMode is 'db' --------------------------------
+-- the table to store GlobalSession data
+CREATE TABLE IF NOT EXISTS `global_table`
+(
+    `xid`                       VARCHAR(128) NOT NULL,
+    `transaction_id`            BIGINT,
+    `status`                    TINYINT      NOT NULL,
+    `application_id`            VARCHAR(32),
+    `transaction_service_group` VARCHAR(32),
+    `transaction_name`          VARCHAR(128),
+    `timeout`                   INT,
+    `begin_time`                BIGINT,
+    `application_data`          VARCHAR(2000),
+    `gmt_create`                DATETIME,
+    `gmt_modified`              DATETIME,
+    PRIMARY KEY (`xid`),
+    KEY `idx_status_gmt_modified` (`status` , `gmt_modified`),
+    KEY `idx_transaction_id` (`transaction_id`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+-- the table to store BranchSession data
+CREATE TABLE IF NOT EXISTS `branch_table`
+(
+    `branch_id`         BIGINT       NOT NULL,
+    `xid`               VARCHAR(128) NOT NULL,
+    `transaction_id`    BIGINT,
+    `resource_group_id` VARCHAR(32),
+    `resource_id`       VARCHAR(256),
+    `branch_type`       VARCHAR(8),
+    `status`            TINYINT,
+    `client_id`         VARCHAR(64),
+    `application_data`  VARCHAR(2000),
+    `gmt_create`        DATETIME(6),
+    `gmt_modified`      DATETIME(6),
+    PRIMARY KEY (`branch_id`),
+    KEY `idx_xid` (`xid`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+-- the table to store lock data
+CREATE TABLE IF NOT EXISTS `lock_table`
+(
+    `row_key`        VARCHAR(128) NOT NULL,
+    `xid`            VARCHAR(128),
+    `transaction_id` BIGINT,
+    `branch_id`      BIGINT       NOT NULL,
+    `resource_id`    VARCHAR(256),
+    `table_name`     VARCHAR(32),
+    `pk`             VARCHAR(36),
+    `status`         TINYINT      NOT NULL DEFAULT '0' COMMENT '0:locked ,1:rollbacking',
+    `gmt_create`     DATETIME,
+    `gmt_modified`   DATETIME,
+    PRIMARY KEY (`row_key`),
+    KEY `idx_status` (`status`),
+    KEY `idx_branch_id` (`branch_id`),
+    KEY `idx_xid` (`xid`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+CREATE TABLE IF NOT EXISTS `distributed_lock`
+(
+    `lock_key`       CHAR(20) NOT NULL,
+    `lock_value`     VARCHAR(20) NOT NULL,
+    `expire`         BIGINT,
+    primary key (`lock_key`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4;
+
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('AsyncCommitting', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('RetryCommitting', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('RetryRollbacking', ' ', 0);
+INSERT INTO `distributed_lock` (lock_key, lock_value, expire) VALUES ('TxTimeoutCheck', ' ', 0);
+```
+
+seata中application.yml
+
+```yml
+#  Copyright 1999-2019 Seata.io Group.
+#
+#  Licensed under the Apache License, Version 2.0 (the "License");
+#  you may not use this file except in compliance with the License.
+#  You may obtain a copy of the License at
+#
+#  http://www.apache.org/licenses/LICENSE-2.0
+#
+#  Unless required by applicable law or agreed to in writing, software
+#  distributed under the License is distributed on an "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#  See the License for the specific language governing permissions and
+#  limitations under the License.
+
+server:
+  port: 7091
+
+spring:
+  application:
+    name: seata-server
+
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: ${log.home:${user.home}/logs/seata}
+  extend:
+    logstash-appender:
+      destination: 127.0.0.1:4560
+    kafka-appender:
+      bootstrap-servers: 127.0.0.1:9092
+      topic: logback_to_logstash
+
+console:
+  user:
+    username: seata
+    password: seata
+
+seata:
+  config:
+    # support: nacos, consul, apollo, zk, etcd3
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace:
+      group: SEATA_GROUP # 后续自己在nacos里面新建，不想新建SEATA_GROUP,就写DEFAULT_GROUP
+      username: nacos
+      password: nacos
+  registry:
+    # support: nacos, eureka, redis, zk, consul, etcd3, sofa
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      namespace:
+      group: SEATA_GROUP # 后续自己在nacos里面新建，不想新建SEATA_GROUP,就写DEFAULT_GROUP
+      cluster: default
+      username: nacos
+      password: nacos
+  store:
+    # support: file 、 db 、 redis 、 raft
+    mode: db
+    db:
+      datasource: druid
+      db-type: mysql
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/seata?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true
+      user: root
+      password: 123456
+      min-conn: 10
+      max-conn: 100
+      global-table: global-table
+      branch-table: branch-table
+      lock-table: lock_table
+      distributed-lock-table: distributed_lock
+      query-limit: 1000
+      max-wait: 5000
+  #  server:
+  #    service-port: 8091 #If not configured, the default is '${server.port} + 1000'
+  security:
+    secretKey: SeataSecretKey0c382ef121d778043159209298fd40bf3850a017
+    tokenValidityInMilliseconds: 1800000
+    ignore:
+      urls: /,/**/*.css,/**/*.js,/**/*.html,/**/*.map,/**/*.svg,/**/*.png,/**/*.jpeg,/**/*.ico,/api/v1/auth/login,/metadata/v1/**
+```
+
+```shell
+seata-server.bat
+```
+
+![image-20240623224314032](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240623224314032.png)
+
+访问：http://localhost:7091
+
+![image-20240623224429917](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240623224429917.png)
+
+账号密码：seata
+
+![image-20240623224456740](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240623224456740.png)
+
+
+
+## 15.4、Seata案例实战-数据库和表
+
+建库
+
+```sql
+CREATE DATABASE seata_order;
+CREATE DATABASE seata_storage;
+CREATE DATABASE seata_account;
+```
+
+分别构建undo_log表 GitHub：https://github.com/apache/incubator-seata/blob/develop/script/client/at/db/mysql.sql
+
+```sql
+-- for AT mode you must to init this sql for you business database. the seata server not need it.
+CREATE TABLE IF NOT EXISTS `undo_log`
+(
+    `branch_id`     BIGINT       NOT NULL COMMENT 'branch transaction id',
+    `xid`           VARCHAR(128) NOT NULL COMMENT 'global transaction id',
+    `context`       VARCHAR(128) NOT NULL COMMENT 'undo_log context,such as serialization',
+    `rollback_info` LONGBLOB     NOT NULL COMMENT 'rollback info',
+    `log_status`    INT(11)      NOT NULL COMMENT '0:normal status,1:defense status',
+    `log_created`   DATETIME(6)  NOT NULL COMMENT 'create datetime',
+    `log_modified`  DATETIME(6)  NOT NULL COMMENT 'modify datetime',
+    UNIQUE KEY `ux_undo_log` (`xid`, `branch_id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COMMENT ='AT transaction mode undo table';
+ALTER TABLE `undo_log` ADD INDEX `ix_log_created` (`log_created`);
+```
+
+![image-20240623225831919](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240623225831919.png)
+
+分别建对应业务表：t_order、t_account、t_storage
+
+```java
+create table t_order
+(
+    id         bigint auto_increment
+        primary key,
+    user_id    bigint      null comment '用户ID',
+    product_id bigint      null comment '产品ID',
+    count      int         null comment '数量',
+    money      decimal(11) null comment '金额',
+    status     int         null comment '订单状态: 0:创建中, 1:已完结'
+);
+
+INSERT INTO seata_order.t_order (id, user_id, product_id, count, money, status) VALUES (17, 1, 1, 1, 1, 1);
+INSERT INTO seata_order.t_order (id, user_id, product_id, count, money, status) VALUES (23, 1, 1, 1, 10, 1);
+```
+
+```sql
+create table t_account
+(
+    id      bigint auto_increment
+        primary key,
+    user_id bigint      null comment '用户ID',
+    total   decimal(11) null comment '总额度',
+    used    decimal(11) null comment '已用账户余额',
+    residue decimal(11) null comment '余额'
+);
+
+INSERT INTO seata_account.t_account (id, user_id, total, used, residue) VALUES (1, 1, 1000, 20, 980);
+```
+
+```sql
+create table t_storage
+(
+    id         bigint auto_increment
+        primary key,
+    product_id bigint      null comment '用户ID',
+    total      decimal(11) null comment '总库存',
+    used       decimal(11) null comment '已用库存',
+    residue    decimal(11) null comment '剩余库存'
+);
+
+INSERT INTO seata_storage.t_storage (id, product_id, total, used, residue) VALUES (1, 1, 100, 0, 100);
+```
+
+
+
+## 15.5、Seata案例实战-微服务编码落地实现
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
