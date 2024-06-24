@@ -7313,31 +7313,1418 @@ INSERT INTO seata_storage.t_storage (id, product_id, total, used, residue) VALUE
 
 ## 15.5、Seata案例实战-微服务编码落地实现
 
+使用mybatis_generator生成实体类与mapper
+
+cloud-api-commoms：
+
+```java
+package com.cloud.apis;
+
+import com.cloud.resp.ResultData;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(value = "seata-storage-service")
+public interface StorageFeignApi {
+
+    /**
+     * 扣减库存
+     */
+    @PostMapping(value = "/storage/decrease")
+    ResultData<?> decrease(@RequestParam("productId") Long productId, @RequestParam("count") Integer count);
+}
+```
+
+```java
+package com.cloud.apis;
+
+import com.cloud.resp.ResultData;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@FeignClient(value = "seata-account-service")
+public interface AccountFeignApi {
+
+    @PostMapping(value = "/account/decrease")
+    ResultData<?> decrease(@RequestParam("userId") Long userId, @RequestParam("money") Long amount);
+}
+```
+
+新建订单Order微服务
+
+新建Module：seata-order-service2001
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>seata-order-service2001</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--        swagger3-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+```yml
+server:
+  port: 2001
+spring:
+  application:
+    name: seata-order-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_order?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cloud.entities
+  configuration:
+    map-underscore-to-camel-case: true
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      namespace: ""
+      group: SEATA_GROUP
+      application: seata-server
+  tx-service-group: default_tx_group # 事务组，由它获得TC服务的集群名称
+  service:
+    vgroup-mapping:
+      default_tx_group: default # 事务组与TC服务集群的映射关系
+  data-source-proxy-mode: AT
+
+logging:
+  level:
+    io:
+      seata: info
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import tk.mybatis.spring.annotation.MapperScan;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+@MapperScan("com.cloud.mapper")
+public class Main2001 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main2001.class, args);
+    }
+}
+```
+
+```java
+package com.cloud.entities;
+
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.io.Serializable;
+
+/**
+ * 表名：t_order
+ */
+@Table(name = "t_order")
+@ToString
+public class Order implements Serializable {
+    @Id
+    @GeneratedValue(generator = "JDBC")
+    private Long id;
+
+    /**
+     * 用户ID
+     */
+    @Column(name = "user_id")
+    private Long userId;
+
+    /**
+     * 产品ID
+     */
+    @Column(name = "product_id")
+    private Long productId;
+
+    /**
+     * 数量
+     */
+    private Integer count;
+
+    /**
+     * 金额
+     */
+    private Long money;
+
+    /**
+     * 订单状态: 0:创建中, 1:已完结
+     */
+    private Integer status;
+
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取用户ID
+     *
+     * @return userId - 用户ID
+     */
+    public Long getUserId() {
+        return userId;
+    }
+
+    /**
+     * 设置用户ID
+     *
+     * @param userId 用户ID
+     */
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * 获取产品ID
+     *
+     * @return productId - 产品ID
+     */
+    public Long getProductId() {
+        return productId;
+    }
+
+    /**
+     * 设置产品ID
+     *
+     * @param productId 产品ID
+     */
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    /**
+     * 获取数量
+     *
+     * @return count - 数量
+     */
+    public Integer getCount() {
+        return count;
+    }
+
+    /**
+     * 设置数量
+     *
+     * @param count 数量
+     */
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    /**
+     * 获取金额
+     *
+     * @return money - 金额
+     */
+    public Long getMoney() {
+        return money;
+    }
+
+    /**
+     * 设置金额
+     *
+     * @param money 金额
+     */
+    public void setMoney(Long money) {
+        this.money = money;
+    }
+
+    /**
+     * 获取订单状态: 0:创建中, 1:已完结
+     *
+     * @return status - 订单状态: 0:创建中, 1:已完结
+     */
+    public Integer getStatus() {
+        return status;
+    }
+
+    /**
+     * 设置订单状态: 0:创建中, 1:已完结
+     *
+     * @param status 订单状态: 0:创建中, 1:已完结
+     */
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+}
+```
+
+```java
+package com.cloud.mapper;
+
+import com.cloud.entities.Order;
+import tk.mybatis.mapper.common.Mapper;
+
+public interface OrderMapper extends Mapper<Order> {
+}
+```
+
+```java
+package com.cloud.service;
+
+import com.cloud.entities.Order;
+
+public interface OrderService {
+    void create(Order order);
+}
+```
+
+```java
+package com.cloud.service.impl;
+
+import com.cloud.apis.AccountFeignApi;
+import com.cloud.apis.StorageFeignApi;
+import com.cloud.entities.Order;
+import com.cloud.mapper.OrderMapper;
+import com.cloud.service.OrderService;
+import io.seata.core.context.RootContext;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import tk.mybatis.mapper.entity.Example;
+
+@Service
+@Slf4j
+public class OrderServiceImpl implements OrderService {
+
+    @Resource
+    private OrderMapper orderMapper;
+
+    //  订单微服务通过OpenFeign去调用库存微服务
+    @Resource
+    private StorageFeignApi storageFeignApi;
+
+    //  订单微服务通过OpenFeign去调用账户微服务
+    @Resource
+    private AccountFeignApi accountFeignApi;
+
+    @Override
+//    @GlobalTransactional
+    public void create(Order order) {
+        //  xid全局事务id的检查，重要
+        String xid = RootContext.getXID();
+
+        //1、新建订单
+        log.info("---------开始新建订单\t{}\t{}", xid, xid);
+        //订单新建时默认初始订单状态是零
+        order.setStatus(0);
+        int result = orderMapper.insertSelective(order);
+        //  插入订单成功后获取mysql的实体对象
+        Order orderFromDB = null;
+
+        if (result > 0) {
+            //  从mysql里面查出来，刚插入的记录
+            orderFromDB = orderMapper.selectOne(order);
+            log.info("----> 新建订单成功，orderFromDB info：{}", orderFromDB.toString());
+            System.out.println();
+            //2、  扣减库存
+            log.info("----> 订单微服务开始调用Storage库存，做扣减count");
+            storageFeignApi.decrease(orderFromDB.getProductId(), orderFromDB.getCount());
+            log.info("----> 订单微服务结束调用Storage库存，做扣减完成");
+            System.out.println();
+            //3、扣减账户余额
+            log.info("----> 订单微服务开始调用Account账户，做扣减money");
+            accountFeignApi.decrease(orderFromDB.getUserId(), orderFromDB.getMoney());
+            log.info("----> 订单微服务结束调用Account账户，做扣减完成");
+            System.out.println();
+
+            // 4、修改订单状态
+            log.info("--------> 修改订单状态");
+            orderFromDB.setStatus(1);
+            Example whereCondition = new Example(Order.class);
+            Example.Criteria criteria = whereCondition.createCriteria();
+            criteria.andEqualTo("userId", orderFromDB.getUserId());
+            criteria.andEqualTo("status", 0);
+            int updateResult = orderMapper.updateByExampleSelective(orderFromDB, whereCondition);
+
+            log.info("--------> 修改订单状态完成\t{}", updateResult);
+            log.info("--------> orderFromDB info：{}", orderFromDB.toString());
+        }
+        System.out.println();
+        log.info("---------结束了新建订单\t{}\t{}", xid, xid);
+    }
+}
+```
+
+```java
+package com.cloud.controller;
+
+import com.cloud.entities.Order;
+import com.cloud.resp.ResultData;
+import com.cloud.service.OrderService;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class OrderController {
+    @Resource
+    private OrderService orderService;
+
+    @GetMapping("/order/create")
+    public ResultData<?> create(Order order) {
+        orderService.create(order);
+        return ResultData.success(order);
+    }
+}
+```
 
 
 
 
 
+新建库存Storage微服务
+
+新建Module：seata-storage-service2002
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>seata-storage-service2002</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--        swagger3-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+```yml
+server:
+  port: 2002
+spring:
+  application:
+    name: seata-storage-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_storage?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cloud.entities
+  configuration:
+    map-underscore-to-camel-case: true
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      namespace: ""
+      group: SEATA_GROUP
+      application: seata-server
+  tx-service-group: default_tx_group # 事务组，由它获得TC服务的集群名称
+  service:
+    vgroup-mapping:
+      default_tx_group: default # 事务组与TC服务集群的映射关系
+  data-source-proxy-mode: AT
+
+logging:
+  level:
+    io:
+      seata: info
+```
+
+```java
+package com.cloud;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+import tk.mybatis.spring.annotation.MapperScan;
+
+@SpringBootApplication
+@EnableDiscoveryClient
+@EnableFeignClients
+@MapperScan("com.cloud.mapper")
+public class Main2002 {
+    public static void main(String[] args) {
+        SpringApplication.run(Main2002.class, args);
+    }
+}
+```
+
+```java
+package com.cloud.entities;
+
+import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+/**
+ * 表名：t_storage
+*/
+@Table(name = "t_storage")
+@ToString
+public class Storage implements Serializable {
+    @Id
+    @GeneratedValue(generator = "JDBC")
+    private Long id;
+
+    /**
+     * 用户ID
+     */
+    @Column(name = "product_id")
+    private Long productId;
+
+    /**
+     * 总库存
+     */
+    private Long total;
+
+    /**
+     * 已用库存
+     */
+    private Long used;
+
+    /**
+     * 剩余库存
+     */
+    private Long residue;
+
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取用户ID
+     *
+     * @return productId - 用户ID
+     */
+    public Long getProductId() {
+        return productId;
+    }
+
+    /**
+     * 设置用户ID
+     *
+     * @param productId 用户ID
+     */
+    public void setProductId(Long productId) {
+        this.productId = productId;
+    }
+
+    /**
+     * 获取总库存
+     *
+     * @return total - 总库存
+     */
+    public Long getTotal() {
+        return total;
+    }
+
+    /**
+     * 设置总库存
+     *
+     * @param total 总库存
+     */
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+
+    /**
+     * 获取已用库存
+     *
+     * @return used - 已用库存
+     */
+    public Long getUsed() {
+        return used;
+    }
+
+    /**
+     * 设置已用库存
+     *
+     * @param used 已用库存
+     */
+    public void setUsed(Long used) {
+        this.used = used;
+    }
+
+    /**
+     * 获取剩余库存
+     *
+     * @return residue - 剩余库存
+     */
+    public Long getResidue() {
+        return residue;
+    }
+
+    /**
+     * 设置剩余库存
+     *
+     * @param residue 剩余库存
+     */
+    public void setResidue(Long residue) {
+        this.residue = residue;
+    }
+}
+```
+
+```java
+package com.cloud.mapper;
+
+import com.cloud.entities.Storage;
+import tk.mybatis.mapper.common.Mapper;
+
+public interface StorageMapper extends Mapper<Storage> {
+}
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.mapper.StorageMapper">
+    <resultMap id="BaseResultMap" type="com.cloud.entities.Storage">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="product_id" jdbcType="BIGINT" property="productId"/>
+        <result column="total" jdbcType="DECIMAL" property="total"/>
+        <result column="used" jdbcType="DECIMAL" property="used"/>
+        <result column="residue" jdbcType="DECIMAL" property="residue"/>
+    </resultMap>
+    <update id="decrease">
+        UPDATE
+            t_storage
+        SET used    = used + #{count},
+            residue = residue - #{count}
+        WHERE product_id = #{productId}
+    </update>
+</mapper>
+```
+
+```java
+package com.cloud.service;
+
+public interface StorageService {
+    void decrease(Long productId, Long amount);
+}
+```
+
+```java
+package com.cloud.service.impl;
+
+import com.cloud.mapper.StorageMapper;
+import com.cloud.service.StorageService;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+@Service
+@Slf4j
+public class StorageServiceImpl implements StorageService {
+
+    @Resource
+    private StorageMapper storageMapper;
+
+    @Override
+    public void decrease(Long productId, Integer amount) {
+        log.info("----> storage-service中扣减库存开始");
+        storageMapper.decrease(productId,amount);
+        log.info("----> storage-service中扣减库存结束");
+    }
+}
+```
+
+```java
+package com.cloud.controller;
+
+import com.cloud.resp.ResultData;
+import com.cloud.service.StorageService;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StorageController {
+
+    @Resource
+    private StorageService storageService;
+
+    @PostMapping(value = "/storage/decrease")
+    public ResultData<?> decrease(Long productId, Integer count){
+        storageService.decrease(productId, count);
+        return ResultData.success("扣减库存成功！");
+    }
+}
+```
+
+
+
+新建账户Account微服务
+
+新建Module：seata-account-service2003
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud</groupId>
+        <artifactId>Cloud</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>seata-account-service2003</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.cloud</groupId>
+            <artifactId>cloud-api-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!--        swagger3-->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.28</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>
+```
+
+```yml
+server:
+  port: 2003
+spring:
+  application:
+    name: seata-account-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_account?characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cloud.entities
+  configuration:
+    map-underscore-to-camel-case: true
+
+seata:
+  registry:
+    type: nacos
+    nacos:
+      server-addr: localhost:8848
+      namespace: ""
+      group: SEATA_GROUP
+      application: seata-server
+  tx-service-group: default_tx_group # 事务组，由它获得TC服务的集群名称
+  service:
+    vgroup-mapping:
+      default_tx_group: default # 事务组与TC服务集群的映射关系
+  data-source-proxy-mode: AT
+
+logging:
+  level:
+    io:
+      seata: info
+```
+
+```java
+package com.cloud.entities;
+
+import lombok.ToString;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+/**
+ * 表名：t_account
+*/
+@Table(name = "t_account")
+@ToString
+public class Account implements Serializable {
+    @Id
+    @GeneratedValue(generator = "JDBC")
+    private Long id;
+
+    /**
+     * 用户ID
+     */
+    @Column(name = "user_id")
+    private Long userId;
+
+    /**
+     * 总额度
+     */
+    private Long total;
+
+    /**
+     * 已用账户余额
+     */
+    private Long used;
+
+    /**
+     * 余额
+     */
+    private Long residue;
+
+    /**
+     * @return id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * 获取用户ID
+     *
+     * @return userId - 用户ID
+     */
+    public Long getUserId() {
+        return userId;
+    }
+
+    /**
+     * 设置用户ID
+     *
+     * @param userId 用户ID
+     */
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * 获取总额度
+     *
+     * @return total - 总额度
+     */
+    public Long getTotal() {
+        return total;
+    }
+
+    /**
+     * 设置总额度
+     *
+     * @param total 总额度
+     */
+    public void setTotal(Long total) {
+        this.total = total;
+    }
+
+    /**
+     * 获取已用账户余额
+     *
+     * @return used - 已用账户余额
+     */
+    public Long getUsed() {
+        return used;
+    }
+
+    /**
+     * 设置已用账户余额
+     *
+     * @param used 已用账户余额
+     */
+    public void setUsed(Long used) {
+        this.used = used;
+    }
+
+    /**
+     * 获取余额
+     *
+     * @return residue - 余额
+     */
+    public Long getResidue() {
+        return residue;
+    }
+
+    /**
+     * 设置余额
+     *
+     * @param residue 余额
+     */
+    public void setResidue(Long residue) {
+        this.residue = residue;
+    }
+}
+```
+
+```java
+package com.cloud.mapper;
+
+import com.cloud.entities.Account;
+import org.apache.ibatis.annotations.Param;
+import tk.mybatis.mapper.common.Mapper;
+
+public interface AccountMapper extends Mapper<Account> {
+    void decrease(@Param("userId") Long userId, @Param("money") Long money);
+}
+```
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.mapper.AccountMapper">
+  <resultMap id="BaseResultMap" type="com.cloud.entities.Account">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="total" jdbcType="DECIMAL" property="total" />
+    <result column="used" jdbcType="DECIMAL" property="used" />
+    <result column="residue" jdbcType="DECIMAL" property="residue" />
+  </resultMap>
+  <update id="decrease">
+    update t_account set residue = residue - #{money},used = used + #{money}
+    where user_id = #{userId};
+  </update>
+</mapper>
+```
+
+```java
+package com.cloud.service;
+
+import org.apache.ibatis.annotations.Param;
+
+public interface AccountService {
+    void decrease(@Param("userId") Long userId, @Param("money") Long money);
+}
+```
+
+```java
+package com.cloud.service.impl;
+
+import com.cloud.mapper.AccountMapper;
+import com.cloud.service.AccountService;
+import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.concurrent.TimeUnit;
+
+@Service
+@Slf4j
+public class AccountServiceImpl implements AccountService {
+
+    @Resource
+    AccountMapper accountMapper;
+
+    @Override
+    public void decrease(Long userId, Long money) {
+        log.info("----> account-service中扣减用户余额开始");
+        accountMapper.decrease(userId, money);
+        myTimeOut();
+        log.info("----> account-service中扣减用户余额结束");
+    }
+
+    // 模拟超时异常，全局事务回滚
+    private static void myTimeOut(){
+        try {
+            TimeUnit.SECONDS.sleep(65);
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+```java
+package com.cloud.controller;
+
+import com.cloud.resp.ResultData;
+import com.cloud.service.AccountService;
+import jakarta.annotation.Resource;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class AccountController {
+
+    @Resource
+    private AccountService accountService;
+
+    @PostMapping(value = "/account/decrease")
+    public ResultData<?> decrease(@RequestParam("userId") Long userId,@RequestParam("money") Long money){
+        accountService.decrease(userId,money);
+        return ResultData.success("扣除账户余额成功！");
+    }
+}
+```
 
 
 
 
 
+访问：http://localhost:2001/order/create?userId=1&productId=1&count=10&money=100
+
+```json
+{"code":"500","message":"[500] during [POST] to [http://seata-storage-service/storage/decrease?productId=1&count=0] [StorageFeignApi#decrease(Long,Integer)]: [{\"code\":\"500\",\"message\":\"Name for argument of type [java.lang.Long] not specified, and parameter name information not found in class file either.\",\"timestamp\":1719215475931,\"data\":null}]","timestamp":1719215475964,"data":null}
+```
+
+![image-20240624155340912](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624155340912.png)
+
+但是数据被插入了
+
+降低父工程版本
+
+```xml
+<spring.cloud.version>2022.0.4</spring.cloud.version>
+<spring.boot.version>3.1.7</spring.boot.version>
+```
+
+访问：http://localhost:2001/order/create?userId=1&productId=1&count=10&money=100
+
+```json
+{"code":"200","message":"success","timestamp":1719216532323,"data":{"id":30,"userId":1,"productId":1,"count":10,"money":100,"status":0}}
+```
+
+
+
+修改2003微服务，添加超时
+
+访问：http://localhost:2001/order/create?userId=1&productId=1&count=10&money=100
+
+```json
+{"code":"500","message":"Read timed out executing POST http://seata-account-service/account/decrease?userId=1&money=100","timestamp":1719216963075,"data":null}
+```
+
+但是数据库被扣减了，订单状态还是0
+
+![image-20240624161736262](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624161736262.png)
+
+![image-20240624161749315](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624161749315.png)
+
+![image-20240624161757261](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624161757261.png)
+
+
+
+2003微服务添加除数为0的错误程序
+
+访问：http://localhost:2001/order/create?userId=1&productId=1&count=10&money=100
+
+```json
+{"code":"500","message":"[500] during [POST] to [http://seata-account-service/account/decrease?userId=1&money=100] [AccountFeignApi#decrease(Long,Long)]: [{\"code\":\"500\",\"message\":\"/ by zero\",\"timestamp\":1719217157459,\"data\":null}]","timestamp":1719217157480,"data":null}
+```
+
+![image-20240624161948130](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624161948130.png)
+
+![image-20240624161956380](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624161956380.png)
+
+![image-20240624162006016](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624162006016.png)
+
+数据库库存还是被减了，订单状态还是0
+
+------
+
+超时异常解决，添加@GlobalTransactional
+
+```java
+@GlobalTransactional(name = "disney-create-order",rollbackFor = Exception.class)
+```
 
 
 
 
 
+![image-20240624163041858](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163041858.png)
+
+![image-20240624163101051](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163101051.png)
+
+
+
+![image-20240624163130159](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163130159.png)
+
+![image-20240624163135507](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163135507.png)
+
+![image-20240624163140933](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163140933.png)
+
+超时延时了，数据被回滚了
+
+![image-20240624163225611](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163225611.png)
+
+![image-20240624163248765](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163248765.png)
+
+![image-20240624163254970](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163254970.png)
+
+![image-20240624163654305](K:\GitHub\notes\SpringCloud\SpringCloud.assets\image-20240624163654305.png)
 
 
 
 
 
+## 15.6、面试题
+
+> Q：AT模式如何做到对业务的无侵入？
+
+> 整体的机制分为两阶段：
+>
+> 1. 一阶段：业务数据和回滚日志记录在同一个本地事务中提交，释放本地锁和连接资源
+> 2. 二阶段：提交异步化，非常快速地完成；回滚通过一阶段的回滚日志进行反向补偿。
 
 
 
 
 
+# 16、总结
 
 
 
