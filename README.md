@@ -36,14 +36,15 @@
 ### 后端
 
 - 熟悉Java基础，如Java框架、多线程和反射等
-- 熟悉Spring、Spring Boot、Spring MVC等主流框架
+- 熟悉Spring、Spring MVC、Spring Boot、Spring MVC等主流框架
 - 熟悉Mybatis、Mabatis Plus、Mapper4
 - 熟悉MySQL关系型数据库
 - 熟悉Redis非关系型数据库
 - 熟悉Spring Security、Shiro
+- 掌握Seata分布式事务
 - 掌握JWT
-- 掌握Spring Cloud
 - 掌握RabbitMQ
 - 掌握Linux常用指令
+- 掌握使用Jmeter等测试工具
 - 熟悉使用IDEA、Git、Maven等Java开发工具
 
