@@ -19,7 +19,7 @@
         <mxCell id="ze9RxtEkBFkT-Cz5LBtb-5" value="业务需求" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="55" y="200" width="310" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="ze9RxtEkBFkT-Cz5LBtb-6" value="输出" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="ze9RxtEkBFkT-Cz5LBtb-6" value="输入" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="180" y="60" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="ze9RxtEkBFkT-Cz5LBtb-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ze9RxtEkBFkT-Cz5LBtb-7" target="ze9RxtEkBFkT-Cz5LBtb-10">
