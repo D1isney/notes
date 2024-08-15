@@ -1,9 +1,12 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="第 1 页" id="XBe9ZtATBSlsIvdmplbK">
-    <mxGraphModel dx="1687" dy="908" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2868" dy="1544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-186" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry y="80" width="1988" height="1800" as="geometry" />
+        </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-29" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;" vertex="1" parent="1">
           <mxGeometry x="1010" y="115" width="420" height="60" as="geometry" />
         </mxCell>
@@ -53,7 +56,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-5" value="按功能分类" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="230" y="880" width="120" height="60" as="geometry" />
+          <mxGeometry x="220" y="880" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;shape=link;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-6" target="hu2YA9th0eI2DhNNzv6I-28">
           <mxGeometry relative="1" as="geometry" />
@@ -343,17 +346,17 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-114" value="队尾" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1523.5" y="850" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-124" value="一般情况下offer()和poll()方法配合使用，put()和take()阻塞方法配合使用，add()和remove()方法会配合使用，程序中常用的是offer()和poll()方法，因为这两个方法比较友好，不会报错" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="707" y="680" width="440" height="120" as="geometry" />
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-124" value="一般情况下offer()和poll()方法配合使用，put()和take()阻塞方法配合使用，add()和remove()方法会配合使用，程序中常用的是offer()和poll()方法，因为这两个方法比较友好，不会报错" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;strokeColor=#B09500;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="707" y="700" width="440" height="120" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-131" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-128" target="hu2YA9th0eI2DhNNzv6I-130">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-128" value="JUC包里面的BlockingDeque接口表示一个线程安防和提取实例的双端队列。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="707" y="980" width="440" height="120" as="geometry" />
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-128" value="JUC包里面的BlockingDeque接口表示一个线程安防和提取实例的双端队列。" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;strokeColor=#B09500;fontColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="707" y="970" width="440" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-130" value="BlockingDeque的方法：一个BlockingDeque-线程在双端队列两端都可以插入和提取元素。一个线程产生元素，并把他们插入到队列的任意一端。如果双端队列已满。插入线程将被阻塞，直到一个移除线程从改队列中移除了一个元素。如果双端队列为空，移除线程将被阻塞，知道一个插入线程向该线程插入了一个新元素。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1246.5" y="980" width="440" height="120" as="geometry" />
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-130" value="BlockingDeque的方法：一个BlockingDeque-线程在双端队列两端都可以插入和提取元素。一个线程产生元素，并把他们插入到队列的任意一端。如果双端队列已满。插入线程将被阻塞，直到一个移除线程从改队列中移除了一个元素。如果双端队列为空，移除线程将被阻塞，知道一个插入线程向该线程插入了一个新元素。" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="1241" y="970" width="440" height="120" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-147" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;" vertex="1" parent="1">
           <mxGeometry x="707" y="1210" width="1139.5" height="60" as="geometry" />
@@ -394,8 +397,8 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-166" value="n" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="1687" y="1210" width="69.5" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-167" value="优先队列（PriortyQueue）是一种特殊的队列，它并不是先进先出的，二十优先级高的元素先出队列，内部基于数组实现，线程不安全的队列。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="707" y="1310" width="440" height="120" as="geometry" />
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-167" value="优先队列（PriortyQueue）是一种特殊的队列，它并不是先进先出的，二十优先级高的元素先出队列，内部基于数组实现，线程不安全的队列。" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="707" y="1300" width="440" height="120" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-170" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fad9d5;strokeColor=#ae4132;" vertex="1" parent="1">
           <mxGeometry x="707" y="1510" width="1139.5" height="60" as="geometry" />
@@ -436,8 +439,8 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-182" value="n" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="1687" y="1510" width="69.5" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-184" value="延迟队列（DelayQueue）是基于优先队列实现的，它可以看作一种以时间为度量单位的优先的队列，当入队的元素到达指定的延迟时间后方可出队。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="707" y="1610" width="440" height="120" as="geometry" />
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-184" value="延迟队列（DelayQueue）是基于优先队列实现的，它可以看作一种以时间为度量单位的优先的队列，当入队的元素到达指定的延迟时间后方可出队。" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e3c800;fontColor=#000000;strokeColor=#B09500;" vertex="1" parent="1">
+          <mxGeometry x="707" y="1600" width="440" height="120" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
