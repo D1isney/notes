@@ -448,14 +448,6 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-206" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-188" target="hu2YA9th0eI2DhNNzv6I-191">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-207" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-188" target="hu2YA9th0eI2DhNNzv6I-192">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-211" value="extends" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="hu2YA9th0eI2DhNNzv6I-207">
-          <mxGeometry x="-0.9171" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-188" value="Collection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#647687;fontColor=#ffffff;strokeColor=#314354;" vertex="1" parent="1">
           <mxGeometry x="570" y="2090" width="120" height="60" as="geometry" />
         </mxCell>
@@ -543,8 +535,11 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-222" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1022" y="2330" width="50" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-223" value="1、Collection是单列集合的根接口，主要用于存储一系列符合某种规则的元素，它有两个重要的子接口List和Set。&lt;div&gt;2、List接口的特点是元素有序可重复。&lt;/div&gt;&lt;div&gt;3、Set接口的特点是元素无序，不可重复。&lt;/div&gt;&lt;div&gt;4、ArrayList和LinkedList是List接口的实现类。&lt;/div&gt;&lt;div&gt;5、HashSet和TreeSet是Set接口的是实现类。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="260" y="2450" width="310" height="150" as="geometry" />
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-223" value="1、Collection是单列集合的根接口，主要用于存储一系列符合某种规则的元素，它有两个重要的子接口List和Set。&lt;div&gt;2、List接口的特点是元素有序可重复。&lt;/div&gt;&lt;div&gt;3、Set接口的特点是元素无序，不可重复。&lt;/div&gt;&lt;div&gt;4、ArrayList和LinkedList是List接口的实现类。&lt;/div&gt;&lt;div&gt;5、HashSet和TreeSet是Set接口的是实现类。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="190" y="2450" width="310" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-224" value="1、Map是双列集合的跟接口，用于存储具有键（Key），值（Value）映射关系的元素，每个元素都包含一个键-值对，在使用该集合时可以通过指定的键找到对应的值。&lt;div&gt;2、Map为独立接口。&lt;/div&gt;&lt;div&gt;3、HashMap和TreeMap是Map接口的是西安类。&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="530" y="2450" width="310" height="150" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
