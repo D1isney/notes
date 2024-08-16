@@ -543,6 +543,9 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-222" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1022" y="2330" width="50" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="hu2YA9th0eI2DhNNzv6I-223" value="1、Collection是单列集合的根接口，主要用于存储一系列符合某种规则的元素，它有两个重要的子接口List和Set。" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="260" y="2450" width="310" height="150" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
