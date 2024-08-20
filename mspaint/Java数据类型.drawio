@@ -598,6 +598,14 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-256" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1983" y="2300" width="50" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Wz7simGhSUENf2ALUbKP-36" target="EO-nbfOab0zKcuGchlvk-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-31" value="LinkedList" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-30">
+          <mxGeometry x="-0.2684" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="Wz7simGhSUENf2ALUbKP-36" value="主要方法" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="485" y="2680" width="830" height="220" as="geometry" />
         </mxCell>
@@ -662,6 +670,87 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="Wz7simGhSUENf2ALUbKP-51" value="返回调用列表obj得第一个实例的下标。如果obj不是列表元素，返回-1" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" parent="Wz7simGhSUENf2ALUbKP-49" vertex="1">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-13" value="主要方法" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="485" y="3010" width="830" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-14" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-13">
+          <mxGeometry y="30" width="830" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-15" value="addFirst(Object obj)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-14">
+          <mxGeometry width="275" height="50" as="geometry">
+            <mxRectangle width="275" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-16" value="可以在列表头增加元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-14">
+          <mxGeometry x="275" width="555" height="50" as="geometry">
+            <mxRectangle width="555" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-17" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-13">
+          <mxGeometry y="80" width="830" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-18" value="addLast(Object obj)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-17">
+          <mxGeometry width="275" height="50" as="geometry">
+            <mxRectangle width="275" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-19" value="可以在列表尾增加元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-17">
+          <mxGeometry x="275" width="555" height="50" as="geometry">
+            <mxRectangle width="555" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-20" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-13">
+          <mxGeometry y="130" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-21" value="getFirst()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-20">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-22" value="获取第一个元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-20">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-23" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-13">
+          <mxGeometry y="160" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-24" value="getLast()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-23">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-25" value="获取最后一个元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-23">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-26" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-13">
+          <mxGeometry y="190" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-27" value="removeFirst()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-26">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-28" value="可以删除第一个元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-26">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-38" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-13">
+          <mxGeometry y="220" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-39" value="removeLast()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-38">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-40" value="可以删除最后一个元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-38">
           <mxGeometry x="275" width="555" height="30" as="geometry">
             <mxRectangle width="555" height="30" as="alternateBounds" />
           </mxGeometry>
