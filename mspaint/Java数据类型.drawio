@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="第 1 页" id="XBe9ZtATBSlsIvdmplbK">
-    <mxGraphModel dx="2625" dy="1458" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1750" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -920,11 +920,196 @@
         <mxCell id="EO-nbfOab0zKcuGchlvk-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-100" target="EO-nbfOab0zKcuGchlvk-101">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-145" value="HashMap" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-102">
+          <mxGeometry x="0.2471" y="-5" relative="1" as="geometry">
+            <mxPoint x="5" y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-100" value="Map集合没有继承Collection接口，其提供的是键到值得映射。Map不能包含相同得键，每个键只能映射一个值。键还决定了存储对象在映射中得存储位置。&lt;div&gt;HashMap集合特点：单一，无序&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1709.5" y="2640" width="261" height="190" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-101" value="常见异常：&lt;div&gt;&lt;ol&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; --el-button-hover-bg-color: #6D5FFD; --el-button-hover-border-color: #6D5FFD; --el-button-active-bg-color: #6D5FFD; --el-button-active-border-color: #6D5FFD; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;NoSuchElementException-----当调用的映射中没有元素存在时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;ClassCastException-------对象与映射中的元素不兼容时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;NullPointerException-------如果试图使用映射不允许使用的null对象时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;UnsupportedOperationException-----当试图改变一个不允许修改的映射时&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-128" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-101" target="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-146" value="HashMap" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-128">
+          <mxGeometry x="-0.2463" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-101" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;常见异常：&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;ol&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; --el-button-hover-bg-color: #6D5FFD; --el-button-hover-border-color: #6D5FFD; --el-button-active-bg-color: #6D5FFD; --el-button-active-border-color: #6D5FFD; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;NoSuchElementException-----当调用的映射中没有元素存在时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;ClassCastException-------对象与映射中的元素不兼容时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;NullPointerException-------如果试图使用映射不允许使用的null对象时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;UnsupportedOperationException-----当试图改变一个不允许修改的映射时&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
           <mxGeometry x="1820" y="2960" width="480" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-103" value="主要方法" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="1645" y="3350" width="830" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-104" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="30" width="830" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-105" value="void clear()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-104">
+          <mxGeometry width="275" height="40" as="geometry">
+            <mxRectangle width="275" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-106" value="从此映射中移除所有映射关系" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-104">
+          <mxGeometry x="275" width="555" height="40" as="geometry">
+            <mxRectangle width="555" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-107" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="70" width="830" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-108" value="boolean containsKey(Object key)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-107">
+          <mxGeometry width="275" height="40" as="geometry">
+            <mxRectangle width="275" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-109" value="如果此映射包含指定键得映射关系，则返回true" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-107">
+          <mxGeometry x="275" width="555" height="40" as="geometry">
+            <mxRectangle width="555" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-110" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="110" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-111" value="boolean containsValue(Object value)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-110">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-112" value="如果此映射将一个或多个键映射到指定值，则返回true" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-110">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-113" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="140" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-114" value="Set&amp;lt;Map.Entry&amp;lt;K,V&amp;gt;&amp;gt; entrySet()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-113">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-115" value="返回此映射中包含得映射关系的Set视图" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-113">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-116" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="170" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-117" value="boolean equals(Object o)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-116">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-118" value="比较指定的对象与此映射是否相等" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-116">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-119" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="200" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-120" value="V get(Object key)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-119">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-121" value="返回指定键所映射的值；如果此映射不包含该键的映射关系，则返回null" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-119">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-122" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="230" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-123" value="int hashCode()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-122">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-124" value="返回此映射的哈希码值" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-122">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-125" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="260" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-126" value="boolean isEmpty()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-125">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-127" value="如果此映射未包含键值映射关系，则返回true" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-125">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-129" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="290" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-130" value="Set&amp;lt;K&amp;gt; keySet" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-129">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-131" value="返回此映射中包含的键的set视图" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-129">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-132" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="320" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-133" value="V put(K key,V value)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-132">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-134" value="指定的值与此映射中的指定键关联" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-132">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-135" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="350" width="830" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-136" value="void putAll(Map&amp;lt;? extends K,? extends V&amp;gt; m)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-135">
+          <mxGeometry width="275" height="70" as="geometry">
+            <mxRectangle width="275" height="70" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-137" value="从指定映射中将所有映射关系复制到此映射中" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-135">
+          <mxGeometry x="275" width="555" height="70" as="geometry">
+            <mxRectangle width="555" height="70" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-138" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="420" width="830" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-139" value="V remove(Object key)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-138">
+          <mxGeometry width="275" height="50" as="geometry">
+            <mxRectangle width="275" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-140" value="如果存在一个键的映射关系，则将其从此映射中移除" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-138">
+          <mxGeometry x="275" width="555" height="50" as="geometry">
+            <mxRectangle width="555" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-141" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-103">
+          <mxGeometry y="470" width="830" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-142" value="int size()&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-141">
+          <mxGeometry width="275" height="50" as="geometry">
+            <mxRectangle width="275" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-143" value="返回此映射中键值映射关系的数量" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-141">
+          <mxGeometry x="275" width="555" height="50" as="geometry">
+            <mxRectangle width="555" height="50" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
