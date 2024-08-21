@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="第 1 页" id="XBe9ZtATBSlsIvdmplbK">
-    <mxGraphModel dx="2100" dy="1166" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2625" dy="1458" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -576,7 +576,7 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-251" value="Map" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6d8764;fontColor=#ffffff;strokeColor=#3A5431;" parent="1" vertex="1">
           <mxGeometry x="1852" y="2255" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-252">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-252" target="EO-nbfOab0zKcuGchlvk-100">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1840" y="2630" as="targetPoint" />
           </mxGeometry>
@@ -917,8 +917,14 @@
         <mxCell id="EO-nbfOab0zKcuGchlvk-98" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1930" y="2405" width="50" height="20" as="geometry" />
         </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-100" target="EO-nbfOab0zKcuGchlvk-101">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-100" value="Map集合没有继承Collection接口，其提供的是键到值得映射。Map不能包含相同得键，每个键只能映射一个值。键还决定了存储对象在映射中得存储位置。&lt;div&gt;HashMap集合特点：单一，无序&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1709.5" y="2630" width="261" height="190" as="geometry" />
+          <mxGeometry x="1709.5" y="2640" width="261" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-101" value="常见异常：&lt;div&gt;&lt;ol&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; --el-button-hover-bg-color: #6D5FFD; --el-button-hover-border-color: #6D5FFD; --el-button-active-bg-color: #6D5FFD; --el-button-active-border-color: #6D5FFD; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;NoSuchElementException-----当调用的映射中没有元素存在时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;ClassCastException-------对象与映射中的元素不兼容时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;NullPointerException-------如果试图使用映射不允许使用的null对象时&lt;/li&gt;&lt;li style=&quot;box-sizing: border-box; outline: 0px; margin: 8px 0px 0px 32px; padding: 0px; list-style-position: initial; list-style-image: initial; font-synthesis-style: auto; overflow-wrap: break-word; list-style-type: decimal !important;&quot;&gt;UnsupportedOperationException-----当试图改变一个不允许修改的映射时&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1820" y="2960" width="480" height="200" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
