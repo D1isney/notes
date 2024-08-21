@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="第 1 页" id="XBe9ZtATBSlsIvdmplbK">
-    <mxGraphModel dx="1909" dy="1060" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="778" dy="432" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -911,8 +911,22 @@
         <mxCell id="EO-nbfOab0zKcuGchlvk-83" value="特点：有序、唯一、效率高" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1066" y="2950" width="260" height="130" as="geometry" />
         </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-86">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1558.272727272727" y="3200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-86" target="EO-nbfOab0zKcuGchlvk-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-86" value="TreeSet集合不允许重复，且TreeSet对Integer、String数据类型进行升序排序" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1493.5" y="2950" width="260" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-89" value="外部比较器（Set&amp;lt;Object&amp;gt; set = new Set&amp;lt;&amp;gt;(外部比较器)）" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1493.5" y="3200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-90" value="内部比较器&lt;div&gt;（实体类实现&lt;span style=&quot;color: rgb(94, 102, 135); font-family: &amp;quot;Source Code Pro&amp;quot;, &amp;quot;DejaVu Sans Mono&amp;quot;, &amp;quot;Ubuntu Mono&amp;quot;, &amp;quot;Anonymous Pro&amp;quot;, &amp;quot;Droid Sans Mono&amp;quot;, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, &amp;quot;PingFang SC&amp;quot;, &amp;quot;Microsoft YaHei&amp;quot;, sans-serif; font-size: 14px; font-variant-ligatures: no-common-ligatures; text-align: start; white-space: pre; background-color: rgb(243, 244, 245);&quot;&gt;Comparable&lt;/span&gt;）&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1629" y="3200" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
