@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="第 1 页" id="XBe9ZtATBSlsIvdmplbK">
-    <mxGraphModel dx="600" dy="333" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2100" dy="1166" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -510,7 +510,7 @@
           <mxGeometry x="1570" y="2045" width="642" height="150" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-225" value="&lt;div&gt;&lt;ol&gt;&lt;li&gt;Map是双列集合的跟接口，用于存储具有键（Key），值（Value）映射关系的元素，每个元素都包含一个键-值对，在使用该集合时可以通过指定的键找到对应的值。&lt;/li&gt;&lt;li&gt;Map为独立接口。&lt;/li&gt;&lt;li&gt;HashMap和TreeMap是Map接口的是实现类。&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=left;" parent="1" vertex="1">
-          <mxGeometry x="1673.5" y="2425" width="477" height="130" as="geometry" />
+          <mxGeometry x="2002" y="2220" width="477" height="130" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-230" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="766" y="2300" width="50" height="20" as="geometry" />
@@ -559,53 +559,36 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-247" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1549" y="2300" width="50" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-248" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="hu2YA9th0eI2DhNNzv6I-251" target="hu2YA9th0eI2DhNNzv6I-252" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="2032" y="2285" />
-              <mxPoint x="2032" y="2250" />
-            </Array>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-251" target="hu2YA9th0eI2DhNNzv6I-252">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-251" target="hu2YA9th0eI2DhNNzv6I-253">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-96" value="implments" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-93">
+          <mxGeometry x="-0.7483" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-249" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="hu2YA9th0eI2DhNNzv6I-251" target="hu2YA9th0eI2DhNNzv6I-253" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="2032" y="2285" />
-              <mxPoint x="2032" y="2320" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-250" value="implments" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="hu2YA9th0eI2DhNNzv6I-249" vertex="1" connectable="0">
-          <mxGeometry x="-0.653" relative="1" as="geometry">
-            <mxPoint x="5" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-265" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="hu2YA9th0eI2DhNNzv6I-251" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1912" y="2400" />
-              <mxPoint x="1912" y="2400" />
-            </Array>
-            <mxPoint x="1912" y="2420" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-251" target="hu2YA9th0eI2DhNNzv6I-225">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-251" value="Map" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6d8764;fontColor=#ffffff;strokeColor=#3A5431;" parent="1" vertex="1">
           <mxGeometry x="1852" y="2255" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-252">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1840" y="2630" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-252" value="HashMap" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" parent="1" vertex="1">
-          <mxGeometry x="2082" y="2220" width="120" height="60" as="geometry" />
+          <mxGeometry x="1780" y="2430" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-253" value="TreeMap" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" parent="1" vertex="1">
-          <mxGeometry x="2082" y="2290" width="120" height="60" as="geometry" />
+          <mxGeometry x="1930" y="2430" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-254" value="接口" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1922" y="2235" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-255" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="2032" y="2250" width="50" height="20" as="geometry" />
-        </mxCell>
-        <mxCell id="hu2YA9th0eI2DhNNzv6I-256" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="2032" y="2300" width="50" height="20" as="geometry" />
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Wz7simGhSUENf2ALUbKP-36" target="EO-nbfOab0zKcuGchlvk-13">
           <mxGeometry relative="1" as="geometry" />
@@ -927,6 +910,15 @@
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-90" value="内部比较器&lt;div&gt;（实体类实现&lt;span style=&quot;color: rgb(94, 102, 135); font-family: &amp;quot;Source Code Pro&amp;quot;, &amp;quot;DejaVu Sans Mono&amp;quot;, &amp;quot;Ubuntu Mono&amp;quot;, &amp;quot;Anonymous Pro&amp;quot;, &amp;quot;Droid Sans Mono&amp;quot;, Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, &amp;quot;PingFang SC&amp;quot;, &amp;quot;Microsoft YaHei&amp;quot;, sans-serif; font-size: 14px; font-variant-ligatures: no-common-ligatures; text-align: start; white-space: pre; background-color: rgb(243, 244, 245);&quot;&gt;Comparable&lt;/span&gt;）&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1629" y="3200" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-97" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1846.5" y="2405" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-98" value="实现类" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1930" y="2405" width="50" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-100" value="Map集合没有继承Collection接口，其提供的是键到值得映射。Map不能包含相同得键，每个键只能映射一个值。键还决定了存储对象在映射中得存储位置。&lt;div&gt;HashMap集合特点：单一，无序&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1709.5" y="2630" width="261" height="190" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
