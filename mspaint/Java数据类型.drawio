@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="第 1 页" id="XBe9ZtATBSlsIvdmplbK">
-    <mxGraphModel dx="1687" dy="908" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2049" dy="1103" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -767,11 +767,21 @@
         <mxCell id="EO-nbfOab0zKcuGchlvk-43" value="ArrayList与LinkedList&lt;div&gt;&lt;ol&gt;&lt;li&gt;ArrayList和LinkedList顾名思义，ArrayList是Array（动态数组）的数据结构，相当于动态数组；LinkedList是（链表）的双向数据结构，也可当作堆栈、队列、双端队列。&lt;/li&gt;&lt;li&gt;对于随机访问List时（get和set操作），ArrayList比LinkedList的效率更高，因为LinkedList是线性存储方式，所以需要移动指针从前往后依次查找。&lt;/li&gt;&lt;li&gt;对于新增和删除操作（add和remove），LinkedList比较占优势，因为ArrayList要移动数据。&lt;/li&gt;&lt;li&gt;两者缺点都为线程不安全&lt;/li&gt;&lt;/ol&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="160" y="2145" width="350" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-45" target="EO-nbfOab0zKcuGchlvk-47">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-45" target="EO-nbfOab0zKcuGchlvk-47">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-66" value="HashSet" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-65">
-          <mxGeometry x="-0.0585" y="3" relative="1" as="geometry">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-77" value="HashSet（不允许重复、无序）" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-76">
+          <mxGeometry x="0.2784" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-45">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1140" y="2950" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-84" value="LinkedHashSet" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-82">
+          <mxGeometry x="0.3267" y="2" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -779,72 +789,114 @@
           <mxGeometry x="1263" y="2510" width="332" height="195" as="geometry" />
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-47" value="主要方法" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="1014" y="2830" width="830" height="220" as="geometry" />
+          <mxGeometry x="600" y="3140" width="830" height="290" as="geometry" />
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-48" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
-          <mxGeometry y="30" width="830" height="50" as="geometry" />
+          <mxGeometry y="30" width="830" height="40" as="geometry" />
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-49" value="boolean add(E e)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-48">
-          <mxGeometry width="275" height="50" as="geometry">
-            <mxRectangle width="275" height="50" as="alternateBounds" />
+          <mxGeometry width="275" height="40" as="geometry">
+            <mxRectangle width="275" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-50" value="如果此set中尚未包含指定元素，则添加指定元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-48">
-          <mxGeometry x="275" width="555" height="50" as="geometry">
-            <mxRectangle width="555" height="50" as="alternateBounds" />
+          <mxGeometry x="275" width="555" height="40" as="geometry">
+            <mxRectangle width="555" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-51" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
-          <mxGeometry y="80" width="830" height="50" as="geometry" />
+          <mxGeometry y="70" width="830" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-52" value="Boolean addAll(int index, Collection c)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-51">
-          <mxGeometry width="275" height="50" as="geometry">
-            <mxRectangle width="275" height="50" as="alternateBounds" />
+        <mxCell id="EO-nbfOab0zKcuGchlvk-52" value="void clear()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-51">
+          <mxGeometry width="275" height="40" as="geometry">
+            <mxRectangle width="275" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-53" value="将c中所有元素插入到调用列表中，插入点的下表由index传递。" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-51">
-          <mxGeometry x="275" width="555" height="50" as="geometry">
-            <mxRectangle width="555" height="50" as="alternateBounds" />
+        <mxCell id="EO-nbfOab0zKcuGchlvk-53" value="从此set中移除所有元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-51">
+          <mxGeometry x="275" width="555" height="40" as="geometry">
+            <mxRectangle width="555" height="40" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-54" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
-          <mxGeometry y="130" width="830" height="30" as="geometry" />
+          <mxGeometry y="110" width="830" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-55" value="Object get(int index)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-54">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-55" value="Object clone()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-54">
           <mxGeometry width="275" height="30" as="geometry">
             <mxRectangle width="275" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-56" value="返回指定下标的对象。" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-54">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-56" value="返回此HashSet实例的浅表副本：并没有复制这些元素本身" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-54">
           <mxGeometry x="275" width="555" height="30" as="geometry">
             <mxRectangle width="555" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-57" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
-          <mxGeometry y="160" width="830" height="30" as="geometry" />
+          <mxGeometry y="140" width="830" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-58" value="Object set(int index, Object obj)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-57">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-58" value="boolean contains(Object o)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-57">
           <mxGeometry width="275" height="30" as="geometry">
             <mxRectangle width="275" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-59" value="对由index指定的位置进行赋值。" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-57">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-59" value="如果此Set包含指定元素，则返回true" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-57">
           <mxGeometry x="275" width="555" height="30" as="geometry">
             <mxRectangle width="555" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-60" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
-          <mxGeometry y="190" width="830" height="30" as="geometry" />
+          <mxGeometry y="170" width="830" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-61" value="int indexOf(Object obj)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-60">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-61" value="boolean isEmpty()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-60">
           <mxGeometry width="275" height="30" as="geometry">
             <mxRectangle width="275" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="EO-nbfOab0zKcuGchlvk-62" value="返回调用列表obj得第一个实例的下标。如果obj不是列表元素，返回-1" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-60">
+        <mxCell id="EO-nbfOab0zKcuGchlvk-62" value="如果此set不包含任何元素，则返回true" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-60">
           <mxGeometry x="275" width="555" height="30" as="geometry">
             <mxRectangle width="555" height="30" as="alternateBounds" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-67" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
+          <mxGeometry y="200" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-68" value="Iterator&amp;lt;E&amp;gt; iterator()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-67">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-69" value="返回对此set中元素进行迭代的迭代器" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-67">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-70" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
+          <mxGeometry y="230" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-71" value="boolean remove(Object o)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-70">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-72" value="如果指定元素存在于此set中，则将其移除" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-70">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-73" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-47">
+          <mxGeometry y="260" width="830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-74" value="int size()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-73">
+          <mxGeometry width="275" height="30" as="geometry">
+            <mxRectangle width="275" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-75" value="返回此set中的元素的数量（set的容量）" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="EO-nbfOab0zKcuGchlvk-73">
+          <mxGeometry x="275" width="555" height="30" as="geometry">
+            <mxRectangle width="555" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-83" value="特点：有序、唯一、效率高" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1066" y="2950" width="260" height="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
