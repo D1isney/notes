@@ -584,6 +584,9 @@
         <mxCell id="hu2YA9th0eI2DhNNzv6I-252" value="HashMap" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" parent="1" vertex="1">
           <mxGeometry x="1780" y="2430" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-151" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="hu2YA9th0eI2DhNNzv6I-253" target="EO-nbfOab0zKcuGchlvk-150">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="hu2YA9th0eI2DhNNzv6I-253" value="TreeMap" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b0e3e6;strokeColor=#0e8088;" parent="1" vertex="1">
           <mxGeometry x="1930" y="2430" width="120" height="60" as="geometry" />
         </mxCell>
@@ -1125,6 +1128,9 @@
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-148" value="&lt;ul&gt;&lt;li&gt;HashTable出现在JDK1.0，线程安全，因为不能存入null类型&lt;/li&gt;&lt;li&gt;HashMap出现在JDK1.5，线程不安全，因为能存入null&lt;/li&gt;&lt;/ul&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
           <mxGeometry x="2370" y="3390" width="375" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-150" value="TreeMap与TreeSet类似，都需要重写比较器（外部比较器+内部比较器）&lt;div&gt;TreeMap集合特点：单一，有序&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="2180" y="2600" width="261" height="190" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
