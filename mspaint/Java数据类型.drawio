@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36" version="24.7.7">
   <diagram name="第 1 页" id="XBe9ZtATBSlsIvdmplbK">
-    <mxGraphModel dx="1750" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1909" dy="1060" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -785,6 +785,19 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="EO-nbfOab0zKcuGchlvk-45">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1680" y="2969.9999999999995" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1680" y="2656" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-87" value="TreeSet" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="EO-nbfOab0zKcuGchlvk-85">
+          <mxGeometry x="0.2038" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-45" value="Set集合&lt;div&gt;&lt;ul&gt;&lt;li&gt;Set集合中的对象不按特定的方式排序，只是简单的将对象加入到集合中，但是Set集合不能包括重复对象。&lt;/li&gt;&lt;li&gt;Set接口继承了Collection接口，因此也包含了Collection接口的所有方法。&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1263" y="2510" width="332" height="195" as="geometry" />
         </mxCell>
@@ -897,6 +910,9 @@
         </mxCell>
         <mxCell id="EO-nbfOab0zKcuGchlvk-83" value="特点：有序、唯一、效率高" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1066" y="2950" width="260" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="EO-nbfOab0zKcuGchlvk-86" value="TreeSet集合不允许重复，且TreeSet对Integer、String数据类型进行升序排序" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1493.5" y="2950" width="260" height="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
