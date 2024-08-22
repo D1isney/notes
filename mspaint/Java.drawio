@@ -1121,7 +1121,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Ms17W0roRGdSwcn0dPwv" name="多线程">
-    <mxGraphModel dx="1050" dy="583" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2625" dy="1458" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1241,6 +1241,21 @@
         </mxCell>
         <mxCell id="p0CBtOTI5pUs3iH-obtr-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="p0CBtOTI5pUs3iH-obtr-27" target="p0CBtOTI5pUs3iH-obtr-27">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p0CBtOTI5pUs3iH-obtr-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p0CBtOTI5pUs3iH-obtr-53" target="p0CBtOTI5pUs3iH-obtr-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p0CBtOTI5pUs3iH-obtr-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="p0CBtOTI5pUs3iH-obtr-53" target="p0CBtOTI5pUs3iH-obtr-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p0CBtOTI5pUs3iH-obtr-53" value="&lt;table border=&quot;1&quot; width=&quot;100%&quot; height=&quot;100%&quot; cellpadding=&quot;4&quot; style=&quot;width:100%;height:100%;border-collapse:collapse;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th align=&quot;center&quot;&gt;Wait和Sleep区别&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;共同点&lt;br&gt;&lt;ol&gt;&lt;li&gt;它们都是在多线程环境下，都可以在程序的调用处阻塞指定的毫秒数，并返回。&lt;/li&gt;&lt;li&gt;wait()和sleep()都可以通过interrupt()方法打断线程的暂停状态，从而使线程立刻抛出InterruptedException。&lt;/li&gt;&lt;li&gt;如果A线程希望立即结束线程B，则可以对线程B对应的Thread实例调用interrupt方法。如果此刻线程B正在wait/sleep/join，则线程B会立刻抛出InterruptedException，在catch(){}中直接return即可安装全结束线程。&lt;/li&gt;&lt;li&gt;需要注意的是，InterruptedException是线程自己从内部抛出的，并不是interrupt()方法抛出的。对某一线程调用interrupt()时，如果该线程正在执行普通的代码，那么该线程根本就不会抛出InterruptedException。但是，一旦该线程进入到wait()/sleep()/join后，就会立刻抛出InterruptedException。&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td align=&quot;center&quot;&gt;不同点&lt;br&gt;&lt;ol&gt;&lt;li&gt;Thread类的方法：sleep()，yieId()等、Object的方法：wait()和notify()等&lt;/li&gt;&lt;li&gt;每个对象都有一个锁来控制同步访问。Synchronized关键字可以和对象的锁交互，来实现线程的同步。sleep方法没有释放锁，而wait方法释放了锁，使得其他线程可以使用同步控制块或方法。&lt;/li&gt;&lt;li&gt;wait，notify和notifyAll只能在同步控制方法或者同步控制快里面使用，而sleep可以在任何地方使用，所以sleep()和wait()最大区别是：sleep()睡眠时，保持对象锁，仍然占有该锁，而wait()睡眠时，释放对象锁。但是wait()和sleep()都可以通过interrupt()方法打断线程的暂停状态，从而使线程立刻抛出InterruptedException（但不建议使用该方法）。&lt;/li&gt;&lt;/ol&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;" style="text;html=1;whiteSpace=wrap;fillColor=#647687;overflow=fill;strokeColor=#314354;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="840" y="15" width="480" height="490" as="geometry" />
+        </mxCell>
+        <mxCell id="p0CBtOTI5pUs3iH-obtr-54" value="Sleep方法&lt;div&gt;&lt;ul&gt;&lt;li&gt;Sleep()使当前线程进入停滞状态（阻塞当前线程），让出CPU的使用、目的是不让当前线程独占该线程所获得CPU资源，以留一定时间给其他线程执行的机会。&lt;/li&gt;&lt;li&gt;sleep()是Thread类的Static的方法；因此它不能改变对象的机锁，所以当一个Synchronized块中调用Sleep()方法是，线程虽然休眠了，但是对象的锁机制并没有被释放，其他线程无法访问这个对象（即使睡眠了也持有对象锁）。&lt;/li&gt;&lt;li&gt;在sleep()休眠时间期满后，该线程不一定会立即执行，这就是因为其他线程可能正在运行而且没有被调度为放弃执行，除非此线程具有更高的优先级。&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="15" width="310" height="243" as="geometry" />
+        </mxCell>
+        <mxCell id="p0CBtOTI5pUs3iH-obtr-56" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1470" y="262" width="310" height="243" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
