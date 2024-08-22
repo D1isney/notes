@@ -1121,10 +1121,13 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Ms17W0roRGdSwcn0dPwv" name="多线程">
-    <mxGraphModel dx="1750" dy="972" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2333" dy="1296" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="p0CBtOTI5pUs3iH-obtr-152" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="1680" width="1620" height="870" as="geometry" />
+        </mxCell>
         <mxCell id="p0CBtOTI5pUs3iH-obtr-97" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="20" y="980" width="740" height="630" as="geometry" />
         </mxCell>
@@ -1505,6 +1508,9 @@
         </mxCell>
         <mxCell id="p0CBtOTI5pUs3iH-obtr-150" value="condition.signal();&lt;div&gt;随机激活被阻塞的线程&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1335.25" y="2120" width="260" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p0CBtOTI5pUs3iH-obtr-153" value="可重入锁" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="727.5" y="1710" width="185" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
