@@ -1390,10 +1390,13 @@
     </mxGraphModel>
   </diagram>
   <diagram id="-pGtYz7xtzM2oJzRsu4l" name="JUC">
-    <mxGraphModel dx="1500" dy="-336" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1750" dy="-197" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-21" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="20" y="2550" width="1620" height="1430" as="geometry" />
+        </mxCell>
         <mxCell id="OB_SHxHbZL9KoHnc8lH4-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="20" y="1180" width="1620" height="1250" as="geometry" />
         </mxCell>
@@ -1549,6 +1552,76 @@
         </mxCell>
         <mxCell id="EZPNi3LiLruQaQca6JWB-4" value="当多个线程操作同一个对象时，可以选择线程安全的Vector；" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="EZPNi3LiLruQaQca6JWB-1">
           <mxGeometry y="90" width="1310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Yxwv2DR-iZoRNoacSoKD-1" target="Yxwv2DR-iZoRNoacSoKD-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-1" value="提交任务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="2650" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Yxwv2DR-iZoRNoacSoKD-2" target="Yxwv2DR-iZoRNoacSoKD-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-6" value="否" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Yxwv2DR-iZoRNoacSoKD-5">
+          <mxGeometry x="0.0044" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Yxwv2DR-iZoRNoacSoKD-2" target="Yxwv2DR-iZoRNoacSoKD-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-9" value="是" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Yxwv2DR-iZoRNoacSoKD-8">
+          <mxGeometry x="-0.0462" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-2" value="核心线程是否已满" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="2880" width="180" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-3" value="创建线程执行任务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="2915" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="Yxwv2DR-iZoRNoacSoKD-7" target="Yxwv2DR-iZoRNoacSoKD-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-12" value="否" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Yxwv2DR-iZoRNoacSoKD-11">
+          <mxGeometry x="-0.04" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Yxwv2DR-iZoRNoacSoKD-7" target="Yxwv2DR-iZoRNoacSoKD-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-17" value="是" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Yxwv2DR-iZoRNoacSoKD-16">
+          <mxGeometry x="-0.0718" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-7" value="任务队列是否已满" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="3180" width="180" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-10" value="将任务存储再队列中" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="3215" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="Yxwv2DR-iZoRNoacSoKD-13" target="Yxwv2DR-iZoRNoacSoKD-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-18" value="否" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Yxwv2DR-iZoRNoacSoKD-15">
+          <mxGeometry x="-0.1511" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Yxwv2DR-iZoRNoacSoKD-13" target="Yxwv2DR-iZoRNoacSoKD-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-13" value="线程池是否已满" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="3480" width="180" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-14" value="创建线程执行任务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="3515" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Yxwv2DR-iZoRNoacSoKD-19" value="按照策略处理无法执行的任务" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="3790" width="160" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
