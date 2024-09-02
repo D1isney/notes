@@ -1390,12 +1390,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="-pGtYz7xtzM2oJzRsu4l" name="JUC">
-    <mxGraphModel dx="3500" dy="774" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1500" dy="-336" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="OB_SHxHbZL9KoHnc8lH4-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="1180" width="1620" height="1120" as="geometry" />
+          <mxGeometry x="20" y="1180" width="1620" height="1610" as="geometry" />
         </mxCell>
         <mxCell id="OB_SHxHbZL9KoHnc8lH4-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="OB_SHxHbZL9KoHnc8lH4-5" target="OB_SHxHbZL9KoHnc8lH4-17">
           <mxGeometry relative="1" as="geometry" />
@@ -1537,6 +1537,18 @@
         </mxCell>
         <mxCell id="OB_SHxHbZL9KoHnc8lH4-41" value="修饰类（synchronized（静态对象），也叫类锁），其作用的范围是synchronized后面括号括起来的部分，作用的对象是这个类的所有对象。" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="OB_SHxHbZL9KoHnc8lH4-37">
           <mxGeometry y="120" width="1310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EZPNi3LiLruQaQca6JWB-1" value="如何取舍" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="190" y="2260" width="1310" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="EZPNi3LiLruQaQca6JWB-2" value="线程安全必须使用synchronized关键字来同步控制，所以会导致性能的降低；" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="EZPNi3LiLruQaQca6JWB-1">
+          <mxGeometry y="30" width="1310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EZPNi3LiLruQaQca6JWB-3" value="当不需要线程安全时，可以选择ArrayList，避免方法同步产生的开销；" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="EZPNi3LiLruQaQca6JWB-1">
+          <mxGeometry y="60" width="1310" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EZPNi3LiLruQaQca6JWB-4" value="当多个线程操作同一个对象时，可以选择线程安全的Vector；" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="EZPNi3LiLruQaQca6JWB-1">
+          <mxGeometry y="90" width="1310" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
