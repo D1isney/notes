@@ -1956,7 +1956,7 @@
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-48" value="字节码在执行时收到严格的安全限制，可以防止恶意代码的执行。" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1040" y="610" width="380" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="r00ZRiq-Crg5RyGHUk8a-49" value="" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-49" value="字节码可以通过Java反编译器反编译成人类可读的形式，方便开发者进行调试和分析。" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="1040" y="690" width="380" height="60" as="geometry" />
         </mxCell>
       </root>
