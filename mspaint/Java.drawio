@@ -1819,52 +1819,91 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="20" width="1180" height="310" as="geometry" />
+          <mxGeometry x="40" y="50" width="1180" height="360" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-2" target="r00ZRiq-Crg5RyGHUk8a-8">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-2" value="类加载器（ClassLoader）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="20" width="210" height="100" as="geometry" />
+          <mxGeometry x="40" y="100" width="210" height="100" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-3" target="r00ZRiq-Crg5RyGHUk8a-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-3" value="运行时数据区" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="290" y="20" width="210" height="100" as="geometry" />
+          <mxGeometry x="290" y="100" width="210" height="100" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-4" target="r00ZRiq-Crg5RyGHUk8a-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-4" value="执行引擎" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="530" y="20" width="210" height="100" as="geometry" />
+          <mxGeometry x="530" y="100" width="210" height="100" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-5" target="r00ZRiq-Crg5RyGHUk8a-11">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-5" value="本地方法接口（Native Interface）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="770" y="20" width="210" height="100" as="geometry" />
+          <mxGeometry x="770" y="100" width="210" height="100" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-6" target="r00ZRiq-Crg5RyGHUk8a-12">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-6" value="垃圾回收器（Garbage Collector）" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1010" y="20" width="210" height="100" as="geometry" />
+          <mxGeometry x="1010" y="100" width="210" height="100" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-8" value="负责将类文件加载到内存中，并且生成对应的Class对象。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="40" y="150" width="210" height="180" as="geometry" />
+          <mxGeometry x="40" y="230" width="210" height="180" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-9" value="包括方法区、堆、栈、程序计数器等，用于存储运行时所需的数据。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="290" y="150" width="210" height="180" as="geometry" />
+          <mxGeometry x="290" y="230" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-10" target="r00ZRiq-Crg5RyGHUk8a-20">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-10" value="负责执行字节码指令，将字节码翻译成机器码并执行。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="530" y="150" width="210" height="180" as="geometry" />
+          <mxGeometry x="530" y="230" width="210" height="180" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-11" value="允许Java程序调用本地方法（例如C/C++编写的方法）。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="770" y="150" width="210" height="180" as="geometry" />
+          <mxGeometry x="770" y="230" width="210" height="180" as="geometry" />
         </mxCell>
         <mxCell id="r00ZRiq-Crg5RyGHUk8a-12" value="负责管理堆内存中的对象，回收不再适用对象以释放内存空间。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1010" y="150" width="210" height="180" as="geometry" />
+          <mxGeometry x="1010" y="230" width="210" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-19" value="JVM" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="600" y="60" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-20" target="r00ZRiq-Crg5RyGHUk8a-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-20" value="Java虚拟机是Java程序运行的核心组件，它负责将Java源代码编译成字节码，并且在不同的操作系统上执行这些字节码。JVM提供了一个抽象的计算平台，使得Java程序能够实现跨平台的特性。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="460" width="1080" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-22" target="r00ZRiq-Crg5RyGHUk8a-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-22" target="r00ZRiq-Crg5RyGHUk8a-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-22" target="r00ZRiq-Crg5RyGHUk8a-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="r00ZRiq-Crg5RyGHUk8a-22" target="r00ZRiq-Crg5RyGHUk8a-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-22" value="字节码" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="575" y="610" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-24" value="Java源代码经过编译器生成字节码（Bytecode），它是一种与平台无关的中间代码。字节码文件以.class为扩展名，可以在任何支持Java虚拟机的平台上运行。字节码是一种类似于汇编语言的低级代码，但是比汇编语言更抽象和更容易理解。" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="95" y="764" width="1080" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-26" value="与平台无关" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="525" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-28" value="安全性" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="610" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="r00ZRiq-Crg5RyGHUk8a-29" value="易于调试" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="840" y="690" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
