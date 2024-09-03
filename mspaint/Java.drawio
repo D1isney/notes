@@ -1686,6 +1686,61 @@
             <mxRectangle width="930" height="90" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-29" value="线程池的状态" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="242" y="3800" width="1198" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-30" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-29">
+          <mxGeometry y="30" width="1198" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-31" value="RUNNING" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-30">
+          <mxGeometry width="266" height="60" as="geometry">
+            <mxRectangle width="266" height="60" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-32" value="会接受新任务并且会处理队列中的认为。" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-30">
+          <mxGeometry x="266" width="932" height="60" as="geometry">
+            <mxRectangle width="932" height="60" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-33" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-29">
+          <mxGeometry y="90" width="1198" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-34" value="SHUTDOWN" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-33">
+          <mxGeometry width="266" height="40" as="geometry">
+            <mxRectangle width="266" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-35" value="不会接收新任务并且会处理队列中的任务，任务处理完后中断所有线程。" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-33">
+          <mxGeometry x="266" width="932" height="40" as="geometry">
+            <mxRectangle width="932" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-36" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-29">
+          <mxGeometry y="130" width="1198" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-37" value="STOP" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-36">
+          <mxGeometry width="266" height="50" as="geometry">
+            <mxRectangle width="266" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-38" value="不会接受新任务并且不会处理队列中的任务，直接中断所有线程。" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-36">
+          <mxGeometry x="266" width="932" height="50" as="geometry">
+            <mxRectangle width="932" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-39" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-29">
+          <mxGeometry y="180" width="1198" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-40" value="TIDYING" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-39">
+          <mxGeometry width="266" height="50" as="geometry">
+            <mxRectangle width="266" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L60famPMWBqPpgf4Gzvn-41" value="不会接受新任务并且不会处理队列中的任务，直接中断所有线程。" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="L60famPMWBqPpgf4Gzvn-39">
+          <mxGeometry x="266" width="932" height="50" as="geometry">
+            <mxRectangle width="932" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
