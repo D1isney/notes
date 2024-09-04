@@ -2190,6 +2190,9 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="V_slkzO2QpInovSBT6er-7" value="&lt;ul&gt;&lt;li&gt;流是一种声明式编程风格，它声明想要做什么，而非指明如何做。&lt;/li&gt;&lt;li&gt;流本身不存储元素，并且不会改变源对象，相反，它会返回一个持有结果的新流。&lt;/li&gt;&lt;li&gt;流是懒加载的，它会等到需要时才执行。&lt;/li&gt;&lt;/ul&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="30" width="760" height="100" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
