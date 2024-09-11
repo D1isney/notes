@@ -2190,9 +2190,6 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="DtCOlFNZIRIzAyXzq6uI-52" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="9" y="480" width="811" height="780" as="geometry" />
-        </mxCell>
         <mxCell id="V_slkzO2QpInovSBT6er-7" value="&lt;ul&gt;&lt;li&gt;流是一种声明式编程风格，它声明想要做什么，而非指明如何做。&lt;/li&gt;&lt;li&gt;流本身不存储元素，并且不会改变源对象，相反，它会返回一个持有结果的新流。&lt;/li&gt;&lt;li&gt;流是懒加载的，它会等到需要时才执行。&lt;/li&gt;&lt;/ul&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="34.5" y="30" width="760" height="100" as="geometry" />
         </mxCell>
@@ -2415,6 +2412,210 @@
         <mxCell id="DtCOlFNZIRIzAyXzq6uI-45" value="产生一个新流，其中按比较器顺序排序" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="DtCOlFNZIRIzAyXzq6uI-43">
           <mxGeometry x="206" width="554" height="30" as="geometry">
             <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-1" value="匹配与查找" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=#82b366;fontSize=16;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="34.5" y="1330" width="760" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="30" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-3" value="方法" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-2">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-4" value="描述" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-2">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-5" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="60" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-6" value="allMatch(Predicate p)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-5">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-7" value="检查是否匹配所有元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-5">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-8" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="90" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-9" value="anyMatch(Predicate p)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-8">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-10" value="检查是否至少匹配一个元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-8">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-11" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="120" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-12" value="noneMatch(Predocate p)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-11">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-13" value="检查是否没有匹配所有元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-11">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-17" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="150" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-18" value="findFirst()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-17">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-19" value="返回第一个元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-17">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-20" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="180" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-21" value="findAny()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-20">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-22" value="返回当前流中的任意元素" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-20">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-23" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="210" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-24" value="count()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-23">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-25" value="返回流中元素总数" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-23">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-26" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="240" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-27" value="max(Comparator c)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-26">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-28" value="返回流中最大值" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-26">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-29" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="270" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-30" value="min(Comparator c)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-29">
+          <mxGeometry width="206" height="30" as="geometry">
+            <mxRectangle width="206" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-31" value="返回流中最小值" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-29">
+          <mxGeometry x="206" width="554" height="30" as="geometry">
+            <mxRectangle width="554" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-32" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-1">
+          <mxGeometry y="300" width="760" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-33" value="forEach(Consumer c)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-32">
+          <mxGeometry width="206" height="50" as="geometry">
+            <mxRectangle width="206" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-34" value="内部迭代（使用Collection接口需要用户去做迭代，称为外部迭代。&lt;div&gt;相反，Stream API使用内部迭代------帮做了迭代）&lt;/div&gt;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-32">
+          <mxGeometry x="206" width="554" height="50" as="geometry">
+            <mxRectangle width="554" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-35" value="归约" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=#82b366;fontSize=16;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="34.5" y="1710" width="760" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-36" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-35">
+          <mxGeometry y="30" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-37" value="方法" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-36">
+          <mxGeometry width="276" height="30" as="geometry">
+            <mxRectangle width="276" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-38" value="描述" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-36">
+          <mxGeometry x="276" width="484" height="30" as="geometry">
+            <mxRectangle width="484" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-39" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-35">
+          <mxGeometry y="60" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-40" value="reduce(T identity, BinaryOperator b)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-39">
+          <mxGeometry width="276" height="30" as="geometry">
+            <mxRectangle width="276" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-41" value="可以将流元素反复结合起来，得到一个值，返回 T" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-39">
+          <mxGeometry x="276" width="484" height="30" as="geometry">
+            <mxRectangle width="484" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-42" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-35">
+          <mxGeometry y="90" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-43" value="reduce(BinaryOpertor b)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-42">
+          <mxGeometry width="276" height="30" as="geometry">
+            <mxRectangle width="276" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OQrhox6XfdOi5_DXA8QM-44" value="可以将流中元素反复结合起来，得到一个值，返回Optional" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="OQrhox6XfdOi5_DXA8QM-42">
+          <mxGeometry x="276" width="484" height="30" as="geometry">
+            <mxRectangle width="484" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vwkFDnIIxXVIRISBdg3w-1" value="收集" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=#82b366;fontSize=16;fillColor=#d5e8d4;" vertex="1" parent="1">
+          <mxGeometry x="34.5" y="1860" width="760" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="vwkFDnIIxXVIRISBdg3w-2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="vwkFDnIIxXVIRISBdg3w-1">
+          <mxGeometry y="30" width="760" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vwkFDnIIxXVIRISBdg3w-3" value="方法" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="vwkFDnIIxXVIRISBdg3w-2">
+          <mxGeometry width="276" height="30" as="geometry">
+            <mxRectangle width="276" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vwkFDnIIxXVIRISBdg3w-4" value="描述" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="vwkFDnIIxXVIRISBdg3w-2">
+          <mxGeometry x="276" width="484" height="30" as="geometry">
+            <mxRectangle width="484" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vwkFDnIIxXVIRISBdg3w-5" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="vwkFDnIIxXVIRISBdg3w-1">
+          <mxGeometry y="60" width="760" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vwkFDnIIxXVIRISBdg3w-6" value="collect(Collector c)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="vwkFDnIIxXVIRISBdg3w-5">
+          <mxGeometry width="276" height="50" as="geometry">
+            <mxRectangle width="276" height="50" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vwkFDnIIxXVIRISBdg3w-7" value="将流转换为其他形式。接收一个Collectior接口的实现，用于给Stream中元素做汇总的方法" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="vwkFDnIIxXVIRISBdg3w-5">
+          <mxGeometry x="276" width="484" height="50" as="geometry">
+            <mxRectangle width="484" height="50" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
       </root>
