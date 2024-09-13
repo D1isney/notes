@@ -2622,7 +2622,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="2868" dy="1544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2786,6 +2786,18 @@
         </mxCell>
         <mxCell id="PYSGcTeit8F3h4mwrYrD-13" value="&lt;ol&gt;&lt;li&gt;@Transactional&lt;/li&gt;&lt;li&gt;开启Spring事务&lt;/li&gt;&lt;li&gt;利用事务管理器新建一个数据库连接conn ThreadLocal&lt;/li&gt;&lt;li&gt;conn.autocommit = false&lt;/li&gt;&lt;li&gt;target.test() // UserService普通的对象.test() jdbcTemplate执行sql1.sql2&lt;/li&gt;&lt;li&gt;conn.rollbatk() / conn.commit()&lt;/li&gt;&lt;/ol&gt;" style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
           <mxGeometry x="215" y="1535" width="255" height="255" as="geometry" />
+        </mxCell>
+        <mxCell id="AHKEVvE3kVGkbASK2gaT-1" value="Aware回调" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="1900" width="1340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="AHKEVvE3kVGkbASK2gaT-2" value="Aware回调是Spring框架中的一种特性，它通过一组预定义的接口（Aware接口）使得Bean能够意识到所处的容器环境或容器，并与之进行交互。" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AHKEVvE3kVGkbASK2gaT-1">
+          <mxGeometry y="30" width="1340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AHKEVvE3kVGkbASK2gaT-3" value="Item 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AHKEVvE3kVGkbASK2gaT-1">
+          <mxGeometry y="60" width="1340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="AHKEVvE3kVGkbASK2gaT-4" value="Item 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AHKEVvE3kVGkbASK2gaT-1">
+          <mxGeometry y="90" width="1340" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
