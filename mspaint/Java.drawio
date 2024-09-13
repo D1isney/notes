@@ -2788,9 +2788,11 @@
           <mxGeometry x="215" y="1535" width="255" height="255" as="geometry" />
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-1" value="Aware回调" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="160" y="1900" width="1340" height="120" as="geometry" />
+          <mxGeometry x="160" y="1900" width="1340" height="120" as="geometry">
+            <mxRectangle x="160" y="1900" width="100" height="30" as="alternateBounds" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="AHKEVvE3kVGkbASK2gaT-2" value="Aware回调是Spring框架中的一种特性，它通过一组预定义的接口（Aware接口）使得Bean能够意识到所处的容器环境或容器，并与之进行交互。" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AHKEVvE3kVGkbASK2gaT-1">
+        <mxCell id="AHKEVvE3kVGkbASK2gaT-2" value="Aware回调是Spring框架中的一种特性，它通过一组预定义的接口（Aware接口）使得Bean能够意识到所处的容器环境或容器，并与之进行交互。这种回调机制使得Bean能够获取更多关于自身所在环境的信息或资源，从而灵活地进行操作。" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AHKEVvE3kVGkbASK2gaT-1">
           <mxGeometry y="30" width="1340" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-3" value="Item 2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="AHKEVvE3kVGkbASK2gaT-1">
