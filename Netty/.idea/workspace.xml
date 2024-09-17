@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3c3211f0-52a6-4a8b-b6f4-a7372dde6968" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/NIO/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BIO/target/classes/com/netty/Main$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/BIO/target/classes/com/netty/Main$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BIO/target/classes/com/netty/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/BIO/target/classes/com/netty/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NIO/target/classes/com/netty/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/NIO/target/classes/com/netty/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NIO/target/classes/com/netty/NioSelectServer.class" beforeDir="false" afterPath="$PROJECT_DIR$/NIO/target/classes/com/netty/NioSelectServer.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +44,9 @@
   <component name="MavenRunner">
     <option name="jreName" value="11" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2jKXKKIAMyl9zZHqC8G00exC7B3" />
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
@@ -51,31 +54,45 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main (1).executor": "Debug",
-    "Application.Main.executor": "Debug",
-    "Application.NioSelectServer.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "K:/GitHub/notes/Netty",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main (1).executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main (2).executor&quot;: &quot;Debug&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.NioSelectServer.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;K:/GitHub/notes/Netty&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.annotationProcessors&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.NioSelectServer">
+}</component>
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.netty.Main" />
       <module name="NIO" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.netty.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.netty.Main" />
+      <module name="BIO" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.netty.*" />
@@ -114,6 +131,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.NioSelectServer" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
@@ -123,8 +141,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
       </set>
     </attachedChunks>
   </component>
@@ -137,6 +155,15 @@
       <option name="presentableId" value="Default" />
       <updated>1721136676867</updated>
       <workItem from="1721136677963" duration="5205000" />
+      <workItem from="1721222224730" duration="397000" />
+      <workItem from="1725711635929" duration="13000" />
+      <workItem from="1725711672524" duration="61000" />
+      <workItem from="1725711785379" duration="15000" />
+      <workItem from="1725713051070" duration="126000" />
+      <workItem from="1725713209092" duration="135000" />
+      <workItem from="1725713360249" duration="163000" />
+      <workItem from="1725713537816" duration="915000" />
+      <workItem from="1726579672598" duration="168000" />
     </task>
     <servers />
   </component>
