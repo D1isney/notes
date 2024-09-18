@@ -2622,12 +2622,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="3033" dy="1188" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1816" dy="532" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="AHKEVvE3kVGkbASK2gaT-18" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-380" y="1835" width="440" height="460" as="geometry" />
+          <mxGeometry x="-380" y="1835" width="440" height="695" as="geometry" />
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-14" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1730" y="1960" width="1340" height="330" as="geometry" />
@@ -2843,6 +2843,9 @@
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-17" value="&lt;ol&gt;&lt;li&gt;第一优先级通过supplier实例bean对象&lt;/li&gt;&lt;li&gt;第二优先级通过factoryMethod实例化bean对象&lt;/li&gt;&lt;li&gt;第三优先级通过推断构造方法实例化bean对象&lt;/li&gt;&lt;/ol&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-370" y="2165" width="420" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="tBTXdsx78pCOUINoLUG8-1" value="&lt;ol&gt;&lt;li&gt;可以推断出构造方法的情况（不考虑Kotlin相关的类）&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;有且仅有一个@Autowired(required = true)注解标注的构造方法，不能出现其他有@Autowired注解标注的构造方法&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;有多个@Autowired(required = false)注解标注的构造方法，没有@Autowired(required = true)注解标注的构造方法（如果存在defaultConstructor），则将defaultconstructor也加入候选构造方法）&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;不存在@Autowired注解标注的构造方法，有唯一一个有参构造方法&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;注意点&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;如果存在@Autowired注解标注的构造方法，要么推断出构造方法，要么抛出异常&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/ol&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-370" y="2300" width="420" height="220" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
