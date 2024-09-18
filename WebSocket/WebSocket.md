@@ -98,3 +98,50 @@ eg：
 >
 > 1. 第一种是编程式，即继承类javax.websocket.Endpoint并实现其方法。
 > 2. 第二种是注解式，即定义一个POJO，并添加@ServerEndpoint相关注解。
+>
+> Endpoint实例在WebSocket握手时创建，并在客户端与服务端连接过程中有效，最后在连接关闭时结束。在Endpoint接口中明确了与其生命周期相关的方法，规范实现者确保生命周期的各个阶段调用实例的相关方法。生命周期如下：
+>
+> | 方法      | 描述                                                         | 注解     |
+> | --------- | ------------------------------------------------------------ | -------- |
+> | onOpen()  | 当开启一个新的会话时调用，该方法是客户端与服务端握手成功后调用的方法 | @OnOpen  |
+> | onClose() | 当会话关闭时调用                                             | @OnClose |
+> | onError() | 当连接过程中异常时调用                                       | @OnError |
+
+
+
+### 2.3、服务端如何接受客户端发送的数据呢？
+
+- 编程式：通过添加MessageHandel消息处理器来接受消息
+- 注解式：在定义Endpoint时，通过@OnMessage注解指定接收消息的方法
+
+
+
+### 2.4、服务端如何推送数据给客户端呢？
+
+发送消息则由RemoteRndpoint完成，其实由Session维护
+
+发送消息有两种方式
+
+- 通过session.getBasicRemote获取同步消息发送的实例，然后调用其sendXxx()方法发送消息
+- 通过session.getAsyncRemote获取一步消息发送实例，然后调用其sendXxx()方法发送消息
+
+
+
+eg：
+
+```java
+@ServerEndpoint("/chat")
+@Component
+public class ChatEndponit{
+    @OnOpen
+    //	连接建立时被调用
+    public void onOpen(Session session,EndpointConfig config){}
+    @OnMessage
+   	//	 接收到客户端发送的数据时被调用
+    public void onMessage(String message){}
+    @OnClose
+    //	连接关闭时被调用
+    public void onClose(Session session){}
+}
+```
+
