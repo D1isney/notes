@@ -145,3 +145,157 @@ public class ChatEndponit{
 }
 ```
 
+
+
+
+
+## 3、WebSocket概述
+
+WebSocket是一种在单个TCP连接上进行全双工通信的协议。WebSocket通信协议于2011年被IETF定为标准RFC 6455，并由RFC7936补充规范。WebSocket API也被定为标准。
+
+WebSocket使得客户端和服务器之间的数据交互变得更加简单，允许服务端主动向客户端推送数据。在WebSocket API中，浏览器和服务器只需要完成一次握手，两者之间就可以创建持久性的连接，并进行双向数据传输。
+
+
+
+## 4、WebSocket如何通信
+
+1. 浏览器发送http请求，请求建立WebSocket连接
+2. 服务器响应同意协议更改
+3. 相互发送数据
+
+
+
+## 5、底层原理
+
+WebSocket协议建立在TCP协议基础上的，所以服务端也容易实现，不同的语言都有支持。
+
+TCP协议是全双工协议，HTTP协议基于它，但设计成了单向的。
+
+WebSocket没有同源限制。
+
+
+
+## 6、使用Spring封装
+
+> Spring实现了WebSocket功能
+
+实现业务功能：基于Java注解、基于Spring提供的上层封装
+
+服务终端类：
+
+### 6.1、用Java注解
+
+1. 监听连接@ServerEndpoint
+2. 连接成功@OnOpen
+3. 连接关闭@OnClose
+4. 收到消息等状态@OnMessage
+
+配置类：
+
+1. 把Spring中的ServerEndpoint对象注入进来
+
+```java
+package com.websocketdemo01.java;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+import javax.websocket.*;
+import javax.websocket.server.ServerEndpoint;
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+@Component
+@ServerEndpoint("/myWs")
+@Slf4j
+public class WsServerEndpoint {
+
+    //  保留在Map或者List里面 Map比较好
+    //  ConcurrentHashMap现成安全的
+    static Map<String,Session> sessionMap = new ConcurrentHashMap<>();
+
+    //  连接建立时执行的操作
+    @OnOpen
+    public void onOpen(Session session) {
+        //  保留这个Session
+        sessionMap.put(session.getId(),session);
+        log.info("WebSocket is Open");
+    }
+
+    //  收到了客户端消息执行的操作
+    @OnMessage
+    public String onMessage(String message) {
+        log.info("Message received: {}", message);
+        return "收到消息"+message;
+    }
+
+    //  连接关闭时的执行的操作
+    @OnClose
+    public void onClose(Session session) {
+        sessionMap.remove(session.getId());
+        log.info("WebSocket is Closed");
+    }
+
+
+    //  每隔两秒执行
+    @Scheduled(fixedRate = 2000)
+    public void sendMessage(){
+        for(String key:sessionMap.keySet()){
+            try {
+                sessionMap.get(key).getBasicRemote().sendText("发行消息");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+```
+
+```java
+package com.websocketdemo01.java;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
+@Configuration
+public class WebSocketConfig {
+    @Bean
+    public ServerEndpointExporter serverEndpointExporter() {
+        return new ServerEndpointExporter();
+    }
+}
+```
+
+```java
+package com.websocketdemo01;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
+
+@SpringBootApplication
+//  开启定时任务
+@EnableScheduling
+public class WebSocketDemo01Application {
+
+    public static void main(String[] args) {
+        SpringApplication.run(WebSocketDemo01Application.class, args);
+    }
+
+}
+```
+
+```http
+ws://127.0.0.1:8080/myWs
+```
+
+
+
+### 6.2、Spring提供的类和接口
+
+> HttpSessionshakeInterceptor（抽象类）：握手拦截器，在握手前后添加操作。
+>
+> AbstractWebSocketHandler（抽象类）：WebSocket处理程序，监听连接器前，连接中，连接后。
