@@ -299,3 +299,174 @@ ws://127.0.0.1:8080/myWs
 > HttpSessionshakeInterceptor（抽象类）：握手拦截器，在握手前后添加操作。
 >
 > AbstractWebSocketHandler（抽象类）：WebSocket处理程序，监听连接器前，连接中，连接后。
+>
+> WebSocketConfigure（接口）：配置程序，比如配置监听哪个接口，上面的握手拦截器，处理程序的使用。
+
+```java
+package com.websocketdemo01.spring;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
+import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import org.springframework.web.socket.server.standard.ServerEndpointExporter;
+
+import javax.annotation.Resource;
+
+@Configuration
+@EnableWebSocket
+public class MyWsConfig implements WebSocketConfigurer {
+    @Resource
+    private MyWsHandler myWsHandler;
+    @Resource
+    private MyWsInterceptor myWsInterceptor;
+
+    @Override
+    public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
+        //  handler、监听的地址
+        registry.addHandler(myWsHandler,"/myWs1").addInterceptors(myWsInterceptor).setAllowedOrigins("*");
+    }
+}
+```
+
+```java
+package com.websocketdemo01.spring;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.handler.AbstractWebSocketHandler;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
+
+
+/*
+    WebSocket 主处理程序
+ */
+@Component
+@Slf4j
+public class MyWsHandler extends AbstractWebSocketHandler {
+    private static Map<String, SessionBean> sessionBeanMap;
+    private static AtomicInteger clientIdMaker;
+    static {
+        sessionBeanMap = new ConcurrentHashMap<>();
+        //  都是线程安全的
+        clientIdMaker = new AtomicInteger(0);
+    }
+
+    //  建立连接
+    @Override
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+        super.afterConnectionEstablished(session);
+        SessionBean sessionBean = new SessionBean(session,clientIdMaker.getAndIncrement());
+        sessionBeanMap.put(session.getId(), sessionBean);
+        log.info("{}：建立了连接！", sessionBeanMap.get(session.getId()).getClientId());
+    }
+
+    // 收到消息
+    @Override
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        super.handleTextMessage(session, message);
+        log.info("{}：{}", sessionBeanMap.get(session.getId()).getClientId(), message.getPayload());
+    }
+
+    //  传输异常
+    @Override
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
+        super.afterConnectionClosed(session, status);
+        if (session.isOpen()){
+            session.close();
+        }
+        sessionBeanMap.remove(session.getId());
+    }
+
+    //  连接关闭
+    @Override
+    public void handleTransportError(WebSocketSession session, Throwable exception) throws Exception {
+        super.handleTransportError(session, exception);
+        log.info("{}：连接关闭！", sessionBeanMap.get(session.getId()).getClientId());
+    }
+
+    //  每隔两秒执行
+    @Scheduled(fixedRate = 2000)
+    public void sendMessage(){
+        for(String key:sessionBeanMap.keySet()){
+            try {
+                sessionBeanMap.get(key).getWebSocketSession().sendMessage(new TextMessage("Message"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+}
+```
+
+```java
+package com.websocketdemo01.spring;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.stereotype.Component;
+import org.springframework.web.socket.WebSocketHandler;
+import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
+
+import java.util.Map;
+
+/*
+    握手拦截器
+ */
+@Component
+@Slf4j
+public class MyWsInterceptor extends HttpSessionHandshakeInterceptor {
+    @Override
+    public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes) throws Exception {
+        log.info(request.getRemoteAddress().toString()+"开始握手");
+        return super.beforeHandshake(request, response, wsHandler, attributes);
+    }
+
+    @Override
+    public void afterHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Exception ex) {
+        log.info(request.getRemoteAddress().toString()+"完成握手");
+        super.afterHandshake(request, response, wsHandler, ex);
+    }
+}
+```
+
+```java
+package com.websocketdemo01.spring;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.web.socket.WebSocketSession;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class SessionBean {
+    private WebSocketSession webSocketSession;
+    private Integer clientId;
+}
+```
+
+
+
+## 7、浅谈WebSocket应用场景
+
+1. 弹幕
+2. 股票基金报价
+3. 网页总数统计
+4. 网页聊天
+5. 消息订阅
+6. 多玩家消息，实时性比较高
