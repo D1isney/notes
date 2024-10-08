@@ -2622,7 +2622,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="4412" dy="1930" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2514" dy="908" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2847,11 +2847,56 @@
         <mxCell id="tBTXdsx78pCOUINoLUG8-1" value="&lt;ol&gt;&lt;li&gt;可以推断出构造方法的情况（不考虑Kotlin相关的类）&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;有且仅有一个@Autowired(required = true)注解标注的构造方法，不能出现其他有@Autowired注解标注的构造方法&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;有多个@Autowired(required = false)注解标注的构造方法，没有@Autowired(required = true)注解标注的构造方法（如果存在defaultConstructor），则将defaultconstructor也加入候选构造方法）&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;不存在@Autowired注解标注的构造方法，有唯一一个有参构造方法&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;注意点&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;如果存在@Autowired注解标注的构造方法，要么推断出构造方法，要么抛出异常&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/ol&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-370" y="2300" width="420" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="buQ774zLpWrchu8mp53x-1" value="Spring的核心组件" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-820" y="440" width="120" height="60" as="geometry" />
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="buQ774zLpWrchu8mp53x-1" target="FI99VSOwq3ReX5dIA3Mt-1">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="FI99VSOwq3ReX5dIA3Mt-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-630" y="300" width="120" height="60" as="geometry" />
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="buQ774zLpWrchu8mp53x-1" target="FI99VSOwq3ReX5dIA3Mt-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="buQ774zLpWrchu8mp53x-1" target="FI99VSOwq3ReX5dIA3Mt-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="buQ774zLpWrchu8mp53x-1" target="FI99VSOwq3ReX5dIA3Mt-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="buQ774zLpWrchu8mp53x-1" target="FI99VSOwq3ReX5dIA3Mt-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="buQ774zLpWrchu8mp53x-1" target="FI99VSOwq3ReX5dIA3Mt-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="buQ774zLpWrchu8mp53x-1" target="FI99VSOwq3ReX5dIA3Mt-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="buQ774zLpWrchu8mp53x-1" value="Spring的核心组件" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-827" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FI99VSOwq3ReX5dIA3Mt-1" target="FI99VSOwq3ReX5dIA3Mt-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-1" value="ApplicationContext" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-557" y="300" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-2" value="BeanFactory" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-557" y="410" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-3" value="BeanDefinition" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-557" y="520" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-4" value="BeanDefinitionRegistry" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-557" y="630" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-5" value="BeanDefinitionReader" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-557" y="740" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-6" value="BeanFactoryPostProcessor" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-557" y="850" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-7" value="BeanPostProcessor" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-557" y="960" width="160" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FI99VSOwq3ReX5dIA3Mt-15" value="Spring应用上下文，对BeanFactory的扩展" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="-297" y="300" width="267" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
