@@ -2622,7 +2622,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="3033" dy="1188" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2796" dy="908" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2820,7 +2820,7 @@
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-9" value="Bean的创建过程" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="30" y="4055" width="1340" height="120" as="geometry">
-            <mxRectangle x="160" y="2020" width="187.5" height="30" as="alternateBounds" />
+            <mxRectangle x="30" y="4055" width="187.5" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-10" value="利用该类的构造方法来实例化得到一个对象（但是如果一个类中有多个构造方法，Spring则会进行选择，这个就做推断构造方法）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="AHKEVvE3kVGkbASK2gaT-9" vertex="1">
@@ -3270,25 +3270,25 @@
         <mxCell id="684IHHBw3ksl9sfDodiI-1" value="配置：XML or 注解" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="292" y="2810" width="240" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="mSNIc3iOS3609jqq03F5-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="684IHHBw3ksl9sfDodiI-2" target="684IHHBw3ksl9sfDodiI-4">
+        <mxCell id="mSNIc3iOS3609jqq03F5-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="684IHHBw3ksl9sfDodiI-2" target="684IHHBw3ksl9sfDodiI-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="684IHHBw3ksl9sfDodiI-2" value="BeanDefinition" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="672" y="2810" width="178" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="mSNIc3iOS3609jqq03F5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="684IHHBw3ksl9sfDodiI-4" target="mSNIc3iOS3609jqq03F5-3">
+        <mxCell id="mSNIc3iOS3609jqq03F5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="684IHHBw3ksl9sfDodiI-4" target="mSNIc3iOS3609jqq03F5-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="684IHHBw3ksl9sfDodiI-4" value="推断构造器，反射实例化" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="970" y="2810" width="178" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="mSNIc3iOS3609jqq03F5-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="mSNIc3iOS3609jqq03F5-3" target="mSNIc3iOS3609jqq03F5-5">
+        <mxCell id="mSNIc3iOS3609jqq03F5-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="mSNIc3iOS3609jqq03F5-3" target="mSNIc3iOS3609jqq03F5-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="mSNIc3iOS3609jqq03F5-3" value="依赖注入" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="mSNIc3iOS3609jqq03F5-3" value="依赖注入" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="887" y="2970" width="178" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="mSNIc3iOS3609jqq03F5-5" value="放入单列缓存池&lt;div&gt;singletonObjects&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+        <mxCell id="mSNIc3iOS3609jqq03F5-5" value="放入单列缓存池&lt;div&gt;singletonObjects&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="590" y="2970" width="178" height="60" as="geometry" />
         </mxCell>
       </root>
