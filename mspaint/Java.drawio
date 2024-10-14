@@ -2622,7 +2622,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="2193" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2336" dy="813" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3263,6 +3263,18 @@
         </mxCell>
         <mxCell id="F4ixmwpQyrN73GQoE5Gi-25" value="Method#invoke(....)" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="772" y="2612" width="293" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="684IHHBw3ksl9sfDodiI-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="684IHHBw3ksl9sfDodiI-1" target="684IHHBw3ksl9sfDodiI-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="684IHHBw3ksl9sfDodiI-1" value="配置：XML or 注解" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="292" y="2810" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="684IHHBw3ksl9sfDodiI-2" value="BeanDefinition" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="672" y="2810" width="178" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="684IHHBw3ksl9sfDodiI-4" value="推断构造器，反射实例化" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="970" y="2810" width="178" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
