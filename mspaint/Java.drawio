@@ -2622,7 +2622,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="2796" dy="908" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2501" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3290,6 +3290,21 @@
         </mxCell>
         <mxCell id="mSNIc3iOS3609jqq03F5-5" value="放入单列缓存池&lt;div&gt;singletonObjects&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="590" y="2970" width="178" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_lWBwEh4aMhX241FwfZ-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_lWBwEh4aMhX241FwfZ-2" target="n_lWBwEh4aMhX241FwfZ-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_lWBwEh4aMhX241FwfZ-2" value="反射实例化" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="292" y="3180" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_lWBwEh4aMhX241FwfZ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="n_lWBwEh4aMhX241FwfZ-3" target="n_lWBwEh4aMhX241FwfZ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="n_lWBwEh4aMhX241FwfZ-3" value="依赖注入" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="3180" width="240" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="n_lWBwEh4aMhX241FwfZ-5" value="xxxAware接口回调" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="3180" width="240" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
