@@ -3381,12 +3381,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="nvKCA9KQstFwhSha6Jtc" name="Sa-Token">
-    <mxGraphModel dx="1147" dy="590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1304" dy="671" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="1lJqQPajBEQrlDSyC1_j-38" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="200" y="840" width="630" height="470" as="geometry" />
+          <mxGeometry x="430" y="840" width="630" height="470" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-19" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://color-test.oss-cn-qingdao.aliyuncs.com/sa-token/x/sa-token-js4.png;" vertex="1" parent="1">
           <mxGeometry x="230" width="1200" height="753" as="geometry" />
@@ -3395,58 +3395,61 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-20" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="210" y="940" width="30" height="60" as="geometry" />
+          <mxGeometry x="440" y="940" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-21" value="账号资料接口" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="660" y="890" width="160" height="160" as="geometry" />
+          <mxGeometry x="890" y="890" width="160" height="160" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-24" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="340" y="920" as="sourcePoint" />
-            <mxPoint x="580" y="920" as="targetPoint" />
+            <mxPoint x="570" y="920" as="sourcePoint" />
+            <mxPoint x="810" y="920" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-25" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="340" y="1000" as="sourcePoint" />
-            <mxPoint x="580" y="1000" as="targetPoint" />
+            <mxPoint x="570" y="1000" as="sourcePoint" />
+            <mxPoint x="810" y="1000" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-27" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="580" y="960" as="sourcePoint" />
-            <mxPoint x="340" y="960" as="targetPoint" />
+            <mxPoint x="810" y="960" as="sourcePoint" />
+            <mxPoint x="570" y="960" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-28" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="580" y="1040" as="sourcePoint" />
-            <mxPoint x="340" y="1040" as="targetPoint" />
+            <mxPoint x="810" y="1040" as="sourcePoint" />
+            <mxPoint x="570" y="1040" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-29" value="1、访问需要登录认证的接口" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="340" y="900" width="250" height="20" as="geometry" />
+          <mxGeometry x="570" y="900" width="250" height="20" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-30" value="2、返回：未登录、请先登录" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="340" y="940" width="250" height="20" as="geometry" />
+          <mxGeometry x="570" y="940" width="250" height="20" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-31" value="5、带着Token访问接口" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="340" y="980" width="250" height="20" as="geometry" />
+          <mxGeometry x="570" y="980" width="250" height="20" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-32" value="6、返回：账号资料数据" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="340" y="1020" width="250" height="20" as="geometry" />
+          <mxGeometry x="570" y="1020" width="250" height="20" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-33" value="登录接口" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
-          <mxGeometry x="660" y="1130" width="160" height="160" as="geometry" />
+          <mxGeometry x="890" y="1130" width="160" height="160" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="1lJqQPajBEQrlDSyC1_j-33" target="1lJqQPajBEQrlDSyC1_j-20">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-36" value="3、提交 Username + Password 登录" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="340" y="1149" width="250" height="20" as="geometry" />
+          <mxGeometry x="570" y="1149" width="250" height="20" as="geometry" />
         </mxCell>
         <mxCell id="1lJqQPajBEQrlDSyC1_j-37" value="4、登录成功，返回会话凭证Token" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="340" y="1230" width="250" height="20" as="geometry" />
+          <mxGeometry x="570" y="1230" width="250" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="1lJqQPajBEQrlDSyC1_j-39" value="&lt;h3&gt;Sa-Token 登录认证&lt;/h3&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="430" y="840" width="150" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
