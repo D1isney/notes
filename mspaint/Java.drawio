@@ -2670,12 +2670,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="6563" dy="3088" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3695" dy="1544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="n_lWBwEh4aMhX241FwfZ-26" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-470" y="3080" width="2250" height="770" as="geometry" />
+          <mxGeometry x="-130" y="3080" width="1910" height="770" as="geometry" />
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-18" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-480" y="5750" width="440" height="695" as="geometry" />
@@ -3415,7 +3415,7 @@
           <mxGeometry x="1497.5" y="3460" width="225" height="170" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-27" value="&lt;h1&gt;&lt;b&gt;Bean生命周期&lt;/b&gt;&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-470" y="3080" width="230" height="80" as="geometry" />
+          <mxGeometry x="-88" y="3080" width="230" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
