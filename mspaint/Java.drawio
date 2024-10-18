@@ -2670,12 +2670,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="3695" dy="1544" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4014" dy="1716" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="n_lWBwEh4aMhX241FwfZ-26" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-130" y="3080" width="1910" height="770" as="geometry" />
+          <mxGeometry x="5" y="3080" width="1910" height="770" as="geometry" />
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-18" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-480" y="5750" width="440" height="695" as="geometry" />
@@ -3346,43 +3346,43 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-2" value="反射实例化" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="-88" y="3180" width="240" height="60" as="geometry" />
+          <mxGeometry x="47" y="3180" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="n_lWBwEh4aMhX241FwfZ-3" target="n_lWBwEh4aMhX241FwfZ-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-3" value="依赖注入" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="320" y="3180" width="240" height="60" as="geometry" />
+          <mxGeometry x="455" y="3180" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="n_lWBwEh4aMhX241FwfZ-5" target="n_lWBwEh4aMhX241FwfZ-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-5" value="xxxAware接口回调" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="730" y="3180" width="240" height="60" as="geometry" />
+          <mxGeometry x="865" y="3180" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="1" source="n_lWBwEh4aMhX241FwfZ-7" target="n_lWBwEh4aMhX241FwfZ-5" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-7" value="用于获取Spring自身的bean，比如BeanFactoryAware，就可以获取BeanFactory" style="shape=note;size=20;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1110" y="3125" width="225" height="170" as="geometry" />
+          <mxGeometry x="1245" y="3125" width="225" height="170" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="n_lWBwEh4aMhX241FwfZ-9" target="n_lWBwEh4aMhX241FwfZ-10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-9" value="BeanPostProcessor的before方法回调" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="730" y="3380" width="240" height="60" as="geometry" />
+          <mxGeometry x="865" y="3380" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="n_lWBwEh4aMhX241FwfZ-10" target="n_lWBwEh4aMhX241FwfZ-11" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-10" value="执行bean的初始化方法" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="730" y="3570" width="240" height="60" as="geometry" />
+          <mxGeometry x="865" y="3570" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="n_lWBwEh4aMhX241FwfZ-11" target="n_lWBwEh4aMhX241FwfZ-18" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-11" value="BeanPostProcessor的after方法回调" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="730" y="3750" width="240" height="60" as="geometry" />
+          <mxGeometry x="865" y="3750" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0;exitDx=225;exitDy=95;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" parent="1" source="n_lWBwEh4aMhX241FwfZ-12" target="n_lWBwEh4aMhX241FwfZ-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -3391,31 +3391,31 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-12" value="BeanPostProcessor是Spring提供的扩展点，在Bean吃实话的时候，做一些特殊处理" style="shape=note;size=20;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="222" y="3515" width="225" height="170" as="geometry" />
+          <mxGeometry x="357" y="3515" width="225" height="170" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="n_lWBwEh4aMhX241FwfZ-18" target="n_lWBwEh4aMhX241FwfZ-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-18" value="放入单例缓存池" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1110" y="3750" width="240" height="60" as="geometry" />
+          <mxGeometry x="1245" y="3750" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-20" value="执行bean的销毁回调方法" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1490" y="3750" width="240" height="60" as="geometry" />
+          <mxGeometry x="1625" y="3750" width="240" height="60" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" parent="1" source="n_lWBwEh4aMhX241FwfZ-22" target="n_lWBwEh4aMhX241FwfZ-10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-22" value="bean的初始化方法：InitializingBean的afterPropertiesSet方法、在xml中定义的init-method方法&lt;div&gt;@PostConstruct注解修饰的方法&lt;/div&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1110" y="3370" width="225" height="170" as="geometry" />
+          <mxGeometry x="1245" y="3370" width="225" height="170" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" parent="1" source="n_lWBwEh4aMhX241FwfZ-24" target="n_lWBwEh4aMhX241FwfZ-20" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-24" value="bean的销毁时回调方法：&lt;div&gt;DisposableBean的destroy方法、&lt;/div&gt;&lt;div&gt;在XML中定义的destroy-method方法、&lt;/div&gt;&lt;div&gt;@PreDestroy注解修饰的方法&lt;/div&gt;" style="shape=note;size=20;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1497.5" y="3460" width="225" height="170" as="geometry" />
+          <mxGeometry x="1632.5" y="3460" width="225" height="170" as="geometry" />
         </mxCell>
         <mxCell id="n_lWBwEh4aMhX241FwfZ-27" value="&lt;h1&gt;&lt;b&gt;Bean生命周期&lt;/b&gt;&lt;/h1&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="-88" y="3080" width="230" height="80" as="geometry" />
+          <mxGeometry x="47" y="3080" width="230" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
