@@ -1,4 +1,4 @@
-package com.waitAndNotify;
+package com.waitAndNotify01;
 
 public class Desk {
     //  控制生产者和消费者的执行

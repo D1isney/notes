@@ -1,4 +1,4 @@
-package com.waitAndNotify;
+package com.waitAndNotify01;
 
 public class Foodie extends Thread {
     @Override
