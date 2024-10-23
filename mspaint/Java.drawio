@@ -3737,7 +3737,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="aUgXdwGNKthF83zGM8HE" name="脚手架">
-    <mxGraphModel dx="1195" dy="643" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -4349,6 +4349,51 @@
         </mxCell>
         <mxCell id="_V3yQTsEdsMYcTfaHaRT-202" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Title&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=16;" parent="1" vertex="1">
           <mxGeometry x="215" y="1580" width="85" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ofAome1TiUieLoexf-9K-1" target="ofAome1TiUieLoexf-9K-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-1" value="Web" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="2278" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ofAome1TiUieLoexf-9K-2" target="ofAome1TiUieLoexf-9K-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-2" value="拉取骨架" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="300" y="2278" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ofAome1TiUieLoexf-9K-4" target="ofAome1TiUieLoexf-9K-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-4" value="拷贝骨架" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="2278" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ofAome1TiUieLoexf-9K-6" target="ofAome1TiUieLoexf-9K-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-6" value="放到指定位置" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="2278" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ofAome1TiUieLoexf-9K-8" target="ofAome1TiUieLoexf-9K-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-8" value="代码生成器" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="2278" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ofAome1TiUieLoexf-9K-10" target="ofAome1TiUieLoexf-9K-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-10" value="拷贝生成内容" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="2420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ofAome1TiUieLoexf-9K-12" target="ofAome1TiUieLoexf-9K-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-12" value="放到指定骨架位置" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="700" y="2420" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ofAome1TiUieLoexf-9K-14" value="压缩zip" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="2420" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
