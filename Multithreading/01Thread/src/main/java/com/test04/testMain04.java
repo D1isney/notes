@@ -14,5 +14,23 @@ public class testMain04 {
                 xxx没抢到
                 xxx没抢到
          */
+
+        //  创建线程对象
+        testThread01 t1 = new testThread01();
+        testThread01 t2 = new testThread01();
+        testThread01 t3 = new testThread01();
+        testThread01 t4 = new testThread01();
+        testThread01 t5 = new testThread01();
+
+        t1.setName("11");
+        t2.setName("22");
+        t3.setName("33");
+        t4.setName("44");
+        t5.setName("55");
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
+        t5.start();
     }
 }

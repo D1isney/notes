@@ -5,6 +5,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/01Thread/pom.xml" />
+        <option value="$PROJECT_DIR$/02ThreadPool/pom.xml" />
       </list>
     </option>
   </component>
