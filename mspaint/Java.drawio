@@ -3737,7 +3737,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="aUgXdwGNKthF83zGM8HE" name="脚手架">
-    <mxGraphModel dx="1687" dy="908" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="819" dy="441" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -4413,7 +4413,7 @@
         <mxCell id="GNHc2pZaulAPIKTwhqeu-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="GNHc2pZaulAPIKTwhqeu-2" target="GNHc2pZaulAPIKTwhqeu-26">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="GNHc2pZaulAPIKTwhqeu-2" value="domain模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="GNHc2pZaulAPIKTwhqeu-2" value="web-server模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="279" y="3230" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="GNHc2pZaulAPIKTwhqeu-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="GNHc2pZaulAPIKTwhqeu-3" target="GNHc2pZaulAPIKTwhqeu-10">
@@ -4422,7 +4422,7 @@
         <mxCell id="GNHc2pZaulAPIKTwhqeu-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GNHc2pZaulAPIKTwhqeu-3" target="GNHc2pZaulAPIKTwhqeu-11">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="GNHc2pZaulAPIKTwhqeu-3" value="mapper模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="GNHc2pZaulAPIKTwhqeu-3" value="domain模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="2630" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="GNHc2pZaulAPIKTwhqeu-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="GNHc2pZaulAPIKTwhqeu-4" target="GNHc2pZaulAPIKTwhqeu-14">
@@ -4431,7 +4431,7 @@
         <mxCell id="GNHc2pZaulAPIKTwhqeu-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GNHc2pZaulAPIKTwhqeu-4" target="GNHc2pZaulAPIKTwhqeu-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="GNHc2pZaulAPIKTwhqeu-4" value="service模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="GNHc2pZaulAPIKTwhqeu-4" value="mapper模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="282.5" y="2830" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="GNHc2pZaulAPIKTwhqeu-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GNHc2pZaulAPIKTwhqeu-5" target="GNHc2pZaulAPIKTwhqeu-20">
@@ -4440,7 +4440,7 @@
         <mxCell id="GNHc2pZaulAPIKTwhqeu-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="GNHc2pZaulAPIKTwhqeu-5" target="GNHc2pZaulAPIKTwhqeu-22">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="GNHc2pZaulAPIKTwhqeu-5" value="web-server模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="GNHc2pZaulAPIKTwhqeu-5" value="service模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="3030" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="GNHc2pZaulAPIKTwhqeu-10" value="entity" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
