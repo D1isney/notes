@@ -14,7 +14,7 @@ public class Client01 {
 
         //  2、可以从丽娜姐通道中获取输出流
         OutputStream outputStream = socket.getOutputStream();
-        outputStream.write("Hello".getBytes());
+        outputStream.write("你好，Java".getBytes());
 
         //  3、释放资源
         outputStream.flush();
