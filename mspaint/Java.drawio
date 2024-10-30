@@ -4354,46 +4354,46 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-1" value="Web" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="100" y="2278" width="120" height="60" as="geometry" />
+          <mxGeometry x="100" y="2360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ofAome1TiUieLoexf-9K-2" target="ofAome1TiUieLoexf-9K-4" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-2" value="拉取骨架" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="300" y="2278" width="120" height="60" as="geometry" />
+          <mxGeometry x="300" y="2360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ofAome1TiUieLoexf-9K-4" target="ofAome1TiUieLoexf-9K-6" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-4" value="拷贝骨架" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="500" y="2278" width="120" height="60" as="geometry" />
+          <mxGeometry x="500" y="2360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ofAome1TiUieLoexf-9K-6" target="ofAome1TiUieLoexf-9K-8" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-6" value="放到指定位置" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="700" y="2278" width="120" height="60" as="geometry" />
+          <mxGeometry x="700" y="2360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ofAome1TiUieLoexf-9K-8" target="ofAome1TiUieLoexf-9K-10" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-8" value="代码生成器" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="900" y="2278" width="120" height="60" as="geometry" />
+          <mxGeometry x="900" y="2360" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ofAome1TiUieLoexf-9K-10" target="ofAome1TiUieLoexf-9K-12" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-10" value="拷贝生成内容" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="900" y="2500" width="120" height="60" as="geometry" />
+          <mxGeometry x="900" y="2582" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ofAome1TiUieLoexf-9K-12" target="ofAome1TiUieLoexf-9K-14" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-12" value="放到指定骨架位置" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="700" y="2500" width="120" height="60" as="geometry" />
+          <mxGeometry x="700" y="2582" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ofAome1TiUieLoexf-9K-14" value="压缩zip" style="whiteSpace=wrap;html=1;rounded=1;" parent="1" vertex="1">
-          <mxGeometry x="500" y="2500" width="120" height="60" as="geometry" />
+          <mxGeometry x="500" y="2582" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="GNHc2pZaulAPIKTwhqeu-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="GNHc2pZaulAPIKTwhqeu-1" target="GNHc2pZaulAPIKTwhqeu-3" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -4487,6 +4487,24 @@
         </mxCell>
         <mxCell id="aOeV-qSdps2ClQOYjxaz-4" value="convert" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="707.5" y="3310" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aOeV-qSdps2ClQOYjxaz-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" target="aOeV-qSdps2ClQOYjxaz-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="2330" as="targetPoint" />
+            <mxPoint x="660" y="2390" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aOeV-qSdps2ClQOYjxaz-7" value="修改Pom文件" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="2230" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aOeV-qSdps2ClQOYjxaz-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="660" y="2540" as="targetPoint" />
+            <mxPoint x="660" y="2610" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aOeV-qSdps2ClQOYjxaz-10" value="通过AOP删除本地的zip文件" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="2480" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
