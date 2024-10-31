@@ -2757,7 +2757,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="4924" dy="2206" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2876" dy="1103" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3547,40 +3547,84 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-15" value="getBean" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="5" y="4490" width="200" height="67" as="geometry" />
+          <mxGeometry x="200" y="4490" width="200" height="67" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-17" target="PwiTMD0-B5UuOI_-ASEv-19">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-17" value="doGetBean" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="325" y="4490" width="200" height="67" as="geometry" />
+          <mxGeometry x="520" y="4490" width="200" height="67" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-19" target="PwiTMD0-B5UuOI_-ASEv-21">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-19" value="createBean" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="650" y="4490" width="200" height="67" as="geometry" />
+          <mxGeometry x="845" y="4490" width="200" height="67" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-21" target="PwiTMD0-B5UuOI_-ASEv-23">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-21" value="doCreateBean" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="975" y="4490" width="200" height="67" as="geometry" />
+          <mxGeometry x="1170" y="4490" width="200" height="67" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-23" target="PwiTMD0-B5UuOI_-ASEv-25">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-23" value="createBeanInstance" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="975" y="4624" width="200" height="67" as="geometry" />
+          <mxGeometry x="1170" y="4624" width="200" height="67" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-25" target="PwiTMD0-B5UuOI_-ASEv-26">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-25" target="PwiTMD0-B5UuOI_-ASEv-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-25" value="推断构造" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="657.5" y="4624" width="200" height="67" as="geometry" />
+          <mxGeometry x="852.5" y="4624" width="200" height="67" as="geometry" />
         </mxCell>
         <mxCell id="PwiTMD0-B5UuOI_-ASEv-26" value="反射实例化" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="325" y="4624" width="200" height="67" as="geometry" />
+          <mxGeometry x="520" y="4624" width="200" height="67" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-27" target="PwiTMD0-B5UuOI_-ASEv-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-27" value="determineConstructorsFromBeanPostProcessors" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="716.25" y="4810" width="472.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-29" target="PwiTMD0-B5UuOI_-ASEv-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-29" value="获取所有的Bean后置处理" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="852.5" y="4990" width="200" height="67" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-31" target="PwiTMD0-B5UuOI_-ASEv-34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-36" value="true" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="PwiTMD0-B5UuOI_-ASEv-35">
+          <mxGeometry x="0.0665" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-31" value="SmartInstantiationBeanPostProcessor" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="732.5" y="5140" width="440" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-34" target="PwiTMD0-B5UuOI_-ASEv-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-34" value="回调&lt;div&gt;determineCandiateConstructors(beanClass,beanName)&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="4990" width="340" height="67" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-37" target="PwiTMD0-B5UuOI_-ASEv-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-37" value="AutowiredAnnotationBeanPostProcessor&lt;div&gt;#determine CanddidateConstructors&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="310" y="5146.5" width="270" height="67" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;dashed=1;" edge="1" parent="1" source="PwiTMD0-B5UuOI_-ASEv-39" target="PwiTMD0-B5UuOI_-ASEv-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PwiTMD0-B5UuOI_-ASEv-39" value="合适的构造器" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="5" y="5146.5" width="200" height="67" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
