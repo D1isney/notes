@@ -30,10 +30,10 @@
         <mxCell id="3i9zdxC4q-CGygqt21M2-6" value="扫描RFID" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="75" y="520" width="110" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="3i9zdxC4q-CGygqt21M2-7" value="WMS" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="3i9zdxC4q-CGygqt21M2-7" value="WMS" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="500" y="370" width="240" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="3i9zdxC4q-CGygqt21M2-10" value="ERP系统&lt;div&gt;MES系统&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;direction=west;" vertex="1" parent="1">
+        <mxCell id="3i9zdxC4q-CGygqt21M2-10" value="ERP系统&lt;div&gt;MES系统&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;direction=west;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="470" y="60" width="240" height="200" as="geometry" />
         </mxCell>
         <mxCell id="3i9zdxC4q-CGygqt21M2-12" value="物料、单号" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
@@ -72,7 +72,7 @@
         <mxCell id="3i9zdxC4q-CGygqt21M2-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.16;exitY=0.55;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="3i9zdxC4q-CGygqt21M2-27" target="3i9zdxC4q-CGygqt21M2-44">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="3i9zdxC4q-CGygqt21M2-27" value="WCS系统&lt;div&gt;单元MES系统&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;direction=west;" vertex="1" parent="1">
+        <mxCell id="3i9zdxC4q-CGygqt21M2-27" value="WCS系统&lt;div&gt;单元MES系统&lt;/div&gt;" style="ellipse;shape=cloud;whiteSpace=wrap;html=1;direction=west;fillColor=#d0cee2;strokeColor=#56517e;" vertex="1" parent="1">
           <mxGeometry x="950" y="360" width="240" height="200" as="geometry" />
         </mxCell>
         <mxCell id="3i9zdxC4q-CGygqt21M2-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.96;exitY=0.7;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.88;entryY=0.25;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="3i9zdxC4q-CGygqt21M2-27" target="3i9zdxC4q-CGygqt21M2-7">
