@@ -357,6 +357,15 @@
         <mxCell id="s84VmoiwIbykybVZXpKk-11" value="相机上传雕刻机" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="460" y="1440" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="iBofWDYEt3nTdpZzRf24-33" value="订单名称" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1940" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iBofWDYEt3nTdpZzRf24-34" value="数量" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="2010" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="iBofWDYEt3nTdpZzRf24-35" value="工艺路线" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="2080" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
