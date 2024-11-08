@@ -1248,6 +1248,21 @@
         <mxCell id="seOXtYBLLqswcX2i44J7-59" value="配置" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="2010" y="635" width="80" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-1" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="1270" y="1260" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-2" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="1505" y="1240" width="10" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-4" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1360" y="1300" as="sourcePoint" />
+            <mxPoint x="1440" y="1300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-5" value="MES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1485" y="1198" width="50" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
