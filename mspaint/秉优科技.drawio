@@ -1249,12 +1249,12 @@
           <mxGeometry x="2010" y="635" width="80" height="80" as="geometry" />
         </mxCell>
         <mxCell id="QG5-tRwH1HA1WYLUeJyo-1" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="1270" y="1260" width="30" height="60" as="geometry" />
+          <mxGeometry x="1150" y="1400" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="QG5-tRwH1HA1WYLUeJyo-2" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
-          <mxGeometry x="1505" y="1240" width="10" height="450" as="geometry" />
+          <mxGeometry x="1505" y="1240" width="10" height="440" as="geometry" />
         </mxCell>
-        <mxCell id="QG5-tRwH1HA1WYLUeJyo-4" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-4" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1" target="QG5-tRwH1HA1WYLUeJyo-6">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="1360" y="1300" as="sourcePoint" />
             <mxPoint x="1440" y="1300" as="targetPoint" />
@@ -1262,6 +1262,57 @@
         </mxCell>
         <mxCell id="QG5-tRwH1HA1WYLUeJyo-5" value="MES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="1485" y="1198" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-6" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="1720" y="1240" width="10" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-7" value="1、人工放置物料、入库" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="1290" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-8" value="WMS原仓" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1685" y="1200" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-9" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="1945" y="1238" width="10" height="442" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-10" value="WMS层仓" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1910" y="1198" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-11" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1520" y="1369" as="sourcePoint" />
+            <mxPoint x="1720" y="1369.38" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-12" value="2、下发工单到原仓WMS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1325" y="1353" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-13" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1" target="QG5-tRwH1HA1WYLUeJyo-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1515" y="1429.37" as="sourcePoint" />
+            <mxPoint x="1715" y="1429.75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QG5-tRwH1HA1WYLUeJyo-14" value="2、下发工单到层仓WMS" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1325" y="1415" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qZQIloQpAXc0TwfAlSFU-1" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="QG5-tRwH1HA1WYLUeJyo-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1695" y="1498.75" as="sourcePoint" />
+            <mxPoint x="1515" y="1498.75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qZQIloQpAXc0TwfAlSFU-3" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="1" source="QG5-tRwH1HA1WYLUeJyo-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1940" y="1580" as="sourcePoint" />
+            <mxPoint x="1515" y="1580" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="qZQIloQpAXc0TwfAlSFU-4" value="3、原仓出库完成，上报MES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1525" y="1460" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="qZQIloQpAXc0TwfAlSFU-5" value="4、层仓出库完成，上报MES" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="1745" y="1540" width="180" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
