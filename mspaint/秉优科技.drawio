@@ -210,7 +210,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="3nTQrRPk6aI_MscCdJCm" name="广工-板材线">
-    <mxGraphModel dx="3585" dy="1930" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1687" dy="908" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1093,11 +1093,17 @@
             <mxRectangle width="120" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="pgJAeG1bqB07i27TRx74-1" value="浏览器" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pgJAeG1bqB07i27TRx74-2" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1570" y="400" width="510" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="NvNiEq3kPO0Jsn8X78ng" name="导出专用">
-    <mxGraphModel dx="1780" dy="1404" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="966" dy="965" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1141,7 +1147,7 @@
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-12" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1080" y="980" width="720" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-13" value="视图层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-13" value="View层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="690" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-14" value="SpringMVC" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -1150,7 +1156,7 @@
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-15" value="Controller" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1600" y="1015" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-16" value="控制层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-16" value="Controller层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="950" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="JrRvQ1DOvHWcJpU9yEuL-18" target="JrRvQ1DOvHWcJpU9yEuL-22">
@@ -1185,6 +1191,12 @@
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="JrRvQ1DOvHWcJpU9yEuL-22" target="JrRvQ1DOvHWcJpU9yEuL-26">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ANLd2IaFZUOVoGeajyao-1" value="Service层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="1190" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ANLd2IaFZUOVoGeajyao-3" value="Dao层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="1410" width="80" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
