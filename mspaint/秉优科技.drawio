@@ -1107,9 +1107,6 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="JrRvQ1DOvHWcJpU9yEuL-2" target="JrRvQ1DOvHWcJpU9yEuL-5">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-2" value="Web" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1380" y="525" width="120" height="60" as="geometry" />
         </mxCell>
@@ -1147,7 +1144,7 @@
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-12" value="" style="rounded=1;whiteSpace=wrap;html=1;glass=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="980" width="720" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-13" value="View层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-13" value="View" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="690" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-14" value="SpringMVC" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -1156,7 +1153,7 @@
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-15" value="Controller" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1600" y="1015" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-16" value="Controller层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-16" value="Controller" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="950" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="JrRvQ1DOvHWcJpU9yEuL-18" target="JrRvQ1DOvHWcJpU9yEuL-22">
@@ -1192,14 +1189,17 @@
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="JrRvQ1DOvHWcJpU9yEuL-22" target="JrRvQ1DOvHWcJpU9yEuL-26">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="ANLd2IaFZUOVoGeajyao-1" value="Service层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="ANLd2IaFZUOVoGeajyao-1" value="Service" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="1190" width="80" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="ANLd2IaFZUOVoGeajyao-3" value="Dao层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="ANLd2IaFZUOVoGeajyao-3" value="Dao" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="1410" width="80" height="30" as="geometry" />
         </mxCell>
         <mxCell id="ANLd2IaFZUOVoGeajyao-4" value="数据库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1400" y="1760" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="JrRvQ1DOvHWcJpU9yEuL-2" target="JrRvQ1DOvHWcJpU9yEuL-7">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
