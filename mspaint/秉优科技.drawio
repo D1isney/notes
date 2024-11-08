@@ -1121,7 +1121,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-5" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-5" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1080" y="720" width="720" height="130" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-6" value="Vue.js" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -1144,7 +1144,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-12" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-12" value="" style="rounded=1;whiteSpace=wrap;html=1;glass=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="980" width="720" height="130" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-13" value="View层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
@@ -1162,7 +1162,7 @@
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="JrRvQ1DOvHWcJpU9yEuL-18" target="JrRvQ1DOvHWcJpU9yEuL-22">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-18" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-18" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1080" y="1220" width="720" height="130" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-19" value="Spring" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -1174,7 +1174,7 @@
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-21" value="Service接口" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1380" y="1260" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="JrRvQ1DOvHWcJpU9yEuL-22" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1080" y="1440" width="720" height="130" as="geometry" />
         </mxCell>
         <mxCell id="JrRvQ1DOvHWcJpU9yEuL-23" value="Mybatis" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
