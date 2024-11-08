@@ -1198,6 +1198,9 @@
         <mxCell id="ANLd2IaFZUOVoGeajyao-3" value="Dao层" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1080" y="1410" width="80" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="ANLd2IaFZUOVoGeajyao-4" value="数据库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="1760" width="80" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
