@@ -210,10 +210,16 @@
     </mxGraphModel>
   </diagram>
   <diagram id="3nTQrRPk6aI_MscCdJCm" name="广工-板材线">
-    <mxGraphModel dx="1595" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2252" dy="1186" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="y_p3C7q0HbmqpXGSadhd-18" target="y_p3C7q0HbmqpXGSadhd-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-18" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="470" y="2110" width="310" height="120" as="geometry" />
+        </mxCell>
         <mxCell id="qZQIloQpAXc0TwfAlSFU-6" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1121" y="1160" width="959" height="560" as="geometry" />
         </mxCell>
@@ -359,742 +365,6 @@
         </mxCell>
         <mxCell id="s84VmoiwIbykybVZXpKk-11" value="相机上传雕刻机" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="460" y="1440" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-1" value="user（用户表）" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry y="1920" width="339.9999999999998" height="480" as="geometry">
-            <mxRectangle x="150" y="1950" width="60" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-2" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="30" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-3" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-2" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-4" value="id（用户ID）bigint - NOTNULL -&amp;nbsp;AUTO_INCREMENT" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-2" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-5" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="60" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-6" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-5" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-7" value="username（登录用户名）varchar - 255&amp;nbsp;" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-5" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-8" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="90" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-9" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-8" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-10" value="password（登录密码）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-8" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-11" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="120" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-12" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-11" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-13" value="name（用户名）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-11" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-14" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="150" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-15" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-14" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-16" value="status（用户状态）int" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-14" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-17" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="180" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-18" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-17" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-19" value="create_time（创建时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-17" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-20" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="210" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-21" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-20" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-22" value="update_time（更新时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-20" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-23" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="240" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-24" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-23" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-25" value="expired_time（过期时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-23" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-26" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="270" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-27" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-26" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-28" value="online（是否在线，0下线，1上线） tinyint - 1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-26" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-29" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="300" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-30" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-29" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-31" value="telephone（电话号码）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-29" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-32" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="330" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-33" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-32" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-34" value="email（电子邮箱）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-32" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-35" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="360" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-36" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-35" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-37" value="address（地址）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-35" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-38" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="390" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-39" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-38" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-40" value="remark（备注）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-38" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-41" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="420" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-42" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-41" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-43" value="create_user_id（创建人id）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-41" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-44" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-1" vertex="1">
-          <mxGeometry y="450" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-45" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-44" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-46" value="update_user_is（更新人id）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-44" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-47" value="device（设备表）" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry x="750" y="2720" width="520" height="570" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-48" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="30" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-49" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-48" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-50" value="id（设备id）bigint - NOTNULL -&amp;nbsp;AUTO_INCREMENT" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-48" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-51" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="60" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-52" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-51" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-53" value="create_user_id（创建人）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-51" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-54" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="90" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-55" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-54" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-56" value="update_user_id（修改人）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-54" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-57" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="120" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-58" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-57" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-59" value="device_type_id（设备类型）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-57" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-60" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="150" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-61" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-60" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-62" value="statut（设备状态-1：未连接，0：正常运行，1：警告，2：危险）int" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-60" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-63" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="180" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-64" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-63" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-65" value="code（设备编码）int" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-63" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-66" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="210" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-67" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-66" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-68" value="name（设备名称）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-66" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-69" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="240" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-70" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-69" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-71" value="supplier（设备厂商）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-69" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-72" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="270" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-73" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-72" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-74" value="create_time（创建时间）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-72" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-75" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="300" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-76" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-75" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-77" value="update_time（更新时间）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-75" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-78" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="330" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-79" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-78" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-80" value="img（图片地址）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-78" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-81" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="360" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-82" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-81" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-83" value="remark（备注）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-81" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-84" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="390" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-85" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-84" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-86" value="discharge_date（出厂日期）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-84" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-87" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="420" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-88" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-87" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-89" value="maintenance_cycle（维修周期，几天维护一次）int" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-87" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-90" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="450" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-91" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-90" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-92" value="technical_parameter（技术参数）varchar - 500" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-90" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-93" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="480" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-94" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-93" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-95" value="last_maintenance_time（维护时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-93" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-96" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="510" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-97" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-96" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-98" value="monitor（0:关闭监控,1开启监控。默认关闭）tinyint - 1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-96" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-99" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-47" vertex="1">
-          <mxGeometry y="540" width="520" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-100" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-99" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-101" value="img（图片地址）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-99" vertex="1">
-          <mxGeometry x="30" width="490" height="30" as="geometry">
-            <mxRectangle width="490" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-102" value="program（程序表）" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry x="1390" y="2720" width="339.9999999999998" height="390" as="geometry">
-            <mxRectangle x="150" y="1950" width="60" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-103" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="30" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-104" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-103" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-105" value="id（程序id）bigint - NOTNULL -&amp;nbsp;AUTO_INCREMENT" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-103" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-106" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="60" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-107" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-106" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-108" value="code（编码）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-106" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-109" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="90" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-110" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-109" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-111" value="name（中文名称）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-109" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-112" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="120" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-113" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-112" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-114" value="key_name（英文名称）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-112" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-115" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="150" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-116" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-115" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-117" value="value（值）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-115" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-118" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="180" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-119" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-118" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-120" value="create_time（创建时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-118" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-121" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="210" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-122" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-121" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-123" value="update_time（更新时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-121" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-142" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="240" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-143" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-142" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-144" value="create_user_id（创建人id）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-142" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-145" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="270" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-146" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-145" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-147" value="update_user_is（更新人id）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-145" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-154" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="300" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-155" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-154" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-156" value="type（类型）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-154" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-157" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="330" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-158" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-157" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-159" value="description（描述）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-157" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-160" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-102" vertex="1">
-          <mxGeometry y="360" width="339.9999999999998" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-161" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-160" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-162" value="remark（备注）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-160" vertex="1">
-          <mxGeometry x="30" width="309.9999999999998" height="30" as="geometry">
-            <mxRectangle width="309.9999999999998" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-163" value="device_type（设备类型表）" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;" parent="1" vertex="1">
-          <mxGeometry y="2720" width="440" height="300" as="geometry">
-            <mxRectangle x="150" y="1950" width="60" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-164" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=1;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="30" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-165" value="PK" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-164" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-166" value="id（设备类型id）bigint - NOTNULL -&amp;nbsp;AUTO_INCREMENT" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-164" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-167" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="60" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-168" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-167" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-169" value="code（编码）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-167" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-179" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="90" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-180" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-179" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-181" value="create_time（创建时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-179" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-182" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="120" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-183" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-182" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-184" value="update_time（更新时间）datetime" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-182" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-185" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="150" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-186" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-185" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-187" value="create_user_id（创建人id）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-185" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-188" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="180" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-189" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-188" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-190" value="update_user_is（更新人id）bigint" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-188" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-191" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="210" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-192" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-191" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-193" value="type（类型）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-191" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-194" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="240" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-195" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-194" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-196" value="description（描述）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-194" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-197" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="OWIecoDb10uIYZO74twe-163" vertex="1">
-          <mxGeometry y="270" width="440" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-198" value="" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;editable=1;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-197" vertex="1">
-          <mxGeometry width="30" height="30" as="geometry">
-            <mxRectangle width="30" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-199" value="remark（备注）varchar - 255" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;whiteSpace=wrap;html=1;" parent="OWIecoDb10uIYZO74twe-197" vertex="1">
-          <mxGeometry x="30" width="410" height="30" as="geometry">
-            <mxRectangle width="410" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-200" value="外键关系" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;whiteSpace=wrap;" parent="1" vertex="1">
-          <mxGeometry x="500" y="2810" width="180" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-201" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;html=1;" parent="OWIecoDb10uIYZO74twe-200" vertex="1">
-          <mxGeometry y="30" width="180" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-202" value="PK,FK1" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;fontStyle=1;overflow=hidden;html=1;whiteSpace=wrap;" parent="OWIecoDb10uIYZO74twe-201" vertex="1">
-          <mxGeometry width="60" height="30" as="geometry">
-            <mxRectangle width="60" height="30" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="OWIecoDb10uIYZO74twe-203" value="device_type_id_fk" style="shape=partialRectangle;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;fontStyle=5;overflow=hidden;html=1;whiteSpace=wrap;" parent="OWIecoDb10uIYZO74twe-201" vertex="1">
-          <mxGeometry x="60" width="120" height="30" as="geometry">
-            <mxRectangle width="120" height="30" as="alternateBounds" />
-          </mxGeometry>
         </mxCell>
         <mxCell id="QG5-tRwH1HA1WYLUeJyo-1" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
           <mxGeometry x="1150" y="1400" width="30" height="60" as="geometry" />
@@ -1317,168 +587,103 @@
         <mxCell id="F0jLgZmMlE4psKyOC1Zk-43" value="配置物料" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="2010" y="640" width="80" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y_p3C7q0HbmqpXGSadhd-2" target="y_p3C7q0HbmqpXGSadhd-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-2" value="MES" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1060" y="2060" width="220" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y_p3C7q0HbmqpXGSadhd-3" target="y_p3C7q0HbmqpXGSadhd-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="y_p3C7q0HbmqpXGSadhd-3" target="y_p3C7q0HbmqpXGSadhd-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-3" value="任务调度" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="827.5" y="2230" width="685" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-5" value="大任务" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1305" y="2249" width="200" height="132" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-6" value="工艺路线" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="2140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-7" value="工单" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="2140" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y_p3C7q0HbmqpXGSadhd-8" target="y_p3C7q0HbmqpXGSadhd-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-8" value="单元适配器" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="2535" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="y_p3C7q0HbmqpXGSadhd-10" target="y_p3C7q0HbmqpXGSadhd-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-10" value="单元适配器" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="2535" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-12" value="原仓WMS" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="2675" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="y_p3C7q0HbmqpXGSadhd-14" value="层仓WMS" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="1250" y="2675" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="NvNiEq3kPO0Jsn8X78ng" name="导出专用">
-    <mxGraphModel dx="682" dy="813" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1914" dy="-161" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="8x3VhgBO9kYTrubdChDz-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-3" target="8x3VhgBO9kYTrubdChDz-34">
+        <mxCell id="eJlPusOMGM--V0tK1MkE-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="eJlPusOMGM--V0tK1MkE-2" target="eJlPusOMGM--V0tK1MkE-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-2" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="eJlPusOMGM--V0tK1MkE-2" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1300" width="310" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-3" value="用户" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1310" y="360" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-7" target="8x3VhgBO9kYTrubdChDz-28">
+        <mxCell id="eJlPusOMGM--V0tK1MkE-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="eJlPusOMGM--V0tK1MkE-4" target="eJlPusOMGM--V0tK1MkE-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-5" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-4">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="eJlPusOMGM--V0tK1MkE-4" value="MES" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="670" y="1250" width="220" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-6" value="n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-4">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-7" value="工单" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="540" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-8" value="订单" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1450" y="540" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-12" target="8x3VhgBO9kYTrubdChDz-31">
+        <mxCell id="eJlPusOMGM--V0tK1MkE-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="eJlPusOMGM--V0tK1MkE-7" target="eJlPusOMGM--V0tK1MkE-12">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-12" target="8x3VhgBO9kYTrubdChDz-37">
+        <mxCell id="eJlPusOMGM--V0tK1MkE-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="eJlPusOMGM--V0tK1MkE-7" target="eJlPusOMGM--V0tK1MkE-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-11" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-10">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1" as="offset" />
-          </mxGeometry>
+        <mxCell id="eJlPusOMGM--V0tK1MkE-7" value="任务调度" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="437.5" y="1420" width="685" height="170" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-12" value="产品" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1810" y="650" width="120" height="60" as="geometry" />
+        <mxCell id="eJlPusOMGM--V0tK1MkE-8" value="大任务" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="915" y="1439" width="200" height="132" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-15" target="8x3VhgBO9kYTrubdChDz-43">
+        <mxCell id="eJlPusOMGM--V0tK1MkE-9" value="工艺路线" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="100" y="1330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eJlPusOMGM--V0tK1MkE-10" value="工单" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="250" y="1330" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eJlPusOMGM--V0tK1MkE-11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="eJlPusOMGM--V0tK1MkE-12" target="eJlPusOMGM--V0tK1MkE-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-14" value="n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-13">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="eJlPusOMGM--V0tK1MkE-12" value="单元适配器" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="1725" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-15" value="物料" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="2160" y="650" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-16" value="工艺路线" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1810" y="910" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-19" target="8x3VhgBO9kYTrubdChDz-40">
+        <mxCell id="eJlPusOMGM--V0tK1MkE-13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="eJlPusOMGM--V0tK1MkE-14" target="eJlPusOMGM--V0tK1MkE-16">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-18" value="n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-17">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
+        <mxCell id="eJlPusOMGM--V0tK1MkE-14" value="单元适配器" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="1725" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-19" value="工艺" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="2240" y="910" width="120" height="60" as="geometry" />
+        <mxCell id="eJlPusOMGM--V0tK1MkE-15" value="原仓WMS" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="1865" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-21" target="8x3VhgBO9kYTrubdChDz-31">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-21" value="程序" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1810" y="540" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-24" target="8x3VhgBO9kYTrubdChDz-31">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-44" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-22">
-          <mxGeometry x="0.8175" relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-24" value="设备参数" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1810" y="440" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-25" value="日志" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1620" y="360" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-28" target="8x3VhgBO9kYTrubdChDz-8">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-27" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-26">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-1" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-28" value="拆分" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1280" y="530" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-31" target="8x3VhgBO9kYTrubdChDz-8">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-30" value="n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-29">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="-1" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-31" value="组成" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1650" y="530" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-34" target="8x3VhgBO9kYTrubdChDz-25">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-33" value="n" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-32">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-34" value="记录" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1490" y="350" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-37" target="8x3VhgBO9kYTrubdChDz-16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-36" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-35">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-37" value="生产方式" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1830" y="770" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-40" target="8x3VhgBO9kYTrubdChDz-16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-39" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-38">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-40" value="选择工艺" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="2050" y="900" width="80" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="8x3VhgBO9kYTrubdChDz-43" target="8x3VhgBO9kYTrubdChDz-12">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-42" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="8x3VhgBO9kYTrubdChDz-41">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="8x3VhgBO9kYTrubdChDz-43" value="配置物料" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="2010" y="640" width="80" height="80" as="geometry" />
+        <mxCell id="eJlPusOMGM--V0tK1MkE-16" value="层仓WMS" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="860" y="1865" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
