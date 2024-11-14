@@ -1,5 +1,7 @@
 package com.thorough.beanFactory;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -10,90 +12,98 @@ import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
-public class BeanFactoryDemo01 {
+
+
+public class BeanFactoryDemo02 {
     public static void main(String[] args) {
         DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
         AbstractBeanDefinition beanDefinition
                 = BeanDefinitionBuilder.genericBeanDefinition(Config.class).setScope("singleton").getBeanDefinition();
         beanFactory.registerBeanDefinition("config", beanDefinition);
-
-        //  BeanFactory不能解析注解
-        for (String name : beanFactory.getBeanDefinitionNames()) {
-            System.out.println(name);
-        }
-
-        //  给BeanFactory添加常用的后置处理器
         AnnotationConfigUtils.registerAnnotationConfigProcessors(beanFactory);
-        //  加完后置处理器之后，BeanFactory就就可以解析
-        //  @Configuration
-        for (String name : beanFactory.getBeanDefinitionNames()) {
-            System.out.println(name);
-        }
-        System.out.println("-------------------");
-        //  拿到BeanFactory所有的后置处理器
         Map<String, BeanFactoryPostProcessor> beansOfType
                 = beanFactory.getBeansOfType(BeanFactoryPostProcessor.class);
-        //  执行后置处理器，这样就可以拿到@bean这些注解
-        //  主要不冲了一些bean的定义
         beansOfType.values().forEach(beanFactoryPostProcessor -> {
             beanFactoryPostProcessor.postProcessBeanFactory(beanFactory);
         });
-        for (String name : beanFactory.getBeanDefinitionNames()) {
-            System.out.println(name);
-        }
-
-        System.out.println("-------------");
-        //  拿到bean1
-//        Bean1 bean1 = beanFactory.getBean(Bean1.class);
-//        System.out.println(bean1.getBean2());
-
-
-        //  bean的后处理器，针对bean的生命周期的各个阶段提供扩展，例如：@Autowired @Resource
         beanFactory.getBeansOfType(BeanPostProcessor.class).values().forEach(beanFactory::addBeanPostProcessor);
         //  bean创建前就实例化好对象，而不是使用懒加载的形式
         beanFactory.preInstantiateSingletons();
-        System.out.println("-------------");
-        //  拿到bean1
-        Bean1 bean11 = beanFactory.getBean(Bean1.class);
-        System.out.println(bean11.getBean2());
 
+        System.out.println("-------------<><>------------------------------");
+        System.out.println(beanFactory.getBean(Bean1.class).getInter());
 
     }
 
     @Configuration
-    static class Config {
+    static class Config{
         @Bean
-        public Bean1 bean1() {
+        public Bean1 bean1(){
             return new Bean1();
         }
-
         @Bean
-        public Bean2 bean2() {
+        public Bean2 bean2(){
             return new Bean2();
         }
+        @Bean
+        public Bean3 bean3(){
+            return new Bean3();
+        }
+        @Bean
+        public Bean4 bean4(){
+            return new Bean4();
+        }
+
     }
 
 
-    public static class Bean1 {
-        public Bean1() {
-            System.out.println("Bean1 Constructor");
-        }
+    interface Inter{
 
+    }
+
+    static class Bean1{
+        private static final Logger log = LoggerFactory.getLogger(Bean1.class);
+
+        public Bean1() {
+            log.info("Bean1 created");
+        }
         @Autowired
         private Bean2 bean2;
 
-        public Bean2 getBean2() {
-            return bean2;
-        }
+        @Autowired
+        @Resource(name = "bean4")
+        private Inter bean3;
 
+        public Inter getInter() {
+            return bean3;
+        }
+    }
+    static class Bean2{
+        private static final Logger log = LoggerFactory.getLogger(Bean2.class);
+
+        public Bean2() {
+            log.info("Bean2 created");
+        }
+    }
+    static class Bean3 implements Inter{
+        private static final Logger log = LoggerFactory.getLogger(Bean3.class);
+
+        public Bean3() {
+            log.info("Bean3 created");
+        }
     }
 
-    public static class Bean2 {
-        public Bean2() {
-            System.out.println("Bean2 Constructor");
+    static class Bean4 implements Inter{
+        private static final Logger log = LoggerFactory.getLogger(Bean4.class);
+
+        public Bean4() {
+            log.info("Bean4 created");
         }
     }
 
 }
+
+
