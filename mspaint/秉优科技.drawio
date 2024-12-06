@@ -663,7 +663,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-25" value="物料1出库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="880" y="3095" width="60" height="30" as="geometry" />
+          <mxGeometry x="878" y="3095" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-26" value="" style="line;strokeWidth=2;direction=south;html=1;" vertex="1" parent="1">
           <mxGeometry x="1060" y="2923" width="10" height="637" as="geometry" />
@@ -678,7 +678,7 @@
           <mxGeometry x="1230" y="2850" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-30" value="写入RFID" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="990" y="3095" width="60" height="30" as="geometry" />
+          <mxGeometry x="982" y="3095" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-32" value="写入层仓RFID" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1125" y="3128.25" width="90" height="20" as="geometry" />
@@ -762,7 +762,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-55" value="物料2到达指定位置" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1344" y="3491" width="112" height="20" as="geometry" />
+          <mxGeometry x="1341" y="3491" width="112" height="20" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-57" value="" style="line;strokeWidth=2;direction=south;html=1;" vertex="1" parent="1">
           <mxGeometry x="1698" y="2923" width="10" height="637" as="geometry" />
