@@ -630,13 +630,13 @@
           <mxGeometry x="1250" y="2675" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-13" value="" style="line;strokeWidth=2;direction=south;html=1;" vertex="1" parent="1">
-          <mxGeometry x="560" y="2923" width="10" height="430" as="geometry" />
+          <mxGeometry x="560" y="2923" width="10" height="557" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-15" value="" style="line;strokeWidth=2;direction=south;html=1;" vertex="1" parent="1">
-          <mxGeometry x="850" y="2923" width="10" height="430" as="geometry" />
+          <mxGeometry x="850" y="2923" width="10" height="557" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-16" value="" style="line;strokeWidth=2;direction=south;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1495" y="2923" width="10" height="430" as="geometry" />
+          <mxGeometry x="1495" y="2923" width="10" height="557" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-17" value="MES" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="505" y="2850" width="120" height="60" as="geometry" />
@@ -653,26 +653,113 @@
         <mxCell id="o9AOzlycK8U6AokA3yw6-22" value="两个物料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="660" y="3000" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="o9AOzlycK8U6AokA3yw6-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.388;entryY=0.689;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="o9AOzlycK8U6AokA3yw6-26">
+        <mxCell id="o9AOzlycK8U6AokA3yw6-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.388;entryY=0.689;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.389;exitY=0.145;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="o9AOzlycK8U6AokA3yw6-15" target="o9AOzlycK8U6AokA3yw6-26">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="860" y="3090" as="sourcePoint" />
             <mxPoint x="990" y="3090" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-25" value="物料1出库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="930" y="3060" width="60" height="30" as="geometry" />
+          <mxGeometry x="880" y="3095" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-26" value="" style="line;strokeWidth=2;direction=south;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1060" y="2923" width="10" height="430" as="geometry" />
+          <mxGeometry x="1060" y="2923" width="10" height="557" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-27" value="原仓PLC" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1005" y="2850" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-28" value="" style="line;strokeWidth=2;direction=south;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1285" y="2923" width="10" height="430" as="geometry" />
+          <mxGeometry x="1285" y="2923" width="10" height="557" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-29" value="层仓PLC" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1230" y="2850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-30" value="写入RFID" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="990" y="3095" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-32" value="写入层仓RFID" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1125" y="3128.25" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.388;entryY=0.689;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="860" y="3191.08" as="sourcePoint" />
+            <mxPoint x="1063" y="3191.08" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-34" value="物料1出库完成" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="910" y="3171.08" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1292.5" y="3170.25" as="sourcePoint" />
+            <mxPoint x="1497.5" y="3170.25" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-36" value="等待物料1到来入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1337.5" y="3148.25" width="120" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.388;entryY=0.689;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="858.5" y="3290" as="sourcePoint" />
+            <mxPoint x="1061.5" y="3290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-39" value="物料2出库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="888.5" y="3260" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-40" value="写入RFID" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="988.5" y="3260" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.458;entryY=0.52;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1065" y="3320" as="sourcePoint" />
+            <mxPoint x="1285" y="3320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-42" value="写入层仓RFID" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="3300" width="90" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1295" y="3362" as="sourcePoint" />
+            <mxPoint x="1500" y="3362" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-44" value="等待物料2到来入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="3340" width="120" height="22" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0.389;exitY=0.145;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1068" y="3150" as="sourcePoint" />
+            <mxPoint x="1290" y="3150" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.388;entryY=0.689;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="860" y="3382" as="sourcePoint" />
+            <mxPoint x="1063" y="3382" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-48" value="物料2出库完成" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="910" y="3362" width="100" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="857" y="3430" as="sourcePoint" />
+            <mxPoint x="1500" y="3430" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-52" value="物料1到达指定位置" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="3410" width="112" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="858" y="3479.17" as="sourcePoint" />
+            <mxPoint x="1501" y="3479.17" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o9AOzlycK8U6AokA3yw6-55" value="物料2到达指定位置" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="1344" y="3460" width="112" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
