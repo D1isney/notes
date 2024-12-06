@@ -210,7 +210,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="3nTQrRPk6aI_MscCdJCm" name="广工-板材线">
-    <mxGraphModel dx="2252" dy="1186" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1320" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -647,11 +647,14 @@
         <mxCell id="o9AOzlycK8U6AokA3yw6-19" value="层仓" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="1440" y="2850" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="o9AOzlycK8U6AokA3yw6-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.25;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1" source="o9AOzlycK8U6AokA3yw6-13" target="o9AOzlycK8U6AokA3yw6-16">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="o9AOzlycK8U6AokA3yw6-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.25;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;dashed=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="3032.2499999999995" as="sourcePoint" />
+            <mxPoint x="1500" y="3032.2499999999995" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-22" value="两个物料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="700" y="3050" width="60" height="30" as="geometry" />
+          <mxGeometry x="700" y="3000" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.388;entryY=0.689;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.389;exitY=0.145;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
           <mxGeometry relative="1" as="geometry">
