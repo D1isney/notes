@@ -210,7 +210,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="3nTQrRPk6aI_MscCdJCm" name="广工-板材线">
-    <mxGraphModel dx="1320" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1595" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -773,7 +773,7 @@
             <mxPoint x="1702" y="3470" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="o9AOzlycK8U6AokA3yw6-60" value="物料2入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="o9AOzlycK8U6AokA3yw6-60" value="物料2入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
           <mxGeometry x="1544.5" y="3450" width="112" height="20" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;entryX=0.984;entryY=0.596;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="o9AOzlycK8U6AokA3yw6-57">
@@ -782,7 +782,7 @@
             <mxPoint x="1700" y="3550" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="o9AOzlycK8U6AokA3yw6-62" value="物料1丢失 不再入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="o9AOzlycK8U6AokA3yw6-62" value="物料1丢失 不再入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="1544.5" y="3530" width="112" height="20" as="geometry" />
         </mxCell>
         <mxCell id="o9AOzlycK8U6AokA3yw6-63" value="层仓" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
