@@ -1,13 +1,12 @@
 package com.wms.controller;
 
+import com.wms.aspect.Log;
 import com.wms.pojo.Member;
 import com.wms.service.MemberService;
-import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.wms.utils.R;
+import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -15,17 +14,34 @@ import java.util.List;
  * 用户接口
  */
 @RestController
-@RequestMapping("/member")
+@RequestMapping("/member/")
 public class MemberController {
 
-    @Autowired
+    @Resource
     private MemberService memberService;
 
-    @GetMapping("/list")
-    public List<Member> getList(){
+    @GetMapping("list")
+    @Log(value = "查询所有的用户", path = "/member/list")
+    public List<Member> getList() {
         return memberService.list();
     }
 
+    @PostMapping("login")
+    @Log(value = "登录接口", path = "/member/login")
+    public R<?> login(@RequestBody Member member) {
+         return memberService.login(member);
+    }
+
+    @PostMapping("register")
+    @Log(value = "注册接口", path = "/member/register")
+    public R<?> add(@RequestBody Member member) {
+        boolean b = memberService.saveMemberDetails(member);
+        if (b) {
+            return R.ok("添加成功");
+        } else {
+            return R.error("添加失败");
+        }
+    }
 
 
 }
