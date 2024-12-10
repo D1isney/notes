@@ -1,4 +1,4 @@
-package com.wms.pojo;
+package com.wms.filter.login;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.wms.constant.MemberConstant;
@@ -18,15 +18,15 @@ import java.util.stream.Collectors;
 public class LoginMember implements UserDetails {
     private Member member;
     //  权限
-    private List<String> menu;
+    private List<String> permissions;
 
     //  优化、不需要把这个东西序列化存储到数据库
     @JSONField(serialize = false)
     List<SimpleGrantedAuthority> authorities;
 
-    public LoginMember(Member member, List<String> menu) {
+    public LoginMember(Member member, List<String> permissions) {
         this.member = member;
-        this.menu = menu;
+        this.permissions = permissions;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class LoginMember implements UserDetails {
         if (authorities != null) {
             return authorities;
         }
-        authorities = menu
+        authorities = permissions
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());

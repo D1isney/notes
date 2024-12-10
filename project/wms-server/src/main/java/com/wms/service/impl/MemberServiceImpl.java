@@ -5,10 +5,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
 import com.wms.filter.login.PasswordEncoderForSalt;
-import com.wms.pojo.LoginMember;
-import com.wms.pojo.Member;
+import com.wms.filter.login.LoginMember;
+import com.wms.filter.login.Member;
 import com.wms.service.MemberService;
-import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.JwtUtil;
 import com.wms.utils.PasswordUtil;
 import com.wms.utils.R;
@@ -16,6 +15,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -64,6 +64,18 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, Member> implements
     public boolean saveMemberDetails(Member member) {
         member = createMember(member);
         return member != null;
+    }
+
+    @Override
+    public void logout() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        LoginMember loginMember = (LoginMember) authentication.getPrincipal();
+        String userId = loginMember.getMember().getId().toString();
+
+        Member byId = getById(userId);
+        byId.setStatus(MemberConstant.STATUS_FALSE);
+        updateById(byId);
+
     }
 
     public Member createMember(Member member) {

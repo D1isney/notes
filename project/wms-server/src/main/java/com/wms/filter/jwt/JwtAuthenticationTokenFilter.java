@@ -1,9 +1,9 @@
 package com.wms.filter.jwt;
 
+import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
-import com.wms.pojo.LoginMember;
-import com.wms.pojo.Member;
-import com.wms.service.MemberService;
+import com.wms.filter.login.LoginMember;
+import com.wms.filter.login.Member;
 import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.JwtUtil;
 import io.jsonwebtoken.Claims;
@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
@@ -30,24 +31,30 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //获取token
-        String token = request.getHeader("Authorization");
-        if (!StringUtils.hasText(token)) {
+        //获取认证信息
+        String authorization = request.getHeader("Authorization");
+        if (!StringUtils.hasText(authorization)) {
             filterChain.doFilter(request, response);
             return;
         }
         String userid;
         try {
-            Claims claims = JwtUtil.parseJWT(token);
+            Claims claims = JwtUtil.parseJWT(authorization);
             userid = claims.getSubject();
         } catch (Exception e) {
-            throw new RuntimeException("token非法");
+            throw new RuntimeException("非法Authorization");
         }
         Member member = memberDao.selectById(Long.parseLong(userid));
+        if (Objects.isNull(member)) {
+            throw new RuntimeException("非法用户");
+        }
+        member.setStatus(MemberConstant.STATUS_TRUE);
+        memberDao.updateById(member);
+
         LoginMember loginMember = new LoginMember();
         //TODO: 需要获取权限
         loginMember.setMember(member);
-        loginMember.setMenu(new ArrayList<>());
+        loginMember.setPermissions(new ArrayList<>());
         MemberThreadLocal.set(loginMember);
 //        //存入SecurityContextHolder
         UsernamePasswordAuthenticationToken authenticationToken =

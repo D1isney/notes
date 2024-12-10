@@ -3,6 +3,7 @@ package com.wms.config;
 import com.wms.filter.jwt.JwtAuthenticationTokenFilter;
 import com.wms.handler.AccessDeniedHandlerImpl;
 import com.wms.handler.AuthenticationEntryPointImpl;
+import com.wms.handler.SessionStrategy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -65,6 +66,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //  授权失败处理器
                 .accessDeniedHandler(accessDeniedHandler);
 
+
+        http.sessionManagement(session->{
+            //  最大用户在线
+           session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
+        });
         http.cors();
     }
 

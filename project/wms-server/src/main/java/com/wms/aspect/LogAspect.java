@@ -3,7 +3,7 @@ package com.wms.aspect;
 import com.alibaba.fastjson.JSON;
 import com.wms.enums.LogRecordEnum;
 import com.wms.pojo.LogRecord;
-import com.wms.pojo.LoginMember;
+import com.wms.filter.login.LoginMember;
 import com.wms.service.LogRecordService;
 import com.wms.thread.MemberThreadLocal;
 import lombok.extern.slf4j.Slf4j;
@@ -39,12 +39,13 @@ public class LogAspect {
         String result = JSON.toJSONString(object);// 接口返回结果
         MethodSignature methodSignature = (MethodSignature) pj.getSignature();
         Method targetMethod = methodSignature.getMethod();
-        Log log = targetMethod.getAnnotation(Log.class); // 从接口注解中获取注解信息
+        Log logInterface = targetMethod.getAnnotation(Log.class); // 从接口注解中获取注解信息
         LoginMember loginMember = MemberThreadLocal.get();
         if (loginMember != null) {
-            LogRecord logRecord = getLogRecord(log, params, result, executeTime, loginMember);
+            LogRecord logRecord = getLogRecord(logInterface, params, result, executeTime, loginMember);
             logRecordService.saveOrUpdate(logRecord);
         }
+        log.info("有用户调用{}接口", logInterface.path());
         return object;
     }
 

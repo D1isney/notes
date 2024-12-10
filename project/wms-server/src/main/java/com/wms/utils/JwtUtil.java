@@ -80,6 +80,8 @@ public class JwtUtil {
     public static void main(String[] args) throws Exception {
         String jwt = createJWT("1234");
         Claims claims = parseJWT(jwt);
+        String subject = claims.getSubject();
+        System.out.println(subject);
         System.out.println(jwt);
 
     }

@@ -1,7 +1,6 @@
 package com.wms.thread;
 
-import com.wms.pojo.LoginMember;
-import com.wms.pojo.Member;
+import com.wms.filter.login.LoginMember;
 
 public class MemberThreadLocal {
     public MemberThreadLocal() {

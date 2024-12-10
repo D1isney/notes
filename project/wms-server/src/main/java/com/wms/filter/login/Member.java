@@ -1,4 +1,4 @@
-package com.wms.pojo;
+package com.wms.filter.login;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;

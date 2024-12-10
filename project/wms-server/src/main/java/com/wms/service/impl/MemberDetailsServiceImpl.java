@@ -2,9 +2,9 @@ package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wms.dao.MemberDao;
-import com.wms.pojo.LoginMember;
-import com.wms.pojo.Member;
-import com.wms.service.MemberService;
+import com.wms.filter.login.LoginMember;
+import com.wms.filter.login.Member;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,8 +12,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 @Service
 public class MemberDetailsServiceImpl implements UserDetailsService {
     @Resource
@@ -29,7 +32,7 @@ public class MemberDetailsServiceImpl implements UserDetailsService {
             member = members.get(0);
             //  通过用户去找权限
         }
-
-        return new LoginMember(member,new ArrayList<>());
+        List<String> list = Collections.singletonList("test");
+        return new LoginMember(member,list);
     }
 }
