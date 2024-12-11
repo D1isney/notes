@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import com.wms.service.MemberRoleService;
@@ -38,6 +39,7 @@ public class MemberRoleController {
     })
     @GetMapping("list")
     @Log(value = "用户-角色-查询所有用户角色信息",path = "/memberRole/list")
+    @PreAuthorize("hasAuthority('/memberRole/list')")
     public R<?> list(@RequestParam Map<String,Object> params){
         Query query = new Query(params);
         IPage<MemberRoleVo> page = memberRoleService.pageList(query.getIPage(MemberRoleVo.class),query);
@@ -50,6 +52,7 @@ public class MemberRoleController {
     @ApiImplicitParam(name = "MemberRole", value = "memberRole")
     @PostMapping("saveOrUpdate")
     @Log(value = "用户-角色-保存用户角色信息",path = "/memberRole/saveOrUpdate")
+    @PreAuthorize("hasAuthority('/memberRole/saveOrUpdate')")
     public R<?> saveOrUpdate(@RequestBody MemberRole memberRole){
         MemberRole newMemberRole = memberRoleService.insertOrUpdate(memberRole);
         return R.ok(newMemberRole);
@@ -59,6 +62,7 @@ public class MemberRoleController {
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
     @Log(value = "用户-角色-查询单个用户角色信息",path = "/memberRole/getInfo/{id}")
+    @PreAuthorize("hasAuthority('/memberRole/getInfo')")
     public R<?> getInfo(@PathVariable("id")Long id){
         MemberRole info = memberRoleService.queryById(id);
         return R.ok(info);
@@ -68,6 +72,7 @@ public class MemberRoleController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "用户-角色-删除用户角色信息",path = "/memberRole/delete")
+    @PreAuthorize("hasAuthority('/memberRole/delete')")
     public R<?> delete(@RequestParam Long[] ids){
         memberRoleService.deleteByIds(ids);
         return R.ok();
