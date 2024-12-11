@@ -15,7 +15,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import com.wms.service.PermissionsService;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.Resource;
 
 
 /**
@@ -23,12 +24,12 @@ import org.springframework.beans.factory.annotation.Autowired;
  *  controller
  * </p>
  */
-@Api(tags = "", value = "/permissions")
+@Api(tags = "权限信息", value = "/permissions")
 @RestController
 @RequestMapping("/permissions")
 public class PermissionsController {
 
-    @Autowired
+    @Resource
     private PermissionsService permissionsService;
                                                 
     @ApiOperation("查询数据")

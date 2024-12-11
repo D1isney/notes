@@ -148,7 +148,11 @@
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
-
+        <where>
+            <if test="query.username != null">
+                t.username = #{query.username}
+            </if>
+        </where>
     </sql>
 
     <sql id="order">
@@ -291,6 +295,18 @@
     <select id="queryTotal" resultType="java.lang.Long">
         select count(*) from  `member` t
         <include refid="queryListWhere"/>
+    </select>
+    <select id="getPermissionsByMember" resultType="java.lang.String" parameterType="java.lang.Long">
+        SELECT
+            DISTINCT p.path
+        FROM
+            member_role mr
+                LEFT JOIN role r ON r.id = mr.role_id
+                LEFT JOIN role_permissions rp ON mr.role_id = rp.role_id
+                LEFT JOIN permissions p on rp.permissions_id = p.id
+        WHERE
+            mr.member_id = #{id}
+          AND r.`status` = 1
     </select>
 
 

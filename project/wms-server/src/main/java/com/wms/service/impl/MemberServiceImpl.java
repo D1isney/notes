@@ -8,9 +8,11 @@ import com.wms.filter.login.PasswordEncoderForSalt;
 import com.wms.filter.login.LoginMember;
 import com.wms.filter.login.Member;
 import com.wms.service.MemberService;
+import com.wms.service.base.IBaseServiceImpl;
 import com.wms.utils.JwtUtil;
 import com.wms.utils.PasswordUtil;
 import com.wms.utils.R;
+import com.wms.vo.MemberVo;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +27,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class MemberServiceImpl extends ServiceImpl<MemberDao, Member> implements MemberService {
+public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, MemberVo> implements MemberService {
 
     @Resource
     private MemberDao memberDao;
@@ -78,6 +80,34 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, Member> implements
 
     }
 
+    /**
+     * 保存或者查询一个新的用户
+     *
+     * @param member 用户
+     * @return true 插入成功 false 插入失败
+     */
+    @Override
+    public boolean insertOrSave(Member member) {
+        if (Objects.isNull(member)) {
+            return false;
+        } else {
+            boolean b = checkNewOrOldMember(member);
+            //  说明是新的用户
+            if (b) {
+                createMember(member);
+            } else {
+                //  旧的用户
+                save(member);
+            }
+        }
+        return true;
+    }
+
+    public boolean checkNewOrOldMember(Member member) {
+        return member.getId() == null;
+    }
+
+
     public Member createMember(Member member) {
         String username = member.getUsername();
         QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
@@ -101,7 +131,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberDao, Member> implements
             member.setExpirationTime(newDate);
 
             //  保存数据库
-            saveOrUpdate(member);
+            save(member);
             return member;
         } else {
             return null;

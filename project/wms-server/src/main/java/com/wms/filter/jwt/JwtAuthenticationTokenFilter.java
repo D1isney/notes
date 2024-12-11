@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Component
@@ -49,12 +50,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new RuntimeException("非法用户");
         }
         member.setStatus(MemberConstant.STATUS_TRUE);
+        Long id = member.getId();
+        List<String> permissionsByMember = memberDao.getPermissionsByMember(id);
         memberDao.updateById(member);
-
         LoginMember loginMember = new LoginMember();
         //TODO: 需要获取权限
         loginMember.setMember(member);
-        loginMember.setPermissions(new ArrayList<>());
+        loginMember.setPermissions(permissionsByMember);
         MemberThreadLocal.set(loginMember);
 //        //存入SecurityContextHolder
         UsernamePasswordAuthenticationToken authenticationToken =

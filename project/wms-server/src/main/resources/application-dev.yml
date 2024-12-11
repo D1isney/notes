@@ -1,6 +1,7 @@
 server:
   port: 1217
 
+
 spring:
   datasource:
     username: root

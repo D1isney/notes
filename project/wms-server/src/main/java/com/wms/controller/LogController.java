@@ -1,6 +1,7 @@
 package com.wms.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.wms.aspect.Log;
 import com.wms.pojo.LogRecord;
 import com.wms.service.LogRecordService;
 import com.wms.utils.PageUtil;
@@ -11,22 +12,22 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
-@Api(tags = "", value = "/log")
+@Api(tags = "日志", value = "/log")
 @RestController
 @RequestMapping("/log")
 public class LogController {
 
-    @Autowired
+    @Resource
     private LogRecordService logService;
 
     @ApiOperation("查询数据")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "1", value = "1")
+            @ApiImplicitParam(name = " ", value = " ")
     })
     @GetMapping("list")
     public R<?> list(@RequestParam Map<String, Object> params) {
@@ -56,6 +57,7 @@ public class LogController {
     @ApiOperation("根据id删除数据")
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
+    @Log(value = "日志-删除日志信息",path = "/log/delete")
     public R<?> delete(@RequestParam("ids") Long[] ids) {
         logService.deleteByIds(ids);
         return R.ok();
