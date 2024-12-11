@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 
 import java.io.Serializable;
@@ -21,29 +23,41 @@ import java.util.Date;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel(value="MemberRole", description="")
 public class MemberRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(type = IdType.AUTO,value = "id")
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "`id`", type = IdType.AUTO)
     private Long id;
-    @TableField(value = "member_id")
+
+    @ApiModelProperty(value = "用户")
+    @TableField("`member_id`")
     private Long memberId;
-    @TableField(value = "role_id")
+
+    @ApiModelProperty(value = "角色")
+    @TableField("`role_id`")
     private Long roleId;
 
-    @TableField(value = "create_time")
+    @ApiModelProperty(value = "创建时间")
+    @TableField("`create_time`")
     private Date createTime;
 
-    @TableField(value = "update_time")
+    @ApiModelProperty(value = "更新时间")
+    @TableField("`update_time`")
     private Date updateTime;
 
-    @TableField(value = "create_member")
+    @ApiModelProperty(value = "创建人")
+    @TableField("`create_member`")
     private Long createMember;
-    @TableField(value = "update_member")
+
+    @ApiModelProperty(value = "更新人")
+    @TableField("`update_member`")
     private Long updateMember;
 
-    @TableField(value = "remark")
+    @ApiModelProperty(value = "描述")
+    @TableField("`remark`")
     private String remark;
 
 }

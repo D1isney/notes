@@ -1,9 +1,10 @@
 package com.wms.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wms.pojo.LogRecord;
+import com.wms.service.base.IBaseMapper;
+import com.wms.vo.LogRecordVo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface LogRecordDao extends BaseMapper<LogRecord> {
+public interface LogRecordDao extends IBaseMapper<LogRecord, LogRecordVo> {
 }

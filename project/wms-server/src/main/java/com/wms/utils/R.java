@@ -7,11 +7,6 @@ public class R<T> {
     private Integer code;
     private T data;
 
-    public R(String message, Integer code, T data) {
-        this.message = message;
-        this.code = code;
-        this.data = data;
-    }
 
     public R(String message, Integer code) {
         this.message = message;
@@ -53,9 +48,22 @@ public class R<T> {
         this.message = resultEnum.getMessage();
     }
 
+    public R(String message, Integer code, T data) {
+        this.message = message;
+        this.code = code;
+        this.data = data;
+    }
+
+    public static <T> R<T> ok() {
+        return new R<T>("", 200, null);
+    }
     public static <T> R<T> ok(String message) {
         return new R<T>(message, 200, null);
     }
+    public static <T> R<T> ok(T data) {
+        return new R<T>("", 200, data);
+    }
+
 
     public static <T> R<T> ok(String message, T data) {
         return new R<T>(message, 200, data);

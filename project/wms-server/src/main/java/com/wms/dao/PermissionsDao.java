@@ -1,9 +1,10 @@
 package com.wms.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wms.pojo.Permissions;
+import com.wms.service.base.IBaseMapper;
+import com.wms.vo.PermissionsVo;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface PermissionsDao extends BaseMapper<Permissions> {
+public interface PermissionsDao extends IBaseMapper<Permissions, PermissionsVo> {
 }

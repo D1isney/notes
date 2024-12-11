@@ -1,7 +1,234 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wms.dao.RolePermissionsDao">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="rolePermissionsMap" type="com.wms.pojo.RolePermissions">
+        <id column="id" property="id" />
+        <result column="role_id" property="roleId" />
+        <result column="permissions_id" property="permissionsId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_member" property="createMember" />
+        <result column="update_member" property="updateMember" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询映射结果 Vo) -->
+    <resultMap id="rolePermissionsVoMap" type="com.wms.vo.RolePermissionsVo" extends="rolePermissionsMap">
+
+    </resultMap>
+    <!-- 保存列 -->
+    <sql id="saveColumnBase">
+        `role_id`,
+        `permissions_id`,
+        `create_time`,
+        `update_time`,
+        `create_member`,
+        `update_member`,
+        `remark`
+    </sql>
+    <!-- 保存列value -->
+    <sql id="saveColumnValue">
+        #{entity.roleId},
+        #{entity.permissionsId},
+        #{entity.createTime},
+        #{entity.updateTime},
+        #{entity.createMember},
+        #{entity.updateMember},
+        #{entity.remark}
+    </sql>
+
+    <sql id="roleIdColumn">`role_id` = #{entity.roleId},</sql>
+    <sql id="permissionsIdColumn">`permissions_id` = #{entity.permissionsId},</sql>
+    <sql id="createTimeColumn">`create_time` = #{entity.createTime},</sql>
+    <sql id="updateTimeColumn">`update_time` = #{entity.updateTime},</sql>
+    <sql id="createMemberColumn">`create_member` = #{entity.createMember},</sql>
+    <sql id="updateMemberColumn">`update_member` = #{entity.updateMember},</sql>
+    <sql id="remarkColumn">`remark` = #{entity.remark}</sql>
+
+    <sql id="updateColumnNotNull">
+        <set>
+            <if test="entity.roleId != null"><include refid="roleIdColumn"/></if>
+            <if test="entity.permissionsId != null"><include refid="permissionsIdColumn"/></if>
+            <if test="entity.createTime != null"><include refid="createTimeColumn"/></if>
+            <if test="entity.updateTime != null"><include refid="updateTimeColumn"/></if>
+            <if test="entity.createMember != null"><include refid="createMemberColumn"/></if>
+            <if test="entity.updateMember != null"><include refid="updateMemberColumn"/></if>
+            <if test="entity.remark != null"><include refid="remarkColumn"/></if>
+        </set>
+    </sql>
+    <sql id="entityColumn">
+        <include refid="roleIdColumn"/>
+        <include refid="permissionsIdColumn"/>
+        <include refid="createTimeColumn"/>
+        <include refid="updateTimeColumn"/>
+        <include refid="createMemberColumn"/>
+        <include refid="updateMemberColumn"/>
+        <include refid="remarkColumn"/>
+    </sql>
+    <!-- 通用查询结果列 -->
+    <sql id="queryListColumnBase">
+        t.id,
+         t.role_id,
+         t.permissions_id,
+         t.create_time,
+         t.update_time,
+         t.create_member,
+         t.update_member,
+         t.remark
+    </sql>
+    <!-- 通用查询结果列VO -->
+    <sql id="queryListColumn">
+        <include refid="queryListColumnBase"/>
+    </sql>
+    <!-- 条件通用查询列 -->
+    <sql id="queryListWhere">
+
+    </sql>
+
+    <sql id="order">
+        <choose>
+            <when test="query.sidx != null and query.sidx.trim() !='' and query.order != null and query.order.trim() !=''">
+                order by ${query.sidx} ${query.order}
+            </when>
+            <otherwise>
+                order by t.id desc
+            </otherwise>
+        </choose>
+        <if test="query.offset != null and query.limit != null">
+            limit #{query.offset},#{query.limit}
+        </if>
+    </sql>
+
+    <insert id="saveBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `role_permissions`
+        (
+        <include refid="saveColumnBase"/>
+        )
+        values
+        <foreach collection="collection" index="index" item="entity" separator=",">
+            (
+            <include refid="saveColumnValue"/>
+            )
+        </foreach>
+    </insert>
+
+    <insert id="save" parameterType="com.wms.pojo.RolePermissions" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `role_permissions`
+        (
+        <include refid="saveColumnBase"/>
+        )
+        values
+        (
+        <include refid="saveColumnValue"/>
+        )
+    </insert>
+
+    <delete id="deleteByIds" parameterType="java.lang.Long">
+        delete from `role_permissions`
+        where id in
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="update" parameterType="com.wms.pojo.RolePermissions" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `role_permissions`
+        <set>
+            <include refid="entityColumn"/>
+        </set>
+        where id= #{entity.id}
+    </update>
+
+    <update id="updateNotEmpty" parameterType="com.wms.pojo.RolePermissions" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `role_permissions`
+        <include refid="updateColumnNotNull"/>
+        where id= #{id}
+    </update>
+
+
+    <update id="updateBatchNotEmpty" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <foreach collection="collection" item="entity" index="index" separator=";">
+            update `role_permissions`
+            <include refid="updateColumnNotNull"/>
+            where id = #{entity.id}
+        </foreach>
+    </update>
+
+    <update id="updateBatchByIdNotEmpty">
+        update `role_permissions`
+        <include refid="updateColumnNotNull"/>
+        where id in
+        <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateBatchById" >
+        update `role_permissions`
+        set
+        <include refid="entityColumn"/>
+        where id in
+        <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <foreach collection="collection" item="entity" index="index" separator=";">
+            update `role_permissions`
+            set
+            <include refid="entityColumn"/>
+            where id= #{entity.id}
+        </foreach>
+    </update>
+
+    <select id="queryById" parameterType="java.lang.Long" resultMap="rolePermissionsMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `role_permissions` t
+        where id = #{id}
+    </select>
+
+    <select id="queryByIds" resultMap="rolePermissionsMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `role_permissions` t
+        where id in
+        <foreach collection="ids" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="list"  parameterType="java.util.Map" resultMap="rolePermissionsVoMap">
+        select
+        <include refid="queryListColumn"/>
+        from `role_permissions` t
+        <include refid="queryListWhere"/>
+    </select>
+
+    <select id="pageList" resultMap= "rolePermissionsVoMap">
+        select
+        <include refid="queryListColumn"/>
+        from `role_permissions` t
+        <include refid="queryListWhere"/>
+        <include refid="order"/>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultMap= "rolePermissionsMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `role_permissions` t
+        <include refid="queryListWhere"/>
+    </select>
+
+    <select id="queryTotal" resultType="java.lang.Long">
+        select count(*) from  `role_permissions` t
+        <include refid="queryListWhere"/>
+    </select>
+
 
 </mapper>

@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,41 +16,77 @@ import java.util.Date;
 @Setter
 @Getter
 @TableName(value = "member")
+@ApiModel(value="Member", description="")
 public class Member implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @TableId(type = IdType.AUTO,value = "id")
+
+    @ApiModelProperty(value = "主键")
+    @TableId(value = "`id`", type = IdType.AUTO)
     private Long id;
 
-    @TableField(value = "username")
+    @ApiModelProperty(value = "账号")
+    @TableField("`username`")
     private String username;
-    @TableField(value = "password")
+
+    @ApiModelProperty(value = "密码")
+    @TableField("`password`")
     private String password;
-    @TableField(value = "sex")
-    private int sex;
-    @TableField(value = "age")
-    private int age;
-    @TableField(value = "email")
+
+    @ApiModelProperty(value = "姓名")
+    @TableField("`name`")
+    private String name;
+
+    @ApiModelProperty(value = "性别")
+    @TableField("`sex`")
+    private Boolean sex;
+
+    @ApiModelProperty(value = "年龄")
+    @TableField("`age`")
+    private Integer age;
+
+    @ApiModelProperty(value = "邮箱")
+    @TableField("`email`")
     private String email;
-    @TableField(value = "phone")
+
+    @ApiModelProperty(value = "电话")
+    @TableField("`phone`")
     private String phone;
-    @TableField(value = "address")
+
+    @ApiModelProperty(value = "地址")
+    @TableField("`address`")
     private String address;
-    @TableField(value = "birthday")
+
+    @ApiModelProperty(value = "出生日期")
+    @TableField("`birthday`")
     private Date birthday;
-    @TableField(value = "create_time")
+
+    @ApiModelProperty(value = "创建时间")
+    @TableField("`create_time`")
     private Date createTime;
-    @TableField(value = "update_time")
+
+    @ApiModelProperty(value = "更新时间")
+    @TableField("`update_time`")
     private Date updateTime;
-    @TableField(value = "expiration_time")
+
+    @ApiModelProperty(value = "过期时间")
+    @TableField("`expiration_time`")
     private Date expirationTime;
-    @TableField(value = "create_member")
+
+    @ApiModelProperty(value = "创建人")
+    @TableField("`create_member`")
     private Long createMember;
-    @TableField(value = "update_member")
+
+    @ApiModelProperty(value = "更新人")
+    @TableField("`update_member`")
     private Long updateMember;
-    @TableField(value = "status")
-    private int status;
-    @TableField(value = "salt")
-    private String salt; // 随机盐
+
+    @ApiModelProperty(value = "激活状态（0：封禁，1：可用，2：已过期）")
+    @TableField("`status`")
+    private Integer status;
+
+    @ApiModelProperty(value = "随机盐")
+    @TableField("`salt`")
+    private String salt;
 
 }

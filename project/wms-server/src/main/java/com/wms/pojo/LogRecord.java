@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,33 +17,44 @@ import java.util.Date;
 @Getter
 @ToString
 @TableName(value = "log")
+@ApiModel(value = "LogRecord")
 public class LogRecord implements Serializable {
     private static final long serialVersionUID = 1L;
-    @TableId(type = IdType.AUTO,value = "id")
+
+    @ApiModelProperty(value = "自增主键")
+    @TableId(value = "`id`", type = IdType.AUTO)
     private Long id;
 
-    @TableField(value = "message")
+    @ApiModelProperty(value = "内容")
+    @TableField("`message`")
     private String message;
 
-    @TableField(value = "member_id")
+    @ApiModelProperty(value = "调用用户ID")
+    @TableField("`member_id`")
     private Long memberId;
 
-    @TableField(value = "create_time")
+    @ApiModelProperty(value = "调用时间")
+    @TableField("`create_time`")
     private Date createTime;
 
-    @TableField(value = "type")
+    @ApiModelProperty(value = "日志级别（0：普通日志，1：警告日志，2：危险日志，3：报警日志）")
+    @TableField("`type`")
     private Integer type;
 
-    @TableField(value = "path")
+    @ApiModelProperty(value = "调用接口")
+    @TableField("`path`")
     private String path;
 
-    @TableField(value = "params")
+    @ApiModelProperty(value = "接口参数")
+    @TableField("`params`")
     private String params;
 
-    @TableField(value = "result")
+    @ApiModelProperty(value = "返回参数")
+    @TableField("`result`")
     private String result;
 
-    @TableField(value = "execute_time")
+    @ApiModelProperty(value = "执行时长")
+    @TableField("`execute_time`")
     private Long executeTime;
 
 

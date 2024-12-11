@@ -1,7 +1,9 @@
 package com.wms.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.wms.pojo.LogRecord;
+import com.wms.service.base.BaseService;
+import com.wms.vo.LogRecordVo;
 
-public interface LogRecordService extends IService<LogRecord> {
+public interface LogRecordService extends BaseService<LogRecord, LogRecordVo> {
+    LogRecord insertOrUpdate(LogRecord log);
 }

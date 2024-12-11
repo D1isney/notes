@@ -1,7 +1,234 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wms.dao.MemberRoleDao">
+
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="memberRoleMap" type="com.wms.pojo.MemberRole">
+        <id column="id" property="id" />
+        <result column="member_id" property="memberId" />
+        <result column="role_id" property="roleId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_member" property="createMember" />
+        <result column="update_member" property="updateMember" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询映射结果 Vo) -->
+    <resultMap id="memberRoleVoMap" type="com.wms.vo.MemberRoleVo" extends="memberRoleMap">
+
+    </resultMap>
+    <!-- 保存列 -->
+    <sql id="saveColumnBase">
+        `member_id`,
+        `role_id`,
+        `create_time`,
+        `update_time`,
+        `create_member`,
+        `update_member`,
+        `remark`
+    </sql>
+    <!-- 保存列value -->
+    <sql id="saveColumnValue">
+        #{entity.memberId},
+        #{entity.roleId},
+        #{entity.createTime},
+        #{entity.updateTime},
+        #{entity.createMember},
+        #{entity.updateMember},
+        #{entity.remark}
+    </sql>
+
+    <sql id="memberIdColumn">`member_id` = #{entity.memberId},</sql>
+    <sql id="roleIdColumn">`role_id` = #{entity.roleId},</sql>
+    <sql id="createTimeColumn">`create_time` = #{entity.createTime},</sql>
+    <sql id="updateTimeColumn">`update_time` = #{entity.updateTime},</sql>
+    <sql id="createMemberColumn">`create_member` = #{entity.createMember},</sql>
+    <sql id="updateMemberColumn">`update_member` = #{entity.updateMember},</sql>
+    <sql id="remarkColumn">`remark` = #{entity.remark}</sql>
+
+    <sql id="updateColumnNotNull">
+        <set>
+            <if test="entity.memberId != null"><include refid="memberIdColumn"/></if>
+            <if test="entity.roleId != null"><include refid="roleIdColumn"/></if>
+            <if test="entity.createTime != null"><include refid="createTimeColumn"/></if>
+            <if test="entity.updateTime != null"><include refid="updateTimeColumn"/></if>
+            <if test="entity.createMember != null"><include refid="createMemberColumn"/></if>
+            <if test="entity.updateMember != null"><include refid="updateMemberColumn"/></if>
+            <if test="entity.remark != null"><include refid="remarkColumn"/></if>
+        </set>
+    </sql>
+    <sql id="entityColumn">
+        <include refid="memberIdColumn"/>
+        <include refid="roleIdColumn"/>
+        <include refid="createTimeColumn"/>
+        <include refid="updateTimeColumn"/>
+        <include refid="createMemberColumn"/>
+        <include refid="updateMemberColumn"/>
+        <include refid="remarkColumn"/>
+    </sql>
+    <!-- 通用查询结果列 -->
+    <sql id="queryListColumnBase">
+        t.id,
+         t.member_id,
+         t.role_id,
+         t.create_time,
+         t.update_time,
+         t.create_member,
+         t.update_member,
+         t.remark
+    </sql>
+    <!-- 通用查询结果列VO -->
+    <sql id="queryListColumn">
+        <include refid="queryListColumnBase"/>
+    </sql>
+    <!-- 条件通用查询列 -->
+    <sql id="queryListWhere">
+
+    </sql>
+
+    <sql id="order">
+        <choose>
+            <when test="query.sidx != null and query.sidx.trim() !='' and query.order != null and query.order.trim() !=''">
+                order by ${query.sidx} ${query.order}
+            </when>
+            <otherwise>
+                order by t.id desc
+            </otherwise>
+        </choose>
+        <if test="query.offset != null and query.limit != null">
+            limit #{query.offset},#{query.limit}
+        </if>
+    </sql>
+
+    <insert id="saveBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `member_role`
+        (
+        <include refid="saveColumnBase"/>
+        )
+        values
+        <foreach collection="collection" index="index" item="entity" separator=",">
+            (
+            <include refid="saveColumnValue"/>
+            )
+        </foreach>
+    </insert>
+
+    <insert id="save" parameterType="com.wms.pojo.MemberRole" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `member_role`
+        (
+        <include refid="saveColumnBase"/>
+        )
+        values
+        (
+        <include refid="saveColumnValue"/>
+        )
+    </insert>
+
+    <delete id="deleteByIds" parameterType="java.lang.Long">
+        delete from `member_role`
+        where id in
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="update" parameterType="com.wms.pojo.MemberRole" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `member_role`
+        <set>
+            <include refid="entityColumn"/>
+        </set>
+        where id= #{entity.id}
+    </update>
+
+    <update id="updateNotEmpty" parameterType="com.wms.pojo.MemberRole" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `member_role`
+        <include refid="updateColumnNotNull"/>
+        where id= #{id}
+    </update>
+
+
+    <update id="updateBatchNotEmpty" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <foreach collection="collection" item="entity" index="index" separator=";">
+            update `member_role`
+            <include refid="updateColumnNotNull"/>
+            where id = #{entity.id}
+        </foreach>
+    </update>
+
+    <update id="updateBatchByIdNotEmpty">
+        update `member_role`
+        <include refid="updateColumnNotNull"/>
+        where id in
+        <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateBatchById" >
+        update `member_role`
+        set
+        <include refid="entityColumn"/>
+        where id in
+        <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <foreach collection="collection" item="entity" index="index" separator=";">
+            update `member_role`
+            set
+            <include refid="entityColumn"/>
+            where id= #{entity.id}
+        </foreach>
+    </update>
+
+    <select id="queryById" parameterType="java.lang.Long" resultMap="memberRoleMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `member_role` t
+        where id = #{id}
+    </select>
+
+    <select id="queryByIds" resultMap="memberRoleMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `member_role` t
+        where id in
+        <foreach collection="ids" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="list"  parameterType="java.util.Map" resultMap="memberRoleVoMap">
+        select
+        <include refid="queryListColumn"/>
+        from `member_role` t
+        <include refid="queryListWhere"/>
+    </select>
+
+    <select id="pageList" resultMap= "memberRoleVoMap">
+        select
+        <include refid="queryListColumn"/>
+        from `member_role` t
+        <include refid="queryListWhere"/>
+        <include refid="order"/>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultMap= "memberRoleMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `member_role` t
+        <include refid="queryListWhere"/>
+    </select>
+
+    <select id="queryTotal" resultType="java.lang.Long">
+        select count(*) from  `member_role` t
+        <include refid="queryListWhere"/>
+    </select>
+
 
 </mapper>
