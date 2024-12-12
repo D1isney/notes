@@ -22,6 +22,7 @@
         <result column="update_member" property="updateMember" />
         <result column="status" property="status" />
         <result column="salt" property="salt" />
+        <result column="online" property="online" />
     </resultMap>
 
     <!-- 通用查询映射结果 Vo) -->
@@ -45,7 +46,8 @@
         `create_member`,
         `update_member`,
         `status`,
-        `salt`
+        `salt`,
+        `online`
     </sql>
     <!-- 保存列value -->
     <sql id="saveColumnValue">
@@ -64,7 +66,8 @@
         #{entity.createMember},
         #{entity.updateMember},
         #{entity.status},
-        #{entity.salt}
+        #{entity.salt},
+        #{entity.online}
     </sql>
 
     <sql id="usernameColumn">`username` = #{entity.username},</sql>
@@ -83,6 +86,7 @@
     <sql id="updateMemberColumn">`update_member` = #{entity.updateMember},</sql>
     <sql id="statusColumn">`status` = #{entity.status},</sql>
     <sql id="saltColumn">`salt` = #{entity.salt}</sql>
+    <sql id="onlineColumn">`online` = #{entity.online}</sql>
 
     <sql id="updateColumnNotNull">
         <set>
@@ -102,6 +106,7 @@
             <if test="entity.updateMember != null"><include refid="updateMemberColumn"/></if>
             <if test="entity.status != null"><include refid="statusColumn"/></if>
             <if test="entity.salt != null"><include refid="saltColumn"/></if>
+            <if test="entity.online != null"><include refid="onlineColumn"/></if>
         </set>
     </sql>
     <sql id="entityColumn">
@@ -121,6 +126,7 @@
         <include refid="updateMemberColumn"/>
         <include refid="statusColumn"/>
         <include refid="saltColumn"/>
+        <include refid="onlineColumn"/>
     </sql>
     <!-- 通用查询结果列 -->
     <sql id="queryListColumnBase">
@@ -140,7 +146,8 @@
          t.create_member,
          t.update_member,
          t.status,
-         t.salt
+         t.salt,
+         t.online
     </sql>
     <!-- 通用查询结果列VO -->
     <sql id="queryListColumn">

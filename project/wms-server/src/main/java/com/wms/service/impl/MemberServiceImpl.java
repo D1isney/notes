@@ -1,7 +1,6 @@
 package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
 import com.wms.filter.login.PasswordEncoderForSalt;
@@ -57,7 +56,6 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
             String userId = loginMember.getMember().getId().toString();
             String jwt = JwtUtil.createJWT(userId);
             return R.ok("登录成功！", jwt);
-
         }
         return R.error("账号或密码错误！");
     }
@@ -73,7 +71,6 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         LoginMember loginMember = (LoginMember) authentication.getPrincipal();
         String userId = loginMember.getMember().getId().toString();
-
         Member byId = getById(userId);
         byId.setStatus(MemberConstant.STATUS_FALSE);
         updateById(byId);

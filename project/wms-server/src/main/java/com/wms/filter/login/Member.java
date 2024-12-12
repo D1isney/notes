@@ -89,4 +89,8 @@ public class Member implements Serializable {
     @TableField("`salt`")
     private String salt;
 
+    @ApiModelProperty(value = "在线状态")
+    @TableField("`online`")
+    private Integer online;
+
 }
