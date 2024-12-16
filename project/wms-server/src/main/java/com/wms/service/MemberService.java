@@ -8,9 +8,12 @@ import com.wms.vo.MemberVo;
 public interface MemberService extends BaseService<Member, MemberVo> {
     R<?> login(Member member);
 
+    R<?> constraintLogin(Member member);
+
     boolean saveMemberDetails(Member member);
 
     void logout();
 
     boolean insertOrSave(Member member);
+
 }

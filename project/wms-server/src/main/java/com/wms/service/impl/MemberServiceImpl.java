@@ -3,11 +3,14 @@ package com.wms.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
+import com.wms.exception.EException;
 import com.wms.filter.login.PasswordEncoderForSalt;
 import com.wms.filter.login.LoginMember;
 import com.wms.filter.login.Member;
 import com.wms.service.MemberService;
 import com.wms.service.base.IBaseServiceImpl;
+import com.wms.thread.MemberThreadLocal;
+import com.wms.utils.HttpUtil;
 import com.wms.utils.JwtUtil;
 import com.wms.utils.PasswordUtil;
 import com.wms.utils.R;
@@ -16,14 +19,14 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.*;
+
+import static com.wms.constant.MemberConstant.CONTINUE_LOGIN;
 
 @Service
 public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, MemberVo> implements MemberService {
@@ -40,25 +43,81 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
     @Override
     public R<?> login(Member member) {
-        QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
-        queryWrapper.eq("username", member.getUsername());
-        List<Member> members = memberDao.selectList(queryWrapper);
+        List<Member> members = queryMemberByUsername(member);
         if (!members.isEmpty()) {
-            String password = member.getPassword() + members.get(0).getSalt();
-            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getUsername(), password);
-            Authentication authenticate = authenticationManager.authenticate(authenticationToken);
-            //  如果认证没通过，给出对应的提示
-            if (Objects.isNull(authenticate)) {
-                throw new RuntimeException("登录失败");
+            //  判断用户是否登录过
+            R<?> login = isLogin(members.get(0).getId());
+            if (!Objects.isNull(login)) {
+                return login;
             }
-            //  如果认证通过了，使用userId生成一个jwt，jwt存入ResponseResult返回
-            LoginMember loginMember = (LoginMember) authenticate.getPrincipal();
-            String userId = loginMember.getMember().getId().toString();
-            String jwt = JwtUtil.createJWT(userId);
+            String jwt = loggingIn(member, members);
             return R.ok("登录成功！", jwt);
         }
         return R.error("账号或密码错误！");
     }
+
+    /**
+     * 强制登录
+     * @param member 用户
+     * @return R
+     */
+    @Override
+    public R<?> constraintLogin(Member member) {
+        List<Member> members = queryMemberByUsername(member);
+        if (!members.isEmpty()) {
+            String jwt = loggingIn(member, members);
+            return R.ok("登录成功！", jwt);
+        }
+        return R.error("账号或密码错误！");
+    }
+
+    public String loggingIn(Member member,List<Member> members){
+        String password = member.getPassword() + members.get(0).getSalt();
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getUsername(), password);
+        Authentication authenticate = authenticationManager.authenticate(authenticationToken);
+        //  如果认证没通过，给出对应的提示
+        if (Objects.isNull(authenticate)) {
+            throw new EException("登录失败");
+        }
+        //  如果认证通过了，使用userId生成一个jwt，jwt存入ResponseResult返回
+        LoginMember loginMember = (LoginMember) authenticate.getPrincipal();
+        String userId = loginMember.getMember().getId().toString();
+        String jwt = JwtUtil.createJWT(userId);
+        MemberThreadLocal.setMainThreadLoginMemberById(members.get(0).getId(), loginMember);
+        MemberThreadLocal.setMainThreadLoginMemberTokenForId(members.get(0).getId(), jwt);
+        return jwt;
+    }
+
+    public void checkMember(Member member) {
+        if (Objects.isNull(member.getUsername())){
+            throw new EException("用户名不能为空！");
+        }
+    }
+    public List<Member> queryMemberByUsername(Member member){
+        checkMember(member);
+        Map<String,Object> map = new HashMap<>();
+        map.put("username", member.getUsername());
+        return queryList(map);
+    }
+
+
+
+    /**
+     * 判断用户是否已经登录了
+     * @param id 用户id
+     * @return 有值：登陆过 null：没有登陆过
+     */
+    public R<?> isLogin(Long id)  {
+        //  校验用户是否登陆过
+        if (null != MemberThreadLocal.getMemberInfoMap(id)) {
+            R<Object> r = R.ok("已经有人登录，是否继续登录？");
+            r.setCode(CONTINUE_LOGIN);
+            return r;
+        }
+        return null;
+    }
+
+
 
     @Override
     public boolean saveMemberDetails(Member member) {
@@ -68,13 +127,19 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
     @Override
     public void logout() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        LoginMember loginMember = (LoginMember) authentication.getPrincipal();
-        String userId = loginMember.getMember().getId().toString();
-        Member byId = getById(userId);
+        Long id = MemberThreadLocal.get().getMember().getId();
+
+        //  更新用户的信息
+        Member byId = getById(id);
         byId.setStatus(MemberConstant.STATUS_FALSE);
         updateById(byId);
 
+        //  清楚登录信息
+        MemberThreadLocal.clearMainThreadLoginMemberById(MemberThreadLocal.get().getMember().getId());
+        //  清掉Token
+        MemberThreadLocal.clearMainThreadLoginMemberTokenForId(MemberThreadLocal.get().getMember().getId());
+        //  清楚当前线程的用户信息
+        MemberThreadLocal.clear();
     }
 
     /**
@@ -99,6 +164,8 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         }
         return true;
     }
+
+
 
     public boolean checkNewOrOldMember(Member member) {
         return member.getId() == null;

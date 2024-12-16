@@ -20,7 +20,6 @@ public class LoginMember implements UserDetails {
     //  权限
     private List<String> permissions;
 
-    //  优化、不需要把这个东西序列化存储到数据库
     @JSONField(serialize = false)
     List<SimpleGrantedAuthority> authorities;
 
@@ -39,7 +38,6 @@ public class LoginMember implements UserDetails {
                 .stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-
         return authorities;
     }
 

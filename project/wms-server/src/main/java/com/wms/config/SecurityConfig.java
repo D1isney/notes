@@ -15,7 +15,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
@@ -47,6 +46,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -58,7 +58,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/register").permitAll()
                 .anyRequest().authenticated()
         ;
+        //  jwt解析
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.sessionManagement(session->{
+            //  最大用户在线
+            session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
+        });
+
         //  配置异常处理器
         http.exceptionHandling()
                 //  认真失败处理器
@@ -67,10 +73,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .accessDeniedHandler(accessDeniedHandler);
 
 
-        http.sessionManagement(session->{
-            //  最大用户在线
-           session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
-        });
+
         http.cors();
     }
 

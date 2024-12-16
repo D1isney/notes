@@ -2,6 +2,8 @@ package com.wms.utils;
 
 
 
+import com.wms.exception.EException;
+
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -279,7 +281,7 @@ public class DateUtil {
             month = Integer.parseInt(format(new Date(),MONTH_PATTERN));
         }
         if(month < 1 || month > 12) {
-            throw new RuntimeException("月份错误.");
+            throw new EException("月份错误.");
         }
         month -= 1;
         String[][] yearMonth = DateUtil.getYearMonth(year);

@@ -1,6 +1,7 @@
 package com.wms.utils;
 
 
+import com.wms.exception.EException;
 import org.apache.commons.lang.StringUtils;
 
 public class SQLFilter {
@@ -28,8 +29,8 @@ public class SQLFilter {
 
         //判断是否包含非法字符
         for(String keyword : keywords){
-            if(str.indexOf(keyword) != -1){
-                throw new RuntimeException("包含非法字符");
+            if(str.contains(keyword)){
+                throw new EException("包含非法字符");
             }
         }
 

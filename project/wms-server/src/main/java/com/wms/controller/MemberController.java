@@ -38,6 +38,13 @@ public class MemberController {
         return memberService.login(member);
     }
 
+
+    @PostMapping("constraintLogin")
+    @Log(value = "强制登录",path = "/member/constraintLogin")
+    public R<?> constraintLogin(@RequestBody Member member){
+        return memberService.constraintLogin(member);
+    }
+
     @GetMapping("logout")
     @Log(value = "登出接口", path = "/member/logout")
     public R<?> logoUt() {

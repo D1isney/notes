@@ -2,6 +2,7 @@ package com.wms.service.base;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.wms.exception.EException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
@@ -71,7 +72,7 @@ public class IBaseServiceImpl<M extends IBaseMapper<T,V>, T,V> extends ServiceIm
     @Override
     public T saveOrModify(T t) {
         if(!saveOrUpdate(t)){
-            throw new RuntimeException("save or update fail!");
+            throw new EException("save or update fail!");
         }
         return t;
     }

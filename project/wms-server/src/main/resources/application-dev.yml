@@ -36,3 +36,7 @@ mybatis-plus:
   mapper-locations: classpath:dao/*.xml
 
 
+login:
+  filter:
+    tokenIsReal: 0 # 是否开启Token有效性验证
+    header: Authorization # 请求头

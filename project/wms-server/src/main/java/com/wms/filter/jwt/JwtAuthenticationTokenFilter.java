@@ -2,11 +2,15 @@ package com.wms.filter.jwt;
 
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
+import com.wms.exception.EException;
 import com.wms.filter.login.LoginMember;
 import com.wms.filter.login.Member;
 import com.wms.thread.MemberThreadLocal;
+import com.wms.utils.HttpUtil;
 import com.wms.utils.JwtUtil;
+import com.wms.utils.R;
 import io.jsonwebtoken.Claims;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -19,21 +23,27 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import static com.wms.constant.MemberConstant.CONTINUE_LOGIN;
+
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-
     @Resource
     private MemberDao memberDao;
+
+    @Value("${login.filter.tokenIsReal}")
+    private Integer tokenIsReal;
+
+    @Value("${login.filter.header}")
+    private String header;
 
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        //获取认证信息
-        String authorization = request.getHeader("Authorization");
+        //  鉴定JWT的有效性
+        String authorization = request.getHeader(header);
         if (!StringUtils.hasText(authorization)) {
             filterChain.doFilter(request, response);
             return;
@@ -43,27 +53,60 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             Claims claims = JwtUtil.parseJWT(authorization);
             userid = claims.getSubject();
         } catch (Exception e) {
-            throw new RuntimeException("非法Authorization");
+            throw new EException("非法Authorization");
         }
         Member member = memberDao.selectById(Long.parseLong(userid));
         if (Objects.isNull(member)) {
-            throw new RuntimeException("非法用户");
+            throw new EException("非法用户");
         }
+
+        if (tokenIsReal > 0){
+            boolean tokenIsReal = tokenIsReal(userid, response);
+            if (!tokenIsReal) {
+                return;
+            }
+        }
+
+
+
         member.setStatus(MemberConstant.STATUS_TRUE);
         Long id = member.getId();
         List<String> permissionsByMember = memberDao.getPermissionsByMember(id);
         memberDao.updateById(member);
         LoginMember loginMember = new LoginMember();
-        //TODO: 需要获取权限
         loginMember.setMember(member);
         loginMember.setPermissions(permissionsByMember);
+        //  只需要存当前的用户
         MemberThreadLocal.set(loginMember);
-//        //存入SecurityContextHolder
+//        MemberThreadLocal.setMainThreadLoginMemberById(id, loginMember);
+//        MemberThreadLocal.setMainThreadLoginMemberTokenForId(id, authorization);
+
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginMember, null, loginMember.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        //放行
+
         filterChain.doFilter(request, response);
     }
+
+
+    /**
+     * 判断用户的token是否有效
+     * @param userid 用户id
+     * @param response 响应体
+     * @return true：有效 false：无效
+     * @throws IOException 异常
+     */
+    public boolean tokenIsReal(String userid,HttpServletResponse response) throws IOException {
+        //  校验用户的token是否有效的
+        String mainThreadLoginMemberTokenForId = MemberThreadLocal.getMainThreadLoginMemberTokenForId(Long.valueOf(userid));
+        if (Objects.isNull(mainThreadLoginMemberTokenForId)) {
+            R<Object> r = R.ok("无效Token，请重新登录！");
+            r.setCode(CONTINUE_LOGIN);
+            HttpUtil.responseJSON((HttpServletResponse) response, r);
+            return false;
+        }
+        return true;
+    }
+
 }
 
