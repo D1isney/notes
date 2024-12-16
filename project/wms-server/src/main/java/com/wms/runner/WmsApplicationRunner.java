@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 
 @Component
@@ -23,12 +24,18 @@ public class WmsApplicationRunner implements ApplicationRunner {
         setPlcAddress(plcAddress);
     }
 
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
         System.out.println("-------------------------------------------");
         log.info("PLC Address: {}", PLC_ADDRESS);
         System.out.println("-------------------------------------------");
 
+//        String read = ObjectUtil.readString(PLC_ADDRESS);
+//        PlcAddressDTO o = FastJsonUtils.toBean(read,PlcAddressDTO.class);
+//        System.out.println(o);
+//        List<AddressValueDTO> pointList = o.getPointList();
+//        pointList.forEach(System.out::println);
 
 
     }

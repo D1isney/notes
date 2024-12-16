@@ -1,0 +1,12 @@
+{
+  "pointList": [
+    {
+      "address": "0",
+      "name": "flag",
+      "value": "1"
+    }
+  ],
+  "ip": "127.0.0.1",
+  "port": "102",
+  "slaveId": "1"
+}
