@@ -60,10 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         ;
         //  jwt解析
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-        http.sessionManagement(session->{
-            //  最大用户在线
-            session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
-        });
+//        http.sessionManagement(session->{
+//            //  最大用户在线
+//            session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
+//        });
 
         //  配置异常处理器
         http.exceptionHandling()

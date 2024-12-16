@@ -79,7 +79,6 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         if (Objects.isNull(authenticate)) {
             throw new EException("登录失败");
         }
-        //  如果认证通过了，使用userId生成一个jwt，jwt存入ResponseResult返回
         LoginMember loginMember = (LoginMember) authenticate.getPrincipal();
         String userId = loginMember.getMember().getId().toString();
         String jwt = JwtUtil.createJWT(userId);

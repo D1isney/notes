@@ -10,19 +10,12 @@ public enum LogRecordEnum{
     DANGER_LOG("危险日志",2),
     ALARM_LOG("报警日志",3),
     ;
-    private String message;
-    private Integer code;
+    private final String message;
+    private final Integer code;
 
     LogRecordEnum(String message, Integer code) {
         this.message = message;
         this.code = code;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 }

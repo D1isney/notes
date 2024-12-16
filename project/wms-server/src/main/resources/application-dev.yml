@@ -35,6 +35,8 @@ mybatis-plus:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   mapper-locations: classpath:dao/*.xml
 
+plc:
+  address: plc_address.json
 
 login:
   filter:

@@ -8,8 +8,8 @@ public enum ResultEnum {
     RESULT_OK_FOR_MESSAGE("请求成功", 200),
     RESULT_ERROR("请求失败", 500),
     ;
-    private String message;
-    private Integer code;
+    private final String message;
+    private final Integer code;
 
 
     ResultEnum(String message, Integer code) {
@@ -23,11 +23,4 @@ public enum ResultEnum {
     }
 
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setCode(Integer code) {
-        this.code = code;
-    }
 }
