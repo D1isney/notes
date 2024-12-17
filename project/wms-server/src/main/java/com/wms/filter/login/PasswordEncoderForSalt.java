@@ -8,7 +8,7 @@ import java.util.Objects;
 import static com.wms.utils.PasswordUtil.MD5EncodeUtf8;
 
 // 加密方式
-@Component
+//@Component
 public class PasswordEncoderForSalt implements PasswordEncoder {
 
     /**

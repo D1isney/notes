@@ -50,6 +50,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
             if (!Objects.isNull(login)) {
                 return login;
             }
+
             String jwt = loggingIn(member, members);
             return R.ok("登录成功！", jwt);
         }
@@ -84,6 +85,8 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         String jwt = JwtUtil.createJWT(userId);
         MemberThreadLocal.setMainThreadLoginMemberById(members.get(0).getId(), loginMember);
         MemberThreadLocal.setMainThreadLoginMemberTokenForId(members.get(0).getId(), jwt);
+        members.get(0).setStatus(MemberConstant.IS_ONLINE);
+        saveOrModify(members.get(0));
         return jwt;
     }
 
@@ -127,12 +130,10 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     @Override
     public void logout() {
         Long id = MemberThreadLocal.get().getMember().getId();
-
         //  更新用户的信息
         Member byId = getById(id);
         byId.setStatus(MemberConstant.STATUS_FALSE);
         updateById(byId);
-
         //  清楚登录信息
         MemberThreadLocal.clearMainThreadLoginMemberById(MemberThreadLocal.get().getMember().getId());
         //  清掉Token

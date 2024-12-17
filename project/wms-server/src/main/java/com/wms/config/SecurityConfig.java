@@ -1,6 +1,7 @@
 package com.wms.config;
 
 import com.wms.filter.jwt.JwtAuthenticationTokenFilter;
+import com.wms.filter.login.PasswordEncoderForSalt;
 import com.wms.handler.AccessDeniedHandlerImpl;
 import com.wms.handler.AuthenticationEntryPointImpl;
 import com.wms.handler.SessionStrategy;
@@ -15,6 +16,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
@@ -28,16 +31,17 @@ import javax.annotation.Resource;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new PasswordEncoderForSalt();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new PasswordEncoderForSalt();
+    }
 
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Resource
     AuthenticationEntryPointImpl authenticationEntryPoint;
 
@@ -51,19 +55,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and()
                 .authorizeRequests()
                 .antMatchers("/member/login").permitAll()
+                .antMatchers("/member/constraintLogin").permitAll()
                 .antMatchers("/member/register").permitAll()
                 .anyRequest().authenticated()
         ;
         //  jwt解析
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
-//        http.sessionManagement(session->{
-//            //  最大用户在线
-//            session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
-//        });
+        http.sessionManagement(session->{
+            //  最大用户在线
+            session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
+        });
 
         //  配置异常处理器
         http.exceptionHandling()
@@ -71,7 +76,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(authenticationEntryPoint)
                 //  授权失败处理器
                 .accessDeniedHandler(accessDeniedHandler);
-
 
 
         http.cors();

@@ -32,11 +32,12 @@ public class MemberController {
         return memberService.list();
     }
 
-    @PostMapping("login")
     @Log(value = "登录接口", path = "/member/login")
+    @PostMapping("login")
     public R<?> login(@RequestBody Member member) {
         return memberService.login(member);
     }
+
 
 
     @PostMapping("constraintLogin")

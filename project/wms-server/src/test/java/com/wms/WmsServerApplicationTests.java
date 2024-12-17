@@ -23,9 +23,9 @@ class WmsServerApplicationTests {
 //        BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
 //        String admin = bcryptPasswordEncoder.encode("admin");
 //        System.out.println(admin);
-        PasswordEncoderForSalt passwordEncoderForSalt = new PasswordEncoderForSalt();
-        String encode = passwordEncoderForSalt.encode("adminsalt");
-        System.out.println(encode);
+//        PasswordEncoderForSalt passwordEncoderForSalt = new PasswordEncoderForSalt();
+//        String encode = passwordEncoderForSalt.encode("adminsalt");
+//        System.out.println(encode);
 
 
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
