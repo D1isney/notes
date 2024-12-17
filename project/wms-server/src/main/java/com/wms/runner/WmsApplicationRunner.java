@@ -1,5 +1,6 @@
 package com.wms.runner;
 
+import com.wms.connect.plc.PlcConnect;
 import com.wms.constant.ConfigConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,10 @@ public class WmsApplicationRunner implements ApplicationRunner {
     private String plcAddress;
 
     public String PLC_ADDRESS = "";
+    @Resource
+    private PlcConnect plcConnect;
+
+
     @PostConstruct
     public void init(){
         setPlcAddress(plcAddress);
@@ -37,6 +42,15 @@ public class WmsApplicationRunner implements ApplicationRunner {
 //        List<AddressValueDTO> pointList = o.getPointList();
 //        pointList.forEach(System.out::println);
 
+        //  拿到所有位置的值
+        System.out.println("=========================================");
+        plcConnect.check();
+        System.out.println("=========================================");
+
+        //  通过名称来获取对应位置的值
+        System.out.println("=========================================");
+        plcConnect.checkByName("enterOut");
+        System.out.println("=========================================");
 
     }
 

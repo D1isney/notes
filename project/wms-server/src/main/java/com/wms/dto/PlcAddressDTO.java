@@ -13,6 +13,6 @@ import java.util.List;
 public class PlcAddressDTO {
     private List<AddressValueDTO> pointList;
     private String ip;
-    private String port;
-    private String slaveId;
+    private Integer port;
+    private Integer slaveId;
 }

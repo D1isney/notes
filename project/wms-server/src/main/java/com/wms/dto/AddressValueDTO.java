@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AddressValueDTO {
-    private String address;
+    private Integer address;
     private String name;
-    private String value;
+    private Integer value;
 }

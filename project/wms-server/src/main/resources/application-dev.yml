@@ -36,7 +36,10 @@ mybatis-plus:
   mapper-locations: classpath:dao/*.xml
 
 plc:
+  # json文件名称
   address: plc_address.json
+  # TCP长连接
+  keep-alive: true
 
 login:
   filter:
