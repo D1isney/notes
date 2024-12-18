@@ -52,30 +52,30 @@
 
 <script>
 import {validUsername} from '@/utils/validate'
-import {constraintLogin, login} from "@/api/login";
-import {getToken} from "@/utils/auth";
+import {getToken, removeToken, setToken} from "@/utils/auth";
+import {constraintLogin, login} from "@/api/member";
 
 export default {
   name: 'Login',
   data() {
     const validateUsername = (rule, value, callback) => {
-      if (value.length < 3) {
-        callback(new Error('Please enter the correct user name'))
+      if (value.length < 0) {
+        callback(new Error('Username 不能为空！'))
       } else {
         callback()
       }
     }
     const validatePassword = (rule, value, callback) => {
-      if (value.length < 3) {
-        callback(new Error('The password can not be less than 6 digits'))
+      if (value.length < 0) {
+        callback(new Error('Password 不能为空！'))
       } else {
         callback()
       }
     }
     return {
       loginForm: {
-        username: '',
-        password: ''
+        username: 'admin',
+        password: 'admin'
       },
       loginRules: {
         username: [{required: true, trigger: 'blur', validator: validateUsername}],
@@ -112,13 +112,31 @@ export default {
           let token = getToken();
           this.loading = true
           login(this.loginForm).then(res => {
-            console.log(res)
-            if (res.code === 400){
-                //  强制登录操作
-              this.constraintLogin(res)
-              console.log(res)
+            if (res.code === 200) {
+              setToken(res.data)
+              this.$router.push({path: this.redirect || '/'})
+            } else if (res.code === 400) {
+              this.$confirm(res.message, '登录提示', {
+                distinguishCancelAndClose: true,
+                confirmButtonText: '确认',
+                cancelButtonText: '取消'
+              })
+                .then(() => {
+                  constraintLogin(this.loginForm).then(co => {
+                    removeToken();
+                    if (co.code === 200) {
+                      setToken(co.data)
+                      this.$router.push({path: this.redirect || '/'})
+                    }
+                  })
+                })
+                .catch(action => {
+                  this.$message({
+                    type: 'warning',
+                    message: '取消登录'
+                  })
+                });
             }
-            this.$router.push({path: this.redirect || '/'})
             this.loading = false
           }).catch(() => {
             this.loading = false
@@ -130,11 +148,11 @@ export default {
       })
     },
     //  强制登录
-    constraintLogin(res){
+    constraintLogin(res) {
       constraintLogin(this.loginForm).then(res => {
         this.$router.push({path: this.redirect || '/'})
         this.loading = false
-      }).catch(()=>{
+      }).catch(() => {
         this.loading = false
       })
     }

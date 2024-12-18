@@ -1,9 +1,13 @@
 package com.wms.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.aspect.Log;
 import com.wms.filter.login.Member;
 import com.wms.service.MemberService;
+import com.wms.utils.PageUtil;
+import com.wms.utils.Query;
 import com.wms.utils.R;
+import com.wms.vo.MemberVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Disney
@@ -28,8 +33,8 @@ public class MemberController {
     @GetMapping("list")
     @Log(value = "查询所有的用户", path = "/member/list")
     @PreAuthorize("hasAuthority('/member/list')")
-    public List<Member> getList() {
-        return memberService.list();
+    public R<?> getList(@RequestParam Map<String,Object> params) {
+        return memberService.getList(params);
     }
 
     @Log(value = "登录接口", path = "/member/login")
@@ -39,10 +44,9 @@ public class MemberController {
     }
 
 
-
     @PostMapping("constraintLogin")
-    @Log(value = "强制登录",path = "/member/constraintLogin")
-    public R<?> constraintLogin(@RequestBody Member member){
+    @Log(value = "强制登录", path = "/member/constraintLogin")
+    public R<?> constraintLogin(@RequestBody Member member) {
         return memberService.constraintLogin(member);
     }
 
@@ -51,6 +55,13 @@ public class MemberController {
     public R<?> logoUt() {
         memberService.logout();
         return R.ok("登出成功！");
+    }
+
+
+    @Log(value = "通过Token查询用户信息", path = "/member/getInfo")
+    @GetMapping("getInfo/{token}")
+    public R<?> getInfo(@PathVariable("token") String token) {
+        return memberService.getInfo(token);
     }
 
     @PostMapping("register")
@@ -71,7 +82,7 @@ public class MemberController {
         boolean b = memberService.insertOrSave(member);
         if (b) {
             return R.ok();
-        }else{
+        } else {
             return R.error("保存或插入失败！");
         }
     }
@@ -79,14 +90,12 @@ public class MemberController {
     @ApiOperation("根据id删除数据")
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
-    @Log(value = "用户-删除用户信息",path = "/member/delete")
+    @Log(value = "用户-删除用户信息", path = "/member/delete")
     @PreAuthorize("hasAuthority('/member/delete')")
-    public R<?> delete(@RequestParam Long[] ids){
+    public R<?> delete(@RequestParam Long[] ids) {
         memberService.deleteByIds(ids);
         return R.ok();
     }
-
-
 
 
 }

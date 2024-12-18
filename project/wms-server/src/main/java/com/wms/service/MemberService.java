@@ -5,6 +5,8 @@ import com.wms.service.base.BaseService;
 import com.wms.utils.R;
 import com.wms.vo.MemberVo;
 
+import java.util.Map;
+
 public interface MemberService extends BaseService<Member, MemberVo> {
     R<?> login(Member member);
 
@@ -15,5 +17,9 @@ public interface MemberService extends BaseService<Member, MemberVo> {
     void logout();
 
     boolean insertOrSave(Member member);
+
+    R<?> getInfo(String token);
+
+    R<?> getList(Map<String,Object> params);
 
 }

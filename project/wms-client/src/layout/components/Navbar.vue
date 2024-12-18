@@ -1,14 +1,11 @@
 <template>
   <div class="navbar">
     <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-
     <breadcrumb class="breadcrumb-container" />
-
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
+          <el-button type="primary" icon="el-icon-s-tools" class="menu-buttons"></el-button>
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
@@ -16,11 +13,17 @@
               Home
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
+          <el-dropdown-item>
+            <span  @click="drawer = true">
+              Color
+            </span>
+          </el-dropdown-item>
+
+          <a target="_blank" href="https://github.com/D1isney">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
           <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
+            <el-dropdown-item>CSDN</el-dropdown-item>
           </a>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
@@ -28,6 +31,20 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+
+    <el-drawer
+      title="配置主题"
+      :visible.sync="drawer"
+      :direction="direction">
+
+
+
+      <el-color-picker v-model="color" show-alpha></el-color-picker>
+
+
+
+    </el-drawer>
+
   </div>
 </template>
 
@@ -46,6 +63,13 @@ export default {
       'sidebar',
       'avatar'
     ])
+  },
+  data(){
+    return {
+      drawer: false,
+      direction: 'rtl',
+      color: 'rgba(19, 206, 102, 0.8)'
+    };
   },
   methods: {
     toggleSideBar() {
@@ -135,5 +159,13 @@ export default {
       }
     }
   }
+
+
+
+  .menu-buttons{
+    border: 0;
+  }
+
+
 }
 </style>

@@ -1,6 +1,7 @@
 package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
 import com.wms.exception.EException;
@@ -10,11 +11,10 @@ import com.wms.filter.login.Member;
 import com.wms.service.MemberService;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.thread.MemberThreadLocal;
-import com.wms.utils.HttpUtil;
-import com.wms.utils.JwtUtil;
-import com.wms.utils.PasswordUtil;
-import com.wms.utils.R;
+import com.wms.utils.*;
 import com.wms.vo.MemberVo;
+import io.jsonwebtoken.Claims;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -22,8 +22,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.*;
 
 import static com.wms.constant.MemberConstant.CONTINUE_LOGIN;
@@ -40,17 +38,20 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     @Resource
     private AuthenticationManager authenticationManager;
 
+    @Value("${login.filter.isLogin}")
+    private Integer isLogin;
 
     @Override
     public R<?> login(Member member) {
         List<Member> members = queryMemberByUsername(member);
         if (!members.isEmpty()) {
             //  判断用户是否登录过
-            R<?> login = isLogin(members.get(0).getId());
-            if (!Objects.isNull(login)) {
-                return login;
+            if (isLogin > 0) {
+                R<?> login = isLogin(members.get(0).getId());
+                if (!Objects.isNull(login)) {
+                    return login;
+                }
             }
-
             String jwt = loggingIn(member, members);
             return R.ok("登录成功！", jwt);
         }
@@ -59,6 +60,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
     /**
      * 强制登录
+     *
      * @param member 用户
      * @return R
      */
@@ -72,7 +74,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         return R.error("账号或密码错误！");
     }
 
-    public String loggingIn(Member member,List<Member> members){
+    public String loggingIn(Member member, List<Member> members) {
         String password = member.getPassword() + members.get(0).getSalt();
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getUsername(), password);
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
@@ -91,25 +93,26 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     }
 
     public void checkMember(Member member) {
-        if (Objects.isNull(member.getUsername())){
+        if (Objects.isNull(member.getUsername())) {
             throw new EException("用户名不能为空！");
         }
     }
-    public List<Member> queryMemberByUsername(Member member){
+
+    public List<Member> queryMemberByUsername(Member member) {
         checkMember(member);
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         map.put("username", member.getUsername());
         return queryList(map);
     }
 
 
-
     /**
      * 判断用户是否已经登录了
+     *
      * @param id 用户id
      * @return 有值：登陆过 null：没有登陆过
      */
-    public R<?> isLogin(Long id)  {
+    public R<?> isLogin(Long id) {
         //  校验用户是否登陆过
         if (null != MemberThreadLocal.getMemberInfoMap(id)) {
             R<Object> r = R.ok("已经有人登录，是否继续登录？");
@@ -118,7 +121,6 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         }
         return null;
     }
-
 
 
     @Override
@@ -132,7 +134,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         Long id = MemberThreadLocal.get().getMember().getId();
         //  更新用户的信息
         Member byId = getById(id);
-        byId.setStatus(MemberConstant.STATUS_FALSE);
+        byId.setOnline(MemberConstant.NOT_ONLINE);
         updateById(byId);
         //  清楚登录信息
         MemberThreadLocal.clearMainThreadLoginMemberById(MemberThreadLocal.get().getMember().getId());
@@ -165,6 +167,31 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         return true;
     }
 
+    @Override
+    public R<?> getInfo(String token) {
+        String userid;
+        try {
+            Claims claims = JwtUtil.parseJWT(token);
+            userid = claims.getSubject();
+        } catch (Exception e) {
+            throw new EException("用户Token解析失败");
+        }
+        LoginMember memberInfoMap = MemberThreadLocal.getMemberInfoMap(Long.valueOf(userid));
+        if (memberInfoMap == null){
+            return R.error("用户还未登录，请重新登录！",null);
+        }
+        memberInfoMap.getMember().setSalt("******");
+        memberInfoMap.getMember().setPassword("******");
+        return R.ok("",memberInfoMap.getMember());
+    }
+
+    @Override
+    public R<?> getList(Map<String, Object> params) {
+        Query query = new Query(params);
+        IPage<MemberVo> page = pageList(query.getIPage(MemberVo.class), query);
+        PageUtil pageUtil = new PageUtil(page.getRecords(),page.getTotal(),query.getLimit(),query.getPage());
+        return R.ok(pageUtil);
+    }
 
 
     public boolean checkNewOrOldMember(Member member) {

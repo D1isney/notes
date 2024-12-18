@@ -10,7 +10,7 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
-    if (store.getters.token) {
+    if (getToken()) {
       config.headers['Authorization'] = getToken()
       config.headers['Content-Type'] = 'application/json;charset=utf-8'
     }
@@ -30,7 +30,7 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (res.code === 0 || res.code === 400) {
+    if (res.code === 0 || res.code === 400 || res.code === 200) {
       return res
     } else if (res.code === 300) {
       Message({

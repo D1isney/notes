@@ -66,10 +66,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 return;
             }
         }
-
-
-
-        member.setStatus(MemberConstant.STATUS_TRUE);
+        member.setOnline(MemberConstant.IS_ONLINE);
         Long id = member.getId();
         List<String> permissionsByMember = memberDao.getPermissionsByMember(id);
         memberDao.updateById(member);
