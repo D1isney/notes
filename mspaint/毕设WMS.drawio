@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="25.0.3">
   <diagram name="第 1 页" id="4YpfWEqFieO3PSkuTiQ7">
-    <mxGraphModel dx="2252" dy="1186" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1595" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -109,7 +109,7 @@
         <mxCell id="9C9uaq-Ep5HxFIF-LxFW-33" value="后端接收到信息、通过WebSocket反馈给前端" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="170" y="660" width="270" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-35" value="Member" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-35" value="Member - 用户表" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="110" y="1059" width="240" height="468" as="geometry" />
         </mxCell>
         <mxCell id="9C9uaq-Ep5HxFIF-LxFW-36" value="+ id: bigint - 主键id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-35">
@@ -162,6 +162,36 @@
         </mxCell>
         <mxCell id="9C9uaq-Ep5HxFIF-LxFW-73" value="+ online: tinyint - 在线状态" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-35">
           <mxGeometry y="442" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-74" value="Role - 角色表" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1059" width="240" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-75" value="+ id: bigint - 主键id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="26" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-76" value="+ name: varchar(50) - 角色名称" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="52" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-77" value="+ code: varchar(50) - 角色编码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="78" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-89" value="+ status: int- 角色状态" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="104" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-84" value="+ create_time: datetime - 创建时间" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="130" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-85" value="+ update_time: datetime - 更新时间" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="156" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-87" value="+ create_member: bigint - 创建人" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="182" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-88" value="+ update_member: bigint - 更新人" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="208" width="240" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="9C9uaq-Ep5HxFIF-LxFW-91" value="+ remark: varchar(255) - 描述" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="9C9uaq-Ep5HxFIF-LxFW-74">
+          <mxGeometry y="234" width="240" height="26" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
