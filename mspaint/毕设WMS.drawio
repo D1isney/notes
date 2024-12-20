@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="25.0.3" pages="3">
   <diagram name="流程图" id="4YpfWEqFieO3PSkuTiQ7">
-    <mxGraphModel dx="1914" dy="1008" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1320" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -115,6 +115,72 @@
         </mxCell>
         <mxCell id="T5ggN38u7GXI6enRjcLo-49" value="是" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="795" y="1320" width="95" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-1" target="aDLP0zXIWMDxMAfT7Jsg-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-1" value="任务线程抽象类&lt;div&gt;（实现Runnable）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="285" y="1960" width="160" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-2" value="+ 抽象方法1 - 更新库位信息&lt;br&gt;+ 抽象方法2 - 更新任务状态&lt;br&gt;+ 抽象方法3 - 下发PLC&lt;div&gt;+ run(){调用所有的抽象方法}&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;+ -----------------------------------&lt;/span&gt;&lt;div&gt;+ 任务&lt;/div&gt;&lt;div&gt;+ 订单&lt;/div&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="aDLP0zXIWMDxMAfT7Jsg-1">
+          <mxGeometry y="50" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-4" target="aDLP0zXIWMDxMAfT7Jsg-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-4" value="入库线程&lt;div&gt;（继承任务线程抽象类）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="455" y="1640" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-5" value="+ 抽象方法1 - 更新库位信息&lt;br&gt;+ 抽象方法2 - 更新任务状态&lt;br&gt;+ 抽象方法3 - 下发PLC" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="aDLP0zXIWMDxMAfT7Jsg-4">
+          <mxGeometry y="50" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-6" value="出库线程&lt;div&gt;（继承任务线程抽象类）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="1640" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-7" value="+ 抽象方法1 - 更新库位信息&lt;br&gt;+ 抽象方法2 - 更新任务状态&lt;br&gt;+ 抽象方法3 - 下发PLC" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;" vertex="1" parent="aDLP0zXIWMDxMAfT7Jsg-6">
+          <mxGeometry y="50" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-11" target="aDLP0zXIWMDxMAfT7Jsg-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-11" value="继承" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="305" y="1860" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-7" target="aDLP0zXIWMDxMAfT7Jsg-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-18" target="aDLP0zXIWMDxMAfT7Jsg-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-18" target="aDLP0zXIWMDxMAfT7Jsg-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-18" value="In/Out" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="2170" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-20" value="入库任务" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="165" y="2308" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-23" target="aDLP0zXIWMDxMAfT7Jsg-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-23" value="出库任务" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="445" y="2308" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-25" value="入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="220" y="2210" width="105" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-27" value="出库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="405" y="2210" width="105" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-28" value="线程池（1活跃、1最大、阻塞线程）" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="165" y="2440" width="395" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aDLP0zXIWMDxMAfT7Jsg-29" target="aDLP0zXIWMDxMAfT7Jsg-28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aDLP0zXIWMDxMAfT7Jsg-29" value="入库任务" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="165" y="2308" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
