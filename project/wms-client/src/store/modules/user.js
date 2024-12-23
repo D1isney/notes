@@ -48,7 +48,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
         const { data } = response
-        if (data){
+        if (data) {
           commit('SET_NAME', data.name)
           resolve(data)
         }

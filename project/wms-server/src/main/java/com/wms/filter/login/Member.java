@@ -39,7 +39,7 @@ public class Member implements Serializable {
 
     @ApiModelProperty(value = "性别")
     @TableField("`sex`")
-    private Boolean sex;
+    private int sex;
 
     @ApiModelProperty(value = "年龄")
     @TableField("`age`")

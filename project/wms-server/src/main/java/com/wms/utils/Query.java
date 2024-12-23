@@ -1,7 +1,9 @@
 package com.wms.utils;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import org.apache.commons.lang.*;
+import lombok.Getter;
+import lombok.Setter;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -11,8 +13,10 @@ import java.util.Map;
  * 查询参数
  *
  */
+@Setter
+@Getter
 public class Query extends LinkedHashMap<String, Object> {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     public static final String PAGE = "page";
     public static final String LIMIT = "limit";
@@ -21,7 +25,7 @@ public class Query extends LinkedHashMap<String, Object> {
     public static final String SIDX = "sidx";
 
 
-	//当前页码
+    //当前页码
     private int page;
     //每页条数
     private int limit;
@@ -33,15 +37,42 @@ public class Query extends LinkedHashMap<String, Object> {
 
     public Query(Map<String, Object> params){
         this();
+        sp2Array(params);
         this.putAll(params);
         //分页参数
         initPage();
         sqlFilter();
         clearEmptyValue();
+//        clearEmptyValue();
+    }
+
+    private void sp2Array(Map<String, Object> params){
+        for (Map.Entry<String, Object> stringObjectEntry : params.entrySet()) {
+            if(stringObjectEntry.getValue() instanceof String && ((String)stringObjectEntry.getValue()).contains(",")){
+                String[] split = ((String) stringObjectEntry.getValue()).split(",");
+                params.put(stringObjectEntry.getKey(),split);
+            }
+        }
     }
 
     public Query() {
         super(10);
+    }
+
+    public Query timeStart(String...timeStart){
+        if(timeStart == null) return this;
+        for (String s : timeStart) {
+            if(!StringUtil.isEmpty(get(s))) put(s,get(s) + DateConstant.START_TIME);
+        }
+        return this;
+    }
+
+    public Query timeEnd(String...timeEnd){
+        if(timeEnd == null) return this;
+        for (String s : timeEnd) {
+            if(!StringUtil.isEmpty(get(s))) put(s,get(s) + DateConstant.LAST_TIME);
+        }
+        return this;
     }
 
     public static Query query(){
@@ -104,6 +135,7 @@ public class Query extends LinkedHashMap<String, Object> {
 
 
 
+
     /**
      * 传入一个Class消除java语法检查的警告
      * @param clazz
@@ -129,35 +161,4 @@ public class Query extends LinkedHashMap<String, Object> {
     }
 
 
-    public int getPage() {
-        return page;
-    }
-
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public int getLimit() {
-        return limit;
-    }
-
-    public void setLimit(int limit) {
-        this.limit = limit;
-    }
-
-    public String getsSearch() {
-        return sSearch;
-    }
-
-    public void setsSearch(String sSearch) {
-        this.sSearch = sSearch;
-    }
-
-    public String getsEcho() {
-        return sEcho;
-    }
-
-    public void setsEcho(String sEcho) {
-        this.sEcho = sEcho;
-    }
 }

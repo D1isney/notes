@@ -25,7 +25,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     children: [{
       path: 'dashboard',
-      name: '首页',
+      name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '首页', icon: 'dashboard' }
     }]
@@ -124,24 +124,24 @@ export const constantRoutes = [
       }
     ]
   },
-
   {
-    path: 'external-link',
+    path: '/param',
     component: Layout,
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: '/param',
+        name: 'Param',
+        component: () => import('@/views/param/index'),
+        meta: { title: '参数管理', icon: 'el-icon-c-scale-to-original' }
       }
     ]
   },
-
   {
     path: '/member',
     component: Layout,
     children: [
       {
-        path: 'index',
+        path: '/member',
         name: 'Member',
         component: () => import('@/views/member/index'),
         meta: { title: '用户管理', icon: 'el-icon-s-custom' }

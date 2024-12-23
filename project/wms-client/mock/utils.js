@@ -1,5 +1,5 @@
 /**
- * @param {string} url
+ * @param.vue {string} url
  * @returns {Object}
  */
 function param2Obj(url) {

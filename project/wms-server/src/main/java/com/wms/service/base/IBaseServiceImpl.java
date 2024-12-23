@@ -70,6 +70,7 @@ public class IBaseServiceImpl<M extends IBaseMapper<T,V>, T,V> extends ServiceIm
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public T saveOrModify(T t) {
         if(!saveOrUpdate(t)){
             throw new EException("save or update fail!");
@@ -78,17 +79,20 @@ public class IBaseServiceImpl<M extends IBaseMapper<T,V>, T,V> extends ServiceIm
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public T persist(T t) {
         int save = getBaseMapper().save(t);
         return t;
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateNotEmpty(T t) {
         return getBaseMapper().updateNotEmpty(t);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateBatchNotEmpty(Collection<T> collection) {
         return getBaseMapper().updateBatchNotEmpty(collection);
     }
@@ -109,11 +113,13 @@ public class IBaseServiceImpl<M extends IBaseMapper<T,V>, T,V> extends ServiceIm
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateBatchById(T entity, Serializable[] ids) {
         return getBaseMapper().updateBatchById(entity,ids);
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public int updateBatchByIdNotEmpty(T entity, Serializable[] ids) {
         return getBaseMapper().updateBatchByIdNotEmpty(entity,ids);
     }

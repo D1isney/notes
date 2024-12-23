@@ -4,8 +4,8 @@
 
 /**
  * Parse the time to string
- * @param {(Object|string|number)} time
- * @param {string} cFormat
+ * @param.vue {(Object|string|number)} time
+ * @param.vue {string} cFormat
  * @returns {string | null}
  */
 export function parseTime(time, cFormat) {
@@ -52,8 +52,8 @@ export function parseTime(time, cFormat) {
 }
 
 /**
- * @param {number} time
- * @param {string} option
+ * @param.vue {number} time
+ * @param.vue {string} option
  * @returns {string}
  */
 export function formatTime(time, option) {
@@ -95,7 +95,7 @@ export function formatTime(time, option) {
 }
 
 /**
- * @param {string} url
+ * @param.vue {string} url
  * @returns {Object}
  */
 export function param2Obj(url) {

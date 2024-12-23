@@ -5,30 +5,32 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="memberMap" type="com.wms.filter.login.Member">
-        <id column="id" property="id" />
-        <result column="username" property="username" />
-        <result column="password" property="password" />
-        <result column="name" property="name" />
-        <result column="sex" property="sex" />
-        <result column="age" property="age" />
-        <result column="email" property="email" />
-        <result column="phone" property="phone" />
-        <result column="address" property="address" />
-        <result column="birthday" property="birthday" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
-        <result column="expiration_time" property="expirationTime" />
-        <result column="create_member" property="createMember" />
-        <result column="update_member" property="updateMember" />
-        <result column="status" property="status" />
-        <result column="salt" property="salt" />
-        <result column="online" property="online" />
+        <id column="id" property="id"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="age" property="age"/>
+        <result column="email" property="email"/>
+        <result column="phone" property="phone"/>
+        <result column="address" property="address"/>
+        <result column="birthday" property="birthday"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="expiration_time" property="expirationTime"/>
+        <result column="create_member" property="createMember"/>
+        <result column="update_member" property="updateMember"/>
+        <result column="status" property="status"/>
+        <result column="salt" property="salt"/>
+        <result column="online" property="online"/>
     </resultMap>
 
     <!-- 通用查询映射结果 Vo) -->
     <resultMap id="memberVoMap" type="com.wms.vo.MemberVo" extends="memberMap">
-
+        <result column="create_username" property="createUsername"/>
+        <result column="update_username" property="updateUsername"/>
     </resultMap>
+
     <!-- 保存列 -->
     <sql id="saveColumnBase">
         `username`,
@@ -70,43 +72,77 @@
         #{entity.online}
     </sql>
 
-    <sql id="usernameColumn">`username` = #{entity.username},</sql>
-    <sql id="passwordColumn">`password` = #{entity.password},</sql>
-    <sql id="nameColumn">`name` = #{entity.name},</sql>
-    <sql id="sexColumn">`sex` = #{entity.sex},</sql>
-    <sql id="ageColumn">`age` = #{entity.age},</sql>
-    <sql id="emailColumn">`email` = #{entity.email},</sql>
-    <sql id="phoneColumn">`phone` = #{entity.phone},</sql>
-    <sql id="addressColumn">`address` = #{entity.address},</sql>
-    <sql id="birthdayColumn">`birthday` = #{entity.birthday},</sql>
-    <sql id="createTimeColumn">`create_time` = #{entity.createTime},</sql>
-    <sql id="updateTimeColumn">`update_time` = #{entity.updateTime},</sql>
-    <sql id="expirationTimeColumn">`expiration_time` = #{entity.expirationTime},</sql>
-    <sql id="createMemberColumn">`create_member` = #{entity.createMember},</sql>
-    <sql id="updateMemberColumn">`update_member` = #{entity.updateMember},</sql>
-    <sql id="statusColumn">`status` = #{entity.status},</sql>
-    <sql id="saltColumn">`salt` = #{entity.salt}</sql>
-    <sql id="onlineColumn">`online` = #{entity.online}</sql>
+    <sql id="usernameColumn">`username`=#{entity.username},</sql>
+    <sql id="passwordColumn">`password`=#{entity.password},</sql>
+    <sql id="nameColumn">`name`=#{entity.name},</sql>
+    <sql id="sexColumn">`sex`=#{entity.sex},</sql>
+    <sql id="ageColumn">`age`=#{entity.age},</sql>
+    <sql id="emailColumn">`email`=#{entity.email},</sql>
+    <sql id="phoneColumn">`phone`=#{entity.phone},</sql>
+    <sql id="addressColumn">`address`=#{entity.address},</sql>
+    <sql id="birthdayColumn">`birthday`=#{entity.birthday},</sql>
+    <sql id="createTimeColumn">`create_time`=#{entity.createTime},</sql>
+    <sql id="updateTimeColumn">`update_time`=#{entity.updateTime},</sql>
+    <sql id="expirationTimeColumn">`expiration_time`=#{entity.expirationTime},</sql>
+    <sql id="createMemberColumn">`create_member`=#{entity.createMember},</sql>
+    <sql id="updateMemberColumn">`update_member`=#{entity.updateMember},</sql>
+    <sql id="statusColumn">`status`=#{entity.status},</sql>
+    <sql id="saltColumn">`salt`=#{entity.salt},</sql>
+    <sql id="onlineColumn">`online`=#{entity.online}</sql>
 
     <sql id="updateColumnNotNull">
         <set>
-            <if test="entity.username != null"><include refid="usernameColumn"/></if>
-            <if test="entity.password != null"><include refid="passwordColumn"/></if>
-            <if test="entity.name != null"><include refid="nameColumn"/></if>
-            <if test="entity.sex != null"><include refid="sexColumn"/></if>
-            <if test="entity.age != null"><include refid="ageColumn"/></if>
-            <if test="entity.email != null"><include refid="emailColumn"/></if>
-            <if test="entity.phone != null"><include refid="phoneColumn"/></if>
-            <if test="entity.address != null"><include refid="addressColumn"/></if>
-            <if test="entity.birthday != null"><include refid="birthdayColumn"/></if>
-            <if test="entity.createTime != null"><include refid="createTimeColumn"/></if>
-            <if test="entity.updateTime != null"><include refid="updateTimeColumn"/></if>
-            <if test="entity.expirationTime != null"><include refid="expirationTimeColumn"/></if>
-            <if test="entity.createMember != null"><include refid="createMemberColumn"/></if>
-            <if test="entity.updateMember != null"><include refid="updateMemberColumn"/></if>
-            <if test="entity.status != null"><include refid="statusColumn"/></if>
-            <if test="entity.salt != null"><include refid="saltColumn"/></if>
-            <if test="entity.online != null"><include refid="onlineColumn"/></if>
+            <if test="entity.username != null">
+                <include refid="usernameColumn"/>
+            </if>
+            <if test="entity.password != null">
+                <include refid="passwordColumn"/>
+            </if>
+            <if test="entity.name != null">
+                <include refid="nameColumn"/>
+            </if>
+            <if test="entity.sex != null">
+                <include refid="sexColumn"/>
+            </if>
+            <if test="entity.age != null">
+                <include refid="ageColumn"/>
+            </if>
+            <if test="entity.email != null">
+                <include refid="emailColumn"/>
+            </if>
+            <if test="entity.phone != null">
+                <include refid="phoneColumn"/>
+            </if>
+            <if test="entity.address != null">
+                <include refid="addressColumn"/>
+            </if>
+            <if test="entity.birthday != null">
+                <include refid="birthdayColumn"/>
+            </if>
+            <if test="entity.createTime != null">
+                <include refid="createTimeColumn"/>
+            </if>
+            <if test="entity.updateTime != null">
+                <include refid="updateTimeColumn"/>
+            </if>
+            <if test="entity.expirationTime != null">
+                <include refid="expirationTimeColumn"/>
+            </if>
+            <if test="entity.createMember != null">
+                <include refid="createMemberColumn"/>
+            </if>
+            <if test="entity.updateMember != null">
+                <include refid="updateMemberColumn"/>
+            </if>
+            <if test="entity.status != null">
+                <include refid="statusColumn"/>
+            </if>
+            <if test="entity.salt != null">
+                <include refid="saltColumn"/>
+            </if>
+            <if test="entity.online != null">
+                <include refid="onlineColumn"/>
+            </if>
         </set>
     </sql>
     <sql id="entityColumn">
@@ -131,27 +167,29 @@
     <!-- 通用查询结果列 -->
     <sql id="queryListColumnBase">
         t.id,
-         t.username,
-         t.password,
-         t.name,
-         t.sex,
-         t.age,
-         t.email,
-         t.phone,
-         t.address,
-         t.birthday,
-         t.create_time,
-         t.update_time,
-         t.expiration_time,
-         t.create_member,
-         t.update_member,
-         t.status,
-         t.salt,
-         t.online
+        t.username,
+        t.password,
+        t.name,
+        t.sex,
+        t.age,
+        t.email,
+        t.phone,
+        t.address,
+        t.birthday,
+        t.create_time,
+        t.update_time,
+        t.expiration_time,
+        t.create_member,
+        t.update_member,
+        t.status,
+        t.salt,
+        t.online
     </sql>
     <!-- 通用查询结果列VO -->
     <sql id="queryListColumn">
-        <include refid="queryListColumnBase"/>
+        <include refid="queryListColumnBase"/>,
+        (select m.name from `member` m where m.id = t.create_member) as create_username,
+        (select m.name from `member` m where m.id = t.update_member) as update_username
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
@@ -172,8 +210,10 @@
             </otherwise>
         </choose>
         <if test="query.offset != null and query.limit != null">
-            limit #{query.offset},#{query.limit}
+            limit ${query.offset},${query.limit}
         </if>
+
+
     </sql>
 
     <insert id="saveBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
@@ -189,7 +229,8 @@
         </foreach>
     </insert>
 
-    <insert id="save" parameterType="com.wms.filter.login.Member" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <insert id="save" parameterType="com.wms.filter.login.Member" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
         insert into `member`
         (
         <include refid="saveColumnBase"/>
@@ -208,7 +249,8 @@
         </foreach>
     </delete>
 
-    <update id="update" parameterType="com.wms.filter.login.Member" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <update id="update" parameterType="com.wms.filter.login.Member" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
         update `member`
         <set>
             <include refid="entityColumn"/>
@@ -216,14 +258,16 @@
         where id= #{entity.id}
     </update>
 
-    <update id="updateNotEmpty" parameterType="com.wms.filter.login.Member" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <update id="updateNotEmpty" parameterType="com.wms.filter.login.Member" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
         update `member`
         <include refid="updateColumnNotNull"/>
         where id= #{id}
     </update>
 
 
-    <update id="updateBatchNotEmpty" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <update id="updateBatchNotEmpty" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
         <foreach collection="collection" item="entity" index="index" separator=";">
             update `member`
             <include refid="updateColumnNotNull"/>
@@ -240,7 +284,7 @@
         </foreach>
     </update>
 
-    <update id="updateBatchById" >
+    <update id="updateBatchById">
         update `member`
         set
         <include refid="entityColumn"/>
@@ -250,7 +294,8 @@
         </foreach>
     </update>
 
-    <update id="updateBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+    <update id="updateBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
         <foreach collection="collection" item="entity" index="index" separator=";">
             update `member`
             set
@@ -276,14 +321,14 @@
         </foreach>
     </select>
 
-    <select id="list"  parameterType="java.util.Map" resultMap="memberVoMap">
+    <select id="list" parameterType="java.util.Map" resultMap="memberVoMap">
         select
         <include refid="queryListColumn"/>
         from `member` t
         <include refid="queryListWhere"/>
     </select>
 
-    <select id="pageList" resultMap= "memberVoMap">
+    <select id="pageList" resultMap="memberVoMap">
         select
         <include refid="queryListColumn"/>
         from `member` t
@@ -292,7 +337,7 @@
     </select>
 
 
-    <select id="queryList" parameterType="java.util.Map" resultMap= "memberMap">
+    <select id="queryList" parameterType="java.util.Map" resultMap="memberMap">
         select
         <include refid="queryListColumnBase"/>
         from `member` t
@@ -300,19 +345,18 @@
     </select>
 
     <select id="queryTotal" resultType="java.lang.Long">
-        select count(*) from  `member` t
+        select count(*) from `member` t
         <include refid="queryListWhere"/>
     </select>
+
+    <!--    通过用户拿到权限信息-->
     <select id="getPermissionsByMember" resultType="java.lang.String" parameterType="java.lang.Long">
-        SELECT
-            DISTINCT p.path
-        FROM
-            member_role mr
-                LEFT JOIN role r ON r.id = mr.role_id
-                LEFT JOIN role_permissions rp ON mr.role_id = rp.role_id
-                LEFT JOIN permissions p on rp.permissions_id = p.id
-        WHERE
-            mr.member_id = #{id}
+        SELECT DISTINCT p.path
+        FROM member_role mr
+                 LEFT JOIN role r ON r.id = mr.role_id
+                 LEFT JOIN role_permissions rp ON mr.role_id = rp.role_id
+                 LEFT JOIN permissions p on rp.permissions_id = p.id
+        WHERE mr.member_id = #{id}
           AND r.`status` = 1
     </select>
 

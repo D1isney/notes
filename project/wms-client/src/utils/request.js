@@ -1,10 +1,11 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
+import {Message} from 'element-ui'
 import store from '@/store'
-import { getToken } from '@/utils/auth'
+import {getToken} from '@/utils/auth'
+import {baseURL} from '@/settings'
 
 const service = axios.create({
-  baseURL: 'http://localhost:1217',
+  baseURL: process.env.VUE_APP_BASE_API,
   timeout: 30 * 1000
 })
 

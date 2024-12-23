@@ -55,6 +55,8 @@ public class App {
 					System.out.println("Address: " + offset++ + ", Value: " + value);
 				}
 
+//				master.writeSingleRegister();
+
 			} catch (ModbusProtocolException | ModbusNumberException | ModbusIOException e) {
 				e.printStackTrace();
 			} finally {

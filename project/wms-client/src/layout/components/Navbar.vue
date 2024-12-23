@@ -5,7 +5,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
-          <el-button type="primary" icon="el-icon-s-tools" class="menu-buttons"></el-button>
+          <el-button type="primary" icon="el-icon-s-tools" class="menu-buttons" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
@@ -14,7 +14,7 @@
             </el-dropdown-item>
           </router-link>
           <el-dropdown-item>
-            <span  @click="drawer = true">
+            <span @click="drawer = true">
               Color
             </span>
           </el-dropdown-item>
@@ -35,13 +35,10 @@
     <el-drawer
       title="配置主题"
       :visible.sync="drawer"
-      :direction="direction">
+      :direction="direction"
+    >
 
-
-
-      <el-color-picker v-model="color" show-alpha></el-color-picker>
-
-
+      <el-color-picker v-model="color" show-alpha />
 
     </el-drawer>
 
@@ -64,12 +61,12 @@ export default {
       'avatar'
     ])
   },
-  data(){
+  data() {
     return {
       drawer: false,
       direction: 'rtl',
       color: 'rgba(19, 206, 102, 0.8)'
-    };
+    }
   },
   methods: {
     toggleSideBar() {
@@ -160,12 +157,9 @@ export default {
     }
   }
 
-
-
   .menu-buttons{
     border: 0;
   }
-
 
 }
 </style>

@@ -3,7 +3,7 @@
  */
 
 /**
- * @param {string} path
+ * @param.vue {string} path
  * @returns {Boolean}
  */
 export function isExternal(path) {
@@ -11,7 +11,7 @@ export function isExternal(path) {
 }
 
 /**
- * @param {string} str
+ * @param.vue {string} str
  * @returns {Boolean}
  */
 export function validUsername(str) {

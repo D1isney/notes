@@ -10,11 +10,13 @@ import com.wms.utils.R;
 import com.wms.vo.MemberVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,9 +34,15 @@ public class MemberController {
 
     @GetMapping("list")
     @Log(value = "查询所有的用户", path = "/member/list")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "params", value = "params")
+    })
     @PreAuthorize("hasAuthority('/member/list')")
-    public R<?> getList(@RequestParam Map<String,Object> params) {
-        return memberService.getList(params);
+    public R<?> list(@RequestParam Map<String,Object> params) {
+        Query query = new Query(params);
+        IPage<MemberVo> page = memberService.pageList(query.getIPage(MemberVo.class), query);
+        PageUtil pageUtil = new PageUtil(page.getRecords(),page.getTotal(),query.getLimit(),query.getPage());
+        return R.ok(pageUtil);
     }
 
     @Log(value = "登录接口", path = "/member/login")

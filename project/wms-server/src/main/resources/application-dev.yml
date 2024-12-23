@@ -9,11 +9,11 @@ spring:
   datasource:
     username: root
     password: 123456
-#    url: jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    #    url: jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     url: jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-      # 连接池
+    # 连接池
     hikari:
       minimum-idle: 10
       maximum-pool-size: 20
@@ -32,11 +32,11 @@ spring:
     pathmatch:
       matching-strategy: ant_path_matcher
 
-# 日志
 mybatis-plus:
-#  configuration:
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 映射
   mapper-locations: classpath:dao/*.xml
+  # 日志
+  config-location: classpath:mybatis-location-config.xml
 
 plc:
   # json文件名称
@@ -49,3 +49,4 @@ login:
     isLogin: 0 # 是否校验用户已登录
     tokenIsReal: 0 # 是否开启Token有效性验证
     header: Authorization # 请求头
+    ifSaveLog: 0

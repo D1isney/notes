@@ -1,7 +1,6 @@
 package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
 import com.wms.exception.EException;
@@ -185,13 +184,6 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         return R.ok("",memberInfoMap.getMember());
     }
 
-    @Override
-    public R<?> getList(Map<String, Object> params) {
-        Query query = new Query(params);
-        IPage<MemberVo> page = pageList(query.getIPage(MemberVo.class), query);
-        PageUtil pageUtil = new PageUtil(page.getRecords(),page.getTotal(),query.getLimit(),query.getPage());
-        return R.ok(pageUtil);
-    }
 
 
     public boolean checkNewOrOldMember(Member member) {

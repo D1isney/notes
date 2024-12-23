@@ -2,9 +2,11 @@ package com.wms.service.base;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wms.utils.Query;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -76,6 +78,9 @@ public interface BaseService <T,V> extends IService<T> {
      */
     long queryTotal();
 
+    default List<T> queryAll(){
+        return queryList(Query.empty());
+    }
 
     /**
      * 新增或修改

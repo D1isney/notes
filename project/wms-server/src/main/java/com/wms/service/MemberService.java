@@ -20,6 +20,4 @@ public interface MemberService extends BaseService<Member, MemberVo> {
 
     R<?> getInfo(String token);
 
-    R<?> getList(Map<String,Object> params);
-
 }
