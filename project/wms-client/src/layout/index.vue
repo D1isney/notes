@@ -14,6 +14,7 @@
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
+import { getSystemPlcStatus } from '@/api/system/systemAPI'
 
 export default {
   name: 'Layout',
@@ -42,9 +43,21 @@ export default {
       }
     }
   },
+  created() {
+    this.getSystemStatus()
+  },
   methods: {
     handleClickOutside() {
       this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    },
+    async getSystemStatus() {
+      await getSystemPlcStatus().then(res => {
+        if (res.data) {
+          this.$store.dispatch('settings/changePLCConnect', 200)
+        } else {
+          this.$store.dispatch('settings/changePLCConnect', 500)
+        }
+      })
     }
   }
 }

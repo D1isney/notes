@@ -124,7 +124,13 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
     @Override
     public boolean saveMemberDetails(Member member) {
-        member = createMember(member);
+        Long id = 0L;
+        try {
+            id = MemberThreadLocal.get().getMember().getId();
+        } catch (Exception e) {
+            id = 1L;
+        }
+        member = createMember(member, id);
         return member != null;
     }
 
@@ -150,20 +156,24 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
      * @return true 插入成功 false 插入失败
      */
     @Override
-    public boolean insertOrSave(Member member) {
+    public R<?> insertOrSave(Member member) {
         if (Objects.isNull(member)) {
-            return false;
+            return R.error("请求参数为空！");
         } else {
             boolean b = checkNewOrOldMember(member);
+            Long currentMemberId = MemberThreadLocal.get().getMember().getId();
             //  说明是新的用户
             if (b) {
-                createMember(member);
+                createMember(member, currentMemberId);
+                return R.ok("添加成功！");
             } else {
+                //  更新人
+                member.setUpdateMember(currentMemberId);
                 //  旧的用户
-                save(member);
+                saveOrModify(member);
+                return R.ok("修改成功！");
             }
         }
-        return true;
     }
 
     @Override
@@ -176,22 +186,21 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
             throw new EException("用户Token解析失败");
         }
         LoginMember memberInfoMap = MemberThreadLocal.getMemberInfoMap(Long.valueOf(userid));
-        if (memberInfoMap == null){
-            return R.error("用户还未登录，请重新登录！",null);
+        if (memberInfoMap == null) {
+            return R.error("用户还未登录，请重新登录！", null);
         }
         memberInfoMap.getMember().setSalt("******");
         memberInfoMap.getMember().setPassword("******");
-        return R.ok("",memberInfoMap.getMember());
+        return R.ok("", memberInfoMap.getMember());
     }
-
 
 
     public boolean checkNewOrOldMember(Member member) {
-        return member.getId() == null;
+        return Objects.isNull(member.getId());
     }
 
 
-    public Member createMember(Member member) {
+    public Member createMember(Member member, Long currentMemberId) {
         String username = member.getUsername();
         QueryWrapper<Member> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("username", username);
@@ -213,11 +222,16 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
             Date newDate = calendar.getTime();
             member.setExpirationTime(newDate);
 
+
+            member.setCreateMember(currentMemberId);
+            member.setUpdateMember(currentMemberId);
+            member.setOnline(MemberConstant.NOT_ONLINE);
+
             //  保存数据库
-            save(member);
+            saveOrModify(member);
             return member;
         } else {
-            return null;
+            throw new EException("该用户已存在，请修改Username后重新保存！");
         }
 
     }

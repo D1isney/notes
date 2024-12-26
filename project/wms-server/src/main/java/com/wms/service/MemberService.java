@@ -16,7 +16,7 @@ public interface MemberService extends BaseService<Member, MemberVo> {
 
     void logout();
 
-    boolean insertOrSave(Member member);
+    R<?> insertOrSave(Member member);
 
     R<?> getInfo(String token);
 

@@ -5,18 +5,22 @@
 </template>
 
 <script>
+
 export default {
-  name: 'App'
+  name: 'App',
+  mounted() {
+  }
 }
 </script>
 <style scoped>
-.app{
+.app {
   overflow: auto;
   scrollbar-width: none;
   width: 100vw;
   height: 100vh;
 }
-.app::-webkit-scrollbar{
+
+.app::-webkit-scrollbar {
   display: none;
 }
 </style>

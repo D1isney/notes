@@ -1,20 +1,15 @@
 <template>
   <div class="app-container">
-    <div class="member-table">
+    <div class="param-table">
 
-    </div>
-    <div class="page">
-<!--      <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList" />-->
     </div>
   </div>
 </template>
 
 <script>
-// import pagination from '@/components/Pagination/index.vue'
 
 export default {
   components: {
-    // pagination
   },
   data() {
     return {
@@ -42,7 +37,7 @@ export default {
   height: calc(100vh - 50px);
 }
 
-.member-table {
+.param-table {
   width: 100%;
   height: calc(100% - 30px);
 

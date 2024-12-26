@@ -85,7 +85,11 @@
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
-
+        <where>
+            <if test="query.role_id != null">
+                t.role_id = #{query.role_id}
+            </if>
+        </where>
     </sql>
 
     <sql id="order">

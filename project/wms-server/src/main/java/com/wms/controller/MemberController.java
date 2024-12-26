@@ -16,8 +16,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -87,12 +85,7 @@ public class MemberController {
     @Log(value = "保存或修改接口", path = "/member/saveOrUpdate")
     @PreAuthorize("hasAuthority('/member/saveOrUpdate')")
     public R<?> saveOrUpdate(@RequestBody Member member) {
-        boolean b = memberService.insertOrSave(member);
-        if (b) {
-            return R.ok();
-        } else {
-            return R.error("保存或插入失败！");
-        }
+        return memberService.insertOrSave(member);
     }
 
     @ApiOperation("根据id删除数据")
@@ -102,7 +95,7 @@ public class MemberController {
     @PreAuthorize("hasAuthority('/member/delete')")
     public R<?> delete(@RequestParam Long[] ids) {
         memberService.deleteByIds(ids);
-        return R.ok();
+        return R.ok("删除成功！");
     }
 
 

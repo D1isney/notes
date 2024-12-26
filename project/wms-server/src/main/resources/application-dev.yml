@@ -43,6 +43,10 @@ plc:
   address: plc_address.json
   # TCP长连接
   keep-alive: true
+  # 如果前端没有给值，就用这三个默认的
+  default-ip: 127.0.0.1
+  default-port: 502
+  default-slaveId: 1
 
 login:
   filter:

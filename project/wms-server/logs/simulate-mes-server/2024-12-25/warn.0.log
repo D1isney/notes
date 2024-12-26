@@ -1,0 +1,763 @@
+2024-12-25 08:57:25.646   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.656   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.659   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.672   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.689   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.694   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.703   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.706   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.708   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.715   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.718   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.720   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.723   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.730   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.733   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.735   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.737   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.744   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.748   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.751   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.753   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.759   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.763   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.765   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.767   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:57:25.774   WARN 21692 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.716   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.725   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.728   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.741   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.757   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.760   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.768   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.770   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.774   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.780   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.784   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.786   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.788   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.793   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.796   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.798   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.800   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.808   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.813   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.815   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.817   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.823   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.826   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.828   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.829   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 08:58:43.834   WARN 9544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 09:01:08.225   WARN 9544 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 83497
+2024-12-25 09:01:08.225   WARN 9544 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 112271
+2024-12-25 09:15:07.686   WARN 9544 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 732351
+2024-12-25 09:15:07.686   WARN 9544 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 732353
+2024-12-25 10:15:42.830   WARN 9544 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 920226
+2024-12-25 10:17:26.133   WARN 9544 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103137
+2024-12-25 10:17:26.134   WARN 9544 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103172
+2024-12-25 10:17:26.134   WARN 9544 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103174
+2024-12-25 11:05:50.673   WARN 9544 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67553
+2024-12-25 11:05:50.674   WARN 9544 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67552
+2024-12-25 11:09:53.373   WARN 9544 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 133764
+2024-12-25 11:09:53.373   WARN 9544 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 153138
+2024-12-25 11:09:53.374   WARN 9544 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 153139
+2024-12-25 11:14:09.061   WARN 9544 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 87087
+2024-12-25 11:14:09.062   WARN 9544 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 145286
+2024-12-25 11:14:09.062   WARN 9544 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 145287
+2024-12-25 11:15:52.888   WARN 9544 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67556
+2024-12-25 11:15:52.889   WARN 9544 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67579
+2024-12-25 11:15:52.889   WARN 9544 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67580
+2024-12-25 11:18:29.578   WARN 9544 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 64003
+2024-12-25 11:20:33.953   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:33.971   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:33.974   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:33.986   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.002   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.006   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.014   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.016   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.018   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.024   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.028   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.029   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.031   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.037   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.040   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.042   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.044   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.049   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.053   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.054   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.056   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.061   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.065   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.067   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.069   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:20:34.076   WARN 12888 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.390   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.399   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.402   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.416   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.432   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.435   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.444   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.447   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.449   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.455   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.459   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.461   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.462   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.468   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.472   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.474   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.477   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.483   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.487   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.489   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.491   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.497   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.500   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.503   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.505   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:22:05.512   WARN 27256 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 11:25:32.669   WARN 27256 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 71781
+2024-12-25 11:25:32.670   WARN 27256 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 130737
+2024-12-25 11:25:32.670   WARN 27256 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 130737
+2024-12-25 11:26:38.815   WARN 27256 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63533
+2024-12-25 11:26:38.815   WARN 27256 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63554
+2024-12-25 11:26:38.815   WARN 27256 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63556
+2024-12-25 11:31:25.463   WARN 27256 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 69644
+2024-12-25 11:31:25.463   WARN 27256 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103853
+2024-12-25 11:31:25.464   WARN 27256 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103854
+2024-12-25 11:33:25.382   WARN 27256 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 119894
+2024-12-25 11:35:10.686   WARN 27256 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103004
+2024-12-25 11:35:10.686   WARN 27256 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103025
+2024-12-25 11:35:10.686   WARN 27256 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 103028
+2024-12-25 11:38:38.714   WARN 27256 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 84232
+2024-12-25 11:38:38.715   WARN 27256 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 122580
+2024-12-25 11:38:38.715   WARN 27256 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 122581
+2024-12-25 14:03:25.015   WARN 27256 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 66281
+2024-12-25 14:07:18.232   WARN 27256 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 184411
+2024-12-25 14:08:49.682   WARN 27256 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 91417
+2024-12-25 14:10:15.726   WARN 27256 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 68669
+2024-12-25 14:10:15.727   WARN 27256 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 68698
+2024-12-25 14:10:15.727   WARN 27256 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 68698
+2024-12-25 14:12:41.037   WARN 27256 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 110299
+2024-12-25 14:14:19.205   WARN 27256 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 98139
+2024-12-25 14:16:59.689   WARN 27256 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 158171
+2024-12-25 14:16:59.690   WARN 27256 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 158197
+2024-12-25 14:16:59.690   WARN 27256 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 158198
+2024-12-25 14:18:32.316   WARN 27256 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 86621
+2024-12-25 14:18:32.317   WARN 27256 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 86644
+2024-12-25 14:18:32.317   WARN 27256 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 86645
+2024-12-25 14:20:07.857   WARN 27256 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 87707
+2024-12-25 14:20:07.857   WARN 27256 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 87734
+2024-12-25 14:20:07.858   WARN 27256 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 87735
+2024-12-25 14:21:36.407   WARN 27256 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 88373
+2024-12-25 14:21:36.407   WARN 27256 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 88405
+2024-12-25 14:21:36.407   WARN 27256 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 88404
+2024-12-25 14:24:45.431   WARN 27256 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 115695
+2024-12-25 14:24:45.432   WARN 27256 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 115723
+2024-12-25 14:24:45.432   WARN 27256 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 115724
+2024-12-25 14:30:07.935   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:07.946   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:07.951   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:07.970   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:07.994   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.000   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.009   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.011   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.015   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.023   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.028   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.030   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.033   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.041   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.046   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.049   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.051   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.058   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.063   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.065   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.068   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.076   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.080   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.083   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.085   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:30:08.090   WARN 18544 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:34:54.045   WARN 18544 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 190175
+2024-12-25 14:34:54.046   WARN 18544 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 190218
+2024-12-25 14:34:54.046   WARN 18544 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 190218
+2024-12-25 14:36:57.379   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.390   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.392   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.404   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.420   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.424   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.431   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.433   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.435   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.441   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.445   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.447   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.449   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.455   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.458   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.460   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.462   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.467   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.471   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.473   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.475   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.480   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.484   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.486   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.488   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:36:57.493   WARN 14836 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 14:48:06.362   WARN 14836 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 645410
+2024-12-25 14:48:06.362   WARN 14836 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 651968
+2024-12-25 14:48:06.363   WARN 14836 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 651970
+2024-12-25 14:50:43.666   WARN 14836 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67944
+2024-12-25 14:50:43.667   WARN 14836 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67976
+2024-12-25 14:50:43.667   WARN 14836 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 67976
+2024-12-25 14:52:26.053   WARN 14836 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 62918
+2024-12-25 14:52:26.054   WARN 14836 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 62919
+2024-12-25 14:56:45.946   WARN 14836 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 146444
+2024-12-25 14:56:45.946   WARN 14836 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 179751
+2024-12-25 14:56:45.947   WARN 14836 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 201828
+2024-12-25 14:59:00.036   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 69450
+2024-12-25 14:59:00.036   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 89530
+2024-12-25 14:59:00.037   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 133942
+2024-12-25 15:02:10.179   WARN 14836 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63373
+2024-12-25 15:02:10.180   WARN 14836 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63396
+2024-12-25 15:02:10.180   WARN 14836 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63396
+2024-12-25 15:09:20.448   WARN 14836 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 338229
+2024-12-25 15:09:20.448   WARN 14836 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 338250
+2024-12-25 15:09:20.449   WARN 14836 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 338251
+2024-12-25 15:11:46.823   WARN 14836 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 146249
+2024-12-25 15:11:46.824   WARN 14836 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 146253
+2024-12-25 15:17:59.646   WARN 14836 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 370918
+2024-12-25 15:17:59.647   WARN 14836 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 370919
+2024-12-25 15:21:25.740   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 193008
+2024-12-25 15:21:25.741   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 193009
+2024-12-25 15:22:31.482   WARN 14836 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 65664
+2024-12-25 15:22:31.483   WARN 14836 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 65666
+2024-12-25 15:24:18.732   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 107179
+2024-12-25 15:24:18.732   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 107179
+2024-12-25 15:33:24.387   WARN 14836 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 414431
+2024-12-25 15:33:24.387   WARN 14836 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 414432
+2024-12-25 15:34:58.439   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 93966
+2024-12-25 15:34:58.439   WARN 14836 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 93967
+2024-12-25 15:42:33.667   WARN 14836 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 379943
+2024-12-25 15:42:33.667   WARN 14836 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 379944
+2024-12-25 15:45:05.229   WARN 14836 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129400
+2024-12-25 15:45:05.229   WARN 14836 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129400
+2024-12-25 15:47:37.070   WARN 14836 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 115098
+2024-12-25 15:47:37.071   WARN 14836 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 115099
+2024-12-25 15:49:07.108   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.119   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.122   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.134   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.152   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.156   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.163   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.165   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.167   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.173   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.180   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.181   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.183   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.188   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.192   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.194   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.196   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.201   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.205   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.208   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.213   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.218   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.222   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.224   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.226   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:49:07.231   WARN 26052 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:50:17.196   WARN 26052 --- [nio-1217-exec-9] c.b.m.e.p.i.PaginationInnerInterceptor   : optimize this sql to a count sql has exception, sql:"select
+         
+         
+        t.id,
+         t.message,
+         t.member_id,
+         t.create_time,
+         t.type,
+         t.path,
+         t.params,
+         t.result,
+         t.execute_time
+     ,
+        (select m.name from `member` m where m.id = t.member_id) as username,
+     
+        from `log` t
+         
+
+     
+         
+         
+                order by t.id desc", exception:
+net.sf.jsqlparser.parser.ParseException: Encountered unexpected token: "," ","
+    at line 14, column 77.
+
+Was expecting one of:
+
+    ";"
+    "CONNECT"
+    "EMIT"
+    "GROUP"
+    "HAVING"
+    "INTO"
+    "START"
+    "WINDOW"
+    <EOF>
+
+2024-12-25 15:51:07.271   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.282   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.285   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.298   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.315   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.318   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.326   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.328   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.330   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.336   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.340   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.343   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.345   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.351   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.354   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.356   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.358   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.364   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.375   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.377   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.380   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.386   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.389   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.392   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.395   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:51:07.400   WARN 25556 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 15:53:57.996   WARN 25556 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 79331
+2024-12-25 15:53:57.997   WARN 25556 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 79358
+2024-12-25 15:53:57.997   WARN 25556 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 79358
+2024-12-25 15:58:34.650   WARN 25556 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 62301
+2024-12-25 15:58:34.651   WARN 25556 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 143510
+2024-12-25 15:58:34.651   WARN 25556 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 143511
+2024-12-25 16:04:10.405   WARN 25556 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 104244
+2024-12-25 16:04:10.406   WARN 25556 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 121075
+2024-12-25 16:04:10.406   WARN 25556 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 121075
+2024-12-25 16:06:35.774   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.785   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.787   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.797   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.813   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.818   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.826   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.827   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.829   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.835   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.839   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.841   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.842   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.849   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.853   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.854   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.856   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.861   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.865   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.867   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.869   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.873   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.877   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.879   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.881   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:06:35.886   WARN 23464 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:24.997   WARN 23464 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 160854
+2024-12-25 16:09:24.997   WARN 23464 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 163751
+2024-12-25 16:09:24.998   WARN 23464 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 163754
+2024-12-25 16:09:50.441   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.452   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.454   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.465   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.483   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.487   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.495   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.497   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.499   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.505   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.508   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.510   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.512   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.519   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.522   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.524   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.526   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.531   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.535   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.537   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.539   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.545   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.549   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.552   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.554   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:09:50.559   WARN 11104 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:11:54.301   WARN 11104 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 118821
+2024-12-25 16:14:20.894   WARN 11104 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129295
+2024-12-25 16:14:20.894   WARN 11104 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129295
+2024-12-25 16:15:13.859   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.869   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.872   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.885   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.902   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.905   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.917   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.920   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.923   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.930   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.934   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.937   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.940   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.948   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.952   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.954   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.957   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.964   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.968   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.970   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.973   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.984   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.987   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.990   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.991   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:13.996   WARN 17148 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:15:21.327   WARN 17148 --- [nio-1217-exec-9] c.b.m.e.p.i.PaginationInnerInterceptor   : optimize this sql to a count sql has exception, sql:"select
+         
+         
+        t.id,
+         t.message,
+         t.member_id,
+         t.create_time,
+         t.type,
+         t.path,
+         t.params,
+         t.result,
+         t.execute_time
+     ,
+        (select m.name from `member` m where m.id = t.member_id) as username
+     
+        from `log` t
+         
+         WHERE (t.create_time like concat('%', ?, '%') 
+     
+         
+         
+                order by t.id desc", exception:
+net.sf.jsqlparser.parser.ParseException: Encountered unexpected token: "order" "ORDER"
+    at line 22, column 17.
+
+Was expecting one of:
+
+    "&"
+    ")"
+    "."
+    "::"
+    "<<"
+    ">>"
+    "COLLATE"
+    "ESCAPE"
+    "["
+    "^"
+    "|"
+
+2024-12-25 16:16:10.325   WARN 17148 --- [nio-1217-exec-5] c.b.m.e.p.i.PaginationInnerInterceptor   : optimize this sql to a count sql has exception, sql:"select
+         
+         
+        t.id,
+         t.message,
+         t.member_id,
+         t.create_time,
+         t.type,
+         t.path,
+         t.params,
+         t.result,
+         t.execute_time
+     ,
+        (select m.name from `member` m where m.id = t.member_id) as username
+     
+        from `log` t
+         
+         WHERE (t.create_time like concat('%', ?, '%') 
+     
+         
+         
+                order by t.id desc", exception:
+net.sf.jsqlparser.parser.ParseException: Encountered unexpected token: "order" "ORDER"
+    at line 22, column 17.
+
+Was expecting one of:
+
+    "&"
+    ")"
+    "."
+    "::"
+    "<<"
+    ">>"
+    "COLLATE"
+    "ESCAPE"
+    "["
+    "^"
+    "|"
+
+2024-12-25 16:18:26.528   WARN 17056 --- [           main] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is org.springframework.boot.web.server.WebServerException: Unable to start embedded Tomcat
+2024-12-25 16:20:47.214   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.224   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.227   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.238   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.256   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.259   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.266   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.269   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.271   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.277   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.281   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.284   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.286   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.292   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.296   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.298   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.300   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.306   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.311   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.313   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.316   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.321   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.324   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.326   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.328   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:20:47.333   WARN 9112 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:21:30.833   WARN 9112 --- [io-1217-exec-10] c.b.m.e.p.i.PaginationInnerInterceptor   : optimize this sql to a count sql has exception, sql:"select
+         
+         
+        t.id,
+         t.message,
+         t.member_id,
+         t.create_time,
+         t.type,
+         t.path,
+         t.params,
+         t.result,
+         t.execute_time
+     ,
+        (select m.name from `member` m where m.id = t.member_id) as username
+     
+        from `log` t
+         
+         WHERE t.type = ?
+            
+            
+                t.create_time >= STR_TO_DATE(CONCAT(?, ' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+                and STR_TO_DATE(CONCAT(?, ' 23:59:59'), '%Y-%m-%d %H:%i:%s') > t.create_time 
+     
+         
+         
+                order by t.id desc", exception:
+net.sf.jsqlparser.parser.ParseException: Encountered unexpected token: "t" <S_IDENTIFIER>
+    at line 21, column 17.
+
+Was expecting one of:
+
+    "&"
+    "::"
+    ";"
+    "<<"
+    ">>"
+    "COLLATE"
+    "CONNECT"
+    "EMIT"
+    "GROUP"
+    "HAVING"
+    "START"
+    "["
+    "^"
+    "|"
+    <EOF>
+
+2024-12-25 16:23:15.151   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.163   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.165   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.179   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.196   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.200   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.209   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.212   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.214   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.221   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.225   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.227   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.228   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.234   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.238   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.240   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.244   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.249   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.254   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.256   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.258   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.263   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.266   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.268   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.270   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:15.276   WARN 21892 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:23:26.799   WARN 21892 --- [nio-1217-exec-1] c.b.m.e.p.i.PaginationInnerInterceptor   : optimize this sql to a count sql has exception, sql:"select
+         
+         
+        t.id,
+         t.message,
+         t.member_id,
+         t.create_time,
+         t.type,
+         t.path,
+         t.params,
+         t.result,
+         t.execute_time
+     ,
+        (select m.name from `member` m where m.id = t.member_id) as username
+     
+        from `log` t
+         
+         WHERE t.type = ?
+            
+            
+                (t.create_time >= STR_TO_DATE(CONCAT(?, ' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+                and STR_TO_DATE(CONCAT(?, ' 23:59:59'), '%Y-%m-%d %H:%i:%s') > t.create_time) 
+     
+         
+         
+                order by t.id desc", exception:
+net.sf.jsqlparser.parser.ParseException: Encountered unexpected token: "(" "("
+    at line 21, column 17.
+
+Was expecting one of:
+
+    "&"
+    "::"
+    ";"
+    "<<"
+    ">>"
+    "COLLATE"
+    "CONNECT"
+    "EMIT"
+    "GROUP"
+    "HAVING"
+    "START"
+    "["
+    "^"
+    "|"
+    <EOF>
+
+2024-12-25 16:24:03.838   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.850   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.853   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.864   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.883   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.886   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.894   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.896   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.898   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.904   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.908   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.911   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.913   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.920   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.923   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.925   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.927   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.933   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.936   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.938   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.939   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.946   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.950   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.952   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.954   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:24:03.958   WARN 6952 --- [           main] d.s.r.o.OperationImplicitParameterReader : Unable to interpret the implicit parameter configuration with dataType: , dataTypeClass: class java.lang.Void
+2024-12-25 16:27:19.108   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 64768
+2024-12-25 16:27:19.108   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 64768
+2024-12-25 16:28:55.115   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 95981
+2024-12-25 16:28:55.116   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 96001
+2024-12-25 16:33:57.762   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 201875
+2024-12-25 16:33:57.762   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 201875
+2024-12-25 16:35:00.895   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63122
+2024-12-25 16:35:00.895   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63123
+2024-12-25 16:36:13.166   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 64864
+2024-12-25 16:36:13.166   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 64888
+2024-12-25 16:36:13.166   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 64888
+2024-12-25 16:39:56.893   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 160039
+2024-12-25 16:41:55.145   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 81488
+2024-12-25 16:45:45.477   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 99539
+2024-12-25 16:45:45.478   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 132015
+2024-12-25 16:45:45.480   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 206476
+2024-12-25 16:46:51.924   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 63067
+2024-12-25 16:46:51.924   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 66297
+2024-12-25 16:46:51.925   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 66300
+2024-12-25 16:49:19.619   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 146780
+2024-12-25 16:49:19.619   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 146795
+2024-12-25 16:49:19.620   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 146797
+2024-12-25 16:52:08.646   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 157719
+2024-12-25 16:53:52.931   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 85935
+2024-12-25 16:56:12.434   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 94812
+2024-12-25 16:56:12.435   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 99837
+2024-12-25 16:56:12.435   WARN 6952 --- [nio-1217-exec-4] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 99838
+2024-12-25 16:58:02.218   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 99368
+2024-12-25 16:58:02.218   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 99389
+2024-12-25 16:58:02.219   WARN 6952 --- [nio-1217-exec-3] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 99391
+2024-12-25 17:00:19.684   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 72303
+2024-12-25 17:00:19.685   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 72324
+2024-12-25 17:00:19.685   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 72324
+2024-12-25 17:03:46.562   WARN 6952 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 71717
+2024-12-25 17:03:46.562   WARN 6952 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 71739
+2024-12-25 17:03:46.562   WARN 6952 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 71739
+2024-12-25 17:08:04.943   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 150507
+2024-12-25 17:08:04.944   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 226091
+2024-12-25 17:08:04.944   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 226091
+2024-12-25 17:10:19.306   WARN 6952 --- [io-1217-exec-10] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129493
+2024-12-25 17:11:30.158   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 68072
+2024-12-25 17:11:30.158   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 70757
+2024-12-25 17:18:32.378   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 245553
+2024-12-25 17:18:32.379   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 286760
+2024-12-25 17:18:32.379   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 286761
+2024-12-25 17:20:37.443   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 60038
+2024-12-25 17:20:37.444   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 73031
+2024-12-25 17:20:37.444   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 73031
+2024-12-25 17:24:46.898   WARN 6952 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 235527
+2024-12-25 17:24:46.899   WARN 6952 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 235542
+2024-12-25 17:24:46.899   WARN 6952 --- [nio-1217-exec-2] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 235544
+2024-12-25 17:26:49.567   WARN 6952 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 97323
+2024-12-25 17:35:03.705   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 410750
+2024-12-25 17:35:03.705   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 410768
+2024-12-25 17:35:03.706   WARN 6952 --- [nio-1217-exec-7] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 410769
+2024-12-25 17:38:59.681   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129407
+2024-12-25 17:38:59.681   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129425
+2024-12-25 17:38:59.681   WARN 6952 --- [nio-1217-exec-6] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 129425
+2024-12-25 17:40:15.670   WARN 6952 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 75891
+2024-12-25 17:40:15.670   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 75889
+2024-12-25 17:42:21.867   WARN 6952 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 70910
+2024-12-25 17:42:21.868   WARN 6952 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 70929
+2024-12-25 17:42:21.868   WARN 6952 --- [nio-1217-exec-9] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 70929
+2024-12-25 17:43:42.370   WARN 6952 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 80332
+2024-12-25 17:43:42.370   WARN 6952 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 80349
+2024-12-25 17:43:42.370   WARN 6952 --- [nio-1217-exec-5] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 80350
+2024-12-25 17:44:53.730   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 61088
+2024-12-25 17:44:53.730   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 61105
+2024-12-25 17:44:53.732   WARN 6952 --- [nio-1217-exec-1] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 61107
+2024-12-25 17:46:35.253   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 97652
+2024-12-25 17:46:35.254   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 97672
+2024-12-25 17:46:35.254   WARN 6952 --- [nio-1217-exec-8] c.a.druid.pool.DruidAbstractDataSource   : discard long time none received connection. , jdbcUrl : jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai, version : 1.2.8, lastPacketReceivedIdleMillis : 97673

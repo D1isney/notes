@@ -92,7 +92,11 @@
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
-
+        <where>
+            <if test="query.path != null">
+                t.path = #{query.path}
+            </if>
+        </where>
     </sql>
 
     <sql id="order">

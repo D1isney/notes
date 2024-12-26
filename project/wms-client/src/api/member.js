@@ -37,6 +37,13 @@ export function constraintLogin(data) {
   })
 }
 
+export function deleteMember(ids) {
+  return request({
+    url: `/member/delete?ids=${ids}`,
+    method: 'delete'
+  })
+}
+
 //  修改
 export function saveOrUpdate(data) {
   return request({

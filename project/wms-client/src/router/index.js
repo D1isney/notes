@@ -137,18 +137,44 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/member',
+    path: '/log',
     component: Layout,
     children: [
       {
-        path: '/member',
-        name: 'Member',
-        component: () => import('@/views/member/index'),
-        meta: { title: '用户管理', icon: 'el-icon-s-custom' }
+        path: '/log',
+        name: 'Log',
+        component: () => import('@/views/log/index'),
+        meta: { title: '日志管理', icon: 'el-icon-date' }
       }
     ]
   },
-
+  {
+    path: '/root',
+    component: Layout,
+    redirect: '/root/role',
+    name: 'Root',
+    meta: { title: '用户管理', icon: 'el-icon-set-up' },
+    children: [
+      {
+        path: 'member',
+        name: 'Member',
+        component: () => import('@/views/root/member/index'),
+        meta: { title: '用户', icon: 'el-icon-s-custom' }
+      },
+      {
+        path: 'role',
+        name: 'Role',
+        component: () => import('@/views/root/role/index'),
+        meta: { title: '角色', icon: 'el-icon-s-check' }
+      },
+      {
+        path: 'permissions',
+        name: 'Permissions',
+        component: () => import('@/views/root/permissions/index'),
+        meta: { title: '权限', icon: 'tree' }
+      }
+    ]
+  },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

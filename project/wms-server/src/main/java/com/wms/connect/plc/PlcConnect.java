@@ -9,12 +9,15 @@ import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.tcp.TcpParameters;
 import com.wms.connect.utils.PlcParam;
 import com.wms.enums.PLCEnum;
+import com.wms.exception.EException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Objects;
@@ -24,9 +27,8 @@ import java.util.Objects;
 @Getter
 @Setter
 @Component
-public class PlcConnect implements PlcConnectService{
+public class PlcConnect implements PlcConnectService {
     //  PLC参数
-    @Resource
     private PlcParam plcParam;
 
     //  PLC Master
@@ -34,23 +36,21 @@ public class PlcConnect implements PlcConnectService{
 
     private boolean connected = false;
 
+    @Value("${plc.address}")
+    private String plcAddress;
+    @Value("${plc.keep-alive}")
+    private Boolean keepAlive;
+
     /**
      * 打开PLC连接
      */
     @Override
-    public void open() {
-        try {
-            setMaster(initMaster());
-            if (!master.isConnected()){
-                try {
-                    master.connect();
-                    connected = true;
-                } catch (ModbusIOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
+    public void open() throws ModbusIOException, EException, IOException {
+        plcParam = new PlcParam(plcAddress, keepAlive);
+        setMaster(initMaster());
+        if (!master.isConnected()) {
+            master.connect();
+            connected = true;
         }
     }
 
@@ -58,14 +58,10 @@ public class PlcConnect implements PlcConnectService{
      * 关闭PLC连接
      */
     @Override
-    public void close() {
+    public void close() throws ModbusIOException {
         if (!Objects.isNull(master) && master.isConnected()) {
-            try {
-                master.disconnect();
-                connected = false;
-            } catch (ModbusIOException e) {
-                throw new RuntimeException(e);
-            }
+            master.disconnect();
+            connected = false;
         }
     }
 
@@ -84,6 +80,7 @@ public class PlcConnect implements PlcConnectService{
 
     /**
      * 根据需要读取的枚举值读取相应的PLC地址值
+     *
      * @param plcEnum 枚举
      * @return 值
      */
@@ -101,15 +98,16 @@ public class PlcConnect implements PlcConnectService{
     }
 
     /**
-     *  写入PLC
+     * 写入PLC
+     *
      * @param location 地址
-     * @param value 值
+     * @param value    值
      */
     @Override
     public void writePlc(int location, int value) {
-        if(!Objects.isNull(master) && master.isConnected()) {
+        if (!Objects.isNull(master) && master.isConnected()) {
             try {
-                master.writeSingleRegister(plcParam.getSlaveId(),location,value);
+                master.writeSingleRegister(plcParam.getSlaveId(), location, value);
             } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException e) {
                 throw new RuntimeException(e);
             }
@@ -118,15 +116,16 @@ public class PlcConnect implements PlcConnectService{
 
 
     /**
-     *  写入PLC
+     * 写入PLC
+     *
      * @param plcEnum 枚举值
-     * @param value 值
+     * @param value   值
      */
     @Override
     public void writePlc(PLCEnum plcEnum, int value) {
-        if(!Objects.isNull(master) && master.isConnected()) {
+        if (!Objects.isNull(master) && master.isConnected()) {
             try {
-                master.writeSingleRegister(plcParam.getSlaveId(),plcEnum.getAddress(),value);
+                master.writeSingleRegister(plcParam.getSlaveId(), plcEnum.getAddress(), value);
             } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException e) {
                 throw new RuntimeException(e);
             }
@@ -134,6 +133,12 @@ public class PlcConnect implements PlcConnectService{
     }
 
 
+    /**
+     * 初始化Master，拿到这个对象
+     *
+     * @return Master对象
+     * @throws UnknownHostException 端口异常
+     */
     public ModbusMaster initMaster() throws UnknownHostException {
         //  设置主机TCP参数
         TcpParameters tcpParameters = new TcpParameters();

@@ -23,6 +23,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -60,7 +61,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             throw new EException("非法用户");
         }
 
-        if (tokenIsReal > 0){
+        if (tokenIsReal > 0) {
             boolean tokenIsReal = tokenIsReal(userid, response);
             if (!tokenIsReal) {
                 return;
@@ -72,12 +73,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         memberDao.updateById(member);
         LoginMember loginMember = new LoginMember();
         loginMember.setMember(member);
-        loginMember.setPermissions(permissionsByMember);
+        if (!permissionsByMember.isEmpty() && permissionsByMember.size() > 1) {
+            loginMember.setPermissions(permissionsByMember);
+        } else {
+            loginMember.setPermissions(new ArrayList<>());
+        }
         //  只需要存当前的用户
         MemberThreadLocal.set(loginMember);
-//        MemberThreadLocal.setMainThreadLoginMemberById(id, loginMember);
-//        MemberThreadLocal.setMainThreadLoginMemberTokenForId(id, authorization);
-
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginMember, null, loginMember.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
@@ -88,12 +90,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     /**
      * 判断用户的token是否有效
-     * @param userid 用户id
+     *
+     * @param userid   用户id
      * @param response 响应体
      * @return true：有效 false：无效
      * @throws IOException 异常
      */
-    public boolean tokenIsReal(String userid,HttpServletResponse response) throws IOException {
+    public boolean tokenIsReal(String userid, HttpServletResponse response) throws IOException {
         //  校验用户的token是否有效的
         String mainThreadLoginMemberTokenForId = MemberThreadLocal.getMainThreadLoginMemberTokenForId(Long.valueOf(userid));
         if (Objects.isNull(mainThreadLoginMemberTokenForId)) {

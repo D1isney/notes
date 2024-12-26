@@ -197,6 +197,10 @@
             <if test="query.username != null">
                 t.username = #{query.username}
             </if>
+            <if test="query.param != null">
+                (t.username like concat('%', #{query.param}, '%')
+                or t.name like concat('%', #{query.param}, '%'))
+            </if>
         </where>
     </sql>
 

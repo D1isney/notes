@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
 public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Permissions, PermissionsVo> implements PermissionsService {
     @Override
     public Permissions insertOrUpdate(Permissions member) {
-        return null;
+        return saveOrModify(member);
     }
 }

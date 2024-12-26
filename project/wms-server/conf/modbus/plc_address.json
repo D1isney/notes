@@ -1,4 +1,5 @@
 {
+  "ip": "127.0.0.1",
   "pointList": [
     {
       "address": 0,
@@ -20,7 +21,6 @@
       "name": "storageVerticalIn",
       "value": 0
     },
-
     {
       "address": 10,
       "name": "enterOut",
@@ -42,7 +42,6 @@
       "value": 0
     }
   ],
-  "ip": "127.0.0.1",
   "port": 502,
   "slaveId": 1
 }

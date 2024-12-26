@@ -1,7 +1,13 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
-             label-position="left">
+    <el-form
+      ref="loginForm"
+      :model="loginForm"
+      :rules="loginRules"
+      class="login-form"
+      auto-complete="on"
+      label-position="left"
+    >
 
       <div class="title-container">
         <h3 class="title">板材仓储系统</h3>
@@ -9,7 +15,7 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <svg-icon icon-class="user"/>
+          <svg-icon icon-class="user" />
         </span>
         <el-input
           ref="username"
@@ -24,7 +30,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <svg-icon icon-class="password"/>
+          <svg-icon icon-class="password" />
         </span>
         <el-input
           :key="passwordType"
@@ -38,12 +44,16 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
+          <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
-                 @click.native.prevent="handleLogin">Login
+      <el-button
+        :loading="loading"
+        type="primary"
+        style="width:100%;margin-bottom:30px;"
+        @click.native.prevent="handleLogin"
+      >Login
       </el-button>
 
     </el-form>
@@ -51,9 +61,9 @@
 </template>
 
 <script>
-import {validUsername} from '@/utils/validate'
-import {getToken, removeToken, setToken} from "@/utils/auth";
-import {constraintLogin, login} from "@/api/member";
+import { getToken, removeToken, setToken } from '@/utils/auth'
+import { constraintLogin, login } from '@/api/member'
+import { getSystemPlcStatus } from '@/api/system/systemAPI'
 
 export default {
   name: 'Login',
@@ -78,8 +88,8 @@ export default {
         password: 'admin'
       },
       loginRules: {
-        username: [{required: true, trigger: 'blur', validator: validateUsername}],
-        password: [{required: true, trigger: 'blur', validator: validatePassword}]
+        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
       },
       loading: false,
       passwordType: 'password',
@@ -88,7 +98,7 @@ export default {
   },
   watch: {
     $route: {
-      handler: function (route) {
+      handler: function(route) {
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -109,12 +119,11 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          let token = getToken();
           this.loading = true
           login(this.loginForm).then(res => {
             if (res.code === 200) {
               setToken(res.data)
-              this.$router.push({path: this.redirect || '/'})
+              this.$router.push({ path: this.redirect || '/' })
             } else if (res.code === 400) {
               this.$confirm(res.message, '登录提示', {
                 distinguishCancelAndClose: true,
@@ -123,10 +132,10 @@ export default {
               })
                 .then(() => {
                   constraintLogin(this.loginForm).then(co => {
-                    removeToken();
+                    removeToken()
                     if (co.code === 200) {
                       setToken(co.data)
-                      this.$router.push({path: this.redirect || '/'})
+                      this.$router.push({ path: this.redirect || '/' })
                     }
                   })
                 })
@@ -135,7 +144,7 @@ export default {
                     type: 'warning',
                     message: '取消登录'
                   })
-                });
+                })
             }
             this.loading = false
           }).catch(() => {
@@ -145,15 +154,6 @@ export default {
           console.log('error submit!!')
           return false
         }
-      })
-    },
-    //  强制登录
-    constraintLogin(res) {
-      constraintLogin(this.loginForm).then(res => {
-        this.$router.push({path: this.redirect || '/'})
-        this.loading = false
-      }).catch(() => {
-        this.loading = false
       })
     }
   }

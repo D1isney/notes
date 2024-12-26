@@ -18,7 +18,8 @@
 
     <!-- 通用查询映射结果 Vo) -->
     <resultMap id="roleVoMap" type="com.wms.vo.RoleVo" extends="roleMap">
-
+        <result column="create_username" property="createUsername"/>
+        <result column="update_username" property="updateUsername"/>
     </resultMap>
     <!-- 保存列 -->
     <sql id="saveColumnBase">
@@ -88,11 +89,21 @@
     </sql>
     <!-- 通用查询结果列VO -->
     <sql id="queryListColumn">
-        <include refid="queryListColumnBase"/>
+        <include refid="queryListColumnBase"/>,
+        (select m.name from `member` m where m.id = t.create_member) as create_username,
+        (select m.name from `member` m where m.id = t.update_member) as update_username
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
-
+        <where>
+            <if test="query.name != null">
+                t.name = #{query.name}
+            </if>
+            <if test="query.param != null">
+                (t.name like concat('%', #{query.param}, '%')
+                or t.code like concat('%', #{query.param}, '%'))
+            </if>
+        </where>
     </sql>
 
     <sql id="order">

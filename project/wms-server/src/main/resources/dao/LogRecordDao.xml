@@ -18,7 +18,7 @@
 
     <!-- 通用查询映射结果 Vo) -->
     <resultMap id="logVoMap" type="com.wms.vo.LogRecordVo" extends="logMap">
-
+        <result column="username" property="username"/>
     </resultMap>
     <!-- 保存列 -->
     <sql id="saveColumnBase">
@@ -88,11 +88,20 @@
     </sql>
     <!-- 通用查询结果列VO -->
     <sql id="queryListColumn">
-        <include refid="queryListColumnBase"/>
+        <include refid="queryListColumnBase"/>,
+        (select m.name from `member` m where m.id = t.member_id) as username
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
-
+        <where>
+            <if test="query.type != null">
+                t.type = #{query.type}
+            </if>
+            <if test="query.createTime != null">
+                and (t.create_time >= STR_TO_DATE(CONCAT(#{query.createTime}, ' 00:00:00'), '%Y-%m-%d %H:%i:%s')
+                and STR_TO_DATE(CONCAT(#{query.createTime}, ' 23:59:59'), '%Y-%m-%d %H:%i:%s') > t.create_time)
+            </if>
+        </where>
     </sql>
 
     <sql id="order">
