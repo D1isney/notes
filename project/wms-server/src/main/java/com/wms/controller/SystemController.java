@@ -48,7 +48,7 @@ public class SystemController {
         } catch (ModbusIOException e) {
             throw new RuntimeException(e);
         }
-        return R.ok();
+        return R.ok("修改成功！");
     }
 
     @ApiOperation("开启PLC连接")
@@ -85,6 +85,14 @@ public class SystemController {
     public R<?> getSystemPlcStatus() {
         boolean connect = systemParam.isConnect();
         return R.ok(connect);
+    }
+
+
+    @ApiOperation("获取从今天开始算的前7天")
+    @GetMapping("getLast7Day")
+    @Log(value = "System-获取前七天",path = "/system/getLast7Day")
+    public R<?> getLast7Day(){
+        return R.ok();
     }
 
 

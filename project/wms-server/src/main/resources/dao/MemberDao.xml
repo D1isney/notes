@@ -357,11 +357,13 @@
     <select id="getPermissionsByMember" resultType="java.lang.String" parameterType="java.lang.Long">
         SELECT DISTINCT p.path
         FROM member_role mr
-                 LEFT JOIN role r ON r.id = mr.role_id
-                 LEFT JOIN role_permissions rp ON mr.role_id = rp.role_id
-                 LEFT JOIN permissions p on rp.permissions_id = p.id
-        WHERE mr.member_id = #{id}
+                 LEFT JOIN role r ON r.id = mr.role_id AND r.`status` = 1
+                 LEFT JOIN role_permissions rp ON rp.role_id = mr.role_id
+                 LEFT JOIN permissions p ON rp.permissions_id = p.id
+        WHERE mr.member_id = 1
           AND r.`status` = 1
+          AND p.path IS NOT NULL
+          AND p.path != "";
     </select>
 
 

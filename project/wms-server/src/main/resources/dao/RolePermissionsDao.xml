@@ -89,6 +89,9 @@
             <if test="query.role_id != null">
                 t.role_id = #{query.role_id}
             </if>
+            <if test="query.permissions_id != null">
+                t.permissions_id = #{query.permissions_id}
+            </if>
         </where>
     </sql>
 

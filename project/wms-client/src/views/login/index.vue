@@ -62,7 +62,7 @@
 
 <script>
 import { getToken, removeToken, setToken } from '@/utils/auth'
-import { constraintLogin, login } from '@/api/member'
+import { constraintLogin, login } from '@/api/member/member'
 import { getSystemPlcStatus } from '@/api/system/systemAPI'
 
 export default {

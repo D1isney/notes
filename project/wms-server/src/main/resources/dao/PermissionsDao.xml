@@ -18,7 +18,8 @@
 
     <!-- 通用查询映射结果 Vo) -->
     <resultMap id="permissionsVoMap" type="com.wms.vo.PermissionsVo" extends="permissionsMap">
-
+        <result column="create_username" property="createUsername"/>
+        <result column="update_username" property="updateUsername"/>
     </resultMap>
     <!-- 保存列 -->
     <sql id="saveColumnBase">
@@ -88,13 +89,19 @@
     </sql>
     <!-- 通用查询结果列VO -->
     <sql id="queryListColumn">
-        <include refid="queryListColumnBase"/>
+        <include refid="queryListColumnBase"/>,
+        (select m.name from `member` m where m.id = t.create_member) as create_username,
+        (select m.name from `member` m where m.id = t.update_member) as update_username
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
         <where>
             <if test="query.path != null">
                 t.path = #{query.path}
+            </if>
+            <if test="query.param != null">
+                (t.name like concat('%', #{query.param}, '%')
+                or t.code like concat('%', #{query.param}, '%'))
             </if>
         </where>
     </sql>
@@ -243,6 +250,10 @@
 
     <select id="lastCode" resultType="java.lang.String">
         select t.code from `permissions` t where date(t.create_time) = curdate() order by t.code desc limit 1;
+    </select>
+
+    <select id="getRemark" resultType="java.lang.String">
+        select distinct t.remark from `permissions` t where t.remark is not null and t.remark != ""
     </select>
 
 </mapper>

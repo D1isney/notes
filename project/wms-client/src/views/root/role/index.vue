@@ -184,7 +184,7 @@
         <el-row :gutter="20">
           <el-col :span="16" :push="6">
             <el-button type="primary" @click="modifyRole">修改</el-button>
-            <el-button type="primary" @click="resetModify">重置</el-button>
+            <el-button type="info" @click="resetModify">重置</el-button>
           </el-col>
         </el-row>
       </el-form>
@@ -223,7 +223,7 @@
         <el-row :gutter="20">
           <el-col :span="16" :push="6">
             <el-button type="primary" @click="addRole">保存</el-button>
-            <el-button type="primary" @click="resetAdd">重置</el-button>
+            <el-button type="info" @click="resetAdd">重置</el-button>
           </el-col>
         </el-row>
       </el-form>
@@ -286,7 +286,6 @@ export default {
   methods: {
     async getRoleList() {
       this.query.param = this.param
-      console.log(this.query)
       await getRoleListAPI(this.query).then(res => {
         if (res.code === 200) {
           this.list = res.data.list

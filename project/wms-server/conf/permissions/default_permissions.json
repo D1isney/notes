@@ -1,5 +1,10 @@
 [
   "/member/list",
-  "/member/saveOrUpdate"
+  "/member/saveOrUpdate",
+  "/member/delete",
+  "/memberRole/list",
+  "/memberRole/saveOrUpdate",
+  "/memberRole/getInfo",
+  "/memberRole/delete"
 ]
 

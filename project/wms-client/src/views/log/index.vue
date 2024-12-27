@@ -25,7 +25,6 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-
               <el-row>
                 <el-col :span="18" :push="2">
                   <el-form-item label="接口参数：">
@@ -33,7 +32,6 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-
               <el-row>
                 <el-col :span="18" :push="2">
                   <el-form-item label="返回参数：">
@@ -41,7 +39,6 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-
             </el-form>
           </template>
         </el-table-column>
@@ -214,6 +211,7 @@ export default {
   line-height: 30px;
   float: right;
 }
+
 .button-box {
   width: 100%;
   height: 6%;

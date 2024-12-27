@@ -44,6 +44,20 @@ export function deleteMember(ids) {
   })
 }
 
+export function getAllRole() {
+  return request({
+    url: `/role/getAllRole`,
+    method: 'get'
+  })
+}
+
+export function getRoleByMemberId(id) {
+  return request({
+    url: `/role/getRoleByMemberId/${id}`,
+    method: 'get'
+  })
+}
+
 //  修改
 export function saveOrUpdate(data) {
   return request({
@@ -52,6 +66,7 @@ export function saveOrUpdate(data) {
     data: data
   })
 }
+
 //  常量
 export const MemberConst = {
   // 激活状态（0：封禁，1：可用，2：已过期）

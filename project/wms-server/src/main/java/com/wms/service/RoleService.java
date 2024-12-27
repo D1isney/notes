@@ -1,6 +1,7 @@
 package com.wms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wms.dto.RoleDTO;
 import com.wms.pojo.Role;
 import com.wms.service.base.BaseService;
 import com.wms.vo.RoleVo;
@@ -17,4 +18,8 @@ public interface RoleService extends BaseService<Role, RoleVo> {
     void deleteRole(Long[] ids);
 
     Map<Integer, String> getPermissionsByRoleId(Long id);
+
+    List<Long> getRoleByMemberId(Long id);
+
+    List<RoleDTO> getAllRole();
 }

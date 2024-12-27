@@ -20,4 +20,5 @@ public interface MemberService extends BaseService<Member, MemberVo> {
 
     R<?> getInfo(String token);
 
+    void deleteByMemberId(Long[] ids);
 }

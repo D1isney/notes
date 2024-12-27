@@ -7,6 +7,8 @@ import com.wms.exception.EException;
 import com.wms.filter.login.PasswordEncoderForSalt;
 import com.wms.filter.login.LoginMember;
 import com.wms.filter.login.Member;
+import com.wms.pojo.MemberRole;
+import com.wms.service.MemberRoleService;
 import com.wms.service.MemberService;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.thread.MemberThreadLocal;
@@ -19,6 +21,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.*;
@@ -36,6 +39,10 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     @Lazy
     @Resource
     private AuthenticationManager authenticationManager;
+
+    @Lazy
+    @Resource
+    private MemberRoleService memberRoleService;
 
     @Value("${login.filter.isLogin}")
     private Integer isLogin;
@@ -124,7 +131,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
     @Override
     public boolean saveMemberDetails(Member member) {
-        Long id = 0L;
+        Long id;
         try {
             id = MemberThreadLocal.get().getMember().getId();
         } catch (Exception e) {
@@ -156,7 +163,9 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
      * @return true 插入成功 false 插入失败
      */
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public R<?> insertOrSave(Member member) {
+        Member newMember;
         if (Objects.isNull(member)) {
             return R.error("请求参数为空！");
         } else {
@@ -164,15 +173,60 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
             Long currentMemberId = MemberThreadLocal.get().getMember().getId();
             //  说明是新的用户
             if (b) {
-                createMember(member, currentMemberId);
+                newMember = createMember(member, currentMemberId);
+                createMemberRole(member, newMember, currentMemberId);
                 return R.ok("添加成功！");
             } else {
                 //  更新人
                 member.setUpdateMember(currentMemberId);
                 //  旧的用户
-                saveOrModify(member);
+                newMember = saveOrModify(member);
+                createMemberRole(member, newMember, currentMemberId);
                 return R.ok("修改成功！");
             }
+        }
+    }
+
+    /**
+     * 添加用户和角色的关系
+     *
+     * @param param     参数
+     * @param newMember 新用户或者保存之后的用户
+     */
+    public void createMemberRole(Member param, Member newMember, Long currentMemberId) {
+        if (!Objects.isNull(param.getRoleId())) {
+            List<MemberRole> list = new ArrayList<>();
+            Long[] roleId = param.getRoleId();
+            Long id = newMember.getId();
+            for (Long role_id : roleId) {
+                Map<String, Object> map = new HashMap<>();
+                map.put("member_id", id);
+                map.put("role_id", role_id);
+                List<MemberRole> memberRoles = memberRoleService.queryList(map);
+                if (memberRoles.isEmpty()) {
+                    MemberRole memberRole = new MemberRole();
+                    memberRole.setMemberId(id);
+                    memberRole.setRoleId(role_id);
+                    memberRole.setCreateTime(new Date());
+                    memberRole.setUpdateTime(new Date());
+                    memberRole.setCreateMember(currentMemberId);
+                    memberRole.setUpdateMember(currentMemberId);
+                    list.add(memberRole);
+                } else {
+                    List<MemberRole> oldList = memberRoleService.list();
+                    oldList.forEach(memberRole -> {
+                        //  看看新保存的有没有这个角色，有就更新时间，没有就删除这个关系
+                        if (memberRole.getRoleId().equals(role_id)) {
+                            memberRole.setUpdateTime(new Date());
+                            memberRole.setUpdateMember(currentMemberId);
+                            list.add(memberRole);
+                        }else{
+                            memberRoleService.delete(memberRole);
+                        }
+                    });
+                }
+            }
+            memberRoleService.saveOrUpdateBatch(list);
         }
     }
 
@@ -192,6 +246,19 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         memberInfoMap.getMember().setSalt("******");
         memberInfoMap.getMember().setPassword("******");
         return R.ok("", memberInfoMap.getMember());
+    }
+
+
+    @Override
+    public void deleteByMemberId(Long[] ids) {
+        //  通过id，找到对应的用户角色
+        Map<String, Object> map = new HashMap<>();
+        for (Long id : ids) {
+            map.put("member_id", id);
+            List<MemberRole> memberRoles = memberRoleService.queryList(map);
+            memberRoles.forEach(memberRole -> memberRoleService.delete(memberRole.getId()));
+        }
+        deleteByIds(ids);
     }
 
 

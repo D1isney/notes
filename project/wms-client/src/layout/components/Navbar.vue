@@ -142,7 +142,7 @@ export default {
         this.getSettingList()
         this.setting = false;
         this.getPlcStatus()
-        this.closePlc();
+        // this.closePlc();
       })
     },
     getPlcStatus() {

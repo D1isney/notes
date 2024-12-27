@@ -10,6 +10,7 @@ import com.wms.service.RolePermissionsService;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.thread.MemberThreadLocal;
 import com.wms.vo.RolePermissionsVo;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +20,7 @@ import java.util.*;
 public class RolePermissionsServiceImpl extends IBaseServiceImpl<RolePermissionsDao, RolePermissions, RolePermissionsVo> implements RolePermissionsService {
 
     @Resource
+    @Lazy
     private PermissionsService permissionsService;
 
     @Override
@@ -35,7 +37,7 @@ public class RolePermissionsServiceImpl extends IBaseServiceImpl<RolePermissions
      */
     @Override
     public boolean createDefaultRolePermissions(Role role) {
-        List<String> permissionsDTO = DefaultPermissionsDTO.getPermissionsDTO();
+        List<String> permissionsDTO = DefaultPermissionsDTO.getDefaultPermissions();
         if (permissionsDTO.isEmpty()) {
             return false;
         } else {

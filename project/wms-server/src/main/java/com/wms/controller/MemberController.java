@@ -94,7 +94,8 @@ public class MemberController {
     @Log(value = "用户-删除用户信息", path = "/member/delete")
     @PreAuthorize("hasAuthority('/member/delete')")
     public R<?> delete(@RequestParam Long[] ids) {
-        memberService.deleteByIds(ids);
+        memberService.deleteByMemberId(ids);
+//        memberService.deleteByIds(ids);
         return R.ok("删除成功！");
     }
 

@@ -2,15 +2,19 @@ package com.wms.service.impl;
 
 import com.wms.constant.RoleConstant;
 import com.wms.dao.RoleDao;
+import com.wms.dto.RoleDTO;
 import com.wms.exception.EException;
+import com.wms.pojo.MemberRole;
 import com.wms.pojo.Permissions;
 import com.wms.pojo.Role;
 import com.wms.pojo.RolePermissions;
+import com.wms.service.MemberRoleService;
 import com.wms.service.PermissionsService;
 import com.wms.service.RolePermissionsService;
 import com.wms.service.RoleService;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.thread.MemberThreadLocal;
+import com.wms.utils.CodeUtils;
 import com.wms.utils.DateConstant;
 import com.wms.vo.RoleVo;
 import org.springframework.stereotype.Service;
@@ -29,6 +33,8 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
     private RolePermissionsService rolePermissionsService;
     @Resource
     private PermissionsService permissionsService;
+    @Resource
+    private MemberRoleService memberRoleService;
 
     /**
      * 添加或者修改
@@ -106,18 +112,9 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
 
     @Override
     public String lastCode() {
-        String s = roleDao.lastCode();
-        if (Objects.isNull(s)) {
-            Date date = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat(DateConstant.YY_MM_DD);
-            s = sdf.format(date) + "01";
-            return s;
-        } else {
-            int i = Integer.parseInt(s);
-            return String.valueOf(++i);
-        }
-
+        return CodeUtils.getString(roleDao.lastCode());
     }
+
 
     /**
      * 删除角色、以及这个角色与权限的关系
@@ -162,4 +159,57 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
         }
         return result;
     }
+
+    /**
+     * 通过用户ID找到该用户拥有的角色
+     *
+     * @param id 用户ID
+     * @return 拥有的角色信息
+     */
+    @Override
+    public List<Long> getRoleByMemberId(Long id) {
+        if (Objects.isNull(id)) {
+            return null;
+        }
+        Map<String, Object> map = new HashMap<>();
+        map.put("member_id", id);
+        List<MemberRole> memberRolesList = memberRoleService.queryList(map);
+        if (!memberRolesList.isEmpty()) {
+            List<Long> ids = new ArrayList<>();
+            memberRolesList.forEach(memberRole -> {
+                Long roleId = memberRole.getRoleId();
+//                Role role = queryById(roleId);
+//                RoleDTO roleDTO = new RoleDTO();
+//                roleDTO.setLabel(role.getName());
+//                roleDTO.setValue(role.getId());
+                ids.add(roleId);
+
+            });
+            return ids;
+        }
+        return null;
+    }
+
+    /**
+     * 拿到所有的角色
+     *
+     * @return 角色信息
+     */
+    @Override
+    public List<RoleDTO> getAllRole() {
+        List<Role> roleList = list();
+        if (!roleList.isEmpty()) {
+            List<RoleDTO> list = new ArrayList<>();
+            roleList.forEach(role -> {
+                RoleDTO roleDTO = new RoleDTO();
+                roleDTO.setLabel(role.getName());
+                roleDTO.setValue(role.getId());
+                list.add(roleDTO);
+            });
+            return list;
+        }
+        return null;
+    }
+
+
 }

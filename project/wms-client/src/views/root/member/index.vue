@@ -264,7 +264,7 @@
           <template slot-scope="scope">
             <el-button
               size="mini"
-              @click="openEnditDrawer(scope.row)"
+              @click="openEditDrawer(scope.row)"
             >Edit
             </el-button>
             <el-button
@@ -338,8 +338,22 @@
             </el-form-item>
           </el-col>
         </el-form-item>
+        <el-row :gutter="20">
+          <el-col :span="24" >
+            <el-form-item label="角色">
+              <el-cascader
+                :options="options"
+                :props="props"
+                placeholder="请选择角色"
+                clearable
+                collapse-tags
+                v-model="selectedOptions"
+              ></el-cascader>
+            </el-form-item>
+          </el-col>
+        </el-row>
         <el-form-item>
-          <el-button type="primary" @click="modifyMember(modifyList)">修改</el-button>
+          <el-button type="primary" @click="modifyMember()">修改</el-button>
           <el-button @click="modifyDrawer = false">取消</el-button>
         </el-form-item>
       </el-form>
@@ -347,7 +361,7 @@
 
     <!--    添加-->
     <el-drawer
-      title="添加"
+      title="添加用户"
       :visible.sync="addDrawer"
       direction="rtl"
     >
@@ -431,10 +445,11 @@
             <el-form-item label="角色">
               <el-cascader
                 :options="options"
-                :value="selectedOptions"
                 :props="props"
                 placeholder="请选择角色"
                 clearable
+                collapse-tags
+                v-model="selectedOptions"
               ></el-cascader>
             </el-form-item>
           </el-col>
@@ -453,7 +468,7 @@
 </template>
 
 <script>
-import { deleteMember, getList, MemberConst, saveOrUpdate } from '@/api/member'
+import { deleteMember, getAllRole, getList, getRoleByMemberId, MemberConst, saveOrUpdate } from '@/api/member/member'
 import pagination from '@/components/Pagination/index.vue'
 
 export default {
@@ -479,16 +494,8 @@ export default {
       multipleSelection: [],
 
       props: { multiple: true },
-      options: [{
-        value: 1,
-        label: '角色1'
-      },
-        {
-          value: 2,
-          label: '角色2'
-        }
-      ],
-      selectedOptions: [1],
+      options: [],
+      selectedOptions: [],
       addMemberForm: {
         username: '',
         password: '',
@@ -498,7 +505,8 @@ export default {
         phone: '',
         address: '',
         birthday: '',
-        age: ''
+        age: '',
+        roleId: []
       },
       rules: {
         username: [
@@ -558,13 +566,31 @@ export default {
         return 'info'
       }
     },
-    openEnditDrawer(data) {
+    openEditDrawer(data) {
       this.modifyDrawer = true
       //  深拷贝
       this.modifyList = JSON.parse(JSON.stringify(data))
+      this.getAllRole()
+      this.getRoleByMemberId(this.modifyList.id)
     },
-    modifyMember: async function(member) {
-      saveOrUpdate(member).then(res => {
+    async getRoleByMemberId(id){
+      getRoleByMemberId(id).then(res => {
+        if (res.code === 200){
+          this.selectedOptions = res.data.flat()
+        }
+      })
+    },
+    async getAllRole() {
+      //  拿到所有的角色
+      await getAllRole().then(res => {
+        if (res.code === 200) {
+          this.options = res.data
+        }
+      })
+    },
+    modifyMember: async function() {
+      this.modifyList.roleId = this.selectedOptions.flat()
+      saveOrUpdate(this.modifyList).then(res => {
         if (res.code === 200) {
           this.$message({
             message: res.message,
@@ -609,8 +635,22 @@ export default {
     },
     openAddOrawer() {
       this.addDrawer = true
+      this.addMemberForm = {
+        username: '',
+        password: '',
+        name: '',
+        sex: 1,
+        email: '',
+        phone: '',
+        address: '',
+        birthday: '',
+        age: '',
+        roleId: []
+      }
+      this.getAllRole()
     },
     commitAdd() {
+      this.addMemberForm.roleId = this.selectedOptions.flat()
       this.$refs[this.addMemberForm].validate((valid) => {
         if (valid) {
           this.addMemberForm.email = this.addMemberForm.email + '.com'
@@ -619,7 +659,6 @@ export default {
               this.$message.success(res.message)
               this.addDrawer = false
               this.getList()
-              console.log(this.options)
             } else {
               this.$message.warning(res.message)
             }
@@ -640,8 +679,10 @@ export default {
         phone: '',
         address: '',
         birthday: '',
-        age: ''
-      }
+        age: '',
+        roleId: []
+      },
+        this.selectedOptions = []
     }
   }
 }

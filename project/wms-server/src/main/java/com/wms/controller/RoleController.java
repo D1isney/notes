@@ -2,6 +2,7 @@ package com.wms.controller;
 
 
 import com.wms.aspect.Log;
+import com.wms.dto.RoleDTO;
 import com.wms.pojo.Role;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;
@@ -14,6 +15,7 @@ import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 import com.wms.service.RoleService;
@@ -72,7 +74,6 @@ public class RoleController {
     @Log(value = "角色-删除角色信息", path = "/role/delete")
     public R<?> delete(@RequestParam Long[] ids) {
         roleService.deleteRole(ids);
-//        roleService.deleteByIds(ids);
         return R.ok("删除成功！");
     }
 
@@ -88,10 +89,23 @@ public class RoleController {
 
     @ApiOperation("拿到所有角色")
     @GetMapping("getAllRole")
-    @Log(value = "角色-查询该角色拥有的权限", path = "/role/getPermissionsByRoleId")
+    @Log(value = "角色-查询所有的角色", path = "/role/getAllRole")
     public R<?> getAllRole(){
-        return R.ok(roleService.list());
+        List<RoleDTO> list = roleService.getAllRole();
+        return R.ok(list);
     }
+
+
+    @ApiOperation("拿到该用户拥有的角色")
+    @GetMapping("getRoleByMemberId/{id}")
+    @Log(value = "角色-查询所有的角色", path = "/role/getRoleByMemberId")
+    public R<?> getRoleByMemberId(@PathVariable("id")  Long id){
+        //  通过用户id，找到用户已经拥有的角色
+        List<Long> list = roleService.getRoleByMemberId(id);
+        return R.ok(list);
+    }
+
+
 
 
 }

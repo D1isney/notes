@@ -1,0 +1,57 @@
+{
+  "member": {
+    "username": "admin",
+    "password": "admin",
+    "name": "超级管理员",
+    "sex": 1,
+    "age": 24,
+    "phone": "14758849470",
+    "email": "zhziqian2022@163.com",
+    "status": 1,
+    "salt": "salt"
+  },
+  "role": {
+    "name": "1级狠角色",
+    "status": 1,
+    "remark": "重置角色"
+  },
+  "permissions": [
+    {
+      "name": "查询所有用户",
+      "path": "/member/list",
+      "remark": "用户"
+    },
+    {
+      "name": "保存或修改用户信息",
+      "path": "/member/saveOrUpdate",
+      "remark": "用户"
+    },
+    {
+      "name": "删除用户信息",
+      "path": "/member/delete",
+      "remark": "用户"
+    },
+    {
+      "name": "查询所有用户角色信息",
+      "path": "/memberRole/list",
+      "remark": "用户-角色"
+    },
+    {
+      "name": "保存或修改用户角色信息",
+      "path": "/memberRole/saveOrUpdate",
+      "remark": "用户-角色"
+    },
+    {
+      "name": "查询单个用户角色信息",
+      "path": "/memberRole/getInfo",
+      "remark": "用户-角色"
+    },
+    {
+      "name": "删除用户角色信息",
+      "path": "/memberRole/delete",
+      "remark": "用户-角色"
+    }
+  ]
+}
+
+

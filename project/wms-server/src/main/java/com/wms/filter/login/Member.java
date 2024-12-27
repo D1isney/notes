@@ -9,6 +9,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -93,5 +94,10 @@ public class Member implements Serializable {
     @ApiModelProperty(value = "在线状态")
     @TableField("`online`")
     private Integer online;
+
+    //  不保存到数据库
+    @ApiModelProperty(value = "角色ID")
+    @TableField(exist = false)
+    private Long[] roleId;
 
 }
