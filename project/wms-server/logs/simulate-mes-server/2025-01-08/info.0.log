@@ -1,0 +1,827 @@
+2025-01-08 00:01:12.442   INFO 12700 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:01:13.197   INFO 12700 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:02:05.816   INFO 12700 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:02:06.644   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:02:06.662   INFO 12700 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:02:12.004   INFO 12700 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:02:12.446   INFO 12700 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:02:12.576   INFO 12700 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:02:12.581   INFO 12700 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:02:16.852   INFO 12700 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:02:17.467   INFO 12700 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:02:17.487   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:02:17.558   INFO 12700 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:02:17.558   INFO 12700 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:02:21.213   INFO 12700 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/permissions/getRemark接口
+2025-01-08 00:02:21.230   INFO 12700 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/permissions/list接口
+2025-01-08 00:02:39.575   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:02:40.411   INFO 12700 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:02:40.428   INFO 12700 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:02:40.492   INFO 12700 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:02:40.492   INFO 12700 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:02:44.564   INFO 12700 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 00:03:08.122   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:03:08.479   INFO 12700 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:03:08.481   INFO 12700 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:03:08.521   INFO 12700 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 00:04:17.778   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:04:18.345   INFO 12700 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:04:18.346   INFO 12700 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:04:18.372   INFO 12700 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 00:05:52.345   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:07:03.444   INFO 12700 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:07:04.342   INFO 12700 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:07:57.543   INFO 12700 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:08:03.945   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:08:42.013   INFO 12700 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:08:42.890   INFO 12700 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:08:42.917   INFO 12700 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:08:43.008   INFO 12700 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:08:43.008   INFO 12700 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:08:44.578   INFO 12700 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:08:44.703   INFO 12700 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:08:44.707   INFO 12700 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:08:48.525   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:08:48.756   INFO 12700 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:08:48.758   INFO 12700 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:08:49.219   INFO 12700 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:08:49.413   INFO 12700 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:08:49.414   INFO 12700 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:08:50.567   INFO 12700 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 00:08:51.273   INFO 12700 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 00:08:51.291   INFO 12700 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 00:08:51.389   INFO 12700 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 00:08:51.389   INFO 12700 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 00:08:51.410   INFO 12700 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 00:09:06.193   INFO 12700 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 00:09:06.196   INFO 12700 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 18:22:19.140   INFO 836 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 836 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 18:22:19.145   INFO 836 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 18:22:22.663   INFO 836 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 18:22:22.667   INFO 836 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 18:22:22.697   INFO 836 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-01-08 18:22:23.647   INFO 836 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 18:22:23.659   INFO 836 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 18:22:23.659   INFO 836 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 18:22:23.659   INFO 836 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 18:22:23.763   INFO 836 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 18:22:23.763   INFO 836 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4373 ms
+2025-01-08 18:22:25.477   INFO 836 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 18:22:26.265   INFO 836 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1018f702, org.springframework.security.web.context.SecurityContextPersistenceFilter@7d7f966f, org.springframework.security.web.header.HeaderWriterFilter@4ed19540, org.springframework.web.filter.CorsFilter@5400db7e, org.springframework.security.web.authentication.logout.LogoutFilter@736f2fb8, com.wms.filter.jwt.JwtAuthenticationTokenFilter@5d9bb69b, org.springframework.security.web.session.ConcurrentSessionFilter@62525dd3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5644f664, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@251e2f4a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a84b6de, org.springframework.security.web.session.SessionManagementFilter@5c20505f, org.springframework.security.web.access.ExceptionTranslationFilter@62264d4f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@20462820]
+2025-01-08 18:22:26.358   INFO 836 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 18:22:26.380   INFO 836 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 18:22:26.777   INFO 836 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 8.411 seconds (JVM running for 11.272)
+2025-01-08 18:24:51.918   INFO 836 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 18:24:51.918   INFO 836 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 18:24:51.921   INFO 836 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2025-01-08 18:24:52.133   INFO 836 --- [nio-1217-exec-4] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 18:24:52.632   INFO 836 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 18:24:52.770   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 18:24:52.884   INFO 836 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 18:24:52.917   INFO 836 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 18:25:50.260   INFO 836 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 18:25:51.698   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 18:25:51.719   INFO 836 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 18:25:51.833   INFO 836 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 18:25:51.834   INFO 836 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 18:26:50.780   INFO 836 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 18:26:51.782   INFO 836 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 18:26:51.804   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 18:26:51.860   INFO 836 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 18:26:51.877   INFO 836 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 18:26:57.298   INFO 836 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/list接口
+2025-01-08 18:26:58.933   INFO 836 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 19:26:30.411   INFO 836 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 19:26:30.556   INFO 836 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 19:26:30.562   INFO 836 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 19:26:30.567   INFO 836 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 19:26:32.005   INFO 836 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 19:26:32.152   INFO 836 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 19:26:32.155   INFO 836 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 19:26:32.167   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 19:26:54.287   INFO 836 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 19:26:54.434   INFO 836 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 19:26:54.434   INFO 836 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 19:26:54.448   INFO 836 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/role/list接口
+2025-01-08 19:26:56.314   INFO 836 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/list接口
+2025-01-08 19:26:57.525   INFO 836 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/permissions/getRemark接口
+2025-01-08 19:26:57.531   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/permissions/list接口
+2025-01-08 19:26:59.582   INFO 836 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/list接口
+2025-01-08 19:40:05.695   INFO 836 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 19:40:05.881   INFO 836 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 19:40:05.882   INFO 836 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 19:40:05.910   INFO 836 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/list接口
+2025-01-08 19:40:35.947   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 19:40:36.097   INFO 836 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 19:40:36.097   INFO 836 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 19:40:36.127   INFO 836 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/list接口
+2025-01-08 19:42:43.260   INFO 836 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 19:42:43.382   INFO 836 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 19:42:43.387   INFO 836 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 19:42:43.414   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/list接口
+2025-01-08 19:42:53.252   INFO 836 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:42:54.140   INFO 836 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 19:42:54.163   INFO 836 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 19:42:54.292   INFO 836 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 19:42:54.295   INFO 836 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 19:46:11.155   INFO 836 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:46:44.622   INFO 836 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 19:46:44.626   INFO 836 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 19:46:58.864   INFO 1304 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 1304 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 19:46:58.868   INFO 1304 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 19:47:01.122   INFO 1304 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 19:47:01.124   INFO 1304 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 19:47:01.155   INFO 1304 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+2025-01-08 19:47:02.264   INFO 1304 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 19:47:02.276   INFO 1304 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 19:47:02.277   INFO 1304 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 19:47:02.278   INFO 1304 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 19:47:02.390   INFO 1304 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 19:47:02.390   INFO 1304 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3450 ms
+2025-01-08 19:47:04.406   INFO 1304 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 19:47:05.068   INFO 1304 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@15c3585, org.springframework.security.web.context.SecurityContextPersistenceFilter@31f9f9b3, org.springframework.security.web.header.HeaderWriterFilter@43312512, org.springframework.web.filter.CorsFilter@5b86f4cb, org.springframework.security.web.authentication.logout.LogoutFilter@45c28c49, com.wms.filter.jwt.JwtAuthenticationTokenFilter@2d38db6f, org.springframework.security.web.session.ConcurrentSessionFilter@4abfa2ff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2b4ba2d9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57ac236a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@468646ea, org.springframework.security.web.session.SessionManagementFilter@618e7761, org.springframework.security.web.access.ExceptionTranslationFilter@6fe337a5, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3fc051ce]
+2025-01-08 19:47:05.169   INFO 1304 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 19:47:05.196   INFO 1304 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 19:47:05.639   INFO 1304 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 7.37 seconds (JVM running for 9.314)
+2025-01-08 19:47:10.407   INFO 1304 --- [nio-1217-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 19:47:10.408   INFO 1304 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 19:47:10.409   INFO 1304 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-08 19:47:10.614   INFO 1304 --- [nio-1217-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 19:47:11.080   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:47:18.788   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:48:38.088   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:48:39.520   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:48:41.137   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:48:41.291   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:48:41.458   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:48:41.625   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:49:06.764   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:52:38.812   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:53:08.748   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:53:49.198   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:54:35.979   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:55:19.388   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:55:37.806   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:55:58.580   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:56:56.228   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:57:43.045   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 19:58:10.807   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:02:28.207   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:02:29.207   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:02:29.323   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:02:29.439   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:02:29.462   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:02:31.504   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/logout接口
+2025-01-08 20:02:32.701   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:02:32.727   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:02:32.860   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:02:32.863   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:02:37.210   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:02:38.508   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:02:38.537   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:02:38.612   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:02:38.612   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:02:39.506   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:02:39.754   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:02:39.754   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:02:48.756   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:02:48.895   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:02:48.908   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:19.855   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:03:20.842   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:03:20.844   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:24.786   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:03:24.954   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:24.959   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:03:27.729   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:03:28.924   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:03:28.954   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:03:29.139   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:29.144   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:03:33.514   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:03:34.445   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:03:34.469   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:03:34.615   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:34.623   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:03:36.452   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:03:36.647   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:03:36.650   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:38.488   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:03:38.772   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:03:38.773   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:42.641   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:03:43.239   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:03:43.242   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:04:16.703   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:04:16.942   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:04:16.943   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:04:41.388   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:04:46.578   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:04:46.605   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:04:46.679   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:04:46.679   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:05:59.490   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:05:59.643   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:05:59.643   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:07:03.403   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:07:03.563   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:07:03.564   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:09:47.236   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:09:47.386   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:09:47.396   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:10:20.772   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:11:14.239   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:11:14.391   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:11:14.392   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:12:20.804   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:12:20.965   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:12:20.967   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:12:22.206   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:12:24.205   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:12:24.227   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:12:24.304   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:12:24.305   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:17:24.198   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:17:24.312   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:17:24.317   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:19:34.096   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:19:34.312   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:19:34.319   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:19:35.503   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:19:36.552   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:19:36.572   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:19:36.670   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:19:36.671   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:20:30.240   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:20:30.705   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:20:30.705   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:20:31.467   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:20:32.200   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:20:32.217   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:20:32.297   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:20:32.301   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:20:37.241   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:20:37.559   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:20:37.560   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:20:39.797   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:20:40.861   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:20:40.884   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:20:41.275   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:20:41.275   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:20:54.960   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:20:55.112   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:20:55.127   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:20:57.088   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:20:58.180   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:20:58.195   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:20:58.258   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:20:58.260   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:23:17.597   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:23:24.787   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:23:24.814   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:23:25.198   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:23:25.199   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:24:32.796   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:24:32.914   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:24:32.920   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:25:02.804   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:25:04.155   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:25:04.176   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:25:04.557   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:25:04.558   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:26:24.057   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:26:24.212   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:26:24.214   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:26:24.727   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:26:24.996   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:26:24.996   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:26:31.553   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:26:32.355   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:26:32.371   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:26:32.440   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:26:32.441   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:28:36.568   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:28:36.831   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:28:36.833   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:29:39.561   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:29:39.799   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:29:39.799   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:29:42.734   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:29:42.852   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:29:42.853   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:29:45.262   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:29:45.376   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:29:45.376   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:29:50.569   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:29:51.882   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:29:51.898   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:29:51.959   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:29:51.960   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:30:13.539   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:30:16.415   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:30:17.205   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:30:17.223   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:30:17.292   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:30:17.292   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:30:29.047   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:30:29.155   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:30:29.155   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:30:31.739   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:30:32.679   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:30:32.691   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:30:32.795   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:30:32.795   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:31:16.160   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:31:16.355   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:31:16.355   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:32:11.323   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:32:11.845   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:32:11.845   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:32:15.095   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:32:15.875   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:32:15.891   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:32:15.958   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:32:15.959   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:32:48.202   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:32:48.438   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:32:48.438   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:32:52.600   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:32:53.321   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:32:53.339   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:32:53.404   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:32:53.404   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:40:17.172   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:40:17.447   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:40:17.451   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:40:45.505   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:40:45.722   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:40:45.723   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:40:47.023   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:40:47.711   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:40:47.728   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:40:47.807   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:40:47.811   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:42:23.735   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:42:24.065   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:42:24.066   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:42:29.092   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:42:30.331   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:42:30.350   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:42:30.411   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:42:30.411   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:42:40.885   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:42:41.158   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:42:41.158   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:42:42.756   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:42:43.495   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:42:43.513   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:42:43.892   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:42:43.893   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:43:03.367   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:43:03.529   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:43:03.529   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:43:30.336   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:43:30.509   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:43:30.524   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:43:32.418   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:43:32.631   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:43:32.631   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:43:34.356   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:43:35.145   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:43:35.159   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:43:35.227   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:43:35.227   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:43:54.364   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:43:54.531   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:43:54.531   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:43:54.970   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:43:55.293   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:43:55.294   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:43:56.327   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:43:57.029   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:43:57.048   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:43:57.116   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:43:57.116   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:44:43.186   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:44:43.364   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:44:43.365   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:44:59.566   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:44:59.685   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:44:59.685   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:45:09.463   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:45:09.574   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:45:09.574   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:45:10.133   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:45:10.232   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:45:10.232   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:45:20.882   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:45:22.234   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:45:22.245   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:45:22.300   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:45:22.301   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:45:29.497   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:45:54.042   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:46:03.506   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:46:14.229   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:46:14.306   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:46:14.306   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:46:16.631   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:46:19.932   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:46:20.014   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:46:20.014   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:46:23.072   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:46:23.216   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:46:23.216   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:46:23.701   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:46:25.515   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:46:25.528   INFO 1304 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:46:25.587   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:46:25.587   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:46:44.464   INFO 1304 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:46:44.586   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:46:44.586   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:46:53.845   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:46:53.972   INFO 1304 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:46:53.972   INFO 1304 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:47:25.597   INFO 1304 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:47:25.876   INFO 1304 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:47:25.879   INFO 1304 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:47:30.206   INFO 1304 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:47:30.305   INFO 1304 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:47:30.306   INFO 1304 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:47:36.350   INFO 1304 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 20:47:36.353   INFO 1304 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 20:47:40.846   INFO 7588 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 7588 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 20:47:40.848   INFO 7588 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 20:47:41.641   INFO 7588 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 20:47:41.643   INFO 7588 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 20:47:41.667   INFO 7588 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-01-08 20:47:42.591   INFO 7588 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 20:47:42.602   INFO 7588 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 20:47:42.603   INFO 7588 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 20:47:42.603   INFO 7588 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 20:47:42.695   INFO 7588 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 20:47:42.696   INFO 7588 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1806 ms
+2025-01-08 20:47:44.179   INFO 7588 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 20:47:44.694   INFO 7588 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a010eec, org.springframework.security.web.context.SecurityContextPersistenceFilter@34001c5d, org.springframework.security.web.header.HeaderWriterFilter@64f613da, org.springframework.web.filter.CorsFilter@623ded82, org.springframework.security.web.authentication.logout.LogoutFilter@68fc636a, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9bf63d2, org.springframework.security.web.session.ConcurrentSessionFilter@43312512, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52d01430, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bc0603f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@180e33b0, org.springframework.security.web.session.SessionManagementFilter@1be12e05, org.springframework.security.web.access.ExceptionTranslationFilter@515fff35, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@573f2e67]
+2025-01-08 20:47:44.785   INFO 7588 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 20:47:44.806   INFO 7588 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 20:47:45.168   INFO 7588 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.716 seconds (JVM running for 5.611)
+2025-01-08 20:47:50.187   INFO 7588 --- [nio-1217-exec-5] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 20:47:50.187   INFO 7588 --- [nio-1217-exec-5] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 20:47:50.189   INFO 7588 --- [nio-1217-exec-5] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-01-08 20:47:50.364   INFO 7588 --- [nio-1217-exec-5] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 20:48:00.909   INFO 7588 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:48:00.996   INFO 7588 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:48:01.089   INFO 7588 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:48:01.130   INFO 7588 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:48:03.009   INFO 7588 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:48:03.736   INFO 7588 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:48:18.728   INFO 7588 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:48:18.898   INFO 7588 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:48:18.908   INFO 7588 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:48:25.417   INFO 7588 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:48:25.528   INFO 7588 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:48:25.528   INFO 7588 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:48:27.295   INFO 7588 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:48:28.160   INFO 7588 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:05.552   INFO 7588 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:06.246   INFO 7588 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:06.424   INFO 7588 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:06.598   INFO 7588 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:17.401   INFO 7588 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:39.288   INFO 7588 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:40.402   INFO 7588 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:49:40.424   INFO 7588 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:49:40.511   INFO 7588 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:49:40.523   INFO 7588 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:49:42.464   INFO 7588 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:49:43.345   INFO 7588 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:49:43.368   INFO 7588 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:49:43.433   INFO 7588 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:49:43.433   INFO 7588 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:52:39.035   INFO 7588 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 20:52:39.037   INFO 7588 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 20:52:43.716   INFO 22940 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 22940 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 20:52:43.719   INFO 22940 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 20:52:44.518   INFO 22940 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 20:52:44.521   INFO 22940 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 20:52:44.543   INFO 22940 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-01-08 20:52:45.329   INFO 22940 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 20:52:45.338   INFO 22940 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 20:52:45.338   INFO 22940 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 20:52:45.338   INFO 22940 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 20:52:45.421   INFO 22940 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 20:52:45.422   INFO 22940 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1661 ms
+2025-01-08 20:52:46.896   INFO 22940 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 20:52:47.404   INFO 22940 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2fe2fcc2, org.springframework.security.web.context.SecurityContextPersistenceFilter@5b643d6e, org.springframework.security.web.header.HeaderWriterFilter@4e210016, org.springframework.web.filter.CorsFilter@69926b6e, org.springframework.security.web.authentication.logout.LogoutFilter@62525dd3, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9f2376f, org.springframework.security.web.session.ConcurrentSessionFilter@7a2fd94c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@cbc3bf3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41948c13, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ea8224b, org.springframework.security.web.session.SessionManagementFilter@43312512, org.springframework.security.web.access.ExceptionTranslationFilter@123d0816, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3407ded1]
+2025-01-08 20:52:47.481   INFO 22940 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 20:52:47.498   INFO 22940 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 20:52:47.842   INFO 22940 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.537 seconds (JVM running for 5.469)
+2025-01-08 20:52:56.367   INFO 22940 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 20:52:56.368   INFO 22940 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 20:52:56.369   INFO 22940 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08 20:52:56.504   INFO 22940 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 20:53:22.440   INFO 22940 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:53:22.530   INFO 22940 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:53:22.621   INFO 22940 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:53:22.646   INFO 22940 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:53:24.695   INFO 22940 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:53:25.828   INFO 22940 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:53:25.859   INFO 22940 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:53:25.961   INFO 22940 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:53:25.961   INFO 22940 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:54:58.830   INFO 22940 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:54:59.248   INFO 22940 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:54:59.251   INFO 22940 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:55:42.375   INFO 22940 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 20:55:42.377   INFO 22940 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 20:55:47.317   INFO 1612 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 1612 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 20:55:47.319   INFO 1612 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 20:55:48.139   INFO 1612 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 20:55:48.142   INFO 1612 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 20:55:48.166   INFO 1612 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-01-08 20:55:48.986   INFO 1612 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 20:55:48.993   INFO 1612 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 20:55:48.994   INFO 1612 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 20:55:48.994   INFO 1612 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 20:55:49.074   INFO 1612 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 20:55:49.074   INFO 1612 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1707 ms
+2025-01-08 20:55:50.556   INFO 1612 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 20:55:51.061   INFO 1612 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@180fb796, org.springframework.security.web.context.SecurityContextPersistenceFilter@43312512, org.springframework.security.web.header.HeaderWriterFilter@7c4a5ef2, org.springframework.web.filter.CorsFilter@79ae3fb1, org.springframework.security.web.authentication.logout.LogoutFilter@69f24965, com.wms.filter.jwt.JwtAuthenticationTokenFilter@63c84d31, org.springframework.security.web.session.ConcurrentSessionFilter@58e4aa67, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55d87b73, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@30ca66c5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7fa8fff, org.springframework.security.web.session.SessionManagementFilter@4601a148, org.springframework.security.web.access.ExceptionTranslationFilter@7d7c05fa, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@251e2f4a]
+2025-01-08 20:55:51.134   INFO 1612 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 20:55:51.151   INFO 1612 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 20:55:51.494   INFO 1612 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.694 seconds (JVM running for 5.606)
+2025-01-08 20:55:56.407   INFO 1612 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 20:55:56.408   INFO 1612 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 20:55:56.409   INFO 1612 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08 20:55:56.608   INFO 1612 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 20:56:16.223   INFO 1612 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:56:16.310   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:56:16.400   INFO 1612 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:56:16.417   INFO 1612 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:56:19.483   INFO 1612 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:56:20.879   INFO 1612 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:56:45.453   INFO 1612 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:56:55.449   INFO 1612 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:56:59.017   INFO 1612 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:57:18.333   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:57:18.487   INFO 1612 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:57:18.510   INFO 1612 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:57:19.511   INFO 1612 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:57:20.514   INFO 1612 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:57:20.536   INFO 1612 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:57:20.619   INFO 1612 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:57:20.619   INFO 1612 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:57:25.415   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:57:26.294   INFO 1612 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:57:26.320   INFO 1612 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:57:26.382   INFO 1612 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:57:26.382   INFO 1612 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:22.805   INFO 1612 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:22.995   INFO 1612 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:58:22.995   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:23.671   INFO 1612 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:58:24.436   INFO 1612 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:58:24.455   INFO 1612 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:24.504   INFO 1612 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:58:24.504   INFO 1612 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:27.923   INFO 1612 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:58:37.382   INFO 1612 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:37.448   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:58:37.448   INFO 1612 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:39.294   INFO 1612 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:58:40.050   INFO 1612 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:58:40.075   INFO 1612 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:40.151   INFO 1612 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:40.151   INFO 1612 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:58:50.341   INFO 1612 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:50.483   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:50.483   INFO 1612 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:58:50.860   INFO 1612 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:50.984   INFO 1612 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:50.984   INFO 1612 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:58:53.331   INFO 1612 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:58:54.155   INFO 1612 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:58:54.174   INFO 1612 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:54.220   INFO 1612 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 20:58:54.221   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:57.285   INFO 1612 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 20:58:58.161   INFO 1612 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 20:58:58.177   INFO 1612 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 20:58:58.250   INFO 1612 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 20:58:58.250   INFO 1612 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:00:42.358   INFO 1612 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:00:42.509   INFO 1612 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:00:42.512   INFO 1612 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:00:58.998   INFO 1612 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:00:59.136   INFO 1612 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:00:59.136   INFO 1612 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:01:18.149   INFO 1612 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:01:18.274   INFO 1612 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:01:18.274   INFO 1612 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:01:24.525   INFO 1612 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 21:01:24.527   INFO 1612 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 21:01:28.867   INFO 19348 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 19348 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 21:01:28.870   INFO 19348 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 21:01:29.662   INFO 19348 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 21:01:29.664   INFO 19348 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 21:01:29.691   INFO 19348 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2025-01-08 21:01:30.424   INFO 19348 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 21:01:30.432   INFO 19348 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:01:30.433   INFO 19348 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 21:01:30.433   INFO 19348 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 21:01:30.519   INFO 19348 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 21:01:30.519   INFO 19348 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1600 ms
+2025-01-08 21:01:32.153   INFO 19348 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 21:01:32.644   INFO 19348 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5a010eec, org.springframework.security.web.context.SecurityContextPersistenceFilter@34001c5d, org.springframework.security.web.header.HeaderWriterFilter@64f613da, org.springframework.web.filter.CorsFilter@623ded82, org.springframework.security.web.authentication.logout.LogoutFilter@68fc636a, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9bf63d2, org.springframework.security.web.session.ConcurrentSessionFilter@43312512, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52d01430, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bc0603f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@180e33b0, org.springframework.security.web.session.SessionManagementFilter@1be12e05, org.springframework.security.web.access.ExceptionTranslationFilter@515fff35, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@573f2e67]
+2025-01-08 21:01:32.725   INFO 19348 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:01:32.742   INFO 19348 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 21:01:33.089   INFO 19348 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.601 seconds (JVM running for 5.391)
+2025-01-08 21:01:38.017   INFO 19348 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 21:01:38.017   INFO 19348 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 21:01:38.018   INFO 19348 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08 21:01:38.190   INFO 19348 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 21:01:41.597   INFO 19348 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:01:41.679   INFO 19348 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:01:41.753   INFO 19348 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:01:41.772   INFO 19348 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:01:43.603   INFO 19348 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:02:13.196   INFO 19348 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 21:02:13.201   INFO 19348 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 21:02:18.272   INFO 19440 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 19440 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 21:02:18.274   INFO 19440 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 21:02:19.087   INFO 19440 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 21:02:19.089   INFO 19440 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 21:02:19.117   INFO 19440 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-01-08 21:02:19.933   INFO 19440 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 21:02:19.940   INFO 19440 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:02:19.940   INFO 19440 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 21:02:19.940   INFO 19440 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 21:02:20.027   INFO 19440 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 21:02:20.027   INFO 19440 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1717 ms
+2025-01-08 21:02:21.472   INFO 19440 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 21:02:21.951   INFO 19440 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@270be080, org.springframework.security.web.context.SecurityContextPersistenceFilter@73230721, org.springframework.security.web.header.HeaderWriterFilter@1c25deb0, org.springframework.web.filter.CorsFilter@752ffce3, org.springframework.security.web.authentication.logout.LogoutFilter@6e00d737, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9f2376f, org.springframework.security.web.session.ConcurrentSessionFilter@55d87b73, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3085befb, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@322eb1a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@78f35e39, org.springframework.security.web.session.SessionManagementFilter@637c8632, org.springframework.security.web.access.ExceptionTranslationFilter@58e4aa67, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@24a807a9]
+2025-01-08 21:02:22.025   INFO 19440 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:02:22.041   INFO 19440 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 21:02:22.398   INFO 19440 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.513 seconds (JVM running for 5.396)
+2025-01-08 21:02:31.626   INFO 19440 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 21:02:31.626   INFO 19440 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 21:02:31.627   INFO 19440 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08 21:02:31.736   INFO 19440 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 21:02:32.918   INFO 19440 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:02:33.005   INFO 19440 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:02:33.078   INFO 19440 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:02:33.097   INFO 19440 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:02:34.804   INFO 19440 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:02:35.765   INFO 19440 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 21:02:35.788   INFO 19440 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:02:35.863   INFO 19440 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:02:35.865   INFO 19440 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:02:38.891   INFO 19440 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:02:42.389   INFO 19440 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:02:43.014   INFO 19440 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 21:02:43.033   INFO 19440 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:02:43.081   INFO 19440 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:02:43.081   INFO 19440 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:02:43.997   INFO 19440 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:02:44.039   INFO 19440 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:02:44.039   INFO 19440 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:02:52.797   INFO 19440 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:02:53.572   INFO 19440 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 21:02:53.595   INFO 19440 --- [io-1217-exec-10] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:02:53.666   INFO 19440 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:02:53.666   INFO 19440 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:05:11.178   INFO 19440 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 21:05:11.183   INFO 19440 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 21:05:15.363   INFO 13444 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 13444 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 21:05:15.365   INFO 13444 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 21:05:16.134   INFO 13444 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 21:05:16.136   INFO 13444 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 21:05:16.159   INFO 13444 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 14 ms. Found 0 Redis repository interfaces.
+2025-01-08 21:05:16.911   INFO 13444 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 21:05:16.919   INFO 13444 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:05:16.920   INFO 13444 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 21:05:16.920   INFO 13444 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 21:05:17.005   INFO 13444 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 21:05:17.005   INFO 13444 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1592 ms
+2025-01-08 21:05:18.489   INFO 13444 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 21:05:19.036   INFO 13444 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4803bf73, org.springframework.security.web.context.SecurityContextPersistenceFilter@4eab9aec, org.springframework.security.web.header.HeaderWriterFilter@5b643d6e, org.springframework.web.filter.CorsFilter@13731ff4, org.springframework.security.web.authentication.logout.LogoutFilter@1abea1ed, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9f2376f, org.springframework.security.web.session.ConcurrentSessionFilter@3085befb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a712f12, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@18301763, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1ce8084a, org.springframework.security.web.session.SessionManagementFilter@31f9f9b3, org.springframework.security.web.access.ExceptionTranslationFilter@55d87b73, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@72406594]
+2025-01-08 21:05:19.113   INFO 13444 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:05:19.131   INFO 13444 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 21:05:19.541   INFO 13444 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.584 seconds (JVM running for 5.426)
+2025-01-08 21:05:23.871   INFO 13444 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-0} closing ...
+2025-01-08 21:05:26.663   INFO 8940 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 8940 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 21:05:26.674   INFO 8940 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 21:05:27.824   INFO 8940 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 21:05:27.826   INFO 8940 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 21:05:27.856   INFO 8940 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2025-01-08 21:05:28.624   INFO 8940 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 21:05:28.634   INFO 8940 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:05:28.634   INFO 8940 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 21:05:28.635   INFO 8940 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 21:05:28.729   INFO 8940 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 21:05:28.730   INFO 8940 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1848 ms
+2025-01-08 21:05:30.226   INFO 8940 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 21:05:30.781   INFO 8940 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@35d8ba22, org.springframework.security.web.context.SecurityContextPersistenceFilter@1be12e05, org.springframework.security.web.header.HeaderWriterFilter@ed1d2cf, org.springframework.web.filter.CorsFilter@3fc051ce, org.springframework.security.web.authentication.logout.LogoutFilter@2bc0603f, com.wms.filter.jwt.JwtAuthenticationTokenFilter@63c84d31, org.springframework.security.web.session.ConcurrentSessionFilter@4601a148, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@637c8632, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@55d87b73, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3c5bb37d, org.springframework.security.web.session.SessionManagementFilter@5eb9bf7d, org.springframework.security.web.access.ExceptionTranslationFilter@a0bdbe2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5644f664]
+2025-01-08 21:05:30.851   INFO 8940 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:05:30.867   INFO 8940 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 21:05:31.203   INFO 8940 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 5.192 seconds (JVM running for 6.082)
+2025-01-08 21:05:40.698   INFO 8940 --- [nio-1217-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 21:05:40.698   INFO 8940 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 21:05:40.699   INFO 8940 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08 21:05:40.882   INFO 8940 --- [nio-1217-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 21:05:41.299   INFO 8940 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:05:42.285   INFO 8940 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:05:42.309   INFO 8940 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:05:42.425   INFO 8940 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:05:42.448   INFO 8940 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:06:06.700   INFO 8940 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:06:06.725   INFO 8940 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:06:06.797   INFO 8940 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:06:06.798   INFO 8940 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:06:09.150   INFO 8940 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:06:09.250   INFO 8940 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:06:09.250   INFO 8940 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:06:10.554   INFO 8940 --- [nio-1217-exec-8] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:06:10.664   INFO 8940 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:06:10.664   INFO 8940 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:06:28.674   INFO 8940 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 21:06:28.682   INFO 8940 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 21:06:31.482   INFO 3356 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 3356 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 21:06:31.485   INFO 3356 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 21:06:32.255   INFO 3356 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 21:06:32.257   INFO 3356 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 21:06:32.283   INFO 3356 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-01-08 21:06:33.083   INFO 3356 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 21:06:33.096   INFO 3356 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:06:33.096   INFO 3356 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 21:06:33.097   INFO 3356 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 21:06:33.261   INFO 3356 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 21:06:33.261   INFO 3356 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1737 ms
+2025-01-08 21:06:34.704   INFO 3356 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 21:06:35.258   INFO 3356 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a9e7b4d, org.springframework.security.web.context.SecurityContextPersistenceFilter@34001c5d, org.springframework.security.web.header.HeaderWriterFilter@64f613da, org.springframework.web.filter.CorsFilter@72406594, org.springframework.security.web.authentication.logout.LogoutFilter@5c20505f, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9f2376f, org.springframework.security.web.session.ConcurrentSessionFilter@43312512, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@73230721, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@cbc3bf3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4e1104f4, org.springframework.security.web.session.SessionManagementFilter@1be12e05, org.springframework.security.web.access.ExceptionTranslationFilter@515fff35, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4e782401]
+2025-01-08 21:06:35.340   INFO 3356 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:06:35.365   INFO 3356 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 21:06:35.759   INFO 3356 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.668 seconds (JVM running for 5.538)
+2025-01-08 21:06:38.783   INFO 3356 --- [nio-1217-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 21:06:38.783   INFO 3356 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 21:06:38.784   INFO 3356 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08 21:06:38.903   INFO 3356 --- [nio-1217-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 21:06:39.271   INFO 3356 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:06:41.858   INFO 3356 --- [nio-1217-exec-3] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:06:42.925   INFO 3356 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:06:42.956   INFO 3356 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:06:43.044   INFO 3356 --- [nio-1217-exec-6] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:06:43.063   INFO 3356 --- [nio-1217-exec-7] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:06:44.468   INFO 3356 --- [nio-1217-exec-9] com.wms.aspect.LogAspect                 : 有用户调用/member/login接口
+2025-01-08 21:06:45.444   INFO 3356 --- [nio-1217-exec-2] com.wms.aspect.LogAspect                 : 有用户调用/member/constraintLogin接口
+2025-01-08 21:06:45.462   INFO 3356 --- [nio-1217-exec-1] com.wms.aspect.LogAspect                 : 有用户调用/member/getInfo接口
+2025-01-08 21:06:45.514   INFO 3356 --- [nio-1217-exec-4] com.wms.aspect.LogAspect                 : 有用户调用/system/plcStatus接口
+2025-01-08 21:06:45.517   INFO 3356 --- [nio-1217-exec-5] com.wms.aspect.LogAspect                 : 有用户调用/system/getSetting接口
+2025-01-08 21:07:10.805   INFO 3356 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 21:07:10.810   INFO 3356 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 21:07:13.414   INFO 21484 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 21484 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 21:07:13.417   INFO 21484 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 21:07:14.192   INFO 21484 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 21:07:14.194   INFO 21484 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 21:07:14.220   INFO 21484 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-01-08 21:07:14.954   INFO 21484 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 21:07:14.962   INFO 21484 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:07:14.963   INFO 21484 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 21:07:14.963   INFO 21484 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 21:07:15.048   INFO 21484 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 21:07:15.048   INFO 21484 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1584 ms
+2025-01-08 21:07:16.488   INFO 21484 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 21:07:16.968   INFO 21484 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@254d8ef6, org.springframework.security.web.context.SecurityContextPersistenceFilter@156eeff1, org.springframework.security.web.header.HeaderWriterFilter@5eb9bf7d, org.springframework.web.filter.CorsFilter@2a9e7b4d, org.springframework.security.web.authentication.logout.LogoutFilter@6aa18912, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9f2376f, org.springframework.security.web.session.ConcurrentSessionFilter@7d60bd5a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@38c1b1a7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@792b9dd3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72406594, org.springframework.security.web.session.SessionManagementFilter@1c25deb0, org.springframework.security.web.access.ExceptionTranslationFilter@7fa68ff4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@37b5a51c]
+2025-01-08 21:07:17.042   INFO 21484 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:07:17.058   INFO 21484 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 21:07:17.412   INFO 21484 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.405 seconds (JVM running for 5.244)
+2025-01-08 21:07:25.949   INFO 21484 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 21:07:25.949   INFO 21484 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 21:07:25.950   INFO 21484 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-01-08 21:07:26.064   INFO 21484 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 21:13:56.607   INFO 21484 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 21:13:56.609   INFO 21484 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-01-08 21:14:01.094   INFO 2192 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 2192 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-01-08 21:14:01.097   INFO 2192 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-01-08 21:14:01.874   INFO 2192 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-01-08 21:14:01.875   INFO 2192 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-01-08 21:14:01.897   INFO 2192 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 12 ms. Found 0 Redis repository interfaces.
+2025-01-08 21:14:02.646   INFO 2192 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-01-08 21:14:02.656   INFO 2192 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:14:02.656   INFO 2192 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-01-08 21:14:02.656   INFO 2192 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-01-08 21:14:02.745   INFO 2192 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-01-08 21:14:02.745   INFO 2192 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1602 ms
+2025-01-08 21:14:04.255   INFO 2192 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2025-01-08 21:14:04.723   INFO 2192 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25fcdcc6, org.springframework.security.web.context.SecurityContextPersistenceFilter@7d60bd5a, org.springframework.security.web.header.HeaderWriterFilter@7dbbf730, org.springframework.web.filter.CorsFilter@180fb796, org.springframework.security.web.authentication.logout.LogoutFilter@2b4ba2d9, com.wms.filter.jwt.JwtAuthenticationTokenFilter@9f2376f, org.springframework.security.web.session.ConcurrentSessionFilter@1e033801, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@37ab1b10, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@22ed2886, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@79ae3fb1, org.springframework.security.web.session.SessionManagementFilter@123d0816, org.springframework.security.web.access.ExceptionTranslationFilter@5f81507a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1a05ff8e]
+2025-01-08 21:14:04.797   INFO 2192 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-01-08 21:14:04.813   INFO 2192 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-01-08 21:14:05.183   INFO 2192 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.493 seconds (JVM running for 5.352)
+2025-01-08 21:14:18.827   INFO 2192 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-01-08 21:14:18.827   INFO 2192 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-01-08 21:14:18.828   INFO 2192 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-01-08 21:14:18.993   INFO 2192 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-08 21:24:13.338   INFO 2192 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-08 21:24:13.346   INFO 2192 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

@@ -19,8 +19,8 @@ export default {
   width: 100vw;
   height: 100vh;
 }
-
 .app::-webkit-scrollbar {
   display: none;
 }
+
 </style>

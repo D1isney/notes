@@ -54,4 +54,4 @@ login:
     isLogin: 0 # 是否校验用户已登录
     tokenIsReal: 0 # 是否开启Token有效性验证
     header: Authorization # 请求头
-    ifSaveLog: 0
+    ifSaveLog: 0 # 是否开启日志

@@ -35,6 +35,16 @@ if (process.env.NODE_ENV === 'production') {
 Vue.use(ElementUI, { locale })
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
+Vue.directive('removeHidden', {
+  bind(el) {
+    // 查找所有匹配的元素
+    const ariaEl = el.querySelectorAll('.el-radio__original[aria-hidden]')
+    ariaEl.forEach((item) => {
+      // 移除 aria-hidden 属性
+      item.removeAttribute('aria-hidden')
+    })
+  }
+})
 
 Vue.config.productionTip = false
 

@@ -78,6 +78,8 @@ public class LogAspect {
         if (ifSaveLog > 0){
             long beginTime = System.currentTimeMillis();
             Long executeTime = System.currentTimeMillis() - beginTime; // 执行时长(毫秒)
+            Object[] args = pj.getArgs();
+            System.out.println(args);
             String params = JSON.toJSONString(pj.getArgs()); // 接口入参
             MethodSignature methodSignature = (MethodSignature) pj.getSignature();
             Method targetMethod = methodSignature.getMethod();

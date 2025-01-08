@@ -3,13 +3,20 @@
     <div class="param-table">
 
     </div>
+    <div class="page">
+      <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList" />
+    </div>
   </div>
 </template>
 
 <script>
 
+import { getParamsList } from '@/api/params/paramsAPI'
+import pagination from '@/components/Pagination/index.vue'
+
 export default {
   components: {
+    pagination
   },
   data() {
     return {
@@ -26,8 +33,15 @@ export default {
   computed: {
   },
   created() {
+    this.getList()
   },
-  methods: {}
+  methods: {
+    async getList(){
+      await getParamsList(this.query).then(res=>{
+        console.log(res)
+      })
+    }
+  }
 }
 </script>
 

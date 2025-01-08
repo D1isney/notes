@@ -24,16 +24,6 @@
         >
         </el-table-column>
         <el-table-column
-          property="createUsername"
-          label="创建人"
-        >
-        </el-table-column>
-        <el-table-column
-          property="updateUsername"
-          label="更新人"
-        >
-        </el-table-column>
-        <el-table-column
           label="角色状态"
         >
           <template v-slot="{row}">
@@ -64,7 +54,7 @@
         <el-table-column
           align="right"
         >
-          <template slot="header" slot-scope="scope">
+          <template slot="header">
             <el-row :gutter="20">
               <el-col :span="16">
                 <el-input
@@ -164,7 +154,7 @@
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="备注">
-              <el-input type="textarea" v-model="modifyList.remark"/>
+              <el-input type="textarea" v-model="modifyList.remark" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -492,18 +482,12 @@ export default {
   padding-right: 0.5%;
 
   .button-box-add {
-    width: 3%;
+    width: 4%;
     height: 80%;
-  //background-color: transparent; border: 0;
-  }
-
-  .button-box-add:hover {
-    background: rgba(100, 255, 255, 255);
-    transition: 0.5s;
   }
 
   .button-box-delete {
-    width: 3%;
+    width: 4%;
     height: 80%;
   }
 }

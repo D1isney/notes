@@ -27,6 +27,7 @@ import javax.annotation.Resource;
 import java.util.*;
 
 import static com.wms.constant.MemberConstant.CONTINUE_LOGIN;
+import static com.wms.constant.MemberConstant.GO_ON_LOGIN;
 
 @Service
 public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, MemberVo> implements MemberService {
@@ -122,7 +123,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         //  校验用户是否登陆过
         if (null != MemberThreadLocal.getMemberInfoMap(id)) {
             R<Object> r = R.ok("已经有人登录，是否继续登录？");
-            r.setCode(CONTINUE_LOGIN);
+            r.setCode(GO_ON_LOGIN);
             return r;
         }
         return null;
@@ -241,7 +242,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         }
         LoginMember memberInfoMap = MemberThreadLocal.getMemberInfoMap(Long.valueOf(userid));
         if (memberInfoMap == null) {
-            return R.error("用户还未登录，请重新登录！", null);
+            return R.error("用户还未登录，请重新登录！", 400);
         }
         memberInfoMap.getMember().setSalt("******");
         memberInfoMap.getMember().setPassword("******");

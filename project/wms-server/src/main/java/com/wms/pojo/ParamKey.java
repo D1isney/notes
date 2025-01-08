@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -33,9 +32,9 @@ public class ParamKey implements Serializable {
     @TableField("`key`")
     private String key;
 
-    @ApiModelProperty(value = "V值")
-    @TableField("`value`")
-    private String value;
+    @ApiModelProperty(value = "类型")
+    @TableField("`type`")
+    private Integer type;
 
     @ApiModelProperty(value = "参数名")
     @TableField("`name`")

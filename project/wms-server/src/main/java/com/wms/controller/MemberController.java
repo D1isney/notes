@@ -53,7 +53,9 @@ public class MemberController {
     @PostMapping("constraintLogin")
     @Log(value = "强制登录", path = "/member/constraintLogin")
     public R<?> constraintLogin(@RequestBody Member member) {
-        return memberService.constraintLogin(member);
+        R<?> r = memberService.constraintLogin(member);
+        member.setPassword("*************");
+        return r;
     }
 
     @GetMapping("logout")

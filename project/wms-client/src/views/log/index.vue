@@ -85,11 +85,15 @@
       <div class="button-box">
         <el-row>
           <el-col :span="7">
-            <el-input
-              v-model="type"
-              placeholder="日志级别"
-              clearable
-            />
+            <el-select v-model="type" placeholder="日志级别">
+              <el-option
+                v-for="item in optionsType"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+
           </el-col>
           <el-col :span="9" :push="1">
             <el-date-picker
@@ -135,7 +139,20 @@ export default {
       },
       total: 0,
       type: '',
-      createTime: ''
+      createTime: '',
+      optionsType: [{
+        value: '0',
+        label: '普通日志'
+      },{
+        value: '1',
+        label: '警告日志'
+      },{
+        value: '2',
+        label: '危险日志'
+      },{
+        value: '3',
+        label: '报警日志'
+      }]
     }
   },
   computed: {

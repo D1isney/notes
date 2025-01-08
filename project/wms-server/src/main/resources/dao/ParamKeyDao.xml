@@ -6,7 +6,7 @@
     <resultMap id="ParamKeyMap" type="com.wms.pojo.ParamKey">
         <id column="id" property="id" />
         <result column="key" property="key" />
-        <result column="value" property="value" />
+        <result column="type" property="type" />
         <result column="name" property="name" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
@@ -23,7 +23,7 @@
     <!-- 保存列 -->
     <sql id="saveColumnBase">
         `key`,
-        `value`,
+        `type`,
         `name`,
         `create_time`,
         `update_time`,
@@ -44,7 +44,7 @@
     </sql>
 
     <sql id="keyColumn">`key` = #{entity.key},</sql>
-    <sql id="valueColumn">`value` = #{entity.value},</sql>
+    <sql id="typeColumn">`type` = #{entity.type},</sql>
     <sql id="nameColumn">`name` = #{entity.name},</sql>
     <sql id="createTimeColumn">`create_time` = #{entity.createTime},</sql>
     <sql id="updateTimeColumn">`update_time` = #{entity.updateTime},</sql>
@@ -55,7 +55,7 @@
     <sql id="updateColumnNotNull">
         <set>
             <if test="entity.key != null"><include refid="nameColumn"/></if>
-            <if test="entity.value != null"><include refid="valueColumn"/></if>
+            <if test="entity.type != null"><include refid="typeColumn"/></if>
             <if test="entity.name != null"><include refid="nameColumn"/></if>
             <if test="entity.createTime != null"><include refid="createTimeColumn"/></if>
             <if test="entity.updateTime != null"><include refid="updateTimeColumn"/></if>
@@ -66,7 +66,7 @@
     </sql>
     <sql id="entityColumn">
         <include refid="keyColumn"/>
-        <include refid="valueColumn"/>
+        <include refid="typeColumn"/>
         <include refid="nameColumn"/>
         <include refid="createTimeColumn"/>
         <include refid="updateTimeColumn"/>
@@ -78,7 +78,7 @@
     <sql id="queryListColumnBase">
         t.id,
          t.key,
-         t.value,
+         t.type,
          t.name,
          t.create_time,
          t.update_time,

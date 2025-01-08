@@ -1,6 +1,7 @@
 import { login, logout, getInfo } from '@/api/member/member'
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { resetRouter } from '@/router'
+import router, { resetRouter } from '@/router'
+import store from '@/store'
 
 const getDefaultState = () => {
   return {
@@ -44,10 +45,15 @@ const actions = {
   },
 
   // get user info
-  getInfo({ commit, state }) {
+  getInfo: function({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
         const { data } = response
+        if (response.code === 701 || response.code === 401){
+          removeToken() // must remove  token  first
+          commit('RESET_STATE')
+          // this.$router.push({ path: '/login' })
+        }
         if (data) {
           commit('SET_NAME', data.name)
           resolve(data)

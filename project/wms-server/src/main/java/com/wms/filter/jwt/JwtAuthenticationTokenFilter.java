@@ -62,7 +62,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
 
         if (tokenIsReal > 0) {
-            boolean tokenIsReal = tokenIsReal(userid, response);
+            boolean tokenIsReal = tokenIsReal(userid, response,authorization);
             if (!tokenIsReal) {
                 return;
             }
@@ -83,7 +83,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginMember, null, loginMember.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-
         filterChain.doFilter(request, response);
     }
 
@@ -96,11 +95,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
      * @return true：有效 false：无效
      * @throws IOException 异常
      */
-    public boolean tokenIsReal(String userid, HttpServletResponse response) throws IOException {
+    public boolean tokenIsReal(String userid, HttpServletResponse response,String authorization) throws IOException {
         //  校验用户的token是否有效的
         String mainThreadLoginMemberTokenForId = MemberThreadLocal.getMainThreadLoginMemberTokenForId(Long.valueOf(userid));
         if (Objects.isNull(mainThreadLoginMemberTokenForId)) {
-            R<Object> r = R.ok("无效Token，请重新登录！");
+            R<Object> r = R.error("用户已失效，请重新登录！");
+            r.setCode(CONTINUE_LOGIN);
+            HttpUtil.responseJSON((HttpServletResponse) response, r);
+            return false;
+        }
+        if (!Objects.equals(mainThreadLoginMemberTokenForId, authorization)) {
+            R<Object> r = R.error("用户已失效，请重新登录！");
             r.setCode(CONTINUE_LOGIN);
             HttpUtil.responseJSON((HttpServletResponse) response, r);
             return false;

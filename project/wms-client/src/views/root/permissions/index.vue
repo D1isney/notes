@@ -9,10 +9,7 @@
         style="width: 100%"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column
-          type="selection"
-        >
-        </el-table-column>
+        <el-table-column type="selection" />
         <el-table-column type="expand">
           <template slot-scope="props">
             <el-form label-position="left" inline class="demo-table-expand">
@@ -51,23 +48,10 @@
             </el-form>
           </template>
         </el-table-column>
-        <el-table-column
-          prop="createTime"
-          label="创建日期"
-          sortable
-        >
-        </el-table-column>
-        <el-table-column
-          prop="updateTime"
-          label="更新时间"
-          sortable
-        >
-        </el-table-column>
-        <el-table-column
-          prop="code"
-          label="权限编码"
-        >
-        </el-table-column>
+        <el-table-column prop="createTime" label="创建日期" sortable />
+        <el-table-column prop="updateTime" label="更新时间" sortable />
+        <el-table-column prop="code" label="权限编码" />
+
         <el-table-column
           prop="remark"
           label="描述"
@@ -86,7 +70,7 @@
         <el-table-column
           align="right"
         >
-          <template slot="header" slot-scope="scope">
+          <template slot="header">
             <el-row :gutter="20">
               <el-col :span="12">
                 <el-input
@@ -96,10 +80,10 @@
                 />
               </el-col>
               <el-col :span="4" :push="2">
-                <el-button type="primary" icon="el-icon-search" @click="getPermissionsList()"/>
+                <el-button type="primary" icon="el-icon-search" @click="getPermissionsList()" />
               </el-col>
               <el-col :span="4" :push="2">
-                <el-button type="primary" icon="el-icon-refresh" @click="clearFilter()"/>
+                <el-button type="primary" icon="el-icon-refresh" @click="clearFilter()" />
               </el-col>
             </el-row>
           </template>
@@ -119,14 +103,13 @@
         </el-table-column>
       </el-table>
       <div class="button-box">
-        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="superPermissions()"/>
-        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openDrawerAdd()"/>
-        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid" @click="deleteAll()"/>
+        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openDrawerAdd()" />
+        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid" @click="deleteAll()" />
       </div>
     </div>
 
     <div class="page">
-      <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getPermissionsList"/>
+      <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getPermissionsList" />
     </div>
     <el-drawer
       title="修改权限"
@@ -135,28 +118,28 @@
     >
       <el-form :ref="modifyPermissionsList" :model="modifyPermissionsList" label-width="80px" :rules="rules">
         <el-form-item label="权限名称" prop="name">
-          <el-input v-model="modifyPermissionsList.name"></el-input>
+          <el-input v-model="modifyPermissionsList.name" />
         </el-form-item>
         <el-form-item label="权限编码">
-          <el-input v-model="modifyPermissionsList.code" disabled></el-input>
+          <el-input v-model="modifyPermissionsList.code" disabled />
         </el-form-item>
         <el-form-item label="权限">
-          <el-input v-model="modifyPermissionsList.path"></el-input>
+          <el-input v-model="modifyPermissionsList.path" />
         </el-form-item>
         <el-form-item label="创建时间">
-          <el-input v-model="modifyPermissionsList.createTime" disabled></el-input>
+          <el-input v-model="modifyPermissionsList.createTime" disabled />
         </el-form-item>
         <el-form-item label="更新时间">
-          <el-input v-model="modifyPermissionsList.updateTime" disabled></el-input>
+          <el-input v-model="modifyPermissionsList.updateTime" disabled />
         </el-form-item>
         <el-form-item label="创建人">
-          <el-input v-model="modifyPermissionsList.createUsername" disabled></el-input>
+          <el-input v-model="modifyPermissionsList.createUsername" disabled />
         </el-form-item>
         <el-form-item label="更新人">
-          <el-input v-model="modifyPermissionsList.updateUsername" disabled></el-input>
+          <el-input v-model="modifyPermissionsList.updateUsername" disabled />
         </el-form-item>
         <el-form-item label="描述">
-          <el-input v-model="modifyPermissionsList.remark"></el-input>
+          <el-input v-model="modifyPermissionsList.remark" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="modifyPermissions()">修改</el-button>
@@ -170,25 +153,25 @@
       :visible.sync="addDrawer"
       :direction="direction"
     >
-      <el-form label-position="right" label-width="80px" :model="addList" :rules="rules" :ref="addList">
+      <el-form :ref="addList" label-position="right" label-width="80px" :model="addList" :rules="rules">
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="权限名称" prop="name">
-              <el-input v-model="addList.name"/>
+              <el-input v-model="addList.name" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="权限" prop="path">
-              <el-input v-model="addList.path"/>
+              <el-input v-model="addList.path" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="描述">
-              <el-input type="textarea" v-model="addList.remark"/>
+              <el-input v-model="addList.remark" type="textarea" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -329,7 +312,6 @@ export default {
           message: '已取消删除'
         })
       })
-
     },
     openDrawerAdd() {
       this.addDrawer = true
@@ -362,7 +344,7 @@ export default {
         this.$message.warning('请先勾选需要操作的权限')
         return
       }
-      let ids = this.multipleSelection.map(item => item.id)
+      const ids = this.multipleSelection.map(item => item.id)
       this.$confirm('此操作将永久删除已选中的权限, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -422,23 +404,15 @@ export default {
     padding-right: 0.5%;
 
     .button-box-add {
-      width: 3%;
+      width: 4%;
       height: 80%;
-    //background-color: transparent; border: 0;
-    }
-
-    .button-box-add:hover {
-      background: rgba(100, 255, 255, 255);
-      transition: 0.5s;
     }
 
     .button-box-delete {
-      width: 3%;
+      width: 4%;
       height: 80%;
     }
   }
 }
-
-
 </style>
 

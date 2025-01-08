@@ -61,9 +61,8 @@
 </template>
 
 <script>
-import { getToken, removeToken, setToken } from '@/utils/auth'
+import { removeToken, setToken } from '@/utils/auth'
 import { constraintLogin, login } from '@/api/member/member'
-import { getSystemPlcStatus } from '@/api/system/systemAPI'
 
 export default {
   name: 'Login',
@@ -104,6 +103,9 @@ export default {
       immediate: true
     }
   },
+  created() {
+    removeToken()
+  },
   methods: {
     showPwd() {
       if (this.passwordType === 'password') {
@@ -124,7 +126,7 @@ export default {
             if (res.code === 200) {
               setToken(res.data)
               this.$router.push({ path: this.redirect || '/' })
-            } else if (res.code === 400) {
+            } else if (res.code === 701) {
               this.$confirm(res.message, '登录提示', {
                 distinguishCancelAndClose: true,
                 confirmButtonText: '确认',

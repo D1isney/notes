@@ -1,12 +1,12 @@
 import axios from 'axios'
-import {Message} from 'element-ui'
+import { Message } from 'element-ui'
+import { getToken, removeToken } from '@/utils/auth'
 import store from '@/store'
-import {getToken} from '@/utils/auth'
-import {baseURL} from '@/settings'
+import router from '@/router'
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API,
-  timeout: 30 * 1000
+  timeout: 1000
 })
 
 service.interceptors.request.use(
@@ -23,7 +23,6 @@ service.interceptors.request.use(
       message: error,
       duration: 5 * 1000
     })
-    console.log(error)
     return Promise.reject(error)
   }
 )
@@ -31,27 +30,25 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (res.code === 0 || res.code === 400 || res.code === 200) {
+    if ([0, 200, 701].includes(res.code)) {
       return res
-    } else if (res.code === 300) {
-      Message({
-        type: 'error',
-        message: res.message + '系统即将自动退出！',
-        duration: 3 * 1000
+    } else if ([400].includes(res.code)) { // Token失效
+      store.dispatch('user/resetToken').then(() => {
+        Message.error(res.message)
+        setTimeout(()=>{
+          router.push('/login')
+        },2*1000)
       })
-      setTimeout(() => {
-        store.dispatch('user/loOut').then(() => {
-          location.reload()
-        })
-      }, 3000)
-      return res
+    // } else if ([401].includes(res.code)) { // 登录失效
+    //   store.dispatch('user/resetToken').then(r => {
+    //     setTimeout(() => {
+    //       router.push('/login')
+    //     },1 * 1000)
+    //   })
+    //   return res
     } else {
-      Message({
-        type: 'error',
-        message: res.message,
-        duration: 5 * 1000
-      })
-      console.log(res.message)
+      console.log('响应错误:', response.config.url, res.code, res.message)
+      Message.error(res.message)
       return Promise.reject(res.message)
     }
   },

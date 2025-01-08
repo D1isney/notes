@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
-    <breadcrumb class="breadcrumb-container"/>
+    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-button icon="el-icon-s-tools" class="system-button" @click="systemDrawer = true">系统配置</el-button>
     </div>
@@ -45,21 +45,21 @@
         <el-row :gutter="10">
           <el-col :span="13">
             <el-form-item label="IP：">
-              <el-input placeholder="127.0.0.1" v-model="settingList.ip"></el-input>
+              <el-input v-model="settingList.ip" placeholder="127.0.0.1" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="10">
           <el-col :span="13">
             <el-form-item label="端口：">
-              <el-input placeholder="502" v-model="settingList.port"></el-input>
+              <el-input v-model="settingList.port" placeholder="502" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="10">
           <el-col :span="13">
             <el-form-item label="slaveId：">
-              <el-input placeholder="1" v-model="settingList.slaveId"></el-input>
+              <el-input v-model="settingList.slaveId" placeholder="1" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -67,39 +67,25 @@
           <el-button type="primary" @click="saveOrUpdateSetting">修改</el-button>
           <el-button @click="setting = false">取消</el-button>
         </el-form-item>
-
       </el-form>
     </el-drawer>
-
-    <el-drawer
-      title="配置主题"
-      :visible.sync="color"
-      :with-header="true"
-    >
-
+    <el-drawer title="配置主题" :visible.sync="color" :with-header="true">
+      主题
     </el-drawer>
 
   </div>
 </template>
 
 <script>
-import Vuex from 'vuex'
 import { mapGetters } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
-import fa from 'element-ui/src/locale/lang/fa'
 import { closePlcConnect, getSettingAPI, openPlcConnect, saveOrUpdateSettingAPI } from '@/api/system/systemAPI'
 
 export default {
   components: {
     Breadcrumb,
     Hamburger
-  },
-  computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar'
-    ])
   },
   data() {
     return {
@@ -114,6 +100,15 @@ export default {
       plcStatus: 500
     }
   },
+  computed: {
+    ...mapGetters([
+      'sidebar',
+      'avatar'
+    ])
+  },
+  created() {
+    this.getSettingList()
+  },
   methods: {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
@@ -127,7 +122,7 @@ export default {
       this.setting = true
       this.getSettingList()
     },
-    openColor(){
+    openColor() {
       this.systemDrawer = false
       this.color = true
     },
@@ -140,7 +135,7 @@ export default {
     async saveOrUpdateSetting() {
       saveOrUpdateSettingAPI(this.settingList).then(res => {
         this.getSettingList()
-        this.setting = false;
+        this.setting = false
         this.getPlcStatus()
         // this.closePlc();
       })
@@ -163,15 +158,12 @@ export default {
         if (res.code === 200) {
           this.$store.dispatch('settings/changePLCConnect', 500)
           this.$message.success(res.message)
-        }else{
+        } else {
           this.$store.dispatch('settings/changePLCConnect', 200)
           this.$message.danger(res.message)
         }
       })
     }
-  },
-  created() {
-    this.getSettingList()
   }
 }
 </script>

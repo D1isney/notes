@@ -11,18 +11,14 @@
         @selection-change="handleSelectionChange"
         @current-change="handleSelectionChange"
       >
-        <el-table-column
-          type="selection"
-          width="55"
-        >
-        </el-table-column>
+        <el-table-column type="selection" width="55" />
         <el-table-column type="expand">
-          <template slot-scope="props">
+          <template slot-scope="propsList">
             <el-form label-position="left" :inline="false" class="demo-table-expand">
               <el-row :gutter="20">
                 <el-col :span="12">
                   <el-form-item label="ID：">
-                    <span>{{ props.row.id }}</span>
+                    <span>{{ propsList.row.id }}</span>
                   </el-form-item>
                 </el-col>
                 <el-col :span="12">
@@ -32,7 +28,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.username }}</span>
+                      <span>{{ propsList.row.username }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -43,7 +39,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.password }}</span>
+                      <span>{{ propsList.row.password }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -54,7 +50,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.name }}</span>
+                      <span>{{ propsList.row.name }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -65,7 +61,7 @@
                       effect="plain"
                       size="small"
                     >
-                      {{ sexOptions[props.row.sex].label }}
+                      {{ sexOptions[propsList.row.sex].label }}
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -76,7 +72,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.age }}</span>
+                      <span>{{ propsList.row.age }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -87,7 +83,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.email }}</span>
+                      <span>{{ propsList.row.email }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -98,7 +94,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.address }}</span>
+                      <span>{{ propsList.row.address }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -109,7 +105,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.birthday }}</span>
+                      <span>{{ propsList.row.birthday }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -120,7 +116,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.createTime }}</span>
+                      <span>{{ propsList.row.createTime }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -131,7 +127,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.updateTime }}</span>
+                      <span>{{ propsList.row.updateTime }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -142,7 +138,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.expirationTime }}</span>
+                      <span>{{ propsList.row.expirationTime }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -153,7 +149,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.createUsername }}</span>
+                      <span>{{ propsList.row.createUsername }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -164,7 +160,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.updateUsername }}</span>
+                      <span>{{ propsList.row.updateUsername }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -175,7 +171,7 @@
                       effect="plain"
                       size="small"
                     >
-                      {{ statusOptions[props.row.status].label }}
+                      {{ statusOptions[propsList.row.status].label }}
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -186,7 +182,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ props.row.salt }}</span>
+                      <span>{{ propsList.row.salt }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -197,7 +193,7 @@
                       effect="dark"
                       size="small"
                     >
-                      {{ onlineOptions[props.row.online].label }}
+                      {{ onlineOptions[propsList.row.online].label }}
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -209,10 +205,6 @@
         <el-table-column
           label="Username"
           prop="username"
-        />
-        <el-table-column
-          label="邮箱"
-          prop="email"
         />
         <el-table-column
           label="过期时间"
@@ -251,13 +243,10 @@
           <template slot="header">
             <el-row>
               <el-col :span="15">
-                <el-input
-                  v-model="search"
-                  placeholder="Username Or Name"
-                />
+                <el-input v-model="search" placeholder="Username Or Name" clearable />
               </el-col>
               <el-col :span="7" :push="2">
-                <el-button type="primary" icon="el-icon-search" @click="getList">查询</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="getList" />
               </el-col>
             </el-row>
           </template>
@@ -277,12 +266,12 @@
         </el-table-column>
       </el-table>
       <div class="button-box">
-        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openAddOrawer()"/>
-        <el-button type="primary" class="button-box-delete" icon="el-icon-delete-solid" @click="deleteAll()"/>
+        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openAddOrawer()" />
+        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid" @click="deleteAll()" />
       </div>
     </div>
     <div class="page">
-      <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList"/>
+      <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList" />
     </div>
     <!--    修改-->
     <el-drawer
@@ -292,7 +281,7 @@
     >
       <el-form label-position="right" label-width="80px" :model="modifyList">
         <el-form-item label="名称">
-          <el-input v-model="modifyList.name"/>
+          <el-input v-model="modifyList.name" />
         </el-form-item>
         <el-form-item label="性别">
           <el-radio-group v-model="modifyList.sex">
@@ -301,16 +290,16 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item label="年龄">
-          <el-input v-model="modifyList.age"/>
+          <el-input v-model="modifyList.age" />
         </el-form-item>
         <el-form-item label="邮箱">
-          <el-input v-model="modifyList.email"/>
+          <el-input v-model="modifyList.email" />
         </el-form-item>
         <el-form-item label="电话">
-          <el-input v-model="modifyList.phone"/>
+          <el-input v-model="modifyList.phone" />
         </el-form-item>
         <el-form-item label="地址">
-          <el-input v-model="modifyList.address"/>
+          <el-input v-model="modifyList.address" />
         </el-form-item>
         <el-form-item label="生日">
           <el-col :span="24">
@@ -339,16 +328,9 @@
           </el-col>
         </el-form-item>
         <el-row :gutter="20">
-          <el-col :span="24" >
+          <el-col :span="24">
             <el-form-item label="角色">
-              <el-cascader
-                :options="options"
-                :props="props"
-                placeholder="请选择角色"
-                clearable
-                collapse-tags
-                v-model="selectedOptions"
-              ></el-cascader>
+              <el-cascader v-model="selectedOptions" :options="options" :props="props" clearable collapse-tags placeholder="请选择角色" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -365,32 +347,32 @@
       :visible.sync="addDrawer"
       direction="rtl"
     >
-      <el-form :rules="rules" :ref="addMemberForm" :model="addMemberForm" label-width="80px">
+      <el-form :ref="addMemberForm" :rules="rules" :model="addMemberForm" label-width="80px">
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="Username" prop="username">
-              <el-input v-model="addMemberForm.username" placeholder="Username"/>
+              <el-input v-model="addMemberForm.username" placeholder="Username" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="Password" prop="password">
-              <el-input v-model="addMemberForm.password" placeholder="Password"/>
+              <el-input v-model="addMemberForm.password" placeholder="Password" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="姓名">
-              <el-input v-model="addMemberForm.name" placeholder="Name"/>
+              <el-input v-model="addMemberForm.name" placeholder="Name" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="年龄">
-              <el-input v-model="addMemberForm.age" placeholder="Age"/>
+              <el-input v-model="addMemberForm.age" placeholder="Age" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -429,28 +411,21 @@
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="电话">
-              <el-input v-model="addMemberForm.phone" placeholder="Phone"></el-input>
+              <el-input v-model="addMemberForm.phone" placeholder="Phone" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="地址">
-              <el-input type="textarea" v-model="addMemberForm.address" placeholder="Address"></el-input>
+              <el-input v-model="addMemberForm.address" type="textarea" placeholder="Address" />
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="角色">
-              <el-cascader
-                :options="options"
-                :props="props"
-                placeholder="请选择角色"
-                clearable
-                collapse-tags
-                v-model="selectedOptions"
-              ></el-cascader>
+              <el-cascader v-model="selectedOptions" :options="options" :props="props" clearable collapse-tags placeholder="请选择角色" />
             </el-form-item>
           </el-col>
         </el-row>
@@ -573,11 +548,9 @@ export default {
       this.getAllRole()
       this.getRoleByMemberId(this.modifyList.id)
     },
-    async getRoleByMemberId(id){
+    async getRoleByMemberId(id) {
       getRoleByMemberId(id).then(res => {
-        if (res.code === 200){
-          this.selectedOptions = res.data.flat()
-        }
+        if (res.code === 200) this.selectedOptions = res.data.flat()
       })
     },
     async getAllRole() {
@@ -615,7 +588,7 @@ export default {
         this.$message.warning('请先勾选需要操作的用户')
         return
       }
-      let ids = this.multipleSelection.map(item => item.id)
+      const ids = this.multipleSelection.map(item => item.id)
       this.$confirm('此操作将永久删除已选中的用户, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -667,9 +640,9 @@ export default {
           return
         }
       })
-
     },
     resetAddForm() {
+      this.selectedOptions = []
       this.addMemberForm = {
         username: '',
         password: '',
@@ -681,8 +654,7 @@ export default {
         birthday: '',
         age: '',
         roleId: []
-      },
-        this.selectedOptions = []
+      }
     }
   }
 }
@@ -703,8 +675,6 @@ export default {
     display: none;
   }
 }
-
-
 .member-table {
   width: 100%;
   height: calc(100% - 30px);
@@ -762,20 +732,15 @@ export default {
   padding-right: 0.5%;
 
   .button-box-add {
-    width: 3%;
+    width: 4%;
     height: 80%;
-  //background-color: transparent; border: 0;
-  }
-
-  .button-box-add:hover {
-    background: rgba(100, 255, 255, 255);
-    transition: 0.5s;
   }
 
   .button-box-delete {
-    width: 3%;
+    width: 4%;
     height: 80%;
   }
 }
+
 </style>
 

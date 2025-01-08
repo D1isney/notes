@@ -56,6 +56,9 @@ public class R <T> {
     public static <T> R<T> error(String message, T data) {
         return new R<T>(message, 500, data);
     }
+    public static <T> R<T> error(String message,Integer code) {
+        return new R<T>(message, code, null);
+    }
 
 
 }
