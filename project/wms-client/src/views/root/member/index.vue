@@ -522,7 +522,6 @@ export default {
       await getList(this.query).then(res => {
         this.list = res.data.list
         this.total = res.data.totalCount
-        console.log(this.list)
       })
     },
     statusTag(status) {

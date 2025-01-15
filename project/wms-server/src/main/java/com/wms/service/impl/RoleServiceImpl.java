@@ -4,6 +4,7 @@ import com.github.benmanes.caffeine.cache.Cache;
 import com.wms.constant.RoleConstant;
 import com.wms.dao.RoleDao;
 import com.wms.dto.RoleDTO;
+import com.wms.dto.RolePermissionsDTO;
 import com.wms.exception.EException;
 import com.wms.pojo.MemberRole;
 import com.wms.pojo.Permissions;
@@ -16,12 +17,12 @@ import com.wms.service.RoleService;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.CodeUtils;
-import com.wms.utils.DateConstant;
+import com.wms.utils.R;
 import com.wms.vo.RoleVo;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -29,15 +30,20 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> implements RoleService {
 
     @Resource
+    @Lazy
     private RoleDao roleDao;
     @Resource
+    @Lazy
     private RolePermissionsService rolePermissionsService;
     @Resource
+    @Lazy
     private PermissionsService permissionsService;
     @Resource
+    @Lazy
     private MemberRoleService memberRoleService;
     @Resource
-    private Cache<String,Object> cache;
+    @Lazy
+    private Cache<String, Object> cache;
 
     /**
      * 添加或者修改
@@ -47,7 +53,7 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
      */
     @Override
     public Role insertOrUpdate(Role role) {
-        Role newRole = new Role();
+        Role newRole;
         if (checkRoleNewOrOld(role)) {
             newRole = createRole(role);
         } else {
@@ -185,10 +191,6 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
             List<Long> ids = new ArrayList<>();
             memberRolesList.forEach(memberRole -> {
                 Long roleId = memberRole.getRoleId();
-//                Role role = queryById(roleId);
-//                RoleDTO roleDTO = new RoleDTO();
-//                roleDTO.setLabel(role.getName());
-//                roleDTO.setValue(role.getId());
                 ids.add(roleId);
 
             });
@@ -216,6 +218,137 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
             return list;
         }
         return null;
+    }
+
+
+    /**
+     * 通过角色ID以及权限ID来修改角色的权限
+     * @param rolePermissionsDTO DTO
+     * @return R<?>
+     */
+    @Override
+    public R<?> updateRolePermissions(RolePermissionsDTO rolePermissionsDTO) {
+        //  检查参数的有效性
+        checkRolePermissions(rolePermissionsDTO);
+        Long roleId = rolePermissionsDTO.getRoleId();
+        List<Permissions> permissionsByRoleIdList = permissionsService.getPermissionsByRoleId(roleId);
+        //  新的全部的权限id
+        Long[] permissionId = rolePermissionsDTO.getPermissionId();
+        Set<Long> permissionIdSet = new HashSet<>(Arrays.asList(permissionId));
+        Long currentMember = getCurrentMember();
+        if (!Objects.isNull(permissionsByRoleIdList)) {
+            withPermission(permissionIdSet,permissionsByRoleIdList,roleId,currentMember);
+        } else {
+            unauthorized(permissionIdSet,roleId,currentMember);
+        }
+        return R.ok("修改成功！");
+    }
+
+    /**
+     * 角色没有权限的操作
+     * @param permissionIdSet 前端传回来的权限ID
+     * @param roleId 角色ID
+     * @param currentMember 当前线程的用户
+     */
+    public void unauthorized(Set<Long> permissionIdSet,Long roleId,Long currentMember) {
+        //  说明原本角色什么权限都没有，直接把所有权限都加进去
+        List<RolePermissions> list = new ArrayList<>();
+        permissionIdSet.forEach(permissionsId -> {
+            RolePermissions rolePermissions = createRolePermissions(roleId, permissionsId, currentMember);
+            list.add(rolePermissions);
+        });
+        rolePermissionsService.saveOrUpdateBatch(list);
+    }
+
+    /**
+     * 角色有权限的操作
+     * @param permissionIdSet 前端传回来的权限id，这里是已经选中了的
+     * @param permissionsByRoleIdList 本来该角色拥有的权限
+     * @param roleId 角色ID
+     * @param currentMember 当前线程的用户
+     */
+    public void withPermission(Set<Long> permissionIdSet,List<Permissions> permissionsByRoleIdList,Long roleId,Long currentMember){
+        //  删除的
+        List<Permissions> deletePermissions = new ArrayList<>();
+        //  新添加的
+        Set<Long> addPermissions = new HashSet<>(permissionIdSet); // 初始化为所有期望的权限ID
+        // 分类
+        permissionsByRoleIdList.forEach(permission -> {
+            Long permId = permission.getId();
+            if (permissionIdSet.contains(permId)) {
+                addPermissions.remove(permId);
+            } else {
+                deletePermissions.add(permission);
+            }
+        });
+        List<RolePermissions> deleteRolePermissions = new ArrayList<>();
+        deletePermissions.forEach(permission -> {
+            RolePermissions rolePermissions = queryRolePermissions(roleId, permission.getId());
+            deleteRolePermissions.add(rolePermissions);
+        });
+        if (!deleteRolePermissions.isEmpty()) {
+            //  删除这个有关的权限
+            rolePermissionsService.deleteByIds(deleteRolePermissions.stream()
+                    .map(RolePermissions::getId)
+                    .toArray(Long[]::new));
+        }
+        List<RolePermissions> addRolePermissions = new ArrayList<>();
+        addPermissions.forEach(permissionsId -> {
+            RolePermissions rolePermissions = createRolePermissions(roleId, permissionsId, currentMember);
+            addRolePermissions.add(rolePermissions);
+        });
+        if (!addRolePermissions.isEmpty()) {
+            rolePermissionsService.saveOrUpdateBatch(addRolePermissions);
+        }
+    }
+
+
+    /**
+     * 通过角色ID以及权限ID找到对应的权限对应表
+     * @param roleId 角色ID
+     * @param permissionsId 权限ID
+     * @return 角色权限关系
+     */
+    public RolePermissions queryRolePermissions(Long roleId, Long permissionsId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("roleId", roleId);
+        map.put("permissionsId", permissionsId);
+        List<RolePermissions> rolePermissions = rolePermissionsService.queryList(map);
+        if (Objects.isNull(rolePermissions)) {
+            throw new EException("请检查该权限是否存在！");
+        }
+        return rolePermissions.get(0);
+    }
+
+
+    /**
+     * 创建一个新的角色权限关系
+     * @param roleId 角色ID
+     * @param permissionsId 权限ID
+     * @param currentMember 当前线程的用户
+     * @return 新的角色权限关系
+     */
+    private RolePermissions createRolePermissions(Long roleId, Long permissionsId, Long currentMember) {
+        RolePermissions rolePermissions = new RolePermissions();
+        rolePermissions.setRoleId(roleId);
+        rolePermissions.setPermissionsId(permissionsId);
+        rolePermissions.setCreateTime(new Date());
+        rolePermissions.setUpdateTime(new Date());
+        rolePermissions.setCreateMember(currentMember);
+        rolePermissions.setUpdateMember(currentMember);
+        return rolePermissions;
+    }
+
+    /**
+     * 检查传进来的参数时候有用
+     * @param rolePermissionsDTO DTO
+     */
+    public void checkRolePermissions(RolePermissionsDTO rolePermissionsDTO) {
+        if (Objects.isNull(rolePermissionsDTO)) {
+            throw new EException("rolePermissionsDTO参数为空！");
+        } else if (Objects.isNull(rolePermissionsDTO.getRoleId())) {
+            throw new EException("角色为空！");
+        }
     }
 
 

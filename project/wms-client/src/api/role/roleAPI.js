@@ -29,6 +29,14 @@ export function getPermissionsByRoleId(id){
   })
 }
 
+export function configRolePermissions(data){
+  return request({
+    url: `/role/configRolePermissions`,
+    method: 'post',
+    data: data
+  })
+}
+
 
 export const RoleConst = {
   // 角色状态（0：不可用角色，1：可用角色）

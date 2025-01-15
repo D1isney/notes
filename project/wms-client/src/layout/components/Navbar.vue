@@ -114,12 +114,28 @@ export default {
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
+    //  登出账号
     async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$message.success("即将登录账号！");
-      setTimeout(()=>{
-        this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-      },2000)
+      this.$confirm('此操作会将此账号登出, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('user/logout')
+        this.$message.success("即将登录账号！");
+        setTimeout(()=>{
+          this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+        },2000)
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消登出'
+        });
+      });
+
+
+
+
     },
     openSetting() {
       this.systemDrawer = false

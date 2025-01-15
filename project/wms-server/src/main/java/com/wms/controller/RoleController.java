@@ -3,6 +3,7 @@ package com.wms.controller;
 
 import com.wms.aspect.Log;
 import com.wms.dto.RoleDTO;
+import com.wms.dto.RolePermissionsDTO;
 import com.wms.pojo.Role;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;
@@ -103,6 +104,13 @@ public class RoleController {
         //  通过用户id，找到用户已经拥有的角色
         List<Long> list = roleService.getRoleByMemberId(id);
         return R.ok(list);
+    }
+
+    @ApiOperation("通过角色ID修改该角色的权限")
+    @PostMapping("configRolePermissions")
+    @Log(value = "角色-通过角色ID修改该角色的权限", path = "/role/configRolePermissions")
+    public R<?> configRolePermissions(@RequestBody RolePermissionsDTO rolePermissionsDTO){
+        return roleService.updateRolePermissions(rolePermissionsDTO);
     }
 
 

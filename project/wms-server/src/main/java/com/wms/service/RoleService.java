@@ -2,8 +2,10 @@ package com.wms.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.wms.dto.RoleDTO;
+import com.wms.dto.RolePermissionsDTO;
 import com.wms.pojo.Role;
 import com.wms.service.base.BaseService;
+import com.wms.utils.R;
 import com.wms.vo.RoleVo;
 
 import java.util.List;
@@ -22,4 +24,6 @@ public interface RoleService extends BaseService<Role, RoleVo> {
     List<Long> getRoleByMemberId(Long id);
 
     List<RoleDTO> getAllRole();
+
+    R<?> updateRolePermissions(RolePermissionsDTO rolePermissionsDTO);
 }
