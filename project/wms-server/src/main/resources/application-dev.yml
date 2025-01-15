@@ -21,14 +21,10 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       pool-name: SpringHikariCP
-
-
   thymeleaf:
     cache: false
-
   main:
     allow-bean-definition-overriding: true
-
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
@@ -38,6 +34,17 @@ mybatis-plus:
   mapper-locations: classpath:dao/*.xml
   # 日志
   config-location: classpath:mybatis-location-config.xml
+
+cache:
+  expiration-time: 60 # 设置最后一次写入或访问后经过固定时间过期
+  space-size: 100 # 初始的缓存空间大小
+  size: 1000 # 缓存的最大条数
+
+  user-key: user
+  permissions-key: permissions
+  role-key: role
+
+
 
 plc:
   # json文件名称

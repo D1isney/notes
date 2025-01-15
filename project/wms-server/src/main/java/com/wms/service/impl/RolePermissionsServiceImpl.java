@@ -1,5 +1,6 @@
 package com.wms.service.impl;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import com.wms.dao.RolePermissionsDao;
 import com.wms.dto.DefaultPermissionsDTO;
 import com.wms.pojo.Permissions;
@@ -22,6 +23,8 @@ public class RolePermissionsServiceImpl extends IBaseServiceImpl<RolePermissions
     @Resource
     @Lazy
     private PermissionsService permissionsService;
+
+
 
     @Override
     public RolePermissions insertOrUpdate(RolePermissions rolePermissions) {

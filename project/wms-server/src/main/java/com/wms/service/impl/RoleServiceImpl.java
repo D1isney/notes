@@ -1,5 +1,6 @@
 package com.wms.service.impl;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import com.wms.constant.RoleConstant;
 import com.wms.dao.RoleDao;
 import com.wms.dto.RoleDTO;
@@ -35,6 +36,8 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
     private PermissionsService permissionsService;
     @Resource
     private MemberRoleService memberRoleService;
+    @Resource
+    private Cache<String,Object> cache;
 
     /**
      * 添加或者修改
@@ -44,11 +47,15 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
      */
     @Override
     public Role insertOrUpdate(Role role) {
+        Role newRole = new Role();
         if (checkRoleNewOrOld(role)) {
-            return createRole(role);
+            newRole = createRole(role);
         } else {
-            return saveOrModify(role);
+            newRole = saveOrModify(role);
         }
+        //  清楚所有缓存
+        cache.invalidateAll();
+        return newRole;
     }
 
 

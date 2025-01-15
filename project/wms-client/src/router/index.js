@@ -172,6 +172,12 @@ export const constantRoutes = [
         name: 'Permissions',
         component: () => import('@/views/root/permissions/index'),
         meta: { title: '权限', icon: 'tree' }
+      },
+      {
+        path: 'configuration',
+        name: 'Configuration',
+        component: () => import('@/views/root/configuration/index'),
+        meta: { title: '权限配置', icon: 'el-icon-s-operation' }
       }
     ]
   },

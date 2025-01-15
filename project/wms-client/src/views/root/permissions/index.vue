@@ -70,11 +70,11 @@
         <el-table-column
           align="right"
         >
-          <template slot="header">
+          <template slot="header" slot-scope="scope">
             <el-row :gutter="20">
               <el-col :span="12">
                 <el-input
-                  v-model="param"
+                  v-model="query.param"
                   placeholder="查询"
                   clearable
                 />
@@ -206,7 +206,6 @@ export default {
         limit: 30,
         param: ''
       },
-      param: '',
       total: 0,
       list: [
         {
@@ -255,7 +254,6 @@ export default {
       })
     },
     async getPermissionsList() {
-      this.query.param = this.param
       getPermissionsListAPI(this.query).then(res => {
         if (res.code === 200) {
           this.list = res.data.list
@@ -265,6 +263,8 @@ export default {
     },
     clearFilter() {
       this.$refs.singleTable.clearFilter()
+      this.query.param = ''
+      this.getPermissionsList()
     },
     filterTag(value, row) {
       return row.remark === value
@@ -284,6 +284,7 @@ export default {
             if (res.code === 200) {
               this.getPermissionsList()
               this.getRemark()
+              this.$message.success(res.message)
               this.editDrawer = false
             }
           })

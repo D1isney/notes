@@ -1,6 +1,7 @@
 package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.github.benmanes.caffeine.cache.Cache;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
 import com.wms.exception.EException;
@@ -48,6 +49,12 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     @Value("${login.filter.isLogin}")
     private Integer isLogin;
 
+    @Value("${cache.user-key}")
+    private String userKey;
+
+    @Resource
+    private Cache<String,Object> cache;
+
     @Override
     public R<?> login(Member member) {
         List<Member> members = queryMemberByUsername(member);
@@ -60,6 +67,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
                 }
             }
             String jwt = loggingIn(member, members);
+            cache.put(userKey+members.get(0).getId(),members.get(0));
             return R.ok("登录成功！", jwt);
         }
         return R.error("账号或密码错误！");
@@ -94,7 +102,12 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         String jwt = JwtUtil.createJWT(userId);
         MemberThreadLocal.setMainThreadLoginMemberById(members.get(0).getId(), loginMember);
         MemberThreadLocal.setMainThreadLoginMemberTokenForId(members.get(0).getId(), jwt);
-        members.get(0).setStatus(MemberConstant.IS_ONLINE);
+        if (Objects.equals(members.get(0).getStatus(),MemberConstant.STATUS_FALSE)){
+            throw new EException("该账号不可使用！请联系管理员！");
+        }else if (Objects.equals(members.get(0).getStatus(),MemberConstant.STATUS_PAST)){
+            throw new EException("该账号已被封禁！请联系管理员！");
+        }
+        members.get(0).setOnline(MemberConstant.IS_ONLINE);
         saveOrModify(members.get(0));
         return jwt;
     }
@@ -155,6 +168,9 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         MemberThreadLocal.clearMainThreadLoginMemberTokenForId(MemberThreadLocal.get().getMember().getId());
         //  清楚当前线程的用户信息
         MemberThreadLocal.clear();
+
+        //  清除
+        cache.invalidate(userKey+byId.getId());
     }
 
     /**
@@ -183,6 +199,8 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
                 //  旧的用户
                 newMember = saveOrModify(member);
                 createMemberRole(member, newMember, currentMemberId);
+                //  更新该用户的缓存
+                cache.put(userKey+newMember.getId() , newMember);
                 return R.ok("修改成功！");
             }
         }
@@ -268,6 +286,12 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     }
 
 
+    /**
+     * 创建一个新的用户
+     * @param member 创建新的用户
+     * @param currentMemberId 当前线程的用户
+     * @return 新的用户
+     */
     public Member createMember(Member member, Long currentMemberId) {
         String username = member.getUsername();
         QueryWrapper<Member> queryWrapper = new QueryWrapper<>();

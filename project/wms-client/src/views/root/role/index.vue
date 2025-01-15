@@ -54,11 +54,11 @@
         <el-table-column
           align="right"
         >
-          <template slot="header">
+          <template slot="header" slot-scope="scope">
             <el-row :gutter="20">
               <el-col :span="16">
                 <el-input
-                  v-model="param"
+                  v-model="query.param"
                   placeholder="查询"
                   clearable
                 />
@@ -244,7 +244,6 @@ export default {
         limit: 10,
         param: ''
       },
-      param: '',
       total: 0,
       drawerEdit: false,
       drawerAdd: false,
@@ -275,7 +274,6 @@ export default {
   },
   methods: {
     async getRoleList() {
-      this.query.param = this.param
       await getRoleListAPI(this.query).then(res => {
         if (res.code === 200) {
           this.list = res.data.list

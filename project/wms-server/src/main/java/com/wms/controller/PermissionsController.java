@@ -15,6 +15,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -102,6 +103,15 @@ public class PermissionsController {
         });
         return R.ok(remarkDTOS);
     }
+
+    @ApiOperation("通过角色ID拿到权限")
+    @GetMapping("getPermissionsByRoleId/{id}")
+    @Log(value = "权限-通过角色ID拿到相应的权限", path = "/permissions/getPermissionsByRoleId")
+    public R<?> getPermissionsByRoleId(@PathVariable("id") Long id) {
+        List<Permissions> list = permissionsService.getPermissionsByRoleId(id);
+        return R.ok(list);
+    }
+
 
     @ApiOperation("刷新所有的权限，删除所有角色，用户")
     @GetMapping("restPermissions/{token}")

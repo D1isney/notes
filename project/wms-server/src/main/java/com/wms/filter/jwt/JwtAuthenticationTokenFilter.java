@@ -1,5 +1,6 @@
 package com.wms.filter.jwt;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
 import com.wms.exception.EException;
@@ -40,6 +41,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Value("${login.filter.header}")
     private String header;
 
+    @Resource
+    private Cache<String,Object> cache;
+
+    @Value("${cache.user-key}")
+    private String userKey;
+    @Value("${cache.permissions-key}")
+    private String permissionsKey;
+    @Value("${cache.role-key}")
+    private String roleKey;
+
+
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -56,9 +68,28 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         } catch (Exception e) {
             throw new EException("非法Authorization");
         }
-        Member member = memberDao.selectById(Long.parseLong(userid));
+
+        Member member = (Member) cache.getIfPresent(userKey+userid);
+        if (Objects.isNull(member)) {
+            //  缓存没有，就查一次数据库
+            member = memberDao.selectById(Long.parseLong(userid));
+            //  放进缓存
+            cache.put(userKey+userid, member);
+        }
         if (Objects.isNull(member)) {
             throw new EException("非法用户");
+        }
+
+        if (Objects.equals(member.getStatus(),MemberConstant.STATUS_FALSE)){
+            R<Object> r = R.error("该账号不可使用！请联系管理员！");
+            r.setCode(CONTINUE_LOGIN);
+            HttpUtil.responseJSON(response, r);
+            return;
+        }else if (Objects.equals(member.getStatus(),MemberConstant.STATUS_PAST)){
+            R<Object> r = R.error("该账号已被封禁！请联系管理员！");
+            r.setCode(CONTINUE_LOGIN);
+            HttpUtil.responseJSON(response, r);
+            return;
         }
 
         if (tokenIsReal > 0) {
@@ -69,8 +100,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         member.setOnline(MemberConstant.IS_ONLINE);
         Long id = member.getId();
-        List<String> permissionsByMember = memberDao.getPermissionsByMember(id);
-        memberDao.updateById(member);
+
+        //  查权限
+        List<String> permissionsByMember = (List<String>) cache.getIfPresent(permissionsKey + id);
+        if (Objects.isNull(permissionsByMember)) {
+            permissionsByMember = memberDao.getPermissionsByMember(id);
+        }
+
+        //  把该用户放到缓存
+//        cache.put(userKey+userid, member);
+//        memberDao.updateById(member);
+
         LoginMember loginMember = new LoginMember();
         loginMember.setMember(member);
         if (!permissionsByMember.isEmpty() && permissionsByMember.size() > 1) {
@@ -101,13 +141,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (Objects.isNull(mainThreadLoginMemberTokenForId)) {
             R<Object> r = R.error("用户已失效，请重新登录！");
             r.setCode(CONTINUE_LOGIN);
-            HttpUtil.responseJSON((HttpServletResponse) response, r);
+            HttpUtil.responseJSON(response, r);
             return false;
         }
         if (!Objects.equals(mainThreadLoginMemberTokenForId, authorization)) {
             R<Object> r = R.error("用户已失效，请重新登录！");
             r.setCode(CONTINUE_LOGIN);
-            HttpUtil.responseJSON((HttpServletResponse) response, r);
+            HttpUtil.responseJSON(response, r);
             return false;
         }
         return true;

@@ -38,7 +38,7 @@ export default {
   methods: {
     async getList(){
       await getParamsList(this.query).then(res=>{
-        console.log(res)
+        // console.log(res)
       })
     }
   }

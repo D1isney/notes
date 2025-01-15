@@ -240,10 +240,10 @@
         <el-table-column
           align="right"
         >
-          <template slot="header">
+          <template slot="header" slot-scope="scope">
             <el-row>
               <el-col :span="15">
-                <el-input v-model="search" placeholder="Username Or Name" clearable />
+                <el-input v-model="query.param" placeholder="Username Or Name" clearable />
               </el-col>
               <el-col :span="7" :push="2">
                 <el-button type="primary" icon="el-icon-search" @click="getList" />
@@ -519,10 +519,10 @@ export default {
       })
     },
     async getList() {
-      this.query.param = this.search
       await getList(this.query).then(res => {
         this.list = res.data.list
         this.total = res.data.totalCount
+        console.log(this.list)
       })
     },
     statusTag(status) {

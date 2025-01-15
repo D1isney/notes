@@ -4,6 +4,7 @@
     <breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-button icon="el-icon-s-tools" class="system-button" @click="systemDrawer = true">系统配置</el-button>
+      <el-button icon="el-icon-caret-right" class="system-button" @click="logout()">登出</el-button>
     </div>
 
     <el-drawer
@@ -115,7 +116,10 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      this.$message.success("即将登录账号！");
+      setTimeout(()=>{
+        this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      },2000)
     },
     openSetting() {
       this.systemDrawer = false

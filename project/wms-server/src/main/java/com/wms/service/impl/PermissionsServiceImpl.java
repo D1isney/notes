@@ -1,5 +1,6 @@
 package com.wms.service.impl;
 
+import com.github.benmanes.caffeine.cache.Cache;
 import com.wms.dao.PermissionsDao;
 import com.wms.dto.DefaultPermissionsDTO;
 import com.wms.dto.RestDTO;
@@ -26,6 +27,7 @@ import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static com.wms.enums.LogRecordEnum.ALARM_LOG;
 
@@ -54,6 +56,9 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
     @Lazy
     private LogRecordService logRecordService;
 
+    @Resource
+    private Cache<String,Object> cache;
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -75,6 +80,8 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
             permissions.setUpdateTime(new Date());
             permissions.setUpdateMember(getCurrentMemberId());
         }
+        //  清楚所有缓存
+        cache.invalidateAll();
         saveOrModify(permissions);
     }
 
@@ -143,11 +150,32 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
         restMember = createMember(restMember);
     }
 
+
+    /**
+     * 通过角色ID查询所有该角色的权限
+     * @param id 角色ID
+     * @return 所有的权限
+     */
+    @Override
+    public List<Permissions> getPermissionsByRoleId(Long id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("role_id", id);
+        List<RolePermissions> rolePermissions = rolePermissionsService.queryList(map);
+        List<Long> idsTemp = new ArrayList<>();
+        rolePermissions.forEach(rolePermission -> {
+            idsTemp.add(rolePermission.getPermissionsId());
+        });
+        Long[] ids = idsTemp.toArray(new Long[0]);
+        if (ids.length < 1){
+            return null;
+        }
+        return permissionsDao.queryByIds(ids);
+    }
+
+
     public Member createMember(Member member) {
         member.setCreateTime(new Date());
         member.setUpdateTime(new Date());
-
-
         return member;
     }
 

@@ -11,4 +11,7 @@ import java.util.List;
 public interface MemberDao extends IBaseMapper<Member, MemberVo> {
 
     List<String> getPermissionsByMember(Long id);
+
+
+
 }

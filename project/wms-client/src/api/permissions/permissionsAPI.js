@@ -36,3 +36,10 @@ export function restSuperPermissions(){
     method: 'get'
   })
 }
+
+export function getPermissionsByRoleId(id){
+  return request({
+    url: `/permissions/getPermissionsByRoleId/${id}`,
+    method: 'get'
+  })
+}

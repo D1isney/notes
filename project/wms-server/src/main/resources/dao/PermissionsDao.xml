@@ -215,7 +215,7 @@
         <include refid="queryListColumnBase"/>
         from `permissions` t
         where id in
-        <foreach collection="ids" index="index" item="item" separator="," open="(" close=")">
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
             #{item}
         </foreach>
     </select>
