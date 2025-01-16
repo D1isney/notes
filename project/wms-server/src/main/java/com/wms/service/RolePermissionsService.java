@@ -1,6 +1,5 @@
 package com.wms.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.wms.pojo.Role;
 import com.wms.pojo.RolePermissions;
 import com.wms.service.base.BaseService;

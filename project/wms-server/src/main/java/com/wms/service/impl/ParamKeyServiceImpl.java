@@ -17,7 +17,6 @@ public class ParamKeyServiceImpl extends IBaseServiceImpl<ParamKeyDao, ParamKey,
 
     @Override
     public ParamKey insertOrUpdate(ParamKey member) {
-
-        return insertOrUpdate(member);
+        return saveOrModify(member);
     }
 }

@@ -167,11 +167,11 @@
                 <el-col :span="12">
                   <el-form-item label="账号状态：">
                     <el-tag
-                      :type="statusTag(props.row.status)"
+                      :type="statusTag(propsList.row.status)"
                       effect="plain"
                       size="small"
                     >
-                      {{ statusOptions[propsList.row.status].label }}
+                      {{ (propsList.row.status || propsList.row.status === 0) && statusOptions[propsList.row.status].label }}
                     </el-tag>
                   </el-form-item>
                 </el-col>
@@ -189,7 +189,7 @@
                 <el-col :span="12">
                   <el-form-item label="在线情况：">
                     <el-tag
-                      :type="onlineTag(props.row.online)"
+                      :type="onlineTag(propsList.row.online)"
                       effect="dark"
                       size="small"
                     >
@@ -219,7 +219,6 @@
               effect="plain"
               size="small"
             >
-              <!--              {{ row.status }}-->
               {{ (row.status || row.status === 0) && statusOptions[row.status].label }}
             </el-tag>
           </template>
@@ -251,17 +250,8 @@
             </el-row>
           </template>
           <template slot-scope="scope">
-            <el-button
-              size="mini"
-              @click="openEditDrawer(scope.row)"
-            >Edit
-            </el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.row)"
-            >Delete
-            </el-button>
+            <el-button type="primary" icon="el-icon-edit" circle @click="openEditDrawer(scope.row)"/>
+            <el-button type="danger" icon="el-icon-delete" circle @click="handleDelete(scope.row)"/>
           </template>
         </el-table-column>
       </el-table>
@@ -275,7 +265,7 @@
     </div>
     <!--    修改-->
     <el-drawer
-      title="修改"
+      title="修改用户"
       :visible.sync="modifyDrawer"
       direction="rtl"
     >

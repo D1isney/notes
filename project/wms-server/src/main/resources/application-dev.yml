@@ -35,6 +35,7 @@ mybatis-plus:
   # 日志
   config-location: classpath:mybatis-location-config.xml
 
+
 cache:
   expiration-time: 60 # 设置最后一次写入或访问后经过固定时间过期
   space-size: 100 # 初始的缓存空间大小

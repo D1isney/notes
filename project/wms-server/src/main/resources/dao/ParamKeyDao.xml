@@ -94,7 +94,14 @@
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
-
+        <where>
+            <if test="query.type != null">
+                t.type = #{query.type}
+            </if>
+            <if test="query.name != null">
+                t.type = #{query.name}
+            </if>
+        </where>
     </sql>
 
     <sql id="order">

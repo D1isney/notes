@@ -69,17 +69,8 @@
             </el-row>
           </template>
           <template slot-scope="scope">
-            <el-button
-              size="mini"
-              @click="openEdit(scope.row)"
-            >Edit
-            </el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.row)"
-            >Delete
-            </el-button>
+            <el-button type="primary" icon="el-icon-edit" circle @click="openEdit(scope.row)"/>
+            <el-button type="danger" icon="el-icon-delete" circle @click="handleDelete(scope.row)"/>
           </template>
         </el-table-column>
 

@@ -3,7 +3,6 @@ package com.wms.controller;
 import com.wms.exception.EException;
 import com.wms.pojo.Role;
 import com.wms.service.RolePermissionsService;
-import com.wms.service.RoleService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,8 +13,6 @@ import javax.annotation.Resource;
 @RequestMapping("/exception")
 public class ExceptionTest {
 
-    @Resource
-    private RoleService roleService;
     @Resource
     private RolePermissionsService permissionsService;
 

@@ -27,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.*;
 
-import static com.wms.constant.MemberConstant.CONTINUE_LOGIN;
 import static com.wms.constant.MemberConstant.GO_ON_LOGIN;
 
 @Service

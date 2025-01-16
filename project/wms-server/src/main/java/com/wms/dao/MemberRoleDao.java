@@ -1,6 +1,5 @@
 package com.wms.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.wms.pojo.MemberRole;
 import com.wms.service.base.IBaseMapper;
 import com.wms.vo.MemberRoleVo;

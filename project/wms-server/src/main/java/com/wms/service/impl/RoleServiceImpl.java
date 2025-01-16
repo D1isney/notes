@@ -223,6 +223,7 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
 
     /**
      * 通过角色ID以及权限ID来修改角色的权限
+     *
      * @param rolePermissionsDTO DTO
      * @return R<?>
      */
@@ -237,20 +238,21 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
         Set<Long> permissionIdSet = new HashSet<>(Arrays.asList(permissionId));
         Long currentMember = getCurrentMember();
         if (!Objects.isNull(permissionsByRoleIdList)) {
-            withPermission(permissionIdSet,permissionsByRoleIdList,roleId,currentMember);
+            withPermission(permissionIdSet, permissionsByRoleIdList, roleId, currentMember);
         } else {
-            unauthorized(permissionIdSet,roleId,currentMember);
+            unauthorized(permissionIdSet, roleId, currentMember);
         }
         return R.ok("修改成功！");
     }
 
     /**
      * 角色没有权限的操作
+     *
      * @param permissionIdSet 前端传回来的权限ID
-     * @param roleId 角色ID
-     * @param currentMember 当前线程的用户
+     * @param roleId          角色ID
+     * @param currentMember   当前线程的用户
      */
-    public void unauthorized(Set<Long> permissionIdSet,Long roleId,Long currentMember) {
+    public void unauthorized(Set<Long> permissionIdSet, Long roleId, Long currentMember) {
         //  说明原本角色什么权限都没有，直接把所有权限都加进去
         List<RolePermissions> list = new ArrayList<>();
         permissionIdSet.forEach(permissionsId -> {
@@ -262,12 +264,13 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
 
     /**
      * 角色有权限的操作
-     * @param permissionIdSet 前端传回来的权限id，这里是已经选中了的
+     *
+     * @param permissionIdSet         前端传回来的权限id，这里是已经选中了的
      * @param permissionsByRoleIdList 本来该角色拥有的权限
-     * @param roleId 角色ID
-     * @param currentMember 当前线程的用户
+     * @param roleId                  角色ID
+     * @param currentMember           当前线程的用户
      */
-    public void withPermission(Set<Long> permissionIdSet,List<Permissions> permissionsByRoleIdList,Long roleId,Long currentMember){
+    public void withPermission(Set<Long> permissionIdSet, List<Permissions> permissionsByRoleIdList, Long roleId, Long currentMember) {
         //  删除的
         List<Permissions> deletePermissions = new ArrayList<>();
         //  新添加的
@@ -281,31 +284,28 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
                 deletePermissions.add(permission);
             }
         });
+        //  删除m没有了的权限
         List<RolePermissions> deleteRolePermissions = new ArrayList<>();
         deletePermissions.forEach(permission -> {
             RolePermissions rolePermissions = queryRolePermissions(roleId, permission.getId());
             deleteRolePermissions.add(rolePermissions);
         });
-        if (!deleteRolePermissions.isEmpty()) {
-            //  删除这个有关的权限
-            rolePermissionsService.deleteByIds(deleteRolePermissions.stream()
-                    .map(RolePermissions::getId)
-                    .toArray(Long[]::new));
-        }
+        if (!deleteRolePermissions.isEmpty()) rolePermissionsService.deleteByIds(deleteRolePermissions.stream().map(RolePermissions::getId).toArray(Long[]::new));
+        //  新添加的权限
         List<RolePermissions> addRolePermissions = new ArrayList<>();
         addPermissions.forEach(permissionsId -> {
             RolePermissions rolePermissions = createRolePermissions(roleId, permissionsId, currentMember);
             addRolePermissions.add(rolePermissions);
         });
-        if (!addRolePermissions.isEmpty()) {
-            rolePermissionsService.saveOrUpdateBatch(addRolePermissions);
-        }
+        if (!addRolePermissions.isEmpty()) rolePermissionsService.saveOrUpdateBatch(addRolePermissions);
+
     }
 
 
     /**
      * 通过角色ID以及权限ID找到对应的权限对应表
-     * @param roleId 角色ID
+     *
+     * @param roleId        角色ID
      * @param permissionsId 权限ID
      * @return 角色权限关系
      */
@@ -323,7 +323,8 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
 
     /**
      * 创建一个新的角色权限关系
-     * @param roleId 角色ID
+     *
+     * @param roleId        角色ID
      * @param permissionsId 权限ID
      * @param currentMember 当前线程的用户
      * @return 新的角色权限关系
@@ -341,6 +342,7 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
 
     /**
      * 检查传进来的参数时候有用
+     *
      * @param rolePermissionsDTO DTO
      */
     public void checkRolePermissions(RolePermissionsDTO rolePermissionsDTO) {

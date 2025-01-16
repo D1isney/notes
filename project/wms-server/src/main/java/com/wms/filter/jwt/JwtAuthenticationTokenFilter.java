@@ -48,8 +48,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private String userKey;
     @Value("${cache.permissions-key}")
     private String permissionsKey;
-    @Value("${cache.role-key}")
-    private String roleKey;
 
 
     @SuppressWarnings("null")
@@ -98,7 +96,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                 return;
             }
         }
-        member.setOnline(MemberConstant.IS_ONLINE);
         Long id = member.getId();
 
         //  查权限
@@ -106,11 +103,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (Objects.isNull(permissionsByMember)) {
             permissionsByMember = memberDao.getPermissionsByMember(id);
         }
-
-        //  把该用户放到缓存
-//        cache.put(userKey+userid, member);
-//        memberDao.updateById(member);
-
         LoginMember loginMember = new LoginMember();
         loginMember.setMember(member);
         if (!permissionsByMember.isEmpty() && permissionsByMember.size() > 1) {

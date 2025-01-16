@@ -1,10 +1,8 @@
 package com.wms.service;
 
-import com.wms.filter.login.Member;
 import com.wms.pojo.Permissions;
 import com.wms.service.base.BaseService;
 import com.wms.vo.PermissionsVo;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 

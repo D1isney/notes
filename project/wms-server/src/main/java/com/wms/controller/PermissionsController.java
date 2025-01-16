@@ -3,7 +3,6 @@ package com.wms.controller;
 
 import com.wms.aspect.Log;
 import com.wms.dto.PermissionsRemarkDTO;
-import com.wms.filter.login.Member;
 import com.wms.pojo.Permissions;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;
@@ -15,7 +14,6 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -119,6 +117,7 @@ public class PermissionsController {
     @PreAuthorize("hasAuthority('/permissions/restPermissions')")
     public R<?> restPermissions(@PathVariable("token") String token) {
 //        permissionsService.restPermissions(token);
+        System.out.println(token);
         return R.ok();
     }
 

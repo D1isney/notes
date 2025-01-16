@@ -209,6 +209,15 @@ export default {
   height: calc(100vh - 50px);
 }
 
+.el-table::v-deep {
+  .hideCheckbox {
+    pointer-events: none;
+
+    .el-checkbox {
+      display: none;
+    }
+  }
+}
 .config-all {
   width: 100%;
   height: 100%;
@@ -223,15 +232,6 @@ export default {
     scrollbar-width: none; /* 对于Firefox */
   }
 
-  .el-table::v-deep {
-    .hideCheckbox {
-      pointer-events: none;
-
-      .el-checkbox {
-        display: none;
-      }
-    }
-  }
 
   display: flex;
 

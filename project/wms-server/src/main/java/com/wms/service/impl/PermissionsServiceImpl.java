@@ -14,20 +14,15 @@ import com.wms.service.*;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.CodeUtils;
-import com.wms.utils.DateConstant;
 import com.wms.utils.JwtUtil;
 import com.wms.vo.PermissionsVo;
 import io.jsonwebtoken.Claims;
-import io.swagger.annotations.Api;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import static com.wms.enums.LogRecordEnum.ALARM_LOG;
 
@@ -98,14 +93,12 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
 
     @Override
     public void deletePermissionsByIds(Long[] ids) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         for (Long id : ids) {
             map.put("permissions_id", id);
             List<RolePermissions> rolePermissions = rolePermissionsService.queryList(map);
             if (!rolePermissions.isEmpty()) {
-                rolePermissions.forEach(rolePermission -> {
-                    rolePermissionsService.delete(rolePermission.getId());
-                });
+                rolePermissions.forEach(rolePermission -> rolePermissionsService.delete(rolePermission.getId()));
             }
         }
         deleteByIds(ids);
@@ -162,9 +155,7 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
         map.put("role_id", id);
         List<RolePermissions> rolePermissions = rolePermissionsService.queryList(map);
         List<Long> idsTemp = new ArrayList<>();
-        rolePermissions.forEach(rolePermission -> {
-            idsTemp.add(rolePermission.getPermissionsId());
-        });
+        rolePermissions.forEach(rolePermission -> idsTemp.add(rolePermission.getPermissionsId()));
         Long[] ids = idsTemp.toArray(new Long[0]);
         if (ids.length < 1){
             return null;
@@ -190,29 +181,19 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
 
 
     private void clearPermissions() {
-        list().forEach(permissions -> {
-            delete(permissions.getId());
-        });
+        list().forEach(permissions -> delete(permissions.getId()));
     }
     private void clearRole() {
-        roleService.list().forEach(role -> {
-            roleService.delete(role.getId());
-        });
+        roleService.list().forEach(role -> roleService.delete(role.getId()));
     }
     public void clearMemberRole() {
-        memberRoleService.list().forEach(memberRole -> {
-            memberRoleService.delete(memberRole.getId());
-        });
+        memberRoleService.list().forEach(memberRole -> memberRoleService.delete(memberRole.getId()));
     }
     public void clearMember() {
-        memberService.list().forEach(member -> {
-            memberService.delete(member.getId());
-        });
+        memberService.list().forEach(member -> memberService.delete(member.getId()));
     }
     public void clearRolePermissions() {
-        rolePermissionsService.list().forEach(rolePermission -> {
-            rolePermissionsService.delete(rolePermission.getId());
-        });
+        rolePermissionsService.list().forEach(rolePermission -> rolePermissionsService.delete(rolePermission.getId()));
     }
 
     /**
