@@ -6,8 +6,11 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class PermissionsRemarkDTO {
+public class TypeAndValue {
     private String text;
     private String value;
 
+    private Long goodId;
+    private Long paramId;
+    private String name;
 }

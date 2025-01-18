@@ -57,6 +57,24 @@ public class LogAspect {
         }
     }
 
+    @AfterThrowing(value = "execute()", throwing = "runtimeException")
+    public void afterThrowingAdvice(JoinPoint pj, RuntimeException runtimeException) {
+        if (ifSaveLog > 0){
+            long beginTime = System.currentTimeMillis();
+            Long executeTime = System.currentTimeMillis() - beginTime; // 执行时长(毫秒)
+            Object[] args = pj.getArgs();
+            String params = JSON.toJSONString(pj.getArgs()); // 接口入参
+            MethodSignature methodSignature = (MethodSignature) pj.getSignature();
+            Method targetMethod = methodSignature.getMethod();
+            Log logInterface = targetMethod.getAnnotation(Log.class); // 从接口注解中获取注解信息
+            LoginMember loginMember = MemberThreadLocal.get();
+            if (loginMember != null) {
+                LogRecord logRecord = getLogRecord(logInterface, params, runtimeException.getMessage(), executeTime, loginMember, LogRecordEnum.DANGER_LOG);
+                logRecordService.saveOrUpdate(logRecord);
+            }
+        }
+    }
+
     public LogRecord getLogRecord(Log log, String params, String result, Long executeTime, LoginMember loginMember, LogRecordEnum logRecordEnum) {
         String message = log.value(); // 接口中文名称
         String path = log.path(); // 接口路径
@@ -70,26 +88,6 @@ public class LogAspect {
         logRecord.setType(logRecordEnum.getCode());
         logRecord.setExecuteTime(executeTime);
         return logRecord;
-    }
-
-
-    @AfterThrowing(value = "execute()", throwing = "runtimeException")
-    public void afterThrowingAdvice(JoinPoint pj, RuntimeException runtimeException) {
-        if (ifSaveLog > 0){
-            long beginTime = System.currentTimeMillis();
-            Long executeTime = System.currentTimeMillis() - beginTime; // 执行时长(毫秒)
-            Object[] args = pj.getArgs();
-            System.out.println(args);
-            String params = JSON.toJSONString(pj.getArgs()); // 接口入参
-            MethodSignature methodSignature = (MethodSignature) pj.getSignature();
-            Method targetMethod = methodSignature.getMethod();
-            Log logInterface = targetMethod.getAnnotation(Log.class); // 从接口注解中获取注解信息
-            LoginMember loginMember = MemberThreadLocal.get();
-            if (loginMember != null) {
-                LogRecord logRecord = getLogRecord(logInterface, params, runtimeException.getMessage(), executeTime, loginMember, LogRecordEnum.DANGER_LOG);
-                logRecordService.saveOrUpdate(logRecord);
-            }
-        }
     }
 
 }

@@ -100,3 +100,5 @@ Error starting ApplicationContext. To display the conditions report re-run your 
 2025-01-16 21:51:19.356   INFO 11660 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-01-16 21:51:19.357   INFO 11660 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-01-16 21:51:19.513   INFO 11660 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-01-16 23:03:19.198   INFO 11660 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-01-16 23:03:19.201   INFO 11660 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

@@ -1,0 +1,213 @@
+<template>
+  <div class="app-container">
+    <div class="acrylicPlate-table">
+      <el-table
+        ref="acrylicPlateTable"
+        :data="list"
+        :highlight-current-row="true"
+        height="93%"
+        stripe="stripe"
+        row-key="id"
+        :expand-row-keys="expands"
+        @row-click="openExpand"
+        @expand-change="expandChange"
+        style="width: 100%"
+      >
+        <el-table-column type="selection" width="55"/>
+        <el-table-column type="expand">
+          <template slot-scope="propsList">
+            <el-form label-position="left" inline class="demo-table-expand">
+                <el-row :gutter="20" v-if="propsList.row.params.length">
+                  <el-col :span="12" v-for="item in propsList.row.params">
+                    <el-form-item :label="item.text">
+                      <span>{{ item.value }}</span>
+                    </el-form-item>
+                  </el-col>
+                </el-row>
+            </el-form>
+          </template>
+        </el-table-column>
+
+        <el-table-column
+          label="物料编码"
+          prop="code"
+        />
+        <el-table-column
+          label="物料名"
+          prop="name"
+        />
+        <el-table-column
+          label="类型"
+        >
+          <template v-slot="{row}">
+            <el-tag
+              :type="typeTag(row.type)"
+              effect="dark"
+              size="small"
+            >
+              {{ (row.type || row.type === 0) && typeOptions[row.type].label }}
+            </el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column
+          label="创建时间"
+          prop="createTime"
+        />
+
+        <el-table-column
+          align="right"
+        >
+          <template slot="header" slot-scope="scope">
+            <el-row>
+              <el-col :span="12">
+                <el-input v-model="query.param" clearable placeholder="查询"></el-input>
+              </el-col>
+              <el-col :span="8">
+                <el-button type="primary" icon="el-icon-search" @click="getList"/>
+              </el-col>
+            </el-row>
+          </template>
+          <template slot-scope="scope">
+            <el-button type="primary" icon="el-icon-edit" circle/>
+            <el-button type="danger" icon="el-icon-delete" circle/>
+          </template>
+        </el-table-column>
+
+
+      </el-table>
+      <div class="button-box">
+        <el-button type="primary" class="button-box-add" icon="el-icon-plus"/>
+        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid"/>
+      </div>
+    </div>
+    <div class="page">
+      <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList"/>
+    </div>
+  </div>
+</template>
+<script>
+
+import { getGoodsParamByGoodId, getList } from '@/api/goods/acrylicPlateAPI'
+import pagination from '@/components/Pagination/index.vue'
+import { ParamConst } from '@/api/params/paramsAPI'
+
+export default {
+  components: {
+    pagination
+  },
+  data() {
+    return {
+      getRowKeys(row) {
+        return row.id
+      },
+      query: {
+        page: 1,
+        limit: 10,
+        type: 1,
+        param:''
+      },
+      total: 10,
+      list: [],
+      totalCount: 0,
+      expands: []
+    }
+  },
+  computed: {
+    typeOptions: () => Object.keys(ParamConst.type).map(key => ParamConst.type[key])
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    async getList() {
+      await getList(this.query).then(res => {
+        if (res.code === 200) {
+          this.list = res.data.list
+          this.total = res.data.totalCount
+          for (let i = 0; i < this.list.length; i++) {
+            getGoodsParamByGoodId(this.list[i].id).then(request => {
+              if (request.code === 200) {
+                this.$set(this.list[i], 'params', request.data)
+              }
+            })
+          }
+        }
+      })
+    },
+    typeTag(type) {
+      if (type > 0) {
+        return 'success'
+      } else {
+        return 'info'
+      }
+    },
+    //  小箭头
+    openExpand: function(row, colum, event) {
+      if (this.expands.includes(row.id)) {
+        this.expands = this.expands.filter(value => value !== row.id)
+      } else {
+        this.expands.push(row.id)
+      }
+    },
+    //  多个小箭头
+    expandChange(row, expandedRows) {//
+      let that = this
+      if (expandedRows.length) {//此时展开
+        that.expands = []
+        if (row) {
+          that.expands.push(row.id)
+        }
+      } else {//折叠
+        that.expands = []
+      }
+    }
+  }
+}
+</script>
+<style scoped>
+.app-container {
+  width: 100%;
+  height: calc(100vh - 50px);
+}
+
+.acrylicPlate-table {
+  width: 100%;
+  height: calc(100% - 30px);
+
+  /* 隐藏滚动条，但仍可滚动 */
+
+  .el-table__body-wrapper::-webkit-scrollbar {
+    display: none; /* 对于Webkit浏览器 */
+  }
+
+  .el-table__body-wrapper {
+    -ms-overflow-style: none; /* 对于IE和Edge */
+    scrollbar-width: none; /* 对于Firefox */
+  }
+}
+
+.button-box {
+  width: 100%;
+  height: 7%;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 0.5%;
+
+  .button-box-add {
+    width: 4%;
+    height: 80%;
+  }
+
+  .button-box-delete {
+    width: 4%;
+    height: 80%;
+  }
+}
+
+.page {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  float: right;
+}
+</style>

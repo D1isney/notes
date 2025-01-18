@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wms.dao.GoodsParamDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="GoodsParamMap" type="com.wms.pojo.GoodsParam">
+        <id column="id" property="id" />
+        <result column="goods_id" property="goodsId" />
+        <result column="param_id" property="paramId" />
+        <result column="value" property="value" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_member" property="createMember" />
+        <result column="update_member" property="updateMember" />
+        <result column="remark" property="remark" />
+    </resultMap>
+
+    <!-- 通用查询映射结果 Vo) -->
+    <resultMap id="GoodsParamVoMap" type="com.wms.vo.GoodsParamVo" extends="GoodsParamMap">
+        <result column="create_username" property="createUsername"/>
+        <result column="update_username" property="updateUsername"/>
+    </resultMap>
+    <!-- 保存列 -->
+    <sql id="saveColumnBase">
+        `goods_id`,
+        `param_id`,
+        `value`,
+        `create_time`,
+        `update_time`,
+        `create_member`,
+        `update_member`,
+        `remark`
+    </sql>
+    <!-- 保存列value -->
+    <sql id="saveColumnValue">
+        #{entity.goodsId},
+        #{entity.paramId},
+        #{entity.value},
+        #{entity.createTime},
+        #{entity.updateTime},
+        #{entity.createMember},
+        #{entity.updateMember},
+        #{entity.remark}
+    </sql>
+
+    <sql id="goodsIdColumn">`goods_id` = #{entity.goodsId},</sql>
+    <sql id="paramIdColumn">`param_id` = #{entity.paramId},</sql>
+    <sql id="valueColumn">`value` = #{entity.value},</sql>
+    <sql id="createTimeColumn">`create_time` = #{entity.createTime},</sql>
+    <sql id="updateTimeColumn">`update_time` = #{entity.updateTime},</sql>
+    <sql id="createMemberColumn">`create_member` = #{entity.createMember},</sql>
+    <sql id="updateMemberColumn">`update_member` = #{entity.updateMember},</sql>
+    <sql id="remarkColumn">`remark` = #{entity.remark}</sql>
+
+    <sql id="updateColumnNotNull">
+        <set>
+            <if test="entity.goodsId != null"><include refid="goodsIdColumn"/></if>
+            <if test="entity.paramId != null"><include refid="paramIdColumn"/></if>
+            <if test="entity.value != null"><include refid="valueColumn"/></if>
+            <if test="entity.createTime != null"><include refid="createTimeColumn"/></if>
+            <if test="entity.updateTime != null"><include refid="updateTimeColumn"/></if>
+            <if test="entity.createMember != null"><include refid="createMemberColumn"/></if>
+            <if test="entity.updateMember != null"><include refid="updateMemberColumn"/></if>
+            <if test="entity.remark != null"><include refid="remarkColumn"/></if>
+        </set>
+    </sql>
+    <sql id="entityColumn">
+        <include refid="goodsIdColumn"/>
+        <include refid="paramIdColumn"/>
+        <include refid="valueColumn"/>
+        <include refid="createTimeColumn"/>
+        <include refid="updateTimeColumn"/>
+        <include refid="createMemberColumn"/>
+        <include refid="updateMemberColumn"/>
+        <include refid="remarkColumn"/>
+    </sql>
+    <!-- 通用查询结果列 -->
+    <sql id="queryListColumnBase">
+        t.id,
+         t.goods_id,
+         t.param_id,
+         t.value,
+         t.create_time,
+         t.update_time,
+         t.create_member,
+         t.update_member,
+         t.remark
+    </sql>
+    <!-- 通用查询结果列VO -->
+    <sql id="queryListColumn">
+        <include refid="queryListColumnBase"/>,
+        (select m.name from `member` m where m.id = t.create_member) as create_username,
+        (select m.name from `member` m where m.id = t.update_member) as update_username
+    </sql>
+    <!-- 条件通用查询列 -->
+    <sql id="queryListWhere">
+        <where>
+            <if test="query.goodsId != null">
+                t.goods_id = #{query.goodsId}
+            </if>
+            <if test="query.paramId != null">
+                t.param_id = #{query.paramId}
+            </if>
+        </where>
+    </sql>
+
+    <sql id="order">
+        <choose>
+            <when test="query.sidx != null and query.sidx.trim() !='' and query.order != null and query.order.trim() !=''">
+                order by ${query.sidx} ${query.order}
+            </when>
+            <otherwise>
+                order by t.id desc
+            </otherwise>
+        </choose>
+        <if test="query.offset != null and query.limit != null">
+            limit #{query.offset},#{query.limit}
+        </if>
+    </sql>
+
+    <insert id="saveBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `goods_param`
+        (
+        <include refid="saveColumnBase"/>
+        )
+        values
+        <foreach collection="collection" index="index" item="entity" separator=",">
+            (
+            <include refid="saveColumnValue"/>
+            )
+        </foreach>
+    </insert>
+
+    <insert id="save" parameterType="com.wms.pojo.GoodsParam" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `goods_param`
+        (
+        <include refid="saveColumnBase"/>
+        )
+        values
+        (
+        <include refid="saveColumnValue"/>
+        )
+    </insert>
+
+    <delete id="deleteByIds" parameterType="java.lang.Long">
+        delete from `goods_param`
+        where id in
+        <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="update" parameterType="com.wms.pojo.GoodsParam" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `goods_param`
+        <set>
+            <include refid="entityColumn"/>
+        </set>
+        where id= #{entity.id}
+    </update>
+
+    <update id="updateNotEmpty" parameterType="com.wms.pojo.GoodsParam" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `goods_param`
+        <include refid="updateColumnNotNull"/>
+        where id= #{id}
+    </update>
+
+
+    <update id="updateBatchNotEmpty" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <foreach collection="collection" item="entity" index="index" separator=";">
+            update `goods_param`
+            <include refid="updateColumnNotNull"/>
+            where id = #{entity.id}
+        </foreach>
+    </update>
+
+    <update id="updateBatchByIdNotEmpty">
+        update `goods_param`
+        <include refid="updateColumnNotNull"/>
+        where id in
+        <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateBatchById" >
+        update `goods_param`
+        set
+        <include refid="entityColumn"/>
+        where id in
+        <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        <foreach collection="collection" item="entity" index="index" separator=";">
+            update `goods_param`
+            set
+            <include refid="entityColumn"/>
+            where id= #{entity.id}
+        </foreach>
+    </update>
+
+    <select id="queryById" parameterType="java.lang.Long" resultMap="GoodsParamMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `goods_param` t
+        where id = #{id}
+    </select>
+
+    <select id="queryByIds" resultMap="GoodsParamMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `goods_param` t
+        where id in
+        <foreach collection="ids" index="index" item="item" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
+
+    <select id="list"  parameterType="java.util.Map" resultMap="GoodsParamVoMap">
+        select
+        <include refid="queryListColumn"/>
+        from `goods_param` t
+        <include refid="queryListWhere"/>
+    </select>
+
+    <select id="pageList" resultMap= "GoodsParamVoMap">
+        select
+        <include refid="queryListColumn"/>
+        from `goods_param` t
+        <include refid="queryListWhere"/>
+        <include refid="order"/>
+    </select>
+
+
+    <select id="queryList" parameterType="java.util.Map" resultMap= "GoodsParamMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `goods_param` t
+        <include refid="queryListWhere"/>
+    </select>
+
+    <select id="queryTotal" resultType="java.lang.Long">
+        select count(*) from  `goods_param` t
+        <include refid="queryListWhere"/>
+    </select>
+
+    <select id="lastCode" resultType="java.lang.String">
+        select t.code from `goods_param` t where date(t.create_time) = curdate() order by t.code desc limit 1;
+    </select>
+
+</mapper>

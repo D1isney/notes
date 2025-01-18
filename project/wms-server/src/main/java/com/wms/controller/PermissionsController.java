@@ -2,7 +2,7 @@ package com.wms.controller;
 
 
 import com.wms.aspect.Log;
-import com.wms.dto.PermissionsRemarkDTO;
+import com.wms.dto.TypeAndValue;
 import com.wms.pojo.Permissions;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;
@@ -92,14 +92,14 @@ public class PermissionsController {
          *  {test: '',value:''}
          * ]
          */
-        List<PermissionsRemarkDTO> remarkDTOS = new ArrayList<>();
+        List<TypeAndValue> typeAndValues = new ArrayList<>();
         list.forEach(s -> {
-            PermissionsRemarkDTO permissionsRemarkDTO = new PermissionsRemarkDTO();
-            permissionsRemarkDTO.setText(s);
-            permissionsRemarkDTO.setValue(s);
-            remarkDTOS.add(permissionsRemarkDTO);
+            TypeAndValue typeAndValue = new TypeAndValue();
+            typeAndValue.setText(s);
+            typeAndValue.setValue(s);
+            typeAndValues.add(typeAndValue);
         });
-        return R.ok(remarkDTOS);
+        return R.ok(typeAndValues);
     }
 
     @ApiOperation("通过角色ID拿到权限")

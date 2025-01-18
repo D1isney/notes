@@ -3,6 +3,13 @@ import request from '@/utils/request'
 export function getParamsList(query) {
   return request({ url: '/paramKey/list', params: query })
 }
+export function deleteParam(ids) {
+  return request({
+    url: `/paramKey/delete?ids=${ids}`,
+    method: 'delete'
+  })
+}
+
 
 //  常量
 export const ParamConst = {

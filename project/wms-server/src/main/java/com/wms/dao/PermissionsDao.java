@@ -14,6 +14,5 @@ public interface PermissionsDao extends IBaseMapper<Permissions, PermissionsVo> 
 
     String lastCode();
 
-
     List<Permissions> queryByIds(@Param("ids") Long[] ids);
 }

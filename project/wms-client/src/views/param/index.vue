@@ -101,10 +101,10 @@
           <template slot="header" slot-scope="scope">
             <el-row>
               <el-col :span="7">
-                <el-input v-model="query.name" clearable placeholder="参数名"></el-input>
+                <el-input v-model="query.name" clearable placeholder="查询"></el-input>
               </el-col>
               <el-col :span="7" :push="1">
-                <el-select v-model="query.type" placeholder="板材类型">
+                <el-select v-model="query.type" placeholder="板材类型" clearable>
                   <el-option
                     v-for="item in optionsType"
                     :key="item.value"
@@ -121,12 +121,10 @@
           </template>
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" circle @click="openEditDrawer(scope.row)"/>
-            <el-button type="danger" icon="el-icon-delete" circle/>
+            <el-button type="danger" icon="el-icon-delete" circle @click="deleteParam(scope.row)"/>
           </template>
         </el-table-column>
       </el-table>
-
-
       <div class="button-box">
         <el-button type="primary" class="button-box-add" icon="el-icon-plus"/>
         <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid"/>
@@ -178,7 +176,12 @@
             </el-form-item>
           </el-col>
         </el-row>
-        <el-button type="primary" @click="updateEditParamList">buttonCont</el-button>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="6">
+            <el-button type="primary" @click="updateEditParamList">修改</el-button>
+            <el-button type="info" @click="editDrawer = false">取消</el-button>
+          </el-col>
+        </el-row>
       </el-form>
 
     </el-drawer>
@@ -187,7 +190,7 @@
 
 <script>
 
-import { getParamsList, ParamConst } from '@/api/params/paramsAPI'
+import { deleteParam, getParamsList, ParamConst } from '@/api/params/paramsAPI'
 import pagination from '@/components/Pagination/index.vue'
 import { MemberConst } from '@/api/member/member'
 
@@ -209,7 +212,7 @@ export default {
       direction: 'rtl',
       editDrawer: false,
       editParamList: {},
-      defaultSelect:0
+      defaultSelect: 0
     }
   },
   computed: {
@@ -231,8 +234,8 @@ export default {
       })
     },
 
-    typeTag(online) {
-      if (online > 0) {
+    typeTag(type) {
+      if (type > 0) {
         return 'success'
       } else {
         return 'info'
@@ -244,9 +247,29 @@ export default {
       this.defaultSelect = this.typeOptions[row.type].value
       this.editParamList = row
     },
-    updateEditParamList(){
+    updateEditParamList() {
       this.editParamList.type = this.defaultSelect
       console.log(this.editParamList)
+    },
+    deleteParam(row){
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteParam(row.id).then(res=>{
+          if (res.code === 200){
+            this.$message.success(res.message)
+          }
+          this.getList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
+
     }
   }
 }

@@ -1,0 +1,13 @@
+2025-01-19 00:29:36.307  ERROR 18780 --- [nio-1217-exec-1] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:29:40.509  ERROR 18780 --- [nio-1217-exec-4] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:29:43.239  ERROR 18780 --- [nio-1217-exec-5] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:29:44.354  ERROR 18780 --- [nio-1217-exec-7] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:30:15.086  ERROR 18780 --- [nio-1217-exec-5] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:31:31.068  ERROR 3744 --- [io-1217-exec-10] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:31:33.375  ERROR 3744 --- [nio-1217-exec-8] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:32:47.947  ERROR 3744 --- [nio-1217-exec-1] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:33:14.825  ERROR 23188 --- [nio-1217-exec-9] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:33:28.956  ERROR 23188 --- [nio-1217-exec-1] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:34:22.973  ERROR 23188 --- [nio-1217-exec-5] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:38:48.710  ERROR 19412 --- [nio-1217-exec-9] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！
+2025-01-19 00:40:27.097  ERROR 19412 --- [nio-1217-exec-6] c.w.exception.WebGlobalExceptionHandler  : 还有物料正在使用该参数，请先修改物料参数再进行删除！

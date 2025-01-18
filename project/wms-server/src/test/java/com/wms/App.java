@@ -9,6 +9,7 @@ import com.intelligt.modbus.jlibmodbus.exception.ModbusProtocolException;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.tcp.TcpParameters;
+import com.wms.exception.EException;
 
 
 /**
@@ -16,7 +17,11 @@ import com.intelligt.modbus.jlibmodbus.tcp.TcpParameters;
  *
  */
 public class App {
+
 	public static void main(String[] args) {
+	}
+
+	public void plcTest(){
 		try {
 			// 设置主机TCP参数
 			TcpParameters tcpParameters = new TcpParameters();

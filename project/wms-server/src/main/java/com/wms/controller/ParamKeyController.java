@@ -30,11 +30,11 @@ public class ParamKeyController {
             @ApiImplicitParam(name = " ", value = " ")
     })
     @GetMapping("list")
-    @Log(value = "参数-查询所有参数信息",path = "/paramKey/list")
-    public R<?> list(@RequestParam Map<String,Object> params){
+    @Log(value = "参数-查询所有参数信息", path = "/paramKey/list")
+    public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
-        IPage<ParamKeyVo> page = paramKeyService.pageList(query.getIPage(ParamKeyVo.class),query);
-        PageUtil pageUtil= new PageUtil(page.getRecords(),page.getTotal(),query.getLimit(),query.getPage());
+        IPage<ParamKeyVo> page = paramKeyService.pageList(query.getIPage(ParamKeyVo.class), query);
+        PageUtil pageUtil = new PageUtil(page.getRecords(), page.getTotal(), query.getLimit(), query.getPage());
         return R.ok(pageUtil);
     }
 
@@ -42,8 +42,8 @@ public class ParamKeyController {
     @ApiOperation("新增或者修改")
     @ApiImplicitParam(name = "ParamKey", value = "paramKey")
     @PostMapping("saveOrUpdate")
-    @Log(value = "参数-更改参数信息",path = "/paramKey/saveOrUpdate")
-    public R<?> saveOrUpdate(@RequestBody ParamKey paramKey){
+    @Log(value = "参数-更改参数信息", path = "/paramKey/saveOrUpdate")
+    public R<?> saveOrUpdate(@RequestBody ParamKey paramKey) {
         ParamKey newParamKey = paramKeyService.insertOrUpdate(paramKey);
         return R.ok(newParamKey);
     }
@@ -51,8 +51,8 @@ public class ParamKeyController {
     @ApiOperation("根据id查询信息")
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
-    @Log(value = "参数-查询单个参数信息",path = "/paramKey/getInfo/{id}")
-    public R<?> getInfo(@PathVariable("id")Long id){
+    @Log(value = "参数-查询单个参数信息", path = "/paramKey/getInfo/{id}")
+    public R<?> getInfo(@PathVariable("id") Long id) {
         ParamKey info = paramKeyService.queryById(id);
         return R.ok(info);
     }
@@ -60,10 +60,10 @@ public class ParamKeyController {
     @ApiOperation("根据id删除数据")
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
-    @Log(value = "参数-删除参数信息",path = "/paramKey/delete")
-    public R<?> delete(@RequestParam Long[] ids){
-        paramKeyService.deleteByIds(ids);
-        return R.ok();
+    @Log(value = "参数-删除参数信息", path = "/paramKey/delete")
+    public R<?> delete(@RequestParam Long[] ids) {
+        paramKeyService.deleteParamKeyByIds(ids);
+        return R.ok("指定参数删除成功！");
     }
 
 }
