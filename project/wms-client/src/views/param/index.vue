@@ -7,6 +7,10 @@
         :highlight-current-row="true"
         height="93%"
         stripe="stripe"
+        row-key="id"
+        :expand-row-keys="expands"
+        @row-click="openExpand"
+        @expand-change="expandChange"
         style="width: 100%"
       >
         <el-table-column type="selection" width="55"/>
@@ -120,13 +124,13 @@
             </el-row>
           </template>
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" circle @click="openEditDrawer(scope.row)"/>
-            <el-button type="danger" icon="el-icon-delete" circle @click="deleteParam(scope.row)"/>
+            <el-button type="primary" icon="el-icon-edit" circle @click.stop="openEditDrawer(scope.row)"/>
+            <el-button type="danger" icon="el-icon-delete" circle @click.stop="deleteParam(scope.row)"/>
           </template>
         </el-table-column>
       </el-table>
       <div class="button-box">
-        <el-button type="primary" class="button-box-add" icon="el-icon-plus"/>
+        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openAddDrawer"/>
         <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid"/>
       </div>
     </div>
@@ -178,19 +182,67 @@
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="6">
-            <el-button type="primary" @click="updateEditParamList">修改</el-button>
-            <el-button type="info" @click="editDrawer = false">取消</el-button>
+            <el-button type="primary" @click.stop="updateEditParamList">修改</el-button>
+            <el-button type="info" @click.stop="editDrawer = false">取消</el-button>
           </el-col>
         </el-row>
       </el-form>
+    </el-drawer>
 
+    <el-drawer
+      title="添加参数"
+      :visible.sync="addDrawer"
+      :direction="direction"
+    >
+      <el-form ref="addList" :model="addList" :rules="addRules" label-width="80px">
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="Key" prop="key">
+              <el-input v-model="addList.key"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="参数名" prop="name">
+              <el-input v-model="addList.name"></el-input>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="板材类型">
+              <el-select v-model="addList.type" placeholder="请选择板材类型">
+                <el-option label="塑料板" :value="0"></el-option>
+                <el-option label="亚克力板" :value="1"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="描述">
+              <el-input v-model="addList.remark" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="6">
+            <el-button type="primary" @click.stop="commitAdd()">添加</el-button>
+            <el-button type="primary" @click.stop="resetAddForm()">重置</el-button>
+          </el-col>
+        </el-row>
+      </el-form>
     </el-drawer>
   </div>
 </template>
 
 <script>
 
-import { deleteParam, getParamsList, ParamConst } from '@/api/params/paramsAPI'
+import { deleteParam, getParamsList, ParamConst, paramKeySaveOrUpdate } from '@/api/params/paramsAPI'
 import pagination from '@/components/Pagination/index.vue'
 import { MemberConst } from '@/api/member/member'
 
@@ -212,7 +264,23 @@ export default {
       direction: 'rtl',
       editDrawer: false,
       editParamList: {},
-      defaultSelect: 0
+      defaultSelect: 0,
+      addDrawer: false,
+      addList: {
+        key: '',
+        name: '',
+        type: 0,
+        remark:''
+      },
+      addRules:{
+        key: [
+          { required: true, message: '请输入Key值', trigger: 'blur' }
+        ],
+        name: [
+          { required: true, message: '请输入参数名', trigger: 'blur' }
+        ]
+      },
+      expands:[]
     }
   },
   computed: {
@@ -222,7 +290,6 @@ export default {
     this.getList()
     //  多选
     this.optionsType = ParamConst.type
-    console.log(this.optionsType)
   },
   methods: {
     async getList() {
@@ -245,20 +312,28 @@ export default {
     openEditDrawer(row) {
       this.editDrawer = true
       this.defaultSelect = this.typeOptions[row.type].value
-      this.editParamList = row
+      this.editParamList = JSON.parse(JSON.stringify(row))
     },
-    updateEditParamList() {
+    async updateEditParamList() {
       this.editParamList.type = this.defaultSelect
-      console.log(this.editParamList)
+      await paramKeySaveOrUpdate(this.editParamList).then(res => {
+        if (res.code === 200) {
+          this.getList()
+          this.$message.success(res.message)
+          this.editDrawer = false
+        } else {
+          this.$message.error(res.message)
+        }
+      })
     },
-    deleteParam(row){
+    deleteParam(row) {
       this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        deleteParam(row.id).then(res=>{
-          if (res.code === 200){
+        deleteParam(row.id).then(res => {
+          if (res.code === 200) {
             this.$message.success(res.message)
           }
           this.getList()
@@ -267,9 +342,50 @@ export default {
         this.$message({
           type: 'info',
           message: '已取消删除'
-        });
-      });
+        })
+      })
 
+    },
+    openAddDrawer() {
+      this.addDrawer = true
+    },
+    resetAddForm(){
+      this.addList = {
+        key: '',
+        name: '',
+        type: 0,
+        remark:''
+      }
+    },
+    async commitAdd(){
+      await paramKeySaveOrUpdate(this.addList).then(res => {
+        if (res.code === 200) {
+          this.getList()
+          this.$message.success(res.message)
+          this.addDrawer = false
+        } else {
+          this.$message.error(res.message)
+        }
+      })
+    },
+    openExpand: function(row, colum, event) {
+      if (this.expands.includes(row.id)) {
+        this.expands = this.expands.filter(value => value !== row.id)
+      } else {
+        this.expands.push(row.id)
+      }
+    },
+    //  多个小箭头
+    expandChange(row, expandedRows) {//
+      let that = this
+      if (expandedRows.length) {//此时展开
+        that.expands = []
+        if (row) {
+          that.expands.push(row.id)
+        }
+      } else {//折叠
+        that.expands = []
+      }
     }
   }
 }

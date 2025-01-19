@@ -95,11 +95,17 @@
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
         <where>
+            <if test="query.param != null">
+                AND (t.name LIKE CONCAT('%', #{query.param}, '%') or t.key LIKE CONCAT('%', #{query.param}, '%'))
+            </if>
             <if test="query.type != null">
-                t.type = #{query.type}
+              and t.type = #{query.type}
             </if>
             <if test="query.name != null">
-                t.type = #{query.name}
+              and t.name = #{query.name}
+            </if>
+            <if test="query.key != null">
+              and t.key = #{query.key}
             </if>
         </where>
     </sql>

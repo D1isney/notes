@@ -7,6 +7,10 @@
         highlight-current-row
         height="93%"
         @selection-change="handleSelectionChange"
+        row-key="id"
+        :expand-row-keys="expands"
+        @row-click="openExpand"
+        @expand-change="expandChange"
         style="width: 100%"
       >
         <el-table-column
@@ -69,11 +73,10 @@
             </el-row>
           </template>
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" circle @click="openEdit(scope.row)"/>
-            <el-button type="danger" icon="el-icon-delete" circle @click="handleDelete(scope.row)"/>
+            <el-button type="primary" icon="el-icon-edit" circle @click.stop="openEdit(scope.row)"/>
+            <el-button type="danger" icon="el-icon-delete" circle @click.stop="handleDelete(scope.row)"/>
           </template>
         </el-table-column>
-
       </el-table>
       <div class="button-box">
         <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openDrawerAdd()"/>
@@ -209,7 +212,6 @@
         </el-row>
       </el-form>
     </el-drawer>
-
   </div>
 </template>
 
@@ -253,7 +255,8 @@ export default {
           { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
         ]
       },
-      multipleSelection: []
+      multipleSelection: [],
+      expands:[]
     }
   },
   computed: {
@@ -384,7 +387,25 @@ export default {
         })
       })
     },
-
+    openExpand: function(row, colum, event) {
+      if (this.expands.includes(row.id)) {
+        this.expands = this.expands.filter(value => value !== row.id)
+      } else {
+        this.expands.push(row.id)
+      }
+    },
+    //  多个小箭头
+    expandChange(row, expandedRows) {//
+      let that = this
+      if (expandedRows.length) {//此时展开
+        that.expands = []
+        if (row) {
+          that.expands.push(row.id)
+        }
+      } else {//折叠
+        that.expands = []
+      }
+    },
   }
 }
 </script>

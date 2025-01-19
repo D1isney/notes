@@ -8,6 +8,10 @@
         stripe="stripe"
         do-layout="doLayout"
         style="width: 100%"
+        row-key="id"
+        :expand-row-keys="expands"
+        @row-click="openExpand"
+        @expand-change="expandChange"
         @selection-change="handleSelectionChange"
         @current-change="handleSelectionChange"
       >
@@ -242,7 +246,7 @@
           <template slot="header" slot-scope="scope">
             <el-row>
               <el-col :span="15">
-                <el-input v-model="query.param" placeholder="Username Or Name" clearable />
+                <el-input v-model="query.param" placeholder="查询" clearable />
               </el-col>
               <el-col :span="7" :push="2">
                 <el-button type="primary" icon="el-icon-search" @click="getList" />
@@ -250,14 +254,14 @@
             </el-row>
           </template>
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" circle @click="openEditDrawer(scope.row)"/>
-            <el-button type="danger" icon="el-icon-delete" circle @click="handleDelete(scope.row)"/>
+            <el-button type="primary" icon="el-icon-edit" circle @click.stop="openEditDrawer(scope.row)"/>
+            <el-button type="danger" icon="el-icon-delete" circle @click.stop="handleDelete(scope.row)"/>
           </template>
         </el-table-column>
       </el-table>
       <div class="button-box">
-        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openAddOrawer()" />
-        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid" @click="deleteAll()" />
+        <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click.stop="openAddOrawer()" />
+        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid" @click.stop="deleteAll()" />
       </div>
     </div>
     <div class="page">
@@ -482,7 +486,8 @@ export default {
           { required: true, message: '请输入Password', trigger: 'change' },
           { min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur' }
         ]
-      }
+      },
+      expands:[]
     }
   },
   computed: {
@@ -571,6 +576,25 @@ export default {
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
+    },
+    openExpand: function(row, colum, event) {
+      if (this.expands.includes(row.id)) {
+        this.expands = this.expands.filter(value => value !== row.id)
+      } else {
+        this.expands.push(row.id)
+      }
+    },
+    //  多个小箭头
+    expandChange(row, expandedRows) {//
+      let that = this
+      if (expandedRows.length) {//此时展开
+        that.expands = []
+        if (row) {
+          that.expands.push(row.id)
+        }
+      } else {//折叠
+        that.expands = []
+      }
     },
     deleteAll() {
       if (this.multipleSelection.length < 1) {

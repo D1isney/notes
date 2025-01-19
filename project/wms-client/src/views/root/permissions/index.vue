@@ -7,6 +7,10 @@
         height="93%"
         :data="list"
         style="width: 100%"
+        row-key="id"
+        :expand-row-keys="expands"
+        @row-click="openExpand"
+        @expand-change="expandChange"
         @selection-change="handleSelectionChange"
       >
         <el-table-column type="selection" />
@@ -80,10 +84,10 @@
                 />
               </el-col>
               <el-col :span="4" :push="2">
-                <el-button type="primary" icon="el-icon-search" @click="getPermissionsList()" />
+                <el-button type="primary" icon="el-icon-search" @click.stop="getPermissionsList()" />
               </el-col>
               <el-col :span="4" :push="2">
-                <el-button type="primary" icon="el-icon-refresh" @click="clearFilter()" />
+                <el-button type="primary" icon="el-icon-refresh" @click.stop="clearFilter()" />
               </el-col>
             </el-row>
           </template>
@@ -228,7 +232,8 @@ export default {
         name: '',
         path: '',
         remark: ''
-      }
+      },
+      expands:[]
     }
   },
   computed: {},
@@ -362,6 +367,25 @@ export default {
       restSuperPermissions().then(res => {
         console.log(res)
       })
+    },
+    openExpand: function(row, colum, event) {
+      if (this.expands.includes(row.id)) {
+        this.expands = this.expands.filter(value => value !== row.id)
+      } else {
+        this.expands.push(row.id)
+      }
+    },
+    //  多个小箭头
+    expandChange(row, expandedRows) {//
+      let that = this
+      if (expandedRows.length) {//此时展开
+        that.expands = []
+        if (row) {
+          that.expands.push(row.id)
+        }
+      } else {//折叠
+        that.expands = []
+      }
     }
   }
 }

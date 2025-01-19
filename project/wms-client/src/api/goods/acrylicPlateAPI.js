@@ -10,3 +10,4 @@ export function getGoodsParamByGoodId(id) {
     method: "get"
   })
 }
+

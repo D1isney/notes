@@ -44,8 +44,7 @@ public class ParamKeyController {
     @PostMapping("saveOrUpdate")
     @Log(value = "参数-更改参数信息", path = "/paramKey/saveOrUpdate")
     public R<?> saveOrUpdate(@RequestBody ParamKey paramKey) {
-        ParamKey newParamKey = paramKeyService.insertOrUpdate(paramKey);
-        return R.ok(newParamKey);
+        return paramKeyService.insertOrUpdate(paramKey);
     }
 
     @ApiOperation("根据id查询信息")
