@@ -1,5 +1,6 @@
-package com.wms.exception;
+package com.wms.handler;
 
+import com.wms.exception.EException;
 import com.wms.utils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;

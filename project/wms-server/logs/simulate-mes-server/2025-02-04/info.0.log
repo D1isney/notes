@@ -129,3 +129,5 @@
 2025-02-04 22:04:35.040   INFO 9208 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2025-02-04 22:04:35.041   INFO 9208 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2025-02-04 22:04:35.221   INFO 9208 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-04 23:09:23.462   INFO 9208 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-04 23:09:23.466   INFO 9208 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

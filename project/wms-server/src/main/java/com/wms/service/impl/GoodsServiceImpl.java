@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo> implements GoodsService {
@@ -91,11 +92,42 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
         List<GoodsParam> goodsParamsList = goodsParamService.queryList(map);
         //  前端传进来的所有的关系
         List<TypeAndValue> params = goods.getParams();
-        //  需要更新还有添加的
-       
+
+
+//        Set<Long> goodsParamsIds = goodsParamsList.stream()
+//                .map(GoodsParam::getParamId)
+//                .collect(Collectors.toSet());
+//        Set<Long> newParamIds = params.stream()
+//                .map(TypeAndValue::getParamId)
+//                .collect(Collectors.toSet());
+        List<GoodsParam> updateParams = new ArrayList<>();
+
+        params.stream().filter(param->{
+            Stream<GoodsParam> goodsParamStream = goodsParamsList.stream().filter(goodsParam -> {
+                if (goodsParam.getParamId().equals(param.getParamId())) {
+                    goodsParam.setUpdateMember(getCurrent());
+                    goodsParam.setUpdateTime(new Date());
+                    goodsParam.setValue(param.getValue());
+                    updateParams.add(goodsParam);
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            return !goodsParamStream.findAny().isPresent();
+        });
+
+
+
+
+
+
+
+
+
     }
 
-    public Long getCurrent(){
+    public Long getCurrent() {
         return MemberThreadLocal.get().getMember().getId();
     }
 
