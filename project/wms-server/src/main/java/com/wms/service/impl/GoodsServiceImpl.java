@@ -9,7 +9,10 @@ import com.wms.service.GoodsParamService;
 import com.wms.service.GoodsService;
 import com.wms.service.ParamKeyService;
 import com.wms.service.base.IBaseServiceImpl;
+import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.CodeUtils;
+import com.wms.utils.R;
+import com.wms.utils.StringUtil;
 import com.wms.vo.GoodsVo;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -61,6 +64,41 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
             return createTypeAndValue(goodsId, goodsParams);
         }
     }
+
+    @Override
+    public R<?> saveOrUpdateGoods(Goods goods) {
+        if (StringUtil.isEmpty(goods.getId())) {
+            //  创建
+        } else {
+            //  更新
+            updateGoods(goods);
+        }
+        return null;
+    }
+
+    /**
+     * 更新物料信息
+     *
+     * @param goods 物料
+     */
+    public void updateGoods(Goods goods) {
+        //  更新物料
+        saveOrModify(goods);
+        //  更新这个物料的关系
+        //  通过物料id拿到所有物料的关系
+        Map<String, Object> map = new HashMap<>();
+        map.put("goodsId", goods.getId());
+        List<GoodsParam> goodsParamsList = goodsParamService.queryList(map);
+        //  前端传进来的所有的关系
+        List<TypeAndValue> params = goods.getParams();
+        //  需要更新还有添加的
+       
+    }
+
+    public Long getCurrent(){
+        return MemberThreadLocal.get().getMember().getId();
+    }
+
 
     /**
      * 创建所有的关系

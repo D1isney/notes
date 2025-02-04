@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.*;
+import java.util.stream.Stream;
 
 @Service
 public class ParamKeyServiceImpl extends IBaseServiceImpl<ParamKeyDao, ParamKey, ParamKeyVo> implements ParamKeyService {
@@ -41,7 +42,7 @@ public class ParamKeyServiceImpl extends IBaseServiceImpl<ParamKeyDao, ParamKey,
         }
     }
 
-    public Long currentMember(){
+    public Long currentMember() {
         return MemberThreadLocal.get().getMember().getId();
     }
 
@@ -113,6 +114,37 @@ public class ParamKeyServiceImpl extends IBaseServiceImpl<ParamKeyDao, ParamKey,
             }
         });
         deleteByIds(ids);
+    }
+
+    /**
+     * 根据物料类型来查询所有的参数
+     *
+     * @param type 物料类型
+     * @return R
+     */
+    @Override
+    public R<?> getParamKeyListByType(Integer type, Long goodId) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", type);
+        //  关于这个类型的所有的参数
+        List<ParamKey> paramKeys = queryList(map);
+
+        //  通过goodId 找到所有该物料原本的参数
+        map = new HashMap<>();
+        map.put("goodsId", goodId);
+        List<GoodsParam> goodsParams = goodsParamService.queryList(map);
+        Stream<ParamKey> paramKeyStream = paramKeys.stream().filter(paramKey -> {
+            List<GoodsParam> list = new ArrayList<>();
+            goodsParams.forEach(param -> {
+                if (paramKey.getId().equals(param.getParamId())) {
+                    list.add(param);
+                }
+            });
+            return list.isEmpty();
+        });
+
+//        return null;
+        return R.ok("", paramKeyStream);
     }
 
     public List<GoodsParam> getGoodsParamByParamKeyId(Long paramKeyId) {

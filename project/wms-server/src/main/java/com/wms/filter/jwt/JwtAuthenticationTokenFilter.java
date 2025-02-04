@@ -102,6 +102,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         List<String> permissionsByMember = (List<String>) cache.getIfPresent(permissionsKey + id);
         if (Objects.isNull(permissionsByMember)) {
             permissionsByMember = memberDao.getPermissionsByMember(id);
+            cache.put(permissionsKey+id, permissionsByMember);
         }
         LoginMember loginMember = new LoginMember();
         loginMember.setMember(member);

@@ -11,3 +11,10 @@ export function getGoodsParamByGoodId(id) {
   })
 }
 
+
+export function getGoodsParamByType(type,goodId){
+  return request({
+    url: `/paramKey/getParamKeyListByType/${type}/${goodId}`,
+    method: "get"
+  })
+}

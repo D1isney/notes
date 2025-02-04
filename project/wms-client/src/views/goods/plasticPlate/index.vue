@@ -116,19 +116,19 @@
             </el-select>
           </el-col>
         </el-form-item>
-        <el-form-item :label="param.text" :key="param.id"
-                      v-for="param in editGoodsList.params"
+        <el-row :gutter="10"
+                v-for="param in editGoodsList.params"
         >
-          <el-col :span="15">
-            <el-input placeholder="placeholder" :value="param.value"/>
-            <!--              <el-col class="line">-</el-col>-->
-            <!--              <el-col :span="11">-->
-            <!--              </el-col>-->
-          </el-col>
-          <el-col :span="1" :push="1">
-            <el-button type="danger" icon="el-icon-circle-close" circle @click="deleteParam(param)"/>
-          </el-col>
-        </el-form-item>
+          <el-form-item :label="param.text" key="param.id"
+          >
+            <el-col :span="15">
+              <el-input :placeholder="param.text" v-model="param.value"/>
+            </el-col>
+            <el-col :span="1" :push="1">
+              <el-button type="danger" icon="el-icon-circle-close" circle @click="deleteParam(param)"/>
+            </el-col>
+          </el-form-item>
+        </el-row>
 
         <!--            <el-tag-->
         <!--              @close="deleteParam(param)"-->
@@ -141,10 +141,20 @@
         <!--          </el-col>-->
         <el-form-item>
           <el-col :span="15">
-            <el-button type="primary">修改</el-button>
+
+            <el-button type="primary" @click="editGoods">修改</el-button>
             <el-button type="info" @click="editDrawer = false">取消</el-button>
 
-            <el-button type="primary" icon="el-icon-circle-plus-outline" @click="addParam">添加参数</el-button>
+            <el-dropdown split-button type="primary" icon="el-icon-circle-plus-outline"
+                         @click="addParamDefault()"
+            >
+              添加参数
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item v-for="item in editGoodsParam" @click.native="addParam(item)">
+                  {{ item.name }}
+                </el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
           </el-col>
         </el-form-item>
       </el-form>
@@ -153,9 +163,11 @@
 </template>
 <script>
 
-import { getGoodsParamByGoodId, getList } from '@/api/goods/acrylicPlateAPI'
+import { getGoodsParamByGoodId, getGoodsParamByType, getList } from '@/api/goods/acrylicPlateAPI'
 import pagination from '@/components/Pagination/index.vue'
 import { ParamConst } from '@/api/params/paramsAPI'
+import item from '@/layout/components/Sidebar/Item.vue'
+import * as buffer from 'buffer'
 
 export default {
   components: {
@@ -180,10 +192,14 @@ export default {
       expands: [],
       optionsType: [],
       defaultSelect: 0,
-      editGoodsList: {}
+      editGoodsList: {},
+      editGoodsParam: []
     }
   },
   computed: {
+    item() {
+      return item
+    },
     typeOptions: () => Object.keys(ParamConst.type).map(key => ParamConst.type[key])
   },
   created() {
@@ -191,29 +207,45 @@ export default {
     this.optionsType = ParamConst.type
   },
   methods: {
-    addParam(){
-      // this.$set(this.editGoodsList.params,"params")
+    addParamDefault(){
+      if (this.editGoodsParam.length > 0){
+        this.addParam(this.editGoodsParam[0])
+      }
+    },
+    addParam(val) {
+      const { goodId = this.editGoodsList.id, paramId = val.id, text = val.key, name } = val
+      const data = {
+        goodId,
+        name,
+        paramId,
+        text,
+        value: ''
+      }
+      this.editGoodsParam = this.editGoodsParam.filter(item => {
+        const id = item.id ?? item.paramId
+        return id !== paramId
+      })
+      this.editGoodsList.params.push(data)
     },
     deleteParam(param) {
-      if (Array.isArray(this.editGoodsList.params)) {
-        const index = this.editGoodsList.params.findIndex(item =>
-          item.paramId === param.paramId
-        )
-        if (index !== -1) {
-          this.editGoodsList.params.splice(index, 1)
-        }
+      let index = this.editGoodsList.params.findIndex((ele) => {
+        return ele.paramId === param.paramId
+      })
+      if (index !== -1) {
+        this.editGoodsList.params.splice(index, 1)
       }
+      this.editGoodsParam.push(param)
     },
     openEditDrawer(row) {
       this.editDrawer = true
       this.defaultSelect = this.typeOptions[row.type].value
       this.editGoodsList = JSON.parse(JSON.stringify(row))
-      console.log(this.editGoodsList)
-
-      //  通过类型来拿到这个能匹配的参数，以及本身没有的参数
-
-
-
+      getGoodsParamByType(this.editGoodsList.type, this.editGoodsList.id).then(res => {
+        this.editGoodsParam = []
+        if (res.code === 200) {
+          this.editGoodsParam = res.data
+        }
+      })
     },
     async clear() {
       this.query = {
@@ -277,8 +309,10 @@ export default {
       } else {//折叠
         that.expands = []
       }
+    },
+    editGoods(){
+      console.log(this.editGoodsList)
     }
-
   }
 }
 </script>

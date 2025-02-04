@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.wms.dto.TypeAndValue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -56,4 +58,8 @@ public class Goods implements Serializable {
     @ApiModelProperty(value = "备注")
     @TableField("`remark`")
     private String remark;
+
+    @ApiModelProperty(value = "参数")
+    @TableField(exist = false)
+    private List<TypeAndValue> params;
 }

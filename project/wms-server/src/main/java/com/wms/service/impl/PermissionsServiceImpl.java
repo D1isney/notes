@@ -139,7 +139,6 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
         Role restRole = dto.getRole();
         List<Permissions> restPermissionsList = dto.getPermissions();
 
-
         restMember = createMember(restMember);
     }
 

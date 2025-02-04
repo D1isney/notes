@@ -3,6 +3,7 @@ package com.wms.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.aspect.Log;
 import com.wms.dto.TypeAndValue;
+import com.wms.pojo.Goods;
 import com.wms.service.GoodsService;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;
@@ -41,11 +42,29 @@ public class GoodsController {
     }
 
 
+    @ApiOperation("通过Id查询物料的所有参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "goodId", value = "物料ID")
+    })
     @GetMapping("getGoodsParamByGoodId/{goodId}")
     @Log(value = "物料-通过物料ID查询所有的物料参数",path = "/goods/getGoodsParamByGoodId")
     public R<?> getGoodsParamByGoodId(@PathVariable Long goodId) {
         List<TypeAndValue> typeAndValue = goodsService.getTypeAndValue(goodId);
         return R.ok(typeAndValue);
     }
+
+
+    @ApiOperation("通过Id查询物料的所有参数")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "goods", value = "物料所有信息")
+    })
+    @GetMapping("saveOrUpdateGoods}")
+    @Log(value = "物料-修改物料信息",path = "/goods/saveOrUpdateGoods")
+    public R<?> saveOrUpdateGoods(@RequestBody Goods goods){
+        return goodsService.saveOrUpdateGoods(goods);
+    }
+
+
+
 
 }

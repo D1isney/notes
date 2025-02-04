@@ -65,4 +65,13 @@ public class ParamKeyController {
         return R.ok("指定参数删除成功！");
     }
 
+
+    @ApiOperation("根据类型来查询参数信息")
+    @ApiImplicitParam(name = "type", value = "物料类型")
+    @GetMapping("getParamKeyListByType/{type}/{goodId}")
+    @Log(value = "参数-根据Type查询所有的参数", path = "/paramKey/getParamKeyListByType")
+    public R<?> getParamKeyListByType(@PathVariable Integer type,@PathVariable Long goodId) {
+        return paramKeyService.getParamKeyListByType(type,goodId);
+    }
+
 }
