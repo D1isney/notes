@@ -16,4 +16,6 @@ public interface ParamKeyService extends BaseService<ParamKey, ParamKeyVo> {
     void deleteParamKeyByIds(Long[] ids);
 
     R<?> getParamKeyListByType(Integer type,Long goodId);
+
+    R<?> getParamKeyListByType(Integer type);
 }

@@ -92,7 +92,7 @@
             </el-row>
           </template>
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" circle @click="openEdit(scope.row)"/>
+            <el-button type="primary" icon="el-icon-edit" circle @click.stop="openEdit(scope.row)"/>
             <el-button type="danger" icon="el-icon-delete" circle @click="deletePermissions(scope.row)"/>
           </template>
         </el-table-column>

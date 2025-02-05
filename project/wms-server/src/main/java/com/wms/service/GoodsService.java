@@ -15,4 +15,6 @@ public interface GoodsService extends BaseService<Goods, GoodsVo> {
     List<TypeAndValue> getTypeAndValue(Long goodsId);
 
     R<?> saveOrUpdateGoods(Goods goods);
+
+    void deleteGoodsByIds(Long[] ids);
 }

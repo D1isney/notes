@@ -54,14 +54,25 @@ public class GoodsController {
     }
 
 
-    @ApiOperation("通过Id查询物料的所有参数")
+    @ApiOperation("修改物料信息")
     @ApiImplicitParams({
             @ApiImplicitParam(name = "goods", value = "物料所有信息")
     })
-    @GetMapping("saveOrUpdateGoods}")
+    @PostMapping("saveOrUpdateGoods")
     @Log(value = "物料-修改物料信息",path = "/goods/saveOrUpdateGoods")
     public R<?> saveOrUpdateGoods(@RequestBody Goods goods){
         return goodsService.saveOrUpdateGoods(goods);
+    }
+
+
+    @ApiOperation("根据id删除数据")
+    @ApiImplicitParam(name = "ids", value = "id数组")
+    @DeleteMapping("delete")
+    @Log(value = "物料-删除物料信息",path = "/goods/delete")
+    public R<?> delete(@RequestParam("ids") Long[] ids) {
+        goodsService.deleteGoodsByIds(ids);
+//        goodsService.deleteByIds(ids);
+        return R.ok("删除成功！");
     }
 
 

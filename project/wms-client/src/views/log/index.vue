@@ -85,7 +85,7 @@
       <div class="button-box">
         <el-row>
           <el-col :span="7">
-            <el-select v-model="type" placeholder="日志级别">
+            <el-select v-model="type" placeholder="日志级别" clearable>
               <el-option
                 v-for="item in optionsType"
                 :key="item.value"

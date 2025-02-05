@@ -54,14 +54,14 @@ export const constantRoutes = [
   },
 
   {
-    path: '/form',
+    path: '/storage',
     component: Layout,
     children: [
       {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        path: '/storage',
+        name: 'Storage',
+        component: () => import('@/views/storage/index'),
+        meta: { title: '库位管理', icon: 'el-icon-s-grid' }
       }
     ]
   },

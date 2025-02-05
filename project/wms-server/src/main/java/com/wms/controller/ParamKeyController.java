@@ -62,16 +62,28 @@ public class ParamKeyController {
     @Log(value = "参数-删除参数信息", path = "/paramKey/delete")
     public R<?> delete(@RequestParam Long[] ids) {
         paramKeyService.deleteParamKeyByIds(ids);
-        return R.ok("指定参数删除成功！");
+        return R.ok("参数删除成功！");
+    }
+
+
+    @ApiOperation("根据类型来查询参数信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "type", value = "物料类型"),
+            @ApiImplicitParam(name = "goodId", value = "物料ID")
+    })
+    @GetMapping("getParamKeyListByType/{type}/{goodId}")
+    @Log(value = "参数-根据Type以及物料ID查询所有的参数", path = "/paramKey/getParamKeyListByType")
+    public R<?> getParamKeyListByType(@PathVariable Integer type,@PathVariable Long goodId) {
+        return paramKeyService.getParamKeyListByType(type,goodId);
     }
 
 
     @ApiOperation("根据类型来查询参数信息")
     @ApiImplicitParam(name = "type", value = "物料类型")
-    @GetMapping("getParamKeyListByType/{type}/{goodId}")
+    @GetMapping("getParamKeyListByType/{type}")
     @Log(value = "参数-根据Type查询所有的参数", path = "/paramKey/getParamKeyListByType")
-    public R<?> getParamKeyListByType(@PathVariable Integer type,@PathVariable Long goodId) {
-        return paramKeyService.getParamKeyListByType(type,goodId);
+    public R<?> getParamKeyListByType(@PathVariable Integer type) {
+        return paramKeyService.getParamKeyListByType(type);
     }
 
 }

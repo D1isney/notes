@@ -120,6 +120,7 @@ public class ParamKeyServiceImpl extends IBaseServiceImpl<ParamKeyDao, ParamKey,
      * 根据物料类型来查询所有的参数
      *
      * @param type 物料类型
+     * @param goodId 物料id
      * @return R
      */
     @Override
@@ -128,7 +129,6 @@ public class ParamKeyServiceImpl extends IBaseServiceImpl<ParamKeyDao, ParamKey,
         map.put("type", type);
         //  关于这个类型的所有的参数
         List<ParamKey> paramKeys = queryList(map);
-
         //  通过goodId 找到所有该物料原本的参数
         map = new HashMap<>();
         map.put("goodsId", goodId);
@@ -142,9 +142,16 @@ public class ParamKeyServiceImpl extends IBaseServiceImpl<ParamKeyDao, ParamKey,
             });
             return list.isEmpty();
         });
+        return R.ok(paramKeyStream);
+    }
 
-//        return null;
-        return R.ok("", paramKeyStream);
+    @Override
+    public R<?> getParamKeyListByType(Integer type) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("type", type);
+        //  关于这个类型的所有的参数
+        List<ParamKey> paramKeys = queryList(map);
+        return R.ok(paramKeys);
     }
 
     public List<GoodsParam> getGoodsParamByParamKeyId(Long paramKeyId) {

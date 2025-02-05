@@ -11,6 +11,8 @@
         :expand-row-keys="expands"
         @row-click="openExpand"
         @expand-change="expandChange"
+        @selection-change="handleSelectionChange"
+        @current-change="handleSelectionChange"
         style="width: 100%"
       >
         <el-table-column type="selection" width="55"/>
@@ -131,7 +133,7 @@
       </el-table>
       <div class="button-box">
         <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openAddDrawer"/>
-        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid"/>
+        <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid" @click="deleteAll"/>
       </div>
     </div>
     <div class="page">
@@ -244,7 +246,7 @@
 
 import { deleteParam, getParamsList, ParamConst, paramKeySaveOrUpdate } from '@/api/params/paramsAPI'
 import pagination from '@/components/Pagination/index.vue'
-import { MemberConst } from '@/api/member/member'
+import { deleteMember, MemberConst } from '@/api/member/member'
 
 export default {
   components: {
@@ -280,7 +282,9 @@ export default {
           { required: true, message: '请输入参数名', trigger: 'blur' }
         ]
       },
-      expands:[]
+      expands:[],
+      // 多选的东西
+      multipleSelection: [],
     }
   },
   computed: {
@@ -299,6 +303,9 @@ export default {
           this.total = res.data.totalCount
         }
       })
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
     },
 
     typeTag(type) {
@@ -327,7 +334,7 @@ export default {
       })
     },
     deleteParam(row) {
-      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+      this.$confirm('此操作将永久删除该参数, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -344,7 +351,6 @@ export default {
           message: '已取消删除'
         })
       })
-
     },
     openAddDrawer() {
       this.addDrawer = true
@@ -386,7 +392,30 @@ export default {
       } else {//折叠
         that.expands = []
       }
-    }
+    },
+    deleteAll() {
+      if (this.multipleSelection.length < 1) {
+        this.$message.warning('请先勾选需要操作的参数')
+        return
+      }
+      const ids = this.multipleSelection.map(item => item.id)
+      this.$confirm('此操作将永久删除已选中的参数, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteParam(ids).then(res => {
+          this.$message.success(res.message)
+          if (this.list.length === ids.length && this.query.page > 1) this.query.page--
+          this.getList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
+    },
   }
 }
 </script>
