@@ -19,7 +19,7 @@ import java.io.IOException;
  */
 @RestController
 @RequestMapping("/system")
-@Api(tags = "用户", value = "/system")
+@Api(tags = "Controller-系统", value = "/system")
 public class SystemController {
 
     @Resource

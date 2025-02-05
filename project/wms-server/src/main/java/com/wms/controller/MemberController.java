@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/member")
-@Api(tags = "用户", value = "/member")
+@Api(tags = "Controller-用户", value = "/member")
 public class MemberController {
 
     @Resource

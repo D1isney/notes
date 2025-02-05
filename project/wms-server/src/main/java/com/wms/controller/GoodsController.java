@@ -19,7 +19,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-@Api(tags = "物料表", value = "/goods")
+@Api(tags = "Controller-物料表", value = "/goods")
 @RestController
 @RequestMapping("/goods")
 public class GoodsController {

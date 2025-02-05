@@ -29,7 +29,7 @@ import javax.annotation.Resource;
  * controller
  * </p>
  */
-@Api(tags = "角色", value = "/role")
+@Api(tags = "Controller-角色", value = "/role")
 @RestController
 @RequestMapping("/role")
 public class RoleController {

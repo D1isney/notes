@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Map;
 
-@Api(tags = "日志", value = "/log")
+@Api(tags = "Controller-日志", value = "/log")
 @RestController
 @RequestMapping("/log")
 public class LogController {

@@ -30,7 +30,7 @@ import javax.annotation.Resource;
  * controller
  * </p>
  */
-@Api(tags = "权限信息", value = "/permissions")
+@Api(tags = "Controller-权限信息", value = "/permissions")
 @RestController
 @RequestMapping("/permissions")
 public class PermissionsController {

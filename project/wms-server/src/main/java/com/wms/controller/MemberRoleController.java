@@ -25,7 +25,7 @@ import javax.annotation.Resource;
  *  controller
  * </p>
  */
-@Api(tags = "用户-角色", value = "/memberRole")
+@Api(tags = "Controller-用户-角色", value = "/memberRole")
 @RestController
 @RequestMapping("/memberRole")
 public class MemberRoleController {

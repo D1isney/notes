@@ -24,7 +24,7 @@ import javax.annotation.Resource;
  *  controller
  * </p>
  */
-@Api(tags = "角色-权限", value = "/rolePermissions")
+@Api(tags = "Controller-角色-权限", value = "/rolePermissions")
 @RestController
 @RequestMapping("/rolePermissions")
 public class RolePermissionsController {

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.Map;
 
-@Api(tags = "参数表", value = "/paramKey")
+@Api(tags = "Controller-参数表", value = "/paramKey")
 @RestController
 @RequestMapping("/paramKey")
 public class ParamKeyController {
