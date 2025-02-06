@@ -604,7 +604,7 @@
           <mxGeometry y="234" width="240" height="26" as="geometry" />
         </mxCell>
         <mxCell id="8KPxFHGF4cSGDzkARXjD-1" value="Goods - 物料表" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-360" y="1267" width="240" height="260" as="geometry" />
+          <mxGeometry x="-360" y="1268" width="240" height="260" as="geometry" />
         </mxCell>
         <mxCell id="8KPxFHGF4cSGDzkARXjD-2" value="+ id: bigint - 主键id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="8KPxFHGF4cSGDzkARXjD-1">
           <mxGeometry y="26" width="240" height="26" as="geometry" />
