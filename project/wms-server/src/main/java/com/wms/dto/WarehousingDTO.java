@@ -13,4 +13,5 @@ public class WarehousingDTO {
     private String goodsCode;
     private String inventoryCode;
     private String storageCode;
+    private Integer type;
 }

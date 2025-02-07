@@ -18,7 +18,19 @@ import com.wms.exception.EException;
 public class App {
 
     public static void main(String[] args) {
-        plcTest();
+//        plcTest();
+        for (Integer i : splitCode("25020701")) {
+            System.out.println(i);
+        }
+
+    }
+
+    public static Integer[] splitCode(String code) {
+        int split = code.length() / 2;
+
+        int start = Integer.parseInt(code.substring(0, split + 1));
+        int end = Integer.parseInt(code.substring(split + 1));
+        return new Integer[]{start, end};
     }
 
     public static void plcTest() {
@@ -60,7 +72,7 @@ public class App {
                 short highWord = (short) ((value1 >> 16) & 0xFFFF); // 高位部分
                 short lowWord = (short) (value1 & 0xFFFF); // 低位部分
 
-                master.writeMultipleRegisters(slaveId,0,new int[]{highWord,lowWord});
+                master.writeMultipleRegisters(slaveId, 0, new int[]{highWord, lowWord});
 
 
                 // 读取对应从机的数据，readInputRegisters读取的写寄存器，功能码04

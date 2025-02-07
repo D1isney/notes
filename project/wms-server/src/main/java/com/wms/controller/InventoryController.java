@@ -13,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -25,6 +26,7 @@ import java.util.Map;
 public class InventoryController {
 
     @Resource
+    @Lazy
     private InventoryService inventoryService;
 
     @ApiOperation("查询数据")
@@ -41,10 +43,10 @@ public class InventoryController {
         return R.ok(pageUtil);
     }
 
-    @ApiOperation("修改库存信息")
+    @ApiOperation("手动出库")
     @PostMapping("saveOrUpdateInventory")
-    @Log(value = "库存-修改或保存库存信息",path = "/inventory/saveOrUpdateInventory")
-    public R<?> saveOrUpdateInventory(@RequestBody List<WarehousingDTO> warehousingDTO){
+    @Log(value = "库存-手动出库",path = "/inventory/saveOrUpdateInventory")
+    public R<?> saveOrUpdateInventory(@RequestBody WarehousingDTO warehousingDTO){
         return inventoryService.warehousing(warehousingDTO);
     }
 

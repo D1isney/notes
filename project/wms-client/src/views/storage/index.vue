@@ -67,14 +67,16 @@
 
 <script>
 import Inventory from '@/views/inventory/index.vue'
+import { saveOrUpdateInventory } from '@/api/inventory/inventoryAPI'
 
 export default {
   data() {
     return {
       warehousingList: {
-        goodsCode: '',
-        inventoryCode: '',
-        storageCode: ''
+        type: 0,
+        goodsCode: '24122701',
+        inventoryCode: '25020701',
+        storageCode: '25020601'
       },
       warehousingListRules: {
         goodsCode: [
@@ -95,8 +97,9 @@ export default {
     manualWarehousing() {
       this.$refs.warehousingList.validate((valid) => {
         if (valid) {
-          alert('submit!')
-
+          saveOrUpdateInventory(this.warehousingList).then(res => {
+            console.log(res)
+          })
 
         } else {
           return false

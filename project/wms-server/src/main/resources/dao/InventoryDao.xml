@@ -122,6 +122,9 @@
             <if test="query.storageId != null">
                 AND t.storage_id = #{query.storageId}
             </if>
+            <if test="query.status != null">
+                AND t.status = #{query.status}
+            </if>
         </where>
     </sql>
 

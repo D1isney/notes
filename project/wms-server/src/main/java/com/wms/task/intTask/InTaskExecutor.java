@@ -6,39 +6,33 @@ import com.wms.enums.InventoryEnum;
 import com.wms.enums.PLCEnum;
 import com.wms.enums.TaskEnum;
 import com.wms.exception.EException;
-import com.wms.pojo.Goods;
-import com.wms.pojo.Inventory;
-import com.wms.pojo.Storage;
-import com.wms.pojo.Task;
+import com.wms.pojo.*;
 import com.wms.service.GoodsService;
 import com.wms.service.InventoryService;
 import com.wms.service.StorageService;
 import com.wms.task.TaskExecutor;
-import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.StringUtil;
 
-import java.util.Date;
 
 /**
  * 入库任务执行器
  */
-public class IntTaskExecutor extends TaskExecutor {
+public class InTaskExecutor extends TaskExecutor {
     private Goods goods = new Goods();
     private Storage storage = new Storage();
     private Inventory inventory = new Inventory();
-    private InventoryService inventoryServiceInt;
-    private StorageService storageServiceInt;
-    private GoodsService goodsServiceInt;
     private PlcConnect plcConnect;
+
+    private LogRecord logRecord;
 
     //  准备数据
     @Override
     public void prepare() {
         //  拿到任务
         Task task = getTask();
-        inventoryServiceInt = getInventoryService();
-        storageServiceInt = getStorageService();
-        goodsServiceInt = getGoodsService();
+        InventoryService inventoryServiceInt = getInventoryService();
+        StorageService storageServiceInt = getStorageService();
+        GoodsService goodsServiceInt = getGoodsService();
         if (!StringUtil.isEmpty(task.getInventoryId())) {
             inventory = inventoryServiceInt.queryById(task.getInventoryId());
         } else {
@@ -54,7 +48,7 @@ public class IntTaskExecutor extends TaskExecutor {
         } else {
             throw new EException("任务=======》物料ID不能为空！");
         }
-
+        logRecord = createLog();
     }
 
     @Override
@@ -90,9 +84,9 @@ public class IntTaskExecutor extends TaskExecutor {
         plcConnect.writePlc(PLCEnum.PLC_STORAGE_LEVEL_IN, inventory.getLayer());
         //  垂直位置
         plcConnect.writePlc(PLCEnum.PLC_STORAGE_VERTICAL_IN, storage.getRow());
-        operation(inventory,task,InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN);
+        operation(inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN);
         //  创建日志并推送
-        log(inventory,task,InventoryEnum.COMING_IN,TaskEnum.ONGOING_IN);
+        log(logRecord, inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN, false);
     }
 
     @Override
@@ -104,13 +98,22 @@ public class IntTaskExecutor extends TaskExecutor {
             //  睡眠指定之间再次执行
             Thread.sleep(getSleepTime());
         }
+
+        Task task = getTask();
+        operation(inventory, task, InventoryEnum.STORAGE_COMPLETED, TaskEnum.ACCOMPLISH_IN);
+        log(logRecord, inventory, task, InventoryEnum.STORAGE_COMPLETED, TaskEnum.ACCOMPLISH_IN, false);
     }
 
     //  入库完成，更改库存，任务状态
     @Override
-    public void refresh() {
+    public void refresh() throws InterruptedException {
         Task task = getTask();
-        operation(inventory,task,InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN);
-
+        operation(inventory, task, InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN);
+        log(logRecord, inventory, task, InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN, true);
+        //  睡一秒
+        Thread.sleep(getSleepTime());
+        //  可以写入了
+        plcConnect.writePlc(PLCEnum.PLC_ACCOMPLISH_IN, PlcConstant.canBeWritten);
+        plcConnect.writePlc(PLCEnum.PLC_INT, PlcConstant.canBeWritten);
     }
 }

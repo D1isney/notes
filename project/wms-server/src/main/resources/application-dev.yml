@@ -46,6 +46,11 @@ cache:
   role-key: role
 
 
+thread:
+  pool:
+    corePoolSize: 1
+    maximumPoolSize: 1
+    keepAliveTime: 60
 
 plc:
   # json文件名称
@@ -56,6 +61,7 @@ plc:
   default-ip: 127.0.0.1
   default-port: 502
   default-slaveId: 1
+  sleepTime: 1
 
 login:
   filter:
