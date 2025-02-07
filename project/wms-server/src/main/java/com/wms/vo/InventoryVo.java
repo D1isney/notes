@@ -1,6 +1,6 @@
 package com.wms.vo;
 
-import com.wms.pojo.Storage;
+import com.wms.pojo.Inventory;
 import lombok.*;
 
 @Getter
@@ -8,7 +8,7 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class StorageVo extends Storage {
+public class InventoryVo extends Inventory {
     private String createUsername;
     private String updateUsername;
 }

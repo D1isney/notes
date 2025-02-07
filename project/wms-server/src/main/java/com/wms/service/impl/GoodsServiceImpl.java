@@ -118,6 +118,8 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
                 throw new EException("请先删除所有参数再对物料类型进行修改！");
             }
         }
+        goods.setUpdateMember(currentHelper.getCurrentMemberId());
+        goods.setUpdateTime(new Date());
         //  更新物料
         saveOrModify(goods);
         //  更新这个物料的关系
@@ -143,9 +145,7 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
         if (StringUtil.isEmpty(params) && !StringUtil.isEmpty(goodsParamsList)) {
             Long[] collect = goodsParamsList.stream().map(GoodsParam::getId).toArray(Long[]::new);
             goodsParamService.deleteByIds(collect);
-        } else if (StringUtil.isEmpty(params) && StringUtil.isEmpty(goodsParamsList)) {
-            return;
-        } else {
+        } else if (!StringUtil.isEmpty(params) && (StringUtil.isEmpty(goodsParamsList) || !StringUtil.isEmpty(goodsParamsList))) {
             Set<Long> paramsParamIds = params.stream().map(TypeAndValue::getParamId).collect(Collectors.toSet());
             Set<Long> goodsParamsParamIds = goodsParamsList.stream().map(GoodsParam::getParamId).collect(Collectors.toSet());
             List<TypeAndValue> newParamsToAdd = params.stream()
@@ -182,6 +182,7 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
                 List<GoodsParam> goodsParams = goodsConvert.convertToGoodsParam(newParamsToAdd, currentHelper.getCurrentMemberId());
                 goodsParamService.saveOrUpdateBatch(goodsParams);
             }
+            //  值需要更新
             if (!paramsToUpdate.isEmpty()) {
                 goodsParamService.saveOrUpdateBatch(paramsToUpdate);
             }

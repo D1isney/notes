@@ -9,6 +9,8 @@ public enum LogRecordEnum{
     WARNING_LOG("警告日志",1),
     DANGER_LOG("危险日志",2),
     ALARM_LOG("报警日志",3),
+    INT_LOG("入库日志",4),
+    OUT_LOG("出库日志",5),
     ;
     private final String message;
     private final Integer code;

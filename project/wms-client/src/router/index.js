@@ -61,7 +61,7 @@ export const constantRoutes = [
         path: '/storage',
         name: 'Storage',
         component: () => import('@/views/storage/index'),
-        meta: { title: '库位管理', icon: 'el-icon-s-grid' }
+        meta: { title: '库位信息', icon: 'el-icon-s-grid' }
       }
     ]
   },
@@ -159,7 +159,6 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
-// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
   const newRouter = createRouter()
   router.matcher = newRouter.matcher // reset router

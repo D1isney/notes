@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wms.dao.StorageDao">
+<mapper namespace="com.wms.dao.InventoryDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="StorageMap" type="com.wms.pojo.Storage">
+    <resultMap id="InventoryMap" type="com.wms.pojo.Inventory">
         <id column="id" property="id" />
-        <result column="code" property="code" />
-        <result column="is_forbidden" property="isForbidden" />
+        <result column="storage_id" property="storageId" />
+        <result column="goods_id" property="goodsId" />
         <result column="name" property="name" />
-        <result column="row" property="row" />
+        <result column="code" property="code" />
+        <result column="layer" property="layer" />
+        <result column="status" property="status" />
         <result column="create_time" property="createTime" />
         <result column="update_time" property="updateTime" />
         <result column="create_member" property="createMember" />
@@ -17,16 +19,18 @@
     </resultMap>
 
     <!-- 通用查询映射结果 Vo) -->
-    <resultMap id="StorageVoMap" type="com.wms.vo.StorageVo" extends="StorageMap">
+    <resultMap id="InventoryVoMap" type="com.wms.vo.InventoryVo" extends="InventoryMap">
         <result column="create_username" property="createUsername"/>
         <result column="update_username" property="updateUsername"/>
     </resultMap>
     <!-- 保存列 -->
     <sql id="saveColumnBase">
-        `code`,
-        `is_forbidden`,
+        `storage_id`,
+        `goods_id`,
         `name`,
-        `row`,
+        `code`,
+        `layer`,
+        `status`,
         `create_time`,
         `update_time`,
         `create_member`,
@@ -35,10 +39,12 @@
     </sql>
     <!-- 保存列value -->
     <sql id="saveColumnValue">
-        #{entity.code},
-        #{entity.is_forbidden},
+        #{entity.storage_id},
+        #{entity.goods_id},
         #{entity.name},
-        #{entity.row},
+        #{entity.code},
+        #{entity.layer},
+        #{entity.status},
         #{entity.createTime},
         #{entity.updateTime},
         #{entity.createMember},
@@ -46,10 +52,12 @@
         #{entity.remark}
     </sql>
 
-    <sql id="codeColumn">`code` = #{entity.code},</sql>
-    <sql id="isForbiddenColumn">`name` = #{entity.isForbidden},</sql>
+    <sql id="storageIdColumn">`code` = #{entity.storageId},</sql>
+    <sql id="goodsIdColumn">`code` = #{entity.goodsId},</sql>
     <sql id="nameColumn">`name` = #{entity.name},</sql>
-    <sql id="rowColumn">`name` = #{entity.row},</sql>
+    <sql id="codeColumn">`code` = #{entity.code},</sql>
+    <sql id="layerColumn">`code` = #{entity.layer},</sql>
+    <sql id="statusColumn">`code` = #{entity.status},</sql>
     <sql id="createTimeColumn">`create_time` = #{entity.createTime},</sql>
     <sql id="updateTimeColumn">`update_time` = #{entity.updateTime},</sql>
     <sql id="createMemberColumn">`create_member` = #{entity.createMember},</sql>
@@ -58,10 +66,12 @@
 
     <sql id="updateColumnNotNull">
         <set>
-            <if test="entity.code != null"><include refid="codeColumn"/></if>
-            <if test="entity.isForbidden != null"><include refid="isForbiddenColumn"/></if>
+            <if test="entity.storageId != null"><include refid="storageIdColumn"/></if>
+            <if test="entity.goodsId != null"><include refid="goodsIdColumn"/></if>
             <if test="entity.name != null"><include refid="nameColumn"/></if>
-            <if test="entity.row != null"><include refid="rowColumn"/></if>
+            <if test="entity.code != null"><include refid="codeColumn"/></if>
+            <if test="entity.layer != null"><include refid="layerColumn"/></if>
+            <if test="entity.status != null"><include refid="statusColumn"/></if>
             <if test="entity.createTime != null"><include refid="createTimeColumn"/></if>
             <if test="entity.updateTime != null"><include refid="updateTimeColumn"/></if>
             <if test="entity.createMember != null"><include refid="createMemberColumn"/></if>
@@ -70,10 +80,12 @@
         </set>
     </sql>
     <sql id="entityColumn">
-        <include refid="codeColumn"/>
-        <include refid="isForbiddenColumn"/>
+        <include refid="storageIdColumn"/>
+        <include refid="goodsIdColumn"/>
         <include refid="nameColumn"/>
-        <include refid="rowColumn"/>
+        <include refid="codeColumn"/>
+        <include refid="layerColumn"/>
+        <include refid="statusColumn"/>
         <include refid="createTimeColumn"/>
         <include refid="updateTimeColumn"/>
         <include refid="createMemberColumn"/>
@@ -83,10 +95,12 @@
     <!-- 通用查询结果列 -->
     <sql id="queryListColumnBase">
         t.id,
-         t.code,
-         t.is_forbidden,
+         t.storage_id,
+         t.goods_id,
          t.name,
-         t.row,
+         t.code,
+         t.layer,
+         t.status,
          t.create_time,
          t.update_time,
          t.create_member,
@@ -104,6 +118,9 @@
         <where>
             <if test="query.code != null">
                 AND t.code = #{query.code}
+            </if>
+            <if test="query.storageId != null">
+                AND t.storage_id = #{query.storageId}
             </if>
         </where>
     </sql>
@@ -123,7 +140,7 @@
     </sql>
 
     <insert id="saveBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into `storage`
+        insert into `inventory`
         (
         <include refid="saveColumnBase"/>
         )
@@ -135,8 +152,8 @@
         </foreach>
     </insert>
 
-    <insert id="save" parameterType="com.wms.pojo.Storage" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into `storage`
+    <insert id="save" parameterType="com.wms.pojo.Inventory" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        insert into `inventory`
         (
         <include refid="saveColumnBase"/>
         )
@@ -147,23 +164,23 @@
     </insert>
 
     <delete id="deleteByIds" parameterType="java.lang.Long">
-        delete from `storage`
+        delete from `inventory`
         where id in
         <foreach collection="ids" item="item" index="index" open="(" separator="," close=")">
             #{item}
         </foreach>
     </delete>
 
-    <update id="update" parameterType="com.wms.pojo.Storage" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        update `storage`
+    <update id="update" parameterType="com.wms.pojo.Inventory" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `Inventory`
         <set>
             <include refid="entityColumn"/>
         </set>
         where id= #{entity.id}
     </update>
 
-    <update id="updateNotEmpty" parameterType="com.wms.pojo.Storage" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        update `storage`
+    <update id="updateNotEmpty" parameterType="com.wms.pojo.Inventory" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        update `inventory`
         <include refid="updateColumnNotNull"/>
         where id= #{id}
     </update>
@@ -171,14 +188,14 @@
 
     <update id="updateBatchNotEmpty" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         <foreach collection="collection" item="entity" index="index" separator=";">
-            update `storage`
+            update `inventory`
             <include refid="updateColumnNotNull"/>
             where id = #{entity.id}
         </foreach>
     </update>
 
     <update id="updateBatchByIdNotEmpty">
-        update `storage`
+        update `inventory`
         <include refid="updateColumnNotNull"/>
         where id in
         <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
@@ -187,7 +204,7 @@
     </update>
 
     <update id="updateBatchById" >
-        update `storage`
+        update `inventory`
         set
         <include refid="entityColumn"/>
         where id in
@@ -198,60 +215,60 @@
 
     <update id="updateBatch" parameterType="java.util.Collection" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
         <foreach collection="collection" item="entity" index="index" separator=";">
-            update `storage`
+            update `inventory`
             set
             <include refid="entityColumn"/>
             where id= #{entity.id}
         </foreach>
     </update>
 
-    <select id="queryById" parameterType="java.lang.Long" resultMap="StorageMap">
+    <select id="queryById" parameterType="java.lang.Long" resultMap="InventoryMap">
         select
         <include refid="queryListColumnBase"/>
-        from `storage` t
+        from `inventory` t
         where id = #{id}
     </select>
 
-    <select id="queryByIds" resultMap="StorageMap">
+    <select id="queryByIds" resultMap="InventoryMap">
         select
         <include refid="queryListColumnBase"/>
-        from `storage` t
+        from `inventory` t
         where id in
         <foreach collection="ids" index="index" item="item" separator="," open="(" close=")">
             #{item}
         </foreach>
     </select>
 
-    <select id="list"  parameterType="java.util.Map" resultMap="StorageVoMap">
+    <select id="list"  parameterType="java.util.Map" resultMap="InventoryVoMap">
         select
         <include refid="queryListColumn"/>
-        from `storage` t
+        from `inventory` t
         <include refid="queryListWhere"/>
     </select>
 
-    <select id="pageList" resultMap= "StorageVoMap">
+    <select id="pageList" resultMap= "InventoryVoMap">
         select
         <include refid="queryListColumn"/>
-        from `storage` t
+        from `inventory` t
         <include refid="queryListWhere"/>
         <include refid="order"/>
     </select>
 
 
-    <select id="queryList" parameterType="java.util.Map" resultMap= "StorageMap">
+    <select id="queryList" parameterType="java.util.Map" resultMap= "InventoryMap">
         select
         <include refid="queryListColumnBase"/>
-        from `storage` t
+        from `inventory` t
         <include refid="queryListWhere"/>
     </select>
 
     <select id="queryTotal" resultType="java.lang.Long">
-        select count(*) from  `storage` t
+        select count(*) from  `inventory` t
         <include refid="queryListWhere"/>
     </select>
 
     <select id="lastCode" resultType="java.lang.String">
-        select t.code from `storage` t where date(t.create_time) = curdate() order by t.code desc limit 1;
+        select t.code from `inventory` t where date(t.create_time) = curdate() order by t.code desc limit 1;
     </select>
 
 </mapper>

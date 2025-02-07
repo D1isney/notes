@@ -12,35 +12,38 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Setter
 @Getter
 @ToString
-@TableName(value = "storage")
-@ApiModel(value = "Storage")
-public class Storage implements Serializable {
+@TableName(value = "task")
+@ApiModel(value = "Task")
+public class Task implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "自增主键")
     @TableId(value = "`id`", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "库位编码")
-    @TableField("`code`")
+    @ApiModelProperty(value = "物料id")
+    @TableField(value = "`goods_id`")
+    private Long goodsId;
+
+    @ApiModelProperty(value = "库存id")
+    @TableField(value = "`inventory_id`")
+    private Long inventoryId;
+
+    @ApiModelProperty(value = "任务编码")
+    @TableField(value = "`code`")
     private String code;
 
-    @ApiModelProperty(value = "是否禁用（0：禁用，1：可用）")
-    @TableField("`is_forbidden`")
-    private Integer isForbidden;
+    @ApiModelProperty(value = "任务状态（0：初始化，1：进行中，2：挂起，3：完成）")
+    @TableField(value = "`status`")
+    private Integer status;
 
-    @ApiModelProperty(value = "库位名称")
-    @TableField("`name`")
-    private String name;
-
-    @ApiModelProperty(value = "库位名称")
-    @TableField("`row`")
-    private Integer row;
+    @ApiModelProperty(value = "任务类型（0：入库，1：出库）")
+    @TableField(value = "`type`")
+    private Integer type;
 
     @ApiModelProperty(value = "创建时间")
     @TableField("`create_time`")
@@ -58,12 +61,7 @@ public class Storage implements Serializable {
     @TableField("`update_member`")
     private Long updateMember;
 
-    @ApiModelProperty(value = "描述")
+    @ApiModelProperty(value = "备注")
     @TableField("`remark`")
     private String remark;
-
-    @ApiModelProperty(value = "具体库位的层")
-    @TableField(exist = false)
-    private List<Inventory> inventoryList;
-
 }

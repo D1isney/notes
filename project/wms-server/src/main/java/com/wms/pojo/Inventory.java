@@ -12,35 +12,41 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 @Setter
 @Getter
 @ToString
-@TableName(value = "storage")
-@ApiModel(value = "Storage")
-public class Storage implements Serializable {
+@TableName(value = "inventory")
+@ApiModel(value = "Inventory")
+public class Inventory implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @ApiModelProperty(value = "自增主键")
     @TableId(value = "`id`", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "库位编码")
-    @TableField("`code`")
-    private String code;
+    @ApiModelProperty(value = "库位ID")
+    @TableField("`storage_id`")
+    private Long storageId;
 
-    @ApiModelProperty(value = "是否禁用（0：禁用，1：可用）")
-    @TableField("`is_forbidden`")
-    private Integer isForbidden;
+    @ApiModelProperty(value = "物料ID")
+    @TableField("`goods_id`")
+    private Long goodsId;
 
-    @ApiModelProperty(value = "库位名称")
+    @ApiModelProperty(value = "库存名称")
     @TableField("`name`")
     private String name;
 
-    @ApiModelProperty(value = "库位名称")
-    @TableField("`row`")
-    private Integer row;
+    @ApiModelProperty(value = "库存编码")
+    @TableField("`code`")
+    private String code;
+
+    @ApiModelProperty(value = "库存层数")
+    @TableField("`layer`")
+    private int layer;
+
+    @ApiModelProperty(value = "库存状态（0：无货物，1：正在入库，2：入库完成，3：正在出库，4：出库完成，5：有货物）")
+    private Integer status;
 
     @ApiModelProperty(value = "创建时间")
     @TableField("`create_time`")
@@ -61,9 +67,5 @@ public class Storage implements Serializable {
     @ApiModelProperty(value = "描述")
     @TableField("`remark`")
     private String remark;
-
-    @ApiModelProperty(value = "具体库位的层")
-    @TableField(exist = false)
-    private List<Inventory> inventoryList;
 
 }

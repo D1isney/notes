@@ -16,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -111,6 +110,8 @@ public class PlcConnect implements PlcConnectService {
             } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException e) {
                 throw new RuntimeException(e);
             }
+        }else{
+            throw new EException("请先连接PLC！！！");
         }
     }
 
@@ -129,6 +130,8 @@ public class PlcConnect implements PlcConnectService {
             } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException e) {
                 throw new RuntimeException(e);
             }
+        }else{
+            throw new EException("请先连接PLC！！！");
         }
     }
 

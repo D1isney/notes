@@ -43,7 +43,7 @@
                   </el-form-item>
                 </el-col>
               </el-row>
-              <el-row :gutter="20" v-if="propsList.row.params.length">
+              <el-row :gutter="20" v-if="propsList.row.params">
                 <el-col :span="12" v-for="item in propsList.row.params">
                   <el-form-item :label="item.text">
                     <span>{{ item.value }}</span>
