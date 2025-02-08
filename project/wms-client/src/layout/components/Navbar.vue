@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters,mapState,mapActions } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import { closePlcConnect, getSettingAPI, openPlcConnect, saveOrUpdateSettingAPI } from '@/api/system/systemAPI'
@@ -102,15 +102,16 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar'
-    ])
+    ...mapGetters(['sidebar', 'username']),
+    ...mapState('webSocket', ['socketData'])
   },
   created() {
     this.getSettingList()
+    this.openSocket()
+    console.log('111', process.env.NODE_ENV)
   },
   methods: {
+    ...mapActions('webSocket',['openSocket']),
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },

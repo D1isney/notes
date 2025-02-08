@@ -1,7 +1,9 @@
-
-let baseURL
+let BASEURL
 if (process.env.NOOD_ENV === 'development'){
-  baseURL = 'http://127.0.0.1:1217'
+  BASEURL = 'http://127.0.0.1:1217'
+} else {
+  // baseURL = 'http://127.0.0.1:1217'
+  BASEURL = './'
 }
 
 module.exports = {
@@ -15,5 +17,5 @@ module.exports = {
 
   showSettings: true,
 
-  baseURL
+  BASEURL
 }

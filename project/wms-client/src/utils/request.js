@@ -3,9 +3,10 @@ import { Message } from 'element-ui'
 import { getToken, removeToken } from '@/utils/auth'
 import store from '@/store'
 import router from '@/router'
+import { BASEURL } from '@/settings'
 
 const service = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API,
+  baseURL: BASEURL,
   timeout: 1000
 })
 
@@ -15,6 +16,7 @@ service.interceptors.request.use(
       config.headers['Authorization'] = getToken()
       config.headers['Content-Type'] = 'application/json;charset=utf-8'
     }
+    console.log(BASEURL)
     return config
   },
   error => {

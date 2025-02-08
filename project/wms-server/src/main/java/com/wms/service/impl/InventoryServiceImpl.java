@@ -1,6 +1,5 @@
 package com.wms.service.impl;
 
-import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.wms.connect.plc.PlcConnect;
 import com.wms.constant.InOrOutConstant;
 import com.wms.dao.InventoryDao;
@@ -8,8 +7,6 @@ import com.wms.dto.WarehousingDTO;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
 import com.wms.exception.EException;
-import com.wms.filter.login.LoginMember;
-import com.wms.handler.TaskExceptionHandler;
 import com.wms.pojo.Goods;
 import com.wms.pojo.Inventory;
 import com.wms.pojo.Storage;
@@ -33,8 +30,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Service

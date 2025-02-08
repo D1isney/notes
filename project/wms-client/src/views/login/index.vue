@@ -105,6 +105,7 @@ export default {
   },
   created() {
     removeToken()
+    console.log('222', process.env.NODE_ENV)
   },
   methods: {
     showPwd() {

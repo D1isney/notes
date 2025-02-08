@@ -1,8 +1,11 @@
 package com.wms.task;
 
 import com.wms.connect.plc.PlcConnect;
+import com.wms.connect.websocket.WebSocketServer;
+import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.filter.login.LoginMember;
 import com.wms.handler.TaskExceptionHandler;
@@ -124,7 +127,6 @@ public abstract class TaskExecutor implements Runnable {
         logRecord.setCreateTime(new Date());
         String str = "任务：" + task.getCode() + "，目前状态：" + taskEnum.getMessage() + "，库位状态：" + inventoryEnum.getMessage() + "。";
         logRecord.setMessage(str);
-
         Map<String, Object> map = new HashMap<>();
         map.put("task", task);
         map.put("inventory", inventory);
@@ -136,11 +138,10 @@ public abstract class TaskExecutor implements Runnable {
             //  结果
             logRecord.setResult(taskEnum.getMessage());
         }
+        WebSocketServerWeb.send(WebSocketEnum.LOG);
+
         logRecordService.saveOrModify(logRecord);
-
         //TODO: 推送
-
-
     }
 
 

@@ -49,7 +49,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Value("${cache.permissions-key}")
     private String permissionsKey;
 
-
     @SuppressWarnings("null")
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -59,6 +58,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
+        if (request.getServletPath().startsWith("/websocket/")) {
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
         String userid;
         try {
             Claims claims = JwtUtil.parseJWT(authorization);
@@ -74,6 +80,8 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             //  放进缓存
             cache.put(userKey+userid, member);
         }
+
+
         if (Objects.isNull(member)) {
             throw new EException("非法用户");
         }

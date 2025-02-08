@@ -13,6 +13,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -50,6 +51,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/websocket");
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -61,10 +66,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/login").permitAll()
                 .antMatchers("/member/constraintLogin").permitAll()
                 .antMatchers("/member/register").permitAll()
+                .antMatchers("/websocket/**").permitAll()
                 .anyRequest().authenticated()
         ;
         //  jwt解析
-        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
+                .requestMatcher(request -> !request.getRequestURI().startsWith("/websocket/"));
         http.sessionManagement(session->{
             //  最大用户在线
             session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
@@ -72,12 +79,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         //  配置异常处理器
         http.exceptionHandling()
-                //  认真失败处理器
+//                  认证失败处理器
                 .authenticationEntryPoint(authenticationEntryPoint)
-                //  授权失败处理器
+//                  授权失败处理器
                 .accessDeniedHandler(accessDeniedHandler);
-
-
         http.cors();
     }
 
