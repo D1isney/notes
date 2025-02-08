@@ -18,16 +18,17 @@
 
 <script>
 import { getStorageListAndGetInventoryList } from '@/api/storage/storageApi'
+import { mapGetters, mapState, mapActions } from 'vuex'
+import { intelligentDiskLibrary } from '@/api/inventory/inventoryAPI'
 
 export default {
-  computed: {},
   data() {
     return {
       query: {
         page: 1,
         limit: 10
       },
-      inventoryLoading: true,
+      inventoryLoading: false,
       crosswise: [],
       boxWidth: '',
       inventoryQuery: {
@@ -64,7 +65,6 @@ export default {
             }
           })
           this.resetSize()
-          this.inventoryLoading = false
         }
       })
     },
@@ -96,7 +96,7 @@ export default {
       // 根据 status 返回不同的背景颜色
       switch (status) {
         case 0:
-          return '#dedede'
+          return '#cccccc'
         case 1:
           return '#4682b4'
         case 2:
@@ -106,14 +106,49 @@ export default {
         case 4:
           return '#32cd32'
         case 5:
-          return '#bbbbbb'
+          return '#757575'
         default:
           return '#cccccc' // 默认灰色
       }
+    },
+    ...mapActions('webSocket', ['openSocket']),
+
+    async intelligentDiskLibrary() {
+      let _that = this
+      this.inventoryLoading = true
+      await intelligentDiskLibrary()
+      await this.getList()
+      setTimeout(() => {
+        this.inventoryLoading = false
+      }, 5000)
     }
   },
   created() {
     this.getList()
+  },
+  computed: {
+    ...mapGetters(['sidebar', 'username']),
+    ...mapState('webSocket', ['socketData'])
+  },
+  watch: {
+    socketData(val) {
+      if (val.type === 'PlcConnectError') {
+        this.$notify({
+          title: '失败',
+          message: val.message,
+          type: 'error'
+        })
+      }
+      if (val.type === 'log') {
+        this.getList()
+      }
+    }
+  },
+  mounted() {
+    this.$on('intelligentDiskLibrary', () => {
+      this.intelligentDiskLibrary()
+    })
+
   }
 }
 </script>

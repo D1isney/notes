@@ -87,7 +87,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         if (!StringUtil.isEmpty(warehousingDTO)) {
             Goods goodsByCode = getGoodsByCode(warehousingDTO.getGoodsCode());
             Inventory inventoryByCode = getInventoryByCode(warehousingDTO.getInventoryCode());
-            Storage storageByCode = getStorageByCode(warehousingDTO.getStorageCode(),inventoryByCode);
+            Storage storageByCode = getStorageByCode(warehousingDTO.getStorageCode(), inventoryByCode);
             if (warehousingDTO.getType().equals(InOrOutConstant.in)) {
                 in(goodsByCode, inventoryByCode, storageByCode);
                 return R.ok("正在下发入库任务！");
@@ -97,6 +97,21 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         } else {
             return R.error("无效入库信息！！！");
         }
+    }
+
+    /**
+     * 智能入库
+     */
+    @Override
+    public void intelligentDiskLibrary() {
+        List<Inventory> inventories = queryAll();
+         inventories.forEach(inventory -> {
+             inventory.setStatus(InventoryEnum.EMPTY.getType());
+             inventory.setUpdateTime(new Date());
+             inventory.setUpdateMember(MemberThreadLocal.get().getMember().getId());
+             inventory.setGoodsId(null);
+         });
+         saveOrUpdateBatch(inventories);
     }
 
     private void in(Goods goods, Inventory inventory, Storage storage) {
@@ -150,17 +165,17 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                     return inventories.get(0);
                 }
             } else {
-                throw new EException("库位查询失败！！！");
+                throw new EException("该库位已存在物料，无法再次入库！！！");
             }
         }
 
     }
 
-    public Storage getStorageByCode(String code,Inventory inventoryByCode) {
+    public Storage getStorageByCode(String code, Inventory inventoryByCode) {
         if (StringUtil.isEmpty(code)) {
             Long storageId = inventoryByCode.getStorageId();
             return storageService.queryById(storageId);
-        }else {
+        } else {
             Map<String, Object> map = new HashMap<>();
             map.put("code", code);
             List<Storage> storages = storageService.queryList(map);
@@ -190,6 +205,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
 
     public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory) {
         Task task = createTask(goods, inventory);
+
         taskExecutor.setTask(task);
         taskExecutor.setPlcConnect(plcConnect);
         taskExecutor.setTaskService(taskService);

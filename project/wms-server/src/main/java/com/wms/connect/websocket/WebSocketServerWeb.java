@@ -1,7 +1,9 @@
 package com.wms.connect.websocket;
 
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.filter.login.Member;
+import com.wms.utils.R;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -15,7 +17,7 @@ import java.io.IOException;
 @ServerEndpoint("/websocket/{token}")
 public class WebSocketServerWeb extends WebSocketServer implements ApplicationContextAware {
 
-//    @Resource
+    //    @Resource
     private static WebTokenProvider tokenConvert;
 
     @Override
@@ -31,13 +33,19 @@ public class WebSocketServerWeb extends WebSocketServer implements ApplicationCo
         return websocketHolder;
     }
 
-    public Member getMember(String token){
+    public Member getMember(String token) {
         return tokenConvert.authentication(token);
     }
 
-    public static void send(Object o) {
+    public static void send(WebSocketEnum webSocketEnum) {
         try {
-            sendObject(o);
+//            R<?> r = new R<>();
+            Push push = new Push();
+            push.setType(webSocketEnum.getType());
+            push.setData(webSocketEnum.getData());
+            push.setMessage(webSocketEnum.getMessage());
+            push.setCode(webSocketEnum.getCode());
+            sendObject(push);
         } catch (IOException e) {
             throw new EException(e.getMessage());
         }

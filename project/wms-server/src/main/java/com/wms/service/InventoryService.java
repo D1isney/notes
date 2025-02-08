@@ -12,4 +12,6 @@ public interface InventoryService extends BaseService<Inventory, InventoryVo> {
     String lastCode();
 
     R<?> warehousing(WarehousingDTO warehousingDTO);
+
+    void intelligentDiskLibrary();
 }

@@ -33,10 +33,14 @@ public class InTaskExecutor extends TaskExecutor {
         InventoryService inventoryServiceInt = getInventoryService();
         StorageService storageServiceInt = getStorageService();
         GoodsService goodsServiceInt = getGoodsService();
-        if (!StringUtil.isEmpty(task.getInventoryId())) {
-            inventory = inventoryServiceInt.queryById(task.getInventoryId());
+        if (StringUtil.isEmpty(getInventory())) {
+            if (!StringUtil.isEmpty(task.getInventoryId())) {
+                inventory = inventoryServiceInt.queryById(task.getInventoryId());
+            } else {
+                throw new EException("任务=======》库存ID不能为空！");
+            }
         } else {
-            throw new EException("任务=======》库存ID不能为空！");
+            inventory = getInventory();
         }
         if (!StringUtil.isEmpty(inventory.getStorageId())) {
             storage = storageServiceInt.queryById(inventory.getStorageId());
@@ -48,7 +52,9 @@ public class InTaskExecutor extends TaskExecutor {
         } else {
             throw new EException("任务=======》物料ID不能为空！");
         }
-        logRecord = createLog();
+        setInventoryOldStatus(inventory.getStatus());
+        logRecord = createLog(task, TaskEnum.INIT_IN, InventoryEnum.COMING_IN);
+        log(logRecord, inventory, task, InventoryEnum.COMING_IN, TaskEnum.INIT_IN, false);
     }
 
     @Override
@@ -84,6 +90,9 @@ public class InTaskExecutor extends TaskExecutor {
         plcConnect.writePlc(PLCEnum.PLC_STORAGE_LEVEL_IN, inventory.getLayer());
         //  垂直位置
         plcConnect.writePlc(PLCEnum.PLC_STORAGE_VERTICAL_IN, storage.getRow());
+
+        //  物料入库
+        inventory.setGoodsId(goods.getId());
         operation(inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN);
         //  创建日志并推送
         log(logRecord, inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN, false);
@@ -98,7 +107,6 @@ public class InTaskExecutor extends TaskExecutor {
             //  睡眠指定之间再次执行
             Thread.sleep(getSleepTime());
         }
-
         Task task = getTask();
         operation(inventory, task, InventoryEnum.STORAGE_COMPLETED, TaskEnum.ACCOMPLISH_IN);
         log(logRecord, inventory, task, InventoryEnum.STORAGE_COMPLETED, TaskEnum.ACCOMPLISH_IN, false);
@@ -107,6 +115,8 @@ public class InTaskExecutor extends TaskExecutor {
     //  入库完成，更改库存，任务状态
     @Override
     public void refresh() throws InterruptedException {
+        //  睡一秒
+        Thread.sleep(getSleepTime());
         Task task = getTask();
         operation(inventory, task, InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN);
         log(logRecord, inventory, task, InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN, true);

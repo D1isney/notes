@@ -50,5 +50,12 @@ public class InventoryController {
         return inventoryService.warehousing(warehousingDTO);
     }
 
+    @ApiOperation("智能盘库")
+    @GetMapping("intelligentDiskLibrary")
+    @Log(value = "库存-智能盘库",path = "/inventory/intelligentDiskLibrary")
+    public void intelligentDiskLibrary(){
+        inventoryService.intelligentDiskLibrary();
+    }
+
 
 }

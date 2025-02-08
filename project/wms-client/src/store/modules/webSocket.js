@@ -49,7 +49,6 @@ const mutations = {
 
 const actions = {
   async openSocket({ commit, dispatch, state }) {
-    // console.log('openSocket')
     const token = getToken()
 
     // 退出登录了，关闭webSocket连接
@@ -62,7 +61,7 @@ const actions = {
       let url = `ws://${WEB_SOCKET_URL}/websocket/${token}`
       state.socket = new WebSocket(url)
       state.socket.onopen = () => {
-        console.log('socket.onopen websocket连接成功')
+        // console.log('socket.onopen websocket连接成功')
         state.isConnect = true
         state.reConnectCount = 0
         heartCheck.start()
@@ -71,7 +70,7 @@ const actions = {
         // console.log('socket.onmessage')
         if (e.data.indexOf('code') != -1) {
           let serveData = JSON.parse(e.data)
-          if (serveData.code === 0) {
+          if (serveData.code === 0 || serveData.code === 200) {
             commit('SET_SOCKET_DATA', serveData)
           }
         }

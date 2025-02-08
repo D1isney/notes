@@ -2318,3 +2318,5 @@ com.wms.exception.EException: {"code":401,"message":"Full authentication is requ
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 
+2025-02-08 21:17:27.809  ERROR 14808 --- [io-1217-exec-10] c.wms.handler.WebGlobalExceptionHandler  : 库位查询失败！！！
+2025-02-08 21:17:58.630  ERROR 14808 --- [nio-1217-exec-1] c.wms.handler.WebGlobalExceptionHandler  : 库位查询失败！！！

@@ -1,8 +1,7 @@
 let BASEURL
-if (process.env.NOOD_ENV === 'development'){
+if (Object.is("development",process.env.NODE_ENV)){
   BASEURL = 'http://127.0.0.1:1217'
 } else {
-  // baseURL = 'http://127.0.0.1:1217'
   BASEURL = './'
 }
 

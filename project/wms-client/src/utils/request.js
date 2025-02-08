@@ -16,7 +16,6 @@ service.interceptors.request.use(
       config.headers['Authorization'] = getToken()
       config.headers['Content-Type'] = 'application/json;charset=utf-8'
     }
-    console.log(BASEURL)
     return config
   },
   error => {

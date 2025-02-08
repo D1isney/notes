@@ -4,14 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum TaskEnum {
-    INIT_IN(0,0,"初始化状态"),
-    ONGOING_IN(1,0,"进行状态"),
-    PENDING_IN(2,0,"挂起状态"),
-    ACCOMPLISH_IN(3,0,"完成"),
-    INIT_OUT(0,1,"初始化状态"),
-    ONGOING_OUT(1,1,"进行状态"),
-    PENDING_OUT(2,1,"挂起状态"),
-    ACCOMPLISH_OUT(3,1,"完成"),
+    INIT_IN(0,4,"初始化状态"),
+    ONGOING_IN(1,4,"进行状态"),
+    PENDING_IN(2,4,"挂起状态"),
+    ACCOMPLISH_IN(3,4,"完成"),
+    INIT_OUT(0,5,"初始化状态"),
+    ONGOING_OUT(1,5,"进行状态"),
+    PENDING_OUT(2,5,"挂起状态"),
+    ACCOMPLISH_OUT(3,5,"完成"),
     ;
     private final Integer status;
     private final Integer type;

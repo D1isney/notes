@@ -46,6 +46,9 @@ public abstract class TaskExecutor implements Runnable {
 
     //  任务
     private Task task;
+    //  库存情况
+    private Inventory inventory;
+    private Integer inventoryOldStatus;
 
     //  Plc连接工具
     private PlcConnect plcConnect;
@@ -61,6 +64,8 @@ public abstract class TaskExecutor implements Runnable {
     private Long endTime;
 
     private LoginMember memberThreadLocal;
+
+    private LogRecord logRecord = new LogRecord();
 
 
     //  任务执行
@@ -78,11 +83,11 @@ public abstract class TaskExecutor implements Runnable {
             e.printStackTrace();
             //TODO: 报错推送
             if (exceptionHandler != null) {
+                endTime = System.currentTimeMillis();
+                recover(e.getMessage());
                 exceptionHandler.handleException(e);
             }
         }
-
-
     }
 
     @Setter
@@ -104,14 +109,12 @@ public abstract class TaskExecutor implements Runnable {
      * @param task          任务
      * @param inventoryType 出入库
      */
-    @Transactional(rollbackFor = Exception.class)
     public void operation(Inventory inventory, Task task, InventoryEnum inventoryType, TaskEnum taskEnum) {
         //  更新库位，任务状态，推送日志
         //  正在入库
         inventory.setStatus(inventoryType.getType());
         inventory.setUpdateTime(new Date());
         inventory.setUpdateMember(memberThreadLocal.getMember().getId());
-
         task.setStatus(taskEnum.getStatus());
         task.setUpdateTime(new Date());
         task.setUpdateMember(memberThreadLocal.getMember().getId());
@@ -120,7 +123,6 @@ public abstract class TaskExecutor implements Runnable {
     }
 
 
-    @Transactional(rollbackFor = Exception.class)
     public void log(LogRecord logRecord, Inventory inventory, Task task, InventoryEnum inventoryEnum, TaskEnum taskEnum, boolean success) {
         //  创建日志
         logRecord.setMemberId(memberThreadLocal.getMember().getId());
@@ -134,25 +136,47 @@ public abstract class TaskExecutor implements Runnable {
         if (success) {
             //  结束时间
             logRecord.setExecuteTime((endTime - startTime));
-
             //  结果
             logRecord.setResult(taskEnum.getMessage());
         }
-        WebSocketServerWeb.send(WebSocketEnum.LOG);
-
-        logRecordService.saveOrModify(logRecord);
         //TODO: 推送
+        logRecordService.saveOrModify(logRecord);
+//        if (taskEnum.getType().equals(TaskEnum.INIT_IN.getType()) || taskEnum.getType().equals(TaskEnum.INIT_OUT.getType())) {
+//            WebSocketServerWeb.send(WebSocketEnum.TASK_MESSAGE_ISSUED);
+//        } else {
+        WebSocketServerWeb.send(WebSocketEnum.LOG);
+//        }
+    }
+
+    public LogRecord createLog(Task task, TaskEnum taskEnum, InventoryEnum inventoryEnum) {
+        logRecord = new LogRecord();
+        logRecord.setCreateTime(new Date());
+        logRecord.setPath("/inventory/saveOrUpdateInventory");
+        logRecord.setMemberId(memberThreadLocal.getMember().getId());
+        String str = "任务：" + task.getCode() + "，目前状态：" + taskEnum.getMessage() + "，库位状态：" + inventoryEnum.getMessage() + "。";
+        logRecord.setMessage(str);
+        Map<String, Object> map = new HashMap<>();
+        map.put("inventory", inventoryEnum);
+        map.put("task", task);
+        logRecord.setParams(FastJsonUtils.collectToString(map));
+        logRecord.setType(TaskEnum.INIT_IN.getType());
+        logRecordService.saveOrModify(logRecord);
+        return logRecord;
     }
 
 
-    @Transactional(rollbackFor = Exception.class)
-    public LogRecord createLog() {
-        LogRecord logRecord = new LogRecord();
-//        logRecord.setMemberId(MemberThreadLocal.get().getMember().getId());
-        logRecord.setCreateTime(new Date());
-        logRecord.setPath("/inventory/saveOrUpdateInventory");
-        //  创建一个这次任务的日志
+    public void recover(String result) {
+        logRecord.setMessage("任务：" + task.getCode() + "操作任务失败！！");
+        logRecord.setResult(result);
+        logRecord.setExecuteTime((endTime - startTime));
         logRecordService.saveOrModify(logRecord);
-        return logRecord;
+        //  删除任务
+        taskService.delete(task.getId());
+
+        //  恢复库存情况
+        inventory.setStatus(inventoryOldStatus);
+        inventory.setUpdateTime(new Date());
+        inventory.setUpdateMember(memberThreadLocal.getMember().getId());
+
     }
 }

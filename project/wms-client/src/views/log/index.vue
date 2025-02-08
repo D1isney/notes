@@ -151,6 +151,12 @@ export default {
       },{
         value: '3',
         label: '报警日志'
+      },{
+        value: '4',
+        label: '入库日志'
+      },{
+        value: '5',
+        label: '出库日志'
       }]
     }
   },

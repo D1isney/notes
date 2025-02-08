@@ -17,3 +17,10 @@ export function saveOrUpdateInventory(data) {
   })
 }
 
+export function intelligentDiskLibrary() {
+  return request({
+    url: '/inventory/intelligentDiskLibrary',
+    method: 'get'
+  })
+}
+

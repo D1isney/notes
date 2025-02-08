@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
-    <breadcrumb class="breadcrumb-container" />
+    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
+    <breadcrumb class="breadcrumb-container"/>
     <div class="right-menu">
       <el-button icon="el-icon-s-tools" class="system-button" @click="systemDrawer = true">系统配置</el-button>
       <el-button icon="el-icon-caret-right" class="system-button" @click="logout()">登出</el-button>
@@ -46,21 +46,21 @@
         <el-row :gutter="10">
           <el-col :span="13">
             <el-form-item label="IP：">
-              <el-input v-model="settingList.ip" placeholder="127.0.0.1" />
+              <el-input v-model="settingList.ip" placeholder="127.0.0.1"/>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="10">
           <el-col :span="13">
             <el-form-item label="端口：">
-              <el-input v-model="settingList.port" placeholder="502" />
+              <el-input v-model="settingList.port" placeholder="502"/>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row :gutter="10">
           <el-col :span="13">
             <el-form-item label="slaveId：">
-              <el-input v-model="settingList.slaveId" placeholder="1" />
+              <el-input v-model="settingList.slaveId" placeholder="1"/>
             </el-form-item>
           </el-col>
         </el-row>
@@ -78,7 +78,7 @@
 </template>
 
 <script>
-import { mapGetters,mapState,mapActions } from 'vuex'
+import { mapGetters, mapState, mapActions } from 'vuex'
 import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 import { closePlcConnect, getSettingAPI, openPlcConnect, saveOrUpdateSettingAPI } from '@/api/system/systemAPI'
@@ -105,13 +105,23 @@ export default {
     ...mapGetters(['sidebar', 'username']),
     ...mapState('webSocket', ['socketData'])
   },
+  watch: {
+    socketData(val){
+      if (val.type === 'plc_connect_error'){
+        this.$notify({
+          title: '失败',
+          message: val.message,
+          type: 'error'
+        })
+      }
+    }
+  },
   created() {
     this.getSettingList()
     this.openSocket()
-    console.log('111', process.env.NODE_ENV)
   },
   methods: {
-    ...mapActions('webSocket',['openSocket']),
+    ...mapActions('webSocket', ['openSocket']),
     toggleSideBar() {
       this.$store.dispatch('app/toggleSideBar')
     },
@@ -123,19 +133,16 @@ export default {
         type: 'warning'
       }).then(() => {
         this.$store.dispatch('user/logout')
-        this.$message.success("即将登录账号！");
-        setTimeout(()=>{
+        this.$message.success('即将登录账号！')
+        setTimeout(() => {
           this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-        },2000)
+        }, 2000)
       }).catch(() => {
         this.$message({
           type: 'info',
           message: '已取消登出'
-        });
-      });
-
-
-
+        })
+      })
 
     },
     openSetting() {

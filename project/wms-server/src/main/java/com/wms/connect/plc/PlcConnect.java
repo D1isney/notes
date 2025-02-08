@@ -8,7 +8,9 @@ import com.intelligt.modbus.jlibmodbus.master.ModbusMaster;
 import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.tcp.TcpParameters;
 import com.wms.connect.utils.PlcParam;
+import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.enums.PLCEnum;
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import lombok.Getter;
 import lombok.Setter;
@@ -131,6 +133,7 @@ public class PlcConnect implements PlcConnectService {
                 throw new RuntimeException(e);
             }
         }else{
+            WebSocketServerWeb.send(WebSocketEnum.PLC_CONNECT_ERROR);
             throw new EException("请先连接PLC！！！");
         }
     }

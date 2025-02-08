@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="inventory-box">
-      <Inventory></Inventory>
+      <Inventory ref="inventory"></Inventory>
     </div>
     <div class="operation-box">
       <div class="input-box">
@@ -50,7 +50,8 @@
 
       <div class="button-box">
         <div class="buttons1">
-          <el-button class="button1" icon="el-icon-sort" type="primary">智能盘库</el-button>
+          <el-button class="button1" icon="el-icon-sort" type="primary" @click="intelligentDiskLibrary">智能盘库
+          </el-button>
           <el-button class="button1" icon="el-icon-s-operation" type="primary">库位信息</el-button>
           <el-button class="button1" icon="el-icon-s-operation" type="primary">库存信息</el-button>
         </div>
@@ -75,15 +76,15 @@ export default {
       warehousingList: {
         type: 0,
         goodsCode: '24122701',
-        inventoryCode: '25020701',
-        storageCode: '25020601'
+        inventoryCode: '',
+        storageCode: ''
       },
       warehousingListRules: {
         goodsCode: [
           { required: false, message: '请输入物料编码！！！', trigger: 'change' }
         ]
       },
-      labelPosition: 'left'
+      labelPosition: 'left',
     }
   },
   methods: {
@@ -98,14 +99,18 @@ export default {
       this.$refs.warehousingList.validate((valid) => {
         if (valid) {
           saveOrUpdateInventory(this.warehousingList).then(res => {
-            console.log(res)
+            // console.log(res)
           })
 
         } else {
           return false
         }
       })
+    },
+    intelligentDiskLibrary() {
+      this.$refs.inventory.$emit("intelligentDiskLibrary")
     }
+
   },
   components: {
     Inventory
