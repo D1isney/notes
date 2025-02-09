@@ -207,3 +207,4 @@ java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check th
 
 2025-02-09 21:08:40.032  ERROR 19432 --- [nio-1217-exec-1] c.wms.handler.WebGlobalExceptionHandler  : 该库位1-2，没有物料或物料正在出入库，无法再次出库！！！
 2025-02-09 21:11:38.907  ERROR 19432 --- [nio-1217-exec-5] c.wms.handler.WebGlobalExceptionHandler  : 该库位1-3，没有物料或物料正在出入库，无法再次出库！！！
+2025-02-09 22:16:05.722  ERROR 19436 --- [nio-1217-exec-1] c.wms.handler.WebGlobalExceptionHandler  : 请先连接PLC！！！

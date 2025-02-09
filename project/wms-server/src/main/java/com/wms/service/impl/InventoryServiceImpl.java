@@ -1,8 +1,13 @@
 package com.wms.service.impl;
 
+import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.wms.connect.plc.PlcConnect;
+import com.wms.connect.utils.PlcParam;
+import com.wms.constant.ConfigConstant;
 import com.wms.constant.InOrOutConstant;
 import com.wms.dao.InventoryDao;
+import com.wms.dto.AddressValueDTO;
+import com.wms.dto.PlcAddressDTO;
 import com.wms.dto.WarehousingDTO;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
@@ -27,6 +32,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -113,10 +119,16 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
     }
 
     /**
-     * 智能入库
+     * 智能盘库
      */
     @Override
     public void intelligentDiskLibrary() {
+        //  修改PLC初始化状态
+        try {
+            restPLC();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         List<Inventory> inventories = queryAll();
         inventories.forEach(inventory -> {
             inventory.setGoodsId(0L);
@@ -125,6 +137,23 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
             inventory.setUpdateMember(MemberThreadLocal.get().getMember().getId());
         });
         saveOrUpdateBatch(inventories);
+    }
+
+    @Value("${plc.address}")
+    private String plcAddress;
+    @Value("${plc.keep-alive}")
+    private Boolean keepAlive;
+
+    /**
+     * 初始化PLC的所有状态
+     */
+    public void restPLC() throws IOException {
+        PlcParam plcParam = new PlcParam(plcAddress, keepAlive);
+        PlcAddressDTO plcAddressDTO = plcParam.getPlcAddressDTO();
+        List<AddressValueDTO> pointList = plcAddressDTO.getPointList();
+        pointList.forEach(point -> {
+            plcConnect.writePlc(point.getAddress(), point.getValue());
+        });
     }
 
     private void in(Goods goods, Inventory inventory, Storage storage) {
@@ -164,11 +193,12 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
             return goods.get(0);
         }
     }
+
     public Goods getGoodsById(Long id) {
         Goods goods = goodsService.queryById(id);
         if (StringUtil.isEmpty(goods)) {
             throw new EException("不存在物料：" + id);
-        }else{
+        } else {
             return goods;
         }
     }

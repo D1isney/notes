@@ -1,29 +1,23 @@
 package com.wms.task;
 
 import com.wms.connect.plc.PlcConnect;
-import com.wms.connect.websocket.WebSocketServer;
 import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
 import com.wms.enums.WebSocketEnum;
-import com.wms.exception.EException;
 import com.wms.filter.login.LoginMember;
 import com.wms.handler.TaskExceptionHandler;
 import com.wms.pojo.Inventory;
 import com.wms.pojo.LogRecord;
 import com.wms.pojo.Task;
 import com.wms.service.*;
-import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.FastJsonUtils;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 @Getter
 @Setter

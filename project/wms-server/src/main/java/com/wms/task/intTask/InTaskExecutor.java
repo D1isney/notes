@@ -8,7 +8,6 @@ import com.wms.enums.TaskEnum;
 import com.wms.exception.EException;
 import com.wms.pojo.*;
 import com.wms.service.GoodsService;
-import com.wms.service.InventoryService;
 import com.wms.service.StorageService;
 import com.wms.task.TaskExecutor;
 import com.wms.utils.StringUtil;
