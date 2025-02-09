@@ -30,18 +30,10 @@ public class InTaskExecutor extends TaskExecutor {
     public void prepare() {
         //  拿到任务
         Task task = getTask();
-        InventoryService inventoryServiceInt = getInventoryService();
+        inventory = getInventory();
+        inventory.setStatus(InventoryEnum.COMING_IN.getType());
         StorageService storageServiceInt = getStorageService();
         GoodsService goodsServiceInt = getGoodsService();
-        if (StringUtil.isEmpty(getInventory())) {
-            if (!StringUtil.isEmpty(task.getInventoryId())) {
-                inventory = inventoryServiceInt.queryById(task.getInventoryId());
-            } else {
-                throw new EException("任务=======》库存ID不能为空！");
-            }
-        } else {
-            inventory = getInventory();
-        }
         if (!StringUtil.isEmpty(inventory.getStorageId())) {
             storage = storageServiceInt.queryById(inventory.getStorageId());
         } else {
@@ -52,7 +44,6 @@ public class InTaskExecutor extends TaskExecutor {
         } else {
             throw new EException("任务=======》物料ID不能为空！");
         }
-        setInventoryOldStatus(inventory.getStatus());
         logRecord = createLog(task, TaskEnum.INIT_IN, InventoryEnum.COMING_IN);
         log(logRecord, inventory, task, InventoryEnum.COMING_IN, TaskEnum.INIT_IN, false);
     }
@@ -90,7 +81,6 @@ public class InTaskExecutor extends TaskExecutor {
         plcConnect.writePlc(PLCEnum.PLC_STORAGE_LEVEL_IN, inventory.getLayer());
         //  垂直位置
         plcConnect.writePlc(PLCEnum.PLC_STORAGE_VERTICAL_IN, storage.getRow());
-
         //  物料入库
         inventory.setGoodsId(goods.getId());
         operation(inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN);

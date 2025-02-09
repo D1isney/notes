@@ -11,7 +11,7 @@ import java.util.List;
 public interface InventoryService extends BaseService<Inventory, InventoryVo> {
     String lastCode();
 
-    R<?> warehousing(WarehousingDTO warehousingDTO);
+    R<?> warehousing(List<WarehousingDTO> warehousingDTO);
 
     void intelligentDiskLibrary();
 }

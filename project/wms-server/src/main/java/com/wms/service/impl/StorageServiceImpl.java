@@ -1,8 +1,10 @@
 package com.wms.service.impl;
 
 import com.wms.dao.StorageDao;
+import com.wms.pojo.Goods;
 import com.wms.pojo.Inventory;
 import com.wms.pojo.Storage;
+import com.wms.service.GoodsService;
 import com.wms.service.InventoryService;
 import com.wms.service.StorageService;
 import com.wms.service.base.IBaseServiceImpl;
@@ -27,6 +29,9 @@ public class StorageServiceImpl extends IBaseServiceImpl<StorageDao, Storage, St
         return null;
     }
 
+    @Resource
+    private GoodsService goodsService;
+
     /**
      * 通过查询库位信息再查询库存信息直接返回给前端
      *
@@ -40,9 +45,14 @@ public class StorageServiceImpl extends IBaseServiceImpl<StorageDao, Storage, St
             storages.forEach(storage -> {
                 map.put("storageId", storage.getId());
                 List<Inventory> inventories = inventoryService.queryList(map);
+                inventories.forEach(inventory -> {
+                    Goods goods = goodsService.queryById(inventory.getGoodsId());
+                    inventory.setGoods(goods);
+                });
                 storage.setInventoryList(inventories);
             });
         }
+
         return R.ok(storages);
     }
 }

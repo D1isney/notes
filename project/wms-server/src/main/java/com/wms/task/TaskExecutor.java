@@ -67,7 +67,6 @@ public abstract class TaskExecutor implements Runnable {
 
     private LogRecord logRecord = new LogRecord();
 
-
     //  任务执行
     @Override
     public synchronized void run() {
@@ -159,7 +158,7 @@ public abstract class TaskExecutor implements Runnable {
         map.put("inventory", inventoryEnum);
         map.put("task", task);
         logRecord.setParams(FastJsonUtils.collectToString(map));
-        logRecord.setType(TaskEnum.INIT_IN.getType());
+        logRecord.setType(taskEnum.getType());
         logRecordService.saveOrModify(logRecord);
         return logRecord;
     }
@@ -177,6 +176,6 @@ public abstract class TaskExecutor implements Runnable {
         inventory.setStatus(inventoryOldStatus);
         inventory.setUpdateTime(new Date());
         inventory.setUpdateMember(memberThreadLocal.getMember().getId());
-
+        inventoryService.saveOrModify(inventory);
     }
 }

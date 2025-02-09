@@ -27,7 +27,7 @@
             <el-row :gutter="20">
               <el-col :span="18">
                 <el-form-item label="库位编码：">
-                  <el-input v-model="warehousingList.storageCode" clearable placeholder="手动编辑/自动生成"></el-input>
+                  <el-input v-model="warehousingList.storageCode" disabled clearable placeholder="自动生成"></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -41,7 +41,7 @@
           <el-button type="primary" class="input-button-operation" icon="el-icon-full-screen" @click="QR_Warehousing">
             扫码入库
           </el-button>
-          <el-button type="primary" class="input-button-operation" icon="el-icon-caret-right">手动出库</el-button>
+          <el-button type="primary" class="input-button-operation" icon="el-icon-caret-right" @click="outWarehousing">手动出库</el-button>
           <!--          <el-button type="primary" class="input-button">扫码枪入库</el-button>-->
         </div>
 
@@ -68,7 +68,7 @@
 
 <script>
 import Inventory from '@/views/inventory/index.vue'
-import { saveOrUpdateInventory } from '@/api/inventory/inventoryAPI'
+import { intelligent, warehousing } from '@/api/inventory/inventoryAPI'
 
 export default {
   data() {
@@ -85,6 +85,7 @@ export default {
         ]
       },
       labelPosition: 'left',
+
     }
   },
   methods: {
@@ -96,19 +97,27 @@ export default {
       })
     },
     manualWarehousing() {
+      let list = []
+      list.push(this.warehousingList)
       this.$refs.warehousingList.validate((valid) => {
         if (valid) {
-          saveOrUpdateInventory(this.warehousingList).then(res => {
+          warehousing(list).then(res => {
             // console.log(res)
           })
-
         } else {
           return false
         }
       })
     },
-    intelligentDiskLibrary() {
-      this.$refs.inventory.$emit("intelligentDiskLibrary")
+    async intelligentDiskLibrary() {
+      await intelligent().then(res => {
+        if (res.code === 200) {
+          this.$refs.inventory.$emit('intelligentDiskLibrary')
+        }
+      })
+    },
+    outWarehousing(){
+      this.$refs.inventory.$emit('outWarehousing')
     }
 
   },

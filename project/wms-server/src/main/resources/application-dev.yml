@@ -61,7 +61,7 @@ plc:
   default-ip: 127.0.0.1
   default-port: 502
   default-slaveId: 1
-  sleepTime: 1
+  sleepTime: 2
 
 login:
   filter:

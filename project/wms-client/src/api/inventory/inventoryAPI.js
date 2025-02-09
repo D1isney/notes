@@ -9,15 +9,15 @@ export function getInventoryListAPI(query) {
   })
 }
 
-export function saveOrUpdateInventory(data) {
+export function warehousing(data) {
   return request({
-    url: '/inventory/saveOrUpdateInventory',
+    url: '/inventory/warehousing',
     method: 'post',
     data: data
   })
 }
 
-export function intelligentDiskLibrary() {
+export function intelligent() {
   return request({
     url: '/inventory/intelligentDiskLibrary',
     method: 'get'

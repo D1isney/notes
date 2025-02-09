@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class WarehousingDTO {
     private String goodsCode;
+    private Long goodsId;
     private String inventoryCode;
     private String storageCode;
     private Integer type;

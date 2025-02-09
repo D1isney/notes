@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -67,5 +68,9 @@ public class Inventory implements Serializable {
     @ApiModelProperty(value = "描述")
     @TableField("`remark`")
     private String remark;
+
+    @ApiModelProperty(value = "当前位置的具体物料")
+    @TableField(exist = false)
+    private Goods goods;
 
 }

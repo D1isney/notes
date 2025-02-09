@@ -1,17 +1,25 @@
 <template>
   <div class="inventory-container" v-loading="inventoryLoading">
     <div class="box" ref="rowBox" v-for="(row,rowIndex) in this.crosswise">
-      <div class="inventory"
-           ref="layerBox"
-           v-for="(layer,layerIndex) in row.inventoryList"
-           :key="layerIndex"
-           :class="{'highlighted': layer.isSelected}"
-           @click="selectItem(rowIndex,layerIndex,layer)"
-           :style="{backgroundColor : getStatusColor(layer.status)}"
+      <el-tooltip v-for="(layer,layerIndex) in row.inventoryList"
+                  :key="layerIndex"
+                  class="item"
+                  effect="light"
+                  :content="content"
+                  placement="top-start"
+                  ref="tooltip"
       >
-        <!--        {{ item }}-->
-        <!--        {{ layer.status }}-->
-      </div>
+        <div class="inventory"
+             ref="layerBox"
+             @mouseenter="showTooltip(layer)"
+             :class="{'highlighted': layer.isSelected}"
+             @click="selectItem(rowIndex,layerIndex,layer)"
+             :style="{backgroundColor : getStatusColor(layer.status)}"
+        >
+          <!--        {{ item }}-->
+          <!--        {{ layer.status }}-->
+        </div>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -19,7 +27,7 @@
 <script>
 import { getStorageListAndGetInventoryList } from '@/api/storage/storageApi'
 import { mapGetters, mapState, mapActions } from 'vuex'
-import { intelligentDiskLibrary } from '@/api/inventory/inventoryAPI'
+import { warehousing } from '@/api/inventory/inventoryAPI'
 
 export default {
   data() {
@@ -40,11 +48,13 @@ export default {
       maxHeight: 0,
       selectIndex: null,
       // 高亮选中的
-      selectLayer: []
+      selectLayer: [],
+      content: '123'
     }
   },
   methods: {
     getList: function() {
+      this.selectLayer = []
       getStorageListAndGetInventoryList().then(res => {
         if (res.code === 200) {
           this.maxWidth = res.data.length
@@ -98,13 +108,13 @@ export default {
         case 0:
           return '#cccccc'
         case 1:
-          return '#4682b4'
-        case 2:
           return '#32cd32'
+        case 2:
+          return '#4682b4'
         case 3:
           return '#4682b4'
         case 4:
-          return '#32cd32'
+          return '#475247'
         case 5:
           return '#757575'
         default:
@@ -113,14 +123,39 @@ export default {
     },
     ...mapActions('webSocket', ['openSocket']),
 
-    async intelligentDiskLibrary() {
-      let _that = this
+    intelligentDiskLibrary() {
       this.inventoryLoading = true
-      await intelligentDiskLibrary()
-      await this.getList()
+      this.getList()
       setTimeout(() => {
         this.inventoryLoading = false
-      }, 5000)
+      }, 2000)
+    },
+    showTooltip(layer) {
+      if (layer.goods) {
+        this.content = layer.goods.name + '-' + layer.goods.code
+      } else {
+        this.content = 'null'
+      }
+    },
+
+    outWarehousing() {
+      if (this.selectLayer.length <= 0) {
+        this.$message.info('请选择需要出库的库存位置！')
+        return
+      }
+      let list = []
+      for (let i = 0; i < this.selectLayer.length; i++) {
+        let data = {
+          type: 1,
+          goodsId: this.selectLayer[i].goodsId,
+          inventoryCode: this.selectLayer[i].code
+        }
+        list.push(data)
+      }
+      warehousing(list).then(res => {
+        // console.log(res)
+      })
+
     }
   },
   created() {
@@ -147,6 +182,10 @@ export default {
   mounted() {
     this.$on('intelligentDiskLibrary', () => {
       this.intelligentDiskLibrary()
+    })
+    //  出库
+    this.$on('outWarehousing', () => {
+      this.outWarehousing()
     })
 
   }

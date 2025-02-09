@@ -39,8 +39,8 @@
     </sql>
     <!-- 保存列value -->
     <sql id="saveColumnValue">
-        #{entity.storage_id},
-        #{entity.goods_id},
+        #{entity.storageId},
+        #{entity.goodsId},
         #{entity.name},
         #{entity.code},
         #{entity.layer},

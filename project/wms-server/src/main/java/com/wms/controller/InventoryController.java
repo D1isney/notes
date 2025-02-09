@@ -44,17 +44,18 @@ public class InventoryController {
     }
 
     @ApiOperation("手动出库")
-    @PostMapping("saveOrUpdateInventory")
-    @Log(value = "库存-手动出库",path = "/inventory/saveOrUpdateInventory")
-    public R<?> saveOrUpdateInventory(@RequestBody WarehousingDTO warehousingDTO){
+    @PostMapping("warehousing")
+    @Log(value = "库存-手动出库",path = "/inventory/warehousing")
+    public R<?> saveOrUpdateInventory(@RequestBody List<WarehousingDTO> warehousingDTO){
         return inventoryService.warehousing(warehousingDTO);
     }
 
     @ApiOperation("智能盘库")
     @GetMapping("intelligentDiskLibrary")
     @Log(value = "库存-智能盘库",path = "/inventory/intelligentDiskLibrary")
-    public void intelligentDiskLibrary(){
+    public R<?> intelligentDiskLibrary(){
         inventoryService.intelligentDiskLibrary();
+        return R.ok();
     }
 
 
