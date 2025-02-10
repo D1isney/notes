@@ -30,9 +30,9 @@ public class Storage implements Serializable {
     @TableField("`code`")
     private String code;
 
-    @ApiModelProperty(value = "是否禁用（0：禁用，1：可用）")
+    @ApiModelProperty(value = "是否禁用（true：可以使用，false: 不可以使用）")
     @TableField("`is_forbidden`")
-    private Integer isForbidden;
+    private boolean isForbidden;
 
     @ApiModelProperty(value = "库位名称")
     @TableField("`name`")

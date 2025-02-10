@@ -137,7 +137,7 @@ public abstract class TaskExecutor implements Runnable {
 //        if (taskEnum.getType().equals(TaskEnum.INIT_IN.getType()) || taskEnum.getType().equals(TaskEnum.INIT_OUT.getType())) {
 //            WebSocketServerWeb.send(WebSocketEnum.TASK_MESSAGE_ISSUED);
 //        } else {
-        WebSocketServerWeb.send(WebSocketEnum.LOG);
+        WebSocketServerWeb.send(WebSocketEnum.OPERATION);
 //        }
     }
 

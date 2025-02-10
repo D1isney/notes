@@ -85,7 +85,7 @@
       <div class="button-box">
         <el-row>
           <el-col :span="7">
-            <el-select v-model="type" placeholder="日志级别" clearable>
+            <el-select v-model="type" placeholder="日志类型" clearable>
               <el-option
                 v-for="item in optionsType"
                 :key="item.value"
@@ -168,9 +168,9 @@ export default {
   },
   methods: {
     typeTag(type) {
-      if (type === 0) {
+      if (type === 0 || type === 4) {
         return 'success'
-      } else if (type === 1) {
+      } else if (type === 1 || type === 5) {
         return 'warning'
       } else if (type === 2) {
         return 'warning'

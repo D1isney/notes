@@ -14,3 +14,17 @@ export function getStorageListAndGetInventoryList(){
     method: 'get'
   })
 }
+
+export function queryInventoryNum(){
+  return request({
+    url: '/storage/queryInventoryNum',
+    method: 'get'
+  })
+}
+export function saveOrUpdateStorage(data){
+  return request({
+    url: '/storage/saveOrUpdate',
+    method: 'post',
+    data: data
+  })
+}

@@ -11,7 +11,7 @@ export const LogConst = {
     1: { label: '警告', value: 1, color: '#fe8d00' },
     2: { label: '危险', value: 2, color: '#FE4C00' },
     3: { label: '报警', value: 3, color: '#ff0000' },
-    4: { label: '入库', value: 4, color: '#2a8bbe' },
+    4: { label: '入库', value: 4, color: '#3dbb5a' },
     5: { label: '出库', value: 5, color: '#2a8bbe' },
   }
 }

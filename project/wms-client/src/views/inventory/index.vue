@@ -134,7 +134,7 @@ export default {
       if (layer.goods) {
         this.content = layer.goods.name + '-' + layer.goods.code
       } else {
-        this.content = 'null'
+        this.content = '库存编码' + '-' + layer.code
       }
     },
 
@@ -145,6 +145,10 @@ export default {
       }
       let list = []
       for (let i = 0; i < this.selectLayer.length; i++) {
+        if (this.selectLayer[i].goodsId <= 0) {
+          this.$message.info(this.selectLayer[i].name + '-' + this.selectLayer[i].layer + '不存在物料，无法出库！')
+          return
+        }
         let data = {
           type: 1,
           goodsId: this.selectLayer[i].goodsId,
@@ -174,7 +178,7 @@ export default {
           type: 'error'
         })
       }
-      if (val.type === 'log') {
+      if (val.type === 'operation') {
         this.getList()
       }
     }

@@ -8,6 +8,7 @@ public enum WebSocketEnum {
     TASK("更新任务", null, "task",200),
     PLC_CONNECT_ERROR("请先连接PLC！！！", null, "PlcConnectError",200),
     TASK_MESSAGE_ISSUED("任务发下", "success", "TaskMessageIssued",200),
+    OPERATION("Push操作",null, "operation",200),
     ;
 
     private final String message;

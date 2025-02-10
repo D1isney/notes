@@ -5,8 +5,12 @@ import com.wms.service.base.BaseService;
 import com.wms.utils.R;
 import com.wms.vo.StorageVo;
 
+import java.util.List;
+
 public interface StorageService extends BaseService<Storage, StorageVo> {
-    R<?> saveOrUpdateStorage(Storage storage);
+    R<?> saveOrUpdateStorage(List<Storage> storage);
 
     R<?> queryStorageAndInventory();
+
+    R<?> queryInventoryNum();
 }

@@ -1,16 +1,17 @@
 package com.wms.service.impl;
 
-import com.intelligt.modbus.jlibmodbus.exception.ModbusIOException;
 import com.wms.connect.plc.PlcConnect;
 import com.wms.connect.utils.PlcParam;
-import com.wms.constant.ConfigConstant;
+import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.constant.InOrOutConstant;
 import com.wms.dao.InventoryDao;
 import com.wms.dto.AddressValueDTO;
 import com.wms.dto.PlcAddressDTO;
+import com.wms.dto.StorageAndInventory;
 import com.wms.dto.WarehousingDTO;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.pojo.Goods;
 import com.wms.pojo.Inventory;
@@ -38,6 +39,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Service
 public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Inventory, InventoryVo> implements InventoryService {
@@ -93,8 +95,9 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
          */
         if (!StringUtil.isEmpty(warehousingDTO)) {
             warehousingDTO.forEach(w -> {
-                Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType());
-                Storage storageByCode = getStorageByCode(w.getStorageCode(), inventoryByCode);
+                StorageAndInventory storageAndInventory = getStorageByCode(w.getStorageCode());
+                Storage storageByCode = storageAndInventory.getStorage();
+                Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType(), storageAndInventory);
                 if (w.getType().equals(InOrOutConstant.in)) {
                     Goods goodsByCode = getGoodsByCode(w.getGoodsCode());
                     in(goodsByCode, inventoryByCode, storageByCode);
@@ -203,18 +206,19 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         }
     }
 
-    public Inventory getInventoryByCode(String code, Integer type) {
+    public Inventory getInventoryByCode(String code, Integer type, StorageAndInventory storage) {
+        Map<String, Object> map = new HashMap<>();
         if (type.equals(InOrOutConstant.in)) {
-            Map<String, Object> map = new HashMap<>();
             List<Inventory> inventories;
             if (StringUtil.isEmpty(code)) {
                 //  随便生成一个
                 map.put("status", InventoryEnum.EMPTY.getType());
+                map.put("storageId", storage.getStorage().getId());
                 inventories = inventoryService.queryList(map);
                 if (inventories.isEmpty()) {
                     throw new EException("没有合适的库存！！！");
                 }
-                return inventories.get(0);
+                return inventories.get(inventories.size() - 1);
             } else {
                 map = new HashMap<>();
                 map.put("code", code);
@@ -230,8 +234,8 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                 }
             }
         } else {
-            //入库
-            Map<String, Object> map = new HashMap<>();
+            //出库
+//            Map<String, Object> map = new HashMap<>();
             List<Inventory> inventories;
             if (StringUtil.isEmpty(code)) {
                 throw new EException("库存编码不能为空！");
@@ -247,10 +251,15 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         }
     }
 
-    public Storage getStorageByCode(String code, Inventory inventoryByCode) {
+    public StorageAndInventory getStorageByCode(String code) {
         if (StringUtil.isEmpty(code)) {
-            Long storageId = inventoryByCode.getStorageId();
-            return storageService.queryById(storageId);
+            Map<String, Object> mapStorage = new HashMap<>();
+            mapStorage.put("isForbidden", 1);
+            List<Storage> storages = storageService.queryList(mapStorage);
+            if (storages.isEmpty()) {
+                throw new EException("没有合适的库位！！！");
+            }
+            return getStorage(storages);
         } else {
             Map<String, Object> map = new HashMap<>();
             map.put("code", code);
@@ -258,9 +267,37 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
             if (storages.isEmpty()) {
                 throw new EException("不存在库位：" + code);
             } else {
-                return storages.get(0);
+                StorageAndInventory storageAndInventory = new StorageAndInventory();
+                storageAndInventory.setStorage(storages.get(0));
+                return storageAndInventory;
             }
         }
+    }
+
+    public StorageAndInventory getStorage(List<Storage> storages) {
+        Map<String, Object> map = new HashMap<>();
+        StorageAndInventory storageAndInventory = new StorageAndInventory();
+        AtomicBoolean flag = new AtomicBoolean(false);
+        if (!storages.isEmpty()) {
+            for (Storage s : storages) {
+                map.put("status", InventoryEnum.EMPTY.getType());
+                map.put("storageId", s.getId());
+                List<Inventory> inventories = inventoryService.queryList(map);
+                inventories.forEach(i -> {
+                    if (i.getStatus().equals(InventoryEnum.EMPTY.getType())) {
+                        flag.set(true);
+                        storageAndInventory.setInventory(i);
+                    }
+                });
+                if (flag.get()) {
+                    storageAndInventory.setStorage(s);
+                    break;
+                }
+            }
+        } else {
+            throw new EException("没有合适的库位！！！");
+        }
+        return storageAndInventory;
     }
 
     @Transactional(rollbackFor = Exception.class)

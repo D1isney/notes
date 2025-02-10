@@ -43,9 +43,9 @@ public class InventoryController {
         return R.ok(pageUtil);
     }
 
-    @ApiOperation("手动出库")
+    @ApiOperation("出入库")
     @PostMapping("warehousing")
-    @Log(value = "库存-手动出库",path = "/inventory/warehousing")
+    @Log(value = "库存-手动出入库",path = "/inventory/warehousing")
     public R<?> saveOrUpdateInventory(@RequestBody List<WarehousingDTO> warehousingDTO){
         return inventoryService.warehousing(warehousingDTO);
     }

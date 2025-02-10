@@ -105,6 +105,9 @@
             <if test="query.code != null">
                 AND t.code = #{query.code}
             </if>
+            <if test="query.isForbidden != null">
+                AND t.is_forbidden = #{query.isForbidden}
+            </if>
         </where>
     </sql>
 

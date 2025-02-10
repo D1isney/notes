@@ -121,6 +121,9 @@
             <if test="query.code != null">
                 AND t.code = #{query.code}
             </if>
+            <if test="query.offset != null and query.limit != null">
+                limit #{query.offset},#{query.limit}
+            </if>
         </where>
     </sql>
 
