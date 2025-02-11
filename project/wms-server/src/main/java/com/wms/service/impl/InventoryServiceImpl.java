@@ -107,15 +107,6 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                 }
             });
             return R.ok("正在下发任务！！！");
-//            Goods goodsByCode = getGoodsByCode(w.getGoodsCode());
-//            Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode());
-//            Storage storageByCode = getStorageByCode(w.getStorageCode(), inventoryByCode);
-//            if (w.getType().equals(InOrOutConstant.in)) {
-//                in(goodsByCode, inventoryByCode, storageByCode);
-//                return R.ok("正在下发入库任务！");
-//            } else {
-//                return R.ok("正在下发出库任务！");
-//            }
         } else {
             return R.error("无效入库信息！！！");
         }
@@ -235,7 +226,6 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
             }
         } else {
             //出库
-//            Map<String, Object> map = new HashMap<>();
             List<Inventory> inventories;
             if (StringUtil.isEmpty(code)) {
                 throw new EException("库存编码不能为空！");
@@ -300,7 +290,6 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         return storageAndInventory;
     }
 
-    @Transactional(rollbackFor = Exception.class)
     public Task createTask(Goods goods, Inventory inventory) {
         Task task = new Task();
         task.setGoodsId(goods.getId());
@@ -312,6 +301,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         task.setUpdateTime(new Date());
         task.setCreateMember(MemberThreadLocal.get().getMember().getId());
         task.setUpdateMember(MemberThreadLocal.get().getMember().getId());
+        task.setRemark("任务创建成功");
         task = taskService.saveOrModify(task);
         return task;
     }

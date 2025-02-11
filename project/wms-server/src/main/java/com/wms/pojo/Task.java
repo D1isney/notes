@@ -64,4 +64,19 @@ public class Task implements Serializable {
     @ApiModelProperty(value = "备注")
     @TableField("`remark`")
     private String remark;
+
+
+
+    @ApiModelProperty(value = "是否直接下发，true：直接下发，false：不直接下发")
+    @TableField(exist = false)
+    private boolean directlyIssued;
+    @ApiModelProperty(value = "物料Code")
+    @TableField(exist = false)
+    private String goodsCode;
+    @ApiModelProperty(value = "库存Code")
+    @TableField(exist = false)
+    private String inventoryCode;
+    @ApiModelProperty(value = "库位Code")
+    @TableField(exist = false)
+    private String storageCode;
 }

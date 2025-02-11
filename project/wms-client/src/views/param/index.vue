@@ -304,9 +304,7 @@ export default {
         }
       })
     },
-    handleSelectionChange(val) {
-      this.multipleSelection = val
-    },
+
 
     typeTag(type) {
       if (type > 0) {
@@ -392,6 +390,9 @@ export default {
       } else {//折叠
         that.expands = []
       }
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
     },
     deleteAll() {
       if (this.multipleSelection.length < 1) {

@@ -2,6 +2,7 @@ package com.wms.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.aspect.Log;
+import com.wms.pojo.Task;
 import com.wms.service.TaskService;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;
@@ -12,10 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.Map;
@@ -30,7 +28,9 @@ public class TaskController {
 
     @ApiOperation("查询数据")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = " ", value = " ")
+            @ApiImplicitParam(name = "type", value = "任务类型"),
+            @ApiImplicitParam(name = "param", value = "任务编码，任务状态"),
+            @ApiImplicitParam(name = "limit", value = "分页数量")
     })
     @GetMapping("list")
     @Log(value = "任务-查询所有任务信息", path = "/task/list")
@@ -41,9 +41,14 @@ public class TaskController {
         return R.ok(pageUtil);
     }
 
-
-    public R<?> getTask(@RequestParam Map<String, Object> params){
-        return R.ok();
+    @ApiOperation("更新任务信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "task", value = "任务信息")
+    })
+    @PostMapping("saveOrUpdateTask")
+    @Log(value = "任务-更新任务信息", path = "/task/saveOrUpdateTask")
+    public R<?> saveOrUpdateTask(@RequestBody Task task){
+        return taskService.saveOrUpdateTask(task);
     }
 
 }

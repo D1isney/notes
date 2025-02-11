@@ -101,6 +101,9 @@
                 and (t.create_time >= STR_TO_DATE(CONCAT(#{query.createTime}, ' 00:00:00'), '%Y-%m-%d %H:%i:%s')
                 and STR_TO_DATE(CONCAT(#{query.createTime}, ' 23:59:59'), '%Y-%m-%d %H:%i:%s') > t.create_time)
             </if>
+            <if test="query.operationType != null">
+                t.type = 4 or t.type = 5
+            </if>
         </where>
     </sql>
 

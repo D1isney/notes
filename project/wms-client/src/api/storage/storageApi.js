@@ -28,3 +28,11 @@ export function saveOrUpdateStorage(data){
     data: data
   })
 }
+
+export function getTaskListAPI(query){
+  return request({
+    url: '/task/list',
+    method: 'get',
+    params: query
+  })
+}

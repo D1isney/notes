@@ -9,6 +9,12 @@
         do-layout="doLayout"
         style="width: 100%"
         :default-sort="{prop: 'createTime', order: 'descending'}"
+        row-key="id"
+        :expand-row-keys="expands"
+        @row-click="openExpand"
+        @expand-change="expandChange"
+        @selection-change="handleSelectionChange"
+        @current-change="handleSelectionChange"
       >
         <el-table-column
           type="index"
@@ -119,7 +125,7 @@
 
 <script>
 
-import { getList, LogConst } from '@/api/log/logAPI'
+import { getLogList, LogConst } from '@/api/log/logAPI'
 import pagination from '@/components/Pagination/index'
 
 export default {
@@ -138,6 +144,9 @@ export default {
       },
       total: 0,
       type: '',
+      expands:[],
+      // 多选的东西
+      multipleSelection: [],
       createTime: '',
       optionsType: [{
         value: '0',
@@ -181,11 +190,33 @@ export default {
     async getLogList() {
       this.query.type = this.type
       this.query.createTime = this.createTime
-      await getList(this.query).then(res => {
+      await getLogList(this.query).then(res => {
         this.list = res.data.list
         this.total = res.data.totalCount
       })
-    }
+    },
+    openExpand: function(row, colum, event) {
+      if (this.expands.includes(row.id)) {
+        this.expands = this.expands.filter(value => value !== row.id)
+      } else {
+        this.expands.push(row.id)
+      }
+    },
+    //  多个小箭头
+    expandChange(row, expandedRows) {//
+      let that = this
+      if (expandedRows.length) {//此时展开
+        that.expands = []
+        if (row) {
+          that.expands.push(row.id)
+        }
+      } else {//折叠
+        that.expands = []
+      }
+    },
+    handleSelectionChange(val) {
+      this.multipleSelection = val
+    },
   }
 }
 </script>

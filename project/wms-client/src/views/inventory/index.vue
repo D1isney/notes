@@ -112,7 +112,7 @@ export default {
         case 2:
           return '#4682b4'
         case 3:
-          return '#4682b4'
+          return '#aba33b'
         case 4:
           return '#475247'
         case 5:

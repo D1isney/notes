@@ -21,6 +21,11 @@
     <resultMap id="TaskVoMap" type="com.wms.vo.TaskVo" extends="TaskMap">
         <result column="create_username" property="createUsername"/>
         <result column="update_username" property="updateUsername"/>
+        <result column="inventory_name" property="inventoryName"/>
+        <result column="inventory_layer" property="inventoryLayer"/>
+        <result column="inventory_status" property="inventoryStatus"/>
+        <result column="goods_name" property="goodsName"/>
+        <result column="goods_type" property="goodsType"/>
     </resultMap>
     <!-- 保存列 -->
     <sql id="saveColumnBase">
@@ -104,7 +109,12 @@
     <sql id="queryListColumn">
         <include refid="queryListColumnBase"/>,
         (select m.name from `member` m where m.id = t.create_member) as create_username,
-        (select m.name from `member` m where m.id = t.update_member) as update_username
+        (select m.name from `member` m where m.id = t.update_member) as update_username,
+        (select i.name from `inventory` i where i.id = t.inventory_id) as inventory_name,
+        (select i.layer from `inventory` i where i.id = t.inventory_id) as inventory_layer,
+        (select i.status from `inventory` i where i.id = t.inventory_id) as inventory_status,
+        (select g.name from `goods` g where g.id = t.goods_id) as goods_name,
+        (select g.type from `goods` g where g.id = t.goods_id) as goods_type
     </sql>
     <!-- 条件通用查询列 -->
     <sql id="queryListWhere">
@@ -120,6 +130,9 @@
             </if>
             <if test="query.code != null">
                 AND t.code = #{query.code}
+            </if>
+            <if test="query.param != null">
+                AND (t.code LIKE CONCAT('%', #{query.param}, '%') or t.status LIKE CONCAT('%', #{query.param}, '%'))
             </if>
             <if test="query.offset != null and query.limit != null">
                 limit #{query.offset},#{query.limit}

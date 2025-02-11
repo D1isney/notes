@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getList(query) {
+export function getLogList(query) {
   return request({ url: '/log/list', params: query })
 }
 

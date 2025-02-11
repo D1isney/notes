@@ -50,14 +50,46 @@
         <div class="buttons1">
           <el-button class="button1" icon="el-icon-sort" type="primary" @click="intelligentDiskLibrary">智能盘库
           </el-button>
-
+          <el-button class="button1" icon="el-icon-s-operation" type="info" @click="storageMessage">库位信息
+          </el-button>
+          <el-button class="button1" icon="el-icon-s-operation" type="info" @click="openInventoryMessage">库存信息
+          </el-button>
+          <el-button class="button1" icon="el-icon-notebook-2" type="info" @click="openTaskMessage">任务信息
+          </el-button>
         </div>
-        <div class="buttons2">
-          <el-button class="button1" icon="el-icon-s-operation" type="primary" @click="storageMessage">库位信息
-          </el-button>
-          <el-button class="button1" icon="el-icon-s-operation" type="primary" @click="openInventoryMessage">库存信息
-          </el-button>
-          <el-button class="button1" icon="el-icon-notebook-2" type="primary" @click="openTaskMessage">订单信息</el-button>
+        <div class="logTable">
+          <el-table
+            :data="operationLogList"
+            style="width: 100%"
+            stripe
+            height="100%"
+            v-loading="logTableLoading"
+            :header-cell-style="{ 'text-align': 'center' }"
+            :cell-style="{ 'text-align': 'center' }"
+          >
+            <el-table-column
+              type="index"
+              width="40%"
+            >
+            </el-table-column>
+            <el-table-column
+              prop="message"
+              label="任务日志"
+            >
+            </el-table-column>
+            <el-table-column
+              prop="result"
+              label="结果"
+            >
+              <template v-slot="{row}">
+                <el-tag
+                  :type="typeTag(row.type)"
+                >
+                  {{ row.result }}
+                </el-tag>
+              </template>
+            </el-table-column>
+          </el-table>
         </div>
       </div>
 
@@ -171,13 +203,6 @@
         </el-col>
       </el-row>
     </el-dialog>
-
-    <el-dialog
-      title="任务信息"
-      :visible.sync="taskMessageVisible"
-      width="80%"
-    >
-    </el-dialog>
   </div>
 </template>
 
@@ -186,10 +211,13 @@ import Inventory from '@/views/inventory/index.vue'
 import { intelligent, warehousing } from '@/api/inventory/inventoryAPI'
 import {
   getStorageListAndGetInventoryList,
-  getStorageListAPI,
+  getStorageListAPI, getTaskListAPI,
   queryInventoryNum,
   saveOrUpdateStorage
 } from '@/api/storage/storageApi'
+import pagination from '@/components/Pagination/index.vue'
+import { getLogList, LogConst } from '@/api/log/logAPI'
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
   data() {
@@ -214,7 +242,15 @@ export default {
         page: 1,
         limit: 20
       },
-      inventoryListData: []
+      taskQuery: {
+        page: 1,
+        limit: 10,
+        operationType: 4
+      },
+      taskTotal: 10,
+      inventoryListData: [],
+      operationLogList: [],
+      logTableLoading: false
     }
   },
   methods: {
@@ -278,12 +314,53 @@ export default {
         }
       })
     },
-    openTaskMessage(){
-      this.taskMessageVisible = true
+    openTaskMessage() {
+      this.$router.push({path:'/task'})
+    },
+    async getOperationLog() {
+      await getLogList(this.query).then(res => {
+        this.logTableLoading = true
+        if (res.code === 200) {
+          this.operationLogList = res.data.list
+        }
+        setTimeout(() => {
+          this.logTableLoading = false
+        }, 500)
+      })
+    },
+    ...mapActions('webSocket', ['openSocket']),
+    typeTag(type) {
+      if (type === 0 || type === 4) {
+        return 'success'
+      } else if (type === 1 || type === 5) {
+        return 'warning'
+      } else if (type === 2) {
+        return 'warning'
+      } else if (type === 3) {
+        return 'danger'
+      }
     }
   },
   components: {
-    Inventory
+    Inventory, pagination
+  },
+  created() {
+    this.getOperationLog()
+  },
+  computed: {
+    ...mapGetters(['sidebar', 'username']),
+    ...mapState('webSocket', ['socketData']),
+    typeOptions: () => Object.keys(LogConst.type).map(key => LogConst.type[key])
+  },
+  watch: {
+    socketData(val) {
+      if (val.type === 'operation') {
+        this.getOperationLog()
+      }
+      if (val.type === 'log') {
+        this.getOperationLog()
+      }
+    }
   }
 }
 </script>
@@ -301,9 +378,10 @@ export default {
     display: none;
   }
 
-  .el-dialog__body{
+  .el-dialog__body {
     overflow: auto;
   }
+
   .el-dialog__container ::-webkit-scrollbar {
     display: none;
   }
@@ -358,28 +436,71 @@ export default {
     height: 100%;
     display: flex;
     justify-content: space-around;
-    flex-direction: column;
+    flex-direction: row;
 
     .buttons1 {
-      width: 100%;
+      width: 30%;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       justify-content: space-around;
-      height: 20%;
+      height: 100%;
+    //background-color: #4b1717; margin-right: 5%;
     }
 
-    .buttons2 {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      height: 20%;
+    .logTable {
+      width: 60%;
+      height: 100%;
+      /* 2.el-table滚动条样式 */
+      /* 滚动条轨道宽度17会出现间隙，直接body撑满 */
+
+      .el-table__body-wrapper,
+      .el-table__body {
+        /* 权重不够，需要增加important */
+        width: 100% !important;
+      }
+
+      /* 滚动条大小设置  */
+
+      .el-table__body-wrapper::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+        border-radius: 10px;
+        background-color: #ffffff !important;
+      }
+
+      /* 滚动条滑块样式设置 */
+
+      .el-table__body-wrapper::-webkit-scrollbar-thumb {
+        width: 5px;
+        border-radius: 5px;
+        background-color: #8f8f8f;
+      }
+
+      /* body宽度撑满后，表头会出现错位，增加下面样式覆盖gutter原始的宽度17 */
+
+      .el-table__header colgroup col[name='gutter'],
+      .el-table__body-wrapper colgroup col[name='gutter'] {
+        display: table-cell;
+      }
+
+      .el-table th.gutter,
+      colgroup.gutter {
+        width: 5px !important;
+        border-left: 1px solid transparent !important;
+      }
+
+      /* 隐藏表头最后一个单元格的右边框 */
+
+      .has-gutter th.el-table__cell:nth-last-child(2) {
+        /* 权重不够，需要增加important */
+        border-right: none !important;
+      }
+
     }
 
     .button1 {
-      width: 30%;
-      height: 100%;
-      border-radius: 10px;
+      width: 100%;
+    //height: 100%; border-radius: 10px;
     }
   }
 }
