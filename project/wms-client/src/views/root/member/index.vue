@@ -329,7 +329,7 @@
           </el-col>
         </el-row>
         <el-form-item>
-          <el-button type="primary" @click="modifyMember()">修改</el-button>
+          <el-button type="warning" @click="modifyMember()">修改</el-button>
           <el-button @click="modifyDrawer = false">取消</el-button>
         </el-form-item>
       </el-form>

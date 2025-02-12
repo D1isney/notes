@@ -8,6 +8,7 @@ import com.wms.service.StorageService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -24,8 +25,10 @@ class WmsServerApplicationTests {
 //    private PasswordEncoderForSalt passwordEncoderForSalt;
 
     @Resource
+    @Lazy
     private StorageService storageService;
     @Resource
+    @Lazy
     private InventoryService inventoryService;
 
     @Test
@@ -51,8 +54,8 @@ class WmsServerApplicationTests {
                 inventory.setLayer(i);
                 inventory.setStorageId(storage.getId());
                 inventory.setCode(inventoryService.lastCode());
-                inventory.setGoodsId(1L);
-                inventory.setStatus(5);
+                inventory.setGoodsId(0L);
+                inventory.setStatus(0);
                 inventory.setName(storage.getName() + "-库存" + i);
                 inventory.setCreateTime(new Date());
                 inventory.setUpdateTime(new Date());

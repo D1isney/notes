@@ -167,7 +167,7 @@
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="6">
-            <el-button type="primary" @click="modifyRole">修改</el-button>
+            <el-button type="warning" @click="modifyRole">修改</el-button>
             <el-button type="info" @click="drawerEdit = false">取消</el-button>
           </el-col>
         </el-row>

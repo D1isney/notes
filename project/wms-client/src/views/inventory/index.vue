@@ -106,9 +106,9 @@ export default {
       // 根据 status 返回不同的背景颜色
       switch (status) {
         case 0:
-          return '#cccccc'
+          return 'var(--colorEmpty)'
         case 1:
-          return '#32cd32'
+          return 'var(--colorIn)'
         case 2:
           return '#4682b4'
         case 3:
@@ -220,6 +220,7 @@ export default {
   height: 20%;
   background-color: transparent;
   cursor: pointer;
+  border-radius: 10px;
 //border: 2px #99a9bf solid;
 }
 

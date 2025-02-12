@@ -18,6 +18,18 @@ export const constantRoutes = [
     component: () => import('@/views/404'),
     hidden: true
   },
+  {
+    path: '/storage',
+    component: Layout,
+    children: [
+      {
+        path: '/storage',
+        name: 'Storage',
+        component: () => import('@/views/storage/index'),
+        meta: { title: '首页', icon: 'el-icon-s-grid' }
+      }
+    ]
+  },
 
   {
     path: '/',
@@ -27,20 +39,8 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '首页', icon: 'dashboard' }
+      meta: { title: '数据看板', icon: 'dashboard' }
     }]
-  },
-  {
-    path: '/storage',
-    component: Layout,
-    children: [
-      {
-        path: '/storage',
-        name: 'Storage',
-        component: () => import('@/views/storage/index'),
-        meta: { title: '库位信息', icon: 'el-icon-s-grid' }
-      }
-    ]
   },
   {
     path: '/task',

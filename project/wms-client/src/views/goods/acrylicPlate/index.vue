@@ -178,7 +178,7 @@
         <!--          </el-col>-->
         <el-form-item>
           <el-col :span="15">
-            <el-button type="primary" @click="editGoods">修改</el-button>
+            <el-button type="warning" @click="editGoods">修改</el-button>
             <el-button type="info" @click="editDrawer = false">取消</el-button>
           </el-col>
         </el-form-item>

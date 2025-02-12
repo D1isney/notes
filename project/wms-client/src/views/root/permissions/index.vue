@@ -137,7 +137,7 @@
           <el-input v-model="modifyPermissionsList.remark" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="modifyPermissions()">修改</el-button>
+          <el-button type="warning" @click="modifyPermissions()">修改</el-button>
           <el-button type="info" @click="editDrawer = false">取消</el-button>
         </el-form-item>
       </el-form>

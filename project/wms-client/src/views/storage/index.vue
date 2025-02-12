@@ -1,6 +1,28 @@
 <template>
   <div class="app-container">
     <div class="inventory-box">
+      <div class="color-tips">
+        <!--        <el-color-picker v-model="color" size="mini"></el-color-picker>-->
+        <div class="tips-div">
+          <div class="tips-c">
+            <el-color-picker v-model="colorOut" size="mini"></el-color-picker>
+          </div>
+          <div class="tips-t">有物料</div>
+        </div>
+
+        <div class="tips-div">
+          <div class="tips-c">
+            <el-color-picker v-model="colorIn" size="mini"></el-color-picker>
+          </div>
+          <div class="tips-t">入库中</div>
+        </div>
+        <div class="tips-div">
+          <div class="tips-c">
+            <el-color-picker v-model="colorOut" size="mini"></el-color-picker>
+          </div>
+          <div class="tips-t">出库中</div>
+        </div>
+      </div>
       <Inventory ref="inventory"></Inventory>
     </div>
     <div class="operation-box">
@@ -164,7 +186,7 @@
         </el-table-column>
       </el-table>
       <div class="updateStorageButtonBox">
-        <el-button type="primary" class="updateStorageButton" @click="updateStorage">修改</el-button>
+        <el-button type="warning" class="updateStorageButton" @click="updateStorage">修改</el-button>
         <el-button type="info" class="updateStorageButton" @click="storageMessageVisible = false">取消</el-button>
       </div>
     </el-dialog>
@@ -233,6 +255,8 @@ export default {
           { required: false, message: '请输入物料编码！！！', trigger: 'change' }
         ]
       },
+      colorIn: '#32cd32',
+      colorOut: '#aba33b',
       labelPosition: 'left',
       storageMessageVisible: false,
       inventoryMessageVisible: false,
@@ -315,7 +339,7 @@ export default {
       })
     },
     openTaskMessage() {
-      this.$router.push({path:'/task'})
+      this.$router.push({ path: '/task' })
     },
     async getOperationLog() {
       await getLogList(this.query).then(res => {
@@ -394,7 +418,33 @@ export default {
 .inventory-box {
   width: 100%;
   height: 60%;
+  display: flex;
+  flex-direction: column;
   background-color: transparent;
+
+  .color-tips {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .tips-div {
+    width: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .tips-c {
+    flex-grow: 1;
+    align-items: center;
+  }
+
+  .tips-t {
+    flex-grow: 26;
+    align-items: center;
+  }
 }
 
 .operation-box {

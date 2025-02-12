@@ -1,0 +1,24 @@
+/* --color 相当于全局定义的一个css变量
+ var(--color) 用于引用
+ 在页面样式的引用中，你将会看到 */
+:root {
+  --color1: #4f5052;
+  /* 主色1，侧边栏的颜色 */
+  --color2: #3B82F6;
+  /* 导航栏文字颜色 */
+  --sidebarTextColor: #ffffff;
+  /* 导航栏选中文字颜色 */
+  --sidebarSelectTextColor: #ffffff;
+  /* 多表头部背景色 */
+  --headBgColor: #172D4F;
+  /* 多表头部标题颜色 */
+  --headTextColor: #ffffff;
+  /* 多表边框颜色 */
+  --borderColor: #172D4F;
+
+  /*库位空的颜色*/
+  --colorEmpty: #cccccc;
+
+  /*库存正在入库的颜色*/
+  --colorIn: #32cd32;
+}

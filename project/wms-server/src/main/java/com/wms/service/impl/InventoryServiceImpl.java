@@ -88,6 +88,11 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
     @Override
     @Transactional(rollbackFor = Exception.class)
     public R<?> warehousing(List<WarehousingDTO> warehousingDTO) {
+        return operatingDuty(warehousingDTO);
+    }
+
+    @Override
+    public R<?> operatingDuty(List<WarehousingDTO> warehousingDTO) {
         /*
             1、物料编码
             2、库位编码（有、无）
@@ -100,10 +105,10 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                 Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType(), storageAndInventory);
                 if (w.getType().equals(InOrOutConstant.in)) {
                     Goods goodsByCode = getGoodsByCode(w.getGoodsCode());
-                    in(goodsByCode, inventoryByCode, storageByCode);
+                    in(goodsByCode, inventoryByCode, storageByCode, w.getTask());
                 } else {
                     Goods goodsById = getGoodsById(w.getGoodsId());
-                    out(goodsById, inventoryByCode, storageByCode);
+                    out(goodsById, inventoryByCode, storageByCode, w.getTask());
                 }
             });
             return R.ok("正在下发任务！！！");
@@ -150,13 +155,13 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         });
     }
 
-    private void in(Goods goods, Inventory inventory, Storage storage) {
+    private void in(Goods goods, Inventory inventory, Storage storage, Task task) {
         if (!inventory.getStatus().equals(InventoryEnum.EMPTY.getType())) {
             throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + ",已有物料，无法再次入库！！！");
         }
         TaskExecutor taskExecutor = null;
         taskExecutor = new InTaskExecutor();
-        TaskExecutorInit(taskExecutor, goods, inventory);
+        TaskExecutorInit(taskExecutor, goods, inventory, task);
 
         taskExecutor.setExceptionHandler(e -> {
             throw new EException(e.getMessage());
@@ -164,13 +169,13 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         threadPoolExecutor.execute(taskExecutor);
     }
 
-    private void out(Goods goods, Inventory inventory, Storage storage) {
+    private void out(Goods goods, Inventory inventory, Storage storage, Task task) {
         if (!inventory.getStatus().equals(InventoryEnum.HAVE.getType())) {
             throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + "，没有物料或物料正在出入库，无法再次出库！！！");
         }
         TaskExecutor taskExecutor = null;
         taskExecutor = new OutTaskExecutor();
-        TaskExecutorInit(taskExecutor, goods, inventory);
+        TaskExecutorInit(taskExecutor, goods, inventory, task);
         taskExecutor.setExceptionHandler(e -> {
             throw new EException(e.getMessage());
         });
@@ -202,12 +207,15 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         if (type.equals(InOrOutConstant.in)) {
             List<Inventory> inventories;
             if (StringUtil.isEmpty(code)) {
+                if (StringUtil.isEmpty(storage) || StringUtil.isEmpty(storage.getStorage())){
+                    throw new EException("没有合适的库位！！！");
+                }
                 //  随便生成一个
                 map.put("status", InventoryEnum.EMPTY.getType());
                 map.put("storageId", storage.getStorage().getId());
                 inventories = inventoryService.queryList(map);
                 if (inventories.isEmpty()) {
-                    throw new EException("没有合适的库存！！！");
+                    throw new EException("没有合适的库位！！！");
                 }
                 return inventories.get(inventories.size() - 1);
             } else {
@@ -306,8 +314,10 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         return task;
     }
 
-    public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory) {
-        Task task = createTask(goods, inventory);
+    public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory, Task task) {
+        if (StringUtil.isEmpty(task)) {
+            task = createTask(goods, inventory);
+        }
         taskExecutor.setTask(task);
         taskExecutor.setInventory(inventory);
         taskExecutor.setPlcConnect(plcConnect);

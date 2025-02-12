@@ -1,5 +1,6 @@
 package com.wms.dto;
 
+import com.wms.pojo.Task;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,6 @@ public class WarehousingDTO {
     private String inventoryCode;
     private String storageCode;
     private Integer type;
+
+    private Task task;
 }

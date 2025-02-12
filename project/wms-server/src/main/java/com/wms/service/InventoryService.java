@@ -14,4 +14,6 @@ public interface InventoryService extends BaseService<Inventory, InventoryVo> {
     R<?> warehousing(List<WarehousingDTO> warehousingDTO);
 
     void intelligentDiskLibrary();
+
+    R<?> operatingDuty(List<WarehousingDTO> warehousingDTO);
 }

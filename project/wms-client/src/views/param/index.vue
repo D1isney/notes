@@ -184,7 +184,7 @@
         </el-row>
         <el-row :gutter="20">
           <el-col :span="16" :push="6">
-            <el-button type="primary" @click.stop="updateEditParamList">修改</el-button>
+            <el-button type="warning" @click.stop="updateEditParamList">修改</el-button>
             <el-button type="info" @click.stop="editDrawer = false">取消</el-button>
           </el-col>
         </el-row>
