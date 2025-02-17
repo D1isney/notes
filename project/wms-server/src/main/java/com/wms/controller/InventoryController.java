@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.aspect.Log;
 import com.wms.dto.WarehousingDTO;
 import com.wms.pojo.Inventory;
+import com.wms.pojo.Task;
 import com.wms.service.InventoryService;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;
@@ -57,6 +58,15 @@ public class InventoryController {
         inventoryService.intelligentDiskLibrary();
         return R.ok();
     }
+
+    @ApiOperation("获取可用库")
+    @GetMapping("billOfInventory")
+    @Log(value = "库存-获取可用库",path = "/inventory/billOfInventory")
+    public R<?> billOfInventory(){
+        return inventoryService.billOfInventory();
+    }
+
+
 
 
 }

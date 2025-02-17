@@ -17,4 +17,10 @@ public interface GoodsService extends BaseService<Goods, GoodsVo> {
     R<?> saveOrUpdateGoods(Goods goods);
 
     void deleteGoodsByIds(Long[] ids);
+
+    Goods getGoodsByCode(String code);
+
+    Goods getGoodsById(Long id);
+
+    R<?> billOfMaterial();
 }

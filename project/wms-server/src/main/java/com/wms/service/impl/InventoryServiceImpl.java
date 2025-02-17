@@ -2,16 +2,11 @@ package com.wms.service.impl;
 
 import com.wms.connect.plc.PlcConnect;
 import com.wms.connect.utils.PlcParam;
-import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.constant.InOrOutConstant;
 import com.wms.dao.InventoryDao;
-import com.wms.dto.AddressValueDTO;
-import com.wms.dto.PlcAddressDTO;
-import com.wms.dto.StorageAndInventory;
-import com.wms.dto.WarehousingDTO;
+import com.wms.dto.*;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
-import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.pojo.Goods;
 import com.wms.pojo.Inventory;
@@ -34,12 +29,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 @Service
 public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Inventory, InventoryVo> implements InventoryService {
@@ -47,11 +40,9 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
     @Resource
     @Lazy
     private InventoryDao inventoryDao;
-
     @Resource
-//    @Lazy
+    @Lazy
     private PlcConnect plcConnect;
-
     @Resource
     @Lazy
     private GoodsService goodsService;
@@ -91,23 +82,35 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         return operatingDuty(warehousingDTO);
     }
 
+    /**
+     * 出入库操作
+     *
+     * @param warehousingDTO 操作DTO
+     * @return 结果
+     */
     @Override
     public R<?> operatingDuty(List<WarehousingDTO> warehousingDTO) {
         /*
             1、物料编码
             2、库位编码（有、无）
             3、库存编码（有、无）
+            4、任务（有、无）
          */
         if (!StringUtil.isEmpty(warehousingDTO)) {
             warehousingDTO.forEach(w -> {
-                StorageAndInventory storageAndInventory = getStorageByCode(w.getStorageCode());
-                Storage storageByCode = storageAndInventory.getStorage();
-                Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType(), storageAndInventory);
+                StorageAndInventoryDTO storageAndInventoryDTO = getStorageByCode(w.getStorageCode());
+                Storage storageByCode = storageAndInventoryDTO.getStorage();
+                Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType(), storageAndInventoryDTO);
                 if (w.getType().equals(InOrOutConstant.in)) {
-                    Goods goodsByCode = getGoodsByCode(w.getGoodsCode());
+                    Goods goodsByCode = goodsService.getGoodsByCode(w.getGoodsCode());
                     in(goodsByCode, inventoryByCode, storageByCode, w.getTask());
                 } else {
-                    Goods goodsById = getGoodsById(w.getGoodsId());
+                    Goods goodsById;
+                    if (!StringUtil.isEmpty(w.getGoodsCode())) {
+                        goodsById = goodsService.getGoodsByCode(w.getGoodsCode());
+                    } else {
+                        goodsById = goodsService.getGoodsById(w.getGoodsId());
+                    }
                     out(goodsById, inventoryByCode, storageByCode, w.getTask());
                 }
             });
@@ -155,6 +158,14 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         });
     }
 
+    /**
+     * 入库操作
+     *
+     * @param goods     物料
+     * @param inventory 库存
+     * @param storage   库位
+     * @param task      任务
+     */
     private void in(Goods goods, Inventory inventory, Storage storage, Task task) {
         if (!inventory.getStatus().equals(InventoryEnum.EMPTY.getType())) {
             throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + ",已有物料，无法再次入库！！！");
@@ -169,7 +180,16 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         threadPoolExecutor.execute(taskExecutor);
     }
 
+    /**
+     * 出库操作
+     *
+     * @param goods     出库物料
+     * @param inventory 库存
+     * @param storage   库位
+     * @param task      任务
+     */
     private void out(Goods goods, Inventory inventory, Storage storage, Task task) {
+        //  挂起的库存或者是有货物的库存才能出库
         if (!inventory.getStatus().equals(InventoryEnum.HAVE.getType())) {
             throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + "，没有物料或物料正在出入库，无法再次出库！！！");
         }
@@ -182,32 +202,21 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         threadPoolExecutor.execute(taskExecutor);
     }
 
-    public Goods getGoodsByCode(String code) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("code", code);
-        List<Goods> goods = goodsService.queryList(map);
-        if (goods.isEmpty()) {
-            throw new EException("不存在物料：" + code);
-        } else {
-            return goods.get(0);
-        }
-    }
-
-    public Goods getGoodsById(Long id) {
-        Goods goods = goodsService.queryById(id);
-        if (StringUtil.isEmpty(goods)) {
-            throw new EException("不存在物料：" + id);
-        } else {
-            return goods;
-        }
-    }
-
-    public Inventory getInventoryByCode(String code, Integer type, StorageAndInventory storage) {
+    /**
+     * 通过库存Code找库位，没有就拿库位Code找库存，再没有就随机生成
+     *
+     * @param code    库位Code
+     * @param type    出入库类型
+     * @param storage 库位
+     * @return 库存
+     */
+    @Override
+    public Inventory getInventoryByCode(String code, Integer type, StorageAndInventoryDTO storage) {
         Map<String, Object> map = new HashMap<>();
         if (type.equals(InOrOutConstant.in)) {
             List<Inventory> inventories;
             if (StringUtil.isEmpty(code)) {
-                if (StringUtil.isEmpty(storage) || StringUtil.isEmpty(storage.getStorage())){
+                if (StringUtil.isEmpty(storage) || StringUtil.isEmpty(storage.getStorage())) {
                     throw new EException("没有合适的库位！！！");
                 }
                 //  随便生成一个
@@ -249,7 +258,95 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         }
     }
 
-    public StorageAndInventory getStorageByCode(String code) {
+    /**
+     * public R<?> billOfInventory() {
+     * //  拿到所有库位
+     * List<Storage> list = storageService.list();
+     * List<ParentSelector> parentSelectorList = new ArrayList<>();
+     * //  通过ID来区分
+     * Map<Long, List<Storage>> collect = list.stream().collect(Collectors.groupingBy(Storage::getId));
+     * //  所有ID
+     * Set<Long> ids = collect.keySet();
+     * ids.forEach(id -> {
+     * ParentSelector parentSelector = new ParentSelector();
+     * //  一般只有一个 能不能选，能不能用
+     * List<Storage> storages = collect.get(id);
+     * if (!storages.isEmpty()) {
+     * boolean forbidden = storages.get(0).isForbidden();
+     * parentSelector.setDisabled(forbidden);
+     * }
+     * parentSelector.setLabel(storages.get(0).getName());
+     * parentSelector.setValue(storages.get(0).getCode());
+     * //  查询所有的竖项
+     * Map<String,Object> map = new HashMap<>();
+     * map.put("storageId", id);
+     * List<Inventory> inventories = inventoryService.queryList(map);
+     * List<ChildrenSelector> childrenSelectors = new ArrayList<>();
+     * inventories.forEach(inventory -> {
+     * ChildrenSelector childrenSelector = new ChildrenSelector();
+     * childrenSelector.setLabel(inventory.getName());
+     * childrenSelector.setValue(inventory.getCode());
+     * childrenSelector.setDisabled(true);
+     * childrenSelectors.add(childrenSelector);
+     * });
+     * parentSelector.setChildren(childrenSelectors);
+     * parentSelectorList.add(parentSelector);
+     * });
+     * return R.ok(parentSelectorList);
+     * }
+     *
+     * @return R
+     */
+    @Override
+    public R<?> billOfInventory() {
+        // 获取所有库位
+        List<Storage> storages = storageService.list();
+
+        // 使用stream API将库位按ID分组
+        Map<Long, List<Storage>> storageMap = storages.stream()
+                .collect(Collectors.groupingBy(Storage::getId));
+
+        // 将每个库位转换为ParentSelector对象
+        List<ParentSelector> parentSelectors = storageMap.entrySet().stream()
+                .map(entry -> {
+                    Long storageId = entry.getKey();
+                    List<Storage> storageList = entry.getValue();
+                    // 创建ParentSelector对象
+                    ParentSelector parentSelector = new ParentSelector();
+                    if (!storageList.isEmpty()) {
+                        Storage storage = storageList.get(0);
+                        parentSelector.setDisabled(!storage.isForbidden());
+                        parentSelector.setLabel(storage.getName());
+                        parentSelector.setValue(storage.getCode());
+                    }
+                    // 查询该库位下的所有库存项
+                    Map<String, Object> queryParams = Collections.singletonMap("storageId", storageId);
+                    List<Inventory> inventories = inventoryService.queryList(queryParams);
+                    // 将库存项转换为ChildrenSelector对象
+                    List<ChildrenSelector> childrenSelectors = inventories.stream()
+                            .map(inventory -> {
+                                ChildrenSelector childrenSelector = new ChildrenSelector();
+                                childrenSelector.setLabel(inventory.getName());
+                                childrenSelector.setValue(inventory.getCode());
+                                childrenSelector.setDisabled(false);
+                                return childrenSelector;
+                            })
+                            .collect(Collectors.toList());
+                    parentSelector.setChildren(childrenSelectors);
+                    return parentSelector;
+                })
+                .collect(Collectors.toList());
+        return R.ok(parentSelectors);
+    }
+
+
+    /**
+     * 根据Code拿到合适的库位
+     *
+     * @param code 库位Code
+     * @return 库位
+     */
+    public StorageAndInventoryDTO getStorageByCode(String code) {
         if (StringUtil.isEmpty(code)) {
             Map<String, Object> mapStorage = new HashMap<>();
             mapStorage.put("isForbidden", 1);
@@ -265,16 +362,22 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
             if (storages.isEmpty()) {
                 throw new EException("不存在库位：" + code);
             } else {
-                StorageAndInventory storageAndInventory = new StorageAndInventory();
-                storageAndInventory.setStorage(storages.get(0));
-                return storageAndInventory;
+                StorageAndInventoryDTO storageAndInventoryDTO = new StorageAndInventoryDTO();
+                storageAndInventoryDTO.setStorage(storages.get(0));
+                return storageAndInventoryDTO;
             }
         }
     }
 
-    public StorageAndInventory getStorage(List<Storage> storages) {
+    /**
+     * 在多个库位中，拿到最近最合适的那一列
+     *
+     * @param storages 库位
+     * @return 库位
+     */
+    public StorageAndInventoryDTO getStorage(List<Storage> storages) {
         Map<String, Object> map = new HashMap<>();
-        StorageAndInventory storageAndInventory = new StorageAndInventory();
+        StorageAndInventoryDTO storageAndInventoryDTO = new StorageAndInventoryDTO();
         AtomicBoolean flag = new AtomicBoolean(false);
         if (!storages.isEmpty()) {
             for (Storage s : storages) {
@@ -284,25 +387,33 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                 inventories.forEach(i -> {
                     if (i.getStatus().equals(InventoryEnum.EMPTY.getType())) {
                         flag.set(true);
-                        storageAndInventory.setInventory(i);
+                        storageAndInventoryDTO.setInventory(i);
                     }
                 });
                 if (flag.get()) {
-                    storageAndInventory.setStorage(s);
+                    storageAndInventoryDTO.setStorage(s);
                     break;
                 }
             }
         } else {
             throw new EException("没有合适的库位！！！");
         }
-        return storageAndInventory;
+        return storageAndInventoryDTO;
     }
 
+    /**
+     * 根据物料、库存、创建对应的任务
+     *
+     * @param goods     物料
+     * @param inventory 库存
+     * @return 任务
+     */
     public Task createTask(Goods goods, Inventory inventory) {
         Task task = new Task();
         task.setGoodsId(goods.getId());
         task.setInventoryId(inventory.getId());
         task.setCode(taskService.lastCode());
+        task.setName(taskService.lastCode());
         task.setStatus(TaskEnum.INIT_IN.getStatus());
         task.setType(TaskEnum.INIT_IN.getType());
         task.setCreateTime(new Date());
@@ -314,8 +425,16 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         return task;
     }
 
+    /**
+     * 初始化抽象类
+     *
+     * @param taskExecutor 抽象线程
+     * @param goods        物料
+     * @param inventory    库存
+     * @param task         任务、有就不创建，没有就创建
+     */
     public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory, Task task) {
-        if (StringUtil.isEmpty(task)) {
+        if (StringUtil.isEmpty(task) || StringUtil.isEmpty(task.getId())) {
             task = createTask(goods, inventory);
         }
         taskExecutor.setTask(task);

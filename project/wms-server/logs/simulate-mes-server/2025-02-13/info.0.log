@@ -1,0 +1,94 @@
+2025-02-13 10:08:44.962   INFO 19492 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 19492 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-13 10:08:44.965   INFO 19492 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-13 10:08:47.174   INFO 19492 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-13 10:08:47.177   INFO 19492 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-13 10:08:47.209   INFO 19492 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2025-02-13 10:08:48.152   INFO 19492 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-13 10:08:48.162   INFO 19492 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-13 10:08:48.162   INFO 19492 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-13 10:08:48.163   INFO 19492 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-13 10:08:48.267   INFO 19492 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-13 10:08:48.267   INFO 19492 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3250 ms
+2025-02-13 10:08:51.274   INFO 19492 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-13 10:08:51.321   INFO 19492 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1031/0x00000008012fe660@7e7987b8 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6bcfb561, org.springframework.security.web.context.SecurityContextPersistenceFilter@7c93e69, org.springframework.security.web.header.HeaderWriterFilter@193f3306, org.springframework.web.filter.CorsFilter@7254a68a, org.springframework.security.web.authentication.logout.LogoutFilter@7bf16972, com.wms.filter.jwt.JwtAuthenticationTokenFilter@2e426dd2, org.springframework.security.web.session.ConcurrentSessionFilter@528c4353, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@78c23ade, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4ed5492c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@49f9758, org.springframework.security.web.session.SessionManagementFilter@3c34c491, org.springframework.security.web.access.ExceptionTranslationFilter@4724b2c1, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1bb78ae]
+2025-02-13 10:08:51.454   INFO 19492 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-13 10:08:51.480   INFO 19492 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-13 10:08:52.163   INFO 19492 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 7.653 seconds (JVM running for 10.375)
+2025-02-13 10:16:13.066   INFO 19492 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-13 10:16:13.066   INFO 19492 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-13 10:16:13.068   INFO 19492 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-02-13 10:16:13.342   INFO 19492 --- [nio-1217-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-13 10:16:13.805   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:20:03.706   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:20:04.223   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:20:05.819   INFO 19492 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:20:06.753   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:27:38.302   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:27:38.842   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:27:44.965   INFO 19492 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:27:45.895   INFO 19492 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:45:48.483   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:45:48.943   INFO 19492 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:45:52.971   INFO 19492 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:45:53.517   INFO 19492 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:46:02.481   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:46:02.673   INFO 19492 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:46:15.969   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:46:16.151   INFO 19492 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:48:03.997   INFO 19492 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:48:04.828   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:50:11.118   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:50:11.981   INFO 19492 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:50:32.086   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:50:33.025   INFO 19492 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:50:36.072   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:50:36.783   INFO 19492 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:52:06.535   INFO 19492 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:52:07.397   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 10:52:57.661   INFO 19492 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 10:52:58.491   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:01:59.499   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:01:59.945   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:03:25.334   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:03:25.722   INFO 19492 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:06:45.386   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:06:45.896   INFO 19492 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:09:39.301   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:09:39.627   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:10:22.455   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:10:22.773   INFO 19492 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:13:54.347   INFO 19492 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:13:54.924   INFO 19492 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:18:23.043   INFO 19492 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:18:24.145   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:18:44.837   INFO 19492 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:18:45.890   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:19:10.750   INFO 19492 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:19:11.489   INFO 19492 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:20:48.245   INFO 19492 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:20:49.157   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:21:04.848   INFO 19492 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:21:05.755   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:22:13.519   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:22:14.491   INFO 19492 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:24:11.254   INFO 19492 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:24:12.145   INFO 19492 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:25:16.847   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:25:17.833   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:29:15.553   INFO 19492 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:29:16.435   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:29:25.254   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:29:26.237   INFO 19492 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:39:28.020   INFO 19492 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:39:28.449   INFO 19492 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 11:39:38.965   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 11:39:39.358   INFO 19492 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 13:39:26.556   INFO 19492 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 13:39:27.009   INFO 19492 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 13:41:41.916   INFO 19492 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 13:41:42.345   INFO 19492 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 20:33:26.717   INFO 19492 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 20:44:21.574   INFO 19492 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-13 20:48:21.767   INFO 19492 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-13 20:48:21.820   INFO 19492 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-13 20:48:21.824   INFO 19492 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

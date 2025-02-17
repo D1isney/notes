@@ -52,7 +52,9 @@
                       size="small"
                     >
                     <span>
-                         {{(propsList.row.status || propsList.row.status === 0) && statusOptions[propsList.row.status].label}}
+                         {{
+                        (propsList.row.status || propsList.row.status === 0) && statusOptions[propsList.row.status].label
+                      }}
                       </span>
 
                     </el-tag>
@@ -139,6 +141,10 @@
           label="任务编码"
           prop="code"
         />
+        <el-table-column
+          label="任务名称"
+          prop="name"
+        />
 
         <el-table-column
           label="物料类型"
@@ -157,35 +163,32 @@
         <el-table-column
           align="right"
         >
-          <template slot="header" slot-scope="scope">
-            <el-row>
-              <el-col :span="7">
-                <el-input v-model="query.param" clearable placeholder="查询"></el-input>
-              </el-col>
-              <el-col :span="7" :push="1">
-                <el-select v-model="query.type" placeholder="任务类型" clearable>
-                  <el-option
-                    v-for="item in optionsType"
-                    :key="item.value"
-                    :label="item.label"
-                    :value="item.value"
-                  >
-                  </el-option>
-                </el-select>
-              </el-col>
-              <el-col :span="7">
-                <el-button type="primary" icon="el-icon-search" @click="getList"/>
-              </el-col>
-            </el-row>
-          </template>
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" circle @click.stop="openEditDrawer(scope.row)"/>
+            <el-button type="warning" icon="el-icon-caret-bottom" circle @click.stop="issued(scope.row)"/>
             <el-button type="danger" icon="el-icon-delete" circle @click.stop="deleteTask(scope.row)"/>
           </template>
         </el-table-column>
 
       </el-table>
       <div class="button-box">
+        <el-row style="display: flex;justify-content: flex-start;align-items: center">
+          <el-col :span="13">
+            <el-input v-model="query.param" clearable placeholder="查询"></el-input>
+          </el-col>
+          <el-col :span="9" :push="1">
+            <el-select v-model="query.type" placeholder="任务类型" clearable>
+              <el-option
+                v-for="item in optionsType"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              >
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+        <el-button type="primary" class="button-box-add" icon="el-icon-search" @click="getList"/>
         <el-button type="primary" class="button-box-add" icon="el-icon-plus" @click="openAddDrawer"/>
         <el-button type="danger" class="button-box-delete" icon="el-icon-delete-solid" @click="deleteAll"/>
       </div>
@@ -193,12 +196,227 @@
     <div class="page">
       <pagination :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList"/>
     </div>
+
+
+    <el-drawer
+      title="添加任务"
+      :visible.sync="addDrawer"
+      :direction="direction"
+    >
+      <el-form ref="addTaskForm" :model="addTaskForm" label-width="80px">
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="任务名称" prop="name">
+              <el-input v-model="addTaskForm.name" placeholder="任务名称"/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="任务编码">
+              <el-input v-model="addTaskForm.code" placeholder="自动生成" disabled/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="任务类型">
+              <el-radio-group v-model="addTaskForm.type">
+                <el-radio :label="4">入库</el-radio>
+                <el-radio :label="5">出库</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="物料类型">
+              <div class="block">
+                <el-cascader
+                  v-model="goodsValue"
+                  :options="goodsOptionsSelect"
+                  @change="goodsHandleChange"
+                ></el-cascader>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="选择库位">
+              <div class="block">
+                <el-cascader
+                  v-model="inventoryValue"
+                  :options="inventoryOptionsSelect"
+                  @change="inventoryHandleChange"
+                ></el-cascader>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="是否下发">
+              <el-switch
+                v-model="addTaskForm.directlyIssued"
+                active-text="直接下发"
+                inactive-text="后续下发"
+              >
+              </el-switch>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="备注">
+              <eel-form-item v-model="addTaskForm.remark">
+                <el-input v-model="addTaskForm.remark" type="textarea" placeholder="备注"/>
+              </eel-form-item>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+
+      <el-row :gutter="20">
+        <el-col :span="16" :push="6">
+          <el-button type="warning" @click="commitAdd()">添加</el-button>
+          <el-button type="info" @click="resetAddForm()">重置</el-button>
+        </el-col>
+      </el-row>
+    </el-drawer>
+
+    <el-drawer
+      title="修改任务"
+      :visible.sync="updateDrawer"
+      :direction="direction"
+    >
+      <el-form ref="addTaskForm" :model="updateTaskForm" label-width="80px">
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="任务名称" prop="name">
+              <el-input v-model="updateTaskForm.name" placeholder="任务名称"/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="任务编码">
+              <el-input v-model="updateTaskForm.code" placeholder="自动生成" disabled/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="任务类型">
+              <el-radio-group v-model="updateTaskForm.type">
+                <el-radio :label="4">入库</el-radio>
+                <el-radio :label="5">出库</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="物料类型">
+              <div class="block">
+                <el-cascader
+                  v-model="goodsUpdateValue"
+                  :options="goodsOptionsSelect"
+                  @change="goodsUpdateHandleChange"
+                ></el-cascader>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="选择库位">
+              <div class="block">
+                <el-cascader
+                  v-model="inventoryUpdateValue"
+                  :options="inventoryOptionsSelect"
+                  @change="inventoryUpdateHandleChange"
+                ></el-cascader>
+              </div>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="是否下发">
+              <el-switch
+                v-model="updateTaskForm.directlyIssued"
+                active-text="直接下发"
+                inactive-text="后续下发"
+              >
+              </el-switch>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="创建用户" prop="createUsername">
+              <el-input v-model="updateTaskForm.createUsername" placeholder="创建用户" disabled/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="更新用户" prop="updateUsername">
+              <el-input v-model="updateTaskForm.updateUsername" placeholder="更新用户" disabled/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="创建时间" prop="createTime">
+              <el-input v-model="updateTaskForm.createTime" placeholder="创建时间" disabled/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="更新时间" prop="updateTime">
+              <el-input v-model="updateTaskForm.updateTime" placeholder="更新时间" disabled/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item label="备注">
+              <el-input v-model="updateTaskForm.remark" type="textarea" placeholder="备注"/>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
+      </el-form>
+    </el-drawer>
+
   </div>
 </template>
 
 <script>
 import pagination from '@/components/Pagination/index.vue'
-import { getTaskList, TaskConst } from '@/api/task/taskAPI'
+import {
+  getGoodsAndInventory,
+  getTaskList,
+  manualOperationIssued,
+  saveOrUpdateTask,
+  TaskConst
+} from '@/api/task/taskAPI'
+import { getBillOfMaterial } from '@/api/goods/goodsAPI'
+import { getBillOfInventory } from '@/api/inventory/inventoryAPI'
+import { mapActions, mapGetters, mapState } from 'vuex'
 
 export default {
   components: {
@@ -206,6 +424,26 @@ export default {
   },
   data() {
     return {
+      goodsValue: [],
+      goodsUpdateValue: [],
+      inventoryValue: [],
+      inventoryUpdateValue: [],
+      goodsOptionsSelect: [],
+      inventoryOptionsSelect: [],
+      addDrawer: false,
+      updateDrawer: false,
+      addTaskForm: {
+        name: '',
+        code: '',
+        type: 4,
+        directlyIssued: false,
+        taskDataDTOS: {
+          goodsCode: '',
+          inventoryCode: '',
+          storageCode: ''
+        }
+      },
+      direction: 'rtl',
       query: {
         page: 1,
         limit: 20,
@@ -217,18 +455,38 @@ export default {
       expands: [],
       // 多选的东西
       multipleSelection: [],
-      optionsType: []
+      optionsType: [],
+      updateTaskForm: {
+        name: '',
+        code: '',
+        type: '',
+        directlyIssued: false,
+        taskDataDTOS: {
+          goodsCode: [],
+          inventoryCode: [],
+          storageCode: []
+        }
+      }
     }
   },
   computed: {
     statusOptions: () => Object.keys(TaskConst.status).map(key => TaskConst.status[key]),
-    typeOptions: () => Object.keys(TaskConst.type).map(key => TaskConst.type[key])
+    ...mapGetters(['sidebar', 'username']),
+    ...mapState('webSocket', ['socketData'])
+  },
+  watch: {
+    socketData(val) {
+      if (val.type === 'operation') {
+        this.getList()
+      }
+    }
   },
   created() {
     this.getList()
     this.optionsType = TaskConst.type
   },
   methods: {
+    ...mapActions('webSocket', ['openSocket']),
     async getList() {
       await getTaskList(this.query).then(res => {
         if (res.code === 200) {
@@ -259,12 +517,103 @@ export default {
     handleSelectionChange(val) {
       this.multipleSelection = val
     },
-    openEditDrawer(row) {
+    issued(row) {
+      manualOperationIssued(row).then(res => {
+        if (res.code === 200) {
+          this.getList()
+          this.$message.success(row.message)
+        }
+      })
     },
+    openEditDrawer(row) {
+      this.goodsUpdateValue = []
+      this.inventoryUpdateValue = []
+      // this.goodsOptionsSelect = []
+      // this.inventoryOptionsSelect = []
+      this.updateTaskForm = row
+      //  列表 数据
+      getBillOfMaterial().then(res => {
+        if (res.code === 200) {
+          this.goodsOptionsSelect = res.data
+        }
+      })
+      getBillOfInventory().then(res => {
+        if (res.code === 200) {
+          this.inventoryOptionsSelect = res.data
+        }
+      })
+      getGoodsAndInventory(row).then(res => {
+        if (res.code === 200) {
+          this.inventoryUpdateValue = res.data.inventoryCode
+          this.goodsUpdateValue = res.data.goodsCode
+          this.updateTaskForm.taskDataDTOS.goodsCode = (res.data.goodsCode)
+          this.updateTaskForm.taskDataDTOS.inventoryCode = (res.data.inventoryCode)
+        }
+      })
+      this.updateDrawer = true
+    },
+
     deleteTask(row) {
     },
     openAddDrawer() {
-
+      this.addTaskForm = {
+        name: '',
+        code: '',
+        type: 4,
+        directlyIssued: false,
+        taskDataDTOS: {
+          goodsCode: '',
+          inventoryCode: '',
+          storageCode: ''
+        }
+      }
+      this.goodsValue = []
+      this.inventoryValue = []
+      // this.goodsOptionsSelect = []
+      // this.inventoryOptionsSelect = []
+      //  列表 数据
+      getBillOfMaterial().then(res => {
+        if (res.code === 200) {
+          this.goodsOptionsSelect = res.data
+        }
+      })
+      getBillOfInventory().then(res => {
+        if (res.code === 200) {
+          this.inventoryOptionsSelect = res.data
+        }
+      })
+      this.addDrawer = true
+    },
+    goodsHandleChange(val) {
+      //  物料编码
+      this.addTaskForm.taskDataDTOS.goodsCode = val[1]
+    },
+    goodsUpdateHandleChange(val) {
+      //  物料编码
+      this.updateTaskForm.taskDataDTOS.goodsCode = val[1]
+    },
+    inventoryHandleChange(val) {
+      this.addTaskForm.taskDataDTOS.storageCode = val[0]
+      this.addTaskForm.taskDataDTOS.inventoryCode = val[1]
+    },
+    inventoryUpdateHandleChange(val) {
+      this.updateTaskForm.taskDataDTOS.storageCode = val[0]
+      this.updateTaskForm.taskDataDTOS.inventoryCode = val[1]
+    },
+    commitAdd() {
+      saveOrUpdateTask(this.addTaskForm).then(res => {
+        if (res.code === 200) {
+          this.$message.success(res.message)
+          this.getList()
+          this.addDrawer = false
+        } else {
+          this.$message.warning(res.message)
+          returns
+        }
+      })
+    },
+    resetAddForm() {
+      this.$refs.addTaskForm.resetFields()
     },
     deleteAll() {
     },
@@ -358,19 +707,20 @@ export default {
 
 .button-box {
   width: 100%;
-  height: 7%;
+  height: 6%;
   display: flex;
   justify-content: flex-end;
   padding-right: 0.5%;
+  margin-top: .3%;
 
   .button-box-add {
     width: 4%;
-    height: 80%;
+    height: 100%;
   }
 
   .button-box-delete {
     width: 4%;
-    height: 80%;
+    height: 100%;
   }
 }
 

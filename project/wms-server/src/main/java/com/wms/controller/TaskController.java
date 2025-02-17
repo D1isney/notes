@@ -51,4 +51,19 @@ public class TaskController {
         return taskService.saveOrUpdateTask(task);
     }
 
+    @ApiOperation("手动下发")
+    @PostMapping("manualOperationIssued")
+    @Log(value = "任务-手动下发任务",path = "/task/manualOperationIssued")
+    public R<?> manualOperationIssued(@RequestBody Task task){
+        return taskService.manualOperationIssued(task);
+    }
+
+
+    @ApiOperation("根据任务找到相应的物料Code以及库存Code")
+    @PostMapping("getGoodsAndInventory")
+    @Log(value = "任务-根据任务找到相应的物料Code以及库存Code",path = "/task/getGoodsAndInventory")
+    public R<?> getGoodsAndInventory(@RequestBody Task task){
+        return taskService.getGoodsAndInventory(task);
+    }
+
 }

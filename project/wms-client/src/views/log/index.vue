@@ -271,7 +271,17 @@ export default {
   display: flex;
   justify-content: flex-end;
   padding-right: 0.5%;
-  margin-top: 1%;
+  margin-top: .3%;
+
+  .button-box-add {
+    width: 4%;
+    height: 100%;
+  }
+
+  .button-box-delete {
+    width: 4%;
+    height: 100%;
+  }
 }
 
 

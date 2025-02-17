@@ -203,6 +203,9 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  border: 1px solid #a6a1a1;
+  margin-top: 1%;
+  border-radius: 10px;
 }
 
 .box {

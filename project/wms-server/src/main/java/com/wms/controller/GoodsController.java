@@ -76,6 +76,14 @@ public class GoodsController {
     }
 
 
+    @ApiOperation("根据id删除数据")
+    @GetMapping("billOfMaterial")
+    @Log(value = "物料-查询选择的物料信息",path = "/goods/billOfMaterial")
+    public R<?> billOfMaterial(){
+        return goodsService.billOfMaterial();
+    }
+
+
 
 
 }

@@ -10,6 +10,13 @@ export function getGoodsParamByGoodId(id) {
     method: "get"
   })
 }
+export function getBillOfMaterial(){
+  return request({
+    url: `/goods/billOfMaterial`,
+    method: "get"
+  })
+}
+
 
 
 export function getGoodsParamByTypeAndGoodId(type,goodId){

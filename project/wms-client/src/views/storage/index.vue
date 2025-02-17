@@ -2,26 +2,32 @@
   <div class="app-container">
     <div class="inventory-box">
       <div class="color-tips">
-        <!--        <el-color-picker v-model="color" size="mini"></el-color-picker>-->
         <div class="tips-div">
-          <div class="tips-c">
-            <el-color-picker v-model="colorOut" size="mini"></el-color-picker>
+          <div class="tips-c-empty">
           </div>
-          <div class="tips-t">有物料</div>
+          <div class="tips-c-blank"></div>
+          <div class="tips-t">无货物</div>
+        </div>
+        <div class="tips-div">
+          <div class="tips-c-have">
+          </div>
+          <div class="tips-c-blank"></div>
+          <div class="tips-t">有货物</div>
+        </div>
+        <div class="tips-div">
+          <div class="tips-c-in">
+          </div>
+          <div class="tips-c-blank"></div>
+          <div class="tips-t">正在入库</div>
         </div>
 
         <div class="tips-div">
-          <div class="tips-c">
-            <el-color-picker v-model="colorIn" size="mini"></el-color-picker>
+          <div class="tips-c-out">
           </div>
-          <div class="tips-t">入库中</div>
+          <div class="tips-c-blank"></div>
+          <div class="tips-t">正在出库</div>
         </div>
-        <div class="tips-div">
-          <div class="tips-c">
-            <el-color-picker v-model="colorOut" size="mini"></el-color-picker>
-          </div>
-          <div class="tips-t">出库中</div>
-        </div>
+
       </div>
       <Inventory ref="inventory"></Inventory>
     </div>
@@ -255,8 +261,6 @@ export default {
           { required: false, message: '请输入物料编码！！！', trigger: 'change' }
         ]
       },
-      colorIn: '#32cd32',
-      colorOut: '#aba33b',
       labelPosition: 'left',
       storageMessageVisible: false,
       inventoryMessageVisible: false,
@@ -368,6 +372,7 @@ export default {
   components: {
     Inventory, pagination
   },
+
   created() {
     this.getOperationLog()
   },
@@ -436,20 +441,56 @@ export default {
     align-items: center;
   }
 
-  .tips-c {
-    flex-grow: 1;
+  .tips-c-have {
+    //flex-grow: 5;
+    align-items: center;
+    //height: 90%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--colorHave);
+  }
+  .tips-c-empty{
+    //flex-grow: 5;
+    align-items: center;
+    //height: 90%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--colorEmpty);
+  }
+
+  .tips-c-in {
+    //flex-grow: 5;
+    align-items: center;
+    //height: 90%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--colorIn);
+  }
+
+  .tips-c-out {
+    //flex-grow: 5;
+    align-items: center;
+    //height: 90%;
+    width: 20px;
+    height: 20px;
+    background-color: var(--colorOut);
+  }
+
+
+  .tips-c-blank {
+    flex-grow: 2;
     align-items: center;
   }
 
   .tips-t {
-    flex-grow: 26;
+    flex-grow: 25;
     align-items: center;
   }
 }
 
 .operation-box {
   width: 100%;
-  height: 39%;
+  height: 38%;
   margin-top: 2%;
   display: flex;
   flex-direction: row;
@@ -461,10 +502,14 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    //border: 1px solid #a6a1a1;
+    //border-radius: 10px;
 
     .input-form {
       width: 70%;
       height: 100%;
+      margin-top: 2%;
+      //margin-left: 10%;
     }
 
     .input-buttons {
@@ -494,7 +539,11 @@ export default {
       flex-direction: column;
       justify-content: space-around;
       height: 100%;
+      //border: 1px solid #cccccc;
+      //border-radius: 10px;
     //background-color: #4b1717; margin-right: 5%;
+      padding-left: 1%;
+      padding-right: 1%;
     }
 
     .logTable {
@@ -550,7 +599,7 @@ export default {
 
     .button1 {
       width: 100%;
-    //height: 100%; border-radius: 10px;
+      //border-radius: 10px;
     }
   }
 }

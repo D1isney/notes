@@ -1,0 +1,1 @@
+2025-02-13 10:16:31.079  ERROR 19492 --- [nio-1217-exec-9] c.wms.handler.WebGlobalExceptionHandler  : 请先连接PLC！！！

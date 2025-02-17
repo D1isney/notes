@@ -1,0 +1,436 @@
+2025-02-17 09:03:25.562   INFO 7068 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 7068 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 09:03:25.565   INFO 7068 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 09:03:27.513   INFO 7068 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 09:03:27.516   INFO 7068 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 09:03:27.548   INFO 7068 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 17 ms. Found 0 Redis repository interfaces.
+2025-02-17 09:03:28.386   INFO 7068 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 09:03:28.395   INFO 7068 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 09:03:28.395   INFO 7068 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 09:03:28.396   INFO 7068 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 09:03:28.485   INFO 7068 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 09:03:28.485   INFO 7068 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2873 ms
+2025-02-17 09:03:30.971   INFO 7068 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 09:03:31.009   INFO 7068 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x0000000801323908@5c46a957 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7d95a717, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f190cfe, org.springframework.security.web.header.HeaderWriterFilter@6af29394, org.springframework.web.filter.CorsFilter@5c0f508b, org.springframework.security.web.authentication.logout.LogoutFilter@3f2d2f22, com.wms.filter.jwt.JwtAuthenticationTokenFilter@61eab26b, org.springframework.security.web.session.ConcurrentSessionFilter@6a95c2f6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67e628b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d1c8f35, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a2ffb0b, org.springframework.security.web.session.SessionManagementFilter@d763b06, org.springframework.security.web.access.ExceptionTranslationFilter@509e4902, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b53ce18]
+2025-02-17 09:03:31.113   INFO 7068 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 09:03:31.131   INFO 7068 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 09:03:31.567   INFO 7068 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 6.544 seconds (JVM running for 8.246)
+2025-02-17 09:04:31.102   INFO 7068 --- [nio-1217-exec-3] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 09:04:31.102   INFO 7068 --- [nio-1217-exec-3] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 09:04:31.103   INFO 7068 --- [nio-1217-exec-3] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 09:04:31.366   INFO 7068 --- [nio-1217-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 09:04:31.993   INFO 7068 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 09:08:10.923   INFO 7068 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 09:08:10.960   INFO 7068 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 09:08:10.966   INFO 7068 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 09:08:15.623   INFO 14676 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 14676 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 09:08:15.626   INFO 14676 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 09:08:16.387   INFO 14676 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 09:08:16.389   INFO 14676 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 09:08:16.412   INFO 14676 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-02-17 09:08:17.190   INFO 14676 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 09:08:17.198   INFO 14676 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 09:08:17.198   INFO 14676 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 09:08:17.198   INFO 14676 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 09:08:17.291   INFO 14676 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 09:08:17.291   INFO 14676 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1613 ms
+2025-02-17 09:08:19.454   INFO 14676 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 09:08:19.487   INFO 14676 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x00000008013236a0@b53ce18 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2a666c8e, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b364f47, org.springframework.security.web.header.HeaderWriterFilter@33bf2602, org.springframework.web.filter.CorsFilter@18adc20a, org.springframework.security.web.authentication.logout.LogoutFilter@67e628b, com.wms.filter.jwt.JwtAuthenticationTokenFilter@6480a063, org.springframework.security.web.session.ConcurrentSessionFilter@7f958d4a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15d2ea6b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4f5bfbca, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7e7987b8, org.springframework.security.web.session.SessionManagementFilter@68e094c9, org.springframework.security.web.access.ExceptionTranslationFilter@59db8216, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6c3a7b84]
+2025-02-17 09:08:19.578   INFO 14676 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 09:08:19.596   INFO 14676 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 09:08:20.037   INFO 14676 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.788 seconds (JVM running for 5.589)
+2025-02-17 09:08:23.832   INFO 14676 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 09:08:23.832   INFO 14676 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 09:08:23.834   INFO 14676 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-02-17 09:08:23.987   INFO 14676 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 09:08:25.423   INFO 14676 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 09:15:10.160   INFO 14676 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 09:15:10.190   INFO 14676 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 09:15:10.194   INFO 14676 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 09:15:15.552   INFO 16476 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 16476 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 09:15:15.556   INFO 16476 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 09:15:16.655   INFO 16476 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 09:15:16.657   INFO 16476 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 09:15:16.682   INFO 16476 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 15 ms. Found 0 Redis repository interfaces.
+2025-02-17 09:15:17.660   INFO 16476 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 09:15:17.668   INFO 16476 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 09:15:17.669   INFO 16476 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 09:15:17.669   INFO 16476 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 09:15:17.775   INFO 16476 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 09:15:17.776   INFO 16476 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2158 ms
+2025-02-17 09:15:20.061   INFO 16476 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 09:15:20.098   INFO 16476 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1043/0x00000008013225e8@6bcfb561 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7254a68a, org.springframework.security.web.context.SecurityContextPersistenceFilter@4e4c05a0, org.springframework.security.web.header.HeaderWriterFilter@537a8915, org.springframework.web.filter.CorsFilter@49f9758, org.springframework.security.web.authentication.logout.LogoutFilter@eee26bd, com.wms.filter.jwt.JwtAuthenticationTokenFilter@61eab26b, org.springframework.security.web.session.ConcurrentSessionFilter@1a06b95, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7ac1161f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ec06e97, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@36e98434, org.springframework.security.web.session.SessionManagementFilter@509e4902, org.springframework.security.web.access.ExceptionTranslationFilter@426a4301, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3ee2d546]
+2025-02-17 09:15:20.186   INFO 16476 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 09:15:20.202   INFO 16476 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 09:15:20.599   INFO 16476 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 5.496 seconds (JVM running for 6.37)
+2025-02-17 09:15:22.977   INFO 16476 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 09:15:22.977   INFO 16476 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 09:15:22.978   INFO 16476 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 09:15:23.210   INFO 16476 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 09:15:23.409   INFO 16476 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 09:15:24.335   INFO 16476 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 09:15:26.074   INFO 16476 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:45:17.209   INFO 16476 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:45:17.681   INFO 16476 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:50:55.282   INFO 16476 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:50:55.711   INFO 16476 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:51:22.493   INFO 16476 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:51:30.758   INFO 16476 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:52:25.371   INFO 16476 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:52:25.819   INFO 16476 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:55:43.319   INFO 16476 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:55:43.764   INFO 16476 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:56:23.316   INFO 16476 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:56:23.668   INFO 16476 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:57:20.106   INFO 16476 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:57:20.362   INFO 16476 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:59:15.225   INFO 16476 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:59:15.661   INFO 16476 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 15:59:19.703   INFO 16476 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 15:59:20.138   INFO 16476 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 16:08:49.419   INFO 16476 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 16:08:49.844   INFO 16476 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 16:09:51.450   INFO 16476 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 16:09:51.846   INFO 16476 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 19:48:38.302   INFO 16476 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 19:48:38.817   INFO 16476 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 19:48:57.595   INFO 16476 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 19:48:57.834   INFO 16476 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 19:49:07.381   INFO 16476 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 19:49:07.583   INFO 16476 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 19:49:09.692   INFO 16476 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 19:49:18.760   INFO 16476 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:51:18.240   INFO 16476 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:51:18.381   INFO 16476 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 20:51:18.383   INFO 16476 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 20:51:24.010   INFO 18016 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 18016 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 20:51:24.013   INFO 18016 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 20:51:24.889   INFO 18016 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 20:51:24.892   INFO 18016 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 20:51:24.919   INFO 18016 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 16 ms. Found 0 Redis repository interfaces.
+2025-02-17 20:51:25.692   INFO 18016 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 20:51:25.701   INFO 18016 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 20:51:25.701   INFO 18016 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 20:51:25.701   INFO 18016 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 20:51:25.793   INFO 18016 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 20:51:25.794   INFO 18016 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1731 ms
+2025-02-17 20:51:28.368   INFO 18016 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 20:51:28.402   INFO 18016 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x00000008013242f8@7ee9920a with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4154ecd3, org.springframework.security.web.context.SecurityContextPersistenceFilter@49ee3b8d, org.springframework.security.web.header.HeaderWriterFilter@59db8216, org.springframework.web.filter.CorsFilter@b53ce18, org.springframework.security.web.authentication.logout.LogoutFilter@6a6a3fc4, com.wms.filter.jwt.JwtAuthenticationTokenFilter@116fc29e, org.springframework.security.web.session.ConcurrentSessionFilter@3c34c491, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@790f4933, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78c23ade, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a666c8e, org.springframework.security.web.session.SessionManagementFilter@47224d5d, org.springframework.security.web.access.ExceptionTranslationFilter@2f6d8c9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b2ade46]
+2025-02-17 20:51:28.493   INFO 18016 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 20:51:28.510   INFO 18016 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 20:51:29.053   INFO 18016 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 5.546 seconds (JVM running for 6.655)
+2025-02-17 20:51:32.078   INFO 18016 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 20:51:32.078   INFO 18016 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 20:51:32.079   INFO 18016 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 20:51:32.233   INFO 18016 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 20:51:32.409   INFO 18016 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:53:22.691   INFO 18016 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:53:24.803   INFO 18016 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:54:12.063   INFO 18016 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:54:13.073   INFO 18016 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:54:23.836   INFO 18016 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:54:24.680   INFO 18016 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:55:02.034   INFO 18016 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:55:02.935   INFO 18016 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:55:41.428   INFO 18016 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:55:42.574   INFO 18016 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:56:44.186   INFO 18016 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:56:44.215   INFO 18016 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 20:56:44.220   INFO 18016 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 20:56:48.867   INFO 16864 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 16864 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 20:56:48.872   INFO 16864 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 20:56:50.046   INFO 16864 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 20:56:50.048   INFO 16864 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 20:56:50.083   INFO 16864 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22 ms. Found 0 Redis repository interfaces.
+2025-02-17 20:56:50.918   INFO 16864 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 20:56:50.929   INFO 16864 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 20:56:50.929   INFO 16864 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 20:56:50.929   INFO 16864 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 20:56:51.030   INFO 16864 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 20:56:51.030   INFO 16864 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2096 ms
+2025-02-17 20:56:53.604   INFO 16864 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 20:56:53.655   INFO 16864 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x0000000801321b58@42257df7 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7b11ff9a, org.springframework.security.web.context.SecurityContextPersistenceFilter@463a1f47, org.springframework.security.web.header.HeaderWriterFilter@6a262980, org.springframework.web.filter.CorsFilter@3bd79444, org.springframework.security.web.authentication.logout.LogoutFilter@5ec06e97, com.wms.filter.jwt.JwtAuthenticationTokenFilter@116fc29e, org.springframework.security.web.session.ConcurrentSessionFilter@33bf2602, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@70f8d217, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79486f38, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5671078e, org.springframework.security.web.session.SessionManagementFilter@43b3b1b0, org.springframework.security.web.access.ExceptionTranslationFilter@5b407336, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b29d699]
+2025-02-17 20:56:53.763   INFO 16864 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 20:56:53.781   INFO 16864 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 20:56:54.261   INFO 16864 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 5.961 seconds (JVM running for 7.118)
+2025-02-17 20:56:57.117   INFO 16864 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 20:56:57.117   INFO 16864 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 20:56:57.118   INFO 16864 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 20:56:57.260   INFO 16864 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 20:56:57.401   INFO 16864 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:56:58.674   INFO 16864 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:57:00.522   INFO 16864 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:57:18.067   INFO 16864 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:57:19.317   INFO 16864 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:58:38.418   INFO 16864 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为2
+2025-02-17 20:58:40.490   INFO 16864 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为1
+2025-02-17 20:58:40.491   INFO 16864 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:58:41.438   INFO 16864 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 20:59:19.012   INFO 16864 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 20:59:19.900   INFO 16864 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:00:17.153   INFO 16864 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:00:17.192   INFO 16864 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 21:00:17.194   INFO 16864 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 21:00:24.268   INFO 11604 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 11604 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 21:00:24.274   INFO 11604 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 21:00:25.399   INFO 11604 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 21:00:25.401   INFO 11604 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 21:00:25.435   INFO 11604 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2025-02-17 21:00:26.351   INFO 11604 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 21:00:26.360   INFO 11604 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:00:26.360   INFO 11604 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 21:00:26.360   INFO 11604 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 21:00:26.452   INFO 11604 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 21:00:26.453   INFO 11604 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2113 ms
+2025-02-17 21:00:29.208   INFO 11604 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 21:00:29.247   INFO 11604 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x00000008013242f8@24482a4f with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3140ad41, org.springframework.security.web.context.SecurityContextPersistenceFilter@48a21ea6, org.springframework.security.web.header.HeaderWriterFilter@61555218, org.springframework.web.filter.CorsFilter@3f2d2f22, org.springframework.security.web.authentication.logout.LogoutFilter@7fb02606, com.wms.filter.jwt.JwtAuthenticationTokenFilter@6814262d, org.springframework.security.web.session.ConcurrentSessionFilter@24558113, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2f6d8c9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4724b2c1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@61c3d7ac, org.springframework.security.web.session.SessionManagementFilter@75d402d4, org.springframework.security.web.access.ExceptionTranslationFilter@79aba813, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6a6a3fc4]
+2025-02-17 21:00:29.345   INFO 11604 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:00:29.363   INFO 11604 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 21:00:29.911   INFO 11604 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 6.225 seconds (JVM running for 7.434)
+2025-02-17 21:00:30.141   INFO 11604 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 21:00:30.141   INFO 11604 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 21:00:30.142   INFO 11604 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 21:00:30.292   INFO 11604 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 21:00:30.460   INFO 11604 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:00:33.054   INFO 11604 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:00:34.425   INFO 11604 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:01:16.432   INFO 11604 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:01:17.307   INFO 11604 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:06:21.475   INFO 11604 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:06:21.502   INFO 11604 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 21:06:21.504   INFO 11604 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 21:06:25.880   INFO 4128 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 4128 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 21:06:25.882   INFO 4128 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 21:06:26.636   INFO 4128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 21:06:26.638   INFO 4128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 21:06:26.661   INFO 4128 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-02-17 21:06:27.415   INFO 4128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 21:06:27.425   INFO 4128 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:06:27.425   INFO 4128 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 21:06:27.425   INFO 4128 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 21:06:27.513   INFO 4128 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 21:06:27.513   INFO 4128 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1587 ms
+2025-02-17 21:06:29.695   INFO 4128 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 21:06:29.732   INFO 4128 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x00000008013242f8@77acc95a with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ff1a5a0, org.springframework.security.web.context.SecurityContextPersistenceFilter@790f4933, org.springframework.security.web.header.HeaderWriterFilter@23ade612, org.springframework.web.filter.CorsFilter@75c3584e, org.springframework.security.web.authentication.logout.LogoutFilter@1fdd5517, com.wms.filter.jwt.JwtAuthenticationTokenFilter@6480a063, org.springframework.security.web.session.ConcurrentSessionFilter@5c8d631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5ec06e97, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@797ee1a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@f7b7720, org.springframework.security.web.session.SessionManagementFilter@1a06b95, org.springframework.security.web.access.ExceptionTranslationFilter@410f1452, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42257df7]
+2025-02-17 21:06:29.836   INFO 4128 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:06:29.856   INFO 4128 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 21:06:30.308   INFO 4128 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.781 seconds (JVM running for 5.508)
+2025-02-17 21:06:33.179   INFO 4128 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 21:06:33.179   INFO 4128 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 21:06:33.180   INFO 4128 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 21:06:33.333   INFO 4128 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 21:06:34.680   INFO 4128 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:08:11.442   INFO 4128 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:08:11.924   INFO 4128 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:09:06.469   INFO 4128 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:09:06.498   INFO 4128 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 21:09:06.503   INFO 4128 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 21:09:11.412   INFO 18108 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 18108 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 21:09:11.416   INFO 18108 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 21:09:12.157   INFO 18108 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 21:09:12.159   INFO 18108 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 21:09:12.181   INFO 18108 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 13 ms. Found 0 Redis repository interfaces.
+2025-02-17 21:09:12.881   INFO 18108 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 21:09:12.890   INFO 18108 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:09:12.890   INFO 18108 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 21:09:12.890   INFO 18108 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 21:09:12.971   INFO 18108 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 21:09:12.971   INFO 18108 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1505 ms
+2025-02-17 21:09:14.994   INFO 18108 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 21:09:15.030   INFO 18108 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1043/0x0000000801322ff0@77acc95a with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ff1a5a0, org.springframework.security.web.context.SecurityContextPersistenceFilter@790f4933, org.springframework.security.web.header.HeaderWriterFilter@23ade612, org.springframework.web.filter.CorsFilter@75c3584e, org.springframework.security.web.authentication.logout.LogoutFilter@1fdd5517, com.wms.filter.jwt.JwtAuthenticationTokenFilter@6480a063, org.springframework.security.web.session.ConcurrentSessionFilter@5c8d631, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5ec06e97, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@797ee1a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@f7b7720, org.springframework.security.web.session.SessionManagementFilter@1a06b95, org.springframework.security.web.access.ExceptionTranslationFilter@410f1452, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42257df7]
+2025-02-17 21:09:15.117   INFO 18108 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:09:15.133   INFO 18108 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 21:09:15.527   INFO 18108 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 4.481 seconds (JVM running for 5.255)
+2025-02-17 21:09:18.286   INFO 18108 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 21:09:18.287   INFO 18108 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 21:09:18.288   INFO 18108 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 21:09:18.443   INFO 18108 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 21:09:19.846   INFO 18108 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:09:40.322   INFO 18108 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:09:40.521   INFO 18108 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:11:37.606   INFO 18108 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:11:37.633   INFO 18108 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 21:11:37.638   INFO 18108 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 21:11:42.255   INFO 6364 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 6364 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 21:11:42.259   INFO 6364 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 21:11:43.315   INFO 6364 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 21:11:43.319   INFO 6364 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 21:11:43.360   INFO 6364 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+2025-02-17 21:11:44.359   INFO 6364 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 21:11:44.369   INFO 6364 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:11:44.370   INFO 6364 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 21:11:44.370   INFO 6364 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 21:11:44.479   INFO 6364 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 21:11:44.480   INFO 6364 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2159 ms
+2025-02-17 21:11:47.217   INFO 6364 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 21:11:47.260   INFO 6364 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x00000008013242f8@7d95a717 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5c0f508b, org.springframework.security.web.context.SecurityContextPersistenceFilter@585672dd, org.springframework.security.web.header.HeaderWriterFilter@3d42b756, org.springframework.web.filter.CorsFilter@7a2ffb0b, org.springframework.security.web.authentication.logout.LogoutFilter@61c3d7ac, com.wms.filter.jwt.JwtAuthenticationTokenFilter@6480a063, org.springframework.security.web.session.ConcurrentSessionFilter@4ed5492c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@578c99ac, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@498f5728, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@13cae908, org.springframework.security.web.session.SessionManagementFilter@78c23ade, org.springframework.security.web.access.ExceptionTranslationFilter@7b364f47, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2a666c8e]
+2025-02-17 21:11:47.381   INFO 6364 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:11:47.400   INFO 6364 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 21:11:47.869   INFO 6364 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 6.005 seconds (JVM running for 6.757)
+2025-02-17 21:11:51.066   INFO 6364 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 21:11:51.066   INFO 6364 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 21:11:51.067   INFO 6364 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 21:11:51.205   INFO 6364 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 21:11:51.341   INFO 6364 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:12:32.778   INFO 6364 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:12:34.212   INFO 6364 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:12:52.246   INFO 6364 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:12:52.491   INFO 6364 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:13:01.286   INFO 6364 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:13:01.459   INFO 6364 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:13:17.009   INFO 6364 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:13:17.935   INFO 6364 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:13:26.521   INFO 6364 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:13:27.419   INFO 6364 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:16:05.867   INFO 6364 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:16:06.340   INFO 6364 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:17:35.013   INFO 6364 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:17:35.911   INFO 6364 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:18:51.359   INFO 6364 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:18:52.250   INFO 6364 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:27:17.111   INFO 6364 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:27:17.626   INFO 6364 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:36:44.446   INFO 6364 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:36:46.225   INFO 6364 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:37:27.776   INFO 6364 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:37:28.787   INFO 6364 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:37:55.091   INFO 6364 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:37:56.026   INFO 6364 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:41:22.972   INFO 6364 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:41:23.889   INFO 6364 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:41:42.234   INFO 6364 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:41:43.123   INFO 6364 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:42:14.859   INFO 6364 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:42:15.598   INFO 6364 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:46:03.693   INFO 6364 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:46:04.643   INFO 6364 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:47:51.424   INFO 6364 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:47:52.397   INFO 6364 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:47:58.106   INFO 6364 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:47:58.993   INFO 6364 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:48:42.218   INFO 6364 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:48:43.207   INFO 6364 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:49:06.833   INFO 6364 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:49:08.093   INFO 6364 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:49:46.786   INFO 6364 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:49:48.246   INFO 6364 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:57:28.882   INFO 6364 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:57:28.918   INFO 6364 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 21:57:28.920   INFO 6364 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 21:57:35.388   INFO 1588 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 1588 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 21:57:35.391   INFO 1588 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 21:57:36.736   INFO 1588 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 21:57:36.739   INFO 1588 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 21:57:36.773   INFO 1588 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 20 ms. Found 0 Redis repository interfaces.
+2025-02-17 21:57:37.916   INFO 1588 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 21:57:37.926   INFO 1588 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:57:37.926   INFO 1588 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 21:57:37.927   INFO 1588 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 21:57:38.025   INFO 1588 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 21:57:38.025   INFO 1588 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2559 ms
+2025-02-17 21:57:41.564   INFO 1588 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 21:57:41.646   INFO 1588 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x00000008013242f8@7ee9920a with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4154ecd3, org.springframework.security.web.context.SecurityContextPersistenceFilter@49ee3b8d, org.springframework.security.web.header.HeaderWriterFilter@59db8216, org.springframework.web.filter.CorsFilter@b53ce18, org.springframework.security.web.authentication.logout.LogoutFilter@6a6a3fc4, com.wms.filter.jwt.JwtAuthenticationTokenFilter@116fc29e, org.springframework.security.web.session.ConcurrentSessionFilter@3c34c491, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@790f4933, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@78c23ade, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2a666c8e, org.springframework.security.web.session.SessionManagementFilter@47224d5d, org.springframework.security.web.access.ExceptionTranslationFilter@2f6d8c9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5b2ade46]
+2025-02-17 21:57:41.784   INFO 1588 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 21:57:41.821   INFO 1588 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 21:57:42.160   INFO 1588 --- [nio-1217-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 21:57:42.160   INFO 1588 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 21:57:42.162   INFO 1588 --- [nio-1217-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-02-17 21:57:42.463   INFO 1588 --- [nio-1217-exec-2] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 21:57:42.534   INFO 1588 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 7.937 seconds (JVM running for 8.896)
+2025-02-17 21:57:42.700   INFO 1588 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:58:22.769   INFO 1588 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:58:26.984   INFO 1588 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:59:19.634   INFO 1588 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:59:21.413   INFO 1588 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 21:59:35.541   INFO 1588 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 21:59:37.050   INFO 1588 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:02:06.323   INFO 1588 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:02:07.418   INFO 1588 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:02:27.072   INFO 1588 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:02:27.109   INFO 1588 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 22:02:27.111   INFO 1588 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed
+2025-02-17 22:02:31.106   INFO 11664 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 11664 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-17 22:02:31.109   INFO 11664 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-17 22:02:31.938   INFO 11664 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-17 22:02:31.940   INFO 11664 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-17 22:02:31.978   INFO 11664 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 24 ms. Found 0 Redis repository interfaces.
+2025-02-17 22:02:32.767   INFO 11664 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-17 22:02:32.774   INFO 11664 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-17 22:02:32.774   INFO 11664 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-17 22:02:32.775   INFO 11664 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-17 22:02:32.862   INFO 11664 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-17 22:02:32.862   INFO 11664 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1700 ms
+2025-02-17 22:02:35.181   INFO 11664 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-17 22:02:35.221   INFO 11664 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1044/0x0000000801324308@209b4b35 with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@77acc95a, org.springframework.security.web.context.SecurityContextPersistenceFilter@459df48d, org.springframework.security.web.header.HeaderWriterFilter@463a1f47, org.springframework.web.filter.CorsFilter@ff1a5a0, org.springframework.security.web.authentication.logout.LogoutFilter@46610fc9, com.wms.filter.jwt.JwtAuthenticationTokenFilter@6480a063, org.springframework.security.web.session.ConcurrentSessionFilter@7b364f47, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4ed5492c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@600e2000, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@75c3584e, org.springframework.security.web.session.SessionManagementFilter@528c4353, org.springframework.security.web.access.ExceptionTranslationFilter@2148b47e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6870a76f]
+2025-02-17 22:02:35.332   INFO 11664 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-17 22:02:35.350   INFO 11664 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-17 22:02:35.828   INFO 11664 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 5.091 seconds (JVM running for 5.859)
+2025-02-17 22:02:41.071   INFO 11664 --- [nio-1217-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-02-17 22:02:41.071   INFO 11664 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-02-17 22:02:41.072   INFO 11664 --- [nio-1217-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-02-17 22:02:41.210   INFO 11664 --- [nio-1217-exec-1] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-17 22:02:41.353   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:02:58.965   INFO 11664 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:03:01.032   INFO 11664 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:03:11.028   INFO 11664 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:03:11.760   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:03:45.104   INFO 11664 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:03:46.533   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:04:02.095   INFO 11664 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:04:03.878   INFO 11664 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:05:51.583   INFO 11664 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:05:53.222   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:10:39.346   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:10:39.917   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:12:30.078   INFO 11664 --- [nio-1217-exec-9] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:12:31.082   INFO 11664 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:13:17.629   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:13:19.330   INFO 11664 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:13:50.134   INFO 11664 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:13:51.387   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:14:02.514   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:14:04.389   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:14:41.522   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:14:42.301   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:15:34.422   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:15:35.445   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:15:46.957   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:15:48.140   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:16:34.518   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:16:36.070   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:16:43.010   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:16:44.708   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:16:59.029   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:17:00.555   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:17:15.188   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:17:15.946   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:17:39.842   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:17:40.895   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:18:30.331   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:18:31.496   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:18:42.494   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:18:43.362   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:22:14.882   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:22:15.777   INFO 11664 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:23:16.484   INFO 11664 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:23:17.397   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:24:01.195   INFO 11664 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:24:02.233   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:25:33.309   INFO 11664 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:25:34.186   INFO 11664 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:25:49.652   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:25:50.846   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:26:36.876   INFO 11664 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:26:37.300   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:26:56.445   INFO 11664 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:26:57.166   INFO 11664 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:29:25.822   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:29:26.704   INFO 11664 --- [io-1217-exec-10] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:32:39.485   INFO 11664 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:32:40.806   INFO 11664 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:33:35.089   INFO 11664 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:33:35.979   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:34:06.912   INFO 11664 --- [nio-1217-exec-4] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:34:08.593   INFO 11664 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-17 22:37:49.301   INFO 11664 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-17 22:37:53.232   INFO 11664 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-17 22:37:53.234   INFO 11664 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

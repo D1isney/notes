@@ -1,8 +1,36 @@
 import request from '@/utils/request'
+import { data } from 'autoprefixer'
 
 export function getTaskList(query) {
-  return request({ url: '/task/list', params: query })
+  return request({
+    url: '/task/list',
+    method: 'get',
+    params: query
+  })
 }
+
+export function saveOrUpdateTask(data){
+  return request({
+    url:'/task/saveOrUpdateTask',
+    method: 'post',
+    data: data
+  })
+}
+export function manualOperationIssued(data){
+  return request({
+    url: '/task/manualOperationIssued',
+    method: 'post',
+    data: data
+  })
+}
+export function getGoodsAndInventory(data){
+  return request({
+    url: '/task/getGoodsAndInventory',
+    method: 'post',
+    data: data
+  })
+}
+
 
 export const TaskConst = {
   // 任务状态（0：初始化，1：进行中，2：挂起，3：完成）

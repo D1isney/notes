@@ -1,6 +1,6 @@
-2025-02-12 15:43:21.939  ERROR 19792 --- [nio-1217-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null] with root cause
+2025-02-12 15:43:21.939  ERROR 19792 --- [nio-1217-exec-4] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null] with root cause
 
-java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null
+java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null
 	at com.wms.service.impl.InventoryServiceImpl.getInventoryByCode(InventoryServiceImpl.java:207)
 	at com.wms.service.impl.InventoryServiceImpl.lambda$warehousing$0(InventoryServiceImpl.java:100)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -154,9 +154,9 @@ java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" bec
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 
-2025-02-12 15:44:20.059  ERROR 19792 --- [nio-1217-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null] with root cause
+2025-02-12 15:44:20.059  ERROR 19792 --- [nio-1217-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null] with root cause
 
-java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null
+java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null
 	at com.wms.service.impl.InventoryServiceImpl.getInventoryByCode(InventoryServiceImpl.java:207)
 	at com.wms.service.impl.InventoryServiceImpl.lambda$warehousing$0(InventoryServiceImpl.java:100)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -310,9 +310,9 @@ java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" bec
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 
-2025-02-12 15:44:34.682  ERROR 19792 --- [nio-1217-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null] with root cause
+2025-02-12 15:44:34.682  ERROR 19792 --- [nio-1217-exec-6] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null] with root cause
 
-java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null
+java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null
 	at com.wms.service.impl.InventoryServiceImpl.getInventoryByCode(InventoryServiceImpl.java:207)
 	at com.wms.service.impl.InventoryServiceImpl.lambda$warehousing$0(InventoryServiceImpl.java:100)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -466,9 +466,9 @@ java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" bec
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 
-2025-02-12 15:45:04.903  ERROR 21684 --- [nio-1217-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null] with root cause
+2025-02-12 15:45:04.903  ERROR 21684 --- [nio-1217-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null] with root cause
 
-java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null
+java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null
 	at com.wms.service.impl.InventoryServiceImpl.getInventoryByCode(InventoryServiceImpl.java:212)
 	at com.wms.service.impl.InventoryServiceImpl.lambda$operatingDuty$0(InventoryServiceImpl.java:105)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -623,9 +623,9 @@ java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" bec
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 
-2025-02-12 15:45:36.219  ERROR 21684 --- [nio-1217-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null] with root cause
+2025-02-12 15:45:36.219  ERROR 21684 --- [nio-1217-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null] with root cause
 
-java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null
+java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null
 	at com.wms.service.impl.InventoryServiceImpl.getInventoryByCode(InventoryServiceImpl.java:212)
 	at com.wms.service.impl.InventoryServiceImpl.lambda$operatingDuty$0(InventoryServiceImpl.java:105)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
@@ -780,9 +780,9 @@ java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" bec
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:833)
 
-2025-02-12 15:47:33.243  ERROR 21684 --- [nio-1217-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null] with root cause
+2025-02-12 15:47:33.243  ERROR 21684 --- [nio-1217-exec-8] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null] with root cause
 
-java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventory.getStorage()" is null
+java.lang.NullPointerException: Cannot invoke "com.wms.pojo.Storage.getId()" because the return value of "com.wms.dto.StorageAndInventoryDTO.getStorage()" is null
 	at com.wms.service.impl.InventoryServiceImpl.getInventoryByCode(InventoryServiceImpl.java:212)
 	at com.wms.service.impl.InventoryServiceImpl.lambda$operatingDuty$0(InventoryServiceImpl.java:105)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)

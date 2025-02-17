@@ -9,4 +9,8 @@ public interface TaskService extends BaseService<Task, TaskVo> {
     String lastCode();
 
     R<?> saveOrUpdateTask(Task task);
+
+    R<?> manualOperationIssued(Task task);
+
+    R<?> getGoodsAndInventory(Task task);
 }

@@ -2,6 +2,8 @@ package com.wms.service.impl;
 
 import com.wms.convert.GoodsConvert;
 import com.wms.dao.GoodsDao;
+import com.wms.dto.ChildrenSelector;
+import com.wms.dto.ParentSelector;
 import com.wms.dto.TypeAndValue;
 import com.wms.exception.EException;
 import com.wms.helper.CurrentHelper;
@@ -104,6 +106,91 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
         });
         //  删除物料
         deleteByIds(ids);
+    }
+
+
+    /**
+     * 通过编码找物料
+     *
+     * @param code 物料编码
+     * @return 物料
+     */
+    @Override
+    public Goods getGoodsByCode(String code) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("code", code);
+        List<Goods> goods = queryList(map);
+        if (goods.isEmpty()) {
+            throw new EException("不存在物料：" + code);
+        } else {
+            return goods.get(0);
+        }
+    }
+
+    /**
+     * 通过ID找物料
+     *
+     * @param id 物料ID
+     * @return 物料
+     */
+    @Override
+    public Goods getGoodsById(Long id) {
+        Goods goods = queryById(id);
+        if (StringUtil.isEmpty(goods)) {
+            throw new EException("不存在物料：" + id);
+        } else {
+            return goods;
+        }
+    }
+
+    /**
+     * 物料清单
+     *
+     * @return R
+     */
+    @Override
+    public R<?> billOfMaterial() {
+        //  所有的物料
+        List<Goods> list = list();
+        //  分类物料
+        Map<Integer, List<Goods>> collect = list.stream().collect(Collectors.groupingBy(Goods::getType));
+        Set<Integer> integers = collect.keySet();
+        List<ParentSelector> parentSelectors = new ArrayList<>();
+        integers.forEach(integer -> {
+            if (integer.equals(0)) {
+                ParentSelector parentSelector = new ParentSelector();
+                List<ChildrenSelector> childrenSelectors = new ArrayList<>();
+                List<Goods> goods = collect.get(integer);
+                parentSelector.setLabel("塑料板");
+                parentSelector.setValue("0");
+                parentSelector.setDisabled(false);
+                getChildren(parentSelector, childrenSelectors, goods);
+                parentSelectors.add(parentSelector);
+            } else if (integer.equals(1)) {
+                ParentSelector parentSelector = new ParentSelector();
+                List<ChildrenSelector> childrenSelectors = new ArrayList<>();
+                List<Goods> goods = collect.get(integer);
+                parentSelector.setLabel("亚克力板");
+                parentSelector.setValue("1");
+                parentSelector.setDisabled(false);
+                getChildren(parentSelector, childrenSelectors, goods);
+                parentSelectors.add(parentSelector);
+            }
+        });
+        return R.ok(parentSelectors);
+    }
+
+    private void getChildren(ParentSelector parentSelector, List<ChildrenSelector> childrenSelectors, List<Goods> goods) {
+        goods.forEach(g -> {
+            ChildrenSelector childrenSelector = new ChildrenSelector();
+            childrenSelector.setLabel(g.getName());
+            childrenSelector.setValue(g.getCode());
+            childrenSelector.setDisabled(false);
+            childrenSelectors.add(childrenSelector);
+        });
+        if (!childrenSelectors.isEmpty()){
+            parentSelector.setChildren(childrenSelectors);
+        }
     }
 
     /**

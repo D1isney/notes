@@ -5,6 +5,7 @@
     <!-- 通用查询映射结果 -->
     <resultMap id="TaskMap" type="com.wms.pojo.Task">
         <id column="id" property="id" />
+        <result column="name" property="name" />
         <result column="goods_id" property="goodsId" />
         <result column="inventory_id" property="inventoryId" />
         <result column="code" property="code" />
@@ -29,6 +30,7 @@
     </resultMap>
     <!-- 保存列 -->
     <sql id="saveColumnBase">
+        `name`,
         `goods_id`,
         `inventory_id`,
         `code`,
@@ -42,6 +44,7 @@
     </sql>
     <!-- 保存列value -->
     <sql id="saveColumnValue">
+        #{entity.name},
         #{entity.goodsId},
         #{entity.inventoryId},
         #{entity.code},
@@ -54,6 +57,7 @@
         #{entity.remark}
     </sql>
 
+    <sql id="nameColumn">`code` = #{entity.name},</sql>
     <sql id="goodsIdColumn">`code` = #{entity.goodsId},</sql>
     <sql id="inventoryIdColumn">`code` = #{entity.inventoryId},</sql>
     <sql id="codeColumn">`code` = #{entity.code},</sql>
@@ -67,6 +71,7 @@
 
     <sql id="updateColumnNotNull">
         <set>
+            <if test="entity.name != null"><include refid="nameColumn"/></if>
             <if test="entity.goodsId != null"><include refid="goodsIdColumn"/></if>
             <if test="entity.inventoryId != null"><include refid="inventoryIdColumn"/></if>
             <if test="entity.code != null"><include refid="codeColumn"/></if>
@@ -80,6 +85,7 @@
         </set>
     </sql>
     <sql id="entityColumn">
+        <include refid="nameColumn"/>
         <include refid="goodsIdColumn"/>
         <include refid="inventoryIdColumn"/>
         <include refid="codeColumn"/>
@@ -94,6 +100,7 @@
     <!-- 通用查询结果列 -->
     <sql id="queryListColumnBase">
         t.id,
+         t.name,
          t.goods_id,
          t.inventory_id,
          t.code,
@@ -132,7 +139,7 @@
                 AND t.code = #{query.code}
             </if>
             <if test="query.param != null">
-                AND (t.code LIKE CONCAT('%', #{query.param}, '%') or t.status LIKE CONCAT('%', #{query.param}, '%'))
+                AND (t.code LIKE CONCAT('%', #{query.param}, '%') or t.status LIKE CONCAT('%', #{query.param}, '%')) or t.name LIKE CONCAT('%',#{query.param},'%')
             </if>
             <if test="query.offset != null and query.limit != null">
                 limit #{query.offset},#{query.limit}

@@ -447,19 +447,20 @@ export default {
 
 .button-box {
   width: 100%;
-  height: 7%;
+  height: 6%;
   display: flex;
   justify-content: flex-end;
   padding-right: 0.5%;
+  margin-top: .3%;
 
   .button-box-add {
     width: 4%;
-    height: 80%;
+    height: 100%;
   }
 
   .button-box-delete {
     width: 4%;
-    height: 80%;
+    height: 100%;
   }
 }
 

@@ -22,8 +22,10 @@ public class App {
         for (Integer i : splitCode("25020701")) {
             System.out.println(i);
         }
-
     }
+
+
+
 
     public static Integer[] splitCode(String code) {
         int split = code.length() / 2;

@@ -24,3 +24,10 @@ export function intelligent() {
   })
 }
 
+export function getBillOfInventory(){
+  return request({
+    url: '/inventory/billOfInventory',
+    method: 'get'
+  })
+}
+

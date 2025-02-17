@@ -9,7 +9,8 @@ public enum InventoryEnum {
     STORAGE_COMPLETED(2,"入库完成"),
     LEAVING_THE_WAREHOUSE(3,"正在出库"),
     ISSUE_COMPLETED(4,"出库完成"),
-    HAVE(5,"有货物")
+    HAVE(5,"有货物"),
+    PENDING(6,"挂起")
     ;
     private final Integer type;
     private final String message;

@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.wms.dto.TaskDataDTO;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
@@ -12,6 +13,7 @@ import lombok.ToString;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter
@@ -24,6 +26,10 @@ public class Task implements Serializable {
     @ApiModelProperty(value = "自增主键")
     @TableId(value = "`id`", type = IdType.AUTO)
     private Long id;
+
+    @ApiModelProperty(value = "任务名称")
+    @TableField(value = "`name`")
+    private String name;
 
     @ApiModelProperty(value = "物料id")
     @TableField(value = "`goods_id`")
@@ -70,13 +76,7 @@ public class Task implements Serializable {
     @ApiModelProperty(value = "是否直接下发，true：直接下发，false：不直接下发")
     @TableField(exist = false)
     private boolean directlyIssued;
-    @ApiModelProperty(value = "物料Code")
+    @ApiModelProperty(value = "任务需要的参数")
     @TableField(exist = false)
-    private String goodsCode;
-    @ApiModelProperty(value = "库存Code")
-    @TableField(exist = false)
-    private String inventoryCode;
-    @ApiModelProperty(value = "库位Code")
-    @TableField(exist = false)
-    private String storageCode;
+    private TaskDataDTO taskDataDTOS;
 }

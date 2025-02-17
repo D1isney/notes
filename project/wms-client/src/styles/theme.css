@@ -20,5 +20,9 @@
   --colorEmpty: #cccccc;
 
   /*库存正在入库的颜色*/
-  --colorIn: #32cd32;
+  --colorIn: #0ae11e;
+
+  --colorOut: #aba33b;
+
+  --colorHave: #757575;
 }

@@ -31,8 +31,15 @@ class WmsServerApplicationTests {
     @Lazy
     private InventoryService inventoryService;
 
+    @Resource
+    private PasswordEncoderForSalt passwordEncoderForSalt;
+
     @Test
     void contextLoads() throws ParseException {
+//        String encode = passwordEncoderForSalt.encode("admin");
+//        System.out.println(encode);
+
+
 //        BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
 //        String admin = bcryptPasswordEncoder.encode("admin");
 //        System.out.println(admin);

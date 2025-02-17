@@ -19,8 +19,9 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '/storage',
+    path: '/',
     component: Layout,
+    redirect: '/storage',
     children: [
       {
         path: '/storage',
@@ -32,11 +33,10 @@ export const constantRoutes = [
   },
 
   {
-    path: '/',
+    path: '/dashboard',
     component: Layout,
-    redirect: '/dashboard',
     children: [{
-      path: 'dashboard',
+      path: '/dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
       meta: { title: '数据看板', icon: 'dashboard' }

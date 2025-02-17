@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class StorageAndInventory {
+public class StorageAndInventoryDTO {
     private Storage storage;
     private Inventory inventory;
 }
