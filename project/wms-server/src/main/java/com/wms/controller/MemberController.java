@@ -35,7 +35,7 @@ public class MemberController {
     @ApiImplicitParams({
             @ApiImplicitParam(name = "params", value = "params")
     })
-    @PreAuthorize("hasAuthority('/member/list')")
+    @PreAuthorize("hasAuthority('member:list')")
     public R<?> list(@RequestParam Map<String,Object> params) {
         Query query = new Query(params);
         IPage<MemberVo> page = memberService.pageList(query.getIPage(MemberVo.class), query);

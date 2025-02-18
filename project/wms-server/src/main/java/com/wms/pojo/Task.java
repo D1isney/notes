@@ -71,6 +71,10 @@ public class Task implements Serializable {
     @TableField("`remark`")
     private String remark;
 
+    @ApiModelProperty(value = "任务来源")
+    @TableField("`resource`")
+    private Integer resource;
+
 
 
     @ApiModelProperty(value = "是否直接下发，true：直接下发，false：不直接下发")

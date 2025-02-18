@@ -1,10 +1,13 @@
 package com.wms.task.intTask;
 
 import com.wms.connect.plc.PlcConnect;
+import com.wms.connect.websocket.Push;
+import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.constant.PlcConstant;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.PLCEnum;
 import com.wms.enums.TaskEnum;
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.pojo.*;
 import com.wms.service.GoodsService;
@@ -51,6 +54,7 @@ public class InTaskExecutor extends TaskExecutor {
     public void attempt() throws InterruptedException {
         plcConnect = getPlcConnect();
         int i = plcConnect.readPlc(PLCEnum.PLC_INT);
+
         //  等待plc可以写入 如果不可以写入就一直等
         while (i != PlcConstant.canBeWritten) {
             i = plcConnect.readPlc(PLCEnum.PLC_INT);
@@ -64,6 +68,11 @@ public class InTaskExecutor extends TaskExecutor {
     public void write() {
         //  让PLC不能再次写入
         plcConnect.writePlc(PLCEnum.PLC_INT, PlcConstant.cannotBeWritten);
+
+        //  说明任务已经开始操作了
+        Push push = new Push(WebSocketEnum.TASK_MESSAGE_ISSUED.getType(), WebSocketEnum.TASK_MESSAGE_ISSUED.getMessage(),getTask());
+        WebSocketServerWeb.send(push);
+
         //  开始入库
         plcConnect.writePlc(PLCEnum.PLC_ACCOMPLISH_IN, PlcConstant.cannotBeWritten);
         //  拿到任务

@@ -12,4 +12,11 @@ public class Push {
     private String message;
     private Object data;
     private Integer code;
+
+    public Push(String type, String message, Object data) {
+        this.type = type;
+        this.message = message;
+        this.data = data;
+        this.code = 200;
+    }
 }

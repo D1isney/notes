@@ -1,6 +1,7 @@
 package com.wms.task;
 
 import com.wms.connect.plc.PlcConnect;
+import com.wms.connect.websocket.Push;
 import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
@@ -72,11 +73,14 @@ public abstract class TaskExecutor implements Runnable {
             results();
             endTime = System.currentTimeMillis();
             refresh();
+            //  操作成功之后 推送任务状态
+            Push push = new Push(WebSocketEnum.TASK_MESSAGE_SUCCESS.getType(), WebSocketEnum.TASK_MESSAGE_SUCCESS.getMessage(), getTask());
+            WebSocketServerWeb.send(push);
         } catch (Exception e) {
             e.printStackTrace();
-            //TODO: 报错推送
             if (exceptionHandler != null) {
                 endTime = System.currentTimeMillis();
+                //  回滚任务
                 recover(e.getMessage());
                 exceptionHandler.handleException(e);
             }
@@ -86,9 +90,14 @@ public abstract class TaskExecutor implements Runnable {
     @Setter
     protected TaskExceptionHandler exceptionHandler;
 
+    /**
+     * 分库COde
+     *
+     * @param code 编码
+     * @return 分割后的数组
+     */
     public Integer[] splitCode(String code) {
         int split = code.length() / 2;
-
         int start = Integer.parseInt(code.substring(0, split));
         int end = Integer.parseInt(code.substring(split));
         return new Integer[]{start, end};
@@ -116,6 +125,16 @@ public abstract class TaskExecutor implements Runnable {
     }
 
 
+    /**
+     * 修改日志状态
+     *
+     * @param logRecord     日志
+     * @param inventory     库存
+     * @param task          任务
+     * @param inventoryEnum 库存当前的状态
+     * @param taskEnum      任务当前的状态
+     * @param success       该任务是否完成了
+     */
     public void log(LogRecord logRecord, Inventory inventory, Task task, InventoryEnum inventoryEnum, TaskEnum taskEnum, boolean success) {
         //  创建日志
         logRecord.setMemberId(memberThreadLocal.getMember().getId());
@@ -132,15 +151,20 @@ public abstract class TaskExecutor implements Runnable {
             //  结果
             logRecord.setResult(taskEnum.getMessage());
         }
-        //TODO: 推送
         logRecordService.saveOrModify(logRecord);
-//        if (taskEnum.getType().equals(TaskEnum.INIT_IN.getType()) || taskEnum.getType().equals(TaskEnum.INIT_OUT.getType())) {
-//            WebSocketServerWeb.send(WebSocketEnum.TASK_MESSAGE_ISSUED);
-//        } else {
+
+        //推送操作日志
         WebSocketServerWeb.send(WebSocketEnum.OPERATION);
-//        }
     }
 
+    /**
+     * 创建全局使用的日志，后续会一直操作这个日志
+     *
+     * @param task          当前的任务
+     * @param taskEnum      当前任务状态
+     * @param inventoryEnum 当前库存状态
+     * @return 日志
+     */
     public LogRecord createLog(Task task, TaskEnum taskEnum, InventoryEnum inventoryEnum) {
         logRecord = new LogRecord();
         logRecord.setCreateTime(new Date());
@@ -164,7 +188,9 @@ public abstract class TaskExecutor implements Runnable {
         logRecord.setExecuteTime((endTime - startTime));
         logRecordService.saveOrModify(logRecord);
         //  删除任务
-        taskService.delete(task.getId());
+        if (TaskEnum.RESOURCE_AUTO.getStatus().equals(task.getResource())) {
+            taskService.delete(task.getId());
+        }
 
         //  恢复库存情况
         inventory.setStatus(inventoryOldStatus);

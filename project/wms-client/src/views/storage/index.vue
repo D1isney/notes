@@ -268,7 +268,7 @@ export default {
       storageData: [],
       query: {
         page: 1,
-        limit: 20
+        limit: 20,
       },
       taskQuery: {
         page: 1,
@@ -346,7 +346,7 @@ export default {
       this.$router.push({ path: '/task' })
     },
     async getOperationLog() {
-      await getLogList(this.query).then(res => {
+      await getLogList(this.taskQuery).then(res => {
         this.logTableLoading = true
         if (res.code === 200) {
           this.operationLogList = res.data.list

@@ -11,6 +11,10 @@
           :header-cell-class-name="cellClass"
           @select="handleSelect"
           @row-click="handleRowClick"
+
+
+          :header-cell-style="{ 'text-align': 'center' }"
+          :cell-style="{ 'text-align': 'center' }"
         >
           <el-table-column
             type="selection"

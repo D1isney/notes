@@ -420,7 +420,9 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         task.setUpdateTime(new Date());
         task.setCreateMember(MemberThreadLocal.get().getMember().getId());
         task.setUpdateMember(MemberThreadLocal.get().getMember().getId());
+        task.setResource(TaskEnum.RESOURCE_AUTO.getStatus());
         task.setRemark("任务创建成功");
+
         task = taskService.saveOrModify(task);
         return task;
     }

@@ -73,7 +73,7 @@ public class RoleController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "角色-删除角色信息", path = "/role/delete")
-    public R<?> delete(@RequestParam Long[] ids) {
+    public R<?> delete(@RequestParam("ids") Long[] ids) {
         roleService.deleteRole(ids);
         return R.ok("删除成功！");
     }

@@ -11,6 +11,11 @@
         :expand-row-keys="expands"
         @row-click="openExpand"
         @expand-change="expandChange"
+
+
+        :header-cell-style="{ 'text-align': 'center' }"
+        :cell-style="{ 'text-align': 'center' }"
+
         style="width: 100%"
       >
         <el-table-column
@@ -356,7 +361,7 @@ export default {
     },
     resetAdd() {
       this.addList = {
-        name: '',
+        username: '',
         status: 1,
         remark: ''
       }

@@ -171,13 +171,6 @@ export default {
   },
   watch: {
     socketData(val) {
-      if (val.type === 'PlcConnectError') {
-        this.$notify({
-          title: '失败',
-          message: val.message,
-          type: 'error'
-        })
-      }
       if (val.type === 'operation') {
         this.getList()
       }

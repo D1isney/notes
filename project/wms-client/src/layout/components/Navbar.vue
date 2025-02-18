@@ -12,25 +12,53 @@
       :visible.sync="systemDrawer"
       :with-header="true"
     >
-      <el-row :gutter="10">
-        <el-col :span="23" :push="1" class="system-drawer-el-col">
+      <el-row :gutter="20">
+        <el-col :span="6" :push="2" class="system-drawer-el-col">
+          <el-tag class="system-drawer-tag">用户：</el-tag>
+        </el-col>
+        <el-col :span="10">
+          <el-button type="info">
+            {{ name }}
+          </el-button>
+        </el-col>
+      </el-row>
+
+      <el-row :gutter="20">
+        <el-col :span="6" :push="2" class="system-drawer-el-col">
           <el-tag class="system-drawer-tag">首页：</el-tag>
+        </el-col>
+        <el-col :span="10">
           <router-link to="/">
             <el-button type="primary" @click="systemDrawer = false">
               Home
             </el-button>
           </router-link>
         </el-col>
-        <el-col :span="23" :push="1" class="system-drawer-el-col">
+      </el-row>
+
+      <el-row :gutter="20">
+        <el-col :span="6" :push="2" class="system-drawer-el-col">
           <el-tag class="system-drawer-tag">主题：</el-tag>
+        </el-col>
+        <el-col :span="10">
           <el-button type="primary" @click="openColor">Color</el-button>
         </el-col>
-        <el-col :span="23" :push="1" class="system-drawer-el-col">
+      </el-row>
+
+      <el-row :gutter="20">
+        <el-col :span="6" :push="2" class="system-drawer-el-col">
           <el-tag class="system-drawer-tag">设置：</el-tag>
+        </el-col>
+        <el-col :span="10">
           <el-button type="primary" @click="openSetting">Setting</el-button>
         </el-col>
-        <el-col :span="23" :push="1" class="system-drawer-el-col">
+      </el-row>
+
+      <el-row :gutter="20">
+        <el-col :span="6" :push="1" class="system-drawer-el-col">
           <el-tag :type="getPlcStatus()" class="system-drawer-tag">PLC连接状态：</el-tag>
+        </el-col>
+        <el-col :span="10">
           <el-button type="primary" @click="openPlc">开启连接</el-button>
           <el-button type="primary" @click="closePlc">关闭连接</el-button>
         </el-col>
@@ -102,16 +130,30 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['sidebar', 'username']),
+    ...mapGetters(['sidebar', 'name']),
     ...mapState('webSocket', ['socketData'])
   },
   watch: {
-    socketData(val){
-      if (val.type === 'PlcConnectError'){
+    socketData(val) {
+      if (val.type === 'PlcConnectError') {
         this.$notify({
           title: '失败',
           message: val.message,
           type: 'error'
+        })
+      }
+      if (val.type === 'TaskMessageIssued') {
+        this.$notify({
+          title: val.message,
+          message: '任务名称：' + val.data.name + '，任务编码：' + val.data.code,
+          type: 'success'
+        })
+      }
+      if (val.type === 'TaskMessageSuccess') {
+        this.$notify({
+          title: val.message,
+          message: '任务名称：' + val.data.name + '，任务编码：' + val.data.code,
+          type: 'success'
         })
       }
     }

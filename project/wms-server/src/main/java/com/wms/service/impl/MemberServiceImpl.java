@@ -52,7 +52,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     private String userKey;
 
     @Resource
-    private Cache<String,Object> cache;
+    private Cache<String, Object> cache;
 
     @Override
     public R<?> login(Member member) {
@@ -66,7 +66,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
                 }
             }
             String jwt = loggingIn(member, members);
-            cache.put(userKey+members.get(0).getId(),members.get(0));
+            cache.put(userKey + members.get(0).getId(), members.get(0));
             return R.ok("登录成功！", jwt);
         }
         return R.error("账号或密码错误！");
@@ -89,7 +89,8 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     }
 
     public String loggingIn(Member member, List<Member> members) {
-        String password = member.getPassword() + members.get(0).getSalt();
+        Member m = members.get(0);
+        String password = member.getPassword() + m.getSalt();
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getUsername(), password);
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
         //  如果认证没通过，给出对应的提示
@@ -99,15 +100,23 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         LoginMember loginMember = (LoginMember) authenticate.getPrincipal();
         String userId = loginMember.getMember().getId().toString();
         String jwt = JwtUtil.createJWT(userId);
-        MemberThreadLocal.setMainThreadLoginMemberById(members.get(0).getId(), loginMember);
-        MemberThreadLocal.setMainThreadLoginMemberTokenForId(members.get(0).getId(), jwt);
-        if (Objects.equals(members.get(0).getStatus(),MemberConstant.STATUS_FALSE)){
+        MemberThreadLocal.setMainThreadLoginMemberById(m.getId(), loginMember);
+        MemberThreadLocal.setMainThreadLoginMemberTokenForId(m.getId(), jwt);
+        if (Objects.equals(m.getStatus(), MemberConstant.STATUS_FALSE)) {
             throw new EException("该账号不可使用！请联系管理员！");
-        }else if (Objects.equals(members.get(0).getStatus(),MemberConstant.STATUS_PAST)){
+        } else if (Objects.equals(m.getStatus(), MemberConstant.STATUS_PAST)) {
             throw new EException("该账号已被封禁！请联系管理员！");
         }
-        members.get(0).setOnline(MemberConstant.IS_ONLINE);
-        saveOrModify(members.get(0));
+        if (StringUtil.isEmpty(m.getExpirationTime())) {
+            throw new EException("该账号已过期！请联系管理员！");
+        } else {
+            long time = m.getExpirationTime().getTime();
+            if (new Date().getTime() > time) {
+                throw new EException("该账号已过期！请联系管理员！");
+            }
+        }
+        m.setOnline(MemberConstant.IS_ONLINE);
+        saveOrModify(m);
         return jwt;
     }
 
@@ -169,7 +178,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         MemberThreadLocal.clear();
 
         //  清除
-        cache.invalidate(userKey+byId.getId());
+        cache.invalidate(userKey + byId.getId());
     }
 
     /**
@@ -199,7 +208,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
                 newMember = saveOrModify(member);
                 createMemberRole(member, newMember, currentMemberId);
                 //  更新该用户的缓存
-                cache.put(userKey+newMember.getId() , newMember);
+                cache.put(userKey + newMember.getId(), newMember);
                 return R.ok("修改成功！");
             }
         }
@@ -238,7 +247,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
                             memberRole.setUpdateTime(new Date());
                             memberRole.setUpdateMember(currentMemberId);
                             list.add(memberRole);
-                        }else{
+                        } else {
                             memberRoleService.delete(memberRole);
                         }
                     });
@@ -287,7 +296,8 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
     /**
      * 创建一个新的用户
-     * @param member 创建新的用户
+     *
+     * @param member          创建新的用户
      * @param currentMemberId 当前线程的用户
      * @return 新的用户
      */

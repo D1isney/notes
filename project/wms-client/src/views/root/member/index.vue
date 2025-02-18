@@ -14,6 +14,10 @@
         @expand-change="expandChange"
         @selection-change="handleSelectionChange"
         @current-change="handleSelectionChange"
+
+
+        :header-cell-style="{ 'text-align': 'center' }"
+        :cell-style="{ 'text-align': 'center' }"
       >
         <el-table-column type="selection" width="55" />
         <el-table-column type="expand">
@@ -622,7 +626,7 @@ export default {
     openAddOrawer() {
       this.addDrawer = true
       this.addMemberForm = {
-        username: '',
+        name: '',
         password: '',
         name: '',
         sex: 1,
@@ -657,7 +661,7 @@ export default {
     resetAddForm() {
       this.selectedOptions = []
       this.addMemberForm = {
-        username: '',
+        name: '',
         password: '',
         name: '',
         sex: 1,

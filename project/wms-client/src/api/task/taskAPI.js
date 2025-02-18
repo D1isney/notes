@@ -31,6 +31,13 @@ export function getGoodsAndInventory(data){
   })
 }
 
+export function deleteTask(ids){
+  return request({
+    url: `/task/delete?ids=${ids}`,
+    method: 'delete'
+  })
+}
+
 
 export const TaskConst = {
   // 任务状态（0：初始化，1：进行中，2：挂起，3：完成）

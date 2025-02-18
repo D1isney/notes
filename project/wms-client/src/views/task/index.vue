@@ -12,6 +12,9 @@
         @row-click="openExpand"
         @expand-change="expandChange"
         @selection-change="handleSelectionChange"
+
+        :header-cell-style="{ 'text-align': 'center' }"
+        :cell-style="{ 'text-align': 'center' }"
       >
         @current-change="handleSelectionChange"
         style="width: 100%"
@@ -156,7 +159,7 @@
           prop="inventoryName"
         >
           <template v-slot="{row}">
-            {{ row.inventoryName }} - {{ row.inventoryLayer }}
+            {{ row.inventoryName }}
           </template>
         </el-table-column>
 
@@ -272,9 +275,9 @@
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
             <el-form-item label="备注">
-              <eel-form-item v-model="addTaskForm.remark">
+              <el-form-item v-model="addTaskForm.remark">
                 <el-input v-model="addTaskForm.remark" type="textarea" placeholder="备注"/>
-              </eel-form-item>
+              </el-form-item>
             </el-form-item>
           </el-col>
         </el-row>
@@ -360,6 +363,27 @@
           </el-col>
         </el-row>
 
+        <el-row :gutter="20">
+          <el-col :span="16" :push="2">
+            <el-form-item
+              label="任务情况"
+            >
+              <el-tag
+                :type="statusTag(updateTaskForm.status)"
+                effect="dark"
+                size="small"
+              >
+                    <span>
+                         {{
+                        (updateTaskForm.status || updateTaskForm.status === 0) && statusOptions[updateTaskForm.status].label
+                      }}
+                      </span>
+
+              </el-tag>
+            </el-form-item>
+          </el-col>
+        </el-row>
+
 
         <el-row :gutter="20">
           <el-col :span="16" :push="2">
@@ -399,6 +423,13 @@
           </el-col>
         </el-row>
 
+        <el-row :gutter="20">
+          <el-col :span="16" :push="6">
+            <el-button type="warning" @click="commitUpdate()">修改</el-button>
+            <el-button type="info" @click="resetUpdateForm()">取消</el-button>
+          </el-col>
+        </el-row>
+
       </el-form>
     </el-drawer>
 
@@ -408,13 +439,14 @@
 <script>
 import pagination from '@/components/Pagination/index.vue'
 import {
+  deleteTask,
   getGoodsAndInventory,
   getTaskList,
   manualOperationIssued,
   saveOrUpdateTask,
   TaskConst
 } from '@/api/task/taskAPI'
-import { getBillOfMaterial } from '@/api/goods/goodsAPI'
+import { deleteGoods, getBillOfMaterial } from '@/api/goods/goodsAPI'
 import { getBillOfInventory } from '@/api/inventory/inventoryAPI'
 import { mapActions, mapGetters, mapState } from 'vuex'
 
@@ -437,11 +469,12 @@ export default {
         code: '',
         type: 4,
         directlyIssued: false,
+        resource: 1,
         taskDataDTOS: {
           goodsCode: '',
           inventoryCode: '',
           storageCode: ''
-        }
+        },
       },
       direction: 'rtl',
       query: {
@@ -461,11 +494,12 @@ export default {
         code: '',
         type: '',
         directlyIssued: false,
+        resource: 1,
         taskDataDTOS: {
           goodsCode: [],
           inventoryCode: [],
           storageCode: []
-        }
+        },
       }
     }
   },
@@ -518,10 +552,19 @@ export default {
       this.multipleSelection = val
     },
     issued(row) {
+      if (row.status === 3) {
+        this.$message.warning('该任务已完成！不能再次下发！')
+        return
+      }
+      if (row.status !== 0) {
+        this.$message.warning('该任务已下发！不能再次下发！')
+        return
+      }
       manualOperationIssued(row).then(res => {
         if (res.code === 200) {
           this.getList()
-          this.$message.success(row.message)
+        } else {
+          this.$message.error(row.message)
         }
       })
     },
@@ -546,18 +589,50 @@ export default {
         if (res.code === 200) {
           this.inventoryUpdateValue = res.data.inventoryCode
           this.goodsUpdateValue = res.data.goodsCode
-          this.updateTaskForm.taskDataDTOS.goodsCode = (res.data.goodsCode)
-          this.updateTaskForm.taskDataDTOS.inventoryCode = (res.data.inventoryCode)
+          if (this.updateTaskForm.hasOwnProperty('taskDataDTOS')) {
+            this.updateTaskForm.taskDataDTOS = {
+              goodsCode: '',
+              inventoryCode: '',
+              storageCode: ''
+            }
+          } else {
+            let taskDataDTOS = {
+              goodsCode: '',
+              inventoryCode: '',
+              storageCode: ''
+            }
+            this.updateTaskForm.push(taskDataDTOS)
+          }
+
+          this.updateTaskForm.taskDataDTOS.goodsCode = res.data.goodsCode
+          // this.updateTaskForm.taskDataDTOS.inventoryCode = res.data.inventoryCode
         }
       })
       this.updateDrawer = true
     },
 
     deleteTask(row) {
+      this.$confirm('此操作将永久删除该任务, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteTask(row.id).then(res => {
+          if (res.code === 200) {
+            this.$message.success(res.message)
+          }
+          this.getList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     },
     openAddDrawer() {
       this.addTaskForm = {
-        name: '',
+        username: '',
         code: '',
         type: 4,
         directlyIssued: false,
@@ -601,6 +676,7 @@ export default {
       this.updateTaskForm.taskDataDTOS.inventoryCode = val[1]
     },
     commitAdd() {
+      console.log(this.addTaskForm)
       saveOrUpdateTask(this.addTaskForm).then(res => {
         if (res.code === 200) {
           this.$message.success(res.message)
@@ -608,14 +684,59 @@ export default {
           this.addDrawer = false
         } else {
           this.$message.warning(res.message)
-          returns
+          return
         }
       })
     },
+    commitUpdate() {
+      if (this.updateTaskForm.status === 3) {
+        this.$message.warning('该任务已完成！不能再次修改！')
+        return
+      }
+      if (this.updateTaskForm.status !== 0) {
+        this.$message.warning('该任务已下发！不能再次修改！')
+        return
+      }
+      saveOrUpdateTask(this.updateTaskForm).then(res => {
+        if (res.code === 200) {
+          this.$message.success(res.message)
+          this.getList()
+          this.updateDrawer = false
+        } else {
+          this.$message.warning(res.message)
+          return
+        }
+      })
+    },
+    resetUpdateForm() {
+      this.updateDrawer = false
+    },
+
     resetAddForm() {
       this.$refs.addTaskForm.resetFields()
     },
     deleteAll() {
+      if (this.multipleSelection.length < 1) {
+        this.$message.warning('请先勾选需要操作的物料')
+        return
+      }
+      const ids = this.multipleSelection.map(item => item.id)
+      this.$confirm('此操作将永久删除已选中的任务, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        deleteTask(ids).then(res => {
+          this.$message.success(res.message)
+          if (this.list.length === ids.length && this.query.page > 1) this.query.page--
+          this.getList()
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     },
     typeTag(type) {
       if (type === 4) {

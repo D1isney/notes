@@ -1,10 +1,13 @@
 package com.wms.task.outTask;
 
 import com.wms.connect.plc.PlcConnect;
+import com.wms.connect.websocket.Push;
+import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.constant.PlcConstant;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.PLCEnum;
 import com.wms.enums.TaskEnum;
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.pojo.*;
 import com.wms.service.GoodsService;
@@ -59,6 +62,11 @@ public class OutTaskExecutor extends TaskExecutor {
     public void write() {
         //  让PLC不能再次写入
         plcConnect.writePlc(PLCEnum.PLC_OUT, PlcConstant.cannotBeWritten);
+
+        //  说明任务已经开始操作了
+        Push push = new Push(WebSocketEnum.TASK_MESSAGE_ISSUED.getType(), WebSocketEnum.TASK_MESSAGE_ISSUED.getMessage(),getTask());
+        WebSocketServerWeb.send(push);
+
         //  开始出库
         //  开始入库
         plcConnect.writePlc(PLCEnum.PLC_ACCOMPLISH_OUT, PlcConstant.cannotBeWritten);

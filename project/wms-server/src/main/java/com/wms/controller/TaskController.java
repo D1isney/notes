@@ -66,4 +66,15 @@ public class TaskController {
         return taskService.getGoodsAndInventory(task);
     }
 
+
+    @ApiOperation("根据ID删除任务")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "ids", value = "id数组")
+    })
+    @DeleteMapping("delete")
+    @Log(value = "任务-删除任务",path = "/task/delete")
+    public R<?> deleteTask(@RequestParam Long[] ids){
+        return taskService.deleteTask(ids);
+    }
+
 }

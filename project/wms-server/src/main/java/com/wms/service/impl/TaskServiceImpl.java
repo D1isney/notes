@@ -23,8 +23,10 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> implements TaskService {
@@ -89,6 +91,12 @@ public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> imp
         }
     }
 
+    /**
+     * 通过任务找到对应的物料以及库存Code
+     *
+     * @param task 任务
+     * @return R
+     */
     @Override
     public R<?> getGoodsAndInventory(Task task) {
         if (StringUtil.isEmpty(task.getId())) {
@@ -117,6 +125,19 @@ public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> imp
             }
             return R.ok(dto);
         }
+    }
+
+    @Override
+    public R<?> deleteTask(Long[] ids) {
+        Arrays.stream(ids).forEach(id -> {
+            Task task = queryById(id);
+            if (!TaskEnum.INIT_IN.getStatus().equals(task.getStatus()) && !TaskEnum.ACCOMPLISH_IN.getStatus().equals(task.getStatus())) {
+                throw new EException("删除失败，任务：" + task.getCode() + "，已下发，不能删除该任务！");
+            }
+        });
+        deleteByIds(ids);
+        return R.ok("删除成功！");
+
     }
 
 

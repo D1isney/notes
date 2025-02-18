@@ -12,6 +12,8 @@ public enum TaskEnum {
     ONGOING_OUT(1,5,"出库-进行状态"),
     PENDING_OUT(2,5,"出库-挂起状态"),
     ACCOMPLISH_OUT(3,5,"出库-完成"),
+    RESOURCE_AUTO(0,0,"自动创建"),
+    RESOURCE_ARTIFICIAL(1,1,"人为创建"),
     ;
     private final Integer status;
     private final Integer type;

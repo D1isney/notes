@@ -12,6 +12,10 @@
         @row-click="openExpand"
         @expand-change="expandChange"
         @selection-change="handleSelectionChange"
+
+
+        :header-cell-style="{ 'text-align': 'center' }"
+        :cell-style="{ 'text-align': 'center' }"
       >
         <el-table-column type="selection" />
         <el-table-column type="expand">
@@ -315,7 +319,7 @@ export default {
     },
     resetAdd() {
       this.addList = {
-        name: '',
+        username: '',
         path: '',
         remark: ''
       }

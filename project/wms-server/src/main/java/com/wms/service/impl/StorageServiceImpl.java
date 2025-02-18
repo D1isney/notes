@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,9 +33,21 @@ public class StorageServiceImpl extends IBaseServiceImpl<StorageDao, Storage, St
 
     @Override
     public R<?> saveOrUpdateStorage(List<Storage> storage) {
-        boolean b = saveOrUpdateBatch(storage);
-//        saveOrModify(storage);
-        return R.ok("保存成功！",b);
+        boolean isSuccess = saveOrUpdateBatch(storage);
+        if (isSuccess) {
+            Map<String, Object> map = new HashMap<>();
+            storage.forEach(s -> {
+                map.put("storageId", s.getId());
+                List<Inventory> inventories = inventoryService.queryList(map);
+                if (!inventories.isEmpty()) {
+                    inventories.forEach(inventory -> {
+                        inventory.setName(s.getName() + "-" + inventory.getLayer());
+                    });
+                    inventoryService.saveOrUpdateBatch(inventories);
+                }
+            });
+        }
+        return R.ok("保存成功！", isSuccess);
     }
 
     @Resource
