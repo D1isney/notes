@@ -1,7 +1,6 @@
 package com.wms.handler;
 
 import com.alibaba.fastjson.JSON;
-import com.wms.exception.EException;
 import com.wms.utils.R;
 import com.wms.utils.WebUtils;
 import org.springframework.http.HttpStatus;

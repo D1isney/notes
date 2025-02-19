@@ -77,4 +77,18 @@ public class TaskController {
         return taskService.deleteTask(ids);
     }
 
+    @ApiOperation("一周当中每天的任务量")
+    @GetMapping("weeklyWorkload")
+    @Log(value = "任务-周任务量",path = "/task/weeklyWorkload")
+    public R<?> weeklyWorkload(){
+        return taskService.weeklyWorkload();
+    }
+
+    @ApiOperation("一周当中每天的出库量以及入库量")
+    @GetMapping("inboundAndOutboundVolume")
+    @Log(value = "任务-周出库量入库量",path = "/task/inboundAndOutboundVolume")
+    public R<?> inboundAndOutboundVolume(){
+        return taskService.inboundAndOutboundVolume();
+    }
+
 }

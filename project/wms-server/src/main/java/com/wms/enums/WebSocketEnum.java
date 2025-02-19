@@ -11,6 +11,9 @@ public enum WebSocketEnum {
     TASK_MESSAGE_ISSUED("任务下发", null, "TaskMessageIssued",200),
     TASK_MESSAGE_SUCCESS("任务完成", null, "TaskMessageSuccess",200),
     OPERATION("Push操作",null, "operation",200),
+
+    SURPLUS_VIEW("刷新surplusView",null,"surplusView",200),
+    WEEKLY_WORKLOAD_VIEW("刷新weeklyWorkloadView",null,"weeklyWorkloadView",200)
     ;
 
     private final String message;

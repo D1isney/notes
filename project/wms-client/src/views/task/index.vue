@@ -165,6 +165,7 @@
 
         <el-table-column
           align="right"
+          label="操作"
         >
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" circle @click.stop="openEditDrawer(scope.row)"/>

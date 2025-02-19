@@ -15,4 +15,8 @@ public interface TaskService extends BaseService<Task, TaskVo> {
     R<?> getGoodsAndInventory(Task task);
 
     R<?> deleteTask(Long[] ids);
+
+    R<?> weeklyWorkload();
+
+    R<?> inboundAndOutboundVolume();
 }

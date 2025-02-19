@@ -69,3 +69,9 @@ login:
     tokenIsReal: 0 # 是否开启Token有效性验证
     header: Authorization # 请求头
     ifSaveLog: 0 # 是否开启日志
+
+webSocket:
+  pushTime: 60 #  webSocket看板推送时间
+
+data:
+  queryDays: 7 # 查询近7天的任务数

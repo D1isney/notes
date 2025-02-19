@@ -23,4 +23,6 @@ public interface GoodsService extends BaseService<Goods, GoodsVo> {
     Goods getGoodsById(Long id);
 
     R<?> billOfMaterial();
+
+    R<?> materialUsage();
 }

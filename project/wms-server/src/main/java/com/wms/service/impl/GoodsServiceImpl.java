@@ -5,14 +5,17 @@ import com.wms.dao.GoodsDao;
 import com.wms.dto.ChildrenSelector;
 import com.wms.dto.ParentSelector;
 import com.wms.dto.TypeAndValue;
+import com.wms.enums.TaskEnum;
 import com.wms.exception.EException;
 import com.wms.helper.CurrentHelper;
 import com.wms.pojo.Goods;
 import com.wms.pojo.GoodsParam;
 import com.wms.pojo.ParamKey;
+import com.wms.pojo.Task;
 import com.wms.service.GoodsParamService;
 import com.wms.service.GoodsService;
 import com.wms.service.ParamKeyService;
+import com.wms.service.TaskService;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.utils.CodeUtils;
 import com.wms.utils.R;
@@ -40,10 +43,16 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
     private ParamKeyService paramKeyService;
 
     @Resource
+    @Lazy
     private CurrentHelper currentHelper;
 
     @Resource
+    @Lazy
     private GoodsConvert goodsConvert;
+
+    @Resource
+    @Lazy
+    private TaskService taskService;
 
     /**
      * 最后的Code
@@ -180,6 +189,35 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
         return R.ok(parentSelectors);
     }
 
+    @Override
+    public R<?> materialUsage() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", TaskEnum.ACCOMPLISH_OUT.getStatus());
+        map.put("type", TaskEnum.ACCOMPLISH_OUT.getType());
+        List<TypeAndValue> list = new ArrayList<>();
+        List<Task> tasks = taskService.queryList(map);
+        if (StringUtil.isEmpty(tasks)) {
+            return R.ok(list);
+        }
+        //  去重之后的id
+        Long[] goodIds = tasks.stream().map(Task::getGoodsId).distinct().toArray(Long[]::new);
+        //  找到所有类型的物料
+        List<Goods> goods = goodsDao.queryGoodsByIds(goodIds);
+        if (!goods.isEmpty()) {
+            goods.forEach(good -> {
+                TypeAndValue typeAndValue = new TypeAndValue();
+                typeAndValue.setName(good.getName());
+                long count = tasks.stream()
+                        .filter(task -> task.getGoodsId() != null && task.getGoodsId().equals(good.getId()))
+                        .count();
+                typeAndValue.setValue(String.valueOf(count));
+                list.add(typeAndValue);
+            });
+            return R.ok(list);
+        }
+        return R.ok(list);
+    }
+
     private void getChildren(ParentSelector parentSelector, List<ChildrenSelector> childrenSelectors, List<Goods> goods) {
         goods.forEach(g -> {
             ChildrenSelector childrenSelector = new ChildrenSelector();
@@ -188,7 +226,7 @@ public class GoodsServiceImpl extends IBaseServiceImpl<GoodsDao, Goods, GoodsVo>
             childrenSelector.setDisabled(false);
             childrenSelectors.add(childrenSelector);
         });
-        if (!childrenSelectors.isEmpty()){
+        if (!childrenSelectors.isEmpty()) {
             parentSelector.setChildren(childrenSelectors);
         }
     }

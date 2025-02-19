@@ -4,6 +4,7 @@ import com.wms.connect.plc.PlcConnect;
 import com.wms.connect.websocket.Push;
 import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.enums.InventoryEnum;
+import com.wms.enums.LogRecordEnum;
 import com.wms.enums.TaskEnum;
 import com.wms.enums.WebSocketEnum;
 import com.wms.filter.login.LoginMember;
@@ -186,6 +187,7 @@ public abstract class TaskExecutor implements Runnable {
         logRecord.setMessage("任务：" + task.getCode() + "操作任务失败！！");
         logRecord.setResult(result);
         logRecord.setExecuteTime((endTime - startTime));
+        logRecord.setType(LogRecordEnum.WARNING_LOG.getCode());
         logRecordService.saveOrModify(logRecord);
         //  删除任务
         if (TaskEnum.RESOURCE_AUTO.getStatus().equals(task.getResource())) {
@@ -197,5 +199,7 @@ public abstract class TaskExecutor implements Runnable {
         inventory.setUpdateTime(new Date());
         inventory.setUpdateMember(memberThreadLocal.getMember().getId());
         inventoryService.saveOrModify(inventory);
+
+
     }
 }

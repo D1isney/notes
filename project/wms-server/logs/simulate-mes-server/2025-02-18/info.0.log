@@ -830,3 +830,16 @@
 2025-02-18 17:31:42.698   INFO 3372 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
 2025-02-18 17:37:39.352   INFO 3372 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
 2025-02-18 17:37:41.088   INFO 3372 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-18 17:40:41.903   INFO 3372 --- [nio-1217-exec-3] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-18 17:40:42.220   INFO 3372 --- [nio-1217-exec-6] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-18 17:40:46.540   INFO 3372 --- [nio-1217-exec-8] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-18 17:40:46.789   INFO 3372 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-18 17:40:59.224   INFO 3372 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-18 17:40:59.485   INFO 3372 --- [nio-1217-exec-7] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-18 17:41:10.268   INFO 3372 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-18 17:41:10.496   INFO 3372 --- [nio-1217-exec-2] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-18 19:49:04.672   INFO 3372 --- [nio-1217-exec-1] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-18 19:49:05.055   INFO 3372 --- [nio-1217-exec-5] c.wms.connect.websocket.WebSocketServer  : 有新窗口开始监听:admin,当前在线人数为1
+2025-02-18 21:31:24.735   INFO 3372 --- [ionShutdownHook] c.wms.connect.websocket.WebSocketServer  : 有一连接关闭！当前在线人数为0
+2025-02-18 21:31:24.960   INFO 3372 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closing ...
+2025-02-18 21:31:24.966   INFO 3372 --- [ionShutdownHook] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} closed

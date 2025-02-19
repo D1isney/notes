@@ -46,3 +46,10 @@ export function deleteGoods(ids) {
     method: 'delete'
   })
 }
+
+export function materialUsage(){
+  return request({
+    url: '/goods/materialUsage',
+    method: 'get'
+  })
+}

@@ -151,6 +151,12 @@
             <if test="query.offset != null and query.limit != null">
                 limit #{query.offset},#{query.limit}
             </if>
+            <if test="query.status != null">
+                AND t.status = #{query.status}
+            </if>
+            <if test="query.createTime != null">
+                AND t.create_time BETWEEN #{query.createTime} AND DATE_ADD(#{query.createTime}, INTERVAL 1 DAY)
+            </if>
         </where>
     </sql>
 

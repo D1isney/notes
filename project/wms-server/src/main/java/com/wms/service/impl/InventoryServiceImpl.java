@@ -103,7 +103,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                 Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType(), storageAndInventoryDTO);
                 if (w.getType().equals(InOrOutConstant.in)) {
                     Goods goodsByCode = goodsService.getGoodsByCode(w.getGoodsCode());
-                    in(goodsByCode, inventoryByCode, storageByCode, w.getTask());
+                    in(goodsByCode, inventoryByCode, storageByCode, w.getTask(), w.getType());
                 } else {
                     Goods goodsById;
                     if (!StringUtil.isEmpty(w.getGoodsCode())) {
@@ -111,7 +111,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                     } else {
                         goodsById = goodsService.getGoodsById(w.getGoodsId());
                     }
-                    out(goodsById, inventoryByCode, storageByCode, w.getTask());
+                    out(goodsById, inventoryByCode, storageByCode, w.getTask(), w.getType());
                 }
             });
             return R.ok("正在下发任务！！！");
@@ -166,13 +166,13 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      * @param storage   库位
      * @param task      任务
      */
-    private void in(Goods goods, Inventory inventory, Storage storage, Task task) {
+    private void in(Goods goods, Inventory inventory, Storage storage, Task task, Integer type) {
         if (!inventory.getStatus().equals(InventoryEnum.EMPTY.getType())) {
             throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + ",已有物料，无法再次入库！！！");
         }
         TaskExecutor taskExecutor = null;
         taskExecutor = new InTaskExecutor();
-        TaskExecutorInit(taskExecutor, goods, inventory, task);
+        TaskExecutorInit(taskExecutor, goods, inventory, task, type);
 
         taskExecutor.setExceptionHandler(e -> {
             throw new EException(e.getMessage());
@@ -188,14 +188,14 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      * @param storage   库位
      * @param task      任务
      */
-    private void out(Goods goods, Inventory inventory, Storage storage, Task task) {
+    private void out(Goods goods, Inventory inventory, Storage storage, Task task, Integer type) {
         //  挂起的库存或者是有货物的库存才能出库
         if (!inventory.getStatus().equals(InventoryEnum.HAVE.getType())) {
             throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + "，没有物料或物料正在出入库，无法再次出库！！！");
         }
         TaskExecutor taskExecutor = null;
         taskExecutor = new OutTaskExecutor();
-        TaskExecutorInit(taskExecutor, goods, inventory, task);
+        TaskExecutorInit(taskExecutor, goods, inventory, task, type);
         taskExecutor.setExceptionHandler(e -> {
             throw new EException(e.getMessage());
         });
@@ -341,6 +341,41 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
 
 
     /**
+     * 获取每个库位余额
+     *
+     * @return R
+     */
+    @Override
+    public R<?> inventoryBalance() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("isForbidden", Boolean.TRUE);
+        //  能用的库位
+        List<Storage> storages = storageService.queryList(map);
+        List<TypeAndValue> list = new ArrayList<>();
+        if (!storages.isEmpty()) {
+            Map<Long, Storage> collect = storages.stream().distinct().collect(Collectors.toMap(Storage::getId, storage -> storage));
+            Set<Long> longs = collect.keySet();
+            if (!longs.isEmpty()) {
+                longs.forEach(id -> {
+                    Map<String, Object> mapStorage = new HashMap<>();
+                    mapStorage.put("storageId", id);
+                    List<Inventory> inventories = inventoryService.queryList(mapStorage);
+                    //  统计可用的数量
+                    long size = inventories.stream().filter(inventory -> inventory.getStatus().equals(InventoryEnum.EMPTY.getType())).count();
+                    Storage storage = collect.get(id);
+                    TypeAndValue typeAndValue = new TypeAndValue();
+                    typeAndValue.setName(storage.getName());
+                    typeAndValue.setValue(String.valueOf(size));
+                    list.add(typeAndValue);
+                });
+                return R.ok(list);
+            }
+        }
+        return R.ok(list);
+    }
+
+
+    /**
      * 根据Code拿到合适的库位
      *
      * @param code 库位Code
@@ -408,14 +443,19 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      * @param inventory 库存
      * @return 任务
      */
-    public Task createTask(Goods goods, Inventory inventory) {
+    public Task createTask(Goods goods, Inventory inventory, Integer type) {
         Task task = new Task();
         task.setGoodsId(goods.getId());
         task.setInventoryId(inventory.getId());
         task.setCode(taskService.lastCode());
         task.setName(taskService.lastCode());
         task.setStatus(TaskEnum.INIT_IN.getStatus());
-        task.setType(TaskEnum.INIT_IN.getType());
+        if (type.equals(TaskEnum.INIT_IN.getStatus())) {
+            task.setType(TaskEnum.INIT_IN.getType());
+        } else if (type.equals(TaskEnum.ONGOING_OUT.getStatus())) {
+            task.setType(TaskEnum.ONGOING_OUT.getType());
+        }
+        System.out.println();
         task.setCreateTime(new Date());
         task.setUpdateTime(new Date());
         task.setCreateMember(MemberThreadLocal.get().getMember().getId());
@@ -435,9 +475,9 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      * @param inventory    库存
      * @param task         任务、有就不创建，没有就创建
      */
-    public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory, Task task) {
+    public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory, Task task, Integer type) {
         if (StringUtil.isEmpty(task) || StringUtil.isEmpty(task.getId())) {
-            task = createTask(goods, inventory);
+            task = createTask(goods, inventory, type);
         }
         taskExecutor.setTask(task);
         taskExecutor.setInventory(inventory);

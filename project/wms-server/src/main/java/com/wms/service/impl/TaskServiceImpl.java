@@ -3,6 +3,7 @@ package com.wms.service.impl;
 import com.wms.dao.TaskDao;
 import com.wms.dto.GoodsCodeAndInventoryCodeDTO;
 import com.wms.dto.TaskDataDTO;
+import com.wms.dto.TypeAndValue;
 import com.wms.dto.WarehousingDTO;
 import com.wms.enums.TaskEnum;
 import com.wms.exception.EException;
@@ -15,18 +16,17 @@ import com.wms.service.TaskService;
 import com.wms.service.base.IBaseServiceImpl;
 import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.CodeUtils;
+import com.wms.utils.DateUtil;
 import com.wms.utils.R;
 import com.wms.utils.StringUtil;
 import com.wms.vo.TaskVo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> implements TaskService {
@@ -138,6 +138,73 @@ public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> imp
         deleteByIds(ids);
         return R.ok("删除成功！");
 
+    }
+
+
+    @Value("${data.queryDays}")
+    private Integer queryDays;
+
+    /**
+     * 一周每天的任务量
+     *
+     * @return R
+     */
+    @Override
+    public R<?> weeklyWorkload() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        List<TypeAndValue> list = new ArrayList<>();
+        for (int i = -queryDays; i <= 0; i++) {
+            Date date = DateUtil.currentAdd(i);
+            date = DateUtil.resetTimeToStartOfDay(date);
+            Map<String, Object> map = new HashMap<>();
+            map.put("createTime", date);
+            List<Task> tasks = queryList(map);
+            TypeAndValue typeAndValue = new TypeAndValue();
+
+            typeAndValue.setName(sdf.format(date));
+            typeAndValue.setValue(String.valueOf(tasks.size()));
+            list.add(typeAndValue);
+        }
+        return R.ok(list);
+    }
+
+    @Override
+    public R<?> inboundAndOutboundVolume() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Map<String,List<TypeAndValue>> mapList = new HashMap<>();
+
+        //  出库量
+        List<TypeAndValue> out = new ArrayList<>();
+        for (int i = -queryDays; i <= 0; i++) {
+            Date date = DateUtil.currentAdd(i);
+            date = DateUtil.resetTimeToStartOfDay(date);
+            Map<String, Object> map = new HashMap<>();
+            map.put("createTime", date);
+            map.put("type", TaskEnum.INIT_OUT.getType());
+            List<Task> tasks = queryList(map);
+            TypeAndValue typeAndValue = new TypeAndValue();
+            typeAndValue.setName(sdf.format(date));
+            typeAndValue.setValue(String.valueOf(tasks.size()));
+            out.add(typeAndValue);
+        }
+
+        List<TypeAndValue> in = new ArrayList<>();
+        for (int i = -queryDays; i <= 0; i++) {
+            Date date = DateUtil.currentAdd(i);
+            date = DateUtil.resetTimeToStartOfDay(date);
+            Map<String, Object> map = new HashMap<>();
+            map.put("createTime", date);
+            map.put("type", TaskEnum.INIT_IN.getType());
+            List<Task> tasks = queryList(map);
+            TypeAndValue typeAndValue = new TypeAndValue();
+            typeAndValue.setName(sdf.format(date));
+            typeAndValue.setValue(String.valueOf(tasks.size()));
+            in.add(typeAndValue);
+        }
+
+        mapList.put("in",in);
+        mapList.put("out",out);
+        return R.ok(mapList);
     }
 
 

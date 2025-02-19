@@ -7,6 +7,9 @@ import com.wms.exception.EException;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -94,6 +97,22 @@ public class DateUtil {
     public static Timestamp getCurrentTimstamp() {
         Timestamp ts = new Timestamp(System.currentTimeMillis());
         return ts;
+    }
+
+
+    /**
+     * 将给定的 Date 对象的时间部分设置为当天的 00:00:00。
+     *
+     * @param date 输入的 Date 对象
+     * @return 时间部分设置为 00:00:00 的 Date 对象
+     */
+    public static Date resetTimeToStartOfDay(Date date) {
+        if (date == null) {
+            return null;
+        }
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDateTime startOfDay = localDate.atStartOfDay();
+        return Date.from(startOfDay.atZone(ZoneId.systemDefault()).toInstant());
     }
 
     public static Date[] getStartAndEndDate(String startTime,String endTime) {

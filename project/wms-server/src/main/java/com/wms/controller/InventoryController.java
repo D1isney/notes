@@ -66,6 +66,13 @@ public class InventoryController {
         return inventoryService.billOfInventory();
     }
 
+    @ApiOperation("库存空间余额")
+    @GetMapping("inventoryBalance")
+    @Log(value = "库存-各个库存空间余额",path = "/inventory/inventoryBalance")
+    public R<?> inventoryBalance(){
+        return inventoryService.inventoryBalance();
+    }
+
 
 
 

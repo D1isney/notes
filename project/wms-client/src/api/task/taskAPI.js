@@ -39,6 +39,22 @@ export function deleteTask(ids){
 }
 
 
+export function weeklyWorkload(){
+  return request({
+    url: '/task/weeklyWorkload',
+    method: 'get'
+  })
+}
+
+
+export function inboundAndOutboundVolume(){
+  return request({
+    url: '/task/inboundAndOutboundVolume',
+    method: 'get'
+  })
+}
+
+
 export const TaskConst = {
   // 任务状态（0：初始化，1：进行中，2：挂起，3：完成）
   status: { // 用户状态

@@ -16,9 +16,11 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 import '@/styles/theme.css'
+// main.js
+import * as echarts from "echarts"
+Vue.prototype.$echarts = echarts
 
 Vue.use(Animate)
-
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

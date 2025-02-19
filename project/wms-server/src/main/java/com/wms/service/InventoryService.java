@@ -21,4 +21,6 @@ public interface InventoryService extends BaseService<Inventory, InventoryVo> {
     Inventory getInventoryByCode(String code, Integer type, StorageAndInventoryDTO storage);
 
     R<?> billOfInventory();
+
+    R<?> inventoryBalance();
 }

@@ -99,7 +99,8 @@
                 v-for="item in optionsType"
                 :key="item.value"
                 :label="item.label"
-                :value="item.value">
+                :value="item.value"
+              >
               </el-option>
             </el-select>
           </el-col>
@@ -147,26 +148,26 @@ export default {
       },
       total: 0,
       type: '',
-      expands:[],
+      expands: [],
       // 多选的东西
       multipleSelection: [],
       createTime: '',
       optionsType: [{
         value: '0',
         label: '普通日志'
-      },{
+      }, {
         value: '1',
         label: '警告日志'
-      },{
+      }, {
         value: '2',
         label: '危险日志'
-      },{
+      }, {
         value: '3',
         label: '报警日志'
-      },{
+      }, {
         value: '4',
         label: '入库日志'
-      },{
+      }, {
         value: '5',
         label: '出库日志'
       }]
@@ -180,14 +181,18 @@ export default {
   },
   methods: {
     typeTag(type) {
-      if (type === 0 || type === 4) {
+      if (type === 0) {
         return 'success'
-      } else if (type === 1 || type === 5) {
+      } else if (type === 1) {
         return 'warning'
       } else if (type === 2) {
         return 'warning'
       } else if (type === 3) {
         return 'danger'
+      } else if (type === 4) {
+        return 'infoIn'
+      } else if (type === 5) {
+        return 'infoOut'
       }
     },
     async getLogList() {
@@ -219,7 +224,7 @@ export default {
     },
     handleSelectionChange(val) {
       this.multipleSelection = val
-    },
+    }
   }
 }
 </script>
@@ -285,6 +290,17 @@ export default {
     width: 4%;
     height: 100%;
   }
+}
+
+/* 自定义标签背景 */
+.el-tag--dark.el-tag--infoIn {
+  background-color: #1a8f3e !important;
+  border: 0;
+}
+
+.el-tag--dark.el-tag--infoOut {
+  background-color: #b4b216 !important;
+  border: 0;
 }
 
 

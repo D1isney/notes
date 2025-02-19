@@ -2,6 +2,8 @@ package com.wms.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @ToString
 @AllArgsConstructor
@@ -13,4 +15,6 @@ public class TypeAndValue {
     private Long goodId;
     private Long paramId;
     private String name;
+
+    private List<TypeAndValue> list;
 }

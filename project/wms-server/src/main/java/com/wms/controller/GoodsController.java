@@ -83,6 +83,14 @@ public class GoodsController {
         return goodsService.billOfMaterial();
     }
 
+    @ApiOperation("查询任务中已出库的物料的数量")
+    @GetMapping("materialUsage")
+    @Log(value = "物料-查询任务中已出库的物料的数量",path = "/goods/materialUsage")
+    public R<?> materialUsage(){
+        return goodsService.materialUsage();
+    }
+
+
 
 
 

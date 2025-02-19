@@ -214,6 +214,15 @@
         where id = #{id}
     </select>
 
+    <select id="queryGoodsByIds" resultMap="GoodsMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `goods` t
+        where id in
+        <foreach collection="ids" item="item" index="index" separator="," open="(" close=")">
+            #{item}
+        </foreach>
+    </select>
     <select id="queryByIds" resultMap="GoodsMap">
         select
         <include refid="queryListColumnBase"/>

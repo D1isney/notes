@@ -31,3 +31,11 @@ export function getBillOfInventory(){
   })
 }
 
+
+export function inventoryBalance(){
+  return request({
+    url: '/inventory/inventoryBalance',
+    method: 'get'
+  })
+}
+
