@@ -4,6 +4,14 @@ export function getLogList(query) {
   return request({ url: '/log/list', params: query })
 }
 
+export function alarmStatistics(){
+  return request({
+    url: '/log/alarmStatistics',
+    method: 'get'
+  })
+}
+
+
 export const LogConst = {
   // 激活状态（0：封禁，1：可用，2：已过期）
   type: { // 用户状态

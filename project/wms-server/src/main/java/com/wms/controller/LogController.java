@@ -63,4 +63,11 @@ public class LogController {
         return R.ok();
     }
 
+    @ApiOperation("报警信息统计")
+    @GetMapping("alarmStatistics")
+    @Log(value = "日志-删除日志信息",path = "/log/alarmStatistics")
+    public R<?> alarmStatistics(){
+        return logService.alarmStatistics();
+    }
+
 }

@@ -23,6 +23,12 @@ export default {
     ...mapState('webSocket', ['socketData'])
   },
   watch: {
+    socketData(val) {
+      // 刷新inboundAndOutboundVolumeView
+      if (val.type === 'inboundAndOutboundVolumeView') {
+        this.getInboundAndOutboundVolume()
+      }
+    }
   },
   methods: {
     ...mapActions('webSocket', ['openSocket']),

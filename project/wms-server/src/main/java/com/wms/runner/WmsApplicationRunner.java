@@ -27,11 +27,17 @@ public class WmsApplicationRunner implements ApplicationRunner {
 
         service.scheduleWithFixedDelay(() -> {
             WebSocketServerWeb.send(WebSocketEnum.SURPLUS_VIEW);
+            WebSocketServerWeb.send(WebSocketEnum.WEEKLY_WORKLOAD_VIEW);
+            WebSocketServerWeb.send(WebSocketEnum.INBOUND_AND_OUTBOUND_VOLUME_VIEW);
+
+
+
+
         }, 0, pushTime, TimeUnit.SECONDS);
 
-        service.scheduleWithFixedDelay(() -> {
 
-        }, 0, pushTime, TimeUnit.SECONDS);
+
+
 
         log.info("定时任务启动完成----------{}", new Date());
     }

@@ -7,7 +7,7 @@
     <div class="dashboard-foot">
       <surplus-view></surplus-view>
       <div class="dashboard-foot-box1">2</div>
-      <div class="dashboard-foot-box1">3</div>
+      <log-statistics-view></log-statistics-view>
     </div>
   </div>
 </template>
@@ -16,10 +16,11 @@
 import SurplusView from '@/views/echartsView/surplusView.vue'
 import WeeklyWorkloadView from '@/views/echartsView/weeklyWorkloadView.vue'
 import InboundAndOutboundVolumeView from '@/views/echartsView/inboundAndOutboundVolumeView.vue'
+import LogStatisticsView from '@/views/echartsView/logStatisticsView.vue'
 
 export default {
   name: 'Dashboard',
-  components: { SurplusView, WeeklyWorkloadView, InboundAndOutboundVolumeView },
+  components: { SurplusView, WeeklyWorkloadView, InboundAndOutboundVolumeView ,LogStatisticsView},
   computed: {},
   methods: {},
   mounted() {
