@@ -1121,10 +1121,13 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Iq7X3F_ZSQT5HcdYU57f" name="JVM">
-    <mxGraphModel dx="5641" dy="1296" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4621" dy="729" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-15" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2720" y="480" width="200" height="460" as="geometry" />
+        </mxCell>
         <mxCell id="DNWk-EfNaTAcIGdWtLDw-2" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="80" y="1830" width="1510" height="30" as="geometry" />
         </mxCell>
@@ -1489,8 +1492,62 @@
         <mxCell id="DNWk-EfNaTAcIGdWtLDw-18" value="等" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="952.5" y="2750" width="170" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="R9tEwSquiLc0Wjcsqzrh-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-3100" y="130" width="120" height="60" as="geometry" />
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="R9tEwSquiLc0Wjcsqzrh-1" target="ftX5rpeBfUk22Y6ZthCt-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="R9tEwSquiLc0Wjcsqzrh-1" target="ftX5rpeBfUk22Y6ZthCt-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="R9tEwSquiLc0Wjcsqzrh-1" value="获取二进制文件" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-3100" y="130" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ftX5rpeBfUk22Y6ZthCt-1" target="ftX5rpeBfUk22Y6ZthCt-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="ftX5rpeBfUk22Y6ZthCt-1" target="ftX5rpeBfUk22Y6ZthCt-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-1" value="获取二进制文件转运行式数据结构" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-3100" y="260" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="ftX5rpeBfUk22Y6ZthCt-2" target="ftX5rpeBfUk22Y6ZthCt-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-2" value="生成类的java.lang.Class对象" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-3100" y="390" width="250" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ftX5rpeBfUk22Y6ZthCt-5" target="ftX5rpeBfUk22Y6ZthCt-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-5" value="加载" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2680" y="260" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ftX5rpeBfUk22Y6ZthCt-9" target="ftX5rpeBfUk22Y6ZthCt-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-9" value="验证" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2680" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="ftX5rpeBfUk22Y6ZthCt-11" target="ftX5rpeBfUk22Y6ZthCt-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-11" value="准备" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2680" y="670" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-13" value="解析" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2680" y="820" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-16" value="连接" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-2720" y="480" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-17" value="文件格式验证：class文件格式验证" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2400" y="390" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-19" value="元数据验证：字节码语义分析" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2400" y="475" width="250" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ftX5rpeBfUk22Y6ZthCt-20" value="字节码验证：验证方法是否正常" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-2400" y="564.5" width="250" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
