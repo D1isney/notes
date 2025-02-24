@@ -1121,7 +1121,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Iq7X3F_ZSQT5HcdYU57f" name="JVM">
-    <mxGraphModel dx="4808" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4708" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1624,8 +1624,18 @@
         <mxCell id="xeHFli1PC69ey8ZBiNn--4" value="连接" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-3210" y="2049.19" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="xeHFli1PC69ey8ZBiNn--76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="xeHFli1PC69ey8ZBiNn--5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-3000" y="2360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="xeHFli1PC69ey8ZBiNn--77" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="xeHFli1PC69ey8ZBiNn--5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-3000" y="2360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
         <mxCell id="xeHFli1PC69ey8ZBiNn--5" value="初始化" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-3210" y="2253.19" width="120" height="60" as="geometry" />
+          <mxGeometry x="-3210" y="2330" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="xeHFli1PC69ey8ZBiNn--6" value="系统加载Class类型的文件主要三步" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="-3280" y="1557.63" width="280" height="30" as="geometry" />
@@ -1758,6 +1768,9 @@
         <mxCell id="xeHFli1PC69ey8ZBiNn--63" value="2、准备" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-2990" y="2058.63" width="110" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="xeHFli1PC69ey8ZBiNn--74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="xeHFli1PC69ey8ZBiNn--64" target="xeHFli1PC69ey8ZBiNn--73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="xeHFli1PC69ey8ZBiNn--64" value="3、解析" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-2990" y="2170" width="110" height="40" as="geometry" />
         </mxCell>
@@ -1766,6 +1779,18 @@
         </mxCell>
         <mxCell id="xeHFli1PC69ey8ZBiNn--71" value="&lt;ol&gt;&lt;li&gt;为类的静态变量分配内存并设置初始值，这里所设置的初始值“通常情况下”是数据类型默认的零值（如0、0L、null、false等），例如：定义了public static int value = 111,那么value变量在准备阶段的初始值是0而不是111（初始化阶段才会赋值）。特殊情况，例如：value变量加上了final关键字，public static final int value = 111，那么准备阶段value的值就被赋值为111。&lt;/li&gt;&lt;li&gt;这时候内存分配的仅包括变量（static），而不包括实例变量，在JDK7以之前，HotSpot使用永久代来实现方法区时，实现是完全符合这种概念的；而在JDK8及之后，类变量则会随着Class对象一起存放在Java堆中。&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
           <mxGeometry x="-2800" y="2028.78" width="720" height="100.81" as="geometry" />
+        </mxCell>
+        <mxCell id="xeHFli1PC69ey8ZBiNn--73" value="&lt;ol&gt;&lt;li&gt;符号应用：就是一组符号来描述目标，可以是任意字面量，class文件中常量池的constant_class_info、constant_fieldref_info、constant_methodref_info这几个结构所存储的字符常量。&lt;/li&gt;&lt;li&gt;直接引用：可以理解位一个内存地址，或者一个偏移量。比如类方法，类变量的直接应用是指向方向区的指针。而实例方法，实例变量的直接应用则是从实例的头指针开始算起到这个实例变量位置的偏移量。&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="-2790" y="2150" width="680" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="xeHFli1PC69ey8ZBiNn--81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="xeHFli1PC69ey8ZBiNn--79" target="xeHFli1PC69ey8ZBiNn--80">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="xeHFli1PC69ey8ZBiNn--79" value="对于初始化阶段，虚拟机严格规范了有且只有5种情况下，必须堆类进行初始化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-3000" y="2310" width="160" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="xeHFli1PC69ey8ZBiNn--80" value="&lt;ol&gt;&lt;li&gt;当遇到new、getstatic、putstatic或invokestatic这4调直接码指令时，例如：new一个类，读取一个静态字段（未被final修饰）、或调用一个类的静态方法时&lt;/li&gt;&lt;li&gt;使用java.langreflect包的方法对类进行反射调用时，如果类没有初始化&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="-2750" y="2320" width="920" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
