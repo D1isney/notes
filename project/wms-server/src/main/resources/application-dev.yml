@@ -74,4 +74,8 @@ webSocket:
   pushTime: 60 #  webSocket看板推送时间
 
 data:
-  queryDays: 7 # 查询近7天的任务数
+  queryDays: 6 # 查询近7天的任务数
+
+swagger:
+  enabled: true
+

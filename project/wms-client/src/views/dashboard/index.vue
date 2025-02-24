@@ -6,7 +6,7 @@
     </div>
     <div class="dashboard-foot">
       <surplus-view></surplus-view>
-      <div class="dashboard-foot-box1">2</div>
+      <activation-view></activation-view>
       <log-statistics-view></log-statistics-view>
     </div>
   </div>
@@ -17,14 +17,14 @@ import SurplusView from '@/views/echartsView/surplusView.vue'
 import WeeklyWorkloadView from '@/views/echartsView/weeklyWorkloadView.vue'
 import InboundAndOutboundVolumeView from '@/views/echartsView/inboundAndOutboundVolumeView.vue'
 import LogStatisticsView from '@/views/echartsView/logStatisticsView.vue'
+import ActivationView from '@/views/echartsView/activationView.vue'
 
 export default {
   name: 'Dashboard',
-  components: { SurplusView, WeeklyWorkloadView, InboundAndOutboundVolumeView ,LogStatisticsView},
+  components: { SurplusView, WeeklyWorkloadView, InboundAndOutboundVolumeView ,LogStatisticsView,ActivationView},
   computed: {},
   methods: {},
-  mounted() {
-  }
+  mounted() {}
 }
 </script>
 
@@ -38,41 +38,20 @@ export default {
   align-items: center;
 
   .dashboard-top {
-    width: 98%;
+    width: 95%;
     height: 50%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-
-
   }
 
   .dashboard-foot {
-    width: 98%;
+    width: 100%;
     height: 50%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
-    .dashboard-foot-box1 {
-      width: 30%;
-      height: 90%;
-      padding-top: 1%;
-      padding-left: 1%;
-      padding-right: 1%;
-      box-shadow: 0px 0px 9px 0px rgba(210, 210, 210, 0.23) inset;
-      background: linear-gradient(to left, #5d72ad, #5d72ad) left top no-repeat,
-      linear-gradient(to bottom, #5d72ad, #5d72ad) left top no-repeat,
-      linear-gradient(to left, #5d72ad, #5d72ad) right top no-repeat,
-      linear-gradient(to bottom, #5d72ad, #5d72ad) right top no-repeat,
-      linear-gradient(to left, #5d72ad, #5d72ad) left bottom no-repeat,
-      linear-gradient(to bottom, #5d72ad, #5d72ad) left bottom no-repeat,
-      linear-gradient(to left, #5d72ad, #5d72ad) right bottom no-repeat,
-      linear-gradient(to left, #5d72ad, #5d72ad) right bottom no-repeat;
-      background-size: 3px 12px, 12px 3px, 3px 12px, 12px 3px;
-    }
-
   }
 }
 </style>

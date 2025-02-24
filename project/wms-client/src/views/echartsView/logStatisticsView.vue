@@ -25,9 +25,9 @@ export default {
   watch: {
     socketData(val) {
       // 刷新inboundAndOutboundVolumeView
-      // if (val.type === 'inboundAndOutboundVolumeView') {
-      //   this.getInboundAndOutboundVolume()
-      // }
+      if (val.type === 'logStatisticsView') {
+        this.getAlarmStatistics()
+      }
     }
   },
   methods: {
@@ -103,8 +103,8 @@ export default {
       })
     },
 
-    getAlarmStatistics() {
-      alarmStatistics().then(res => {
+    async getAlarmStatistics() {
+      await alarmStatistics().then(res => {
         if (res.code === 200){
           this.xAxisList = res.data.alarm.map(obj => obj.name)
           this.yAxisListAlarm = res.data.alarm.map(obj => obj.value)

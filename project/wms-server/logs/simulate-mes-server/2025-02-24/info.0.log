@@ -1,0 +1,24 @@
+2025-02-24 09:12:57.480   INFO 14400 --- [           main] com.wms.WmsServerApplication             : Starting WmsServerApplication using Java 17.0.5 on Disney with PID 14400 (K:\GitHub\notes\project\wms-server\target\classes started by qe249 in K:\GitHub\notes\project\wms-server)
+2025-02-24 09:12:57.484   INFO 14400 --- [           main] com.wms.WmsServerApplication             : The following 1 profile is active: "dev"
+2025-02-24 09:13:01.290   INFO 14400 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2025-02-24 09:13:01.294   INFO 14400 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2025-02-24 09:13:01.333   INFO 14400 --- [           main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 0 Redis repository interfaces.
+2025-02-24 09:13:02.382   INFO 14400 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 1217 (http)
+2025-02-24 09:13:02.392   INFO 14400 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Initializing ProtocolHandler ["http-nio-1217"]
+2025-02-24 09:13:02.392   INFO 14400 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-02-24 09:13:02.393   INFO 14400 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2025-02-24 09:13:02.528   INFO 14400 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-02-24 09:13:02.528   INFO 14400 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4966 ms
+2025-02-24 09:13:02.633   INFO 14400 --- [           main] c.a.d.s.b.a.DruidDataSourceAutoConfigure : Init DruidDataSource
+2025-02-24 09:13:02.890   INFO 14400 --- [           main] com.alibaba.druid.pool.DruidDataSource   : {dataSource-1} inited
+2025-02-24 09:13:05.776   INFO 14400 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/websocket']
+2025-02-24 09:13:05.777   INFO 14400 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/']
+2025-02-24 09:13:05.778   INFO 14400 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/web/**']
+2025-02-24 09:13:05.778   INFO 14400 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/web/static**']
+2025-02-24 09:13:05.778   INFO 14400 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/web/static/**']
+2025-02-24 09:13:05.779   INFO 14400 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will not secure Ant [pattern='/login/**']
+2025-02-24 09:13:05.835   INFO 14400 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Will secure com.wms.config.SecurityConfig$$Lambda$1041/0x00000008013581f0@2ecf4b3e with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f1c406e, org.springframework.security.web.context.SecurityContextPersistenceFilter@2a0881f1, org.springframework.security.web.header.HeaderWriterFilter@64acf8d2, org.springframework.web.filter.CorsFilter@5364b481, org.springframework.security.web.authentication.logout.LogoutFilter@1932ad2c, com.wms.filter.jwt.JwtAuthenticationTokenFilter@15a484a9, org.springframework.security.web.session.ConcurrentSessionFilter@5b78a946, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@29ce33e9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c945ee7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62ec4146, org.springframework.security.web.session.SessionManagementFilter@4a3404fa, org.springframework.security.web.access.ExceptionTranslationFilter@4516c2ef, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@79f59e0e]
+2025-02-24 09:13:05.957   INFO 14400 --- [           main] o.a.coyote.http11.Http11NioProtocol      : Starting ProtocolHandler ["http-nio-1217"]
+2025-02-24 09:13:05.990   INFO 14400 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 1217 (http) with context path ''
+2025-02-24 09:13:06.502   INFO 14400 --- [           main] com.wms.WmsServerApplication             : Started WmsServerApplication in 9.611 seconds (JVM running for 12.279)
+2025-02-24 09:13:06.504   INFO 14400 --- [           main] com.wms.runner.WmsApplicationRunner      : 定时任务启动完成----------Mon Feb 24 09:13:06 CST 2025

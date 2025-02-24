@@ -54,6 +54,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/websocket");
+        web.ignoring().antMatchers("/");
+        web.ignoring().antMatchers("/web/**");
+        web.ignoring().antMatchers("/web/static**");
+        web.ignoring().antMatchers("/web/static/**");
+        web.ignoring().antMatchers("/login/**");
     }
 
     @Override
@@ -67,6 +72,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/constraintLogin").permitAll()
                 .antMatchers("/member/register").permitAll()
                 .antMatchers("/websocket/**").permitAll()
+                .antMatchers("/web/static**").permitAll()
+                .antMatchers("/web/static/**").permitAll()
+                .antMatchers("/web/**").permitAll()
+                .antMatchers("/swagger-resources/**"
+                        ,"/v3/**","/**/v3/api-docs"
+                        ,"/v2/**","/**/v2/api-docs"
+                        ,"/swagger-ui/**").permitAll()
                 .anyRequest().authenticated()
         ;
         //  jwt解析

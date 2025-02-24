@@ -54,6 +54,13 @@ export function inboundAndOutboundVolume(){
   })
 }
 
+export function averageRateOfActivity(){
+  return request({
+    url: '/task/averageRateOfActivity',
+    method: 'get'
+  })
+}
+
 
 export const TaskConst = {
   // 任务状态（0：初始化，1：进行中，2：挂起，3：完成）

@@ -1,5 +1,7 @@
 package com.wms.task;
 
+import cn.hutool.core.date.DateUnit;
+import cn.hutool.core.date.DateUtil;
 import com.wms.connect.plc.PlcConnect;
 import com.wms.connect.websocket.Push;
 import com.wms.connect.websocket.WebSocketServerWeb;
@@ -66,10 +68,12 @@ public abstract class TaskExecutor implements Runnable {
     //  任务执行
     @Override
     public synchronized void run() {
-        startTime = System.currentTimeMillis();
+
         try {
             prepare();
+            //  计算工作时间
             attempt();
+            startTime = System.currentTimeMillis();
             write();
             results();
             endTime = System.currentTimeMillis();
@@ -112,17 +116,35 @@ public abstract class TaskExecutor implements Runnable {
      * @param task          任务
      * @param inventoryType 出入库
      */
-    public void operation(Inventory inventory, Task task, InventoryEnum inventoryType, TaskEnum taskEnum) {
+    public void operation(Inventory inventory, Task task, InventoryEnum inventoryType, TaskEnum taskEnum, Boolean flag) {
         //  更新库位，任务状态，推送日志
         //  正在入库
         inventory.setStatus(inventoryType.getType());
         inventory.setUpdateTime(new Date());
         inventory.setUpdateMember(memberThreadLocal.getMember().getId());
         task.setStatus(taskEnum.getStatus());
-        task.setUpdateTime(new Date());
         task.setUpdateMember(memberThreadLocal.getMember().getId());
+        task.setUpdateTime(new Date());
+        if (flag) {
+            float activation = getActivation(task);
+            task.setActivation(activation);
+        }
         inventoryService.saveOrModify(inventory);
         taskService.saveOrModify(task);
+    }
+
+    private float getActivation(Task task) {
+        long all = DateUtil.between(task.getCreateTime(), task.getUpdateTime(), DateUnit.MS);
+        //  工作时间
+        float word = endTime - startTime;
+        float activation = word / all;
+        activation = activation * 100;
+        if (activation > 0) {
+            activation = (Math.round(activation) * 100.00f) / 100.00f;
+        } else {
+            activation = 0;
+        }
+        return activation;
     }
 
 

@@ -14,7 +14,9 @@ public enum WebSocketEnum {
 
     SURPLUS_VIEW("刷新surplusView",null,"surplusView",200),
     WEEKLY_WORKLOAD_VIEW("刷新weeklyWorkloadView",null,"weeklyWorkloadView",200),
-    INBOUND_AND_OUTBOUND_VOLUME_VIEW("刷新inboundAndOutboundVolumeView",null,"inboundAndOutboundVolumeView",200)
+    INBOUND_AND_OUTBOUND_VOLUME_VIEW("刷新inboundAndOutboundVolumeView",null,"inboundAndOutboundVolumeView",200),
+    ACTIVATION_VIEW("刷新activationView",null,"activationView",200),
+    LOG_STATISTICS_VIEW("刷新logStatisticsView",null,"logStatisticsView",200),
     ;
 
     private final String message;

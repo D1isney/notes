@@ -29,10 +29,8 @@ public class WmsApplicationRunner implements ApplicationRunner {
             WebSocketServerWeb.send(WebSocketEnum.SURPLUS_VIEW);
             WebSocketServerWeb.send(WebSocketEnum.WEEKLY_WORKLOAD_VIEW);
             WebSocketServerWeb.send(WebSocketEnum.INBOUND_AND_OUTBOUND_VOLUME_VIEW);
-
-
-
-
+            WebSocketServerWeb.send(WebSocketEnum.ACTIVATION_VIEW);
+            WebSocketServerWeb.send(WebSocketEnum.LOG_STATISTICS_VIEW);
         }, 0, pushTime, TimeUnit.SECONDS);
 
 

@@ -55,9 +55,7 @@
                       size="small"
                     >
                     <span>
-                         {{
-                        (propsList.row.status || propsList.row.status === 0) && statusOptions[propsList.row.status].label
-                      }}
+                         {{ (propsList.row.status || propsList.row.status === 0) && statusOptions[propsList.row.status].label }}
                       </span>
 
                     </el-tag>
@@ -83,7 +81,7 @@
                       effect="plain"
                       size="small"
                     >
-                      <span>{{ propsList.row.inventoryName }} - {{ propsList.row.inventoryLayer }}</span>
+                      <span>{{ propsList.row.inventoryName }}</span>
                     </el-tag>
                   </el-form-item>
                 </el-col>

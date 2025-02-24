@@ -207,6 +207,30 @@ public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> imp
         return R.ok(mapList);
     }
 
+    @Override
+    public R<?> averageRateOfActivity() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //  稼动率
+        List<TypeAndValue> success = new ArrayList<>();
+        for (int i = -queryDays; i <= 0; i++) {
+            Date date = DateUtil.currentAdd(i);
+            date = DateUtil.resetTimeToStartOfDay(date);
+            Map<String, Object> map = new HashMap<>();
+            map.put("createTime", date);
+            map.put("status", TaskEnum.ACCOMPLISH_IN.getStatus());
+            List<Task> tasks = queryList(map);
+            TypeAndValue typeAndValue = new TypeAndValue();
+            typeAndValue.setName(sdf.format(date));
+            //  计算稼动率
+            double sum = tasks.stream().mapToDouble(Task::getActivation).sum();
+            sum = sum / tasks.size();
+            sum = Math.round(sum * 100) / 100.0;
+            typeAndValue.setValue(String.valueOf(sum));
+            success.add(typeAndValue);
+        }
+        return R.ok(success);
+    }
+
 
     /**
      * 修改任务

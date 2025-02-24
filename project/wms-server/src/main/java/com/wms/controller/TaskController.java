@@ -91,4 +91,11 @@ public class TaskController {
         return taskService.inboundAndOutboundVolume();
     }
 
+    @ApiOperation("一周当中每天的平均稼动率")
+    @GetMapping("averageRateOfActivity")
+    @Log(value = "任务-周平均稼动率",path = "/task/averageRateOfActivity")
+    public R<?> averageRateOfActivity(){
+        return taskService.averageRateOfActivity();
+    }
+
 }

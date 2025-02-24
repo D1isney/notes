@@ -75,6 +75,10 @@ public class Task implements Serializable {
     @TableField("`resource`")
     private Integer resource;
 
+    @ApiModelProperty(value = "稼动率")
+    @TableField("`activation`")
+    private Float activation;
+
 
 
     @ApiModelProperty(value = "是否直接下发，true：直接下发，false：不直接下发")

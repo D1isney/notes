@@ -91,7 +91,7 @@ public class InTaskExecutor extends TaskExecutor {
         plcConnect.writePlc(PLCEnum.PLC_STORAGE_VERTICAL_IN, storage.getRow());
         //  物料入库
         inventory.setGoodsId(goods.getId());
-        operation(inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN);
+        operation(inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN,false);
         //  创建日志并推送
         log(logRecord, inventory, task, InventoryEnum.COMING_IN, TaskEnum.ONGOING_IN, false);
     }
@@ -106,7 +106,7 @@ public class InTaskExecutor extends TaskExecutor {
             Thread.sleep(getSleepTime());
         }
         Task task = getTask();
-        operation(inventory, task, InventoryEnum.STORAGE_COMPLETED, TaskEnum.ACCOMPLISH_IN);
+        operation(inventory, task, InventoryEnum.STORAGE_COMPLETED, TaskEnum.ACCOMPLISH_IN,false);
         log(logRecord, inventory, task, InventoryEnum.STORAGE_COMPLETED, TaskEnum.ACCOMPLISH_IN, false);
     }
 
@@ -116,7 +116,7 @@ public class InTaskExecutor extends TaskExecutor {
         //  睡一秒
         Thread.sleep(getSleepTime());
         Task task = getTask();
-        operation(inventory, task, InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN);
+        operation(inventory, task, InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN,true);
         log(logRecord, inventory, task, InventoryEnum.HAVE, TaskEnum.ACCOMPLISH_IN, true);
         //  睡一秒
         Thread.sleep(getSleepTime());

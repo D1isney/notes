@@ -101,6 +101,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                 StorageAndInventoryDTO storageAndInventoryDTO = getStorageByCode(w.getStorageCode());
                 Storage storageByCode = storageAndInventoryDTO.getStorage();
                 Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType(), storageAndInventoryDTO);
+//                  将货位先挂起
                 if (w.getType().equals(InOrOutConstant.in)) {
                     Goods goodsByCode = goodsService.getGoodsByCode(w.getGoodsCode());
                     in(goodsByCode, inventoryByCode, storageByCode, w.getTask(), w.getType());

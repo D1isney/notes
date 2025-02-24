@@ -19,4 +19,6 @@ public interface TaskService extends BaseService<Task, TaskVo> {
     R<?> weeklyWorkload();
 
     R<?> inboundAndOutboundVolume();
+
+    R<?> averageRateOfActivity();
 }

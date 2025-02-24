@@ -31,7 +31,7 @@ public class WebTokenProvider {
         }
         String userid = claims.getSubject();
         Member member = (Member) cache.getIfPresent(userKey + userid);
-        //  缓存没有的情况下 缓存拿
+        //  缓存没有的情况下 线程拿
         if (StringUtil.isEmpty(member)) {
             Long id = Long.parseLong(userid);
             if (!StringUtil.isEmpty(MemberThreadLocal.getMemberInfoMap(id))) {
@@ -43,7 +43,6 @@ public class WebTokenProvider {
             Long id = Long.parseLong(userid);
             member = memberService.queryById(id);
         }
-
         if (StringUtil.isEmpty(member)) {
             throw new EException("WebSocket中，无效Token！！！");
         }

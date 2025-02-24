@@ -24,7 +24,6 @@ export default {
   },
   watch: {
     socketData(val) {
-      // 刷新inboundAndOutboundVolumeView
       if (val.type === 'inboundAndOutboundVolumeView') {
         this.getInboundAndOutboundVolume()
       }
@@ -76,14 +75,14 @@ export default {
           {
             name: '入库量',
             type: 'line',
-            stack: 'Total',
+            // stack: 'Total',
             smooth: true,
             data: this.yAxisListIn
           },
           {
             name: '出库量',
             type: 'line',
-            stack: 'Total',
+            // stack: 'Total',
             smooth: true,
             data: this.yAxisListOut
           }
@@ -95,19 +94,16 @@ export default {
         initInboundAndOutboundVolume.resize()
       })
     },
-
     async getInboundAndOutboundVolume(){
       await inboundAndOutboundVolume().then(res=>{
         if (res.code === 200){
           this.xAxisList = res.data.in.map(obj => obj.name)
-
           this.yAxisListIn = res.data.in.map(obj => obj.value)
           this.yAxisListOut = res.data.out.map(obj => obj.value)
-
           this.initInboundAndOutboundVolumeView();
         }
       })
-    }
+    },
   },
   mounted() {
     this.getInboundAndOutboundVolume()

@@ -17,6 +17,7 @@
         <result column="update_member" property="updateMember" />
         <result column="remark" property="remark" />
         <result column="resource" property="resource" />
+        <result column="activation" property="activation" />
     </resultMap>
 
     <!-- 通用查询映射结果 Vo) -->
@@ -42,7 +43,8 @@
         `create_member`,
         `update_member`,
         `remark`,
-        `resource`
+        `resource`,
+        `activation`
     </sql>
     <!-- 保存列value -->
     <sql id="saveColumnValue">
@@ -57,7 +59,8 @@
         #{entity.createMember},
         #{entity.updateMember},
         #{entity.remark},
-        #{entity.resource}
+        #{entity.resource},
+        #{entity.activation}
     </sql>
 
     <sql id="nameColumn">`code` = #{entity.name},</sql>
@@ -72,6 +75,7 @@
     <sql id="updateMemberColumn">`update_member` = #{entity.updateMember},</sql>
     <sql id="remarkColumn">`remark` = #{entity.remark}</sql>
     <sql id="resourceColumn">`remark` = #{entity.resource}</sql>
+    <sql id="activationColumn">`remark` = #{entity.activation}</sql>
 
     <sql id="updateColumnNotNull">
         <set>
@@ -87,6 +91,7 @@
             <if test="entity.updateMember != null"><include refid="updateMemberColumn"/></if>
             <if test="entity.remark != null"><include refid="remarkColumn"/></if>
             <if test="entity.resource != null"><include refid="resourceColumn"/></if>
+            <if test="entity.activation != null"><include refid="activationColumn"/></if>
         </set>
     </sql>
     <sql id="entityColumn">
@@ -102,6 +107,7 @@
         <include refid="updateMemberColumn"/>
         <include refid="remarkColumn"/>
         <include refid="resourceColumn"/>
+        <include refid="activationColumn"/>
     </sql>
     <!-- 通用查询结果列 -->
     <sql id="queryListColumnBase">
@@ -117,7 +123,8 @@
          t.create_member,
          t.update_member,
          t.remark,
-         t.resource
+         t.resource,
+         t.activation
     </sql>
     <!-- 通用查询结果列VO -->
     <sql id="queryListColumn">
