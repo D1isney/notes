@@ -1764,8 +1764,8 @@
         <mxCell id="xeHFli1PC69ey8ZBiNn--69" value="&lt;ol&gt;&lt;li&gt;文件格式验证：验证字节流是否符合Class文件格式的规范，并且能被当前版本的虚拟机处理，例如：是否以0xCAFEBABE开头，常量池中的常量是否有不被支持的类型，这一步就是验证字节流的文件结构是否正确。&lt;/li&gt;&lt;li&gt;元数据验证：结构正确了，这一步就是验证内容是否正确，比如：这个类是否有分类，除了java.lang.Object之外所有类都有父类，这个类是否被继承了不允许继承的类（被final修饰的类型），是不是都属于JVM所规定。&lt;/li&gt;&lt;li&gt;字节码验证：验证字节码文件中的Code结构，就是验证所编写的方法是否正确合理。是整个验证过程中最复杂的一个阶段，主要目的是通过数据流分析和控制流分析，确定程序语义是合法的、符合逻辑的。&lt;/li&gt;&lt;li&gt;符号引用验证：校验行为发生在虚拟机将符号引用转化为直接引用的时候，这个转化动作将在解析阶段中发生，验证是否有访问某些外部类、方法、字段的权限。&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
           <mxGeometry x="-2800" y="1889.44" width="720" height="148.37" as="geometry" />
         </mxCell>
-        <mxCell id="xeHFli1PC69ey8ZBiNn--71" value="&lt;ol&gt;&lt;li&gt;为类的静态变量分配内存并设置初始值，这里所设置的初始值“通常情况下”是数据类型默认的零值（如0、0L、null、false等），例如：定义了public static int value = 111,那么value变量在准备阶段的初始值是0而不是111（初始化阶段才会赋值）。特殊情况，例如：value变量加上了final关键字，public static final int value = 111，那么准备阶段value的值就被赋值为111。&lt;/li&gt;&lt;li&gt;这时候内存分配的仅包括变量（static），而不包括实例变量，在JDK7以之前，HotSpot使用&lt;/li&gt;&lt;li&gt;Value 3&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="-2800" y="2039.19" width="720" height="80" as="geometry" />
+        <mxCell id="xeHFli1PC69ey8ZBiNn--71" value="&lt;ol&gt;&lt;li&gt;为类的静态变量分配内存并设置初始值，这里所设置的初始值“通常情况下”是数据类型默认的零值（如0、0L、null、false等），例如：定义了public static int value = 111,那么value变量在准备阶段的初始值是0而不是111（初始化阶段才会赋值）。特殊情况，例如：value变量加上了final关键字，public static final int value = 111，那么准备阶段value的值就被赋值为111。&lt;/li&gt;&lt;li&gt;这时候内存分配的仅包括变量（static），而不包括实例变量，在JDK7以之前，HotSpot使用永久代来实现方法区时，实现是完全符合这种概念的；而在JDK8及之后，类变量则会随着Class对象一起存放在Java堆中。&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="-2800" y="2028.78" width="720" height="100.81" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
