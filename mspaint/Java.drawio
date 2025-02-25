@@ -1121,7 +1121,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Iq7X3F_ZSQT5HcdYU57f" name="JVM">
-    <mxGraphModel dx="4708" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="6308" dy="1666" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1736,11 +1736,11 @@
         <mxCell id="xeHFli1PC69ey8ZBiNn--46" value="与第一次产生的class对象是一个。绝不会产生第二个" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="-1220" y="1608.63" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="xeHFli1PC69ey8ZBiNn--51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="xeHFli1PC69ey8ZBiNn--47" target="xeHFli1PC69ey8ZBiNn--39">
+        <mxCell id="xeHFli1PC69ey8ZBiNn--51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;endArrow=none;startFill=1;startArrow=classic;" edge="1" parent="1" source="xeHFli1PC69ey8ZBiNn--47" target="xeHFli1PC69ey8ZBiNn--39">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-1085" y="1458.63" />
-              <mxPoint x="-1100" y="1458.63" />
+              <mxPoint x="-1085" y="1460" />
+              <mxPoint x="-1100" y="1460" />
             </Array>
           </mxGeometry>
         </mxCell>
