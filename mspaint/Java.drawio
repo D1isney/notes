@@ -1789,8 +1789,8 @@
         <mxCell id="xeHFli1PC69ey8ZBiNn--79" value="对于初始化阶段，虚拟机严格规范了有且只有5种情况下，必须堆类进行初始化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-3000" y="2310" width="160" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="xeHFli1PC69ey8ZBiNn--80" value="&lt;ol&gt;&lt;li&gt;当遇到new、getstatic、putstatic或invokestatic这4调直接码指令时，例如：new一个类，读取一个静态字段（未被final修饰）、或调用一个类的静态方法时&lt;/li&gt;&lt;li&gt;使用java.langreflect包的方法对类进行反射调用时，如果类没有初始化&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
-          <mxGeometry x="-2750" y="2320" width="920" height="80" as="geometry" />
+        <mxCell id="xeHFli1PC69ey8ZBiNn--80" value="&lt;ol&gt;&lt;li&gt;当遇到new、getstatic、putstatic或invokestatic这4调直接码指令时，例如：new一个类，读取一个静态字段（未被final修饰）、或调用一个类的静态方法时&lt;/li&gt;&lt;li&gt;使用java.langreflect包的方法对类进行反射调用时，如果类没有初始化&lt;/li&gt;&lt;li&gt;初始化一个类，如果其父类还未初始化，则先出发该父类的初始化&lt;/li&gt;&lt;li&gt;当虚拟机启动时，用户需要定义一个执行的主类（包含main方法的哪个类），虚拟机会先初始化这个类&lt;/li&gt;&lt;li&gt;当使用JDK1.7的动态语言时，如果一个MethodHandle实例的最后解析结构位REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个句柄没有初始化，则需要先触发其初始化&lt;/li&gt;&lt;/ol&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" vertex="1" parent="1">
+          <mxGeometry x="-2750" y="2310" width="920" height="100" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
