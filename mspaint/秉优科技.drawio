@@ -792,7 +792,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="U_vdA_gVBVSkWshD6_Pk" name="环晟">
-    <mxGraphModel dx="1500" dy="833" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3500" dy="1943" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -953,6 +953,93 @@
         </mxCell>
         <mxCell id="-Ed_d9Qiu3ysKLW6nimn-25" value="接收到返回结果" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="1350" y="640" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-26" value="视觉" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry y="1400" width="70" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-31" value="采集" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1400" width="70" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-32" value="集控后端" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="640" y="1400" width="70" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-33" value="集控前端" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="960" y="1410" width="70" height="440" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-34" value="" style="endArrow=classic;html=1;rounded=0;exitX=1.004;exitY=0.076;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.041;entryY=0.079;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="70.27999999999997" y="1438.44" as="sourcePoint" />
+            <mxPoint x="322.8700000000001" y="1439.7600000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-36" value="1、TCP：发送缺陷报文" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1410" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-37" value="" style="endArrow=classic;html=1;rounded=0;exitX=1.004;exitY=0.076;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.041;entryY=0.079;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="389.99999999999994" y="1470" as="sourcePoint" />
+            <mxPoint x="642.5900000000001" y="1471.3200000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-38" value="" style="endArrow=classic;html=1;rounded=0;exitX=1.004;exitY=0.076;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.041;entryY=0.079;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="397.40999999999997" y="1890" as="sourcePoint" />
+            <mxPoint x="650.0000000000002" y="1891.3200000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-39" value="2、TCP：转发缺陷报文" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="1440" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-40" value="" style="endArrow=classic;html=1;rounded=0;exitX=1.004;exitY=0.076;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.041;entryY=0.079;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="1500" as="sourcePoint" />
+            <mxPoint x="962.5900000000001" y="1501.3200000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-41" value="3、WebSocket、Http：发送缺陷任务队列&lt;div&gt;以及当前任务&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="710" y="1470" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-42" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.455;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="350" y="1890.2000000000003" as="sourcePoint" />
+            <mxPoint x="100" y="1890" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-43" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.455;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="960" y="1619.4900000000002" as="sourcePoint" />
+            <mxPoint x="710" y="1619.29" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-44" value="4、HTTP：复判结果" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="710" y="1590" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-45" value="" style="endArrow=classic;html=1;rounded=0;exitX=1.004;exitY=0.076;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.041;entryY=0.079;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="710" y="1660" as="sourcePoint" />
+            <mxPoint x="962.5900000000001" y="1661.3200000000002" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-46" value="5、WebSocket、Http：发送下一条任务&lt;div&gt;以及更新任务队列&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="710" y="1630" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-47" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.455;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="640" y="1690.2000000000003" as="sourcePoint" />
+            <mxPoint x="390" y="1690" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-48" value="6、TCP：将复盘结果返回给采集" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="390" y="1660" width="250" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-49" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.455;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="320" y="1710.2000000000003" as="sourcePoint" />
+            <mxPoint x="70" y="1710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-Ed_d9Qiu3ysKLW6nimn-50" value="7、TCP：接收采集系统回发的复判结果" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1680" width="250" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
