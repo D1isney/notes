@@ -314,4 +314,11 @@
         select t.code from `task` t where date(t.create_time) = curdate() order by t.code desc limit 1;
     </select>
 
+    <select id="queryByCode" parameterType="java.lang.String" resultMap="TaskMap">
+        select
+        <include refid="queryListColumnBase"/>
+        from `task` t
+        where code = #{code}
+    </select>
+
 </mapper>

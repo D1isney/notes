@@ -2,12 +2,17 @@ package com.wms.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.benmanes.caffeine.cache.Cache;
+import com.wms.connect.websocket.WebSocketServer;
+import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.constant.MemberConstant;
 import com.wms.dao.MemberDao;
+import com.wms.dto.OldPasswordAndNewPassword;
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.filter.login.PasswordEncoderForSalt;
 import com.wms.filter.login.LoginMember;
 import com.wms.filter.login.Member;
+import com.wms.helper.CurrentHelper;
 import com.wms.pojo.MemberRole;
 import com.wms.service.MemberRoleService;
 import com.wms.service.MemberService;
@@ -91,6 +96,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
     public String loggingIn(Member member, List<Member> members) {
         Member m = members.get(0);
         String password = member.getPassword() + m.getSalt();
+        password = passwordEncoder.encode(password);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getUsername(), password);
         Authentication authenticate = authenticationManager.authenticate(authenticationToken);
         //  如果认证没通过，给出对应的提示
@@ -181,6 +187,25 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         cache.invalidate(userKey + byId.getId());
     }
 
+
+    @Override
+    public R<?> getInfo(String token) {
+        String userid;
+        try {
+            Claims claims = JwtUtil.parseJWT(token);
+            userid = claims.getSubject();
+        } catch (Exception e) {
+            throw new EException("用户Token解析失败");
+        }
+        LoginMember memberInfoMap = MemberThreadLocal.getMemberInfoMap(Long.valueOf(userid));
+        if (memberInfoMap == null) {
+            return R.error("用户还未登录，请重新登录！", 400);
+        }
+//        memberInfoMap.getMember().setSalt("******");
+        memberInfoMap.getMember().setPassword("******");
+        return R.ok("", memberInfoMap.getMember());
+    }
+
     /**
      * 保存或者查询一个新的用户
      *
@@ -257,24 +282,6 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         }
     }
 
-    @Override
-    public R<?> getInfo(String token) {
-        String userid;
-        try {
-            Claims claims = JwtUtil.parseJWT(token);
-            userid = claims.getSubject();
-        } catch (Exception e) {
-            throw new EException("用户Token解析失败");
-        }
-        LoginMember memberInfoMap = MemberThreadLocal.getMemberInfoMap(Long.valueOf(userid));
-        if (memberInfoMap == null) {
-            return R.error("用户还未登录，请重新登录！", 400);
-        }
-        memberInfoMap.getMember().setSalt("******");
-        memberInfoMap.getMember().setPassword("******");
-        return R.ok("", memberInfoMap.getMember());
-    }
-
 
     @Override
     public void deleteByMemberId(Long[] ids) {
@@ -286,6 +293,90 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
             memberRoles.forEach(memberRole -> memberRoleService.delete(memberRole.getId()));
         }
         deleteByIds(ids);
+    }
+
+    @Override
+    public R<?> verificationPassword(OldPasswordAndNewPassword oldPasswordAndNewPassword) {
+        if (Objects.isNull(oldPasswordAndNewPassword)) {
+            throw new EException("无效修改信息！");
+        } else if (Objects.isNull(oldPasswordAndNewPassword.getUsername())) {
+            throw new EException("无效用户信息！");
+        } else if (Objects.isNull(oldPasswordAndNewPassword.getOldPassword())) {
+            throw new EException("无效密码！");
+        }
+        Member member = new Member();
+        member.setUsername(oldPasswordAndNewPassword.getUsername());
+        List<Member> members = queryMemberByUsername(member);
+        if (StringUtil.isEmpty(members)) {
+            throw new EException("不存在该用户信息！");
+        }
+        String salt = members.get(0).getSalt();
+        String oldPassword = oldPasswordAndNewPassword.getOldPassword();
+        String password = oldPassword + salt;
+        password = passwordEncoder.encode(password);
+        boolean matches = passwordEncoder.matches(members.get(0).getPassword(), password);
+        if (matches) {
+            //  校验成功
+            WebSocketServerWeb.send(WebSocketEnum.PASSWORD_VERIFICATION_SUCCESSFUL);
+        } else {
+            //  校验失败
+            WebSocketServerWeb.send(WebSocketEnum.PASSWORD_VERIFICATION_FAILED);
+        }
+        return R.ok();
+    }
+
+    @Resource
+    @Lazy
+    private CurrentHelper currentHelper;
+
+    @Override
+    public R<?> confirmTheChange(OldPasswordAndNewPassword oldPasswordAndNewPassword) {
+        if (Objects.isNull(oldPasswordAndNewPassword)) {
+            throw new EException("无效修改信息！");
+        } else if (Objects.isNull(oldPasswordAndNewPassword.getUsername())) {
+            throw new EException("无效用户信息！");
+        } else if (Objects.isNull(oldPasswordAndNewPassword.getNewPassword())) {
+            throw new EException("无效密码");
+        }
+        //  找到这个用户
+        Member member = new Member();
+        member.setUsername(oldPasswordAndNewPassword.getUsername());
+        List<Member> members = queryMemberByUsername(member);
+        if (StringUtil.isEmpty(members)) {
+            throw new EException("不存在该用户信息！");
+        }
+        //  在一次验证密码，避免外部直接修改input盒子
+        String salt = members.get(0).getSalt();
+        String oldPassword = oldPasswordAndNewPassword.getOldPassword();
+        String password = oldPassword + salt;
+        password = passwordEncoder.encode(password);
+        boolean matches = passwordEncoder.matches(members.get(0).getPassword(), password);
+        if (!matches) {
+            //  保存失败
+            WebSocketServerWeb.send(WebSocketEnum.PASSWORD_SAVE_FAILED);
+        }
+
+        member = members.get(0);
+        //  存盐
+        salt = PasswordUtil.getSalt();
+        //  存盐
+        member.setSalt(salt);
+        password = oldPasswordAndNewPassword.getNewPassword() + salt;
+        //  加密密码
+        password = passwordEncoder.encode(password);
+        member.setPassword(password);
+        member.setUpdateTime(new Date());
+        member.setUpdateMember(currentHelper.getCurrentMemberId());
+        Member saved = saveOrModify(member);
+        if (!StringUtil.isEmpty(saved)) {
+            //  保存成功
+            WebSocketServerWeb.send(WebSocketEnum.PASSWORD_SAVE_SUCCESSFUL);
+        } else {
+            //  保存失败
+            WebSocketServerWeb.send(WebSocketEnum.PASSWORD_SAVE_FAILED);
+        }
+
+        return R.ok();
     }
 
 

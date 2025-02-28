@@ -7,7 +7,8 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    member: {}
   }
 }
 
@@ -22,6 +23,9 @@ const mutations = {
   },
   SET_NAME: (state, name) => {
     state.name = name
+  },
+  SET_MEMBER: (state, member) => {
+    state.member = member
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
@@ -49,13 +53,13 @@ const actions = {
     return new Promise((resolve, reject) => {
       getInfo().then(response => {
         const { data } = response
-        if (response.code === 701 || response.code === 401){
+        if (response.code === 701 || response.code === 401) {
           removeToken() // must remove  token  first
           commit('RESET_STATE')
-          // this.$router.push({ path: '/login' })
         }
         if (data) {
           commit('SET_NAME', data.name)
+          commit('SET_MEMBER', data)
           resolve(data)
         }
       }).catch(error => {

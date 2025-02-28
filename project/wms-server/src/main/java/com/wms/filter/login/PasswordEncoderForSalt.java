@@ -23,7 +23,7 @@ public class PasswordEncoderForSalt implements PasswordEncoder {
 
     @Override
     public boolean matches(CharSequence rawPassword, String encodedPassword) {
-        String encode = encode(rawPassword);
-        return Objects.equals(encode, encodedPassword);
+//        String encode = encode(rawPassword);
+        return Objects.equals(rawPassword, encodedPassword);
     }
 }

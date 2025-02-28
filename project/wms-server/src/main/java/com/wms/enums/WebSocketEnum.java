@@ -1,5 +1,6 @@
 package com.wms.enums;
 
+import com.wms.constant.InOrOutConstant;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,6 +18,16 @@ public enum WebSocketEnum {
     INBOUND_AND_OUTBOUND_VOLUME_VIEW("刷新inboundAndOutboundVolumeView",null,"inboundAndOutboundVolumeView",200),
     ACTIVATION_VIEW("刷新activationView",null,"activationView",200),
     LOG_STATISTICS_VIEW("刷新logStatisticsView",null,"logStatisticsView",200),
+
+
+
+    CONTINUE_WAREHOUSING_TASK("是否继续入库任务", InOrOutConstant.in,"continueWarehousingTask",200),
+    CONTINUE_ISSUE_TASK("是否继续出库任务",InOrOutConstant.out,"continueIssueTask",200),
+
+    PASSWORD_VERIFICATION_SUCCESSFUL("确认修改",true,"passwordVerificationSuccessful",200),
+    PASSWORD_VERIFICATION_FAILED("密码错误，校验密码失败！",false,"passwordVerificationFailed",200),
+    PASSWORD_SAVE_SUCCESSFUL("保存成功",true,"passwordSaveSuccessful",200),
+    PASSWORD_SAVE_FAILED("修改失败",false,"passwordSaveFailed",200),
     ;
 
     private final String message;

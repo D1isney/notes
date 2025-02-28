@@ -3,8 +3,6 @@ package com.wms.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.aspect.Log;
 import com.wms.dto.WarehousingDTO;
-import com.wms.pojo.Inventory;
-import com.wms.pojo.Task;
 import com.wms.service.InventoryService;
 import com.wms.utils.PageUtil;
 import com.wms.utils.Query;

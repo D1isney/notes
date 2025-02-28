@@ -5,6 +5,8 @@ import com.wms.filter.login.PasswordEncoderForSalt;
 import com.wms.handler.AccessDeniedHandlerImpl;
 import com.wms.handler.AuthenticationEntryPointImpl;
 import com.wms.handler.SessionStrategy;
+import com.wms.utils.StringUtil;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,12 +18,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.annotation.Resource;
+import java.util.Arrays;
 
 /**
  * @author Disney
@@ -51,14 +55,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Resource
     private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 
+    @Value("#{'${release.path}'.split(',')}")
+    private String[] ignores;
+
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/websocket");
-        web.ignoring().antMatchers("/");
-        web.ignoring().antMatchers("/web/**");
-        web.ignoring().antMatchers("/web/static**");
-        web.ignoring().antMatchers("/web/static/**");
-        web.ignoring().antMatchers("/login/**");
+        if (!StringUtil.isEmpty(ignores)) {
+            Arrays.stream(ignores).forEach(ignore -> {
+                ignore = ignore.trim();
+                web.ignoring().antMatchers(ignore);
+            });
+        }
     }
 
     @Override
@@ -71,20 +78,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/member/login").permitAll()
                 .antMatchers("/member/constraintLogin").permitAll()
                 .antMatchers("/member/register").permitAll()
-                .antMatchers("/websocket/**").permitAll()
-                .antMatchers("/web/static**").permitAll()
-                .antMatchers("/web/static/**").permitAll()
-                .antMatchers("/web/**").permitAll()
-                .antMatchers("/swagger-resources/**"
-                        ,"/v3/**","/**/v3/api-docs"
-                        ,"/v2/**","/**/v2/api-docs"
-                        ,"/swagger-ui/**").permitAll()
                 .anyRequest().authenticated()
         ;
         //  jwt解析
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class)
                 .requestMatcher(request -> !request.getRequestURI().startsWith("/websocket/"));
-        http.sessionManagement(session->{
+        http.sessionManagement(session -> {
             //  最大用户在线
             session.maximumSessions(1).expiredSessionStrategy(new SessionStrategy());
         });

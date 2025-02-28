@@ -58,12 +58,23 @@ public class SystemController {
         try {
             plcConnect.open();
             systemParam.setConnect(SystemParam.isConnect_YES);
+            //  检查任务
+            systemService.rollbackTask();
             return R.ok("PLC连接成功！");
         } catch (ModbusIOException | IOException e) {
             systemParam.setConnect(SystemParam.isConnect_NO);
             return R.error("PLC连接失败，请检查PLC的IP以及端口！");
         }
     }
+
+    @ApiOperation("重新下发任务")
+    @GetMapping("executePendingTasks")
+    @Log(value = "System-重新下发任务", path = "/system/executePendingTasks")
+    public  R<?> executePendingTasks(@RequestParam boolean flag,@RequestParam Integer type) {
+        systemService.executePendingTasks(flag,type);
+        return R.ok();
+    }
+
 
     @ApiOperation("关闭PLC连接")
     @GetMapping("close")

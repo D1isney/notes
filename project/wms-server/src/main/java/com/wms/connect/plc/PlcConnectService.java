@@ -20,4 +20,6 @@ public interface PlcConnectService {
 
     void writePlc(PLCEnum plcEnum, int value);
 
+    void restPLC() throws IOException;
+
 }

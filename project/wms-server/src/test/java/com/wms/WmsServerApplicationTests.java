@@ -54,23 +54,31 @@ class WmsServerApplicationTests {
 //        int i = date1.compareTo(date2);
 //        System.out.println(i);
 
-        List<Storage> storages = storageService.queryAll();
-        storages.forEach(storage -> {
-            for (int i = 1; i <= 8; i++) {
-                Inventory inventory = new Inventory();
-                inventory.setLayer(i);
-                inventory.setStorageId(storage.getId());
-                inventory.setCode(inventoryService.lastCode());
-                inventory.setGoodsId(0L);
-                inventory.setStatus(0);
-                inventory.setName(storage.getName() + "-库存" + i);
-                inventory.setCreateTime(new Date());
-                inventory.setUpdateTime(new Date());
-                inventory.setCreateMember(1L);
-                inventory.setUpdateMember(1L);
-                inventoryService.saveOrModify(inventory);
-            }
-        });
+//        List<Storage> storages = storageService.queryAll();
+//        storages.forEach(storage -> {
+//            for (int i = 1; i <= 8; i++) {
+//                Inventory inventory = new Inventory();
+//                inventory.setLayer(i);
+//                inventory.setStorageId(storage.getId());
+//                inventory.setCode(inventoryService.lastCode());
+//                inventory.setGoodsId(0L);
+//                inventory.setStatus(0);
+//                inventory.setName(storage.getName() + "-库存" + i);
+//                inventory.setCreateTime(new Date());
+//                inventory.setUpdateTime(new Date());
+//                inventory.setCreateMember(1L);
+//                inventory.setUpdateMember(1L);
+//                inventoryService.saveOrModify(inventory);
+//            }
+//        });
+
+        String encode = passwordEncoderForSalt.encode("123456");
+
+        System.out.println(encode);
+        String encode1 = passwordEncoderForSalt.encode("123456");
+        System.out.println(encode1);
+
+        System.out.println(passwordEncoderForSalt.matches("123456", encode1));
 
 
     }

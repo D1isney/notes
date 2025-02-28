@@ -9,18 +9,24 @@ import com.intelligt.modbus.jlibmodbus.master.ModbusMasterFactory;
 import com.intelligt.modbus.jlibmodbus.tcp.TcpParameters;
 import com.wms.connect.utils.PlcParam;
 import com.wms.connect.websocket.WebSocketServerWeb;
+import com.wms.dto.AddressValueDTO;
+import com.wms.dto.PlcAddressDTO;
 import com.wms.enums.PLCEnum;
 import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
+import com.wms.service.SystemService;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -53,7 +59,9 @@ public class PlcConnect implements PlcConnectService {
             master.connect();
             connected = true;
         }
+
     }
+
 
     /**
      * 关闭PLC连接
@@ -112,7 +120,7 @@ public class PlcConnect implements PlcConnectService {
             } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException e) {
                 throw new RuntimeException(e);
             }
-        }else{
+        } else {
             throw new EException("请先连接PLC！！！");
         }
     }
@@ -132,10 +140,24 @@ public class PlcConnect implements PlcConnectService {
             } catch (ModbusProtocolException | ModbusNumberException | ModbusIOException e) {
                 throw new RuntimeException(e);
             }
-        }else{
+        } else {
             WebSocketServerWeb.send(WebSocketEnum.PLC_CONNECT_ERROR);
             throw new EException("请先连接PLC！！！");
         }
+    }
+
+    /**
+     * 智能盘库
+     * @throws IOException 异常
+     */
+    @Override
+    public void restPLC() throws IOException {
+        PlcParam plcParam = new PlcParam(plcAddress, keepAlive);
+        PlcAddressDTO plcAddressDTO = plcParam.getPlcAddressDTO();
+        List<AddressValueDTO> pointList = plcAddressDTO.getPointList();
+        pointList.forEach(point -> {
+            writePlc(point.getAddress(), point.getValue());
+        });
     }
 
 

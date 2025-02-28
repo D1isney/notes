@@ -179,13 +179,7 @@ public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> imp
             Date date = DateUtil.currentAdd(i);
             date = DateUtil.resetTimeToStartOfDay(date);
             Map<String, Object> map = new HashMap<>();
-            map.put("createTime", date);
-            map.put("type", TaskEnum.INIT_OUT.getType());
-            List<Task> tasks = queryList(map);
-            TypeAndValue typeAndValue = new TypeAndValue();
-            typeAndValue.setName(sdf.format(date));
-            typeAndValue.setValue(String.valueOf(tasks.size()));
-            out.add(typeAndValue);
+            queryParameter(sdf, out, date, map,TaskEnum.INIT_OUT);
         }
 
         List<TypeAndValue> in = new ArrayList<>();
@@ -193,18 +187,23 @@ public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> imp
             Date date = DateUtil.currentAdd(i);
             date = DateUtil.resetTimeToStartOfDay(date);
             Map<String, Object> map = new HashMap<>();
-            map.put("createTime", date);
-            map.put("type", TaskEnum.INIT_IN.getType());
-            List<Task> tasks = queryList(map);
-            TypeAndValue typeAndValue = new TypeAndValue();
-            typeAndValue.setName(sdf.format(date));
-            typeAndValue.setValue(String.valueOf(tasks.size()));
-            in.add(typeAndValue);
+            queryParameter(sdf, in, date, map,TaskEnum.INIT_IN);
         }
 
         mapList.put("in",in);
         mapList.put("out",out);
         return R.ok(mapList);
+    }
+
+    private void queryParameter(SimpleDateFormat sdf, List<TypeAndValue> in, Date date, Map<String, Object> map,TaskEnum taskEnum) {
+        map.put("createTime", date);
+        map.put("type", taskEnum.getType());
+        map.put("status", TaskEnum.ACCOMPLISH_IN.getStatus());
+        List<Task> tasks = queryList(map);
+        TypeAndValue typeAndValue = new TypeAndValue();
+        typeAndValue.setName(sdf.format(date));
+        typeAndValue.setValue(String.valueOf(tasks.size()));
+        in.add(typeAndValue);
     }
 
     @Override
@@ -229,6 +228,11 @@ public class TaskServiceImpl extends IBaseServiceImpl<TaskDao, Task, TaskVo> imp
             success.add(typeAndValue);
         }
         return R.ok(success);
+    }
+
+    @Override
+    public Task queryTaskByCode(String code) {
+        return taskDao.queryByCode(code);
     }
 
 

@@ -1,7 +1,5 @@
 server:
   port: 1217
-
-
 spring:
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
@@ -9,14 +7,14 @@ spring:
   datasource:
     username: root
     password: 123456
-    #    url: jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
-    url: jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    #    url: jdbc:mysql://localhost:3306/wms-server?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     # 连接池
     hikari:
       minimum-idle: 10
-      maximum-pool-size: 20
+      maximum-pool-size: 10
       idle-timeout: 300000
       max-lifetime: 1800000
       connection-timeout: 30000
@@ -26,8 +24,13 @@ spring:
   main:
     allow-bean-definition-overriding: true
   mvc:
-    pathmatch:
+    path-match:
       matching-strategy: ant_path_matcher
+  sql:
+    init:
+      schema-locations: classpath:sql/start.sql
+      mode: always
+
 
 mybatis-plus:
   # 映射
@@ -78,4 +81,8 @@ data:
 
 swagger:
   enabled: true
+
+release:
+  path: /static/**,/index.html,/*.ico,/,/websocket,/swagger-resources/**,/v3/**,/**/v3/api-docs,/v2/**,/**/v2/api-docs,/swagger-ui/**
+
 

@@ -67,6 +67,23 @@ export function saveOrUpdate(data) {
   })
 }
 
+//  校验密码，结果通过webSocket告知
+export function verificationPassword(data){
+  return request({
+    data: data,
+    url: '/member/verificationPassword',
+    method: 'post'
+  })
+}
+//  修改密码，结果通过webSocket告知
+export function confirmTheChange(data){
+  return request({
+    data: data,
+    url: '/member/confirmTheChange',
+    method: 'post'
+  })
+}
+
 //  常量
 export const MemberConst = {
   // 激活状态（0：封禁，1：可用，2：已过期）

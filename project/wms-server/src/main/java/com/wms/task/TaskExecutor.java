@@ -58,8 +58,8 @@ public abstract class TaskExecutor implements Runnable {
     private LogRecordService logRecordService;
 
     private Integer sleepTime;
-    private Long startTime;
-    private Long endTime;
+    private static Long startTime;
+    private static Long endTime;
 
     private LoginMember memberThreadLocal;
 

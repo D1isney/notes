@@ -1,5 +1,6 @@
 package com.wms.service;
 
+import com.wms.dto.OldPasswordAndNewPassword;
 import com.wms.filter.login.Member;
 import com.wms.service.base.BaseService;
 import com.wms.utils.R;
@@ -21,4 +22,8 @@ public interface MemberService extends BaseService<Member, MemberVo> {
     R<?> getInfo(String token);
 
     void deleteByMemberId(Long[] ids);
+
+    R<?> verificationPassword(OldPasswordAndNewPassword oldPasswordAndNewPassword);
+
+    R<?> confirmTheChange(OldPasswordAndNewPassword oldPasswordAndNewPassword);
 }

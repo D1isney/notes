@@ -2,6 +2,7 @@ package com.wms.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.wms.aspect.Log;
+import com.wms.dto.OldPasswordAndNewPassword;
 import com.wms.filter.login.Member;
 import com.wms.service.MemberService;
 import com.wms.utils.PageUtil;
@@ -85,7 +86,7 @@ public class MemberController {
 
     @PostMapping("saveOrUpdate")
     @Log(value = "保存或修改接口", path = "/member/saveOrUpdate")
-    @PreAuthorize("hasAuthority('/member/saveOrUpdate')")
+    @PreAuthorize("hasAuthority('member:saveOrUpdate')")
     public R<?> saveOrUpdate(@RequestBody Member member) {
         return memberService.insertOrSave(member);
     }
@@ -94,11 +95,26 @@ public class MemberController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "用户-删除用户信息", path = "/member/delete")
-    @PreAuthorize("hasAuthority('/member/delete')")
+    @PreAuthorize("hasAuthority('member:delete')")
     public R<?> delete(@RequestParam Long[] ids) {
         memberService.deleteByMemberId(ids);
-//        memberService.deleteByIds(ids);
         return R.ok("删除成功！");
+    }
+
+    @ApiOperation("验证密码")
+    @ApiImplicitParam(name = "oldPasswordAndNewPassword", value = "旧密码")
+    @PostMapping("verificationPassword")
+    @Log(value = "用户-更改密码", path = "/member/verificationPassword")
+    public R<?> verificationPassword(@RequestBody OldPasswordAndNewPassword oldPasswordAndNewPassword){
+        return memberService.verificationPassword(oldPasswordAndNewPassword);
+    }
+
+    @ApiOperation("确认修改")
+    @ApiImplicitParam(name = "oldPasswordAndNewPassword", value = "新密码")
+    @PostMapping("confirmTheChange")
+    @Log(value = "用户-确认修改", path = "/member/confirmTheChange")
+    public R<?> confirmTheChange(@RequestBody OldPasswordAndNewPassword oldPasswordAndNewPassword){
+        return memberService.confirmTheChange(oldPasswordAndNewPassword);
     }
 
 

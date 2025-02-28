@@ -21,4 +21,6 @@ public interface TaskService extends BaseService<Task, TaskVo> {
     R<?> inboundAndOutboundVolume();
 
     R<?> averageRateOfActivity();
+
+    Task queryTaskByCode(String code);
 }

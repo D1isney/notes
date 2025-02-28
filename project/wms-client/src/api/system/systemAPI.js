@@ -34,3 +34,10 @@ export function getSystemPlcStatus() {
   })
 }
 
+export function executePendingTasks(query) {
+  return request({
+    url: '/system/executePendingTasks',
+    method: 'get',
+    params: query
+  })
+}

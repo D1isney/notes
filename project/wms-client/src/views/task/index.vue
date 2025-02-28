@@ -555,7 +555,7 @@ export default {
         this.$message.warning('该任务已完成！不能再次下发！')
         return
       }
-      if (row.status !== 0) {
+      if (row.status === 1) {
         this.$message.warning('该任务已下发！不能再次下发！')
         return
       }
@@ -609,7 +609,6 @@ export default {
       })
       this.updateDrawer = true
     },
-
     deleteTask(row) {
       this.$confirm('此操作将永久删除该任务, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -842,6 +841,14 @@ export default {
     width: 4%;
     height: 100%;
   }
+}
+
+/deep/ input[aria-hidden="true"] {
+  display: none !important;
+}
+
+/deep/.el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+  box-shadow: none !important;
 }
 
 </style>

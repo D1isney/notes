@@ -59,4 +59,8 @@ export default {
   mask-size: cover!important;
   display: inline-block;
 }
+
+input[aria-hidden="true"]{
+  display: none !important;
+}
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div :class="{'has-logo':showLogo}">
-    <logo v-if="showLogo" :collapse="isCollapse" />
-    <el-scrollbar wrap-class="scrollbar-wrapper">
+    <logo v-if="showLogo" :collapse="isCollapse"/>
+
+    <el-scrollbar wrap-style="overflow-y:hidden;">
       <el-menu
         :default-active="activeMenu"
         :collapse="isCollapse"
@@ -12,7 +13,7 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
+        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"/>
       </el-menu>
     </el-scrollbar>
   </div>
@@ -54,3 +55,14 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.el-scrollbar__body {
+  overflow: auto;
+  /* overflow-x: auto; */
+}
+
+.el-scrollbar__container ::-webkit-scrollbar {
+  display: none;
+}
+</style>

@@ -507,5 +507,13 @@ export default {
     height: 100%;
   }
 }
+
+/deep/ input[aria-hidden="true"] {
+  display: none !important;
+}
+
+/deep/.el-radio:focus:not(.is-focus):not(:active):not(.is-disabled) .el-radio__inner {
+  box-shadow: none !important;
+}
 </style>
 

@@ -167,7 +167,8 @@ export default {
   },
   computed: {
     ...mapGetters(['sidebar', 'username']),
-    ...mapState('webSocket', ['socketData'])
+    ...mapState('webSocket', ['socketData']),
+    ...mapState('user',['member'])
   },
   watch: {
     socketData(val) {

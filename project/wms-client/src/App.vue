@@ -23,4 +23,8 @@ export default {
   display: none;
 }
 
+.input[aria-hidden="true"]{
+  display: none !important;
+}
+
 </style>

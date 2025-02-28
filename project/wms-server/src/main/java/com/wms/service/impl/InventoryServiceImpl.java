@@ -2,11 +2,13 @@ package com.wms.service.impl;
 
 import com.wms.connect.plc.PlcConnect;
 import com.wms.connect.utils.PlcParam;
+import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.constant.InOrOutConstant;
 import com.wms.dao.InventoryDao;
 import com.wms.dto.*;
 import com.wms.enums.InventoryEnum;
 import com.wms.enums.TaskEnum;
+import com.wms.enums.WebSocketEnum;
 import com.wms.exception.EException;
 import com.wms.pojo.Goods;
 import com.wms.pojo.Inventory;
@@ -101,10 +103,12 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                 StorageAndInventoryDTO storageAndInventoryDTO = getStorageByCode(w.getStorageCode());
                 Storage storageByCode = storageAndInventoryDTO.getStorage();
                 Inventory inventoryByCode = getInventoryByCode(w.getInventoryCode(), w.getType(), storageAndInventoryDTO);
+                Integer oldInventory = inventoryByCode.getStatus();
+                checkInventory(inventoryByCode, storageByCode, w.getType());
 //                  将货位先挂起
                 if (w.getType().equals(InOrOutConstant.in)) {
                     Goods goodsByCode = goodsService.getGoodsByCode(w.getGoodsCode());
-                    in(goodsByCode, inventoryByCode, storageByCode, w.getTask(), w.getType());
+                    in(goodsByCode, inventoryByCode, storageByCode, w.getTask(), w.getType(), oldInventory);
                 } else {
                     Goods goodsById;
                     if (!StringUtil.isEmpty(w.getGoodsCode())) {
@@ -112,13 +116,33 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
                     } else {
                         goodsById = goodsService.getGoodsById(w.getGoodsId());
                     }
-                    out(goodsById, inventoryByCode, storageByCode, w.getTask(), w.getType());
+                    out(goodsById, inventoryByCode, storageByCode, w.getTask(), w.getType(), oldInventory);
                 }
             });
             return R.ok("正在下发任务！！！");
         } else {
             return R.error("无效入库信息！！！");
         }
+    }
+
+    public void checkInventory(Inventory inventory, Storage storage, Integer type) {
+        if (type.equals(InOrOutConstant.in)) {
+            if (!inventory.getStatus().equals(InventoryEnum.EMPTY.getType())) {
+                throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + ",已有物料，无法再次入库！！！");
+            } else {
+                inventory.setStatus(InventoryEnum.COMING_IN.getType());
+                inventoryService.saveOrModify(inventory);
+            }
+        } else {
+            //  挂起的库存或者是有货物的库存才能出库
+            if (!inventory.getStatus().equals(InventoryEnum.HAVE.getType())) {
+                throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + "，没有物料或物料正在出入库，无法再次出库！！！");
+            } else {
+                inventory.setStatus(InventoryEnum.LEAVING_THE_WAREHOUSE.getType());
+                inventoryService.saveOrModify(inventory);
+            }
+        }
+        WebSocketServerWeb.send(WebSocketEnum.OPERATION);
     }
 
     /**
@@ -128,7 +152,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
     public void intelligentDiskLibrary() {
         //  修改PLC初始化状态
         try {
-            restPLC();
+            plcConnect.restPLC();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -148,18 +172,6 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
     private Boolean keepAlive;
 
     /**
-     * 初始化PLC的所有状态
-     */
-    public void restPLC() throws IOException {
-        PlcParam plcParam = new PlcParam(plcAddress, keepAlive);
-        PlcAddressDTO plcAddressDTO = plcParam.getPlcAddressDTO();
-        List<AddressValueDTO> pointList = plcAddressDTO.getPointList();
-        pointList.forEach(point -> {
-            plcConnect.writePlc(point.getAddress(), point.getValue());
-        });
-    }
-
-    /**
      * 入库操作
      *
      * @param goods     物料
@@ -167,18 +179,10 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      * @param storage   库位
      * @param task      任务
      */
-    private void in(Goods goods, Inventory inventory, Storage storage, Task task, Integer type) {
-        if (!inventory.getStatus().equals(InventoryEnum.EMPTY.getType())) {
-            throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + ",已有物料，无法再次入库！！！");
-        }
+    private void in(Goods goods, Inventory inventory, Storage storage, Task task, Integer type, Integer oldInventory) {
         TaskExecutor taskExecutor = null;
         taskExecutor = new InTaskExecutor();
-        TaskExecutorInit(taskExecutor, goods, inventory, task, type);
-
-        taskExecutor.setExceptionHandler(e -> {
-            throw new EException(e.getMessage());
-        });
-        threadPoolExecutor.execute(taskExecutor);
+        initTaskExecutor(goods, inventory, task, type, oldInventory, taskExecutor);
     }
 
     /**
@@ -189,19 +193,26 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      * @param storage   库位
      * @param task      任务
      */
-    private void out(Goods goods, Inventory inventory, Storage storage, Task task, Integer type) {
-        //  挂起的库存或者是有货物的库存才能出库
-        if (!inventory.getStatus().equals(InventoryEnum.HAVE.getType())) {
-            throw new EException("该库位" + storage.getRow() + "-" + inventory.getLayer() + "，没有物料或物料正在出入库，无法再次出库！！！");
-        }
+    private void out(Goods goods, Inventory inventory, Storage storage, Task task, Integer type, Integer oldInventory) {
         TaskExecutor taskExecutor = null;
         taskExecutor = new OutTaskExecutor();
-        TaskExecutorInit(taskExecutor, goods, inventory, task, type);
+        initTaskExecutor(goods, inventory, task, type, oldInventory, taskExecutor);
+    }
+
+    //  初始化任务队列
+    private void initTaskExecutor(Goods goods, Inventory inventory, Task task, Integer type, Integer oldInventory, TaskExecutor taskExecutor) {
+        TaskExecutorInit(taskExecutor, goods, inventory, task, type, oldInventory);
         taskExecutor.setExceptionHandler(e -> {
+            //  恢复库存情况
+            inventory.setStatus(oldInventory);
+            inventory.setUpdateTime(new Date());
+            inventory.setUpdateMember(MemberThreadLocal.get().getMember().getId());
+            inventoryService.saveOrModify(inventory);
             throw new EException(e.getMessage());
         });
         threadPoolExecutor.execute(taskExecutor);
     }
+
 
     /**
      * 通过库存Code找库位，没有就拿库位Code找库存，再没有就随机生成
@@ -449,22 +460,19 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         task.setGoodsId(goods.getId());
         task.setInventoryId(inventory.getId());
         task.setCode(taskService.lastCode());
-        task.setName(taskService.lastCode());
+        task.setName("task:" + taskService.lastCode());
         task.setStatus(TaskEnum.INIT_IN.getStatus());
         if (type.equals(TaskEnum.INIT_IN.getStatus())) {
             task.setType(TaskEnum.INIT_IN.getType());
         } else if (type.equals(TaskEnum.ONGOING_OUT.getStatus())) {
             task.setType(TaskEnum.ONGOING_OUT.getType());
         }
-        System.out.println();
         task.setCreateTime(new Date());
         task.setUpdateTime(new Date());
         task.setCreateMember(MemberThreadLocal.get().getMember().getId());
         task.setUpdateMember(MemberThreadLocal.get().getMember().getId());
         task.setResource(TaskEnum.RESOURCE_AUTO.getStatus());
         task.setRemark("任务创建成功");
-
-        task = taskService.saveOrModify(task);
         return task;
     }
 
@@ -476,10 +484,14 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      * @param inventory    库存
      * @param task         任务、有就不创建，没有就创建
      */
-    public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory, Task task, Integer type) {
+    public void TaskExecutorInit(TaskExecutor taskExecutor, Goods goods, Inventory inventory, Task task, Integer type, Integer oldStatus) {
         if (StringUtil.isEmpty(task) || StringUtil.isEmpty(task.getId())) {
             task = createTask(goods, inventory, type);
         }
+        //  设置任务为进行中
+        task.setStatus(TaskEnum.ONGOING_IN.getStatus());
+        taskService.saveOrModify(task);
+
         taskExecutor.setTask(task);
         taskExecutor.setInventory(inventory);
         taskExecutor.setPlcConnect(plcConnect);
@@ -489,6 +501,8 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
         taskExecutor.setGoodsService(goodsService);
         taskExecutor.setLogRecordService(logRecordService);
         taskExecutor.setSleepTime(sleepTime);
+        //  旧状态
+        taskExecutor.setInventoryOldStatus(oldStatus);
         taskExecutor.setMemberThreadLocal(MemberThreadLocal.get());
     }
 

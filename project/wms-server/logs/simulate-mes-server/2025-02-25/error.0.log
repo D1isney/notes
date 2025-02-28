@@ -1,0 +1,1 @@
+2025-02-25 15:25:18.717  ERROR 15144 --- [nio-1217-exec-8] c.wms.handler.WebGlobalExceptionHandler  : 请先连接PLC！！！
