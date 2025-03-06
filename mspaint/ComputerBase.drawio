@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="26.1.0">
   <diagram name="CCP" id="nR3JaGaRlC4lCCBSw3mZ">
-    <mxGraphModel dx="1235" dy="1855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1500" dy="2002" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -55,7 +55,7 @@
         <mxCell id="mIOnsa2vIn2mk9zmd3Gr-19" value="&lt;ul&gt;&lt;li&gt;吞吐量：系统在单位时间内处理请求的数量&lt;/li&gt;&lt;li&gt;响应时间：从用户提交请求到系统首次产生相应并获得其所需要的结果所用的时间&lt;/li&gt;&lt;li&gt;时钟周期：节拍脉冲或T周期，CPU中最小的时间单位&lt;/li&gt;&lt;li&gt;主频：机器内部主时钟的频率，时钟周期的倒数&lt;/li&gt;&lt;li&gt;CPI：执行一条指令所需的时钟周期&lt;/li&gt;&lt;li&gt;执行时间：执行一个程序所花费的时间&lt;/li&gt;&lt;li&gt;MIPS：每秒执行多少百万条指令&lt;/li&gt;&lt;li&gt;FLOPS：每秒执行多少浮点运算，分为MFLOPS、GFLOPS等&lt;/li&gt;&lt;/ul&gt;" style="text;strokeColor=none;fillColor=none;html=1;whiteSpace=wrap;verticalAlign=middle;overflow=hidden;" parent="1" vertex="1">
           <mxGeometry x="710" y="220" width="490" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="D1-KSbCiV9eVaUhj1SAp-1" value="v" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="D1-KSbCiV9eVaUhj1SAp-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="770" y="410" width="880" height="680" as="geometry" />
         </mxCell>
         <mxCell id="D1-KSbCiV9eVaUhj1SAp-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="D1-KSbCiV9eVaUhj1SAp-7" target="D1-KSbCiV9eVaUhj1SAp-8">
