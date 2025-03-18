@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="26.0.16" pages="4">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="26.1.0" pages="5">
   <diagram name="WMS操作流程图" id="4fjYf9DxsTwHK-hKx6aq">
     <mxGraphModel dx="911" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -1040,6 +1040,87 @@
         </mxCell>
         <mxCell id="-Ed_d9Qiu3ysKLW6nimn-50" value="7、TCP：接收采集系统回发的复判结果" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="70" y="1680" width="250" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="ak_4b54JUFSjNBAVJ8k9" name="装柜">
+    <mxGraphModel dx="1434" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-1" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="160" width="10" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-2" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="160" width="10" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-3" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="403.5" y="160" width="10" height="520" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-4" value="用户" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="37.5" y="130" width="95" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-5" value="后端" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="197.5" y="130" width="95" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-6" value="算法" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="361" y="130" width="95" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-7" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.077;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="240.03999999999996" as="sourcePoint" />
+            <mxPoint x="239" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-8" value="优化计算" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="220" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.077;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="250" y="400.03999999999996" as="sourcePoint" />
+            <mxPoint x="399" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.077;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.9;entryY=0.308;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="251" y="280.03999999999996" as="sourcePoint" />
+            <mxPoint x="250" y="340.1600000000001" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="360" y="280" />
+              <mxPoint x="360" y="340" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-11" value="数据转换处理" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="250" y="260" width="110" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-12" value="调用算法模块" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="253.5" y="380" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.077;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="520" y="270.03999999999996" as="sourcePoint" />
+            <mxPoint x="669" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-14" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="480" as="sourcePoint" />
+            <mxPoint x="250" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-15" value="返回数据" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="253.5" y="460" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.75;exitDx=0;exitDy=0;" edge="1" parent="1" source="4Qdiw95oxcmE5xu93eYe-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="170" y="550.04" as="sourcePoint" />
+            <mxPoint x="90" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4Qdiw95oxcmE5xu93eYe-17" value="返回数据" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="90" y="530" width="150" height="20" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
