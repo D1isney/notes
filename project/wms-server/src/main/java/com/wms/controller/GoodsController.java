@@ -13,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -34,6 +35,7 @@ public class GoodsController {
     })
     @GetMapping("list")
     @Log(value = "物料-查询所有物料信息", path = "/goods/list")
+    @PreAuthorize("hasAuthority('goods:list')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<GoodsVo> page = goodsService.pageList(query.getIPage(GoodsVo.class), query);
@@ -48,6 +50,7 @@ public class GoodsController {
     })
     @GetMapping("getGoodsParamByGoodId/{goodId}")
     @Log(value = "物料-通过物料ID查询所有的物料参数",path = "/goods/getGoodsParamByGoodId")
+    @PreAuthorize("hasAuthority('goods:list')")
     public R<?> getGoodsParamByGoodId(@PathVariable Long goodId) {
         List<TypeAndValue> typeAndValue = goodsService.getTypeAndValue(goodId);
         return R.ok(typeAndValue);
@@ -60,6 +63,7 @@ public class GoodsController {
     })
     @PostMapping("saveOrUpdateGoods")
     @Log(value = "物料-修改物料信息",path = "/goods/saveOrUpdateGoods")
+    @PreAuthorize("hasAuthority('goods:saveOrUpdateGoods')")
     public R<?> saveOrUpdateGoods(@RequestBody Goods goods){
         return goodsService.saveOrUpdateGoods(goods);
     }
@@ -69,6 +73,7 @@ public class GoodsController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "物料-删除物料信息",path = "/goods/delete")
+    @PreAuthorize("hasAuthority('goods:delete')")
     public R<?> delete(@RequestParam("ids") Long[] ids) {
         goodsService.deleteGoodsByIds(ids);
 //        goodsService.deleteByIds(ids);
@@ -76,9 +81,10 @@ public class GoodsController {
     }
 
 
-    @ApiOperation("根据id删除数据")
+    @ApiOperation("查询选择的物料信息")
     @GetMapping("billOfMaterial")
     @Log(value = "物料-查询选择的物料信息",path = "/goods/billOfMaterial")
+    @PreAuthorize("hasAuthority('goods:list')")
     public R<?> billOfMaterial(){
         return goodsService.billOfMaterial();
     }
@@ -86,6 +92,7 @@ public class GoodsController {
     @ApiOperation("查询任务中已出库的物料的数量")
     @GetMapping("materialUsage")
     @Log(value = "物料-查询任务中已出库的物料的数量",path = "/goods/materialUsage")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> materialUsage(){
         return goodsService.materialUsage();
     }

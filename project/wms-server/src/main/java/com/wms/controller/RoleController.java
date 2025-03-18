@@ -14,6 +14,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,6 +44,7 @@ public class RoleController {
     })
     @GetMapping("list")
     @Log(value = "角色-查询所有角色信息", path = "/role/list")
+    @PreAuthorize("hasAuthority('role:list')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<RoleVo> page = roleService.pageList(query.getIPage(RoleVo.class), query);
@@ -55,6 +57,7 @@ public class RoleController {
     @ApiImplicitParam(name = "Role", value = "role")
     @PostMapping("saveOrUpdate")
     @Log(value = "角色-修改保存角色信息", path = "/role/saveOrUpdate")
+    @PreAuthorize("hasAuthority('role:saveOrUpdate')")
     public R<?> saveOrUpdate(@RequestBody Role role) {
         Role newRole = roleService.insertOrUpdate(role);
         return R.ok("新增或修改成功！", newRole);
@@ -64,6 +67,7 @@ public class RoleController {
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
     @Log(value = "角色-查询单个角色信息", path = "/role/getInfo/{id}")
+    @PreAuthorize("hasAuthority('role:getInfo')")
     public R<?> getInfo(@PathVariable("id") Long id) {
         Role info = roleService.queryById(id);
         return R.ok(info);
@@ -73,6 +77,7 @@ public class RoleController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "角色-删除角色信息", path = "/role/delete")
+    @PreAuthorize("hasAuthority('role:delete')")
     public R<?> delete(@RequestParam("ids") Long[] ids) {
         roleService.deleteRole(ids);
         return R.ok("删除成功！");
@@ -82,6 +87,7 @@ public class RoleController {
     @ApiImplicitParam(name = "roleId", value = "角色ID")
     @GetMapping("getPermissionsByRoleId/{id}")
     @Log(value = "角色-查询该角色拥有的权限", path = "/role/getPermissionsByRoleId")
+    @PreAuthorize("hasAuthority('role:lit')")
     public R<?> getPermissionsByRoleId(@PathVariable("id")  Long id) {
         Map<Integer, String> permissionsByRoleId = roleService.getPermissionsByRoleId(id);
         return R.ok(permissionsByRoleId);
@@ -109,6 +115,7 @@ public class RoleController {
     @ApiOperation("通过角色ID修改该角色的权限")
     @PostMapping("configRolePermissions")
     @Log(value = "角色-通过角色ID修改该角色的权限", path = "/role/configRolePermissions")
+    @PreAuthorize("hasAuthority('role:saveOrUpdate')")
     public R<?> configRolePermissions(@RequestBody RolePermissionsDTO rolePermissionsDTO){
         return roleService.updateRolePermissions(rolePermissionsDTO);
     }

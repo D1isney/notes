@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -35,6 +36,7 @@ public class InventoryController {
     })
     @GetMapping("list")
     @Log(value = "库存-查询库存信息",path = "/inventory/list")
+    @PreAuthorize("hasAuthority('storage:list')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<InventoryVo> page = inventoryService.pageList(query.getIPage(InventoryVo.class), query);
@@ -52,6 +54,7 @@ public class InventoryController {
     @ApiOperation("智能盘库")
     @GetMapping("intelligentDiskLibrary")
     @Log(value = "库存-智能盘库",path = "/inventory/intelligentDiskLibrary")
+    @PreAuthorize("hasAuthority('inventory:intelligentDiskLibrary')")
     public R<?> intelligentDiskLibrary(){
         inventoryService.intelligentDiskLibrary();
         return R.ok();
@@ -60,6 +63,7 @@ public class InventoryController {
     @ApiOperation("获取可用库")
     @GetMapping("billOfInventory")
     @Log(value = "库存-获取可用库",path = "/inventory/billOfInventory")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> billOfInventory(){
         return inventoryService.billOfInventory();
     }

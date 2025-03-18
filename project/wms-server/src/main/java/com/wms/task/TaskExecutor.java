@@ -68,7 +68,6 @@ public abstract class TaskExecutor implements Runnable {
     //  任务执行
     @Override
     public synchronized void run() {
-
         try {
             prepare();
             //  计算工作时间

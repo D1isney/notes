@@ -33,10 +33,6 @@ public class WmsApplicationRunner implements ApplicationRunner {
             WebSocketServerWeb.send(WebSocketEnum.LOG_STATISTICS_VIEW);
         }, 0, pushTime, TimeUnit.SECONDS);
 
-
-
-
-
         log.info("定时任务启动完成----------{}", new Date());
     }
 

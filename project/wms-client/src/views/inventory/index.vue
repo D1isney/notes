@@ -1,6 +1,11 @@
 <template>
   <div class="inventory-container" v-loading="inventoryLoading">
-    <div class="box" ref="rowBox" v-for="(row,rowIndex) in this.crosswise">
+    <div
+      class="box"
+      ref="rowBox"
+      v-for="(row,rowIndex) in this.crosswise"
+      :class="{'disSelect': !row.forbidden}"
+    >
       <el-tooltip v-for="(layer,layerIndex) in row.inventoryList"
                   :key="layerIndex"
                   class="item"
@@ -12,7 +17,7 @@
         <div class="inventory"
              ref="layerBox"
              @mouseenter="showTooltip(layer)"
-             :class="{'highlighted': layer.isSelected}"
+             :class="{'highlighted': layer.isSelected,'disSelectHighlighted': !row.forbidden}"
              @click="selectItem(rowIndex,layerIndex,layer)"
              :style="{backgroundColor : getStatusColor(layer.status)}"
         >
@@ -30,6 +35,7 @@ import { mapGetters, mapState, mapActions } from 'vuex'
 import { warehousing } from '@/api/inventory/inventoryAPI'
 
 export default {
+  props: ['setSelectData'],
   data() {
     return {
       query: {
@@ -49,7 +55,7 @@ export default {
       selectIndex: null,
       // 高亮选中的
       selectLayer: [],
-      content: '123'
+      content: ' '
     }
   },
   methods: {
@@ -100,7 +106,9 @@ export default {
           return item.id !== layer.id
         })
       }
+      // this.$refs.storage.$emit('outWarehousing')
       // console.log(this.selectLayer)
+      this.setSelectData(this.selectLayer)
     },
     getStatusColor(status) {
       // 根据 status 返回不同的背景颜色
@@ -168,7 +176,7 @@ export default {
   computed: {
     ...mapGetters(['sidebar', 'username']),
     ...mapState('webSocket', ['socketData']),
-    ...mapState('user',['member'])
+    ...mapState('user', ['member'])
   },
   watch: {
     socketData(val) {
@@ -226,7 +234,15 @@ export default {
   height: 20%;
 
   border: 3px #0ae11e solid;
-//background-color: yellow; //border-color: orange;
+
+}
+
+.disSelect {
+  user-select: none;
+  pointer-events: none;
+}
+.disSelectHighlighted{
+  border: 2px #861313 dashed;
 }
 
 </style>

@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 import com.wms.service.RolePermissionsService;
@@ -38,6 +39,7 @@ public class RolePermissionsController {
     })
     @GetMapping("list")
     @Log(value = "角色-权限-查询所有角色权限信息",path = "/rolePermissions/list")
+    @PreAuthorize("hasAuthority('rolePermissions:list')")
     public R<?> list(@RequestParam Map<String,Object> params){
         Query query = new Query(params);
         IPage<RolePermissionsVo> page = rolePermissionsService.pageList(query.getIPage(RolePermissionsVo.class),query);
@@ -50,6 +52,7 @@ public class RolePermissionsController {
     @ApiImplicitParam(name = "RolePermissions", value = "rolePermissions")
     @PostMapping("saveOrUpdate")
     @Log(value = "角色-权限-保存角色权限信息",path = "/rolePermissions/saveOrUpdate")
+    @PreAuthorize("hasAuthority('rolePermissions:saveOrUpdate')")
     public R<?> saveOrUpdate(@RequestBody RolePermissions rolePermissions){
         RolePermissions newRolePermissions = rolePermissionsService.insertOrUpdate(rolePermissions);
         return R.ok(newRolePermissions);
@@ -59,6 +62,7 @@ public class RolePermissionsController {
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
     @Log(value = "角色-权限-查询单个角色权限信息",path = "/rolePermissions/getInfo/{id}")
+    @PreAuthorize("hasAuthority('rolePermissions:getInfo')")
     public R<?> getInfo(@PathVariable("id")Long id){
         RolePermissions info = rolePermissionsService.queryById(id);
         return R.ok(info);
@@ -68,6 +72,7 @@ public class RolePermissionsController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "角色-权限-删除角色权限信息",path = "/rolePermissions/delete")
+    @PreAuthorize("hasAuthority('rolePermissions:delete')")
     public R<?> delete(@RequestParam Long[] ids){
         rolePermissionsService.deleteByIds(ids);
         return R.ok();

@@ -1,14 +1,14 @@
 import { login, logout, getInfo } from '@/api/member/member'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import router, { resetRouter } from '@/router'
-import store from '@/store'
 
 const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
     avatar: '',
-    member: {}
+    member: {},
+    permissions:[]
   }
 }
 
@@ -29,6 +29,9 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_PERMISSIONS(state, permissions){
+    state.permissions = permissions
   }
 }
 
@@ -58,8 +61,25 @@ const actions = {
           commit('RESET_STATE')
         }
         if (data) {
-          commit('SET_NAME', data.name)
-          commit('SET_MEMBER', data)
+          commit('SET_NAME', data.member.name)
+          commit('SET_MEMBER', data.member)
+          commit('SET_PERMISSIONS',data.permissions)
+          // const accessRoutes = constantRoutes.concat(baseRouter)
+          // console.log(accessRoutes)
+          // router.addRoutes([
+          //   {
+          //     path: '/task',
+          //     component: Layout,
+          //     children: [
+          //       {
+          //         path: '/task',
+          //         name: 'Task',
+          //         component: () => import('@/views/task/index'),
+          //         meta: { title: '任务管理', icon: 'el-icon-notebook-2', permission: ['task:list'] }
+          //       }
+          //     ]
+          //   }
+          // ])
           resolve(data)
         }
       }).catch(error => {

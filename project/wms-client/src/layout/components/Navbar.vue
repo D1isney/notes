@@ -183,14 +183,17 @@
             <el-row :gutter="20">
               <el-col :span="24">
                 <el-form-item label="旧密码">
-                  <el-input v-model="updateMemberPasswordForm.oldPassword" type="password" show-password clearable :disabled="enterOldOrNewPassword"></el-input>
+                  <el-input v-model="updateMemberPasswordForm.oldPassword" type="password" show-password clearable
+                            :disabled="enterOldOrNewPassword"
+                  ></el-input>
                 </el-form-item>
               </el-col>
             </el-row>
             <el-row :gutter="20">
               <el-col :span="24">
                 <el-form-item label="新密码">
-                  <el-input v-model="updateMemberPasswordForm.newPassword" type="password" show-password clearable :disabled="!enterOldOrNewPassword"
+                  <el-input v-model="updateMemberPasswordForm.newPassword" type="password" show-password clearable
+                            :disabled="!enterOldOrNewPassword"
                   ></el-input>
                 </el-form-item>
               </el-col>
@@ -265,7 +268,7 @@ export default {
       },
       plcStatus: 500,
       notifications: [], // 存储所有通知的ID
-      maxNotifications: 2, // 最大通知数量限制
+      maxNotifications: 1, // 最大通知数量限制
       retransmission: {
         flag: false,
         type: 0
@@ -480,37 +483,50 @@ export default {
           type: 'error'
         })
       }
-      if (val.type === 'TaskMessageIssued') {
+      if (val.type === 'TaskMessageIssued' || val.type === 'TaskMessageSuccess') {
+        // 检查通知数量是否超过最大限制
         if (this.notifications.length >= this.maxNotifications) {
-          Notification.close(this.notifications[0])
-          this.notifications.shift()
+          // 确保数组非空且第一个元素存在
+          if (this.notifications.length > 0 && this.notifications[0]) {
+            // 关闭最早的Notification实例
+            this.notifications[0].close();
+            // 移除最早的Notification实例
+            this.notifications.shift();
+          }
         }
-        const id = this.$notify({
+
+        // 创建新通知并获取其实例
+        const notificationInstance = this.$notify({
           title: val.message,
           message: '任务名称：' + val.data.name + '，任务编码：' + val.data.code,
           type: 'success',
           onClose: () => {
-            this.notifications = this.notifications.filter(n => n !== id)
+            // 当通知关闭时，从数组中移除该通知
+            this.notifications = this.notifications.filter(n => n !== notificationInstance);
           }
-        })
-        this.notifications.push(id)
+        });
+
+        // 将新的通知实例添加到数组中
+        this.notifications.push(notificationInstance);
       }
 
-      if (val.type === 'TaskMessageSuccess') {
-        if (this.notifications.length >= this.maxNotifications) {
-          Notification.close(this.notifications[0])
-          this.notifications.shift()
-        }
-        const id = Notification({
-          title: val.message,
-          message: '任务名称：' + val.data.name + '，任务编码：' + val.data.code,
-          type: 'success',
-          onClose: () => {
-            this.notifications = this.notifications.filter(n => n !== id)
-          }
-        })
-        this.notifications.push(id)
-      }
+      // if (val.type === 'TaskMessageSuccess') {
+      //   if (this.notifications.length >= this.maxNotifications) {
+      //     if (this.notifications[0]) {
+      //       Notification.close(this.notifications[0])
+      //     }
+      //     this.notifications.shift()
+      //   }
+      //   const id = this.$notify({
+      //     title: val.message,
+      //     message: '任务名称：' + val.data.name + '，任务编码：' + val.data.code,
+      //     type: 'success',
+      //     onClose: () => {
+      //       this.notifications = this.notifications.filter(n => n !== id)
+      //     }
+      //   })
+      //   this.notifications.push(id)
+      // }
 
       if (val.type === 'continueWarehousingTask') {
         this.$confirm(val.message, '提示', {

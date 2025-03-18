@@ -95,6 +95,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
     public String loggingIn(Member member, List<Member> members) {
         Member m = members.get(0);
+
         String password = member.getPassword() + m.getSalt();
         password = passwordEncoder.encode(password);
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(member.getUsername(), password);
@@ -103,11 +104,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         if (Objects.isNull(authenticate)) {
             throw new EException("登录失败");
         }
-        LoginMember loginMember = (LoginMember) authenticate.getPrincipal();
-        String userId = loginMember.getMember().getId().toString();
-        String jwt = JwtUtil.createJWT(userId);
-        MemberThreadLocal.setMainThreadLoginMemberById(m.getId(), loginMember);
-        MemberThreadLocal.setMainThreadLoginMemberTokenForId(m.getId(), jwt);
+        //  先校验这个账号的有效性
         if (Objects.equals(m.getStatus(), MemberConstant.STATUS_FALSE)) {
             throw new EException("该账号不可使用！请联系管理员！");
         } else if (Objects.equals(m.getStatus(), MemberConstant.STATUS_PAST)) {
@@ -121,6 +118,20 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
                 throw new EException("该账号已过期！请联系管理员！");
             }
         }
+
+        //  把权限也放进来
+        LoginMember loginMember = (LoginMember) authenticate.getPrincipal();
+        List<String> permissionsByMember = memberDao.getPermissionsByMember(loginMember.getMember().getId());
+        loginMember.setPermissions(permissionsByMember);
+
+        // 拿到memberId来生成相应的jwt
+        String userId = loginMember.getMember().getId().toString();
+        String jwt = JwtUtil.createJWT(userId);
+
+        MemberThreadLocal.setMainThreadLoginMemberById(m.getId(), loginMember);
+        MemberThreadLocal.setMainThreadLoginMemberTokenForId(m.getId(), jwt);
+
+
         m.setOnline(MemberConstant.IS_ONLINE);
         saveOrModify(m);
         return jwt;
@@ -203,7 +214,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         }
 //        memberInfoMap.getMember().setSalt("******");
         memberInfoMap.getMember().setPassword("******");
-        return R.ok("", memberInfoMap.getMember());
+        return R.ok("", memberInfoMap);
     }
 
     /**

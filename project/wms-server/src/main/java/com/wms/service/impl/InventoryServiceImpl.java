@@ -1,7 +1,6 @@
 package com.wms.service.impl;
 
 import com.wms.connect.plc.PlcConnect;
-import com.wms.connect.utils.PlcParam;
 import com.wms.connect.websocket.WebSocketServerWeb;
 import com.wms.constant.InOrOutConstant;
 import com.wms.dao.InventoryDao;
@@ -92,12 +91,6 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
      */
     @Override
     public R<?> operatingDuty(List<WarehousingDTO> warehousingDTO) {
-        /*
-            1、物料编码
-            2、库位编码（有、无）
-            3、库存编码（有、无）
-            4、任务（有、无）
-         */
         if (!StringUtil.isEmpty(warehousingDTO)) {
             warehousingDTO.forEach(w -> {
                 StorageAndInventoryDTO storageAndInventoryDTO = getStorageByCode(w.getStorageCode());
@@ -200,7 +193,7 @@ public class InventoryServiceImpl extends IBaseServiceImpl<InventoryDao, Invento
     }
 
     //  初始化任务队列
-    private void initTaskExecutor(Goods goods, Inventory inventory, Task task, Integer type, Integer oldInventory, TaskExecutor taskExecutor) {
+    private synchronized void initTaskExecutor(Goods goods, Inventory inventory, Task task, Integer type, Integer oldInventory, TaskExecutor taskExecutor) {
         TaskExecutorInit(taskExecutor, goods, inventory, task, type, oldInventory);
         taskExecutor.setExceptionHandler(e -> {
             //  恢复库存情况

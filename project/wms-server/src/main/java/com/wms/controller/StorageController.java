@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,6 +32,7 @@ public class StorageController {
     })
     @GetMapping("list")
     @Log(value = "库位-查询库存信息", path = "/storage/list")
+    @PreAuthorize("hasAuthority('storage:list')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<StorageVo> page = storageService.pageList(query.getIPage(StorageVo.class), query);

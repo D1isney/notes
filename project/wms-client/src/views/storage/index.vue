@@ -29,7 +29,7 @@
         </div>
 
       </div>
-      <Inventory ref="inventory"></Inventory>
+      <Inventory ref="inventory" :setSelectData="getSelectData"></Inventory>
     </div>
     <div class="operation-box">
       <div class="input-box">
@@ -268,7 +268,7 @@ export default {
       storageData: [],
       query: {
         page: 1,
-        limit: 20,
+        limit: 20
       },
       taskQuery: {
         page: 1,
@@ -285,7 +285,7 @@ export default {
     QR_Warehousing() {
       this.$notify({
         title: '失败',
-        message: '暂不支持扫码枪入库功能，请及时联系管理员！！！',
+        message: '请配置相应的扫码枪以启动该功能！！！',
         type: 'error'
       })
     },
@@ -295,7 +295,6 @@ export default {
       this.$refs.warehousingList.validate((valid) => {
         if (valid) {
           warehousing(list).then(res => {
-            // console.log(res)
           })
         } else {
           return false
@@ -323,14 +322,15 @@ export default {
         }
       })
     },
-    updateStorage() {
-      console.log(this.storageData)
-      saveOrUpdateStorage(this.storageData).then(res => {
+    async updateStorage() {
+      await saveOrUpdateStorage(this.storageData).then(res => {
         if (res.code === 200) {
           this.storageMessageVisible = false
           // this.getStorageList()
           this.$message.success(res.message)
+          this.$refs.inventory.$emit('intelligentDiskLibrary')
         }
+
       })
 
     },
@@ -367,6 +367,15 @@ export default {
       } else if (type === 3) {
         return 'danger'
       }
+    },
+
+    getSelectData(data) {
+      if (data.length > 0) {
+        this.warehousingList.inventoryCode = data[data.length - 1].code
+      }
+      if (data.length <= 0){
+        this.warehousingList.inventoryCode = ''
+      }
     }
   },
   components: {
@@ -377,7 +386,7 @@ export default {
     this.getOperationLog()
   },
   computed: {
-    ...mapGetters(['sidebar', 'username']),
+    ...mapGetters(['sidebar', 'name']),
     ...mapState('webSocket', ['socketData']),
     typeOptions: () => Object.keys(LogConst.type).map(key => LogConst.type[key])
   },
@@ -390,6 +399,10 @@ export default {
         this.getOperationLog()
       }
     }
+  },
+  mounted() {
+    this.$on('outWarehousing', (data) => {
+    })
   }
 }
 </script>
@@ -442,37 +455,22 @@ export default {
   }
 
   .tips-c-have {
-    //flex-grow: 5;
-    align-items: center;
-    //height: 90%;
-    width: 20px;
-    height: 20px;
+  //flex-grow: 5; align-items: center; //height: 90%; width: 20px; height: 20px;
     background-color: var(--colorHave);
   }
-  .tips-c-empty{
-    //flex-grow: 5;
-    align-items: center;
-    //height: 90%;
-    width: 20px;
-    height: 20px;
+
+  .tips-c-empty {
+  //flex-grow: 5; align-items: center; //height: 90%; width: 20px; height: 20px;
     background-color: var(--colorEmpty);
   }
 
   .tips-c-in {
-    //flex-grow: 5;
-    align-items: center;
-    //height: 90%;
-    width: 20px;
-    height: 20px;
+  //flex-grow: 5; align-items: center; //height: 90%; width: 20px; height: 20px;
     background-color: var(--colorIn);
   }
 
   .tips-c-out {
-    //flex-grow: 5;
-    align-items: center;
-    //height: 90%;
-    width: 20px;
-    height: 20px;
+  //flex-grow: 5; align-items: center; //height: 90%; width: 20px; height: 20px;
     background-color: var(--colorOut);
   }
 
@@ -502,14 +500,13 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    //border: 1px solid #a6a1a1;
-    //border-radius: 10px;
+  //border: 1px solid #a6a1a1; //border-radius: 10px;
 
     .input-form {
       width: 70%;
       height: 100%;
       margin-top: 2%;
-      //margin-left: 10%;
+    //margin-left: 10%;
     }
 
     .input-buttons {
@@ -539,11 +536,7 @@ export default {
       flex-direction: column;
       justify-content: space-around;
       height: 100%;
-      //border: 1px solid #cccccc;
-      //border-radius: 10px;
-    //background-color: #4b1717; margin-right: 5%;
-      padding-left: 1%;
-      padding-right: 1%;
+    //border: 1px solid #cccccc; //border-radius: 10px; //background-color: #4b1717; margin-right: 5%; padding-left: 1%; padding-right: 1%;
     }
 
     .logTable {
@@ -599,7 +592,7 @@ export default {
 
     .button1 {
       width: 100%;
-      //border-radius: 10px;
+    //border-radius: 10px;
     }
   }
 }
