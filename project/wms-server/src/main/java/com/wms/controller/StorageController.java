@@ -32,7 +32,7 @@ public class StorageController {
     })
     @GetMapping("list")
     @Log(value = "库位-查询库存信息", path = "/storage/list")
-    @PreAuthorize("hasAuthority('storage:list')")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<StorageVo> page = storageService.pageList(query.getIPage(StorageVo.class), query);
@@ -47,6 +47,7 @@ public class StorageController {
     })
     @PostMapping("saveOrUpdate")
     @Log(value = "库位-保存库位信息", path = "/storage/saveOrUpdate")
+    @PreAuthorize("hasAuthority('storage:saveOrUpdate')")
     public R<?> saveOrUpdate(@RequestBody List<Storage> storage){
         return storageService.saveOrUpdateStorage(storage);
     }
@@ -55,6 +56,7 @@ public class StorageController {
     @ApiOperation("查询库位以及库存信息")
     @GetMapping("queryStorageAndInventory")
     @Log(value = "库位-查询库位以及库存信息", path = "/storage/queryStorageAndInventory")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> queryStorageAndInventory(){
         return storageService.queryStorageAndInventory();
     }
@@ -62,6 +64,7 @@ public class StorageController {
     @ApiOperation("查询库位以及库存具体数量以及信息")
     @GetMapping("queryInventoryNum")
     @Log(value = "库位-查询库位以及库存具体数量以及信息", path = "/storage/queryInventoryNum")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> queryInventoryNum(){
         return storageService.queryInventoryNum();
     }

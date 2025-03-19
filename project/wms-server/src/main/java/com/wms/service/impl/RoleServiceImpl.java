@@ -6,6 +6,7 @@ import com.wms.dao.RoleDao;
 import com.wms.dto.RoleDTO;
 import com.wms.dto.RolePermissionsDTO;
 import com.wms.exception.EException;
+import com.wms.helper.CurrentHelper;
 import com.wms.pojo.MemberRole;
 import com.wms.pojo.Permissions;
 import com.wms.pojo.Role;
@@ -19,6 +20,7 @@ import com.wms.thread.MemberThreadLocal;
 import com.wms.utils.CodeUtils;
 import com.wms.utils.R;
 import com.wms.vo.RoleVo;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -220,6 +222,10 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
         return null;
     }
 
+    @Value("${cache.permissions-key}")
+    private String permissionsKey;
+    @Resource
+    private CurrentHelper currentHelper;
 
     /**
      * 通过角色ID以及权限ID来修改角色的权限
@@ -242,6 +248,8 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
         } else {
             unauthorized(permissionIdSet, roleId, currentMember);
         }
+        //  清空所有的缓存
+        cache.invalidate(permissionsKey + currentHelper.getCurrentMemberId());
         return R.ok("修改成功！");
     }
 
@@ -290,7 +298,8 @@ public class RoleServiceImpl extends IBaseServiceImpl<RoleDao, Role, RoleVo> imp
             RolePermissions rolePermissions = queryRolePermissions(roleId, permission.getId());
             deleteRolePermissions.add(rolePermissions);
         });
-        if (!deleteRolePermissions.isEmpty()) rolePermissionsService.deleteByIds(deleteRolePermissions.stream().map(RolePermissions::getId).toArray(Long[]::new));
+        if (!deleteRolePermissions.isEmpty())
+            rolePermissionsService.deleteByIds(deleteRolePermissions.stream().map(RolePermissions::getId).toArray(Long[]::new));
         //  新添加的权限
         List<RolePermissions> addRolePermissions = new ArrayList<>();
         addPermissions.forEach(permissionsId -> {

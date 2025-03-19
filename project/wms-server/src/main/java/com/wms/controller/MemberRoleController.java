@@ -62,7 +62,7 @@ public class MemberRoleController {
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
     @Log(value = "用户-角色-查询单个用户角色信息",path = "/memberRole/getInfo/{id}")
-    @PreAuthorize("hasAuthority('memberRole:getInfo')")
+    @PreAuthorize("hasAuthority('memberRole:list')")
     public R<?> getInfo(@PathVariable("id")Long id){
         MemberRole info = memberRoleService.queryById(id);
         return R.ok(info);

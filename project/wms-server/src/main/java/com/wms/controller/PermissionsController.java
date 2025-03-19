@@ -44,6 +44,7 @@ public class PermissionsController {
     })
     @GetMapping("list")
     @Log(value = "权限-查询所有权限信息", path = "/permissions/list")
+    @PreAuthorize("hasAuthority('permissions:saveOrUpdate')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<PermissionsVo> page = permissionsService.pageList(query.getIPage(PermissionsVo.class), query);
@@ -55,6 +56,7 @@ public class PermissionsController {
     @ApiOperation("新增或者修改")
     @ApiImplicitParam(name = "Permissions", value = "permissions")
     @PostMapping("saveOrUpdate")
+    @PreAuthorize("hasAuthority('permissions:saveOrUpdate')")
     @Log(value = "权限-更改权限信息", path = "/permissions/saveOrUpdate")
     public R<?> saveOrUpdate(@RequestBody Permissions permissions) {
         permissionsService.insertOrUpdate(permissions);
@@ -65,6 +67,7 @@ public class PermissionsController {
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
     @Log(value = "权限-查询单个权限信息", path = "/permissions/getInfo/{id}")
+    @PreAuthorize("hasAuthority('permissions:saveOrUpdate')")
     public R<?> getInfo(@PathVariable("id") Long id) {
         Permissions info = permissionsService.queryById(id);
         return R.ok(info);
@@ -74,6 +77,7 @@ public class PermissionsController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "权限-删除权限信息", path = "/permissions/delete")
+    @PreAuthorize("hasAuthority('permissions:delete')")
     public R<?> delete(@RequestParam Long[] ids) {
         permissionsService.deletePermissionsByIds(ids);
 //        permissionsService.deleteByIds(ids);
@@ -84,6 +88,7 @@ public class PermissionsController {
     @ApiOperation("获取所有权限描述信息")
     @GetMapping("getRemark")
     @Log(value = "权限-获取所有描述信息", path = "/permissions/getRemark")
+    @PreAuthorize("hasAuthority('permissions:saveOrUpdate')")
     public R<?> getRemark() {
         List<String> list = permissionsService.getRemark();
         /*
@@ -105,6 +110,7 @@ public class PermissionsController {
     @ApiOperation("通过角色ID拿到权限")
     @GetMapping("getPermissionsByRoleId/{id}")
     @Log(value = "权限-通过角色ID拿到相应的权限", path = "/permissions/getPermissionsByRoleId")
+    @PreAuthorize("hasAuthority('permissions:saveOrUpdate')")
     public R<?> getPermissionsByRoleId(@PathVariable("id") Long id) {
         List<Permissions> list = permissionsService.getPermissionsByRoleId(id);
         return R.ok(list);

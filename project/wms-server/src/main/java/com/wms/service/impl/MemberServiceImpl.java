@@ -200,7 +200,7 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
 
 
     @Override
-    public R<?> getInfo(String token) {
+    public synchronized R<?> getInfo(String token) {
         String userid;
         try {
             Claims claims = JwtUtil.parseJWT(token);
@@ -212,7 +212,6 @@ public class MemberServiceImpl extends IBaseServiceImpl<MemberDao, Member, Membe
         if (memberInfoMap == null) {
             return R.error("用户还未登录，请重新登录！", 400);
         }
-//        memberInfoMap.getMember().setSalt("******");
         memberInfoMap.getMember().setPassword("******");
         return R.ok("", memberInfoMap);
     }

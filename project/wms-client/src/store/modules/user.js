@@ -64,22 +64,8 @@ const actions = {
           commit('SET_NAME', data.member.name)
           commit('SET_MEMBER', data.member)
           commit('SET_PERMISSIONS',data.permissions)
-          // const accessRoutes = constantRoutes.concat(baseRouter)
-          // console.log(accessRoutes)
-          // router.addRoutes([
-          //   {
-          //     path: '/task',
-          //     component: Layout,
-          //     children: [
-          //       {
-          //         path: '/task',
-          //         name: 'Task',
-          //         component: () => import('@/views/task/index'),
-          //         meta: { title: '任务管理', icon: 'el-icon-notebook-2', permission: ['task:list'] }
-          //       }
-          //     ]
-          //   }
-          // ])
+          console.log(data.permissions)
+          console.log("123")
           resolve(data)
         }
       }).catch(error => {

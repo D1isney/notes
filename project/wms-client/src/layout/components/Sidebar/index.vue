@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'has-logo':showLogo}" class="box">
+  <div :class="{'has-logo':showLogo}" class="box" v-loading="!showRouter">
     <logo v-if="showLogo" :collapse="isCollapse"/>
 
     <el-scrollbar wrap-style="overflow-y:hidden;">
@@ -13,7 +13,9 @@
         :collapse-transition="false"
         mode="vertical"
       >
-        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"/>
+        <sidebar-item v-for="route in routes" :key="route.path" :item="route" :base-path="route.path"
+                      v-if="showRouter"
+        />
       </el-menu>
     </el-scrollbar>
   </div>
@@ -24,9 +26,16 @@ import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
+import router from '@/router'
+import store from '@/store'
 
 export default {
   components: { SidebarItem, Logo },
+  data() {
+    return {
+      showRouter: true
+    }
+  },
   computed: {
     ...mapGetters([
       'sidebar',
@@ -36,13 +45,23 @@ export default {
       const allRoutes = this.$router.options.routes
       const fileRouter = [] // 筛选后的路由
       allRoutes.forEach(route => {
-        if (route.meta && Array.isArray(route.meta.permission)) {
-          const hasPermission = route.meta.permission.some(permission => this.permissions.includes(permission))
-          if (hasPermission) {
+        if (route.children) {
+          let child = []
+          route.children.forEach(c => {
+            let ch = this.recursionRoutes(c)
+            if (ch) {
+              child.push(ch)
+            }
+          })
+          if (child.length > 0) {
+            route.children = child
             fileRouter.push(route)
           }
         } else {
-          fileRouter.push(route)
+          let r = this.recursionRoutes(route)
+          if (r !== null) {
+            fileRouter.push(r)
+          }
         }
       })
       return fileRouter
@@ -65,6 +84,28 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
+  },
+  methods: {
+    recursionRoutes(route) {
+      if (route.meta && Array.isArray(route.meta.permission)) {
+        const hasPermission = route.meta.permission.some(permission => this.permissions.includes(permission))
+        if (hasPermission) {
+          return route
+        } else {
+          return null
+        }
+      } else {
+        return null
+      }
+    }
+  },
+  created() {
+    this.$bus.$on('refreshRouter', () => {
+      this.showRouter = false
+      setTimeout(() => {
+        this.showRouter = true
+      }, 500)
+    })
   }
 }
 </script>

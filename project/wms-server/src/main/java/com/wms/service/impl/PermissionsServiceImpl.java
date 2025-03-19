@@ -6,6 +6,7 @@ import com.wms.dto.DefaultPermissionsDTO;
 import com.wms.dto.RestDTO;
 import com.wms.exception.EException;
 import com.wms.filter.login.Member;
+import com.wms.helper.CurrentHelper;
 import com.wms.pojo.LogRecord;
 import com.wms.pojo.Permissions;
 import com.wms.pojo.Role;
@@ -17,6 +18,7 @@ import com.wms.utils.CodeUtils;
 import com.wms.utils.JwtUtil;
 import com.wms.vo.PermissionsVo;
 import io.jsonwebtoken.Claims;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +56,10 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
     @Resource
     private Cache<String,Object> cache;
 
+    @Resource
+    private CurrentHelper currentHelper;
+    @Value("${cache.permissions-key}")
+    private String permissionsKey;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -75,8 +81,10 @@ public class PermissionsServiceImpl extends IBaseServiceImpl<PermissionsDao, Per
             permissions.setUpdateTime(new Date());
             permissions.setUpdateMember(getCurrentMemberId());
         }
-        //  清楚所有缓存
-        cache.invalidateAll();
+//        //  清楚所有缓存
+//        cache.invalidateAll();
+        //  清空当前用户的权限缓存
+        cache.invalidate(permissionsKey + currentHelper.getCurrentMemberId());
         saveOrModify(permissions);
     }
 

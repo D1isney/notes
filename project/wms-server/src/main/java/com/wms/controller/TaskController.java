@@ -13,6 +13,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -34,6 +35,7 @@ public class TaskController {
     })
     @GetMapping("list")
     @Log(value = "任务-查询所有任务信息", path = "/task/list")
+    @PreAuthorize("hasAuthority('task:list')")
     public R<?> list(@RequestParam Map<String, Object> params){
         Query query = new Query(params);
         IPage<TaskVo> page = taskService.pageList(query.getIPage(TaskVo.class), query);
@@ -47,6 +49,7 @@ public class TaskController {
     })
     @PostMapping("saveOrUpdateTask")
     @Log(value = "任务-更新任务信息", path = "/task/saveOrUpdateTask")
+    @PreAuthorize("hasAuthority('task:saveOrUpdateTask')")
     public R<?> saveOrUpdateTask(@RequestBody Task task){
         return taskService.saveOrUpdateTask(task);
     }
@@ -54,6 +57,7 @@ public class TaskController {
     @ApiOperation("手动下发")
     @PostMapping("manualOperationIssued")
     @Log(value = "任务-手动下发任务",path = "/task/manualOperationIssued")
+    @PreAuthorize("hasAuthority('storage:warehousing')")
     public R<?> manualOperationIssued(@RequestBody Task task){
         return taskService.manualOperationIssued(task);
     }
@@ -62,6 +66,7 @@ public class TaskController {
     @ApiOperation("根据任务找到相应的物料Code以及库存Code")
     @PostMapping("getGoodsAndInventory")
     @Log(value = "任务-根据任务找到相应的物料Code以及库存Code",path = "/task/getGoodsAndInventory")
+    @PreAuthorize("hasAuthority('task:list')")
     public R<?> getGoodsAndInventory(@RequestBody Task task){
         return taskService.getGoodsAndInventory(task);
     }
@@ -73,6 +78,7 @@ public class TaskController {
     })
     @DeleteMapping("delete")
     @Log(value = "任务-删除任务",path = "/task/delete")
+    @PreAuthorize("hasAuthority('task:delete')")
     public R<?> deleteTask(@RequestParam Long[] ids){
         return taskService.deleteTask(ids);
     }
@@ -80,6 +86,7 @@ public class TaskController {
     @ApiOperation("一周当中每天的任务量")
     @GetMapping("weeklyWorkload")
     @Log(value = "任务-周任务量",path = "/task/weeklyWorkload")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> weeklyWorkload(){
         return taskService.weeklyWorkload();
     }
@@ -87,6 +94,7 @@ public class TaskController {
     @ApiOperation("一周当中每天的出库量以及入库量")
     @GetMapping("inboundAndOutboundVolume")
     @Log(value = "任务-周出库量入库量",path = "/task/inboundAndOutboundVolume")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> inboundAndOutboundVolume(){
         return taskService.inboundAndOutboundVolume();
     }
@@ -94,6 +102,7 @@ public class TaskController {
     @ApiOperation("一周当中每天的平均稼动率")
     @GetMapping("averageRateOfActivity")
     @Log(value = "任务-周平均稼动率",path = "/task/averageRateOfActivity")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> averageRateOfActivity(){
         return taskService.averageRateOfActivity();
     }

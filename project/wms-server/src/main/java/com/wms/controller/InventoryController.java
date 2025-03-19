@@ -36,7 +36,7 @@ public class InventoryController {
     })
     @GetMapping("list")
     @Log(value = "库存-查询库存信息",path = "/inventory/list")
-    @PreAuthorize("hasAuthority('storage:list')")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<InventoryVo> page = inventoryService.pageList(query.getIPage(InventoryVo.class), query);
@@ -47,6 +47,7 @@ public class InventoryController {
     @ApiOperation("出入库")
     @PostMapping("warehousing")
     @Log(value = "库存-手动出入库",path = "/inventory/warehousing")
+    @PreAuthorize("hasAuthority('storage:warehousing')")
     public R<?> saveOrUpdateInventory(@RequestBody List<WarehousingDTO> warehousingDTO){
         return inventoryService.warehousing(warehousingDTO);
     }
@@ -54,7 +55,7 @@ public class InventoryController {
     @ApiOperation("智能盘库")
     @GetMapping("intelligentDiskLibrary")
     @Log(value = "库存-智能盘库",path = "/inventory/intelligentDiskLibrary")
-    @PreAuthorize("hasAuthority('inventory:intelligentDiskLibrary')")
+    @PreAuthorize("hasAuthority('storage:intelligentDiskLibrary')")
     public R<?> intelligentDiskLibrary(){
         inventoryService.intelligentDiskLibrary();
         return R.ok();
@@ -71,6 +72,7 @@ public class InventoryController {
     @ApiOperation("库存空间余额")
     @GetMapping("inventoryBalance")
     @Log(value = "库存-各个库存空间余额",path = "/inventory/inventoryBalance")
+    @PreAuthorize("hasAuthority('/')")
     public R<?> inventoryBalance(){
         return inventoryService.inventoryBalance();
     }

@@ -66,7 +66,7 @@
 import pagination from '@/components/Pagination/index'
 import { configRolePermissions, getRoleListAPI } from '@/api/role/roleAPI'
 import { getPermissionsByRoleId, getPermissionsListAPI } from '@/api/permissions/permissionsAPI'
-import { onFreeze } from 'core-js/internals/internal-metadata'
+import store from '@/store'
 
 export default {
   components: {
@@ -195,11 +195,15 @@ export default {
     async configRolePermissions(data) {
       await configRolePermissions(data).then(res => {
         if (res.code === 200) {
+          //
+          store.dispatch('user/getInfo')
           this.$message.success(res.message)
           this.permissionsLoading = true
+          this.$bus.$emit('refreshRouter')
           setTimeout(() => {
             this.permissionsLoading = false
           }, 500)
+
         }
       })
     }
@@ -222,6 +226,7 @@ export default {
     }
   }
 }
+
 .config-all {
   width: 100%;
   height: 100%;

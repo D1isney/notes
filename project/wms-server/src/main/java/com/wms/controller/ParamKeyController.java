@@ -12,6 +12,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -31,6 +32,7 @@ public class ParamKeyController {
     })
     @GetMapping("list")
     @Log(value = "参数-查询所有参数信息", path = "/paramKey/list")
+    @PreAuthorize("hasAuthority('paramKey:list')")
     public R<?> list(@RequestParam Map<String, Object> params) {
         Query query = new Query(params);
         IPage<ParamKeyVo> page = paramKeyService.pageList(query.getIPage(ParamKeyVo.class), query);
@@ -43,6 +45,7 @@ public class ParamKeyController {
     @ApiImplicitParam(name = "ParamKey", value = "paramKey")
     @PostMapping("saveOrUpdate")
     @Log(value = "参数-更改参数信息", path = "/paramKey/saveOrUpdate")
+    @PreAuthorize("hasAuthority('paramKey:saveOrUpdate')")
     public R<?> saveOrUpdate(@RequestBody ParamKey paramKey) {
         return paramKeyService.insertOrUpdate(paramKey);
     }
@@ -50,6 +53,7 @@ public class ParamKeyController {
     @ApiOperation("根据id查询信息")
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
+    @PreAuthorize("hasAuthority('paramKey:list')")
     @Log(value = "参数-查询单个参数信息", path = "/paramKey/getInfo/{id}")
     public R<?> getInfo(@PathVariable("id") Long id) {
         ParamKey info = paramKeyService.queryById(id);
@@ -60,6 +64,7 @@ public class ParamKeyController {
     @ApiImplicitParam(name = "ids", value = "id数组")
     @DeleteMapping("delete")
     @Log(value = "参数-删除参数信息", path = "/paramKey/delete")
+    @PreAuthorize("hasAuthority('paramKey:delete')")
     public R<?> delete(@RequestParam Long[] ids) {
         paramKeyService.deleteParamKeyByIds(ids);
         return R.ok("参数删除成功！");

@@ -62,7 +62,7 @@ public class RolePermissionsController {
     @ApiImplicitParam(name = "id", value = "id")
     @GetMapping("getInfo/{id}")
     @Log(value = "角色-权限-查询单个角色权限信息",path = "/rolePermissions/getInfo/{id}")
-    @PreAuthorize("hasAuthority('rolePermissions:getInfo')")
+    @PreAuthorize("hasAuthority('rolePermissions:list')")
     public R<?> getInfo(@PathVariable("id")Long id){
         RolePermissions info = rolePermissionsService.queryById(id);
         return R.ok(info);

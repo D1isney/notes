@@ -58,7 +58,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
         if (request.getServletPath().startsWith("/websocket/")) {
             filterChain.doFilter(request, response);
             return;
@@ -80,7 +79,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             //  放进缓存
             cache.put(userKey+userid, member);
         }
-
 
         if (Objects.isNull(member)) {
             throw new EException("非法用户");
@@ -105,7 +103,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             }
         }
         Long id = member.getId();
-
         //  查权限
         List<String> permissionsByMember = (List<String>) cache.getIfPresent(permissionsKey + id);
         if (Objects.isNull(permissionsByMember)) {
@@ -116,9 +113,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         loginMember.setMember(member);
         if (!permissionsByMember.isEmpty() && permissionsByMember.size() > 1) {
             loginMember.setPermissions(permissionsByMember);
+            //  更新这个用户的权限
+            MemberThreadLocal.setMainThreadLoginMemberById(id, loginMember);
         } else {
             loginMember.setPermissions(new ArrayList<>());
         }
+
         //  只需要存当前的用户
         MemberThreadLocal.set(loginMember);
         UsernamePasswordAuthenticationToken authenticationToken =

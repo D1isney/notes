@@ -26,13 +26,13 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/storage',
-    meta: {permission:['storage:list']},
+    meta: {permission:['/']},
     children: [
       {
         path: '/storage',
         name: 'Storage',
         component: () => import('@/views/storage/index'),
-        meta: { title: '首页', icon: 'el-icon-s-grid', permission: ['storage:list'] }
+        meta: { title: '首页', icon: 'el-icon-s-grid', permission: ['/'] }
       }
     ]
   },
@@ -45,7 +45,7 @@ export const constantRoutes = [
       path: '/dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: '数据看板', icon: 'dashboard' }
+      meta: { title: '数据看板', icon: 'dashboard' , permission: ['/']}
     }]
   },
   {
@@ -120,7 +120,7 @@ export const constantRoutes = [
     meta: {
       title: '用户管理',
       icon: 'el-icon-set-up',
-      permission: ['member:list', 'role:list', 'permissions:list', 'permissions:saveOrUpdate']
+      permission: ['member:list', 'role:list', 'permissions:list']
     },
     children: [
       {
@@ -150,7 +150,7 @@ export const constantRoutes = [
     ]
   },
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404', hidden: true ,meta: {permission: ['/']}}
 ]
 
 // 需要权限的路由在这里配
