@@ -1045,7 +1045,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="ak_4b54JUFSjNBAVJ8k9" name="装柜">
-    <mxGraphModel dx="3020" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3088" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1330,52 +1330,52 @@
           <mxGeometry y="450" width="680" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-88" value="product（产品表）" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="100" y="1580" width="680" height="480" as="geometry" />
+          <mxGeometry x="100" y="1580" width="430" height="480" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-89" value="- id bigint 自增ID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="30" width="680" height="30" as="geometry" />
+          <mxGeometry y="30" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-90" value="- product_category_id bigint 产品分类id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="60" width="680" height="30" as="geometry" />
+          <mxGeometry y="60" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-91" value="- member_id bigint 用户id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="90" width="680" height="30" as="geometry" />
+          <mxGeometry y="90" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-92" value="- category_name varchar 产品分类名" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="120" width="680" height="30" as="geometry" />
+          <mxGeometry y="120" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-93" value="- code varchar 物料编码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="150" width="680" height="30" as="geometry" />
+          <mxGeometry y="150" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-94" value="- client_code varchar 客户编码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="180" width="680" height="30" as="geometry" />
+          <mxGeometry y="180" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-95" value="-&amp;nbsp;factory_code varchar 工厂代码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="210" width="680" height="30" as="geometry" />
+          <mxGeometry y="210" width="430" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-96" value="- allow_bushing tinyint 是否允许套管（0：不内嵌不外套、1：不内嵌可外套、2：内嵌不外套、3：内外嵌套）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="240" width="680" height="30" as="geometry" />
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-96" value="- name varchar 名称" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+          <mxGeometry y="240" width="430" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-97" value="-&amp;nbsp;bearing_coefficient float 轴承系数" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="270" width="680" height="30" as="geometry" />
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-97" value="- length float 长度" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+          <mxGeometry y="270" width="430" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-98" value="- allow_tray tinyint 是否允许上托（0：不允许，1：允许）&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="300" width="680" height="30" as="geometry" />
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-98" value="- width float 宽度" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+          <mxGeometry y="300" width="430" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-99" value="- remark varchar 备注" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="330" width="680" height="30" as="geometry" />
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-99" value="- height float 高度" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+          <mxGeometry y="330" width="430" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-100" value="- create_time datetime 创建时间" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="360" width="680" height="30" as="geometry" />
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-100" value="-&amp;nbsp;weight float 重量、毛重" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+          <mxGeometry y="360" width="430" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-101" value="- update_time datetime 更新时间" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="390" width="680" height="30" as="geometry" />
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-101" value="- volume float 体积（最外层包装）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+          <mxGeometry y="390" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-102" value="- color varchar 颜色（区分装柜）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="420" width="680" height="30" as="geometry" />
+          <mxGeometry y="420" width="430" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-103" value="- version bigint 版本" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
-          <mxGeometry y="450" width="680" height="30" as="geometry" />
+          <mxGeometry y="450" width="430" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
