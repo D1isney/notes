@@ -1122,8 +1122,26 @@
         <mxCell id="4Qdiw95oxcmE5xu93eYe-17" value="返回数据" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="90" y="530" width="150" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="YA2RVoDPW5Oy0PBriCCH-1" value="用户" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="50" y="830" width="120" height="60" as="geometry" />
+        <mxCell id="YA2RVoDPW5Oy0PBriCCH-2" value="Member（用户）" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="80" y="830" width="300" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="YA2RVoDPW5Oy0PBriCCH-3" value="- id bigint 自增ID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="YA2RVoDPW5Oy0PBriCCH-2">
+          <mxGeometry y="30" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YA2RVoDPW5Oy0PBriCCH-4" value="- factory_code varchar 工厂代码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="YA2RVoDPW5Oy0PBriCCH-2">
+          <mxGeometry y="60" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YA2RVoDPW5Oy0PBriCCH-5" value="- source int 用户来源（0：手动添加、1：SAP）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="YA2RVoDPW5Oy0PBriCCH-2">
+          <mxGeometry y="90" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YA2RVoDPW5Oy0PBriCCH-6" value="- type int 用户类型（0：内部用户、1：外部用户）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="YA2RVoDPW5Oy0PBriCCH-2">
+          <mxGeometry y="120" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YA2RVoDPW5Oy0PBriCCH-7" value="- username varchar 账号" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="YA2RVoDPW5Oy0PBriCCH-2">
+          <mxGeometry y="150" width="300" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="YA2RVoDPW5Oy0PBriCCH-8" value="- password varchar 密码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="YA2RVoDPW5Oy0PBriCCH-2">
+          <mxGeometry y="180" width="300" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
