@@ -1045,7 +1045,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="ak_4b54JUFSjNBAVJ8k9" name="装柜">
-    <mxGraphModel dx="3163" dy="813" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3020" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1335,22 +1335,22 @@
         <mxCell id="9kUd_g3j-ILBlPacBhnT-89" value="- id bigint 自增ID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
           <mxGeometry y="30" width="680" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-90" value="- code varchar 编码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-90" value="- product_category_id bigint 产品分类id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
           <mxGeometry y="60" width="680" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-91" value="- branch_id bigint 部门id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-91" value="- member_id bigint 用户id" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
           <mxGeometry y="90" width="680" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-92" value="- name varchar 分类名称" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-92" value="- category_name varchar 产品分类名" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
           <mxGeometry y="120" width="680" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-93" value="- length_is_height tinyint 长度是否允许为高（0：不允许、1：允许）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-93" value="- code varchar 物料编码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
           <mxGeometry y="150" width="680" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-94" value="- width_is_height tinyint 宽度是否允许为高（0：不允许、1：允许）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-94" value="- client_code varchar 客户编码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
           <mxGeometry y="180" width="680" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="9kUd_g3j-ILBlPacBhnT-95" value="- height_is_height tinyint 高度是否允许为高（例如浴室柜，必须立放，意味着高度不允许为高）（0：不允许、1：允许）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
+        <mxCell id="9kUd_g3j-ILBlPacBhnT-95" value="-&amp;nbsp;factory_code varchar 工厂代码" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
           <mxGeometry y="210" width="680" height="30" as="geometry" />
         </mxCell>
         <mxCell id="9kUd_g3j-ILBlPacBhnT-96" value="- allow_bushing tinyint 是否允许套管（0：不内嵌不外套、1：不内嵌可外套、2：内嵌不外套、3：内外嵌套）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="9kUd_g3j-ILBlPacBhnT-88">
