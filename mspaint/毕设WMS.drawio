@@ -1921,7 +1921,7 @@
         <mxCell id="tFXUs-gCY8IldUmRxGf0-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="tFXUs-gCY8IldUmRxGf0-20" target="tFXUs-gCY8IldUmRxGf0-28">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="tFXUs-gCY8IldUmRxGf0-20" value="下发PLC" style="whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;rounded=1;" vertex="1" parent="1">
+        <mxCell id="tFXUs-gCY8IldUmRxGf0-20" value="下发PLC" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="-360" y="10760" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="tFXUs-gCY8IldUmRxGf0-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="tFXUs-gCY8IldUmRxGf0-22" target="tFXUs-gCY8IldUmRxGf0-24">
