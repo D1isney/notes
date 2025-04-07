@@ -863,7 +863,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Y2J0xbheVnQyRiyfcd_Y" name="第 4 页">
-    <mxGraphModel dx="2049" dy="1114" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="5607" dy="2600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1598,10 +1598,10 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-12" value="创建任务" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="242.5" y="8570" width="120" height="60" as="geometry" />
+          <mxGeometry x="242.5" y="8540" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-14" value="该库位有物料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="306.5" y="8490" width="140" height="30" as="geometry" />
+          <mxGeometry x="284" y="8480" width="140" height="30" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-17" value="该库位是否含有物料" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="227.5" y="8310" width="150" height="140" as="geometry" />
@@ -1610,25 +1610,25 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-18" value="是否有机器来把物料取走" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="227.5" y="8850" width="150" height="140" as="geometry" />
+          <mxGeometry x="227.5" y="8792.5" width="150" height="140" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cKh425QZD-olfQSjk4xI-20" target="cKh425QZD-olfQSjk4xI-18">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-20" value="下发PLC" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="243" y="8707.5" width="120" height="60" as="geometry" />
+          <mxGeometry x="243" y="8650" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="cKh425QZD-olfQSjk4xI-18" target="cKh425QZD-olfQSjk4xI-18">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="303" y="9070" />
-              <mxPoint x="450" y="9070" />
-              <mxPoint x="450" y="8920" />
+              <mxPoint x="303" y="9012.5" />
+              <mxPoint x="450" y="9012.5" />
+              <mxPoint x="450" y="8862.5" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-24" value="没有，等待机器取走该物料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="303" y="9040" width="147" height="30" as="geometry" />
+          <mxGeometry x="303" y="8982.5" width="147" height="30" as="geometry" />
         </mxCell>
         <mxCell id="cKh425QZD-olfQSjk4xI-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="cKh425QZD-olfQSjk4xI-26" target="TlJQRX4sBmZhuPRyr_gg-20">
           <mxGeometry relative="1" as="geometry" />
@@ -1666,151 +1666,160 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="613PViTx8sGF_isywjZj-2" value="机器取出成功与否" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="40" y="9090" width="150" height="140" as="geometry" />
+          <mxGeometry x="40" y="9032.5" width="150" height="140" as="geometry" />
         </mxCell>
         <mxCell id="613PViTx8sGF_isywjZj-5" value="物料出库成功" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="55" y="9310" width="120" height="60" as="geometry" />
+          <mxGeometry x="55" y="9252.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="613PViTx8sGF_isywjZj-7" value="有" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="115" y="8920" width="60" height="30" as="geometry" />
+          <mxGeometry x="115" y="8862.5" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="613PViTx8sGF_isywjZj-8" value="出库成功" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="115" y="9260" width="60" height="30" as="geometry" />
+          <mxGeometry x="115" y="9202.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EapH5w0YN1lQxcWZHtqI-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="613PViTx8sGF_isywjZj-2" target="cKh425QZD-olfQSjk4xI-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="9103" />
+              <mxPoint x="550" y="7890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EapH5w0YN1lQxcWZHtqI-2" value="出库失败" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="9072.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="EapH5w0YN1lQxcWZHtqI-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="613PViTx8sGF_isywjZj-5" target="cKh425QZD-olfQSjk4xI-1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-40" y="9340" />
+              <mxPoint x="-40" y="7890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EapH5w0YN1lQxcWZHtqI-4" value="通过WebSocket通知用户出库成功" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="9252.5" width="100" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram id="gEW7wwIuIC9anpfRY4A2" name="导出专用">
-    <mxGraphModel dx="2206" dy="-4645" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3033" dy="-5814" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-2" target="jjDngkS7uUL_XmAyRTb0-4">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-2" target="QyqqebmSOtqyjayBrQIO-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-2" value="用户" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
-          <mxGeometry x="940" y="6080" width="65" height="90" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-2" value="用户" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="270" y="7860" width="65" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-4" target="jjDngkS7uUL_XmAyRTb0-6">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-3" value="选中库位" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="243" y="8060" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-5" target="QyqqebmSOtqyjayBrQIO-14">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-4" value="物料申请入库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="912.5" y="6280" width="120" height="60" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-5" value="该库位是否含有物料" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="227.5" y="8310" width="150" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-6" target="jjDngkS7uUL_XmAyRTb0-8">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-7" target="QyqqebmSOtqyjayBrQIO-9">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-6" value="WMS是否含有该物料" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="897.5" y="6420" width="150" height="140" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-7" value="选中库位" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="243" y="8060" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-8" target="jjDngkS7uUL_XmAyRTb0-13">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-9" target="QyqqebmSOtqyjayBrQIO-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-8" value="创建任务" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
-          <mxGeometry x="912.5" y="6680" width="120" height="60" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-9" value="物料申请出库" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="243" y="8183" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-9" value="有" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="972.5" y="6600" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-10" value="没有" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1090" y="6460" width="60" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-11" value="返回异常信息" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1040" y="6110" width="120" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-13" target="jjDngkS7uUL_XmAyRTb0-16">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-13" value="下发任务" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="912.5" y="6820" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-16" target="jjDngkS7uUL_XmAyRTb0-19">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-16">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-5" target="QyqqebmSOtqyjayBrQIO-2">
           <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1010" y="6110" as="targetPoint" />
             <Array as="points">
-              <mxPoint x="1160" y="7040" />
-              <mxPoint x="1160" y="6110" />
+              <mxPoint x="550" y="8380" />
+              <mxPoint x="550" y="7890" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-16" value="是否有空余的库位" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="897.5" y="6970" width="150" height="140" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-11" value="该库位没有物料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="380" y="8350" width="140" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-17" value="没有" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="7010" width="60" height="30" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-12" value="返回异常信息" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="430" y="7890" width="120" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-19" target="jjDngkS7uUL_XmAyRTb0-28">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-14" target="QyqqebmSOtqyjayBrQIO-20">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-19" value="下发PLC" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="912.5" y="7230" width="120" height="60" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-14" value="创建任务" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="242.5" y="8540" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-20" value="有" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="970" y="7150" width="60" height="30" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-15" value="该库位有物料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="284" y="8480" width="140" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-23" target="jjDngkS7uUL_XmAyRTb0-24">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-16" value="该库位是否含有物料" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="227.5" y="8310" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-18" target="QyqqebmSOtqyjayBrQIO-24">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-23">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1010" y="6109.999999999999" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="1260" y="7700" />
-              <mxPoint x="1260" y="6110" />
-            </Array>
-          </mxGeometry>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-18" value="是否有机器来把物料取走" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="227.5" y="8792.5" width="150" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-23" value="是否入库成功" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="780" y="7630" width="150" height="140" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-24" value="物料入库成功" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" vertex="1" parent="1">
-          <mxGeometry x="795" y="7830" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-6" target="jjDngkS7uUL_XmAyRTb0-2">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="1160" y="6490" />
-              <mxPoint x="1160" y="6110" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-26" value="入库成功信息" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="770" y="6110" width="120" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-28" target="jjDngkS7uUL_XmAyRTb0-23">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-20" target="QyqqebmSOtqyjayBrQIO-18">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-28" value="是否有机器把该物料入库" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
-          <mxGeometry x="897.5" y="7390" width="150" height="140" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-20" value="下发PLC" style="whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="243" y="8650" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-28" target="jjDngkS7uUL_XmAyRTb0-28">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-18" target="QyqqebmSOtqyjayBrQIO-18">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="973" y="7640" />
-              <mxPoint x="1160" y="7640" />
-              <mxPoint x="1160" y="7460" />
+              <mxPoint x="303" y="9012.5" />
+              <mxPoint x="450" y="9012.5" />
+              <mxPoint x="450" y="8862.5" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-30" value="没有，等待机器将该物料放入仓储" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="970" y="7610" width="190" height="30" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-22" value="没有，等待机器取走该物料" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="303" y="8982.5" width="147" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-31" value="有" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="810" y="7470" width="60" height="30" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-24" target="QyqqebmSOtqyjayBrQIO-25">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="jjDngkS7uUL_XmAyRTb0-24" target="jjDngkS7uUL_XmAyRTb0-2">
+        <mxCell id="QyqqebmSOtqyjayBrQIO-24" value="机器取出成功与否" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="40" y="9032.5" width="150" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-25" value="物料出库成功" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="55" y="9252.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-26" value="有" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="115" y="8862.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-27" value="出库成功" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="115" y="9202.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-24" target="QyqqebmSOtqyjayBrQIO-2">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="750" y="7860" />
-              <mxPoint x="750" y="6110" />
+              <mxPoint x="550" y="9103" />
+              <mxPoint x="550" y="7890" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="jjDngkS7uUL_XmAyRTb0-33" value="入库失败" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="940" y="7670" width="120" height="30" as="geometry" />
+        <mxCell id="QyqqebmSOtqyjayBrQIO-29" value="出库失败" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="200" y="9072.5" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="QyqqebmSOtqyjayBrQIO-25" target="QyqqebmSOtqyjayBrQIO-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-40" y="9340" />
+              <mxPoint x="-40" y="7890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QyqqebmSOtqyjayBrQIO-31" value="通过WebSocket通知用户出库成功" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="9252.5" width="100" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
