@@ -863,7 +863,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Y2J0xbheVnQyRiyfcd_Y" name="第 4 页">
-    <mxGraphModel dx="1687" dy="918" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2607" dy="1418" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1489,7 +1489,7 @@
           <mxGeometry x="1090" y="6460" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="TlJQRX4sBmZhuPRyr_gg-8" value="返回异常信息" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
-          <mxGeometry x="1040" y="6080" width="120" height="30" as="geometry" />
+          <mxGeometry x="1040" y="6110" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="TlJQRX4sBmZhuPRyr_gg-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="TlJQRX4sBmZhuPRyr_gg-9" target="TlJQRX4sBmZhuPRyr_gg-11">
           <mxGeometry relative="1" as="geometry" />
@@ -1566,6 +1566,9 @@
               <mxPoint x="1160" y="6110" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="TlJQRX4sBmZhuPRyr_gg-32" value="入库成功信息" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="770" y="6110" width="120" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
