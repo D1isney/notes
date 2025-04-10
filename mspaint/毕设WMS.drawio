@@ -930,7 +930,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="Y2J0xbheVnQyRiyfcd_Y" name="第 4 页">
-    <mxGraphModel dx="3558" dy="1047" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4827" dy="1744" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3022,6 +3022,9 @@
         <mxCell id="dqCsnuIfdAm2PspUEfLn-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="dqCsnuIfdAm2PspUEfLn-6" target="dqCsnuIfdAm2PspUEfLn-8" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="so1n9maq_ysno6vS1qKj-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="dqCsnuIfdAm2PspUEfLn-6" target="dqCsnuIfdAm2PspUEfLn-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="dqCsnuIfdAm2PspUEfLn-6" value="WMS是否含有该物料" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="42.40999999999997" y="19810" width="150" height="140" as="geometry" />
         </mxCell>
@@ -3043,6 +3046,9 @@
         <mxCell id="dqCsnuIfdAm2PspUEfLn-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="dqCsnuIfdAm2PspUEfLn-16" target="dqCsnuIfdAm2PspUEfLn-19" parent="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="so1n9maq_ysno6vS1qKj-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="dqCsnuIfdAm2PspUEfLn-16" target="dqCsnuIfdAm2PspUEfLn-36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="dqCsnuIfdAm2PspUEfLn-16" value="是否有空余的库位" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="42.40999999999997" y="20360" width="150" height="140" as="geometry" />
         </mxCell>
@@ -3059,6 +3065,9 @@
           <mxGeometry x="114.90999999999997" y="20540" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="dqCsnuIfdAm2PspUEfLn-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="dqCsnuIfdAm2PspUEfLn-23" target="dqCsnuIfdAm2PspUEfLn-24" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="so1n9maq_ysno6vS1qKj-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="dqCsnuIfdAm2PspUEfLn-23" target="dqCsnuIfdAm2PspUEfLn-36">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dqCsnuIfdAm2PspUEfLn-23" value="是否入库成功" style="rhombus;whiteSpace=wrap;html=1;rounded=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
@@ -3095,10 +3104,16 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="dqCsnuIfdAm2PspUEfLn-34" value="开始" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
-          <mxGeometry x="50" y="19490" width="137" height="70" as="geometry" />
+          <mxGeometry x="49" y="19490" width="137" height="70" as="geometry" />
         </mxCell>
         <mxCell id="dqCsnuIfdAm2PspUEfLn-36" value="抛出异常信息" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
-          <mxGeometry x="430" y="19820" width="150" height="130" as="geometry" />
+          <mxGeometry x="430" y="19815" width="150" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="so1n9maq_ysno6vS1qKj-3" value="结束" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_1;whiteSpace=wrap;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="153" y="21215" width="137" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="so1n9maq_ysno6vS1qKj-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="dqCsnuIfdAm2PspUEfLn-24" target="so1n9maq_ysno6vS1qKj-3">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
