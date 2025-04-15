@@ -186,7 +186,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="BVUoF3LJc92JHdLGgPf7" name="时序图">
-    <mxGraphModel dx="2731" dy="1047" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2330" dy="826" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -303,7 +303,7 @@
         <mxCell id="Gs7MvggJK3ZVjqGfij0D-6" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
           <mxGeometry x="504" y="420" width="10" height="500" as="geometry" />
         </mxCell>
-        <mxCell id="Gs7MvggJK3ZVjqGfij0D-21" value="5.返回登录成功信息给用户" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+        <mxCell id="Gs7MvggJK3ZVjqGfij0D-21" value="5.返回首页" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="20" y="340" width="200" height="30" as="geometry" />
         </mxCell>
         <mxCell id="Gs7MvggJK3ZVjqGfij0D-27" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" parent="1" vertex="1">
@@ -581,7 +581,7 @@
             <mxPoint x="786" y="610" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="AjjW8YvIDylLjq1Vn2kD-60" value="9.下发PLC申请入库" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="AjjW8YvIDylLjq1Vn2kD-60" value="&lt;font style=&quot;font-size: 11px;&quot;&gt;9.下发PLC申请入库&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="515" y="580" width="270" height="30" as="geometry" />
         </mxCell>
         <mxCell id="AjjW8YvIDylLjq1Vn2kD-61" value="11.等待上个任务完成" style="html=1;align=left;spacingLeft=2;endArrow=block;rounded=0;edgeStyle=orthogonalEdgeStyle;curved=0;rounded=0;" edge="1" parent="1">
