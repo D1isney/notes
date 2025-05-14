@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="27.0.5" pages="2">
   <diagram name="数据库结构" id="I1ErNXHB0BoW2DpfOcAM">
-    <mxGraphModel dx="4823" dy="2896" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2894" dy="1845" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -11,28 +11,28 @@
           <mxGeometry y="50" width="340" height="130" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-9" value="标签（L&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;abel&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="180" width="340" height="180" as="geometry" />
+          <mxGeometry x="1100" y="170" width="340" height="180" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-10" value="+ id - 标签主键 - bigint&lt;br&gt;+ name - 标签名称 - varchar&lt;br&gt;+ code - 标签编码 - varchar&lt;div&gt;+&amp;nbsp;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-9">
           <mxGeometry y="50" width="340" height="130" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-11" value="标签-文章表（&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;Tags-Article Tables&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="620" y="310" width="340" height="180" as="geometry" />
+          <mxGeometry x="620" y="315" width="340" height="180" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-12" value="+ id - 关联表主键 - bigint&lt;div&gt;+ &lt;font face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;font-size: 14px; white-space-collapse: preserve;&quot;&gt;article&lt;/span&gt;&lt;/font&gt;_id - 专题id - bigint&lt;/div&gt;&lt;div&gt;+ label_id - 标签id - bigint&lt;/div&gt;&lt;div&gt;+ default_label_id - 默认标签 id - bigint&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-11">
           <mxGeometry y="50" width="340" height="130" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-13" value="默认标签（D&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;efault-L&lt;/span&gt;&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;abel&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1100" y="410" width="340" height="180" as="geometry" />
+          <mxGeometry x="1100" y="400" width="340" height="180" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-14" value="+ id - 标签主键 - bigint&lt;br&gt;+ name - 标签名称 - varchar&lt;br&gt;+ code - 标签编码 - varchar&lt;div&gt;+&amp;nbsp;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-13">
           <mxGeometry y="50" width="340" height="130" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-15" value="文章（A&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;rticle&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="100" y="300" width="340" height="200" as="geometry" />
+          <mxGeometry x="100" y="280" width="340" height="250" as="geometry" />
         </mxCell>
-        <mxCell id="AwYpqpUh4EfOczfZwocW-16" value="+ id - 文章主键 - bigint&lt;br&gt;+ name - 文章名称 - varchar&lt;br&gt;+ code - 文章编码 - varchar&lt;div&gt;+ path - 文章保存路径 - varchar&lt;/div&gt;&lt;div&gt;+ reading_quantity - 阅读量 - bigint&lt;/div&gt;&lt;div&gt;+ good_rating - 点赞量 - bigint&lt;/div&gt;&lt;div&gt;+ bad_rating - 差评量 - bigint&lt;/div&gt;&lt;div&gt;+ member_id - 用户id - bigint&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-15">
-          <mxGeometry y="50" width="340" height="150" as="geometry" />
+        <mxCell id="AwYpqpUh4EfOczfZwocW-16" value="+ id - 文章主键 - bigint&lt;br&gt;+ name - 文章名称 - varchar&lt;br&gt;+ code - 文章编码 - varchar&lt;div&gt;+ path - 文章保存路径 - varchar&lt;/div&gt;&lt;div&gt;+ reading_quantity - 阅读量 - bigint&lt;/div&gt;&lt;div&gt;+ good_rating - 点赞量 - bigint&lt;/div&gt;&lt;div&gt;+ bad_rating - 差评量 - bigint&lt;/div&gt;&lt;div&gt;+ member_id - 用户id - bigint&lt;/div&gt;&lt;div&gt;+ keyword - 关键字 - varchar&lt;/div&gt;&lt;div&gt;+ cover - 图片封面 - varchar&lt;/div&gt;&lt;div&gt;+ type - 文章类型 - int&lt;/div&gt;&lt;div&gt;+ scope - 可见范围 - int&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-15">
+          <mxGeometry y="50" width="340" height="200" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-17" value="专题-文章表（T&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;hematic-Article Tables&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="100" width="340" height="180" as="geometry" />
@@ -41,13 +41,13 @@
           <mxGeometry y="50" width="340" height="130" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-19" value="专栏-文章表（C&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;olumn-Article Tables&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-440" y="310" width="340" height="180" as="geometry" />
+          <mxGeometry x="-440" y="315" width="340" height="180" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-20" value="+ id - 关联表主键 - bigint&lt;br&gt;+ column_id - 专栏id - bigint&lt;br&gt;+ article_id - 文章id - bigint" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-19">
           <mxGeometry y="50" width="340" height="130" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-21" value="专栏（C&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;olumn&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-1010" y="310" width="340" height="180" as="geometry" />
+          <mxGeometry x="-1010" y="315" width="340" height="180" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-22" value="+ id - 专栏主键 - bigint&lt;br&gt;+ name - 专栏名称 - varchar&lt;br&gt;+ code - 专栏编码 - varchar" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-21">
           <mxGeometry y="50" width="340" height="130" as="geometry" />
@@ -92,21 +92,45 @@
           <mxGeometry y="50" width="340" height="160" as="geometry" />
         </mxCell>
         <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-4" value="&lt;div style=&quot;text-align: start;&quot;&gt;用户（Member）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="610" y="680" width="340" height="210" as="geometry" />
+          <mxGeometry x="1050" y="680" width="340" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-5" value="+ id - 用户id - bigint&lt;div&gt;+ name - 用户昵称 - varchar&lt;/div&gt;&lt;div&gt;+ username - 用户账号 - varchar&lt;/div&gt;&lt;div&gt;+ password - 用户密码 - varchar&lt;/div&gt;&lt;div&gt;+ sex - 性别 - tinyint&lt;/div&gt;&lt;div&gt;+ salt - 加密盐 - varchar&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="HQ80uJ3TJS0k1r7bCMIQ-4">
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-5" value="+ id - 用户id - bigint&lt;div&gt;+ name - 用户昵称 - varchar&lt;/div&gt;&lt;div&gt;+ username - 用户账号 - varchar&lt;/div&gt;&lt;div&gt;+ password - 用户密码 - varchar&lt;/div&gt;&lt;div&gt;+ sex - 性别 - tinyint&lt;/div&gt;&lt;div&gt;+ salt - 加密盐 - varchar&lt;/div&gt;&lt;div&gt;+ fans - 粉丝数量 - bigint&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="HQ80uJ3TJS0k1r7bCMIQ-4">
           <mxGeometry y="50" width="340" height="160" as="geometry" />
         </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="HQ80uJ3TJS0k1r7bCMIQ-6" target="HQ80uJ3TJS0k1r7bCMIQ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-6" value="&lt;div style=&quot;text-align: start;&quot;&gt;日志（Log）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="620" y="980" width="340" height="210" as="geometry" />
+          <mxGeometry x="1050" y="980" width="340" height="210" as="geometry" />
         </mxCell>
         <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-7" value="+ id - 日志id - bigint&lt;div&gt;+ message - 内容 - varchar&lt;/div&gt;&lt;div&gt;+ member_id - 调用用户id - bigint&lt;/div&gt;&lt;div&gt;+ create_time - 调用时间 - datetime&lt;/div&gt;&lt;div&gt;+ type - 日志级别 - int&lt;/div&gt;&lt;div&gt;+ params - 接口参数 - text&lt;/div&gt;&lt;div&gt;+ result - longtext - 返回参数&lt;/div&gt;&lt;div&gt;+ excute_time - 执行时长 - bigint&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="HQ80uJ3TJS0k1r7bCMIQ-6">
           <mxGeometry y="50" width="340" height="160" as="geometry" />
         </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="HQ80uJ3TJS0k1r7bCMIQ-8" target="AwYpqpUh4EfOczfZwocW-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-8" value="&lt;div style=&quot;text-align: start;&quot;&gt;收藏（Collect）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1140" y="770" width="340" height="210" as="geometry" />
+          <mxGeometry x="560" y="680" width="340" height="210" as="geometry" />
         </mxCell>
         <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-9" value="+ id - 收藏id - bigint&lt;div&gt;+ article_id - 文章id - bigint&lt;/div&gt;&lt;div&gt;- member_id - 用户id - bigint&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="HQ80uJ3TJS0k1r7bCMIQ-8">
+          <mxGeometry y="50" width="340" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="HQ80uJ3TJS0k1r7bCMIQ-5" target="HQ80uJ3TJS0k1r7bCMIQ-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-15" value="&lt;div style=&quot;text-align: start;&quot;&gt;关注-用户表（A&lt;span style=&quot;white-space-collapse: preserve; font-family: 微软雅黑;&quot;&gt;ttention-Member Tables&lt;/span&gt;）&lt;br&gt;&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1580" y="680" width="340" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-16" value="+ id - 关系表id - bigint&lt;div&gt;+ attention_id - 关注表id bigint&lt;/div&gt;&lt;div&gt;+ member_id - 本身id - bigint&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="HQ80uJ3TJS0k1r7bCMIQ-15">
+          <mxGeometry y="50" width="340" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="HQ80uJ3TJS0k1r7bCMIQ-16" target="HQ80uJ3TJS0k1r7bCMIQ-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-18" value="&lt;div style=&quot;text-align: start;&quot;&gt;关注（Attention）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1560" y="980" width="340" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-19" value="+ id - 关注表id - bigint&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ member_id - 粉丝本人id - bigint&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;+ create_time - 关注时间 - datetime&lt;/span&gt;&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="HQ80uJ3TJS0k1r7bCMIQ-18">
           <mxGeometry y="50" width="340" height="160" as="geometry" />
         </mxCell>
       </root>
