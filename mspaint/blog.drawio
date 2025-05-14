@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="27.0.5" pages="2">
   <diagram name="数据库结构" id="I1ErNXHB0BoW2DpfOcAM">
-    <mxGraphModel dx="4031" dy="2464" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3012" dy="1909" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -73,8 +73,11 @@
         <mxCell id="AwYpqpUh4EfOczfZwocW-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="AwYpqpUh4EfOczfZwocW-22" target="AwYpqpUh4EfOczfZwocW-20">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="ytZSGSwfcOSJs34K6wdh-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="AwYpqpUh4EfOczfZwocW-33" target="AwYpqpUh4EfOczfZwocW-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-33" value="&lt;div style=&quot;text-align: start;&quot;&gt;评论（Comment）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="-260" y="560" width="340" height="210" as="geometry" />
+          <mxGeometry x="-100" y="680" width="340" height="210" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-34" value="+ id - 评论主键 - bigint&lt;div&gt;+ code - 评论编码 - varchar&lt;/div&gt;&lt;div&gt;+ content - 评论内容 - varchar&lt;/div&gt;&lt;div&gt;+ article_id - 文章id - bigint&lt;/div&gt;&lt;div&gt;+ create_time - 评论时间 - datetime&lt;/div&gt;&lt;div&gt;+ good_rating - 点赞数量 - bigint&lt;/div&gt;&lt;div&gt;+ bad_rating - 差评量 - bigint&lt;/div&gt;&lt;div&gt;+ member_id - 评论用户id - bigint&lt;/div&gt;&lt;div&gt;+ parent - 首评 - bigint （首评 -1，其余都是次评）&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-33">
           <mxGeometry y="50" width="340" height="160" as="geometry" />
