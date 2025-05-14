@@ -43,7 +43,7 @@
         <mxCell id="AwYpqpUh4EfOczfZwocW-19" value="专栏-文章表（C&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;olumn-Article Tables&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="-440" y="310" width="340" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="AwYpqpUh4EfOczfZwocW-20" value="+ id - 专题主键 - bigint&lt;br&gt;+ name - 专题名称 - varchar&lt;br&gt;+ code - 专题编码 - varchar" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-19">
+        <mxCell id="AwYpqpUh4EfOczfZwocW-20" value="+ id - 关联表主键 - bigint&lt;br&gt;+ column_id - 专栏id - bigint&lt;br&gt;+ article_id - 文章id - bigint" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="AwYpqpUh4EfOczfZwocW-19">
           <mxGeometry y="50" width="340" height="130" as="geometry" />
         </mxCell>
         <mxCell id="AwYpqpUh4EfOczfZwocW-21" value="专栏（&lt;span style=&quot;font-family: 微软雅黑; text-align: start; white-space-collapse: preserve;&quot;&gt;column&lt;/span&gt;）" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
