@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="27.0.6" pages="2">
   <diagram name="数据库结构" id="I1ErNXHB0BoW2DpfOcAM">
-    <mxGraphModel dx="4506" dy="2723" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2842" dy="1817" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -125,6 +125,12 @@
           <mxGeometry x="760" y="1640" width="340" height="210" as="geometry" />
         </mxCell>
         <mxCell id="HQ80uJ3TJS0k1r7bCMIQ-16" value="+ id - 关系表id - bigint&lt;div&gt;+ attention_id - 关注对象id bigint&lt;/div&gt;&lt;div&gt;+ member_id - 本身id - bigint&lt;/div&gt;&lt;div&gt;+ create_time - 关注时间 - datetime&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" parent="HQ80uJ3TJS0k1r7bCMIQ-15" vertex="1">
+          <mxGeometry y="50" width="340" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="0P50OxjnXFVeQ0MAqG4H-4" value="&lt;div style=&quot;text-align: start;&quot;&gt;角色（Role）&lt;/div&gt;" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=50;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;arcSize=4;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1130" y="1110" width="340" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="0P50OxjnXFVeQ0MAqG4H-5" value="+ id - 角色id -bigint&lt;div&gt;+ name - 角色名称 - varchar&lt;/div&gt;&lt;div&gt;+ code - 角色code - varchar&lt;/div&gt;&lt;div&gt;+ create_time - 创建时间 - datetime&lt;/div&gt;&lt;div&gt;+ update_time - 更新时间 - datetime&lt;/div&gt;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;spacingRight=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;html=1;whiteSpace=wrap;" vertex="1" parent="0P50OxjnXFVeQ0MAqG4H-4">
           <mxGeometry y="50" width="340" height="160" as="geometry" />
         </mxCell>
       </root>
