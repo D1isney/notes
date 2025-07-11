@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="27.0.6" pages="8">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="27.2.0" pages="8">
   <diagram name="WMS操作流程图" id="4fjYf9DxsTwHK-hKx6aq">
     <mxGraphModel dx="911" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -2587,13 +2587,22 @@
       </root>
     </mxGraphModel>
   </diagram>
-  <diagram id="Ejj3ID0ERvoHBLukRNRq" name="第 8 页">
-    <mxGraphModel dx="1501" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+  <diagram id="Ejj3ID0ERvoHBLukRNRq" name="任务执行器">
+    <mxGraphModel dx="1426" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="JnCDrktS9JWt3wj0-7lQ-84" value="" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
-          <mxGeometry x="190" y="250" width="80" height="100" as="geometry" />
+        <mxCell id="msvgj0KXPZOysyvITdM_-1" value="1、执行方法&lt;div&gt;2、方法结束&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="255" y="240" width="230" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="msvgj0KXPZOysyvITdM_-2" value="抽象线程" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="255" y="210" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="msvgj0KXPZOysyvITdM_-3" value="" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="600" width="520" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="msvgj0KXPZOysyvITdM_-4" value="线程池" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="570" width="520" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
