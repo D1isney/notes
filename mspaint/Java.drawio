@@ -1246,6 +1246,9 @@
         <mxCell id="Qeyc75Tvx0h2zI9PQ5F6-21" value="arr[n]=起始地址+（n*字节数）" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="70" y="4640" width="200" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="Qeyc75Tvx0h2zI9PQ5F6-22" value="Eg：arr[2] = 100(起始地址) + 2 * 4 = 108，int定义为4个字节，所以找到对应的值为34" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="250" y="4780" width="340" height="30" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
