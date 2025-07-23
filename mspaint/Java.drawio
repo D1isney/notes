@@ -4,6 +4,9 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="Qeyc75Tvx0h2zI9PQ5F6-139" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="889.75" y="4965" width="1310" height="520" as="geometry" />
+        </mxCell>
         <mxCell id="Qeyc75Tvx0h2zI9PQ5F6-67" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
           <mxGeometry x="889.75" y="4420" width="1310" height="520" as="geometry" />
         </mxCell>
@@ -1463,6 +1466,9 @@
             <mxPoint x="1865.5" y="5300" as="sourcePoint" />
             <mxPoint x="1935.5" y="5225" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="Qeyc75Tvx0h2zI9PQ5F6-140" value="删除过程" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="889.75" y="4965" width="190.25" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
