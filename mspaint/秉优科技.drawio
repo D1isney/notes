@@ -2722,10 +2722,13 @@
     </mxGraphModel>
   </diagram>
   <diagram id="-eqLwjvXNVNnEl8YMu_X" name="海天">
-    <mxGraphModel dx="1426" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2253" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="42NOXtHogH4VIEw0IGAu-56" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-45" y="460" width="490" height="405" as="geometry" />
+        </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="42NOXtHogH4VIEw0IGAu-1" target="42NOXtHogH4VIEw0IGAu-2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
@@ -2809,10 +2812,7 @@
         <mxCell id="42NOXtHogH4VIEw0IGAu-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="42NOXtHogH4VIEw0IGAu-26" target="42NOXtHogH4VIEw0IGAu-28">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="42NOXtHogH4VIEw0IGAu-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="42NOXtHogH4VIEw0IGAu-26" target="42NOXtHogH4VIEw0IGAu-33">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="42NOXtHogH4VIEw0IGAu-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="42NOXtHogH4VIEw0IGAu-26" target="42NOXtHogH4VIEw0IGAu-34">
+        <mxCell id="42NOXtHogH4VIEw0IGAu-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="42NOXtHogH4VIEw0IGAu-26" target="42NOXtHogH4VIEw0IGAu-33">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-26" value="服务层：Service" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -2822,16 +2822,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-28" value="数据访问层：DAO" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="320" y="970" width="120" height="60" as="geometry" />
+          <mxGeometry x="430" y="950" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-30" value="数据库：MySQL" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="320" y="1080" width="120" height="60" as="geometry" />
+          <mxGeometry x="430" y="1060" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-33" value="缓存" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="535" y="1080" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="42NOXtHogH4VIEw0IGAu-34" value="优化算法" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="750" y="1080" width="120" height="60" as="geometry" />
+          <mxGeometry x="610" y="1060" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="42NOXtHogH4VIEw0IGAu-38" target="42NOXtHogH4VIEw0IGAu-45">
           <mxGeometry relative="1" as="geometry" />
@@ -2853,6 +2850,9 @@
         </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-54" value="返回数据" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="760" y="440" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="42NOXtHogH4VIEw0IGAu-57" value="系统边界" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-45" y="460" width="95" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
