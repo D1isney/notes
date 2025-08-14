@@ -2382,12 +2382,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="-eqLwjvXNVNnEl8YMu_X" name="海天">
-    <mxGraphModel dx="1426" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2593" dy="1413" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="bncQMA5Fse_8MCIycrtU-15" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="390" y="1210" width="630" height="400" as="geometry" />
+        <mxCell id="bncQMA5Fse_8MCIycrtU-22" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="1200" width="630" height="400" as="geometry" />
         </mxCell>
         <mxCell id="42NOXtHogH4VIEw0IGAu-56" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="360" y="440" width="490" height="405" as="geometry" />
@@ -2622,6 +2622,15 @@
         </mxCell>
         <mxCell id="bncQMA5Fse_8MCIycrtU-16" value="系统边界" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="390" y="1210" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="bncQMA5Fse_8MCIycrtU-20" value="外部系统" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="985" y="1680" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="bncQMA5Fse_8MCIycrtU-21" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="890" y="1420" as="sourcePoint" />
+            <mxPoint x="990" y="1670" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
