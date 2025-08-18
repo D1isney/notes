@@ -2424,7 +2424,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="-eqLwjvXNVNnEl8YMu_X" name="海天">
-    <mxGraphModel dx="3150" dy="1295" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1899" dy="598" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -4730,16 +4730,16 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="5YcibUGk6HrdD6gZfuoC-8" value="业务模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
-          <mxGeometry x="682.5" y="12370" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="5YcibUGk6HrdD6gZfuoC-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="5YcibUGk6HrdD6gZfuoC-15" target="5YcibUGk6HrdD6gZfuoC-56">
+        <mxCell id="mpjJkY9X0C5fr6MBEtCk-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="5YcibUGk6HrdD6gZfuoC-8" target="5YcibUGk6HrdD6gZfuoC-15">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="5YcibUGk6HrdD6gZfuoC-60" value="映射" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="5YcibUGk6HrdD6gZfuoC-57">
-          <mxGeometry x="-0.041" y="-1" relative="1" as="geometry">
+        <mxCell id="mpjJkY9X0C5fr6MBEtCk-3" value="依赖" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="mpjJkY9X0C5fr6MBEtCk-2">
+          <mxGeometry x="-0.2393" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="5YcibUGk6HrdD6gZfuoC-8" value="业务模块" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="682.5" y="12370" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="5YcibUGk6HrdD6gZfuoC-15" value="实体类模块" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="310" y="12500" width="120" height="60" as="geometry" />
@@ -4770,10 +4770,13 @@
           <mxGeometry x="683" y="12630" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="5YcibUGk6HrdD6gZfuoC-56" value="MySQL" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" vertex="1" parent="1">
-          <mxGeometry x="340" y="12630" width="60" height="60" as="geometry" />
+          <mxGeometry x="916.25" y="12370" width="60" height="60" as="geometry" />
         </mxCell>
         <mxCell id="rrqad0N8si_PUb6XZI6Q-2" value="不通过" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="969.75" y="440" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mpjJkY9X0C5fr6MBEtCk-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="5YcibUGk6HrdD6gZfuoC-8" target="5YcibUGk6HrdD6gZfuoC-56">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
