@@ -4754,6 +4754,15 @@
         <mxCell id="YFpD4sTvN8i_hD2o8w4N-3" value="非主动传参，则把推断结果缓存到&lt;div&gt;BeanDefinition中&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1934" y="6931" width="270" height="67" as="geometry" />
         </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="yg_Eq3Qp2YRSmV7_sF3K-1" target="yg_Eq3Qp2YRSmV7_sF3K-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-1" value="AbstractApplicationContext" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="365.5" y="9830" width="208" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-2" value="refresh()" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="660" y="9830" width="120" height="60" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
