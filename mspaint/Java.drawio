@@ -3491,7 +3491,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="v4Sp-duC8TqkNW1E25X6" name="Spring底层">
-    <mxGraphModel dx="2015" dy="648" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2728" dy="1036" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -3678,7 +3678,7 @@
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-5" value="Aware回调的原理" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1650" y="8995" width="1340" height="120" as="geometry">
-            <mxRectangle x="160" y="1900" width="100" height="30" as="alternateBounds" />
+            <mxRectangle x="1650" y="8995" width="100" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="AHKEVvE3kVGkbASK2gaT-6" value="实现Aware接口，首先需要在Bean类中事项对应的Aware接口，并重写回调方法。每个Aware接口都有其特定的作用和回调方法，可以根据需求选择实现相应的接口。" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="AHKEVvE3kVGkbASK2gaT-5" vertex="1">
