@@ -4755,58 +4755,84 @@
           <mxGeometry x="1934" y="6931" width="270" height="67" as="geometry" />
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-21" value="AbstractApplicationContext - refresh" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="436" y="9780" width="973.5" height="360" as="geometry" />
+          <mxGeometry x="292" y="9770" width="1558" height="560" as="geometry" />
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-22" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
-          <mxGeometry y="30" width="973.5" height="70" as="geometry" />
+          <mxGeometry y="30" width="1558" height="70" as="geometry" />
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-23" value="prepareRefresh()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;pointerEvents=1;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-22">
-          <mxGeometry width="214" height="70" as="geometry">
-            <mxRectangle width="214" height="70" as="alternateBounds" />
+          <mxGeometry width="590" height="70" as="geometry">
+            <mxRectangle width="590" height="70" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-24" value="step1：做一些基本的准备工作（初始化IOC容器，即：ClassPathXmlApplicationContext 的一些状态值、获取系统环境值等）" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-22">
-          <mxGeometry x="214" width="760" height="70" as="geometry">
-            <mxRectangle width="760" height="70" as="alternateBounds" />
+          <mxGeometry x="590" width="968" height="70" as="geometry">
+            <mxRectangle width="968" height="70" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-25" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
-          <mxGeometry y="100" width="973.5" height="90" as="geometry" />
+          <mxGeometry y="100" width="1558" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-26" value="obtainFreshBeanFactory()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-25">
-          <mxGeometry width="214" height="90" as="geometry">
-            <mxRectangle width="214" height="90" as="alternateBounds" />
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-26" value="obtainFreshBeanFactory(BeanFactory beanFactory)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-25">
+          <mxGeometry width="590" height="90" as="geometry">
+            <mxRectangle width="590" height="90" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-27" value="step2：创建BeanFactory对象（实际是DefaultListableBeanFactory）&lt;div&gt;加载xml配置文件或注释的bean信息到当前工厂，最重要的就是BeanDefinition&lt;/div&gt;&lt;div&gt;创建过程中会创建BeanDefinition，它保存由配置文件或注解标注的bean信息&lt;/div&gt;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-25">
-          <mxGeometry x="214" width="760" height="90" as="geometry">
-            <mxRectangle width="760" height="90" as="alternateBounds" />
+          <mxGeometry x="590" width="968" height="90" as="geometry">
+            <mxRectangle width="968" height="90" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-28" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
-          <mxGeometry y="190" width="973.5" height="70" as="geometry" />
+          <mxGeometry y="190" width="1558" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-29" value="prepareBeanFactory()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-28">
-          <mxGeometry width="214" height="70" as="geometry">
-            <mxRectangle width="214" height="70" as="alternateBounds" />
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-29" value="prepareBeanFactory(BeanFactory beanFactory)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-28">
+          <mxGeometry width="590" height="70" as="geometry">
+            <mxRectangle width="590" height="70" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-30" value="step3：设置BeanFactory的类加载器，添加Spring默认的BeanPostProcessor，手动注册几个特殊的bean" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-28">
-          <mxGeometry x="214" width="760" height="70" as="geometry">
-            <mxRectangle width="760" height="70" as="alternateBounds" />
+          <mxGeometry x="590" width="968" height="70" as="geometry">
+            <mxRectangle width="968" height="70" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-31" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
-          <mxGeometry y="260" width="973.5" height="100" as="geometry" />
+          <mxGeometry y="260" width="1558" height="100" as="geometry" />
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-32" value="postProcessBeanfactory()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-31">
-          <mxGeometry width="214" height="100" as="geometry">
-            <mxRectangle width="214" height="100" as="alternateBounds" />
+          <mxGeometry width="590" height="100" as="geometry">
+            <mxRectangle width="590" height="100" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-33" value="step4：（模板方法）这里是提供给子类的扩展点，到这里的时候，所有的Bean都加载、注册完成了，但是都没有初始化&lt;div&gt;具体的子类可以在这步的时候添加一些特殊的BeanFactoryPostProcessor的实现类或做点什么&lt;/div&gt;" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-31">
-          <mxGeometry x="214" width="760" height="100" as="geometry">
-            <mxRectangle width="760" height="100" as="alternateBounds" />
+          <mxGeometry x="590" width="968" height="100" as="geometry">
+            <mxRectangle width="968" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-49" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
+          <mxGeometry y="360" width="1558" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-50" value="invokeBeanFactoryPostProcessors()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-49">
+          <mxGeometry width="590" height="100" as="geometry">
+            <mxRectangle width="590" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-51" value="step5：调用所有BeanFactoryPostProcessor（当前在IOC容器中保存）中的方法" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-49">
+          <mxGeometry x="590" width="968" height="100" as="geometry">
+            <mxRectangle width="968" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-52" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
+          <mxGeometry y="460" width="1558" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-53" value="registerBeanPostProcessors(BeanFactory beanfactory)" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-52">
+          <mxGeometry width="590" height="100" as="geometry">
+            <mxRectangle width="590" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-54" value="step5：调用所有BeanFactoryPostProcessor（当前在IOC容器中保存）中的方法" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-52">
+          <mxGeometry x="590" width="968" height="100" as="geometry">
+            <mxRectangle width="968" height="100" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
       </root>
