@@ -4755,7 +4755,7 @@
           <mxGeometry x="1934" y="6931" width="270" height="67" as="geometry" />
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-21" value="AbstractApplicationContext - refresh" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="292" y="9770" width="1558" height="560" as="geometry" />
+          <mxGeometry x="292" y="9770" width="1558" height="860" as="geometry" />
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-22" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
           <mxGeometry y="30" width="1558" height="70" as="geometry" />
@@ -4831,6 +4831,45 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-54" value="step6：实例化Bean之前，作准备。在实例化Bean之前保存（注册）BeanPostProcessors" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-52">
+          <mxGeometry x="590" width="968" height="100" as="geometry">
+            <mxRectangle width="968" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-55" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
+          <mxGeometry y="560" width="1558" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-56" value="initMessageSource()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-55">
+          <mxGeometry width="590" height="100" as="geometry">
+            <mxRectangle width="590" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-57" value="step7：国际化" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-55">
+          <mxGeometry x="590" width="968" height="100" as="geometry">
+            <mxRectangle width="968" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-58" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
+          <mxGeometry y="660" width="1558" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-59" value="initApplicationEventMulticaster()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-58">
+          <mxGeometry width="590" height="100" as="geometry">
+            <mxRectangle width="590" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-60" value="step8：初始化当前ApplicationContext的事件广播器" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-58">
+          <mxGeometry x="590" width="968" height="100" as="geometry">
+            <mxRectangle width="968" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-86" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-21">
+          <mxGeometry y="760" width="1558" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-87" value="onRefresh()" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-86">
+          <mxGeometry width="590" height="100" as="geometry">
+            <mxRectangle width="590" height="100" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="yg_Eq3Qp2YRSmV7_sF3K-88" value="step9：模板方法（钩子方法），具体的子类可以在这里初始化一些特殊的Bean（在初始化 singleton beans之前）" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;fillColor=none;top=0;left=0;bottom=0;right=0;align=left;spacingLeft=6;overflow=hidden;strokeColor=inherit;fontSize=16;" vertex="1" parent="yg_Eq3Qp2YRSmV7_sF3K-86">
           <mxGeometry x="590" width="968" height="100" as="geometry">
             <mxRectangle width="968" height="100" as="alternateBounds" />
           </mxGeometry>
