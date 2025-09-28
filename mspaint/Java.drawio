@@ -1621,12 +1621,12 @@
     </mxGraphModel>
   </diagram>
   <diagram id="XgTFpQ6O71W0pK13TyQf" name="设计模式">
-    <mxGraphModel dx="2328" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="4901" dy="2220" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="nNdVRBi2LGGQCmODNVGG-7" value="创建型模式" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="-490" y="780" width="530" height="180" as="geometry" />
+          <mxGeometry x="-596" y="780" width="530" height="180" as="geometry" />
         </mxCell>
         <mxCell id="nNdVRBi2LGGQCmODNVGG-8" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="nNdVRBi2LGGQCmODNVGG-7">
           <mxGeometry y="30" width="530" height="30" as="geometry" />
@@ -1694,7 +1694,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nNdVRBi2LGGQCmODNVGG-33" value="结构型模式" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="210" y="780" width="530" height="240" as="geometry" />
+          <mxGeometry x="104" y="780" width="530" height="240" as="geometry" />
         </mxCell>
         <mxCell id="nNdVRBi2LGGQCmODNVGG-34" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="nNdVRBi2LGGQCmODNVGG-33">
           <mxGeometry y="30" width="530" height="30" as="geometry" />
@@ -1788,7 +1788,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nNdVRBi2LGGQCmODNVGG-61" value="行为型模式" style="shape=table;startSize=30;container=1;collapsible=0;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=0;strokeColor=default;fontSize=16;" vertex="1" parent="1">
-          <mxGeometry x="880" y="780" width="530" height="360" as="geometry" />
+          <mxGeometry x="774" y="780" width="530" height="360" as="geometry" />
         </mxCell>
         <mxCell id="nNdVRBi2LGGQCmODNVGG-62" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;strokeColor=inherit;fontSize=16;" vertex="1" parent="nNdVRBi2LGGQCmODNVGG-61">
           <mxGeometry y="30" width="530" height="30" as="geometry" />
@@ -1932,6 +1932,18 @@
           <mxGeometry x="170" width="360" height="30" as="geometry">
             <mxRectangle width="360" height="30" as="alternateBounds" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="nNdVRBi2LGGQCmODNVGG-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="nNdVRBi2LGGQCmODNVGG-95" target="nNdVRBi2LGGQCmODNVGG-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nNdVRBi2LGGQCmODNVGG-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nNdVRBi2LGGQCmODNVGG-95" target="nNdVRBi2LGGQCmODNVGG-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nNdVRBi2LGGQCmODNVGG-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="nNdVRBi2LGGQCmODNVGG-95" target="nNdVRBi2LGGQCmODNVGG-61">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nNdVRBi2LGGQCmODNVGG-95" value="23种设计模式" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="169" y="510" width="400" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
