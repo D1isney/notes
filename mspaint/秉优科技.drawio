@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="28.2.9" pages="10">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="29.2.9" pages="10">
   <diagram name="WMS操作流程图" id="4fjYf9DxsTwHK-hKx6aq">
     <mxGraphModel dx="911" dy="480" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -4883,10 +4883,64 @@
     </mxGraphModel>
   </diagram>
   <diagram id="y2Bvajiiah65ecm8mP4R" name="中车-压裂">
-    <mxGraphModel dx="1426" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2253" dy="777" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-7" edge="1" parent="1" source="_Ghisxa5Nf0QUgwcyOHl-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="_Ghisxa5Nf0QUgwcyOHl-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="设备" vertex="1">
+          <mxGeometry height="60" width="120" x="270" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-4" edge="1" parent="1" source="_Ghisxa5Nf0QUgwcyOHl-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="_Ghisxa5Nf0QUgwcyOHl-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="配电室" vertex="1">
+          <mxGeometry height="60" width="120" x="20" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-5" edge="1" parent="1" source="_Ghisxa5Nf0QUgwcyOHl-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="_Ghisxa5Nf0QUgwcyOHl-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="电柜" vertex="1">
+          <mxGeometry height="60" width="120" x="120" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="采集数据" vertex="1">
+          <mxGeometry height="60" width="120" x="980" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="采集数据" vertex="1">
+          <mxGeometry height="60" width="120" x="990" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="采集数据" vertex="1">
+          <mxGeometry height="60" width="120" x="1000" y="410" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="采集数据" vertex="1">
+          <mxGeometry height="60" width="120" x="1010" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="报警记录" vertex="1">
+          <mxGeometry height="60" width="120" x="-170" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="_Ghisxa5Nf0QUgwcyOHl-13" edge="1" parent="1" source="_Ghisxa5Nf0QUgwcyOHl-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.538;entryY=-0.001;entryDx=0;entryDy=0;entryPerimeter=0;" target="_Ghisxa5Nf0QUgwcyOHl-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iD1j7Heh48sLfprnXsWx-6" edge="1" parent="1" source="iD1j7Heh48sLfprnXsWx-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="_Ghisxa5Nf0QUgwcyOHl-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iD1j7Heh48sLfprnXsWx-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="遥信变位记录" vertex="1">
+          <mxGeometry height="60" width="120" x="70" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="iD1j7Heh48sLfprnXsWx-9" edge="1" parent="1" source="iD1j7Heh48sLfprnXsWx-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="_Ghisxa5Nf0QUgwcyOHl-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iD1j7Heh48sLfprnXsWx-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="遥控记录" vertex="1">
+          <mxGeometry height="60" width="120" x="270" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="iD1j7Heh48sLfprnXsWx-10" edge="1" parent="1" source="iD1j7Heh48sLfprnXsWx-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="_Ghisxa5Nf0QUgwcyOHl-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="iD1j7Heh48sLfprnXsWx-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="通讯记录" vertex="1">
+          <mxGeometry height="60" width="120" x="560" y="705" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
