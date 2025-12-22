@@ -4941,6 +4941,36 @@
         <mxCell id="iD1j7Heh48sLfprnXsWx-5" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="通讯记录" vertex="1">
           <mxGeometry height="60" width="120" x="560" y="705" as="geometry" />
         </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="340" width="500" x="-510" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="配电室" vertex="1">
+          <mxGeometry height="30" width="100" x="-510" y="880" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="DPT34A" vertex="1">
+          <mxGeometry height="60" width="120" x="-490" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="IPD60" vertex="1">
+          <mxGeometry height="60" width="120" x="-490" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="IPD60" vertex="1">
+          <mxGeometry height="60" width="120" x="-490" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="IPD60" vertex="1">
+          <mxGeometry height="60" width="120" x="-330" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="IPD60" vertex="1">
+          <mxGeometry height="60" width="120" x="-170" y="1030" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="IPD60" vertex="1">
+          <mxGeometry height="60" width="120" x="-330" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-9" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="IPD60" vertex="1">
+          <mxGeometry height="60" width="120" x="-170" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="gYnH4eM5mGFnYBzv24nu-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="DTSD341" vertex="1">
+          <mxGeometry height="60" width="120" x="-330" y="940" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
