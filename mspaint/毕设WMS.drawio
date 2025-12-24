@@ -276,10 +276,13 @@
     </mxGraphModel>
   </diagram>
   <diagram id="BVUoF3LJc92JHdLGgPf7" name="时序图">
-    <mxGraphModel dx="2552" dy="928" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2388" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-58" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFFFFF;strokeColor=default;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFFFFF;shadow=1;size=20;pointerEvents=1;dashed=1;" value="" vertex="1">
+          <mxGeometry height="202" width="570" x="120" y="3848" as="geometry" />
+        </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-26" parent="1" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFFFFF;strokeColor=default;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFFFFF;shadow=1;size=20;pointerEvents=1;dashed=1;" value="" vertex="1">
           <mxGeometry height="350" width="570" x="120" y="2880" as="geometry" />
         </mxCell>
@@ -695,10 +698,10 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="客户端" vertex="1">
-          <mxGeometry height="60" width="120" x="-120" y="4220" as="geometry" />
+          <mxGeometry height="60" width="120" x="-120" y="4530" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="TaskExecutor" vertex="1">
-          <mxGeometry height="60" width="120" x="200" y="4220" as="geometry" />
+          <mxGeometry height="60" width="120" x="200" y="4530" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-9" edge="1" parent="1" source="a4V0P-MnRHSE9Gf4vbQq-8" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="a4V0P-MnRHSE9Gf4vbQq-2" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -707,7 +710,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-10" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="PLC设备" vertex="1">
-          <mxGeometry height="60" width="120" x="520" y="4220" as="geometry" />
+          <mxGeometry height="60" width="120" x="520" y="4530" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-11" edge="1" parent="1" source="a4V0P-MnRHSE9Gf4vbQq-10" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="a4V0P-MnRHSE9Gf4vbQq-3" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -716,7 +719,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-12" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="数据库" vertex="1">
-          <mxGeometry height="60" width="120" x="840" y="4220" as="geometry" />
+          <mxGeometry height="60" width="120" x="840" y="4530" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-13" edge="1" parent="1" source="a4V0P-MnRHSE9Gf4vbQq-12" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="a4V0P-MnRHSE9Gf4vbQq-4" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -725,7 +728,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-14" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="WebSocket" vertex="1">
-          <mxGeometry height="60" width="120" x="1160" y="4220" as="geometry" />
+          <mxGeometry height="60" width="120" x="1160" y="4530" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-15" edge="1" parent="1" source="a4V0P-MnRHSE9Gf4vbQq-14" style="endArrow=none;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="a4V0P-MnRHSE9Gf4vbQq-5" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
@@ -774,10 +777,10 @@
           <mxGeometry height="30" width="640" x="260" y="2810" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-27" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" value="loop" vertex="1">
-          <mxGeometry height="40" width="140" x="120" y="2883" as="geometry" />
+          <mxGeometry height="40" width="140" x="120" y="2880" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="【等待PLC就绪】" vertex="1">
-          <mxGeometry height="30" width="130" x="340" y="2883" as="geometry" />
+          <mxGeometry height="30" width="130" x="320" y="2880" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-30" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="读取PLC_INT状态" vertex="1">
           <mxGeometry height="30" width="319" x="261" y="2930" as="geometry" />
@@ -794,11 +797,11 @@
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-37" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="260" y="3410" as="sourcePoint" />
-            <mxPoint x="901" y="3410" as="targetPoint" />
+            <mxPoint x="1220" y="3410" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-38" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="发送任务开始通知" vertex="1">
-          <mxGeometry height="30" width="640" x="259.5" y="3380" as="geometry" />
+          <mxGeometry height="30" width="959.5" x="260.5" y="3380" as="geometry" />
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-40" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="写入任务编码" vertex="1">
           <mxGeometry height="30" width="320" x="260" y="3460" as="geometry" />
@@ -841,8 +844,8 @@
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-52" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="-500" y="3180" as="sourcePoint" />
-            <mxPoint x="-180" y="3180" as="targetPoint" />
+            <mxPoint x="-510" y="4092" as="sourcePoint" />
+            <mxPoint x="-190" y="4092" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-53" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
@@ -850,6 +853,93 @@
             <mxPoint x="259" y="3560" as="sourcePoint" />
             <mxPoint x="579" y="3560" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-54" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="262.5" y="3720" as="sourcePoint" />
+            <mxPoint x="900" y="3720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-55" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="更新任务状态为“进行中”" vertex="1">
+          <mxGeometry height="30" width="635" x="259.5" y="3690" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-56" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="260" y="3790" as="sourcePoint" />
+            <mxPoint x="900" y="3790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-57" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="记录操作日志" vertex="1">
+          <mxGeometry height="30" width="635" x="261" y="3760" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-59" parent="1" style="text;strokeColor=none;fillColor=none;html=1;fontSize=24;fontStyle=1;verticalAlign=middle;align=center;" value="loop" vertex="1">
+          <mxGeometry height="40" width="140" x="121" y="3848" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-60" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="【等待PLC完成】" vertex="1">
+          <mxGeometry height="30" width="130" x="320" y="3848" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-61" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="261" y="3930" as="sourcePoint" />
+            <mxPoint x="581" y="3930" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-62" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="读取完成状态" vertex="1">
+          <mxGeometry height="30" width="319" x="260.5" y="3900" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-63" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;startArrow=classic;startFill=1;endFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-59" y="4400" as="sourcePoint" />
+            <mxPoint x="261" y="4400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-64" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;startArrow=classic;startFill=1;endFill=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="260" y="4000" as="sourcePoint" />
+            <mxPoint x="580" y="4000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-65" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="返回状态" vertex="1">
+          <mxGeometry height="30" width="319" x="260" y="3970" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-66" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="261" y="4140" as="sourcePoint" />
+            <mxPoint x="900" y="4140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-67" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="更新任务状态为“已完成”" vertex="1">
+          <mxGeometry height="30" width="635" x="259.5" y="4110" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-68" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="261" y="4210" as="sourcePoint" />
+            <mxPoint x="902" y="4210" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-69" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="更新库存状态为“有货”" vertex="1">
+          <mxGeometry height="30" width="635" x="262.5" y="4180" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-70" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="262.5" y="4280" as="sourcePoint" />
+            <mxPoint x="582.5" y="4280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-72" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="释放PLC锁" vertex="1">
+          <mxGeometry height="30" width="319" x="260" y="4250" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-73" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="261" y="4340" as="sourcePoint" />
+            <mxPoint x="1220" y="4340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-74" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="发送任务完成通知" vertex="1">
+          <mxGeometry height="30" width="960.5" x="259.5" y="4310" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-75" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="返回执行结果" vertex="1">
+          <mxGeometry height="30" width="319" x="-59" y="4370" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
