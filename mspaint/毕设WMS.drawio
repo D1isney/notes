@@ -276,7 +276,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="BVUoF3LJc92JHdLGgPf7" name="时序图">
-    <mxGraphModel dx="2755" dy="1038" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2388" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -333,8 +333,8 @@
         </mxCell>
         <mxCell id="ZrUfChgH8oD2oTqFBhvR-14" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="-610" y="2440" as="sourcePoint" />
-            <mxPoint x="-340" y="2440" as="targetPoint" />
+            <mxPoint x="-60" y="2590" as="sourcePoint" />
+            <mxPoint x="260" y="2590" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="ZrUfChgH8oD2oTqFBhvR-18" edge="1" parent="1" style="endArrow=none;html=1;rounded=0;dashed=1;startArrow=classic;startFill=1;endFill=0;" value="">
@@ -734,6 +734,37 @@
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="910" y="3210" as="sourcePoint" />
             <mxPoint x="910" y="2530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="创建任务并执行" vertex="1">
+          <mxGeometry height="30" width="320" x="-60" y="2560" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-17" edge="1" parent="1" style="curved=1;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="330" y="2640" />
+              <mxPoint x="330" y="2730" />
+            </Array>
+            <mxPoint x="260" y="2650" as="sourcePoint" />
+            <mxPoint x="260" y="2720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-19" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="prepare()" vertex="1">
+          <mxGeometry height="30" width="120" x="235" y="2620" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-20" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="259" y="2780" as="sourcePoint" />
+            <mxPoint x="900" y="2780" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="创建任务并执行" vertex="1">
+          <mxGeometry height="30" width="640" x="260" y="2750" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-22" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="-560" y="2370" as="sourcePoint" />
+            <mxPoint x="-240" y="2370" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
