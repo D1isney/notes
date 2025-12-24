@@ -276,7 +276,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="BVUoF3LJc92JHdLGgPf7" name="时序图">
-    <mxGraphModel dx="6290" dy="2940" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2755" dy="1038" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -934,6 +934,16 @@
         </mxCell>
         <mxCell id="a4V0P-MnRHSE9Gf4vbQq-75" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="返回执行结果" vertex="1">
           <mxGeometry height="30" width="319" x="-59" y="4370" as="geometry" />
+        </mxCell>
+        <mxCell id="a4V0P-MnRHSE9Gf4vbQq-77" edge="1" parent="1" style="curved=1;endArrow=classic;html=1;rounded=0;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <Array as="points">
+              <mxPoint x="332.5" y="2650" />
+              <mxPoint x="332.5" y="2740" />
+            </Array>
+            <mxPoint x="262.5" y="2660" as="sourcePoint" />
+            <mxPoint x="262.5" y="2730" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
