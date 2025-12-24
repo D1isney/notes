@@ -188,8 +188,29 @@
         <mxCell id="2LHS1c9eAxcx1sqKPoG_-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="开始" vertex="1">
           <mxGeometry height="60" width="120" x="1241" y="1780" as="geometry" />
         </mxCell>
+        <mxCell id="2LHS1c9eAxcx1sqKPoG_-5" edge="1" parent="1" source="2LHS1c9eAxcx1sqKPoG_-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="2LHS1c9eAxcx1sqKPoG_-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2LHS1c9eAxcx1sqKPoG_-7" edge="1" parent="1" source="2LHS1c9eAxcx1sqKPoG_-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="2LHS1c9eAxcx1sqKPoG_-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2LHS1c9eAxcx1sqKPoG_-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="attempt：检查PLC是否就绪" vertex="1">
+          <mxGeometry height="60" width="230" x="950" y="2090" as="geometry" />
+        </mxCell>
         <mxCell id="2LHS1c9eAxcx1sqKPoG_-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="prepare：准备数据" vertex="1">
           <mxGeometry height="60" width="120" x="1241" y="1930" as="geometry" />
+        </mxCell>
+        <mxCell id="2LHS1c9eAxcx1sqKPoG_-10" edge="1" parent="1" source="2LHS1c9eAxcx1sqKPoG_-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="2LHS1c9eAxcx1sqKPoG_-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="2LHS1c9eAxcx1sqKPoG_-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="抛出EException" vertex="1">
+          <mxGeometry height="60" width="160" x="1220" y="2090" as="geometry" />
+        </mxCell>
+        <mxCell id="2LHS1c9eAxcx1sqKPoG_-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="数据异常" vertex="1">
+          <mxGeometry height="30" width="60" x="1300" y="2025" as="geometry" />
+        </mxCell>
+        <mxCell id="2LHS1c9eAxcx1sqKPoG_-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="抛出EException" vertex="1">
+          <mxGeometry height="60" width="160" x="1221" y="2220" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
