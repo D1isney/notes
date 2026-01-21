@@ -4975,7 +4975,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="JzlbRey92EIkejOd6erQ" name="黄船-生产管控系统">
-    <mxGraphModel dx="1561" dy="840" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1639" dy="882" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -5627,34 +5627,34 @@
           <mxGeometry height="30" width="420" y="240" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-212" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="device_monitor _log(设备监控日志)" vertex="1">
-          <mxGeometry height="300" width="420" x="3350" y="2460" as="geometry" />
+          <mxGeometry height="320" width="420" x="3350" y="2460" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-213" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-214" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="source:int(11)-- 来源(0：分料输送系统，1：小零件分料控制系统，2：小零件打磨控制系统，3：坡口切割控制系统，4：分拣配盘控制系统，5：小零件输送线控制系统，6：AGV运转系统)" vertex="1">
-          <mxGeometry height="30" width="420" y="60" as="geometry" />
+          <mxGeometry height="50" width="420" y="60" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-215" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="status:int(11)-- 状态(0：离线:1:开机，2:生产中，3：报警)" vertex="1">
-          <mxGeometry height="30" width="420" y="90" as="geometry" />
+          <mxGeometry height="30" width="420" y="110" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-216" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="gather_time:datetime-- 采集时间" vertex="1">
-          <mxGeometry height="30" width="420" y="120" as="geometry" />
+          <mxGeometry height="30" width="420" y="140" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-217" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="content:varchar(255) -- 设备运行内容/报警内容" vertex="1">
-          <mxGeometry height="30" width="420" y="150" as="geometry" />
+          <mxGeometry height="30" width="420" y="170" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-218" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint--创建用户" vertex="1">
-          <mxGeometry height="30" width="420" y="180" as="geometry" />
+          <mxGeometry height="30" width="420" y="200" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-219" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
-          <mxGeometry height="30" width="420" y="210" as="geometry" />
+          <mxGeometry height="30" width="420" y="230" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-220" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
-          <mxGeometry height="30" width="420" y="240" as="geometry" />
+          <mxGeometry height="30" width="420" y="260" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-221" parent="maG6jR_2okUXGeq6nSff-212" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
-          <mxGeometry height="30" width="420" y="270" as="geometry" />
+          <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-222" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate_detail_log(零件加工日志)" vertex="1">
           <mxGeometry height="300" width="420" x="1380" y="2890" as="geometry" />
