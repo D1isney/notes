@@ -5421,7 +5421,7 @@
         <mxCell id="maG6jR_2okUXGeq6nSff-144" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="maG6jR_2okUXGeq6nSff-145" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: center;&quot;&gt;nesting_plate_id&lt;/span&gt;:bigint(20) -- 套料板id" vertex="1">
+        <mxCell id="maG6jR_2okUXGeq6nSff-145" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: center;&quot;&gt;nesting_plate&lt;/span&gt;:bigint(20) -- 套料板id" vertex="1">
           <mxGeometry height="30" width="420" y="60" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-146" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="part_no:varchar(255) -- 零件号" vertex="1">
