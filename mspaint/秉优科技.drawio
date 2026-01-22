@@ -5271,10 +5271,10 @@
         <mxCell id="maG6jR_2okUXGeq6nSff-94" parent="maG6jR_2okUXGeq6nSff-90" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="sys_organization_id:bigint(20) -- 部门id" vertex="1">
           <mxGeometry height="30" width="420" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="maG6jR_2okUXGeq6nSff-95" parent="maG6jR_2okUXGeq6nSff-90" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="status:tinyint(1)--状态(0:未完成,1:执行中,2:完成)" vertex="1">
+        <mxCell id="maG6jR_2okUXGeq6nSff-95" parent="maG6jR_2okUXGeq6nSff-90" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="status:int(2)--状态(0:未完成,1:执行中,2:完成)" vertex="1">
           <mxGeometry height="30" width="420" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="maG6jR_2okUXGeq6nSff-96" parent="maG6jR_2okUXGeq6nSff-90" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="delete:tinyint(1)--删除(1:删除,0:未删除)" vertex="1">
+        <mxCell id="maG6jR_2okUXGeq6nSff-96" parent="maG6jR_2okUXGeq6nSff-90" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="is_delete:tinyint(1)--删除(1:删除,0:未删除)" vertex="1">
           <mxGeometry height="30" width="420" y="180" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-97" parent="maG6jR_2okUXGeq6nSff-90" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="ship_no:varchar(255)-- 船号" vertex="1">
@@ -5657,7 +5657,7 @@
           <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-222" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate_detail_log(零件加工日志)" vertex="1">
-          <mxGeometry height="300" width="420" x="1380" y="2890" as="geometry" />
+          <mxGeometry height="300" width="420" x="1360" y="2890" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-223" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
