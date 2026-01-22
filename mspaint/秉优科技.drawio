@@ -5421,7 +5421,7 @@
         <mxCell id="maG6jR_2okUXGeq6nSff-144" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
         </mxCell>
-        <mxCell id="maG6jR_2okUXGeq6nSff-145" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: center;&quot;&gt;nesting_plate&lt;/span&gt;:bigint(20) -- 套料板id" vertex="1">
+        <mxCell id="maG6jR_2okUXGeq6nSff-145" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;text-align: center;&quot;&gt;nesting_plate_id&lt;/span&gt;:bigint(20) -- 套料板id" vertex="1">
           <mxGeometry height="30" width="420" y="60" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-146" parent="maG6jR_2okUXGeq6nSff-143" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="part_no:varchar(255) -- 零件号" vertex="1">
@@ -5657,34 +5657,34 @@
           <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-222" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate_detail_log(零件加工日志)" vertex="1">
-          <mxGeometry height="300" width="420" x="1360" y="2890" as="geometry" />
+          <mxGeometry height="350" width="420" x="1354" y="2850" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-223" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-224" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="source:int(11)-- 来源(0：分料输送系统，1：小零件分料控制系统，2：小零件打磨控制系统，3：坡口切割控制系统，4：分拣配盘控制系统，5：小零件输送线控制系统，6：AGV运转系统)" vertex="1">
-          <mxGeometry height="30" width="420" y="60" as="geometry" />
+          <mxGeometry height="80" width="420" y="60" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-225" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="report_time:datetime-- 上报时间" vertex="1">
-          <mxGeometry height="30" width="420" y="90" as="geometry" />
+          <mxGeometry height="30" width="420" y="140" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-226" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="type:int(11)-- 加工状态(0：开始加工，1：加工完成)&amp;nbsp;" vertex="1">
-          <mxGeometry height="30" width="420" y="120" as="geometry" />
+          <mxGeometry height="30" width="420" y="170" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-227" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="result:int(11)-- 加工结果(0：失败，1：完成)&amp;nbsp;" vertex="1">
-          <mxGeometry height="30" width="420" y="150" as="geometry" />
+          <mxGeometry height="30" width="420" y="200" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-228" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint--创建用户" vertex="1">
-          <mxGeometry height="30" width="420" y="180" as="geometry" />
+          <mxGeometry height="30" width="420" y="230" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-229" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
-          <mxGeometry height="30" width="420" y="210" as="geometry" />
+          <mxGeometry height="30" width="420" y="260" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-230" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
-          <mxGeometry height="30" width="420" y="240" as="geometry" />
+          <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-231" parent="maG6jR_2okUXGeq6nSff-222" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
-          <mxGeometry height="30" width="420" y="270" as="geometry" />
+          <mxGeometry height="30" width="420" y="320" as="geometry" />
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-232" edge="1" parent="1" source="maG6jR_2okUXGeq6nSff-233" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="maG6jR_2okUXGeq6nSff-251">
           <mxGeometry relative="1" as="geometry" />
