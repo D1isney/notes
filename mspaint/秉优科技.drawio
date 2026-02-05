@@ -5803,7 +5803,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="1YmN3ZJaspYHwR09WFDe" name="导出专用">
-    <mxGraphModel dx="1311" dy="706" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="993" dy="535" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -5876,7 +5876,7 @@
           <mxGeometry height="30" width="420" y="570" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-23" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="sys_user_role" vertex="1">
-          <mxGeometry height="120" width="190" x="950" y="255" as="geometry" />
+          <mxGeometry height="240" width="190" x="950" y="255" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-24" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="190" y="30" as="geometry" />
@@ -5886,6 +5886,18 @@
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-26" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="role_id:bigint(20)--角色id" vertex="1">
           <mxGeometry height="30" width="190" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="P3sG8vbgVHWjnE8hmLUW-2" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint(20)--创建用户" vertex="1">
+          <mxGeometry height="30" width="190" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="P3sG8vbgVHWjnE8hmLUW-3" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(20)--更新用户" vertex="1">
+          <mxGeometry height="30" width="190" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="P3sG8vbgVHWjnE8hmLUW-4" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
+          <mxGeometry height="30" width="190" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="P3sG8vbgVHWjnE8hmLUW-5" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="role_id:bigint(20)--角色id" vertex="1">
+          <mxGeometry height="30" width="190" y="210" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-27" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="sys_role_menu" vertex="1">
           <mxGeometry height="120" width="290" x="1824.01" y="256" as="geometry" />
