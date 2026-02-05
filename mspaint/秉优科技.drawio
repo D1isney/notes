@@ -4975,7 +4975,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="JzlbRey92EIkejOd6erQ" name="黄船-生产管控系统">
-    <mxGraphModel dx="1214" dy="653" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="5463" dy="2940" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -5796,33 +5796,6 @@
         </mxCell>
         <mxCell id="maG6jR_2okUXGeq6nSff-268" edge="1" parent="1" source="maG6jR_2okUXGeq6nSff-127" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.005;entryY=0.851;entryDx=0;entryDy=0;entryPerimeter=0;" target="maG6jR_2okUXGeq6nSff-244">
           <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-1" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-family: 微软雅黑; font-size: 14px; text-align: start; white-space-collapse: preserve;&quot;&gt;report_log&lt;/span&gt;" vertex="1">
-          <mxGeometry height="310" width="420" x="3060" y="2940" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-2" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
-          <mxGeometry height="30" width="420" y="30" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-3" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="source:int(11)-- 来源(0：分料输送系统，1：小零件分料控制系统，2：小零件打磨控制系统，3：坡口切割控制系统，4：分拣配盘控制系统，5：小零件输送线控制系统，6：AGV运转系统)" vertex="1">
-          <mxGeometry height="70" width="420" y="60" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-4" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;div style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;context: text -- 上报内容&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="30" width="420" y="130" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-11" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="part_no:varchar(255) -- 零件号" vertex="1">
-          <mxGeometry height="30" width="420" y="160" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-14" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint--创建用户" vertex="1">
-          <mxGeometry height="30" width="420" y="190" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-15" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
-          <mxGeometry height="30" width="420" y="220" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-16" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
-          <mxGeometry height="30" width="420" y="250" as="geometry" />
-        </mxCell>
-        <mxCell id="0fwSZgF5qoqpEvlof4p5-17" parent="0fwSZgF5qoqpEvlof4p5-1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
-          <mxGeometry height="30" width="420" y="280" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
