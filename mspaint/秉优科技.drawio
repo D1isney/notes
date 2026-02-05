@@ -5896,7 +5896,7 @@
         <mxCell id="P3sG8vbgVHWjnE8hmLUW-4" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
           <mxGeometry height="30" width="190" y="180" as="geometry" />
         </mxCell>
-        <mxCell id="P3sG8vbgVHWjnE8hmLUW-5" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="role_id:bigint(20)--角色id" vertex="1">
+        <mxCell id="P3sG8vbgVHWjnE8hmLUW-5" parent="akAtwvO6C1Ff86HA-M6o-23" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
           <mxGeometry height="30" width="190" y="210" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-27" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="sys_role_menu" vertex="1">
