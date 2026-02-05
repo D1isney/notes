@@ -6148,7 +6148,7 @@
         <mxCell id="akAtwvO6C1Ff86HA-M6o-124" parent="akAtwvO6C1Ff86HA-M6o-97" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
           <mxGeometry height="30" width="420" y="810" as="geometry" />
         </mxCell>
-        <mxCell id="akAtwvO6C1Ff86HA-M6o-125" edge="1" parent="1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="akAtwvO6C1Ff86HA-M6o-209">
+        <mxCell id="akAtwvO6C1Ff86HA-M6o-125" edge="1" parent="1" source="akAtwvO6C1Ff86HA-M6o-141" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="akAtwvO6C1Ff86HA-M6o-209">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="1112" y="3030" as="sourcePoint" />
           </mxGeometry>
@@ -6415,7 +6415,7 @@
           <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-205" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate_detail_log(零件加工日志)" vertex="1">
-          <mxGeometry height="380" width="420" x="396" y="2845" as="geometry" />
+          <mxGeometry height="380" width="420" x="390" y="2830" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-206" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
