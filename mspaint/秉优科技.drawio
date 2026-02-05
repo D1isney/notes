@@ -5750,7 +5750,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="1YmN3ZJaspYHwR09WFDe" name="导出专用">
-    <mxGraphModel dx="1261" dy="678" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1214" dy="653" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -6415,7 +6415,7 @@
           <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-205" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate_detail_log(零件加工日志)" vertex="1">
-          <mxGeometry height="410" width="420" x="390" y="2830" as="geometry" />
+          <mxGeometry height="440" width="420" x="390" y="2830" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-206" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
@@ -6438,17 +6438,20 @@
         <mxCell id="45JIYhG4BQZ0z1tj9Zzr-14" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="flow_to:varchar(255) -- 流向" vertex="1">
           <mxGeometry height="30" width="420" y="260" as="geometry" />
         </mxCell>
-        <mxCell id="akAtwvO6C1Ff86HA-M6o-211" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint--创建用户" vertex="1">
+        <mxCell id="45JIYhG4BQZ0z1tj9Zzr-15" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-family: 微软雅黑; font-size: 14px; white-space-collapse: preserve;&quot;&gt;operator&lt;/span&gt;:varchar(255) -- 机台操作人" vertex="1">
           <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
-        <mxCell id="akAtwvO6C1Ff86HA-M6o-212" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
+        <mxCell id="akAtwvO6C1Ff86HA-M6o-211" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint--创建用户" vertex="1">
           <mxGeometry height="30" width="420" y="320" as="geometry" />
         </mxCell>
-        <mxCell id="akAtwvO6C1Ff86HA-M6o-213" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
+        <mxCell id="akAtwvO6C1Ff86HA-M6o-212" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
           <mxGeometry height="30" width="420" y="350" as="geometry" />
         </mxCell>
-        <mxCell id="akAtwvO6C1Ff86HA-M6o-214" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
+        <mxCell id="akAtwvO6C1Ff86HA-M6o-213" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
           <mxGeometry height="30" width="420" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="akAtwvO6C1Ff86HA-M6o-214" parent="akAtwvO6C1Ff86HA-M6o-205" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
+          <mxGeometry height="30" width="420" y="410" as="geometry" />
         </mxCell>
         <mxCell id="akAtwvO6C1Ff86HA-M6o-215" edge="1" parent="1" source="akAtwvO6C1Ff86HA-M6o-216" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="akAtwvO6C1Ff86HA-M6o-234">
           <mxGeometry relative="1" as="geometry" />
