@@ -5236,7 +5236,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-81" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="section_plan(计划)" vertex="1">
-          <mxGeometry height="540" width="420" x="4620" y="3280" as="geometry" />
+          <mxGeometry height="480" width="420" x="4620" y="3280" as="geometry" />
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-82" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
@@ -5259,35 +5259,29 @@
         <mxCell id="3pwY9thMfIKfIzDvpqas-88" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="ship_no:varchar(255)-- 船号" vertex="1">
           <mxGeometry height="30" width="420" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-89" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="total_section_no:varchar(255)-- 总段/组合" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-91" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="weight:double(20,3) -- 重量(kg)" vertex="1">
           <mxGeometry height="30" width="420" y="240" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-90" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="split_section_no:varchar(255) -- 分段" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-92" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="length:double(20,3) -- 长度(m)" vertex="1">
           <mxGeometry height="30" width="420" y="270" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-91" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="weight:double(20,3) -- 重量(kg)" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-93" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="plan_start_time:datetime -- 计划开始时间" vertex="1">
           <mxGeometry height="30" width="420" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-92" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="length:double(20,3) -- 长度(m)" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-94" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="plan_end_time:datetime -- 计划完成时间" vertex="1">
           <mxGeometry height="30" width="420" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-93" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="plan_start_time:datetime -- 计划开始时间" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-95" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint(20)--创建用户" vertex="1">
           <mxGeometry height="30" width="420" y="360" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-94" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="plan_end_time:datetime -- 计划完成时间" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-96" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
           <mxGeometry height="30" width="420" y="390" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-95" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint(20)--创建用户" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-97" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
           <mxGeometry height="30" width="420" y="420" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-96" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
-          <mxGeometry height="30" width="420" y="450" as="geometry" />
-        </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-97" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
-          <mxGeometry height="30" width="420" y="480" as="geometry" />
-        </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-98" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
-          <mxGeometry height="30" width="420" y="510" as="geometry" />
+          <mxGeometry height="30" width="420" y="450" as="geometry" />
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-99" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate(套料板)" vertex="1">
           <mxGeometry height="720" width="420" x="5440" y="3270" as="geometry" />
