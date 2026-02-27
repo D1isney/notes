@@ -4975,7 +4975,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="JzlbRey92EIkejOd6erQ" name="黄船-生产管控系统">
-    <mxGraphModel dx="-1724" dy="-306" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="-1950" dy="-429" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -5361,16 +5361,6 @@
         <mxCell id="3pwY9thMfIKfIzDvpqas-126" parent="3pwY9thMfIKfIzDvpqas-99" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
           <mxGeometry height="30" width="420" y="690" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-127" edge="1" parent="1" source="3pwY9thMfIKfIzDvpqas-144" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;" target="3pwY9thMfIKfIzDvpqas-215">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="5432" y="4760" as="sourcePoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-128" connectable="0" parent="3pwY9thMfIKfIzDvpqas-127" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;span style=&quot;font-size: 31px; font-weight: 700;&quot;&gt;N：1&lt;/span&gt;" vertex="1">
-          <mxGeometry relative="1" x="0.0257" y="1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-129" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate_detail(零件)" vertex="1">
           <mxGeometry height="690" width="420" x="5440" y="4310" as="geometry" />
         </mxCell>
@@ -5607,7 +5597,7 @@
           <mxGeometry height="30" width="420" y="290" as="geometry" />
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-210" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate_detail_log(零件加工日志)" vertex="1">
-          <mxGeometry height="440" width="420" x="4710" y="4560" as="geometry" />
+          <mxGeometry height="440" width="420" x="6390" y="4740" as="geometry" />
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-211" parent="3pwY9thMfIKfIzDvpqas-210" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
@@ -5817,6 +5807,22 @@
           <mxGeometry height="50" relative="1" width="50" as="geometry">
             <mxPoint x="4180" y="5840" as="sourcePoint" />
             <mxPoint x="4230" y="5790" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BFxhAI2xxTSOqwA2Enih-2" edge="1" parent="1" source="3pwY9thMfIKfIzDvpqas-152" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="3pwY9thMfIKfIzDvpqas-210">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BFxhAI2xxTSOqwA2Enih-4" connectable="0" parent="BFxhAI2xxTSOqwA2Enih-2" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;span style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;1&lt;/span&gt;&lt;br style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;&lt;span style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;:&lt;/span&gt;&lt;br style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;&lt;span style=&quot;font-size: 28px;&quot;&gt;&lt;b&gt;1&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="0.1387" y="-3" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BFxhAI2xxTSOqwA2Enih-5" edge="1" parent="1" source="3pwY9thMfIKfIzDvpqas-147" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" target="3pwY9thMfIKfIzDvpqas-142">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BFxhAI2xxTSOqwA2Enih-6" connectable="0" parent="BFxhAI2xxTSOqwA2Enih-5" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="&lt;span style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;1&lt;/span&gt;&lt;br style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;&lt;span style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;:&lt;/span&gt;&lt;br style=&quot;font-size: 28px; font-weight: 700;&quot;&gt;&lt;span style=&quot;font-size: 28px;&quot;&gt;&lt;b&gt;1&lt;/b&gt;&lt;/span&gt;" vertex="1">
+          <mxGeometry relative="1" x="-0.0344" y="1" as="geometry">
+            <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
