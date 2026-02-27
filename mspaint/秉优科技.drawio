@@ -5283,7 +5283,7 @@
         <mxCell id="3pwY9thMfIKfIzDvpqas-98" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
           <mxGeometry height="30" width="420" y="450" as="geometry" />
         </mxCell>
-        <mxCell id="BFxhAI2xxTSOqwA2Enih-8" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-family: 微软雅黑; font-size: 14px; white-space-collapse: preserve;&quot;&gt;performance&lt;/span&gt;:float--完成进度" vertex="1">
+        <mxCell id="BFxhAI2xxTSOqwA2Enih-8" parent="3pwY9thMfIKfIzDvpqas-81" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-family: 微软雅黑; font-size: 14px; white-space-collapse: preserve;&quot;&gt;performance&lt;/span&gt;:int--完成进度（100为都完成了）" vertex="1">
           <mxGeometry height="30" width="420" y="480" as="geometry" />
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-99" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="nesting_plate(套料板)" vertex="1">
