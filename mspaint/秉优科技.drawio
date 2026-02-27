@@ -5654,7 +5654,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-225" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="&lt;font&gt;nesting_plate_task_detail(套料板任务详情)&lt;/font&gt;" vertex="1">
-          <mxGeometry height="540" width="420" x="6110" y="3320" as="geometry" />
+          <mxGeometry height="390" width="420" x="6110" y="3320" as="geometry" />
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-226" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id:bigint(20) -- id" vertex="1">
           <mxGeometry height="30" width="420" y="30" as="geometry" />
@@ -5665,47 +5665,32 @@
         <mxCell id="3pwY9thMfIKfIzDvpqas-228" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="status:int(11) -- 状态(0：未执行，1:执行中，2:完成)" vertex="1">
           <mxGeometry height="30" width="420" y="90" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-229" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="nesting_plate_no:varchar(255) -- 套料板号" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-234" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="flow_to:varchar(255) -- 流向" vertex="1">
           <mxGeometry height="30" width="420" y="120" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-230" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="ship_no:varchar(255)-- 船号" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-235" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="plan_num:int(11) -- 计划数" vertex="1">
           <mxGeometry height="30" width="420" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-231" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="total_section_no:varchar(255)-- 总段/组合" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-236" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="actual_num:int(11) -- 分拣数" vertex="1">
           <mxGeometry height="30" width="420" y="180" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-232" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="split_section_no:varchar(255) -- 分段" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-237" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="pallet_code:code(255) -- 入托编码" vertex="1">
           <mxGeometry height="30" width="420" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-233" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="split_section_no:varchar(255) -- 分段" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-238" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="remark:varchar(255) -- 备注" vertex="1">
           <mxGeometry height="30" width="420" y="240" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-234" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="flow_to:varchar(255) -- 流向" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-239" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint--创建用户" vertex="1">
           <mxGeometry height="30" width="420" y="270" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-235" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="plan_num:int(11) -- 计划数" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-240" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
           <mxGeometry height="30" width="420" y="300" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-236" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="actual_num:int(11) -- 分拣数" vertex="1">
+        <mxCell id="3pwY9thMfIKfIzDvpqas-241" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
           <mxGeometry height="30" width="420" y="330" as="geometry" />
         </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-237" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="pallet_code:code(255) -- 入托编码" vertex="1">
-          <mxGeometry height="30" width="420" y="360" as="geometry" />
-        </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-238" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="remark:varchar(255) -- 备注" vertex="1">
-          <mxGeometry height="30" width="420" y="390" as="geometry" />
-        </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-239" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_id:bigint--创建用户" vertex="1">
-          <mxGeometry height="30" width="420" y="420" as="geometry" />
-        </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-240" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="create_time:datetime--创建时间" vertex="1">
-          <mxGeometry height="30" width="420" y="450" as="geometry" />
-        </mxCell>
-        <mxCell id="3pwY9thMfIKfIzDvpqas-241" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_id:bigint(25)--更新用户" vertex="1">
-          <mxGeometry height="30" width="420" y="480" as="geometry" />
-        </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-242" parent="3pwY9thMfIKfIzDvpqas-225" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="update_time:datetime--更新时间" vertex="1">
-          <mxGeometry height="30" width="420" y="510" as="geometry" />
+          <mxGeometry height="30" width="420" y="360" as="geometry" />
         </mxCell>
         <mxCell id="3pwY9thMfIKfIzDvpqas-243" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="part_task(任务)" vertex="1">
           <mxGeometry height="510" width="420" x="6110" y="4060" as="geometry" />
