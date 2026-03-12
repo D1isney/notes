@@ -5599,7 +5599,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="j1NUdnSk38vFX5rewUx1" name="黄船-集控">
-    <mxGraphModel dx="1753" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1501" dy="818" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -5683,16 +5683,16 @@
         <mxCell id="CPgqQgQCY-Kcy8zLWc-5-25" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="提前设定比重" vertex="1">
           <mxGeometry height="60" width="120" x="140" y="960" as="geometry" />
         </mxCell>
-        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-33" edge="1" parent="1" source="CPgqQgQCY-Kcy8zLWc-5-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="CPgqQgQCY-Kcy8zLWc-5-32">
+        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-33" edge="1" parent="1" source="CPgqQgQCY-Kcy8zLWc-5-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;startArrow=classic;startFill=1;endArrow=none;endFill=0;" target="CPgqQgQCY-Kcy8zLWc-5-32">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="完工上报" vertex="1">
+        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-28" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="计算米数" vertex="1">
           <mxGeometry height="60" width="120" x="460" y="1300" as="geometry" />
         </mxCell>
         <mxCell id="CPgqQgQCY-Kcy8zLWc-5-31" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="MES" vertex="1">
           <mxGeometry height="60" width="120" x="730" y="490" as="geometry" />
         </mxCell>
-        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-34" edge="1" parent="1" source="CPgqQgQCY-Kcy8zLWc-5-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="CPgqQgQCY-Kcy8zLWc-5-31">
+        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-34" edge="1" parent="1" source="CPgqQgQCY-Kcy8zLWc-5-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;startArrow=classic;startFill=1;" target="CPgqQgQCY-Kcy8zLWc-5-31">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="CPgqQgQCY-Kcy8zLWc-5-32" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="根据比重，分配米数" vertex="1">
