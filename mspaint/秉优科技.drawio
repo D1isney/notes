@@ -5615,6 +5615,9 @@
         <mxCell id="T5lqCnxEv7K7kcathFmY-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="工人：米数" vertex="1">
           <mxGeometry height="30" width="150" x="530" y="120" as="geometry" />
         </mxCell>
+        <mxCell id="T5lqCnxEv7K7kcathFmY-5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="班组长 -&amp;gt; 后台管理 -&amp;gt; 分配米数比重" vertex="1">
+          <mxGeometry height="90" width="480" x="200" y="470" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
