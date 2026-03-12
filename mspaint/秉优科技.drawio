@@ -5704,6 +5704,12 @@
         <mxCell id="CPgqQgQCY-Kcy8zLWc-5-36" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="后台" vertex="1">
           <mxGeometry height="30" width="60" x="140" y="280" as="geometry" />
         </mxCell>
+        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-38" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="MES通过视图主动抓" vertex="1">
+          <mxGeometry height="50" width="210" x="580" y="1280" as="geometry" />
+        </mxCell>
+        <mxCell id="CPgqQgQCY-Kcy8zLWc-5-40" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="格式：员工账号|比例|米数" vertex="1">
+          <mxGeometry height="40" width="210" x="580" y="1330" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
