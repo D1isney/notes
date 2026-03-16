@@ -5599,7 +5599,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="j1NUdnSk38vFX5rewUx1" name="黄船-集控">
-    <mxGraphModel dx="1097" dy="598" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="815" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -5711,34 +5711,34 @@
           <mxGeometry height="40" width="210" x="580" y="1330" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-2" parent="1" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" value="关系表" vertex="1">
-          <mxGeometry height="300" width="420" x="1030" y="620" as="geometry" />
+          <mxGeometry height="300" width="330" x="1030" y="620" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-3" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="id ： 自增ID" vertex="1">
-          <mxGeometry height="30" width="420" y="30" as="geometry" />
+          <mxGeometry height="30" width="330" y="30" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-4" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="groupId：用户id（用|分割，一定是从小到大）" vertex="1">
-          <mxGeometry height="30" width="420" y="60" as="geometry" />
+          <mxGeometry height="30" width="330" y="60" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-6" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;span style=&quot;font-family: 微软雅黑; font-size: 14px; white-space-collapse: preserve;&quot;&gt;proportion&lt;/span&gt;：比重（用|分割，跟组ID数量保持一致）" vertex="1">
-          <mxGeometry height="30" width="420" y="90" as="geometry" />
+          <mxGeometry height="30" width="330" y="90" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-7" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;font-size: 14px; white-space-collapse: preserve;&quot;&gt;groupName&lt;/span&gt;&lt;/font&gt;：用户名（用|分割，跟组ID数量保持一致）" vertex="1">
-          <mxGeometry height="30" width="420" y="120" as="geometry" />
+          <mxGeometry height="30" width="330" y="120" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-8" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;font-size: 14px; white-space-collapse: preserve;&quot;&gt;name&lt;/span&gt;&lt;/font&gt;：组名" vertex="1">
-          <mxGeometry height="30" width="420" y="150" as="geometry" />
+          <mxGeometry height="30" width="330" y="150" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-9" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;font-size: 14px; white-space-collapse: preserve;&quot;&gt;createId&lt;/span&gt;&lt;/font&gt;：创建人ID" vertex="1">
-          <mxGeometry height="30" width="420" y="180" as="geometry" />
+          <mxGeometry height="30" width="330" y="180" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-10" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;font-size: 14px; white-space-collapse: preserve;&quot;&gt;createTime&lt;/span&gt;&lt;/font&gt;：创建时间" vertex="1">
-          <mxGeometry height="30" width="420" y="210" as="geometry" />
+          <mxGeometry height="30" width="330" y="210" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-11" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;font-size: 14px; white-space-collapse: preserve;&quot;&gt;updateId&lt;/span&gt;&lt;/font&gt;：更新人ID" vertex="1">
-          <mxGeometry height="30" width="420" y="240" as="geometry" />
+          <mxGeometry height="30" width="330" y="240" as="geometry" />
         </mxCell>
         <mxCell id="LZepCZci-PUf-JO5hpgT-12" parent="LZepCZci-PUf-JO5hpgT-2" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="&lt;font face=&quot;微软雅黑&quot;&gt;&lt;span style=&quot;font-size: 14px; white-space-collapse: preserve;&quot;&gt;updateTime&lt;/span&gt;&lt;/font&gt;：更新时间" vertex="1">
-          <mxGeometry height="30" width="420" y="270" as="geometry" />
+          <mxGeometry height="30" width="330" y="270" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
